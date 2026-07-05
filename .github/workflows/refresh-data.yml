@@ -1,0 +1,45 @@
+name: Refresh match data
+
+on:
+  schedule:
+    # Every 2 hours. The fetch uses one API call per day in a 7-day window
+    # (~8 calls/run, ~96/day) against api-sports' 100/day free-tier quota.
+    - cron: "17 */2 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch fixtures, results, log and news
+        env:
+          RUGBY_API_KEY: ${{ secrets.RUGBY_API_KEY }}
+        run: |
+          START=$(TZ=Australia/Sydney date +%F)
+          END=$(TZ=Australia/Sydney date -d "+7 days" +%F)
+          node scripts/fetch-nations.mjs "$START" "$END"
+
+      - name: Publish nations.json at site root
+        run: cp public/nations.json nations.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add nations.json public/nations.json scripts/.cache-games.json scripts/match-tries.json
+          git diff --cached --quiet && echo "No data changes" && exit 0
+          git commit -m "Data refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          git push
