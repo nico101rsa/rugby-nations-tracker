@@ -1,0 +1,26 @@
+name: Keepalive
+
+# GitHub disables scheduled workflows after 60 days of repo inactivity. The
+# gap between the July and November fixture windows exceeds that, which would
+# silently stop the refresh cron before the November rounds. This monthly
+# no-op commit keeps the repo "active" so the refresh keeps firing.
+on:
+  schedule:
+    - cron: "0 6 1 * *" # 06:00 UTC on the 1st of each month
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          date -u > KEEPALIVE
+          git add KEEPALIVE
+          git commit -m "chore: keepalive" || echo "nothing to commit"
+          git push || echo "nothing to push"

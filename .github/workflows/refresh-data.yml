@@ -2,9 +2,14 @@ name: Refresh match data
 
 on:
   schedule:
-    # Every 2 hours. The fetch uses one API call per day in a 7-day window
-    # (~8 calls/run, ~96/day) against api-sports' 100/day free-tier quota.
-    - cron: "17 */2 * * *"
+    # Every 15 min. scripts/refresh.mjs decides per-run how much API budget to
+    # spend from the fixture schedule (all UTC, matching the api-sports data):
+    #   - LIVE  (match live/imminent): today-only, 1 API call  -> ~15-min scores
+    #   - SWEEP (00/06/12/18 UTC):     today..+2, 3 API calls   -> news/fixtures
+    #   - IDLE  (nothing on):          no API call at all
+    # A budget guard refuses to spend the last ~10 requests. Stays well under
+    # api-sports' 100/day free tier (~76 on a match Saturday, ~12 when quiet).
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 concurrency:
@@ -24,13 +29,10 @@ jobs:
         with:
           node-version: 22
 
-      - name: Fetch fixtures, results, log and news
+      - name: Schedule-aware refresh (live / sweep / idle)
         env:
           RUGBY_API_KEY: ${{ secrets.RUGBY_API_KEY }}
-        run: |
-          START=$(TZ=Australia/Sydney date +%F)
-          END=$(TZ=Australia/Sydney date -d "+7 days" +%F)
-          node scripts/fetch-nations.mjs "$START" "$END"
+        run: node scripts/refresh.mjs
 
       - name: Publish nations.json at site root
         run: cp public/nations.json nations.json

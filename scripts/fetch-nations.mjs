@@ -11,7 +11,7 @@
 
 import { writeFile, readFile, mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { mergeStaticFixtures } from "./static-fixtures.mjs";
 import { scrapeTries } from "./scrape-tries.mjs";
 
@@ -39,12 +39,24 @@ function aestDateStr(d = new Date()) {
     day: "2-digit",
   }).format(d);
 }
-function* dateRange(startStr, endStr) {
+// The api-sports data is UTC (payloads carry timezone:"UTC"), so refresh
+// queries use UTC calendar dates.
+function utcDateStr(d = new Date()) {
+  return new Intl.DateTimeFormat("en-CA", {
+    timeZone: "UTC",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(d);
+}
+function datesForWindow(startStr, endStr) {
+  const out = [];
   const start = new Date(`${startStr}T00:00:00Z`);
   const end = new Date(`${endStr}T00:00:00Z`);
   for (let t = start.getTime(); t <= end.getTime(); t += 86400000) {
-    yield aestDateStr(new Date(t));
+    out.push(utcDateStr(new Date(t)));
   }
+  return out;
 }
 
 async function apiGames(date) {
@@ -58,6 +70,10 @@ async function apiGames(date) {
   }
   return { games: j.response || [], remaining: rem };
 }
+
+// Decode the handful of HTML entities Google News RSS emits.
+const decodeEntities = (s) =>
+  s.replace(/&amp;/g, "&").replace(/&#39;/g, "'").replace(/&quot;/g, '"');
 
 // ---- news via Google News RSS (public, no key). Parsed with light regex. ----
 async function fetchNews() {
@@ -81,9 +97,9 @@ async function fetchNews() {
         ? rawTitle.slice(0, -(source.length + 3))
         : rawTitle;
       return {
-        title: title.replace(/&amp;/g, "&").replace(/&#39;/g, "'").replace(/&quot;/g, '"'),
+        title: decodeEntities(title),
         link: pick(b, "link"),
-        source,
+        source: decodeEntities(source),
         published: pick(b, "pubDate"),
       };
     });
@@ -148,18 +164,13 @@ const slim = (g) => ({
   away: { id: g.teams.away.id, name: g.teams.away.name, logo: g.teams.away.logo, score: g.scores?.away ?? null },
 });
 
-async function main() {
-  const today = aestDateStr();
-  const start = process.argv[2] || today;
-  // default window: today .. +14 days
-  const end = process.argv[3] || aestDateStr(new Date(Date.now() + 14 * 86400000));
-
+export async function refresh({ dates }) {
   // load cache
   let cache = {};
   try { cache = JSON.parse(await readFile(CACHE, "utf8")); } catch { /* first run */ }
 
   let remaining = null;
-  for (const date of KEY ? dateRange(start, end) : []) {
+  for (const date of KEY ? dates : []) {
     try {
       const { games, remaining: rem } = await apiGames(date);
       if (rem != null) remaining = rem;
@@ -191,10 +202,41 @@ async function main() {
     fixtures, results, log, news,
   };
 
+  // Guard: never clobber real published data with an empty rebuild. This
+  // happens when the games cache (scripts/.cache-games.json, gitignored) is
+  // missing — e.g. running in a fresh worktree without RUGBY_API_KEY. Without
+  // this check, results + log silently get wiped to zero. News still refreshes.
+  if (results.length === 0 && log.length === 0) {
+    let prev = null;
+    try { prev = JSON.parse(await readFile(OUT, "utf8")); } catch { /* no existing file */ }
+    if (prev && ((prev.results?.length ?? 0) > 0 || (prev.log?.length ?? 0) > 0)) {
+      console.error(
+        `\nRefusing to overwrite ${OUT}: rebuild produced 0 results and 0 log rows,\n` +
+        `but the existing file has ${prev.results?.length ?? 0} results / ${prev.log?.length ?? 0} log rows.\n` +
+        `The games cache (${CACHE}) is likely missing or empty. Populate it (set\n` +
+        `RUGBY_API_KEY, or copy the cache from a tree that has it) and re-run.`
+      );
+      process.exit(1);
+    }
+  }
+
   await mkdir(join(ROOT, "public"), { recursive: true });
   await writeFile(OUT, JSON.stringify(out, null, 2));
   console.log(`\nWrote ${OUT}`);
   console.log(out.counts, `| rate remaining: ${remaining}`);
+  return { remaining, counts: out.counts };
 }
 
-main().catch((e) => { console.error(e); process.exit(1); });
+export { utcDateStr, datesForWindow };
+
+// CLI: `node scripts/fetch-nations.mjs [startUTC] [endUTC]` for manual/backfill
+// runs. Defaults to a today..+2 UTC window (api-sports only exposes ~3 days).
+// pathToFileURL (not `file://${argv[1]}`) so the guard also matches when the
+// script path contains spaces or other characters URLs percent-encode.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  const start = process.argv[2] || utcDateStr();
+  const end = process.argv[3] || utcDateStr(new Date(Date.now() + 2 * 86400000));
+  refresh({ dates: datesForWindow(start, end) })
+    .then((r) => console.log(r.counts, `| rate remaining: ${r.remaining}`))
+    .catch((e) => { console.error(e); process.exit(1); });
+}

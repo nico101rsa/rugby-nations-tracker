@@ -62,6 +62,16 @@ const SCHEDULE = [
   ["6", "FRA", "ARG", "2026-11-21T12:00:00+00:00", false],
 ];
 
+// Normalized kickoff rows for the refresh scheduler (single source of truth
+// for "is a match live now?"). Dates are UTC, as stored in SCHEDULE.
+export function scheduleKickoffs() {
+  return SCHEDULE.map(([week, , , date, timeConfirmed]) => ({
+    week,
+    date,
+    timeConfirmed,
+  }));
+}
+
 const side = (code) => ({
   id: T[code].id,
   name: T[code].name,
