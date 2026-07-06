@@ -3,7 +3,7 @@
 // drives the fetcher. Fires every 15 min from GitHub Actions (UTC).
 import { pathToFileURL } from "node:url";
 import { scheduleKickoffs } from "./static-fixtures.mjs";
-import { refresh, utcDateStr, datesForWindow } from "./fetch-nations.mjs";
+import { refresh, refreshNewsOnly, utcDateStr, datesForWindow } from "./fetch-nations.mjs";
 
 const PRE_MS = 15 * 60000;    // start polling 15 min before kickoff
 const POST_MS = 150 * 60000;  // keep polling 150 min after (play + HT + FT settle)
@@ -48,7 +48,13 @@ async function mainRun() {
   });
   console.log(`[refresh] mode=${decision.mode} — ${decision.reason} — dates=${decision.dates.join(",") || "none"}`);
 
-  if (decision.dates.length === 0) return; // idle / guard: no API spend
+  if (decision.dates.length === 0) {
+    // idle / guard: no api-sports spend, but the news scrape is free + keyless,
+    // so keep the headlines fresh on every tick instead of only on sweeps.
+    const n = await refreshNewsOnly();
+    console.log(`[refresh] news-only`, n);
+    return;
+  }
 
   const result = await refresh({ dates: decision.dates });
   console.log(`[refresh] done`, result.counts, `| rate remaining: ${result.remaining}`);

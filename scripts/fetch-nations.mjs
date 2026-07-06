@@ -227,6 +227,43 @@ export async function refresh({ dates }) {
   return { remaining, counts: out.counts };
 }
 
+// Merge freshly-scraped headlines into an existing nations.json object. Pure so
+// it can be unit-tested. Returns the updated object, or null when the scrape
+// came back empty (an RSS hiccup) — callers must NOT write in that case, so a
+// transient failure never wipes good headlines off the live feed.
+export function applyNews(existing, news, now = new Date()) {
+  if (!existing || !Array.isArray(news) || news.length === 0) return null;
+  return {
+    ...existing,
+    updatedAt: now.toISOString(),
+    counts: { ...(existing.counts || {}), news: news.length },
+    news,
+  };
+}
+
+// News comes from a free, keyless Google News RSS scrape, so it doesn't need the
+// rate-limited api-sports budget and shouldn't be gated behind LIVE/SWEEP runs.
+// This refreshes ONLY the news field of the existing nations.json every tick,
+// preserving the fixtures/results/log the last full refresh() computed.
+export async function refreshNewsOnly() {
+  let existing;
+  try {
+    existing = JSON.parse(await readFile(OUT, "utf8"));
+  } catch {
+    console.warn("refreshNewsOnly: no existing nations.json — skipping");
+    return { skipped: "no-file" };
+  }
+  const news = await fetchNews();
+  const out = applyNews(existing, news);
+  if (!out) {
+    console.warn("refreshNewsOnly: news scrape empty — keeping existing headlines");
+    return { skipped: "empty" };
+  }
+  await writeFile(OUT, JSON.stringify(out, null, 2));
+  console.log(`refreshNewsOnly: wrote ${news.length} headlines`);
+  return { news: news.length };
+}
+
 export { utcDateStr, datesForWindow };
 
 // CLI: `node scripts/fetch-nations.mjs [startUTC] [endUTC]` for manual/backfill
