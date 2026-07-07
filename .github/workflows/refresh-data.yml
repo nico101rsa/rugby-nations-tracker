@@ -4,12 +4,18 @@ on:
   schedule:
     # Every 15 min. scripts/refresh.mjs decides per-run how much API budget to
     # spend from the fixture schedule (all UTC, matching the api-sports data):
-    #   - LIVE  (match live/imminent): today-only, 1 API call  -> ~15-min scores
+    #   - LIVE  (match live/imminent): burst-polls in-process every ~12 min,
+    #           publishing each fetch, for up to ~2h (one landed fire covers a
+    #           whole match even when GitHub drops the next scheduled runs)
     #   - SWEEP (00/06/12/18 UTC):     today..+2, 3 API calls   -> news/fixtures
     #   - IDLE  (nothing on):          no API call at all
-    # A budget guard refuses to spend the last ~10 requests. Stays well under
-    # api-sports' 100/day free tier (~76 on a match Saturday, ~12 when quiet).
+    # A budget guard refuses to spend the last ~10 requests. Stays under
+    # api-sports' 100/day free tier; the burst is quota-tuned (~12-min cadence).
     - cron: "*/15 * * * *"
+    # Denser Saturday match-window schedule (UTC): a Round's 6 matches run
+    # ~05:10-19:10 UTC Sat, so more scheduled slots = more chances one lands to
+    # latch a burst. The concurrency group below serialises overlaps.
+    - cron: "*/10 4-21 * * 6"
   workflow_dispatch:
 
 concurrency:
