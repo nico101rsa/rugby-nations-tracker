@@ -292,37 +292,145 @@ async function generateOne(client, data, teamId, now) {
   return digest;
 }
 
-// ---- Gemini provider (free tier: 1,500 grounded requests/day) ----------------
+// ---- source pack (free news retrieval) ---------------------------------------
 //
-// Flash is cheaper than Sonnet but sloppier, so every edition passes a second,
-// independently-grounded fact-check call before it's accepted, with one bounded
-// revision loop. Worst case 4 calls/team = 48/day — ~3% of the free quota.
+// Model-side web search is a paid feature on both vendors (it sank the Sonnet
+// budget, and Gemini's grounding is paid-tier for new accounts). So the news
+// comes to the model instead: Bing News RSS (free, direct publisher links,
+// no key) plus the top article bodies. This also fixes the 2026-07-10 "no team
+// announced" failure mode — the model can't miss an announcement that's in its
+// prompt, and the fact-checker rejects claims that go beyond the pack.
 
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
-const GEMINI_URL = (model) =>
-  `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+const NEWS_ITEMS = 12; // headlines + snippets per team
+const NEWS_ARTICLES = 5; // full article bodies fetched (most recent first)
+const ARTICLE_CHARS = 3000; // per-article cap keeps the prompt ~15-20K tokens
 
-async function geminiCall(apiKey, prompt) {
-  const res = await fetch(GEMINI_URL(GEMINI_MODEL), {
-    method: "POST",
-    headers: { "content-type": "application/json", "x-goog-api-key": apiKey },
-    body: JSON.stringify({
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      tools: [{ google_search: {} }],
-    }),
-  });
-  if (!res.ok) throw new Error(`gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
-  const body = await res.json();
-  const cand = body.candidates?.[0];
-  const text = (cand?.content?.parts ?? []).map((p) => p.text ?? "").join("\n");
-  const queries = cand?.groundingMetadata?.webSearchQueries?.length ?? 0;
-  return { text, queries };
+export function parseRss(xml) {
+  return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map(([, it]) => {
+    const g = (tag) => (it.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`)) || [])[1] ?? "";
+    const strip = (s) =>
+      s.replace(/<!\[CDATA\[|\]\]>/g, "").replace(/<[^>]+>/g, "").replace(/&amp;/g, "&")
+        .replace(/&#8216;|&#8217;|&apos;/g, "'").replace(/&#8220;|&#8221;|&quot;/g, '"')
+        .replace(/&#8211;|&#8212;/g, "–").replace(/&lt;/g, "<").replace(/&gt;/g, ">").trim();
+    return { title: strip(g("title")), link: strip(g("link")), desc: strip(g("description")), date: g("pubDate") };
+  }).filter((i) => i.title && i.link);
 }
 
-// The checker gets the same trusted-data block the writer had, plus the draft.
-// It re-searches the claims independently — a fresh context, so it isn't
-// grading its own homework.
-export function buildFactCheckPrompt(params, digest) {
+export function htmlToText(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<nav[\s\S]*?<\/nav>|<header[\s\S]*?<\/header>|<footer[\s\S]*?<\/footer>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&amp;/g, "&").replace(/&#8216;|&#8217;|&apos;/g, "'").replace(/&#8220;|&#8221;|&quot;/g, '"')
+    .replace(/&nbsp;/g, " ").replace(/&#\d+;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+const UA = { "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)" };
+
+async function fetchWithTimeout(url, ms = 8000) {
+  const ctl = new AbortController();
+  const t = setTimeout(() => ctl.abort(), ms);
+  try {
+    return await fetch(url, { headers: UA, redirect: "follow", signal: ctl.signal });
+  } finally {
+    clearTimeout(t);
+  }
+}
+
+async function fetchTeamNews(teamName, opponentName) {
+  const q = encodeURIComponent(`${teamName} rugby ${opponentName && opponentName !== "TBC" ? opponentName : "team news"}`);
+  const res = await fetchWithTimeout(`https://www.bing.com/news/search?q=${q}&format=rss`);
+  if (!res.ok) throw new Error(`news rss ${res.status}`);
+  const items = parseRss(await res.text()).slice(0, NEWS_ITEMS);
+
+  const articles = [];
+  for (const item of items.slice(0, NEWS_ARTICLES)) {
+    try {
+      const a = await fetchWithTimeout(item.link);
+      if (!a.ok) continue;
+      const text = htmlToText(await a.text());
+      if (text.length > 400) articles.push({ title: item.title, url: a.url, text: text.slice(0, ARTICLE_CHARS) });
+    } catch {
+      // paywalled/slow publishers just drop out of the pack
+    }
+  }
+
+  const lines = items.map((i, n) => `${n + 1}. [${i.date}] ${i.title}${i.desc ? ` — ${i.desc}` : ""}`);
+  const bodies = articles.map((a, n) => `### Article ${n + 1}: ${a.title}\n(${a.url})\n${a.text}`);
+  const pack = `## Source pack — today's coverage (your ONLY factual sources)
+
+You have no web access. The headlines and articles below are your entire fact
+sheet — they replace the research step. Every factual claim in your edition
+must trace to this pack or to the trusted app data. If the pack doesn't cover
+something (e.g. no team announcement yet), say so honestly rather than
+guessing; never invent or assume "no news".
+
+Quotes: quotation marks are a verbatim contract — only use words that appear
+inside quotation marks in the pack, character for character. If the pack only
+paraphrases what someone said, paraphrase too, without quote marks.
+
+### Headlines
+${lines.join("\n")}
+
+${bodies.join("\n\n")}`;
+  return { pack, headlineCount: items.length, articleCount: articles.length };
+}
+
+// ---- Gemini provider (free tier) ----------------------------------------------
+//
+// Flash is cheaper than Sonnet but sloppier, so every edition passes a second
+// fact-check call (fresh context, same source pack) before it's accepted, with
+// one bounded revision loop. Worst case 4 calls/team = 48/day, well inside the
+// free quota; a ~7s pause between calls respects the free-tier RPM cap.
+
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.5-flash";
+const GEMINI_URL = (model) =>
+  `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+const GEMINI_PAUSE_MS = 7000;
+
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Free-tier traffic is shed first under load (503) and rate-limited hard
+// (429). Retry with backoff, then fall back down the flash family — a sibling
+// model beats a failed edition.
+const GEMINI_FALLBACKS = [GEMINI_MODEL, "gemini-3-flash-preview", "gemini-3.1-flash-lite"];
+// Sticky start index: once a model serves a request, later calls skip straight
+// to it instead of re-burning the retry ladder on a throttled sibling.
+let geminiStickyIdx = 0;
+
+async function geminiCall(apiKey, prompt) {
+  const waits = [15000, 45000];
+  let lastErr;
+  for (let mi = geminiStickyIdx; mi < GEMINI_FALLBACKS.length; mi++) {
+    const model = GEMINI_FALLBACKS[mi];
+    for (let attempt = 0; attempt <= waits.length; attempt++) {
+      await sleep(GEMINI_PAUSE_MS);
+      const res = await fetch(GEMINI_URL(model), {
+        method: "POST",
+        headers: { "content-type": "application/json", "x-goog-api-key": apiKey },
+        body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }] }),
+      });
+      if (res.ok) {
+        geminiStickyIdx = mi;
+        const body = await res.json();
+        return (body.candidates?.[0]?.content?.parts ?? []).map((p) => p.text ?? "").join("\n");
+      }
+      lastErr = new Error(`gemini(${model}) ${res.status}: ${(await res.text()).slice(0, 200)}`);
+      if (res.status !== 429 && res.status !== 503) throw lastErr;
+      if (attempt < waits.length) {
+        console.warn(`  gemini(${model}) ${res.status}, retrying in ${waits[attempt] / 1000}s`);
+        await sleep(waits[attempt]);
+      }
+    }
+    console.warn(`  ${model} exhausted, trying next model`);
+  }
+  throw lastErr;
+}
+
+// The checker gets the same trusted data and source pack the writer had, in a
+// fresh context — its job is to catch claims the pack doesn't actually support.
+export function buildFactCheckPrompt(params, digest, sourcePack) {
   return `You are the fact-checker for **${params.MASTHEAD}**, a daily ${params.TEAM_NAME}
 rugby briefing. Today is ${params.DAY_NAME} ${params.DATE_LONG}. Below is a draft edition.
 
@@ -331,19 +439,22 @@ rugby briefing. Today is ${params.DAY_NAME} ${params.DATE_LONG}. Below is a draf
 - Log: ${params.TEAM_NAME} are ${params.RANK} of 12 — P${params.P} W${params.W} D${params.D} L${params.L}, PF ${params.PF}, PA ${params.PA}, PD ${params.PD}.
 - Last result: ${params.LAST_RESULT}.
 
+${sourcePack}
+
 ## Draft edition
 ${JSON.stringify(digest, null, 2)}
 
 ## Your job
-Web-search TODAY's coverage and verify every checkable factual claim in the
-draft: team selections and changes, injuries and who is ruled out of what,
-direct quotes (verbatim and correctly attributed), opposition facts, venue and
-referee, historical claims (streaks, "never won", cap counts). Flag a claim if:
-- you cannot find a source for it today, or a source contradicts it;
-- it contradicts the trusted app data above;
-- a quote is paraphrased but presented as verbatim;
+Check every factual claim in the draft against the source pack and trusted
+data above: team selections and changes, injuries and who is ruled out of
+what, direct quotes (verbatim and correctly attributed), opposition facts,
+venue and referee, historical claims (streaks, "never won", cap counts).
+Flag a claim if:
+- nothing in the source pack supports it, or a source contradicts it;
+- it contradicts the trusted app data;
+- a quote is paraphrased or reworded but presented as verbatim;
 - it asserts a rumour or expectation as settled fact;
-- injury/selection news from a previous week is presented as this week's.
+- stale news is presented as this week's development.
 Opinion, colour and tactical reading are NOT factual claims — leave them alone.
 
 ## Output — strict JSON, nothing else
@@ -358,38 +469,117 @@ export function parseVerdict(raw) {
   return { verdict, issues };
 }
 
-async function generateOneGemini(apiKey, data, teamId, now) {
+export async function generateOneGemini(apiKey, data, teamId, now, editorNotes) {
   const params = buildParams(data, teamId, now);
-  const prompt = fillTemplate(TEMPLATE, params);
+  const opponent = params.HOME_TEAM === params.TEAM_NAME ? params.AWAY_TEAM : params.HOME_TEAM;
+  const { pack, headlineCount, articleCount } = await fetchTeamNews(params.TEAM_NAME, opponent);
+  const notesBlock = editorNotes
+    ? `\n\n## Standing editor notes (distilled from previous editions' reviews — follow them)\n${editorNotes}`
+    : "";
+  const prompt = `${fillTemplate(TEMPLATE, params)}${notesBlock}\n\n${pack}`;
 
   const draft = async (feedback) => {
-    const { text, queries } = await geminiCall(apiKey, feedback ? `${prompt}\n\n${feedback}` : prompt);
+    const text = await geminiCall(apiKey, feedback ? `${prompt}\n\n${feedback}` : prompt);
     const raw = extractJson(text);
     const { ok, digest, errors } = validateDigest(raw, { dateISO: params.DATE_ISO });
     if (!ok) throw new Error(`invalid edition: ${errors.join("; ")} | tail: …${text.slice(-200).replace(/\s+/g, " ")}`);
-    return { digest, queries };
+    return digest;
   };
 
-  let { digest, queries } = await draft();
-  let check = parseVerdict(extractJson((await geminiCall(apiKey, buildFactCheckPrompt(params, digest))).text));
+  const MAX_REVISIONS = 2;
+  let digest = await draft();
+  let check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack))));
+  let revisions = 0;
 
-  if (check.verdict !== "pass") {
+  while (check.verdict !== "pass" && revisions < MAX_REVISIONS) {
+    revisions++;
     const issueList = check.issues
       .map((i) => `- [${i.kicker ?? "?"}] ${i.claim ?? ""}: ${i.problem ?? ""} → ${i.fix ?? "cut"}`)
       .join("\n");
     const feedback = `## Fact-check failures in your previous draft — fix all of these
 ${issueList}
-Rewrite the full edition. Drop or soften any claim you cannot verify with a
-source you actually read today. Output the complete JSON again.`;
-    ({ digest, queries } = await draft(feedback));
-    check = parseVerdict(extractJson((await geminiCall(apiKey, buildFactCheckPrompt(params, digest))).text));
-    if (check.verdict !== "pass") {
-      const remaining = check.issues.map((i) => i.problem).join("; ");
-      throw new Error(`fact-check failed after revision: ${remaining}`);
-    }
+Rewrite the full edition. Drop or soften any claim the source pack does not
+support. If a quote was flagged, either use the exact verbatim wording the
+fact-checker cites or remove the quotation marks and paraphrase — do not
+re-word a quote a third way. Output the complete JSON again.`;
+    digest = await draft(feedback);
+    check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack))));
+  }
+  if (check.verdict !== "pass") {
+    const remaining = check.issues.map((i) => i.problem).join("; ");
+    throw new Error(`fact-check failed after ${revisions} revisions: ${remaining}`);
   }
 
-  return { digest, queries };
+  return { digest, pack, note: `${headlineCount} headlines, ${articleCount} articles, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}` };
+}
+
+// ---- post-run editorial review -------------------------------------------------
+//
+// After the day's editions are written, one review call grades the batch on
+// facts, quality and sourcing, and may propose up to 2 standing notes for the
+// writer prompt. Notes accumulate in editorial/editor-notes.md (newest first,
+// capped) so the prompt tunes itself gradually and every change is in git.
+
+const NOTES_FILE = join(ROOT, "editorial", "editor-notes.md");
+const REVIEWS_DIR = join(ROOT, "editorial", "reviews");
+const MAX_NOTES = 8;
+
+export function buildReviewPrompt(editions, dateISO) {
+  const blocks = editions.map(({ team, digest }) => `### ${team}\n${JSON.stringify(digest, null, 1)}`);
+  return `You are the reviewing editor for a suite of daily rugby team briefings
+(2026 Nations Championship). Below are today's published editions (${dateISO}).
+Each was written from a per-team pack of same-day news and fact-checked.
+
+${blocks.join("\n\n")}
+
+## Review criteria
+1. **Facts**: internal contradictions between editions (two teams describing
+   the same match differently), impossible claims, hedges masquerading as facts.
+2. **Quality**: flat or repetitive headings, filler sentences, manufactured
+   hype, name echoes, sections that fail the skim test (heading + first
+   sentence must carry the story).
+3. **Sources**: over-reliance on one storyline, claims that read as invented
+   colour rather than reported fact, missing attribution on quotes.
+
+## Output — strict JSON, nothing else
+{
+  "report": "<markdown, max 300 words: today's grade (A-F), the 2-3 most important observations, one example each>",
+  "prompt_notes": ["<up to 2 short imperative notes for the WRITER prompt that would prevent today's recurring defects, e.g. 'Vary heading verbs across sections — three of four editions led with =names=', or empty array if nothing systematic>"]
+}
+Only propose a prompt note for a defect visible in MULTIPLE editions today;
+one-off slips don't earn a standing rule.`;
+}
+
+async function reviewRun(apiKey, editions, dateISO) {
+  const raw = extractJson(await geminiCall(apiKey, buildReviewPrompt(editions, dateISO)));
+  if (!raw || typeof raw.report !== "string") throw new Error("review returned no usable JSON");
+  const notes = (Array.isArray(raw.prompt_notes) ? raw.prompt_notes : [])
+    .filter((n) => typeof n === "string" && n.trim())
+    .slice(0, 2);
+
+  const { mkdir } = await import("node:fs/promises");
+  await mkdir(REVIEWS_DIR, { recursive: true });
+  await writeFile(join(REVIEWS_DIR, `${dateISO}.md`), `# Digest review — ${dateISO}\n\n${raw.report}\n`);
+
+  if (notes.length) {
+    let existing = [];
+    try {
+      existing = (await readFile(NOTES_FILE, "utf8")).split("\n").filter((l) => l.startsWith("- "));
+    } catch {
+      // first run: no notes file yet
+    }
+    const merged = [...notes.map((n) => `- ${n.trim()} _(added ${dateISO})_`), ...existing].slice(0, MAX_NOTES);
+    await writeFile(NOTES_FILE, `# Standing editor notes\n\nInjected into the writer prompt daily; curated by the post-run review. Prune freely.\n\n${merged.join("\n")}\n`);
+  }
+  return { notes };
+}
+
+async function loadEditorNotes() {
+  try {
+    return (await readFile(NOTES_FILE, "utf8")).split("\n").filter((l) => l.startsWith("- ")).join("\n");
+  } catch {
+    return "";
+  }
 }
 
 // ---- entrypoint --------------------------------------------------------------
@@ -409,11 +599,10 @@ export async function main({ dryRun = false } = {}) {
   const geminiKey = process.env.GEMINI_API_KEY;
   let generateFor;
   if (geminiKey) {
-    console.log(`provider: gemini (${GEMINI_MODEL}, grounded + fact-check pass)`);
-    generateFor = async (teamId) => {
-      const { digest, queries } = await generateOneGemini(geminiKey, data, teamId, now);
-      return { digest, note: `${queries} searches` };
-    };
+    console.log(`provider: gemini (${GEMINI_MODEL}, RSS source pack + fact-check pass)`);
+    const editorNotes = await loadEditorNotes();
+    if (editorNotes) console.log(`standing editor notes:\n${editorNotes}`);
+    generateFor = (teamId) => generateOneGemini(geminiKey, data, teamId, now, editorNotes);
   } else if (process.env.ANTHROPIC_API_KEY) {
     console.log(`provider: anthropic (${MODEL})`);
     const { default: Anthropic } = await import("@anthropic-ai/sdk");
@@ -450,6 +639,21 @@ export async function main({ dryRun = false } = {}) {
   fresh.counts = { ...(fresh.counts || {}), digests: Object.keys(fresh.digests).length };
   await writeFile(OUT, JSON.stringify(fresh, null, 2));
   console.log(`wrote ${Object.keys(generated).length}/12 editions${failed.length ? ` (failed: ${failed.join(", ")})` : ""}`);
+
+  // Post-run editorial review (Gemini path only): grade the batch, persist the
+  // report, and let it add standing notes to tomorrow's writer prompt. A review
+  // failure never fails the run — the editions are already published.
+  if (geminiKey && Object.keys(generated).length) {
+    try {
+      const dateISO = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+      const editions = Object.entries(generated).map(([id, digest]) => ({ team: TEAMS[id].name, digest }));
+      const { notes } = await reviewRun(geminiKey, editions, dateISO);
+      console.log(`review written (editorial/reviews/${dateISO}.md)${notes.length ? `; new prompt notes: ${notes.join(" | ")}` : "; no new prompt notes"}`);
+    } catch (e) {
+      console.warn(`review step failed (editions unaffected): ${e.message}`);
+    }
+  }
+
   return { generated: Object.keys(generated).length, failed };
 }
 

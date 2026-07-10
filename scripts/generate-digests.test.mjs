@@ -82,3 +82,34 @@ test("extractJson digs a JSON object out of fenced prose", () => {
   const obj = extractJson('Here you go:\n```json\n{"a": 1}\n```\nthanks');
   assert.deepEqual(obj, { a: 1 });
 });
+
+// ---- source pack + review helpers ----
+
+import { parseRss, htmlToText, buildReviewPrompt } from "./generate-digests.mjs";
+
+test("parseRss extracts items and strips CDATA/entities", () => {
+  const xml = `<rss><channel>
+    <item><title><![CDATA[Boks name squad &amp; bench]]></title><link>https://x.test/a</link><description>Ten changes</description><pubDate>Fri, 10 Jul 2026 10:00:00 GMT</pubDate></item>
+    <item><title>No link item</title><link></link></item>
+  </channel></rss>`;
+  const items = parseRss(xml);
+  assert.equal(items.length, 1);
+  assert.equal(items[0].title, "Boks name squad & bench");
+  assert.equal(items[0].desc, "Ten changes");
+});
+
+test("htmlToText drops script/nav and collapses whitespace", () => {
+  const html = `<html><nav>menu menu</nav><script>var x=1;</script><p>Erasmus  made <b>10</b>\n changes.</p></html>`;
+  const text = htmlToText(html);
+  assert.equal(text, "Erasmus made 10 changes.");
+});
+
+test("buildReviewPrompt includes every edition and the criteria", () => {
+  const prompt = buildReviewPrompt(
+    [{ team: "South Africa", digest: { edition: "Saturday 11 July" } }],
+    "2026-07-11",
+  );
+  assert.ok(prompt.includes("South Africa"));
+  assert.ok(prompt.includes("prompt_notes"));
+  assert.ok(prompt.includes("Facts"));
+});
