@@ -2,6 +2,8 @@
 
 Injected into the writer prompt daily; curated by the post-run review. Prune freely.
 
+- Vary the opening sentences for 'Injury desk' sections to avoid repetitive, formulaic boilerplate. _(added 2026-07-11)_
+- Ensure match-specific data (scores, margins) is cross-referenced for consistency across the two team editions involved in any given fixture. _(added 2026-07-11)_
 - Ensure every match venue name is spelled out in full and verified against the master list; do not use shorthand or abbreviations. _(added 2026-07-11)_
 - Draft the 'Injury Desk' opening sentences using unique phrasing for each team to avoid identical template-style leads. _(added 2026-07-11)_
 - Before attributing any quote or view to a coach, confirm from the source pack which team that coach actually leads — never guess the coach-team pairing. _(added 2026-07-11)_
