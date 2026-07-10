@@ -66,16 +66,19 @@ test("buildFactCheckPrompt embeds trusted data and the draft", () => {
   const prompt = buildFactCheckPrompt(params, goodDigest());
   assert.ok(prompt.includes("Bok Watch"));
   assert.ok(prompt.includes("beat England 45-21"));
-  assert.ok(prompt.includes('"verdict"'));
+  assert.ok(prompt.includes("severity"));
   assert.ok(prompt.includes("Team news"));
 });
 
-test("parseVerdict tolerates malformed checker output", () => {
+test("parseVerdict computes the verdict from material issues only", () => {
   assert.equal(parseVerdict(null).verdict, "fail");
-  assert.equal(parseVerdict({ verdict: "pass", issues: [] }).verdict, "pass");
-  assert.equal(parseVerdict({ verdict: "PASS" }).verdict, "fail"); // strict
-  const v = parseVerdict({ verdict: "fail", issues: [{ problem: "x" }, "junk", null] });
-  assert.equal(v.issues.length, 1);
+  assert.equal(parseVerdict({ issues: [] }).verdict, "pass");
+  assert.equal(parseVerdict({ issues: [{ problem: "x", severity: "minor" }] }).verdict, "pass");
+  const v = parseVerdict({ issues: [{ problem: "x", severity: "material" }, { problem: "y", severity: "minor" }, "junk", null] });
+  assert.equal(v.verdict, "fail");
+  assert.equal(v.issues.length, 1); // minor + junk dropped
+  // an issue without a severity label is treated as minor (never fails alone)
+  assert.equal(parseVerdict({ issues: [{ problem: "unlabeled" }] }).verdict, "pass");
 });
 
 test("extractJson digs a JSON object out of fenced prose", () => {
