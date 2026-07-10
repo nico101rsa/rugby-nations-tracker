@@ -1,0 +1,23 @@
+name: Digest model comparison (one-off)
+
+# Manual experiment: generate the South Africa digest on Haiku / Sonnet / Opus /
+# Fable with the identical production prompt, printing digests + cost to the
+# run log. Publishes nothing.
+on:
+  workflow_dispatch:
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Anthropic SDK
+        run: npm install --no-save @anthropic-ai/sdk
+      - name: Compare models
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/compare-digest-models.mjs
