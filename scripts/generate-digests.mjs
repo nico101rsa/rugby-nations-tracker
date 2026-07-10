@@ -489,18 +489,29 @@ Do NOT flag — these are never issues:
 - anything you would describe as "technically true but could be phrased
   closer to the source".
 
+One more rule: **the source pack is the authority.** If the draft accurately
+reflects what the pack says, it passes — even if you suspect the pack itself
+is wrong about the real world. You are checking draft-against-pack, not
+pack-against-reality.
+
 ## Output — strict JSON, nothing else
-{"verdict": "pass" | "fail", "issues": [{"kicker": "<section kicker>", "claim": "<the claim>", "problem": "<what is wrong>", "fix": "<corrected wording, or 'cut'>"}]}
-List ONLY material errors in issues. "fail" only if issues is non-empty; if
-you find yourself writing "however, this is supported" or "while not strictly
-false", the claim passes — delete it from issues.`;
+{"issues": [{"kicker": "<section kicker>", "claim": "<the claim>", "problem": "<what is wrong>", "fix": "<corrected wording, or 'cut'>", "severity": "material" | "minor"}]}
+severity "material" = a reader would be misinformed (invented fact, wrong
+number/score/name, fake verbatim quote, stale news as fresh). severity
+"minor" = everything else (phrasing preferences, incompleteness, could-be-
+closer-to-source). When unsure, or when your reasoning contains "however" /
+"actually" / "while not strictly false", the severity is "minor". Empty
+issues array if the draft is clean.`;
 }
 
+// The verdict is computed here, not trusted from the model: only material
+// issues fail an edition (Flash's own global verdicts contradicted its
+// per-issue reasoning in testing). Minor issues are dropped.
 export function parseVerdict(raw) {
   if (!raw || typeof raw !== "object") return { verdict: "fail", issues: [{ problem: "checker returned no JSON" }] };
-  const verdict = raw.verdict === "pass" ? "pass" : "fail";
-  const issues = Array.isArray(raw.issues) ? raw.issues.filter((i) => i && typeof i === "object") : [];
-  return { verdict, issues };
+  const all = Array.isArray(raw.issues) ? raw.issues.filter((i) => i && typeof i === "object") : [];
+  const issues = all.filter((i) => i.severity === "material");
+  return { verdict: issues.length ? "fail" : "pass", issues };
 }
 
 export async function generateOneGemini(apiKey, data, teamId, now, editorNotes) {
