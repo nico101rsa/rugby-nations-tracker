@@ -1,0 +1,50 @@
+name: Generate team digests
+
+on:
+  schedule:
+    # Daily 20:00 UTC = 06:00 AEST (07:00 AEDT) — editions carry the new
+    # Sydney-local date, ready before the morning check of the app.
+    - cron: "0 20 * * *"
+  workflow_dispatch:
+
+# Same group as "Refresh match data": both workflows commit nations.json, so
+# serialise them instead of racing pushes.
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  digests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate 12 team editions (Claude Sonnet + web search)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::notice::ANTHROPIC_API_KEY secret not set — digest generation skipped"
+            exit 0
+          fi
+          npm install --no-save @anthropic-ai/sdk
+          node scripts/generate-digests.mjs
+
+      - name: Publish nations.json at site root
+        run: cp public/nations.json nations.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add nations.json public/nations.json
+          git diff --cached --quiet && echo "No digest changes" && exit 0
+          git commit -m "Daily digests $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          git push || (git pull --rebase --autostash && git push)

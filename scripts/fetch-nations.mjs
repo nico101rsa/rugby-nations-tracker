@@ -88,7 +88,7 @@ async function fetchNews() {
       if (!m) return "";
       return m[1].replace(/<!\[CDATA\[|\]\]>/g, "").trim();
     };
-    return items.map((it) => {
+    const parsed = items.map((it) => {
       const b = it[1];
       const rawTitle = pick(b, "title");
       // Google News titles are "Headline - Source"
@@ -103,6 +103,9 @@ async function fetchNews() {
         published: pick(b, "pubDate"),
       };
     });
+    // Newest-first — Google News returns items in relevance order, not date.
+    const ts = (n) => { const t = Date.parse(n.published); return Number.isNaN(t) ? -Infinity : t; };
+    return parsed.sort((a, b) => ts(b) - ts(a));
   } catch (e) {
     console.warn("news fetch failed:", e.message);
     return [];
@@ -202,13 +205,17 @@ export async function refresh({ dates }) {
     fixtures, results, log, news,
   };
 
+  // The daily digest workflow writes `digests` into nations.json; this full
+  // rebuild would silently wipe it, so carry it forward from the existing file.
+  let prev = null;
+  try { prev = JSON.parse(await readFile(OUT, "utf8")); } catch { /* no existing file */ }
+  const preserved = preserveDigests(out, prev);
+
   // Guard: never clobber real published data with an empty rebuild. This
   // happens when the games cache (scripts/.cache-games.json, gitignored) is
   // missing — e.g. running in a fresh worktree without RUGBY_API_KEY. Without
   // this check, results + log silently get wiped to zero. News still refreshes.
   if (results.length === 0 && log.length === 0) {
-    let prev = null;
-    try { prev = JSON.parse(await readFile(OUT, "utf8")); } catch { /* no existing file */ }
     if (prev && ((prev.results?.length ?? 0) > 0 || (prev.log?.length ?? 0) > 0)) {
       console.error(
         `\nRefusing to overwrite ${OUT}: rebuild produced 0 results and 0 log rows,\n` +
@@ -221,10 +228,15 @@ export async function refresh({ dates }) {
   }
 
   await mkdir(join(ROOT, "public"), { recursive: true });
-  await writeFile(OUT, JSON.stringify(out, null, 2));
+  await writeFile(OUT, JSON.stringify(preserved, null, 2));
   console.log(`\nWrote ${OUT}`);
-  console.log(out.counts, `| rate remaining: ${remaining}`);
-  return { remaining, counts: out.counts };
+  console.log(preserved.counts, `| rate remaining: ${remaining}`);
+  return { remaining, counts: preserved.counts };
+}
+
+// Pure: carry the digest-generator's `digests` block through a full rebuild.
+export function preserveDigests(next, prev) {
+  return prev && prev.digests ? { ...next, digests: prev.digests } : next;
 }
 
 // Merge freshly-scraped headlines into an existing nations.json object. Pure so
