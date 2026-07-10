@@ -234,34 +234,48 @@ export function mergeDigests(existing = {}, generated = {}) {
 // ---- API call ---------------------------------------------------------------
 
 const MAX_CONTINUATIONS = 5; // pause_turn resumes (server-side web search loop)
-const MAX_SEARCHES = 8; // per edition — cost cap; dry-runs used 5-8 searches
+// Cost cap. 8 was the launch value; the first live run (2026-07-10) showed the
+// search-result context compounds quadratically with each extra search — 4 is
+// plenty for a daily briefing and cuts token spend by well over half.
+const MAX_SEARCHES = 4;
+// Sonnet 5 runs adaptive thinking by default and it counts against max_tokens.
+// The first live run had this at 4000: 10/12 teams exhausted it mid-research
+// (stop_reason max_tokens) and never emitted the JSON. 12000 leaves room for
+// thinking across the whole search loop; actual JSON output is <1k tokens.
+const MAX_TOKENS = 12000;
 
 async function generateOne(client, data, teamId, now) {
   const params = buildParams(data, teamId, now);
   const prompt = fillTemplate(TEMPLATE, params);
+  const request = (messages) =>
+    client.messages.create({
+      model: MODEL,
+      max_tokens: MAX_TOKENS,
+      // Auto-cache the last cacheable block: pause_turn continuations then
+      // re-read the accumulated prefix (prompt + search results) at ~0.1x
+      // instead of full input price.
+      cache_control: { type: "ephemeral" },
+      tools: [{ type: "web_search_20260209", name: "web_search", max_uses: MAX_SEARCHES }],
+      messages,
+    });
   let messages = [{ role: "user", content: prompt }];
-  let resp = await client.messages.create({
-    model: MODEL,
-    max_tokens: 4000,
-    tools: [{ type: "web_search_20260209", name: "web_search", max_uses: MAX_SEARCHES }],
-    messages,
-  });
+  let resp = await request(messages);
   // Server-side tool loop can pause; re-send with the assistant turn appended
   // and the server resumes where it left off.
   for (let i = 0; resp.stop_reason === "pause_turn" && i < MAX_CONTINUATIONS; i++) {
     messages = [...messages, { role: "assistant", content: resp.content }];
-    resp = await client.messages.create({
-      model: MODEL,
-      max_tokens: 4000,
-      tools: [{ type: "web_search_20260209", name: "web_search", max_uses: MAX_SEARCHES }],
-      messages,
-    });
+    resp = await request(messages);
   }
   if (resp.stop_reason === "refusal") throw new Error("refusal");
   const text = resp.content.filter((b) => b.type === "text").map((b) => b.text).join("\n");
   const raw = extractJson(text);
   const { ok, digest, errors } = validateDigest(raw, { dateISO: params.DATE_ISO });
-  if (!ok) throw new Error(`invalid edition: ${errors.join("; ")}`);
+  if (!ok) {
+    // Diagnosable failures: stop_reason distinguishes truncation (max_tokens)
+    // from a malformed answer; the text tail shows what the model last wrote.
+    const tail = text.slice(-200).replace(/\s+/g, " ");
+    throw new Error(`invalid edition (stop=${resp.stop_reason}): ${errors.join("; ")} | tail: …${tail}`);
+  }
   return digest;
 }
 
