@@ -370,6 +370,11 @@ Quotes: quotation marks are a verbatim contract — only use words that appear
 inside quotation marks in the pack, character for character. If the pack only
 paraphrases what someone said, paraphrase too, without quote marks.
 
+When the pack is silent on a topic the format requires (usually the injury
+desk), attribute the silence to the coverage — "no fresh injury news in
+today's coverage" — never to reality ("the camp is clean", "everyone is
+available"): you know what was reported, not what is true in camp.
+
 ### Headlines
 ${lines.join("\n")}
 
@@ -446,20 +451,31 @@ ${JSON.stringify(digest, null, 2)}
 
 ## Your job
 Check every factual claim in the draft against the source pack and trusted
-data above: team selections and changes, injuries and who is ruled out of
-what, direct quotes (verbatim and correctly attributed), opposition facts,
-venue and referee, historical claims (streaks, "never won", cap counts).
-Flag a claim if:
-- nothing in the source pack supports it, or a source contradicts it;
-- it contradicts the trusted app data;
-- a quote is paraphrased or reworded but presented as verbatim;
-- it asserts a rumour or expectation as settled fact;
-- stale news is presented as this week's development.
-Opinion, colour and tactical reading are NOT factual claims — leave them alone.
+data above. **Only material errors fail an edition** — a reader must be
+misinformed for you to flag it. Material errors:
+- an invented fact: a claim (selection, injury, result, record, milestone)
+  nothing in the pack supports, or that a source contradicts;
+- a wrong number, score, name or attribution (check against trusted data);
+- words inside quotation marks that are not character-for-character in the
+  pack (an accurate paraphrase WITHOUT quote marks is fine and never an issue);
+- a rumour or expectation asserted as settled fact;
+- stale news presented as this week's development.
+
+Do NOT flag — these are never issues:
+- honest absence statements attributed to the coverage ("no fresh injury news
+  in today's coverage") when the pack is indeed silent on the topic;
+- accurate paraphrase, compression or reordering of source prose;
+- tense/deixis adjustments ("this weekend" rendered as "today" when the dates
+  agree), synonyms, or stylistic word choices;
+- opinion, colour and tactical reading;
+- anything you would describe as "technically true but could be phrased
+  closer to the source".
 
 ## Output — strict JSON, nothing else
 {"verdict": "pass" | "fail", "issues": [{"kicker": "<section kicker>", "claim": "<the claim>", "problem": "<what is wrong>", "fix": "<corrected wording, or 'cut'>"}]}
-"pass" with an empty issues array if every checkable claim holds up.`;
+List ONLY material errors in issues. "fail" only if issues is non-empty; if
+you find yourself writing "however, this is supported" or "while not strictly
+false", the claim passes — delete it from issues.`;
 }
 
 export function parseVerdict(raw) {
