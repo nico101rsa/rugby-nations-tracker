@@ -194,6 +194,15 @@ export function extractJson(text) {
 
 const words = (s) => String(s).trim().split(/\s+/).filter(Boolean).length;
 
+// Copy defects a cheaper model is prone to: leaked citation markup, and clock
+// times/timezones in the copy (the app renders kickoff lines itself). Scores
+// like "45-21" have no colon, so they pass.
+export const BANNED_COPY = [
+  [/<\/?cite/i, "citation markup"],
+  [/\b\d{1,2}:\d{2}\b/, "clock time"],
+  [/\b(AEST|AEDT|SAST|GMT|BST|UTC|CET|CEST)\b/, "timezone"],
+];
+
 // Shape gate before anything reaches the app: exactly today's date, the four
 // kickers in order, sane word counts. Returns a *clean* object (unknown keys
 // dropped) so the published JSON is exactly the shape digestFor() expects.
@@ -210,6 +219,10 @@ export function validateDigest(raw, { dateISO }) {
       if (typeof s?.heading !== "string" || !s.heading.trim()) errors.push(`section ${i} missing heading`);
       const n = typeof s?.body === "string" ? words(s.body) : 0;
       if (n < 20 || n > 100) errors.push(`section ${i} body ${n} words (want ~50-70)`);
+      for (const [re, label] of BANNED_COPY) {
+        const copy = `${s?.heading ?? ""} ${s?.body ?? ""}`;
+        if (re.test(copy)) errors.push(`section ${i} contains ${label}`);
+      }
     });
   }
   if (errors.length) return { ok: false, errors };
@@ -279,6 +292,106 @@ async function generateOne(client, data, teamId, now) {
   return digest;
 }
 
+// ---- Gemini provider (free tier: 1,500 grounded requests/day) ----------------
+//
+// Flash is cheaper than Sonnet but sloppier, so every edition passes a second,
+// independently-grounded fact-check call before it's accepted, with one bounded
+// revision loop. Worst case 4 calls/team = 48/day — ~3% of the free quota.
+
+const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+const GEMINI_URL = (model) =>
+  `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
+
+async function geminiCall(apiKey, prompt) {
+  const res = await fetch(GEMINI_URL(GEMINI_MODEL), {
+    method: "POST",
+    headers: { "content-type": "application/json", "x-goog-api-key": apiKey },
+    body: JSON.stringify({
+      contents: [{ role: "user", parts: [{ text: prompt }] }],
+      tools: [{ google_search: {} }],
+    }),
+  });
+  if (!res.ok) throw new Error(`gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
+  const body = await res.json();
+  const cand = body.candidates?.[0];
+  const text = (cand?.content?.parts ?? []).map((p) => p.text ?? "").join("\n");
+  const queries = cand?.groundingMetadata?.webSearchQueries?.length ?? 0;
+  return { text, queries };
+}
+
+// The checker gets the same trusted-data block the writer had, plus the draft.
+// It re-searches the claims independently — a fresh context, so it isn't
+// grading its own homework.
+export function buildFactCheckPrompt(params, digest) {
+  return `You are the fact-checker for **${params.MASTHEAD}**, a daily ${params.TEAM_NAME}
+rugby briefing. Today is ${params.DAY_NAME} ${params.DATE_LONG}. Below is a draft edition.
+
+## Trusted app data (the draft must not contradict this)
+- Next fixture: ${params.HOME_TEAM} v ${params.AWAY_TEAM}, Round ${params.ROUND}.
+- Log: ${params.TEAM_NAME} are ${params.RANK} of 12 — P${params.P} W${params.W} D${params.D} L${params.L}, PF ${params.PF}, PA ${params.PA}, PD ${params.PD}.
+- Last result: ${params.LAST_RESULT}.
+
+## Draft edition
+${JSON.stringify(digest, null, 2)}
+
+## Your job
+Web-search TODAY's coverage and verify every checkable factual claim in the
+draft: team selections and changes, injuries and who is ruled out of what,
+direct quotes (verbatim and correctly attributed), opposition facts, venue and
+referee, historical claims (streaks, "never won", cap counts). Flag a claim if:
+- you cannot find a source for it today, or a source contradicts it;
+- it contradicts the trusted app data above;
+- a quote is paraphrased but presented as verbatim;
+- it asserts a rumour or expectation as settled fact;
+- injury/selection news from a previous week is presented as this week's.
+Opinion, colour and tactical reading are NOT factual claims — leave them alone.
+
+## Output — strict JSON, nothing else
+{"verdict": "pass" | "fail", "issues": [{"kicker": "<section kicker>", "claim": "<the claim>", "problem": "<what is wrong>", "fix": "<corrected wording, or 'cut'>"}]}
+"pass" with an empty issues array if every checkable claim holds up.`;
+}
+
+export function parseVerdict(raw) {
+  if (!raw || typeof raw !== "object") return { verdict: "fail", issues: [{ problem: "checker returned no JSON" }] };
+  const verdict = raw.verdict === "pass" ? "pass" : "fail";
+  const issues = Array.isArray(raw.issues) ? raw.issues.filter((i) => i && typeof i === "object") : [];
+  return { verdict, issues };
+}
+
+async function generateOneGemini(apiKey, data, teamId, now) {
+  const params = buildParams(data, teamId, now);
+  const prompt = fillTemplate(TEMPLATE, params);
+
+  const draft = async (feedback) => {
+    const { text, queries } = await geminiCall(apiKey, feedback ? `${prompt}\n\n${feedback}` : prompt);
+    const raw = extractJson(text);
+    const { ok, digest, errors } = validateDigest(raw, { dateISO: params.DATE_ISO });
+    if (!ok) throw new Error(`invalid edition: ${errors.join("; ")} | tail: …${text.slice(-200).replace(/\s+/g, " ")}`);
+    return { digest, queries };
+  };
+
+  let { digest, queries } = await draft();
+  let check = parseVerdict(extractJson((await geminiCall(apiKey, buildFactCheckPrompt(params, digest))).text));
+
+  if (check.verdict !== "pass") {
+    const issueList = check.issues
+      .map((i) => `- [${i.kicker ?? "?"}] ${i.claim ?? ""}: ${i.problem ?? ""} → ${i.fix ?? "cut"}`)
+      .join("\n");
+    const feedback = `## Fact-check failures in your previous draft — fix all of these
+${issueList}
+Rewrite the full edition. Drop or soften any claim you cannot verify with a
+source you actually read today. Output the complete JSON again.`;
+    ({ digest, queries } = await draft(feedback));
+    check = parseVerdict(extractJson((await geminiCall(apiKey, buildFactCheckPrompt(params, digest))).text));
+    if (check.verdict !== "pass") {
+      const remaining = check.issues.map((i) => i.problem).join("; ");
+      throw new Error(`fact-check failed after revision: ${remaining}`);
+    }
+  }
+
+  return { digest, queries };
+}
+
 // ---- entrypoint --------------------------------------------------------------
 
 export async function main({ dryRun = false } = {}) {
@@ -291,19 +404,33 @@ export async function main({ dryRun = false } = {}) {
     return { dryRun: true };
   }
 
-  if (!process.env.ANTHROPIC_API_KEY) {
-    console.log("ANTHROPIC_API_KEY not set — skipping digest generation");
+  // Provider: Gemini Flash (free tier, fact-checked) when GEMINI_API_KEY is
+  // set; Claude Sonnet as the fallback path; skip cleanly when neither key is.
+  const geminiKey = process.env.GEMINI_API_KEY;
+  let generateFor;
+  if (geminiKey) {
+    console.log(`provider: gemini (${GEMINI_MODEL}, grounded + fact-check pass)`);
+    generateFor = async (teamId) => {
+      const { digest, queries } = await generateOneGemini(geminiKey, data, teamId, now);
+      return { digest, note: `${queries} searches` };
+    };
+  } else if (process.env.ANTHROPIC_API_KEY) {
+    console.log(`provider: anthropic (${MODEL})`);
+    const { default: Anthropic } = await import("@anthropic-ai/sdk");
+    const client = new Anthropic();
+    generateFor = async (teamId) => ({ digest: await generateOne(client, data, teamId, now), note: "" });
+  } else {
+    console.log("GEMINI_API_KEY / ANTHROPIC_API_KEY not set — skipping digest generation");
     return { skipped: "no-key" };
   }
-  const { default: Anthropic } = await import("@anthropic-ai/sdk");
-  const client = new Anthropic();
 
   const generated = {};
   const failed = [];
   for (const teamId of Object.keys(TEAMS).map(Number)) {
     try {
-      generated[teamId] = await generateOne(client, data, teamId, now);
-      console.log(`${TEAMS[teamId].name}: ok (${generated[teamId].edition})`);
+      const { digest, note } = await generateFor(teamId);
+      generated[teamId] = digest;
+      console.log(`${TEAMS[teamId].name}: ok (${digest.edition}${note ? `, ${note}` : ""})`);
     } catch (e) {
       failed.push(TEAMS[teamId].name);
       console.warn(`${TEAMS[teamId].name}: FAILED — ${e.message}`);

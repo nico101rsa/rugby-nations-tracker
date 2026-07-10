@@ -26,15 +26,20 @@ jobs:
         with:
           node-version: 22
 
-      - name: Generate 12 team editions (Claude Sonnet + web search)
+      - name: Unit tests
+        run: node --test scripts/*.test.mjs
+
+      - name: Generate 12 team editions (Gemini Flash + fact-check; Claude fallback)
         env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          if [ -z "$ANTHROPIC_API_KEY" ]; then
-            echo "::notice::ANTHROPIC_API_KEY secret not set — digest generation skipped"
+          if [ -z "$GEMINI_API_KEY" ] && [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::notice::no model API key secret set — digest generation skipped"
             exit 0
           fi
-          npm install --no-save @anthropic-ai/sdk
+          # SDK only needed on the Anthropic fallback path; Gemini uses fetch.
+          if [ -z "$GEMINI_API_KEY" ]; then npm install --no-save @anthropic-ai/sdk; fi
           node scripts/generate-digests.mjs
 
       - name: Publish nations.json at site root
