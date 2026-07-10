@@ -339,10 +339,28 @@ async function fetchWithTimeout(url, ms = 8000) {
 }
 
 async function fetchTeamNews(teamName, opponentName) {
-  const q = encodeURIComponent(`${teamName} rugby ${opponentName && opponentName !== "TBC" ? opponentName : "team news"}`);
-  const res = await fetchWithTimeout(`https://www.bing.com/news/search?q=${q}&format=rss`);
-  if (!res.ok) throw new Error(`news rss ${res.status}`);
-  const items = parseRss(await res.text()).slice(0, NEWS_ITEMS);
+  // Two queries: the match narrative, plus a targeted sweep for selection and
+  // injury news — thin packs are what push the writer into inventing colour.
+  const opp = opponentName && opponentName !== "TBC" ? opponentName : "team news";
+  const queries = [
+    `${teamName} rugby ${opp}`,
+    `${teamName} rugby team announcement OR injury OR squad`,
+  ];
+  const seen = new Set();
+  const items = [];
+  for (const query of queries) {
+    const res = await fetchWithTimeout(`https://www.bing.com/news/search?q=${encodeURIComponent(query)}&format=rss`);
+    if (!res.ok) continue;
+    for (const item of parseRss(await res.text())) {
+      const k = item.title.toLowerCase();
+      if (!seen.has(k)) {
+        seen.add(k);
+        items.push(item);
+      }
+    }
+  }
+  if (!items.length) throw new Error("news rss returned no items");
+  items.length = Math.min(items.length, NEWS_ITEMS);
 
   const articles = [];
   for (const item of items.slice(0, NEWS_ARTICLES)) {
@@ -503,21 +521,38 @@ export async function generateOneGemini(apiKey, data, teamId, now, editorNotes) 
   };
 
   const MAX_REVISIONS = 2;
+  const issueList = (issues) => issues
+    .map((i) => `- [${i.kicker ?? "?"}] ${i.claim ?? ""}: ${i.problem ?? ""} → ${i.fix ?? "cut"}`)
+    .join("\n");
+
   let digest = await draft();
   let check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack))));
   let revisions = 0;
 
   while (check.verdict !== "pass" && revisions < MAX_REVISIONS) {
     revisions++;
-    const issueList = check.issues
-      .map((i) => `- [${i.kicker ?? "?"}] ${i.claim ?? ""}: ${i.problem ?? ""} → ${i.fix ?? "cut"}`)
-      .join("\n");
     const feedback = `## Fact-check failures in your previous draft — fix all of these
-${issueList}
+${issueList(check.issues)}
 Rewrite the full edition. Drop or soften any claim the source pack does not
 support. If a quote was flagged, either use the exact verbatim wording the
 fact-checker cites or remove the quotation marks and paraphrase — do not
 re-word a quote a third way. Output the complete JSON again.`;
+    digest = await draft(feedback);
+    check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack))));
+  }
+
+  if (check.verdict !== "pass") {
+    // Last resort before failing the team: a maximally conservative rewrite.
+    // Plainer copy that ships beats colourful copy that doesn't.
+    revisions++;
+    const feedback = `## STRICT MODE — your drafts kept failing fact-check. Final attempt.
+Unresolved issues:
+${issueList(check.issues)}
+Rewrite the edition with zero flair: remove every flagged claim entirely, use
+no quotation marks anywhere, no records or streaks, no assumptions about
+availability or camp mood. State only what headlines and articles in the
+source pack plainly report, plus the trusted app data. Bodies may run short
+(around 50 words). Output the complete JSON again.`;
     digest = await draft(feedback);
     check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack))));
   }
@@ -563,7 +598,11 @@ ${blocks.join("\n\n")}
   "prompt_notes": ["<up to 2 short imperative notes for the WRITER prompt that would prevent today's recurring defects, e.g. 'Vary heading verbs across sections — three of four editions led with =names=', or empty array if nothing systematic>"]
 }
 Only propose a prompt note for a defect visible in MULTIPLE editions today;
-one-off slips don't earn a standing rule.`;
+one-off slips don't earn a standing rule. Notes must work WITHIN the format
+contract — every edition always has exactly four sections with fixed kickers,
+50-70 word bodies — so never propose deleting/merging sections, changing
+kickers, or consulting resources the writer doesn't have (its only inputs are
+the daily source pack and the app data).`;
 }
 
 async function reviewRun(apiKey, editions, dateISO) {
