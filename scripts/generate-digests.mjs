@@ -348,14 +348,23 @@ async function fetchTeamNews(teamName, opponentName) {
   ];
   const seen = new Set();
   const items = [];
-  for (const query of queries) {
-    const res = await fetchWithTimeout(`https://www.bing.com/news/search?q=${encodeURIComponent(query)}&format=rss`);
-    if (!res.ok) continue;
-    for (const item of parseRss(await res.text())) {
-      const k = item.title.toLowerCase();
-      if (!seen.has(k)) {
-        seen.add(k);
-        items.push(item);
+  // Two passes: Bing's RSS intermittently returns empty (cost NZ its edition
+  // on 2026-07-11); one retry after a pause rescues the transient case.
+  for (let pass = 0; pass < 2 && !items.length; pass++) {
+    if (pass) await sleep(10000);
+    for (const query of queries) {
+      try {
+        const res = await fetchWithTimeout(`https://www.bing.com/news/search?q=${encodeURIComponent(query)}&format=rss`);
+        if (!res.ok) continue;
+        for (const item of parseRss(await res.text())) {
+          const k = item.title.toLowerCase();
+          if (!seen.has(k)) {
+            seen.add(k);
+            items.push(item);
+          }
+        }
+      } catch {
+        // timeout — next query / next pass
       }
     }
   }
