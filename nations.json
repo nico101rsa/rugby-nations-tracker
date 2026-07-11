@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-11T07:44:46.089Z",
+  "updatedAt": "2026-07-11T07:56:47.850Z",
   "counts": {
-    "fixtures": 29,
-    "results": 7,
+    "fixtures": 28,
+    "results": 8,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53220,
-      "date": "2026-07-11T07:40:00+00:00",
-      "week": "2",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 461,
-        "name": "Australia",
-        "logo": "https://media.api-sports.io/rugby/teams/461.png",
-        "score": null
-      },
-      "away": {
-        "id": 387,
-        "name": "France",
-        "logo": "https://media.api-sports.io/rugby/teams/387.png",
-        "score": null
-      }
-    },
     {
       "id": 53221,
       "date": "2026-07-11T10:10:00+00:00",
@@ -830,6 +808,28 @@
         "logo": "https://media.api-sports.io/rugby/teams/389.png",
         "score": 17
       }
+    },
+    {
+      "id": 53220,
+      "date": "2026-07-11T07:40:00+00:00",
+      "week": "2",
+      "status": {
+        "short": "1H",
+        "long": "First Half",
+        "live": true
+      },
+      "home": {
+        "id": 461,
+        "name": "Australia",
+        "logo": "https://media.api-sports.io/rugby/teams/461.png",
+        "score": 7
+      },
+      "away": {
+        "id": 387,
+        "name": "France",
+        "logo": "https://media.api-sports.io/rugby/teams/387.png",
+        "score": 7
+      }
     }
   ],
   "log": [
@@ -1040,10 +1040,10 @@
   ],
   "news": [
     {
-      "title": "New Wallabies playmaker takes ‘cursed’ jersey against France",
-      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPdXV1SXlTUUNDWGpUbHcyU2p2TTZQVDFMMjg3UFhoZlJVQXhDaVItdmlaeWx0dVVWLTNJNjVHS2l3eXBveExJX2pZOXFjQWRRamUyZFc2d0FxR3pFRHVKVnRpZFNQWlMwZG01TVNBNVJLSldzZkQ3elZaTU0xQnpJZDh0VldvcVJQemNLYWdyZXlwc0dwUVpBWWNEMFZwQVFYcFdvbXBRUWVRZGdqV2wwNF85SzRwam5IREFHb1B3OEtYcGZNLXZSSjhqWmZZbndvSFVj?oc=5",
-      "source": "Nine.com.au",
-      "published": "Sat, 11 Jul 2026 07:23:05 GMT"
+      "title": "Will Jordan grabs try-scoring record as All Blacks hammer Italy in Nations Championship",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQZkg0ZHNsUktGLVFSb1k1R1M0VFJGTVA3T2FVSkE2Ynk4am53bDhqZ0NNdEh2bGYzRWppa2FiV21aWUJxZ2xPZHZaeWhTN0JHWjNBOF9TRU55Q1RJb0I0QlFveW5GLUEyVzd0Rnp2emdWMjJsZHBJUDdaUWNDQkZEcUtieEtBNHdIZDBnVGNSLVVhdzlISFFrLS1ubXVJbVNNYW9ta2VhY09saGI0Zmp0U2FvLVh2QlZ1LVRV?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 11 Jul 2026 07:42:00 GMT"
     },
     {
       "title": "!$+[WATCHLIVE]ESPN3@] Australia Wallabies v. France Nations Championship rugby 𝐋𝐈𝐕𝐄 Ｓｔｒｅａｍｓ Ｆｒｅｅ ＯＮ Ｔｖ Ｃｈａｎｎｅｌ 11 july 2026",
@@ -1052,28 +1052,28 @@
       "published": "Sat, 11 Jul 2026 07:21:09 GMT"
     },
     {
+      "title": "[WATℂℍLIVE]CHANNEL9!] Rugby Nations Championship 2026 FREE Live Score",
+      "link": "https://news.google.com/rss/articles/CBMi9gNBVV95cUxQbUtNd21oMmVXbkhEdjFvaWk0ZVkteF95cXV0aGdUb2dTMGVjYm1uRjAwUnFWRUI5b013WHNaWVlxOGw2SFlTb1daOUtYekhZTVRHNFhDMVhaSlhET0JYNGFKMjllSDlvazVCY0MzUXlDcVhnTzF6WXRCR3FxYXpLVDBTRnlSQmgzNzRNM0JlNkUtSnVmeWpfTGpVc18zSGZSTUpQS1g2SUhTTENOdGJYNWtFbWpXa1VhdjlCWi1STTRwd0syY2VRNDBPb0hkYVN5YTQzMkhRSzNsYUV4dEVCeHlubVJEd3dDQ0VxQzcyQlE4QmpmRFpURGRYY25sRWdhLWl1c0J5OWdScUEwWmhpLUlaWnh5dDRvTC1qRF9WX2I5WjdDZ1VpNWMxMVFZM1VQeDFwT1BxM0EtV0J0NHp1b3Z1Y3RZTjBUUkhFUHFWU3pJSTM3WE5tMG90cWJmU2M4VUdpbmRoU0ZpMndFVWw3UWM4U1NBOVhCM25pR3A5UFpfTWcxLWhrNDhzb0RLUTF0cjlrRWdSbVpMRnE3bndqQmFKZmNQaHprak1FcjRhQWF5R05rWDZTV0h0NDFOQ1JINUtRWjBnX3B3aFZqa3ZNemlsVE84anVYeWxlTE9HV0c3T1FOeTd0MXczTWxiVFhpOTRmT0NR?oc=5",
+      "source": "MCA Sydney",
+      "published": "Sat, 11 Jul 2026 07:21:08 GMT"
+    },
+    {
+      "title": "Nations Championship 2026: Japan v Ireland free streams, TV channels",
+      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPZWwydmtkc0kwblNvS24xTzR5UXBkRjNRQTQ2bnBUZ2FSZ29CbFBBUGNCS2Zxdm1kU25LMnJCWEl3Mmx4eTVjbk01cElsb1dvV3VxeG9tNUFiT1ZmYWxTUndzZVRFTWhLcHRIVmYycmVxSFZ5MHduU2dWVEhtN2FKaTNnQzdUQjNmb05HMExlS2dzWmM?oc=5",
+      "source": "Rugby World",
+      "published": "Sat, 11 Jul 2026 07:16:04 GMT"
+    },
+    {
       "title": "All Blacks player ratings vs Italy | Nations Championship 2026",
       "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQcEhpb245VjlNZU15Mmw1M3lJblhoeXVTX05FT1kwaU40bHF1MmhYaGRiX01WbWVkUXRESk9EQUNWRUt1czZoeVFEc3dYekcyZm5aMm9TWHBsVzFJRXF3RUZQc3NDSWNkUkZNYUx1NWFhTUdUcklzWHIxT21DZ2JjUzVWWnZFZWxZa0VMRVhSaVQydW1xdG5N?oc=5",
       "source": "Rugbypass.com",
       "published": "Sat, 11 Jul 2026 07:14:31 GMT"
     },
     {
-      "title": "Live Discussion: Nations Championship: Australia V France. Sat 11th Jul 2026. Brisbane, Suncorp Stadium.",
-      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPUHQyV2tmTmFVcmdUcjRuRi05TkRoczF6bUd5aE51eS03R0x3UTVsNUlkZVBkUXRjd1V1aDN3NkJMT20zRE9Da2lQekhzNDNHVlhtb2c1eXlZMkNlT1ptZXRXblM5SFBOc21ub3llZUMzODYtbFpxNFRON3Y4eU5UUF96dGJrZC1MbG5NbEJTcnR4UFluV24yODUwQnRkY2pRZlFoU3NhbDM1VXVBVGRXZ3o4dG5YVVdfMlBmcDZrV2tEYW5lM29SbVYzTQ?oc=5",
-      "source": "Green & Gold Rugby",
-      "published": "Sat, 11 Jul 2026 07:01:07 GMT"
-    },
-    {
       "title": "Australia v France: Nations Championship rugby union international – live",
       "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNLVdIaFRhUWtMYzJjSFhydk5xUHlJbUl2UC11R3RLRkIxT0ppT1EwOV9wM01QNTFxdmNiMVU5elR0TlpLY1Ric0Z4TFpqV3pBMUItX2RtT1F6cWg0c1lzVWlWRW1OeDZNLWVRWmZEZEwxNHJnOVBLbDdZR1lwa1RXZGlLWHJkWGRWMmxhaXRJY3VINGV4OTJmYnRiOTdsVy1UelA0alRlNENzZmtnNFJjd1U5TFk0SkpseU8tMmVrQXZrSUpwUGowRXRhb29OZ3RtZWowUzl4aWVzby1EZUFHZmFNam8?oc=5",
       "source": "The Guardian",
       "published": "Sat, 11 Jul 2026 06:57:00 GMT"
-    },
-    {
-      "title": "Live: Wallabies aiming to rebound against France in Nations Championship",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQbmZmNjZqaHN3WlU5VmROTllUdTBWUC1wUXpWbjBvbE9sRHQzRzh5UzRpOHlXYjN3TjdoSl9DemxsR3ZyRTU3TGJScnUwOGRLX0ZOTEh3VWFaZERPeDQ2SEFSNUNFVEpkamhJM0JyNGhZNElzc2hMQlJORmFjX291LUtWanJxaWdhZnVDZkVtcTEtQ0RDMVZ4RVBHaUwwZUNqd3pXaHJFTEJSc0VQVXVxUw?oc=5",
-      "source": "ABC News & Headlines – Australian Broadcasting Corporation",
-      "published": "Sat, 11 Jul 2026 06:45:19 GMT"
     },
     {
       "title": "‍[!WATCHLIVE]4K!] New Zealand vs Italy Nations Championship 𝐋𝐈𝐕𝐄 𝐒𝐭𝐫𝐞𝐚𝐦 tv 11 July 2026",
@@ -1094,16 +1094,16 @@
       "published": "Sat, 11 Jul 2026 05:56:46 GMT"
     },
     {
+      "title": "All Blacks v Italy, Nations Championship 2026 | NZ Rugby",
+      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE51ZE1qUGhBSWlKMlRPeHMtOUZzS0xZWnR4OC1UcVExbzA0N3EzM0tvcGVGakNBSkxuMEljU2hCMHBWd0Z3Yzd6eV9COW1IVmxDTEFtbzNhbXQ5NkpmOV83MjNVaVdBYWJkN003bU1JU1Rha3MySUViVWNFMA?oc=5",
+      "source": "All Blacks",
+      "published": "Sat, 11 Jul 2026 05:10:00 GMT"
+    },
+    {
       "title": "Nations Championship Week 2: lineups, tips, odds, everything you need to know for the weekend",
       "link": "https://news.google.com/rss/articles/CBMilAJBVV95cUxQTFNXRElJeWh6dnU3WENrTS10c3U5VEpkQ01DN2wzamFUczV4X1E1eTNpZlpwNVRUaTM0VE81aEswZ1VWMHptTHd3a3NFcVphcXlaRUVuRk1GVlRieFpQNnRKT3R2T25nd1BwTF9DcFdRZmtwNjd3V2F4MFhiUHVjVU1oNWZ5SmtzM1RFNzJ5SlhHMGdLWHkzbFE0TzIzVUJaQlA1UEFkVWJoTXFBRzJkYlhqTGZTUjhzcUF2UncwV1hGTHBiR2hkTF9Wa04zMEh2OUZUMHJFVG0yVWF4S21aU0FTbV9YU2NTUlFFM0NVVkdybDZyLUtIRGZMRzE0enhrR2lDeEhGeTZpNzBJYUI1ZXU3ckw?oc=5",
       "source": "ESPN",
       "published": "Fri, 10 Jul 2026 03:10:57 GMT"
-    },
-    {
-      "title": "All Blacks v Italy | Nations Championship Match Preview",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPNDl6dFRtOFNhRDM1dkEtNE9GdFFrbmE2MGotMTg3WHdERzREMl8zSEJtQTJVOHZGZ1B0U2lUd1UwY1NsN3JPa3FQM1RIMWJ4Skt3WjUzRlREZlFTaWpUVFdDTUZON014WjBsYURfakR5aURmdXVrY284UjI5RG9tSWQ4N1hGN0hTVWhrODEtR05kcTBya0JR?oc=5",
-      "source": "All Blacks",
-      "published": "Fri, 10 Jul 2026 01:47:01 GMT"
     },
     {
       "title": "'You probably wouldn't take notice of Australia v Ireland' – Dave Rennie's 'interesting' Nations Championship verdict",
