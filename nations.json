@@ -5,13 +5,12 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-11T20:45:07.733Z",
+  "updatedAt": "2026-07-11T21:17:05.824Z",
   "counts": {
     "fixtures": 24,
     "results": 12,
     "teams": 12,
-    "news": 15,
-    "digests": 12
+    "news": 15
   },
   "fixtures": [
     {
@@ -815,9 +814,9 @@
       "date": "2026-07-11T19:10:00+00:00",
       "week": "2",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false
       },
       "home": {
         "id": 460,
@@ -829,7 +828,7 @@
         "id": 391,
         "name": "Wales",
         "logo": "https://media.api-sports.io/rugby/teams/391.png",
-        "score": 14
+        "score": 21
       }
     }
   ],
@@ -904,6 +903,23 @@
     },
     {
       "rank": 5,
+      "id": 460,
+      "team": "Argentina",
+      "logo": "https://media.api-sports.io/rugby/teams/460.png",
+      "P": 2,
+      "W": 1,
+      "D": 0,
+      "L": 1,
+      "PF": 73,
+      "PA": 68,
+      "PD": 5,
+      "TF": 10,
+      "TA": 10,
+      "BP": 2,
+      "Pts": 6
+    },
+    {
+      "rank": 6,
       "id": 390,
       "team": "Scotland",
       "logo": "https://media.api-sports.io/rugby/teams/390.png",
@@ -920,7 +936,7 @@
       "Pts": 6
     },
     {
-      "rank": 6,
+      "rank": 7,
       "id": 386,
       "team": "England",
       "logo": "https://media.api-sports.io/rugby/teams/386.png",
@@ -937,24 +953,24 @@
       "Pts": 5
     },
     {
-      "rank": 7,
+      "rank": 8,
       "id": 391,
       "team": "Wales",
       "logo": "https://media.api-sports.io/rugby/teams/391.png",
-      "P": 1,
+      "P": 2,
       "W": 1,
       "D": 0,
-      "L": 0,
-      "PF": 39,
-      "PA": 24,
-      "PD": 15,
-      "TF": 6,
-      "TA": 3,
+      "L": 1,
+      "PF": 60,
+      "PA": 59,
+      "PD": 1,
+      "TF": 9,
+      "TA": 8,
       "BP": 1,
       "Pts": 5
     },
     {
-      "rank": 8,
+      "rank": 9,
       "id": 463,
       "team": "Japan",
       "logo": "https://media.api-sports.io/rugby/teams/463.png",
@@ -971,7 +987,7 @@
       "Pts": 4
     },
     {
-      "rank": 9,
+      "rank": 10,
       "id": 461,
       "team": "Australia",
       "logo": "https://media.api-sports.io/rugby/teams/461.png",
@@ -986,23 +1002,6 @@
       "TA": 11,
       "BP": 3,
       "Pts": 3
-    },
-    {
-      "rank": 10,
-      "id": 460,
-      "team": "Argentina",
-      "logo": "https://media.api-sports.io/rugby/teams/460.png",
-      "P": 1,
-      "W": 0,
-      "D": 0,
-      "L": 1,
-      "PF": 38,
-      "PA": 47,
-      "PD": -9,
-      "TF": 5,
-      "TA": 7,
-      "BP": 1,
-      "Pts": 1
     },
     {
       "rank": 11,
@@ -1041,6 +1040,12 @@
   ],
   "news": [
     {
+      "title": "England rebound from Boks' defeat to crush 14-man Fiji",
+      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOU3BpaGR6WnhpejNuVElNS2szV2UwejIwbHpYUVNxZmxZUmdKczdIemZqQUNocVpZMmE4UlVobUVwcFdsWjBEa3Bnd3YtS0lsOWMxbFVUdk9GVWQzVE9RMWNyNG1TWUZCY2J6amU0WVY3Y1VzQWRDZjI5ZkE3VlExTWtoQWRJMjZndW5IX3dlcGM1Q003?oc=5",
+      "source": "RUGBY.com.au",
+      "published": "Sat, 11 Jul 2026 21:11:54 GMT"
+    },
+    {
       "title": "Pollock’s hat-trick powers England’s 11-try Nations Championship mauling of 14-man Fiji",
       "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOaXJMMEtvVDdZSkVaZlMwUEl2RjFPUlpwTFFDNFBBNkFEeDhFOGRwRXRXcXlhQ0hCSl9NLVNLT3pxZDNLSGYwajRjejN3NTRsRmxiRjBINnpkcHE1aUVaR1NWaEJfaDNxamdBcTQ2QWNOSzQweVlaYVlpU3ZOUk1ZSlZlOVV3dlVWeGVTRjQwTnpDUEgzOVNZbkM2SFlCeksyMXlfbmhzNA?oc=5",
       "source": "The Guardian",
@@ -1053,40 +1058,28 @@
       "published": "Sat, 11 Jul 2026 19:56:00 GMT"
     },
     {
-      "title": "South Africa prove too strong for enterprising Scotland in Nations Championship",
-      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOc0FWUnE5NmE3WkNiRjdJcXFBbGhZaUUzNkFoZ3BzLVJiU2JXSEpXU0tGeGN3Z1FuX01zQ1ZmX2E1Ym9sQzJEM1g0Z2gxVVlkMmJ4WXNIblJ5bEJlODZCR3B4bHNHc3lTVE1RVm84clVFLTlSWVRjUk5XbFlSSVZsbmpUbXV2Q0ItdjMzXzVrckN5WFJ0VUg4X2lzYTF0akFuNE9R?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 11 Jul 2026 18:44:00 GMT"
-    },
-    {
-      "title": "South Africa 42-28 Scotland: Nations Championship rugby – as it happened",
-      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNZzdBWUFKSnFXVk9Tbm1qRTdYb3ZYZHpfd2VrcWk0dHV5LTBUTGgtV3NXTnl2N0tLY29PNGNqYlFGRlBJT3JRUzY4Rkt3a0t6a2hQZ09LUktiOUdrYjdKaHVBQUM1Y044V1VrWlQxNkE3RjZ1ekgwdk56bTJpZGFhVm96cHFTZDh3TGJFeWZIb24xQXBVdVdTcFJVUHVtNE5aX2x1TXhhTkpaZw?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 11 Jul 2026 17:39:08 GMT"
-    },
-    {
       "title": "Springboks player ratings vs Scotland | Nations Championship 2026",
       "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPNkhDVzNiV0RpSGtnR1dPc2U4cDF5S1gtQ0VJV3BNYkJ1YXd5SDJRWmlPRy1VY0xpZFhRcm5FbDdkMVF5d3ROTlRyVVZlLWJFcWs5RGNhQVdUNEZ0eFYwQlU2V2NtczhFSFN4cmllSFNVYlo3WkNIVnYwMWZ4d1BCNGdjdjZETGdkZng2RlZxNUZOV0dLU1pkVU53VQ?oc=5",
       "source": "Rugbypass.com",
       "published": "Sat, 11 Jul 2026 17:36:38 GMT"
     },
     {
-      "title": "Nations Championships: England end lose streaking, thrash Fiji 73-8",
-      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOcTVZZ0tRQjlXTWR1Z3FhN0l6MzZ0aDhQSks0OXdlREhRUWowNEN3bVdWRW1Ic0YzN2ZyZUVyc1psWFlSTHR0WFpaUWFiSzNHV1NfUjh6NzJFZ09ZbUhkSUlsMDdZemlPWW9pcGJGMUNWTDZRTU1YelB6YVI2Z1FJOWRyMzJsalpIbzdhMm5KTUlwYnJB?oc=5",
-      "source": "ESPN",
-      "published": "Sat, 11 Jul 2026 16:27:12 GMT"
+      "title": "Fiji 8-73 England: Nations Championship rugby union – as it happened",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQeVY0c25JdktXOVUzTDZqN3hPYjZCUGxJX21uTF93Y0l0MkRRREFBRWdYNU1BVUtNVWJ6V2tVUy01V2FiMTNaYjM1N0JSbFBLUVI5WU9nVDFudkNSU1IycVlXN2JhR202bVpZM0tSUXczY3d1T3p5aVd1Zi1Qa2ZHbWVEZ2JKZ1lnb0l3NTcwd3I3UlNWTFZ2cmVsV1BzcmVIZ0RNLTRn?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 11 Jul 2026 15:47:58 GMT"
+    },
+    {
+      "title": "South Africa 42-28 Scotland: Nations Championship rugby – as it happened",
+      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNZzdBWUFKSnFXVk9Tbm1qRTdYb3ZYZHpfd2VrcWk0dHV5LTBUTGgtV3NXTnl2N0tLY29PNGNqYlFGRlBJT3JRUzY4Rkt3a0t6a2hQZ09LUktiOUdrYjdKaHVBQUM1Y044V1VrWlQxNkE3RjZ1ekgwdk56bTJpZGFhVm96cHFTZDh3TGJFeWZIb24xQXBVdVdTcFJVUHVtNE5aX2x1TXhhTkpaZw?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 11 Jul 2026 14:56:00 GMT"
     },
     {
       "title": "Nations Championship LIVE: Australia v France and Japan v Ireland team news, scores and text updates",
       "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE84TnhraHR6SmtZemg5V0NWTUJoWDVlNVRSY1NrX0FkYU9wNVdPRnJETm9jeE1tdzZLNlpIb0hHNGFjNVhxQzRQZ1R1MzZXT1RUVkF1azQtS1dBTnlqWVVDd2hfYXVUQQ?oc=5",
       "source": "BBC",
       "published": "Sat, 11 Jul 2026 13:04:20 GMT"
-    },
-    {
-      "title": "Fiji 8-73 England: Nations Championship rugby union – as it happened",
-      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQeVY0c25JdktXOVUzTDZqN3hPYjZCUGxJX21uTF93Y0l0MkRRREFBRWdYNU1BVUtNVWJ6V2tVUy01V2FiMTNaYjM1N0JSbFBLUVI5WU9nVDFudkNSU1IycVlXN2JhR202bVpZM0tSUXczY3d1T3p5aVd1Zi1Qa2ZHbWVEZ2JKZ1lnb0l3NTcwd3I3UlNWTFZ2cmVsV1BzcmVIZ0RNLTRn?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 11 Jul 2026 12:13:00 GMT"
     },
     {
       "title": "Ireland player ratings vs Japan | Nations Championship 2026",
@@ -1101,16 +1094,16 @@
       "published": "Sat, 11 Jul 2026 10:48:11 GMT"
     },
     {
+      "title": "France dominates Wallabies to post historic Test win",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQbmZmNjZqaHN3WlU5VmROTllUdTBWUC1wUXpWbjBvbE9sRHQzRzh5UzRpOHlXYjN3TjdoSl9DemxsR3ZyRTU3TGJScnUwOGRLX0ZOTEh3VWFaZERPeDQ2SEFSNUNFVEpkamhJM0JyNGhZNElzc2hMQlJORmFjX291LUtWanJxaWdhZnVDZkVtcTEtQ0RDMVZ4RVBHaUwwZUNqd3pXaHJFTEJSc0VQVXVxUw?oc=5",
+      "source": "ABC News & Headlines – Australian Broadcasting Corporation",
+      "published": "Sat, 11 Jul 2026 10:09:27 GMT"
+    },
+    {
       "title": "Will Jordan sets New Zealand try record in Nations Championship win over Italy",
       "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBhRm5BWGl2S2hHUDVGcmtMR1EzVkxaQWVaWXNVbV9XWXQzUjMxc0VldjdSaGtLQnU5MlBjV1dOX3B4cHl6bzI4ekU4bllLdUZIX09IM01SemllTTJycnA0Y0liTW92TmxST3JV?oc=5",
       "source": "BBC",
       "published": "Sat, 11 Jul 2026 09:13:26 GMT"
-    },
-    {
-      "title": "France dominates Wallabies to post historic Test win",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQbmZmNjZqaHN3WlU5VmROTllUdTBWUC1wUXpWbjBvbE9sRHQzRzh5UzRpOHlXYjN3TjdoSl9DemxsR3ZyRTU3TGJScnUwOGRLX0ZOTEh3VWFaZERPeDQ2SEFSNUNFVEpkamhJM0JyNGhZNElzc2hMQlJORmFjX291LUtWanJxaWdhZnVDZkVtcTEtQ0RDMVZ4RVBHaUwwZUNqd3pXaHJFTEJSc0VQVXVxUw?oc=5",
-      "source": "ABC News & Headlines – Australian Broadcasting Corporation",
-      "published": "Sat, 11 Jul 2026 06:41:28 GMT"
     },
     {
       "title": "Nations Championship 2026 Round 2: New Zealand vs Italy Fixture",
@@ -1125,10 +1118,16 @@
       "published": "Fri, 10 Jul 2026 06:03:30 GMT"
     },
     {
-      "title": "Wallabies vs Ireland live: Captain’s try scrubbed out in contentious obstruction call",
-      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQbkRhUTlPcm9naVJZQlh6dndFc1hBN0xaUlZGNHdaRk1vQ25qMm4yeUZBVldiTlV1Z3Uycm5pdS11czB0TWZYR3luZWVsQTJKdTZuX1oyM25TSnQ0UlF5UGVlSHE0Qkg2LUFWdkhWRFVsdXRDVzdzYk45ZGlJcWI5TDFuMWpENHMwMFhmdHBJb3pycEMtVDJ3MkVZcUhJVDVua1JHX0lral9KYlZIWXNXa3o3SkIzc0hZU01EbVZNcGtZZngtLVBoVjFwLUV4Wk5oVHhtYw?oc=5",
-      "source": "Nine.com.au",
-      "published": "Sat, 04 Jul 2026 14:42:13 GMT"
+      "title": "South Africa 45-21 England: Springboks romp to victory at Ellis Park - as it happened",
+      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPbWJ2ZW5EOEVKU053Ql9ibEM0czJTdUl2SmduYWRnV3VRSkFxcEE1bzVVNEpBQ05zTDU4SlFvcElhR0RTSzB4VUZENUVGa0NPZEg0VzFDN3RLMEktVTZncWg3R2gxZTBjVW03VmlqRHZFeFJjSGFaV3pjQnhBRmFkMlFTS2RianVLZEs0c0VTN2ItQzdpMDcwUXp2TWVFUGRXSk1zOHJieWtCeDRudWZxTlphZkdTZzZlQ3FDQ2FfWElFTGJ4U1BYWllDcXE?oc=5",
+      "source": "ESPN",
+      "published": "Sat, 04 Jul 2026 23:52:57 GMT"
+    },
+    {
+      "title": "Wallabies ‘gutted’ as contentious call leaves Aussies heartbroken after ‘one of the all-time’ Tests",
+      "link": "https://news.google.com/rss/articles/CBMirgJBVV95cUxOWFBzZFRsYkl2b0NTZXVSMWtScGQ4UXdwc0VJV0pnbDI4Y01CeG9VUGdLaWN4UHRoak9FZm54WVhrSFkyNmVid1RmU2NiX1ZmZGhMTTZlb2g1T0pwZWFWemtZTndxVXlTYXpSNTNhNnRlU21PcngyT2t2TkVub2VyUUFiNzZvdnd6Qmdpd3hQTnNCR3RUajc1VW5DMXZtZzNucFRjNld0am9SLVNGUVpoN0pWSTNGckhjdXV2M3BtQWplaVdNNFdxdW9BbThLc1RaczZhX1M4WjBKdFVFcjlhQzNKbldZbEdORDhoOGcta0JHc3A0NjdELWJVR2tyRVpteXBXN2NmOWFxaDk5TlM3QnpUbHZqdGRpM2hlb3Nhd3BicEFubUltTUhRMGZrQdIBrgJBVV95cUxOWFBzZFRsYkl2b0NTZXVSMWtScGQ4UXdwc0VJV0pnbDI4Y01CeG9VUGdLaWN4UHRoak9FZm54WVhrSFkyNmVid1RmU2NiX1ZmZGhMTTZlb2g1T0pwZWFWemtZTndxVXlTYXpSNTNhNnRlU21PcngyT2t2TkVub2VyUUFiNzZvdnd6Qmdpd3hQTnNCR3RUajc1VW5DMXZtZzNucFRjNld0am9SLVNGUVpoN0pWSTNGckhjdXV2M3BtQWplaVdNNFdxdW9BbThLc1RaczZhX1M4WjBKdFVFcjlhQzNKbldZbEdORDhoOGcta0JHc3A0NjdELWJVR2tyRVpteXBXN2NmOWFxaDk5TlM3QnpUbHZqdGRpM2hlb3Nhd3BicEFubUltTUhRMGZrQQ?oc=5",
+      "source": "Fox Sports",
+      "published": "Sat, 04 Jul 2026 12:16:19 GMT"
     }
   ],
   "digests": {
