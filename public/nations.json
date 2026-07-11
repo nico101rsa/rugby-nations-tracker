@@ -5,43 +5,18 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-11T04:27:30.656Z",
+  "updatedAt": "2026-07-11T05:40:55.250Z",
   "counts": {
-    "fixtures": 30,
-    "results": 6,
+    "fixtures": 29,
+    "results": 7,
     "teams": 12,
-    "news": 15,
-    "digests": 12
+    "news": 15
   },
   "fixtures": [
     {
-      "id": "static-r2-465",
-      "date": "2026-07-11T05:10:00+00:00",
-      "week": "2",
-      "timeTBC": false,
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 465,
-        "name": "New Zealand",
-        "logo": "https://media.api-sports.io/rugby/teams/465.png",
-        "score": null
-      },
-      "away": {
-        "id": 389,
-        "name": "Italy",
-        "logo": "https://media.api-sports.io/rugby/teams/389.png",
-        "score": null
-      }
-    },
-    {
-      "id": "static-r2-461",
+      "id": 53220,
       "date": "2026-07-11T07:40:00+00:00",
       "week": "2",
-      "timeTBC": false,
       "status": {
         "short": "NS",
         "long": "Not Started",
@@ -61,10 +36,9 @@
       }
     },
     {
-      "id": "static-r2-463",
+      "id": 53221,
       "date": "2026-07-11T10:10:00+00:00",
       "week": "2",
-      "timeTBC": false,
       "status": {
         "short": "NS",
         "long": "Not Started",
@@ -84,10 +58,9 @@
       }
     },
     {
-      "id": "static-r2-28",
+      "id": 53222,
       "date": "2026-07-11T13:10:00+00:00",
       "week": "2",
-      "timeTBC": false,
       "status": {
         "short": "NS",
         "long": "Not Started",
@@ -107,10 +80,9 @@
       }
     },
     {
-      "id": "static-r2-467",
+      "id": 53223,
       "date": "2026-07-11T15:40:00+00:00",
       "week": "2",
-      "timeTBC": false,
       "status": {
         "short": "NS",
         "long": "Not Started",
@@ -130,10 +102,9 @@
       }
     },
     {
-      "id": "static-r2-460",
+      "id": 53224,
       "date": "2026-07-11T19:10:00+00:00",
       "week": "2",
-      "timeTBC": false,
       "status": {
         "short": "NS",
         "long": "Not Started",
@@ -837,6 +808,28 @@
         "logo": "https://media.api-sports.io/rugby/teams/390.png",
         "score": 47
       }
+    },
+    {
+      "id": 53219,
+      "date": "2026-07-11T05:10:00+00:00",
+      "week": "2",
+      "status": {
+        "short": "1H",
+        "long": "First Half",
+        "live": true
+      },
+      "home": {
+        "id": 465,
+        "name": "New Zealand",
+        "logo": "https://media.api-sports.io/rugby/teams/465.png",
+        "score": 7
+      },
+      "away": {
+        "id": 389,
+        "name": "Italy",
+        "logo": "https://media.api-sports.io/rugby/teams/389.png",
+        "score": 10
+      }
     }
   ],
   "log": [
@@ -1047,16 +1040,16 @@
   ],
   "news": [
     {
-      "title": "Wallabies v France: How to watch Test in Australia, teams, fixtures and more",
-      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPWmtrbHFsSEpvZzBNcDU5a21xM0Z1Y3lHVEtSOFltemJERTdmWXBaWEtlZHRjUnlTNE5LeVl5OWxSQlIyT19qRDFPNGwxcHVtYmxZTVBiY0d6RzNNLWFQbnVpT2lzLXU4eUItZVBUVTh0ZzVYWEo3QVQ0LXlkbnhJNEg0dXlZMmZGeXJrRWJyQ2xDUHZ4anJIdHVoYlIxa2J5SzRRTzdodmFtSk41Y1dxSWVPUzI4ODNYM1dMTHFzYUVTZ1E?oc=5",
-      "source": "RUGBY.com.au",
-      "published": "Sat, 11 Jul 2026 02:49:08 GMT"
+      "title": "‍‍‍‍!+[ＬＩＶＥＳｔｒｅａｍ]NOW!!] Italy vs All Blacks Rugby Nations Championship 𝐋𝐈𝐕𝐄 Ｆｒｅｅ Ｓｔｒｅａｍｓ ＯＮ Ｔｖ Ｃｈａｎｎｅｌ 11 July 2026",
+      "link": "https://news.google.com/rss/articles/CBMi2wNBVV95cUxPNWZ4ZDRSR0x4M1dsUTRuVmlUOEMzTk1mTkpqbjZsaHpvVllvbkt2M082VzN1NUl1T2dabXlMWExIRFlsdWhFWERsdW81RUc4aFE5WGRIcTFXZFJVNzFlMDNuYzVVcXA5VXFPNU5DM0NPVElrNHF3QTV0VnZRS0U4ald4SDZPVnNlVlFKV1VpOUd5YlJSTWNSVDNSVFpDYjdjaE82WWdLYlQ0aWdPZjlCZGJMbDFINlpPRXlKazVlTWdKc3MyR2dGV3YyeU5qbmw3SURPYmRzVGF3RUJRNzdCOS1McVowOG5HYWVnTUlyUk5xelhBVW1mTkVtUXJ2aWEzVW5sXzh6bDVoVlM3dkZCWmpGQlZPQ3UxUzRDUTRIbU1QT25HOG9HX085R2RQM3p2UHd4X0FDME02YV9oSGpHbzNHdE50aDU4WmtQeTYycWlyeUhMSjZRVnZMaEtKdWJORWhZYjVKSFJ1WWZkeU5oMU92ckwwb1ZwZmNqdGJ4dkFtSzBXQ1dxREdTQVdaUDlBU3JQVE0xbXMwS3F2ZFkxLW1Ccmw5TW1BclgwWF80LXdubGNEOWJsYklYRy1JdFhqOFVWZlVCX1pfcEdOVm1xNWNaUnl6RUJPZnFN?oc=5",
+      "source": "MCA Sydney",
+      "published": "Sat, 11 Jul 2026 05:29:34 GMT"
     },
     {
-      "title": "Australia vs France Free Streams: Watch Nations Championship 2026",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxObGtvbldrSFV1LU43Tmd4dl9aXzd3TENaMDd3WHg2Rm0yUDFBZm5hdXhHRVJ3Z2dRSVYxODQxNjhqTXhXODhNVTlmMndjdVBmTjNGTU12RE80T1I1djdKMjFqYkdhX2pKZWFycWhtUnhKekZfbFdMMjdtWkdpVlZNUUhEaVZZMHUyZTlhZDR4OXBxS3pmZFpZ?oc=5",
-      "source": "Rugby World",
-      "published": "Sat, 11 Jul 2026 01:22:34 GMT"
+      "title": "(LIVESTREAMs!)tv* Nations Championship Rugby 2026 LIVE STREAM Free REDDIT",
+      "link": "https://news.google.com/rss/articles/CBMipgNBVV95cUxQcEhiU0RmUDdfSjN5MFU1bkZZcU9ORnZ5eXFVandFQXJCc3VUaTdwY3NYSGcxWkpVU3paRmFEWVFleEE1V09nWXVFY1MzUGlyU1VFZUkzR0N3QWdxWVNaRUphaExZeUMxOFdLTS11dUEwTVM3RUh4Y2FGV1ZFYl9IMHVyTmh1UE16V1ViVU44ZkgwZ3RrMzZ3TjBmeGdkcGpTVC1rS2FKNmREQk85WlRkZXNRbW8yeHNJSzNPRzNNVE15VHUxX0xnMDh5TTdwa2RWeUhJaWRfbU05RlFiNzNWcWNfcnNLdUJOT0YwdFlidktSNzRSY1dyZDZYNEx3Z0VQLW9kdWJTdmlwQTY4eGwzMmJ6YzNieWdLVXpCSk0tX0lGMklIX0RnUTBfRDEzTGNZcDZoODlzM3Z0eG1QLTdLd1BsZXhPWmp5Ny05ZHJyWjhZb2pQR0NJQ0c2V1UxZWFhT2lWdzItMzYySDlwS3A4VGlPamtVWmJRZVdyTVludE9wQnF6Mm1YSkZWN3dyX2ZCTDhWcVJWZnFYVGNBNkhCWmlJRzZldw?oc=5",
+      "source": "MCA Sydney",
+      "published": "Sat, 11 Jul 2026 05:28:27 GMT"
     },
     {
       "title": "Nations Championship and Nations Cup back for more after red-hot opening weekend",
@@ -1071,16 +1064,16 @@
       "published": "Fri, 10 Jul 2026 23:30:00 GMT"
     },
     {
+      "title": "How to watch Wallabies vs. France: TV channel, live stream for Australia's Nations Championship match",
+      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOd2x3MXlaTzAxQWNfN1h3OWVNQ3l3dkVlNWthYmctcFYxRzluUUNfT25uN2tBODBDVUlQX1VjYTMxY1VUbzF4NlJGSk16cy11UjVhUXJBbndqWHhxeDUxcFNWTGhTZGRCWk4xdWpnNEx0NHZnRU05M0s2NGhWNl92QkRWazFraTFwMThXSjE5UGM4Tl9kZ3FTeGU5bUdSVG5IMzJ6d0lFcHhKS0xxMTNwQmxOQmY2SFUwTVAxZEFiR0wxaXJyTWxQNkFTNWc?oc=5",
+      "source": "sportingnews.com",
+      "published": "Fri, 10 Jul 2026 20:00:01 GMT"
+    },
+    {
       "title": "Nations Championship 2026 Round 2: New Zealand vs Italy Fixture",
       "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5ySkJwSzJkU3dYZThkZkdwMm5qWnlZZlc3SHpFYnJxZUtoczFZYk01ZFlVREFEdk9GV0F3QXFPSGFmd25fQTNvdnZaSk1LY2xpOURkZGREczRiX0RHNDNkY1pKWTFabmo3TGZ4QzlDRjUtNU9OaUJIZ0t3?oc=5",
       "source": "RUGBY.com.au",
       "published": "Fri, 10 Jul 2026 19:47:37 GMT"
-    },
-    {
-      "title": "Nations Championship Rugby Round 2 Tips & Predictions",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOaWkwbUdXS1BLTlJrUHdrVmw2QWRKNG9KdnlBX0l6VXZibldKc3o4dmlOcjF6VFdkWFBLX3FiSWtkazNSTDlTZFNUeXFmWEVQd2oyTno1U1ltS3MxUktON0FIb1JZNlZSY21KOFZrbGFCcjdMN0Z3Q1VfbFlVb0tVZEpQd2hfTTNaS0QxYkp0T3NlQkZLQXJj?oc=5",
-      "source": "Ladbrokes",
-      "published": "Fri, 10 Jul 2026 11:05:40 GMT"
     },
     {
       "title": "World Rugby Nations Cup 2026 round two preview",
@@ -1089,28 +1082,28 @@
       "published": "Fri, 10 Jul 2026 09:03:10 GMT"
     },
     {
+      "title": "Wallabies need cool heads and a hard edge against France to stop the gallant losses | Angus Fontaine",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxOd0FfVDhobFEtMjlIQjJNejNSdXZKWWx0TWYza1dmTUxrb0Q1azhfMmFyRVdhNmlJQlZZZlJmNXFGWHpmQU9wQWtJNnpwcEtnZ3BrUGtEZmpxb3dGVmpuNWtLUDY0aTl0T0d4eVNwTjRlOUdIR3dRVzNNaUVKcnB4OWoyVHZ2aVZXUWhRQlpSLWNwQUZLbFNkQ2JwLVVFLURMZUZUdW1PenFCaHFPVVRJRHRQcHNLdw?oc=5",
+      "source": "The Guardian",
+      "published": "Fri, 10 Jul 2026 04:53:00 GMT"
+    },
+    {
       "title": "Nations Championship Week 2: lineups, tips, odds, everything you need to know for the weekend",
       "link": "https://news.google.com/rss/articles/CBMilAJBVV95cUxQTFNXRElJeWh6dnU3WENrTS10c3U5VEpkQ01DN2wzamFUczV4X1E1eTNpZlpwNVRUaTM0VE81aEswZ1VWMHptTHd3a3NFcVphcXlaRUVuRk1GVlRieFpQNnRKT3R2T25nd1BwTF9DcFdRZmtwNjd3V2F4MFhiUHVjVU1oNWZ5SmtzM1RFNzJ5SlhHMGdLWHkzbFE0TzIzVUJaQlA1UEFkVWJoTXFBRzJkYlhqTGZTUjhzcUF2UncwV1hGTHBiR2hkTF9Wa04zMEh2OUZUMHJFVG0yVWF4S21aU0FTbV9YU2NTUlFFM0NVVkdybDZyLUtIRGZMRzE0enhrR2lDeEhGeTZpNzBJYUI1ZXU3ckw?oc=5",
       "source": "ESPN",
       "published": "Fri, 10 Jul 2026 03:10:57 GMT"
     },
     {
-      "title": "Nations Championship & World Rugby Nations Cup Schedule & Fixtures",
-      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQYlJhV09EV1ZBcWFYS0hWTmRDaEdNdG1Dem9tTWNoRW11Wkp2d1RsOVcwTEJhZnc1ekphcXZrdXI0MzFybm5Nc2RuRk5MclFwRFBOV3lMVWx0Nk5yaFdicDJRcEdKMGxENXM1WE8wLVkwZGFVOXVaQlFwN093Y29VbExOOG9NLWg3dGpBNV9KN3JjdWxrUEhoaGNUU1NlVV9tbGFoU0NtTDQ?oc=5",
-      "source": "FloRugby",
-      "published": "Thu, 09 Jul 2026 17:47:25 GMT"
+      "title": "All Blacks v Italy | Nations Championship Match Preview",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPNDl6dFRtOFNhRDM1dkEtNE9GdFFrbmE2MGotMTg3WHdERzREMl8zSEJtQTJVOHZGZ1B0U2lUd1UwY1NsN3JPa3FQM1RIMWJ4Skt3WjUzRlREZlFTaWpUVFdDTUZON014WjBsYURfakR5aURmdXVrY284UjI5RG9tSWQ4N1hGN0hTVWhrODEtR05kcTBya0JR?oc=5",
+      "source": "All Blacks",
+      "published": "Fri, 10 Jul 2026 01:47:01 GMT"
     },
     {
       "title": "'You probably wouldn't take notice of Australia v Ireland' – Dave Rennie's 'interesting' Nations Championship verdict",
       "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNZ1A3ZGpQM2QtaHo3UHdsMVlqLTdrREJRUlo5STVVbzg2cHk4d3V5S0Fma1p2cFBuU0NYQmtHTTRMTVpBM3VUcWVhZW5kT2ZCb0FaTXhmS2dYeTEzWm5TbDcxTjIxNHM4TmEwNWROTmgxRlJaTl9hOGpOdTltSTNKZlRYMlJ2SW41NXg4dHE4VVpsX3hWQVlkbVlaUG9SUXp4cWVHV1lpQVg2WVhuaXFxZHRqQzFfdEthZUE?oc=5",
       "source": "Planet Rugby",
       "published": "Thu, 09 Jul 2026 17:24:40 GMT"
-    },
-    {
-      "title": "Jake White: The brutal truth that could decide the 2027 World Cup",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPVDBzelp5SHpucUpMdEhFckl4bkdRRUxVdnEwcFFpRUxnU3dJV2t1NHQzNnc2UXRDcWlZWEJuWDdMTzZzcF93TFI4ZTJvNzlRVF9nSnJ2c2ZBMUhJalNTcFBYTVYxaHZ6cHhxaXZ3T0FvcDlRSER5QUIydVZGeU5FYlMzallQSmE4SlVIQkdrMFYxWUIyX1MzLXdKYm0?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Thu, 09 Jul 2026 14:07:41 GMT"
     },
     {
       "title": "Wallabies vs Ireland live: Captain’s try scrubbed out in contentious obstruction call",
