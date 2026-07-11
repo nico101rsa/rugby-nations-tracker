@@ -5,12 +5,17 @@ on:
     # Daily 20:00 UTC = 06:00 AEST (07:00 AEDT) — editions carry the new
     # Sydney-local date, ready before the morning check of the app.
     - cron: "0 20 * * *"
+    # Match-Saturday extras: kickoffs run 05:10–19:10 UTC (FT ≈ 07:00–21:00),
+    # so these land fresh post-match news ~1–2h after each cluster of games.
+    - cron: "0 8,12,17,22 * * 6"
   workflow_dispatch:
 
-# Same group as "Refresh match data": both workflows commit nations.json, so
-# serialise them instead of racing pushes.
+# Own group. Sharing "refresh-data" with the match refresh meant every
+# Saturday pinger dispatch evicted the QUEUED digest run (GitHub keeps one
+# pending run per group), so match-day digests never ran. Push races with
+# live-score commits are handled in the publish step instead.
 concurrency:
-  group: refresh-data
+  group: digests
   cancel-in-progress: false
 
 permissions:
@@ -52,4 +57,25 @@ jobs:
           git add nations.json public/nations.json editorial/
           git diff --cached --quiet && echo "No digest changes" && exit 0
           git commit -m "Daily digests $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          if git push; then exit 0; fi
+          # A live-score commit raced us. Both sides rewrite nations.json
+          # wholesale, so a rebase would conflict — instead rebuild on top of
+          # origin: keep their fresh scores, re-apply our digests block and
+          # editorial output (only digest runs write editorial/).
+          cp public/nations.json /tmp/digests-ours.json
+          cp -R editorial /tmp/editorial-ours
+          git fetch origin main
+          git reset --hard origin/main
+          node -e '
+            const fs = require("fs");
+            const fresh = JSON.parse(fs.readFileSync("public/nations.json", "utf8"));
+            const ours = JSON.parse(fs.readFileSync("/tmp/digests-ours.json", "utf8"));
+            fresh.digests = ours.digests;
+            const payload = JSON.stringify(fresh, null, 2);
+            fs.writeFileSync("public/nations.json", payload);
+            fs.writeFileSync("nations.json", payload);
+          '
+          rm -rf editorial && cp -R /tmp/editorial-ours editorial
+          git add nations.json public/nations.json editorial/
+          git commit -m "Daily digests $(TZ=Australia/Sydney date '+%F %H:%M AEST') (reapplied over live refresh)"
           git push || (git pull --rebase --autostash && git push)
