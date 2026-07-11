@@ -523,9 +523,14 @@ async function geminiCall(apiKey, prompt) {
 
 // The checker gets the same trusted data and source pack the writer had, in a
 // fresh context — its job is to catch claims the pack doesn't actually support.
-export function buildFactCheckPrompt(params, digest, sourcePack) {
+// checkerNotes: standing calibration notes maintained by the post-run tuner
+// (editorial/checker-notes.md) — the lever that keeps strictness balanced.
+export function buildFactCheckPrompt(params, digest, sourcePack, checkerNotes = "") {
+  const notesBlock = checkerNotes
+    ? `\n\n## Standing calibration notes (from previous runs' reviews — follow them)\n${checkerNotes}`
+    : "";
   return `You are the fact-checker for **${params.MASTHEAD}**, a daily ${params.TEAM_NAME}
-rugby briefing. Today is ${params.DAY_NAME} ${params.DATE_LONG}. Below is a draft edition.
+rugby briefing. Today is ${params.DAY_NAME} ${params.DATE_LONG}. Below is a draft edition.${notesBlock}
 
 ## Trusted app data (the draft must not contradict this)
 - Next fixture: ${params.HOME_TEAM} v ${params.AWAY_TEAM}, Round ${params.ROUND}.
@@ -560,7 +565,21 @@ Do NOT flag — these are never issues:
   agree), synonyms, or stylistic word choices;
 - opinion, colour and tactical reading;
 - anything you would describe as "technically true but could be phrased
-  closer to the source".
+  closer to the source";
+- claims drawn from the TRUSTED APP DATA (log position, points, records, last
+  result) — trusted data needs no corroboration from the pack, and a pack
+  article contradicting trusted data is a defect of the pack, not the draft;
+- disagreements BETWEEN pack sources: if ANY pack source supports the draft's
+  version of a claim, the claim passes — prefer the most recent and most
+  specific article; never fail a draft for a conflict among its own sources;
+- incompleteness: a true fact the draft left out (a fourth debutant, an
+  unexplained points system) is not an error.
+
+Teamsheet rule: if the draft's teamsheet matches ANY explicit numbered lineup
+printed in the pack, it passes in full. If sources print conflicting lineups,
+flag ONLY the specific disputed entries (severity "minor", fix = the most
+recent lineup article's version) — never fail the whole edition over a
+disputed jersey.
 
 One more rule: **the source pack is the authority.** If the draft accurately
 reflects what the pack says, it passes — even if you suspect the pack itself
@@ -587,7 +606,7 @@ export function parseVerdict(raw) {
   return { verdict: issues.length ? "fail" : "pass", issues };
 }
 
-export async function generateOneGemini(apiKey, data, teamId, now, editorNotes) {
+export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, checkerNotes = "") {
   const params = buildParams(data, teamId, now);
   const opponent = params.HOME_TEAM === params.TEAM_NAME ? params.AWAY_TEAM : params.HOME_TEAM;
   const { pack, headlineCount, articleCount, lineupInPack } = await fetchTeamNews(params.TEAM_NAME, opponent);
@@ -610,7 +629,7 @@ export async function generateOneGemini(apiKey, data, teamId, now, editorNotes) 
     .join("\n");
 
   let digest = await draft();
-  let check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack))));
+  let check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack, checkerNotes))));
   let revisions = 0;
 
   while (check.verdict !== "pass" && revisions < MAX_REVISIONS) {
@@ -622,7 +641,7 @@ support. If a quote was flagged, either use the exact verbatim wording the
 fact-checker cites or remove the quotation marks and paraphrase — do not
 re-word a quote a third way. Output the complete JSON again.`;
     digest = await draft(feedback);
-    check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack))));
+    check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack, checkerNotes))));
   }
 
   if (check.verdict !== "pass") {
@@ -639,7 +658,7 @@ what headlines and articles in the source pack plainly report, plus the
 trusted app data. Bodies may run short (around 50 words). Output the complete
 JSON again.`;
     digest = await draft(feedback);
-    check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack))));
+    check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack, checkerNotes))));
   }
   if (check.verdict !== "pass") {
     const remaining = check.issues.map((i) => i.problem).join("; ");
@@ -662,7 +681,7 @@ every section as-is, and add the "teamsheet" field copied verbatim
 lineup is for a different team or an already-played match, output the edition
 unchanged without a teamsheet.`);
       if (retry.teamsheet) {
-        const recheck = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, retry, pack))));
+        const recheck = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, retry, pack, checkerNotes))));
         if (recheck.verdict === "pass") {
           digest = retry;
           sheetNote = ", teamsheet extracted on retry";
@@ -743,6 +762,72 @@ async function reviewRun(apiKey, editions, dateISO) {
   return { notes };
 }
 
+const CHECKER_NOTES_FILE = join(ROOT, "editorial", "checker-notes.md");
+const MAX_CHECKER_NOTES = 6;
+
+async function loadCheckerNotes() {
+  try {
+    return (await readFile(CHECKER_NOTES_FILE, "utf8")).split("\n").filter((l) => l.startsWith("- ")).join("\n");
+  } catch {
+    return "";
+  }
+}
+
+// Post-run CHECKER tuner (mirrors the writer's editor-notes loop): when
+// editions failed fact-check, one call reviews the failure reasons against the
+// calibration contract — accuracy is non-negotiable, but a checker that blocks
+// good editions is also a defect. It may propose up to 2 standing notes for
+// the CHECKER prompt; notes live in editorial/checker-notes.md (newest first,
+// capped) so every calibration change is in git.
+export function buildCheckerTunePrompt(failures, publishedCount, existingNotes) {
+  const lines = failures.map((f) => `- ${f.team}: ${f.reason}`).join("\n");
+  return `You calibrate the FACT-CHECKER of a suite of 12 daily rugby team
+briefings. The writer drafts each edition from a pack of same-day news; the
+fact-checker passes or fails it. A failed edition means the app shows
+YESTERDAY'S briefing — so a wrong pass misinforms readers, and a wrong fail
+hides fresh, accurate news. Target: publish 10+/12 daily while never passing
+an invented fact, wrong number/name, or fake quote.
+
+Today the checker passed ${publishedCount}/12. The failures and the checker's
+stated reasons:
+${lines}
+
+${existingNotes ? `Current standing calibration notes:\n${existingNotes}` : "No standing calibration notes yet."}
+
+## Your job
+Judge each failure reason: was it a LEGITIMATE block (draft asserted something
+no source supports, wrong name/number, fake verbatim quote) or an OVER-STRICT
+block (claim came from trusted app data; sources conflicting with each other;
+incompleteness; phrasing preference; demanding corroboration the contract does
+not require)? For recurring over-strict patterns, propose up to 2 short
+imperative notes for the CHECKER prompt that would prevent them, e.g.
+"A log-points claim matching the trusted app data is never an issue, even if
+no pack article mentions points." Never propose weakening the invented-fact,
+wrong-number or fake-quote rules.
+
+## Output — strict JSON, nothing else
+{"assessment": "<max 120 words: which failures were legitimate vs over-strict>",
+ "checker_notes": ["<up to 2 notes, or empty array>"]}`;
+}
+
+async function checkerTuneRun(apiKey, failures, publishedCount, dateISO) {
+  const existing = await loadCheckerNotes();
+  const raw = extractJson(await geminiCall(apiKey, buildCheckerTunePrompt(failures, publishedCount, existing)));
+  if (!raw || typeof raw.assessment !== "string") throw new Error("checker tuner returned no usable JSON");
+  const notes = (Array.isArray(raw.checker_notes) ? raw.checker_notes : [])
+    .filter((n) => typeof n === "string" && n.trim())
+    .slice(0, 2);
+  const { appendFile, mkdir } = await import("node:fs/promises");
+  await mkdir(REVIEWS_DIR, { recursive: true });
+  await appendFile(join(REVIEWS_DIR, `${dateISO}.md`), `\n## Checker calibration — ${dateISO}\n\n${raw.assessment}\n`);
+  if (notes.length) {
+    const prior = existing ? existing.split("\n") : [];
+    const merged = [...notes.map((n) => `- ${n.trim()} _(added ${dateISO})_`), ...prior].slice(0, MAX_CHECKER_NOTES);
+    await writeFile(CHECKER_NOTES_FILE, `# Standing checker calibration notes\n\nInjected into the fact-check prompt daily; curated by the post-run tuner. Prune freely.\n\n${merged.join("\n")}\n`);
+  }
+  return { notes, assessment: raw.assessment };
+}
+
 async function loadEditorNotes() {
   try {
     return (await readFile(NOTES_FILE, "utf8")).split("\n").filter((l) => l.startsWith("- ")).join("\n");
@@ -771,7 +856,9 @@ export async function main({ dryRun = false } = {}) {
     console.log(`provider: gemini (${GEMINI_MODEL}, RSS source pack + fact-check pass)`);
     const editorNotes = await loadEditorNotes();
     if (editorNotes) console.log(`standing editor notes:\n${editorNotes}`);
-    generateFor = (teamId) => generateOneGemini(geminiKey, data, teamId, now, editorNotes);
+    const checkerNotes = await loadCheckerNotes();
+    if (checkerNotes) console.log(`standing checker notes:\n${checkerNotes}`);
+    generateFor = (teamId) => generateOneGemini(geminiKey, data, teamId, now, editorNotes, checkerNotes);
   } else if (process.env.ANTHROPIC_API_KEY) {
     console.log(`provider: anthropic (${MODEL})`);
     const { default: Anthropic } = await import("@anthropic-ai/sdk");
@@ -790,7 +877,7 @@ export async function main({ dryRun = false } = {}) {
       generated[teamId] = digest;
       console.log(`${TEAMS[teamId].name}: ok (${digest.edition}${note ? `, ${note}` : ""})`);
     } catch (e) {
-      failed.push(TEAMS[teamId].name);
+      failed.push({ team: TEAMS[teamId].name, reason: e.message.slice(0, 300) });
       console.warn(`${TEAMS[teamId].name}: FAILED — ${e.message}`);
     }
   }
@@ -812,7 +899,7 @@ export async function main({ dryRun = false } = {}) {
   // thing mirroring it, so a local run published squads nobody could see
   // (2026-07-11, the RSA teamsheet). Write both copies here, unconditionally.
   await writeFile(join(ROOT, "nations.json"), payload);
-  console.log(`wrote ${Object.keys(generated).length}/12 editions${failed.length ? ` (failed: ${failed.join(", ")})` : ""}`);
+  console.log(`wrote ${Object.keys(generated).length}/12 editions${failed.length ? ` (failed: ${failed.map((f) => f.team).join(", ")})` : ""}`);
 
   // Teamsheet coverage audit: a team playing within 48h should have a squad by
   // now (unions name teams ~2 days out). A gap here is loud on purpose — the
@@ -838,6 +925,18 @@ export async function main({ dryRun = false } = {}) {
       console.log(`review written (editorial/reviews/${dateISO}.md)${notes.length ? `; new prompt notes: ${notes.join(" | ")}` : "; no new prompt notes"}`);
     } catch (e) {
       console.warn(`review step failed (editions unaffected): ${e.message}`);
+    }
+    // Checker tuner: only fact-check failures teach it anything (rss/network
+    // failures are not calibration signals).
+    const checkFails = failed.filter((f) => /fact-check failed/i.test(f.reason));
+    if (checkFails.length) {
+      try {
+        const dateISO = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+        const { notes } = await checkerTuneRun(geminiKey, checkFails, Object.keys(generated).length, dateISO);
+        console.log(notes.length ? `checker calibration notes added: ${notes.join(" | ")}` : "checker calibration reviewed; no new notes");
+      } catch (e) {
+        console.warn(`checker tuner failed (editions unaffected): ${e.message}`);
+      }
     }
   }
 
