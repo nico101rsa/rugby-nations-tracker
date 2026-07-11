@@ -106,12 +106,23 @@ thing to mangle.
     { "kicker": "Injury desk", "heading": "…", "body": "…" },
     { "kicker": "The opposition", "heading": "…", "body": "…" },
     { "kicker": "The stakes", "heading": "…", "body": "…" }
-  ]
+  ],
+  "teamsheet": {
+    "starters": [{ "no": 1, "name": "…" }, … exactly 15, jerseys 1-15 …],
+    "bench": [{ "no": 16, "name": "…" }, … the named replacements, 16 upward …]
+  }
 }
 \`\`\`
 
-Omit \`venue\`/\`referee\` keys rather than guessing. Output no prose outside the
-JSON object.`;
+\`teamsheet\` is OPTIONAL and held to a hard rule: include it ONLY if a source
+in your pack prints an explicit numbered {TEAM_NAME} lineup for the next
+fixture (1-15, usually with replacements 16-23). Copy names verbatim,
+diacritics intact. NEVER reconstruct a lineup from prose mentions, and never
+carry over a previous match's team — if today's pack has no numbered lineup,
+omit the \`teamsheet\` key entirely.
+
+Omit \`venue\`/\`referee\`/\`teamsheet\` keys rather than guessing. Output no prose
+outside the JSON object.`;
 
 // ---- pure helpers -----------------------------------------------------------
 
@@ -225,6 +236,30 @@ export function validateDigest(raw, { dateISO }) {
       }
     });
   }
+  // Teamsheet is OPTIONAL — absence must never fail an edition. When present
+  // it must be a real numbered lineup: exactly 15 starters wearing 1-15, and
+  // an optional bench of unique numbers from 16 up. A malformed teamsheet
+  // fails the edition (better a retry than a wrong lineup in the app).
+  let teamsheet = null;
+  if (raw.teamsheet != null) {
+    const t = raw.teamsheet;
+    const player = (p) => p && typeof p === "object" && Number.isInteger(p.no) && typeof p.name === "string" && p.name.trim();
+    const starters = Array.isArray(t?.starters) ? t.starters : [];
+    const bench = Array.isArray(t?.bench) ? t.bench : [];
+    if (starters.length !== 15) errors.push(`teamsheet has ${starters.length} starters (want 15)`);
+    if (![...starters, ...bench].every(player)) errors.push("teamsheet has malformed players");
+    else {
+      const startNos = starters.map((p) => p.no);
+      if (new Set(startNos).size !== 15 || startNos.some((n) => n < 1 || n > 15)) errors.push("starter jerseys must be unique 1-15");
+      const benchNos = bench.map((p) => p.no);
+      if (new Set(benchNos).size !== benchNos.length || benchNos.some((n) => n < 16)) errors.push("bench jerseys must be unique, 16 up");
+    }
+    if (!errors.length) {
+      const clean = (list) => list.slice().sort((a, b) => a.no - b.no).map((p) => ({ no: p.no, name: p.name.trim() }));
+      teamsheet = { starters: clean(starters) };
+      if (bench.length) teamsheet.bench = clean(bench);
+    }
+  }
   if (errors.length) return { ok: false, errors };
   const digest = {
     date: raw.date,
@@ -235,6 +270,7 @@ export function validateDigest(raw, { dateISO }) {
   if (typeof raw.match?.venue === "string" && raw.match.venue.trim()) match.venue = raw.match.venue.trim();
   if (typeof raw.match?.referee === "string" && raw.match.referee.trim()) match.referee = raw.match.referee.trim();
   if (Object.keys(match).length) digest.match = match;
+  if (teamsheet) digest.teamsheet = teamsheet;
   return { ok: true, digest, errors: [] };
 }
 
@@ -486,7 +522,10 @@ misinformed for you to flag it. Material errors:
 - words inside quotation marks that are not character-for-character in the
   pack (an accurate paraphrase WITHOUT quote marks is fine and never an issue);
 - a rumour or expectation asserted as settled fact;
-- stale news presented as this week's development.
+- stale news presented as this week's development;
+- a \`teamsheet\` entry (name or jersey number) that does not match an explicit
+  numbered lineup printed in the pack, or a teamsheet included when the pack
+  prints no numbered lineup at all (each wrong name/number is one issue).
 
 Do NOT flag — these are never issues:
 - honest absence statements attributed to the coverage ("no fresh injury news
@@ -570,9 +609,10 @@ Unresolved issues:
 ${issueList(check.issues)}
 Rewrite the edition with zero flair: remove every flagged claim entirely, use
 no quotation marks anywhere, no records or streaks, no assumptions about
-availability or camp mood. State only what headlines and articles in the
-source pack plainly report, plus the trusted app data. Bodies may run short
-(around 50 words). Output the complete JSON again.`;
+availability or camp mood. Drop the "teamsheet" field entirely. State only
+what headlines and articles in the source pack plainly report, plus the
+trusted app data. Bodies may run short (around 50 words). Output the complete
+JSON again.`;
     digest = await draft(feedback);
     check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack))));
   }

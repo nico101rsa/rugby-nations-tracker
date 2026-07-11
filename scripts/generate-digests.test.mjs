@@ -116,3 +116,59 @@ test("buildReviewPrompt includes every edition and the criteria", () => {
   assert.ok(prompt.includes("prompt_notes"));
   assert.ok(prompt.includes("Facts"));
 });
+
+// ---- teamsheet (optional field) ----------------------------------------------
+
+const sheet = () => ({
+  starters: Array.from({ length: 15 }, (_, i) => ({ no: i + 1, name: `Player ${i + 1}` })),
+  bench: Array.from({ length: 8 }, (_, i) => ({ no: i + 16, name: `Sub ${i + 16}` })),
+});
+
+test("validateDigest passes without a teamsheet (absence never fails)", () => {
+  const { ok, digest } = validateDigest(goodDigest(), { dateISO: "2026-07-11" });
+  assert.equal(ok, true);
+  assert.equal("teamsheet" in digest, false);
+});
+
+test("validateDigest copies a valid teamsheet into the clean digest", () => {
+  const { ok, digest } = validateDigest(goodDigest({ teamsheet: sheet() }), { dateISO: "2026-07-11" });
+  assert.equal(ok, true);
+  assert.equal(digest.teamsheet.starters.length, 15);
+  assert.equal(digest.teamsheet.bench.length, 8);
+  assert.deepEqual(digest.teamsheet.starters[0], { no: 1, name: "Player 1" });
+});
+
+test("teamsheet without a bench is fine; bench key omitted when empty", () => {
+  const t = sheet();
+  delete t.bench;
+  const { ok, digest } = validateDigest(goodDigest({ teamsheet: t }), { dateISO: "2026-07-11" });
+  assert.equal(ok, true);
+  assert.equal("bench" in digest.teamsheet, false);
+});
+
+test("teamsheet with wrong starter count fails the edition", () => {
+  const t = sheet();
+  t.starters.pop();
+  const { ok, errors } = validateDigest(goodDigest({ teamsheet: t }), { dateISO: "2026-07-11" });
+  assert.equal(ok, false);
+  assert.ok(errors.some((e) => e.includes("14 starters")), errors.join("; "));
+});
+
+test("teamsheet with duplicate or out-of-range jerseys fails", () => {
+  const dup = sheet();
+  dup.starters[1].no = 1; // two number 1s
+  assert.equal(validateDigest(goodDigest({ teamsheet: dup }), { dateISO: "2026-07-11" }).ok, false);
+
+  const benchLow = sheet();
+  benchLow.bench[0].no = 15; // bench jersey below 16
+  assert.equal(validateDigest(goodDigest({ teamsheet: benchLow }), { dateISO: "2026-07-11" }).ok, false);
+});
+
+test("teamsheet starters are sorted by jersey and names trimmed", () => {
+  const t = sheet();
+  t.starters.reverse();
+  t.starters[0].name = "  Handré Pollard  ";
+  const { digest } = validateDigest(goodDigest({ teamsheet: t }), { dateISO: "2026-07-11" });
+  assert.equal(digest.teamsheet.starters[0].no, 1);
+  assert.equal(digest.teamsheet.starters.at(-1).name, "Handré Pollard"); // was no 15 after reverse
+});
