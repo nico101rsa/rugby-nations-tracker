@@ -1,4 +1,4 @@
-// Daily team-briefing generator: one Claude call per team (Sonnet + server-side
+// Daily team-briefing generator: one Claude call per team (Haiku + server-side
 // web search), publishing a `digests` block into public/nations.json that the
 // app's digestFor() prefers over the bundled fallback. Model + daily cadence are
 // Nico's locked call (2026-07-10). Pure helpers are exported for node:test; the
@@ -14,7 +14,13 @@ import { dirname, join } from "node:path";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public", "nations.json");
 
-const MODEL = process.env.DIGEST_MODEL || "claude-sonnet-5";
+const MODEL = process.env.DIGEST_MODEL || "claude-haiku-4-5";
+// Haiku 4.5 only supports the basic web-search tool; the _20260209 variant
+// (dynamic filtering) needs Opus 4.6+ / Sonnet 5 / Sonnet 4.6. Keep both so a
+// DIGEST_MODEL override back to Sonnet still works.
+const WEB_SEARCH_TYPE = MODEL.startsWith("claude-haiku")
+  ? "web_search_20250305"
+  : "web_search_20260209";
 const TZ = "Australia/Sydney"; // editions are dated for the reader's day
 
 // api-sports team id → names + masthead (mirrors src/teams.js + src/digest.js;
@@ -287,10 +293,10 @@ const MAX_CONTINUATIONS = 5; // pause_turn resumes (server-side web search loop)
 // search-result context compounds quadratically with each extra search — 4 is
 // plenty for a daily briefing and cuts token spend by well over half.
 const MAX_SEARCHES = 4;
-// Sonnet 5 runs adaptive thinking by default and it counts against max_tokens.
-// The first live run had this at 4000: 10/12 teams exhausted it mid-research
-// (stop_reason max_tokens) and never emitted the JSON. 12000 leaves room for
-// thinking across the whole search loop; actual JSON output is <1k tokens.
+// Haiku 4.5 runs without thinking, but keep 12000 for search-loop headroom —
+// and because a DIGEST_MODEL override to Sonnet 5 re-enables adaptive thinking,
+// which counts against max_tokens (the first live run at 4000 exhausted it on
+// 10/12 teams before the JSON). Actual JSON output is <1k tokens.
 const MAX_TOKENS = 12000;
 
 async function generateOne(client, data, teamId, now) {
@@ -304,7 +310,7 @@ async function generateOne(client, data, teamId, now) {
       // re-read the accumulated prefix (prompt + search results) at ~0.1x
       // instead of full input price.
       cache_control: { type: "ephemeral" },
-      tools: [{ type: "web_search_20260209", name: "web_search", max_uses: MAX_SEARCHES }],
+      tools: [{ type: WEB_SEARCH_TYPE, name: "web_search", max_uses: MAX_SEARCHES }],
       messages,
     });
   let messages = [{ role: "user", content: prompt }];
@@ -710,7 +716,7 @@ export async function main({ dryRun = false } = {}) {
   }
 
   // Provider: Gemini Flash (free tier, fact-checked) when GEMINI_API_KEY is
-  // set; Claude Sonnet as the fallback path; skip cleanly when neither key is.
+  // set; Claude Haiku as the fallback path; skip cleanly when neither key is.
   const geminiKey = process.env.GEMINI_API_KEY;
   let generateFor;
   if (geminiKey) {
