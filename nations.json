@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-11T16:18:22.283Z",
+  "updatedAt": "2026-07-11T16:30:24.633Z",
   "counts": {
     "fixtures": 25,
     "results": 11,
@@ -814,8 +814,8 @@
       "date": "2026-07-11T15:40:00+00:00",
       "week": "2",
       "status": {
-        "short": "1H",
-        "long": "First Half",
+        "short": "HT",
+        "long": "Half Time",
         "live": true
       },
       "home": {
@@ -828,7 +828,7 @@
         "id": 390,
         "name": "Scotland",
         "logo": "https://media.api-sports.io/rugby/teams/390.png",
-        "score": 0
+        "score": 14
       }
     }
   ],
@@ -1046,12 +1046,6 @@
       "published": "Sat, 11 Jul 2026 16:17:34 GMT"
     },
     {
-      "title": "Pollock’s hat-trick powers England’s 11-try Nations Championship mauling of 14-man Fiji",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOaXJMMEtvVDdZSkVaZlMwUEl2RjFPUlpwTFFDNFBBNkFEeDhFOGRwRXRXcXlhQ0hCSl9NLVNLT3pxZDNLSGYwajRjejN3NTRsRmxiRjBINnpkcHE1aUVaR1NWaEJfaDNxamdBcTQ2QWNOSzQweVlaYVlpU3ZOUk1ZSlZlOVV3dlVWeGVTRjQwTnpDUEgzOVNZbkM2SFlCeksyMXlfbmhzNA?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 11 Jul 2026 15:37:00 GMT"
-    },
-    {
       "title": "South Africa v Scotland: Nations Championship rugby – live",
       "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNZzdBWUFKSnFXVk9Tbm1qRTdYb3ZYZHpfd2VrcWk0dHV5LTBUTGgtV3NXTnl2N0tLY29PNGNqYlFGRlBJT3JRUzY4Rkt3a0t6a2hQZ09LUktiOUdrYjdKaHVBQUM1Y044V1VrWlQxNkE3RjZ1ekgwdk56bTJpZGFhVm96cHFTZDh3TGJFeWZIb24xQXBVdVdTcFJVUHVtNE5aX2x1TXhhTkpaZw?oc=5",
       "source": "The Guardian",
@@ -1070,22 +1064,16 @@
       "published": "Sat, 11 Jul 2026 12:13:00 GMT"
     },
     {
-      "title": "Ireland player ratings vs Japan | Nations Championship 2026",
-      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxNTFdOWVh2eW04bkRzeFZMS0pwSHhIV2lpdzJoR0FOUG0xMzctOFVRdHJ4WTBtdHl5dlMyalhsZmtybEdUZFVTeVZka1NGUHJiVUFsdVVTUlljZ3VKQmpqVzFjX29GX05CVWRJT0VVeEpLNmdJLW9KdHdSTzVCYlFDQ0VacElLSWhBVDU0ZzlBNVhxSk0?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Sat, 11 Jul 2026 12:08:51 GMT"
-    },
-    {
       "title": "Nations Championship 2026 Round 2: Japan vs Ireland Fixture",
       "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE84dV9ELTJyUExaTVZRWE56cXhQSUJvdm9lbUxUOVV3b3dXeVRnQVdBOUFwWWY1cDl1c0JLdUt1WHRlLXdZaGdFZXFhUjRvV1RCWFBCbGowSjkwTFMwcmtHSzR2OThnVXJSRmRhQm5PdHBnN1dNcHZFNDZR?oc=5",
       "source": "RUGBY.com.au",
       "published": "Sat, 11 Jul 2026 11:29:23 GMT"
     },
     {
-      "title": "+!(ＬＩＶＥ) Ireland vs Japan Live Free Nations Championship Rugby 2026",
-      "link": "https://news.google.com/rss/articles/CBMixgNBVV95cUxQeFlsUTZsb3VURFhCQVo0aDg0UXNZRF9Da3BrVkpQOVFpVjNkMXQ1cHRRVXBzR0JFUXJtaE9nZ09pbGtOZWs1emZISWlla0g4aTlraDhES2dGU1lyU1VJWC1ZQVQ2WVpfSEF0TVduVmVIN0lrYVVIYTRnaW16dGxzWlRhSXQzeWcwTVBjaE9zc2Ffb0NNTFhhVUhCN2xocE1oWjQ2ZWRiMWRrdHRuN0w3Z3dIMzdrNFJMZDItQTVnal9rellXclJFY1V1LVJmbmkwWElSZy1UeHYwc2xJblg0MzNHQVdrVTM4cTBiTnlKSXc1akF5Ym50ampYX2pqOXRMckx5c3ktcEhja09lX2ItaGFiTElGc0dZZ08yM2tqUUo3aUE5NFJVODVObXRWa283UWRfWFdTQ09RS2hxZVZGdjRGbURwVGJoOWZjb0pvcDJiZjdLMU42ZDZNTVlTWXB2Q19PUEFsS2xxTm1VSEs0TVFBVzFIdXpWY1J0aVh6N0JzaXFhZXNiUmJVSjlKOGVRY0JhRGZuTGUxZUF4YkpTbkJHdU05UFdhTTVjUDFpM091enluQ05wWWhfZGJnRlZCaGlZR0V3?oc=5",
-      "source": "MCA Sydney",
-      "published": "Sat, 11 Jul 2026 10:56:05 GMT"
+      "title": "Nations Championship 2026: Japan v Ireland free streams, TV channels",
+      "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPZWwydmtkc0kwblNvS24xTzR5UXBkRjNRQTQ2bnBUZ2FSZ29CbFBBUGNCS2Zxdm1kU25LMnJCWEl3Mmx4eTVjbk01cElsb1dvV3VxeG9tNUFiT1ZmYWxTUndzZVRFTWhLcHRIVmYycmVxSFZ5MHduU2dWVEhtN2FKaTNnQzdUQjNmb05HMExlS2dzWmM?oc=5",
+      "source": "Rugby World",
+      "published": "Sat, 11 Jul 2026 10:48:11 GMT"
     },
     {
       "title": "Will Jordan grabs try-scoring record as All Blacks hammer Italy in Nations Championship",
@@ -1112,22 +1100,34 @@
       "published": "Fri, 10 Jul 2026 19:47:37 GMT"
     },
     {
-      "title": "What channel is Fiji v England rugby Nations Championship 2026 match on? Kick-off time, TV details and live stream",
-      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQUHVPS3N3QXEtWXgya0U4UDVOUURURzZDVkVKYTd0Q2hMM1MxSnVtZ1I0eXVSS1lEdUlYZ0Jyd3ptTWhZNVlXQ1Z0aFhiQnJ1cmN2enVwX0owVkl1S3M1aENPWkV2bzRGZ3lETUZ2ZF9LempTbU1NeHN5UFhTSjdnY0dfNXlGaWpmc2NNLVZkaV9GSk0zUkV0dkloc0hmQWNPM0o0?oc=5",
-      "source": "Radio Times",
-      "published": "Fri, 10 Jul 2026 09:30:15 GMT"
-    },
-    {
       "title": "Nations Championship and Nations Cup back for more after red-hot opening weekend",
       "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE02ellYUEVNMDV2cHhEVG8tVEQ4YjBnb0QxeEd2RTZBc1AtanBOc3A4b3J0QnY0Sk8yN2NuU21SZnRGUjFnYjBCd2V2Ty12VjNmWWQzZG10T1FVQUtWS3lwYks4clY5QXdFQVlsWHJR?oc=5",
       "source": "World Rugby",
       "published": "Fri, 10 Jul 2026 07:00:00 GMT"
     },
     {
+      "title": "Nations Championship: Predictions, team news, kick-off times, how to watch and referee appointments for Round Two",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPTjNSUVd6T3EyS2k5UDZXMHRPaURhLTE3UFdGSWh2NGRuNE5pMXNiTTRZc1B2d3FuN0tuT3hiSmFkb1kzdlpMdnFodkxsSnAyU0NuSUVQaUpVRjhaeERiVTlzZXNGdF9GZ3lxal96TzFkRFJEOGtTaHAwVzdxZDNUcHlNTDR5Umd2Vi02dlJYU1B3SVhESTN0Tm5EbndXOGtVSlpIY3dXbGZDLXBGcTZ2NXAtaE1IRFprNzdFRVh5clBGRTlRZDI2WHdROUFjOGdrM1Fyd1lxWElaUQ?oc=5",
+      "source": "Planet Rugby",
+      "published": "Fri, 10 Jul 2026 06:03:30 GMT"
+    },
+    {
       "title": "Wallabies vs Ireland live: Captain’s try scrubbed out in contentious obstruction call",
       "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQbkRhUTlPcm9naVJZQlh6dndFc1hBN0xaUlZGNHdaRk1vQ25qMm4yeUZBVldiTlV1Z3Uycm5pdS11czB0TWZYR3luZWVsQTJKdTZuX1oyM25TSnQ0UlF5UGVlSHE0Qkg2LUFWdkhWRFVsdXRDVzdzYk45ZGlJcWI5TDFuMWpENHMwMFhmdHBJb3pycEMtVDJ3MkVZcUhJVDVua1JHX0lral9KYlZIWXNXa3o3SkIzc0hZU01EbVZNcGtZZngtLVBoVjFwLUV4Wk5oVHhtYw?oc=5",
       "source": "Nine.com.au",
       "published": "Sat, 04 Jul 2026 14:42:13 GMT"
+    },
+    {
+      "title": "Australia 31-33 Ireland: Nations Championship rugby union international – as it happened",
+      "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNVGs5Z3pRZGkwLVVsX0IyYmtjTXplVjBDb2NyOWRrM3JKdTdBeHY0NVpRZDZuU2dPSjFXZEN0NTllUmN0SXZudzJpNnFGWF9uTFRfcThYT2pLRk1ZWFVrTGI4QzVJRnk0OXRjMUFzeTczUVVVYjVqUnh5ZkZfQTJicTlzMFlmN1oxQ3JIN3FOLXhEX01sWXRJM1ZEZDVkX2NwVEJ5WWRrQWh3NURiOGlzV3JwZGZnMEcwR3RNT3BjQXg4Wl84NkliMjl2Z1NEUHppRHBfSkpmMDlIcUFPVWRKbWRpRFRzdw?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 04 Jul 2026 12:44:14 GMT"
+    },
+    {
+      "title": "Wallabies fall agonisingly short against Ireland in Nations Championship",
+      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQelRwanNfOExVV09kNFRmNzRWZWZMRmVGMTRwZ0FwQ0xfakxoZmlSQmtObTJwajRsSHd5N3c0ZDVUTHc3VlQ3NEV1UlZ2R181YU9QUjRWNTJ6Qzl5NDFtaTZadzBMcmhHZnN2c2NweDZjVDctRmEzSHVNeFJWV1Rud1MxaXBxMmZuSkZhelFJeUJhNmRxUG1UNWZDX2FYUl8xaVFOUW1PcDlVX3hBWWthWjAxYw?oc=5",
+      "source": "ABC News & Headlines – Australian Broadcasting Corporation",
+      "published": "Sat, 04 Jul 2026 09:08:33 GMT"
     }
   ],
   "digests": {
