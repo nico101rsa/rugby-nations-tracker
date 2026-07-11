@@ -180,3 +180,27 @@ test("hasNumberedLineup detects a real numbered XV and rejects prose", async () 
   assert.equal(hasNumberedLineup("Rassie made 10 changes and named 5 Bulls. The 9 Grant Williams pick surprised."), false);
   assert.equal(hasNumberedLineup("beat England 45-21 with a 6-2 bench split"), false);
 });
+
+test("buildFactCheckPrompt injects standing checker notes and calibration rules", async () => {
+  const { buildFactCheckPrompt } = await import("./generate-digests.mjs");
+  const params = { MASTHEAD: "Bok Watch", TEAM_NAME: "South Africa", DAY_NAME: "Saturday", DATE_LONG: "11 July 2026",
+    HOME_TEAM: "South Africa", AWAY_TEAM: "Scotland", ROUND: "2", RANK: "1", P: "1", W: "1", D: "0", L: "0",
+    PF: "45", PA: "21", PD: "+24", LAST_RESULT: "beat England 45-21 (Round 1)" };
+  const withNotes = buildFactCheckPrompt(params, goodDigest(), "pack", "- never flag trusted-data claims");
+  assert.ok(withNotes.includes("Standing calibration notes"));
+  assert.ok(withNotes.includes("never flag trusted-data claims"));
+  assert.ok(withNotes.includes("disagreements BETWEEN pack sources"));
+  assert.ok(withNotes.includes("Teamsheet rule"));
+  const without = buildFactCheckPrompt(params, goodDigest(), "pack");
+  assert.ok(!without.includes("Standing calibration notes"));
+});
+
+test("buildCheckerTunePrompt embeds failures, publish rate and hard limits", async () => {
+  const { buildCheckerTunePrompt } = await import("./generate-digests.mjs");
+  const p = buildCheckerTunePrompt(
+    [{ team: "Scotland", reason: "fact-check failed: sources disagree on no 12" }], 7, "- existing note");
+  assert.ok(p.includes("Scotland"));
+  assert.ok(p.includes("7/12"));
+  assert.ok(p.includes("existing note"));
+  assert.ok(p.includes("Never propose weakening"));
+});
