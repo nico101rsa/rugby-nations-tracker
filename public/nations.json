@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-11T15:42:15.928Z",
+  "updatedAt": "2026-07-11T15:54:18.009Z",
   "counts": {
-    "fixtures": 26,
-    "results": 10,
+    "fixtures": 25,
+    "results": 11,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53223,
-      "date": "2026-07-11T15:40:00+00:00",
-      "week": "2",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 467,
-        "name": "South Africa",
-        "logo": "https://media.api-sports.io/rugby/teams/467.png",
-        "score": null
-      },
-      "away": {
-        "id": 390,
-        "name": "Scotland",
-        "logo": "https://media.api-sports.io/rugby/teams/390.png",
-        "score": null
-      }
-    },
     {
       "id": 53224,
       "date": "2026-07-11T19:10:00+00:00",
@@ -830,6 +808,28 @@
         "logo": "https://media.api-sports.io/rugby/teams/386.png",
         "score": 73
       }
+    },
+    {
+      "id": 53223,
+      "date": "2026-07-11T15:40:00+00:00",
+      "week": "2",
+      "status": {
+        "short": "1H",
+        "long": "First Half",
+        "live": true
+      },
+      "home": {
+        "id": 467,
+        "name": "South Africa",
+        "logo": "https://media.api-sports.io/rugby/teams/467.png",
+        "score": 0
+      },
+      "away": {
+        "id": 390,
+        "name": "Scotland",
+        "logo": "https://media.api-sports.io/rugby/teams/390.png",
+        "score": 0
+      }
     }
   ],
   "log": [
@@ -1040,18 +1040,6 @@
   ],
   "news": [
     {
-      "title": "Live Discussion: Nations Championship: South Africa V Scotland. Sun 12th Jul 2026. Victoria, Loftus Versfeld",
-      "link": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOanZVZ01Dd1Q5MHNYRDJXX2V5RnpQOWh3dUNDSnJ5TktyQlFiN284LU9rTDY2RVM0QUhISmFscENTTjRPZWgwcmdjUzIteEl0T04teUJLNml5VkpWUGRsSzNuRFc2THVyTTRSa044ZTc4TGhsdnFsNGRIcjY2VFdHdGFBVnJINUtONmxBVElDazVqUk9jMHZrSkVaSHpndHZSN0duWGVvclRfS25haDJhMk1LR2RvRHpmdzhBUHJaWGhwcHM4d0Jhelh6dDhCc0U?oc=5",
-      "source": "Green & Gold Rugby",
-      "published": "Sat, 11 Jul 2026 15:30:00 GMT"
-    },
-    {
-      "title": "Fiji 8-73 England: Nations Championship rugby union – live",
-      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQeVY0c25JdktXOVUzTDZqN3hPYjZCUGxJX21uTF93Y0l0MkRRREFBRWdYNU1BVUtNVWJ6V2tVUy01V2FiMTNaYjM1N0JSbFBLUVI5WU9nVDFudkNSU1IycVlXN2JhR202bVpZM0tSUXczY3d1T3p5aVd1Zi1Qa2ZHbWVEZ2JKZ1lnb0l3NTcwd3I3UlNWTFZ2cmVsV1BzcmVIZ0RNLTRn?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 11 Jul 2026 15:20:36 GMT"
-    },
-    {
       "title": "South Africa v Scotland: Nations Championship rugby – live",
       "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNZzdBWUFKSnFXVk9Tbm1qRTdYb3ZYZHpfd2VrcWk0dHV5LTBUTGgtV3NXTnl2N0tLY29PNGNqYlFGRlBJT3JRUzY4Rkt3a0t6a2hQZ09LUktiOUdrYjdKaHVBQUM1Y044V1VrWlQxNkE3RjZ1ekgwdk56bTJpZGFhVm96cHFTZDh3TGJFeWZIb24xQXBVdVdTcFJVUHVtNE5aX2x1TXhhTkpaZw?oc=5",
       "source": "The Guardian",
@@ -1062,6 +1050,12 @@
       "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQeVpzQU5pZ3dBNnZzQ0pBQUJwSm1lWjJoNlpZT3g2RjU3Z3RZLVA5QzQxMnpLaUp6UFlwMXBjTGZoa1V2VmIzSWRCSzEwYlB5aTBlQTB1QjgzWTB2QW5tVDY5bU5NLUhBRzdCZlZKaEQ4QXlwQ3pnWkFHczNHVGpCWkVfMUk4RW1ZZWpLSHdSUVhVQjZwdUVZSzR2c0h2Tkc5Rm1YTTM3ZzRueFhDd3dHX0pDR29qQ2VaVXlmeXItOVNYT2V3VkgzTGNmbDhXT1NOYUk4TUZRaGE?oc=5",
       "source": "Sky Sports",
       "published": "Sat, 11 Jul 2026 13:59:47 GMT"
+    },
+    {
+      "title": "Nations Championship LIVE: Australia v France and Japan v Ireland team news, scores and text updates",
+      "link": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE84TnhraHR6SmtZemg5V0NWTUJoWDVlNVRSY1NrX0FkYU9wNVdPRnJETm9jeE1tdzZLNlpIb0hHNGFjNVhxQzRQZ1R1MzZXT1RUVkF1azQtS1dBTnlqWVVDd2hfYXVUQQ?oc=5",
+      "source": "BBC",
+      "published": "Sat, 11 Jul 2026 13:04:20 GMT"
     },
     {
       "title": "Fiji vs. England LIVE: Nations Championship updates as Steve Borthwick's side run riot in Liverpool",
@@ -1076,22 +1070,28 @@
       "published": "Sat, 11 Jul 2026 12:08:51 GMT"
     },
     {
+      "title": "~^√[LIVE𝗦𝘁𝗿𝗲𝗮𝗺]# Japan v Ireland LIVE Free Nations Championship Rugby In July 11, 2026",
+      "link": "https://news.google.com/rss/articles/CBMizwNBVV95cUxQM3R5UTR3RjdoRHNtWUx5QS04aE5NbHB6ejBCbUVEb1YwOVFta1lUaVhBN3c3YVBycDdJSV9BU2ZGQWItTU5iekFncTlvMEZVeUt1TWdjOTdLRDh4WTZ4UGFiN2h5Y05JN3hfbFg0anRDZHh3aUVPYjlHQXg4VTRGeXYxaTlvUEhYbVowRnRfYmZjMWZla0pRSUxfZkl3YUtKWi1tMWlMSm8tdGhaaUNqMXljR1NsSzVIZjJURmZCMFhTMnY4RkdDOEdCSHVLSnB4LUZRSzNGbWNnUzk1ZTFzZExfZmVsT2dzZHBCN1JYT1NHYm4ycEVCYXNjMHJ4alBPSGZQWVlKZXk3aWVHc09uSzlyVHgtVktLWjhNbkpVbS1rejBxTDM5eFRVVmNncHVSXzBWR3c1RExVR1piUWNfd3V1OFNyNXBta2xFZ3FQYkZHSEZObFlNUmpod2djWU55SmhHd2Z5QThqamdmRGtfeEpiMURKb0lnMnZ5blhoVlllZkF4TXYxZnJhMTUxVUtZak9nTjBuNk91WnNGbXM5X3ExbkYwSGVpbXoxZEJub01jM3dBU0FJcURyb3ZBMmQwZk9zejIxbnltRnphZDRV?oc=5",
+      "source": "Business and Investment Development Agency - CzechInvest",
+      "published": "Sat, 11 Jul 2026 12:07:28 GMT"
+    },
+    {
       "title": "+!(ＬＩＶＥ) Ireland vs Japan Live Free Nations Championship Rugby 2026",
       "link": "https://news.google.com/rss/articles/CBMixgNBVV95cUxQeFlsUTZsb3VURFhCQVo0aDg0UXNZRF9Da3BrVkpQOVFpVjNkMXQ1cHRRVXBzR0JFUXJtaE9nZ09pbGtOZWs1emZISWlla0g4aTlraDhES2dGU1lyU1VJWC1ZQVQ2WVpfSEF0TVduVmVIN0lrYVVIYTRnaW16dGxzWlRhSXQzeWcwTVBjaE9zc2Ffb0NNTFhhVUhCN2xocE1oWjQ2ZWRiMWRrdHRuN0w3Z3dIMzdrNFJMZDItQTVnal9rellXclJFY1V1LVJmbmkwWElSZy1UeHYwc2xJblg0MzNHQVdrVTM4cTBiTnlKSXc1akF5Ym50ampYX2pqOXRMckx5c3ktcEhja09lX2ItaGFiTElGc0dZZ08yM2tqUUo3aUE5NFJVODVObXRWa283UWRfWFdTQ09RS2hxZVZGdjRGbURwVGJoOWZjb0pvcDJiZjdLMU42ZDZNTVlTWXB2Q19PUEFsS2xxTm1VSEs0TVFBVzFIdXpWY1J0aVh6N0JzaXFhZXNiUmJVSjlKOGVRY0JhRGZuTGUxZUF4YkpTbkJHdU05UFdhTTVjUDFpM091enluQ05wWWhfZGJnRlZCaGlZR0V3?oc=5",
       "source": "MCA Sydney",
       "published": "Sat, 11 Jul 2026 10:56:05 GMT"
     },
     {
+      "title": "*∇#[+[!LIVESTREAMs!]CBS] Ireland vs Japan Nations Championship Rugby 𝐋𝐈𝐕𝐄 Ｆｒ ｅｅ 𝐒𝐭𝐑𝐞𝐀𝐦 11 July 2026",
+      "link": "https://news.google.com/rss/articles/CBMiwANBVV95cUxNY1Z3aU1BVjhWWWdlNHdjaUN2bWlNWFBaZTFLTlpPVWd0SjRxdWlGcjFWTWpUaWJURldDOXdQQTNJZHJnNkk4LVkzeWRvdXJsS0EzVUVSYTU3QlloXzVvTEVLUXdxYkhIZ1E0M05ycmN0WlZKOG1meXEzWURHMVpyODlzcUVPMDJEQXgta0ZwNmNnMmlOa3BhSkU0Rk1JT3hzd2dtd2xaakJ1U1Q1MzN4bXlGTUlIT2x1UklEb25XMmlaaFdtM09PZlRiWTlEckc1THo2RFFwc1NwbjdjV09leVhVWG5UUGFmTG8teDhPWm1TODZ0WXVlVF95QUtUdUQ2RDdSRk5pM1pKT2VuWVNBYXltSkJQWUNkZDUxZnA1SW83alR4UDE1ZDg4TUZfWG5GTVowWTdQUGNiMHQ2c0tFM1VNLXJGQzROTFBkZGhEb1JfZUJmR2xMMlF0YmhqWTRBRjhCNjNrR1VnbWVOM3NLWjExNzRxVElZblJGQ1NMVS1pLTJvZjhNVDVTR2JRYTZzUTBONy13QnU5ZF8wZGpDMkxadml2VUR1U1RPNXNDVUQ3YkJHRy1oaFlIZDBJYndw?oc=5",
+      "source": "MCA Sydney",
+      "published": "Sat, 11 Jul 2026 10:55:58 GMT"
+    },
+    {
       "title": "Nations Championship 2026: Japan v Ireland free streams, TV channels",
       "link": "https://news.google.com/rss/articles/CBMikwFBVV95cUxPZWwydmtkc0kwblNvS24xTzR5UXBkRjNRQTQ2bnBUZ2FSZ29CbFBBUGNCS2Zxdm1kU25LMnJCWEl3Mmx4eTVjbk01cElsb1dvV3VxeG9tNUFiT1ZmYWxTUndzZVRFTWhLcHRIVmYycmVxSFZ5MHduU2dWVEhtN2FKaTNnQzdUQjNmb05HMExlS2dzWmM?oc=5",
       "source": "Rugby World",
       "published": "Sat, 11 Jul 2026 10:48:11 GMT"
-    },
-    {
-      "title": "Will Jordan grabs try-scoring record as All Blacks hammer Italy in Nations Championship",
-      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQZkg0ZHNsUktGLVFSb1k1R1M0VFJGTVA3T2FVSkE2Ynk4am53bDhqZ0NNdEh2bGYzRWppa2FiV21aWUJxZ2xPZHZaeWhTN0JHWjNBOF9TRU55Q1RJb0I0QlFveW5GLUEyVzd0Rnp2emdWMjJsZHBJUDdaUWNDQkZEcUtieEtBNHdIZDBnVGNSLVVhdzlISFFrLS1ubXVJbVNNYW9ta2VhY09saGI0Zmp0U2FvLVh2QlZ1LVRV?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 11 Jul 2026 10:11:00 GMT"
     },
     {
       "title": "France dominates Wallabies to post historic Test win",
@@ -1106,16 +1106,16 @@
       "published": "Sat, 11 Jul 2026 09:29:00 GMT"
     },
     {
-      "title": "Will Jordan sets New Zealand try record in Nations Championship win over Italy",
-      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBhRm5BWGl2S2hHUDVGcmtMR1EzVkxaQWVaWXNVbV9XWXQzUjMxc0VldjdSaGtLQnU5MlBjV1dOX3B4cHl6bzI4ekU4bllLdUZIX09IM01SemllTTJycnA0Y0liTW92TmxST3JV?oc=5",
-      "source": "BBC",
-      "published": "Sat, 11 Jul 2026 09:13:26 GMT"
-    },
-    {
       "title": "++[Official-!LIVE™\"] Australia v France rugby Nations Championship 2026 ＬｉｖｅＦｒｅｅ ＯＮ Ｔｖ Ｃｈａｎｎｅｌ 11 July 2026",
       "link": "https://news.google.com/rss/articles/CBMi_wNBVV95cUxQbC1KMXpOQnpDUDhxUFp4X2ZsUzQ3RXV5MmQtYURxXzNQUnVJVmZCdG5JWWp4Y1BjcmxvTXUwV2N5SEFVU29RWW1vWlRlSjJQVlhxWXZmTUstZXI0MUtvejR0SlhRUlF6Z3BqYU9ubkhILURrMmc2S1pVdlhQTkxLOG9nQlhCTTBadm4xa1RsYUtvLXNEN3lIclUyU3ZlUGc3NS1SWHU3QTUtZzVlS0dRV3FwSF80bDU3MzM2ME1aSzZmYm5oREk3Tmo3RFo1djRFRXlCUWxBWDBreUIwanY1VWl1WXg4VGVXNExTUGoyUnNUcFRXWjFmR1Bad2FzVTBDVWM5VzJYYkZzclppTnlSOWlCMHBoeTZ2QWtRdzh5LW9HcXRJX0dTN05xMWtDc2JBY0paTzZvOVJXS1JXLUV1Zlc4YWx2SnREa0dKQzY0ZTdWdy1uVjJXX2hRbkFpbHBUbHFtSFAxNXBaSE96YzJmMTE3b016NTV5UlVjZE9pcUNNb3pqNjhPcE5DRWlweU1UdGhrWjVKQ3FGUGljVExEQzIzWmhhMWFvSHo1VEZqWVVSRFRfMmNQVnJtazJwa0d1anRhU3RkWEFyVXBvWkgyZzc0VnJERGN2OVpVU3NCb01wLXhabHRGUjRhWUw0V2tvc0dneFZjZHJYT3NiNzh3?oc=5",
       "source": "Business and Investment Development Agency - CzechInvest",
       "published": "Sat, 11 Jul 2026 07:55:01 GMT"
+    },
+    {
+      "title": "All Blacks v Italy, Nations Championship 2026 | NZ Rugby",
+      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE51ZE1qUGhBSWlKMlRPeHMtOUZzS0xZWnR4OC1UcVExbzA0N3EzM0tvcGVGakNBSkxuMEljU2hCMHBWd0Z3Yzd6eV9COW1IVmxDTEFtbzNhbXQ5NkpmOV83MjNVaVdBYWJkN003bU1JU1Rha3MySUViVWNFMA?oc=5",
+      "source": "All Blacks",
+      "published": "Sat, 11 Jul 2026 05:10:00 GMT"
     },
     {
       "title": "Nations Championship 2026 Round 2: New Zealand vs Italy Fixture",
