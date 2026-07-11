@@ -380,13 +380,25 @@ async function fetchWithTimeout(url, ms = 8000) {
   }
 }
 
+// Detect an explicit numbered lineup in article text: at least 10 distinct
+// "jersey-number Name" hits (e.g. "15 Aphelele Fassi" / "9. Grant Williams").
+// Code-level ground truth for whether a teamsheet is actually available —
+// the writer's judgement is checked against this, never trusted alone.
+export function hasNumberedLineup(text) {
+  const hits = String(text).match(/\b(1[0-5]|[1-9])[.\s]+(?=[A-Z][A-Za-zÀ-ž'’-]+\s+[A-Z])/g) || [];
+  return new Set(hits.map((h) => parseInt(h, 10))).size >= 10;
+}
+
 async function fetchTeamNews(teamName, opponentName) {
-  // Two queries: the match narrative, plus a targeted sweep for selection and
-  // injury news — thin packs are what push the writer into inventing colour.
+  // Three queries: the match narrative, a targeted sweep for selection and
+  // injury news, and a dedicated lineup query — the article that prints the
+  // numbered XV is usually a "team named" piece the generic queries miss
+  // (2026-07-11: RSA's announced side was absent from every generic pack).
   const opp = opponentName && opponentName !== "TBC" ? opponentName : "team news";
   const queries = [
     `${teamName} rugby ${opp}`,
     `${teamName} rugby team announcement OR injury OR squad`,
+    `${teamName} rugby team to face ${opp} lineup`,
   ];
   const seen = new Set();
   const items = [];
@@ -413,17 +425,24 @@ async function fetchTeamNews(teamName, opponentName) {
   if (!items.length) throw new Error("news rss returned no items");
   items.length = Math.min(items.length, NEWS_ITEMS);
 
-  const articles = [];
-  for (const item of items.slice(0, NEWS_ARTICLES)) {
+  // Fetch more bodies than the pack keeps, then guarantee any lineup-bearing
+  // article makes the cut: a numbered XV buried at position 7 must not lose
+  // its pack slot to a fresher preview piece.
+  const fetched = [];
+  for (const item of items.slice(0, NEWS_ARTICLES + 3)) {
     try {
       const a = await fetchWithTimeout(item.link);
       if (!a.ok) continue;
       const text = htmlToText(await a.text());
-      if (text.length > 400) articles.push({ title: item.title, url: a.url, text: text.slice(0, ARTICLE_CHARS) });
+      if (text.length > 400) fetched.push({ title: item.title, url: a.url, text: text.slice(0, ARTICLE_CHARS) });
     } catch {
       // paywalled/slow publishers just drop out of the pack
     }
   }
+  const withLineup = fetched.filter((a) => hasNumberedLineup(a.text));
+  const rest = fetched.filter((a) => !withLineup.includes(a));
+  const articles = [...withLineup, ...rest].slice(0, NEWS_ARTICLES);
+  const lineupInPack = withLineup.length > 0;
 
   const lines = items.map((i, n) => `${n + 1}. [${i.date}] ${i.title}${i.desc ? ` — ${i.desc}` : ""}`);
   const bodies = articles.map((a, n) => `### Article ${n + 1}: ${a.title}\n(${a.url})\n${a.text}`);
@@ -448,7 +467,7 @@ available"): you know what was reported, not what is true in camp.
 ${lines.join("\n")}
 
 ${bodies.join("\n\n")}`;
-  return { pack, headlineCount: items.length, articleCount: articles.length };
+  return { pack, headlineCount: items.length, articleCount: articles.length, lineupInPack };
 }
 
 // ---- Gemini provider (free tier) ----------------------------------------------
@@ -571,7 +590,7 @@ export function parseVerdict(raw) {
 export async function generateOneGemini(apiKey, data, teamId, now, editorNotes) {
   const params = buildParams(data, teamId, now);
   const opponent = params.HOME_TEAM === params.TEAM_NAME ? params.AWAY_TEAM : params.HOME_TEAM;
-  const { pack, headlineCount, articleCount } = await fetchTeamNews(params.TEAM_NAME, opponent);
+  const { pack, headlineCount, articleCount, lineupInPack } = await fetchTeamNews(params.TEAM_NAME, opponent);
   const notesBlock = editorNotes
     ? `\n\n## Standing editor notes (distilled from previous editions' reviews — follow them)\n${editorNotes}`
     : "";
@@ -627,7 +646,36 @@ JSON again.`;
     throw new Error(`fact-check failed after ${revisions} revisions: ${remaining}`);
   }
 
-  return { digest, pack, note: `${headlineCount} headlines, ${articleCount} articles, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}` };
+  // Safeguard: the pack verifiably contains a numbered lineup (code-detected)
+  // but the writer left the teamsheet out — one targeted retry. If the retry
+  // fails validation or fact-check, keep the already-passed edition: a missing
+  // teamsheet must never cost the digest.
+  let sheetNote = "";
+  if (lineupInPack && !digest.teamsheet) {
+    sheetNote = ", lineup in pack but NOT extracted";
+    try {
+      const retry = await draft(`## One fix — your draft omitted the teamsheet
+An article in the source pack prints an explicit numbered lineup for
+${params.TEAM_NAME}'s next match. Re-output the complete edition JSON, keeping
+every section as-is, and add the "teamsheet" field copied verbatim
+(number-for-number, diacritics intact) from that article. If the numbered
+lineup is for a different team or an already-played match, output the edition
+unchanged without a teamsheet.`);
+      if (retry.teamsheet) {
+        const recheck = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, retry, pack))));
+        if (recheck.verdict === "pass") {
+          digest = retry;
+          sheetNote = ", teamsheet extracted on retry";
+        }
+      }
+    } catch {
+      // retry is best-effort only
+    }
+  } else if (digest.teamsheet) {
+    sheetNote = ", teamsheet";
+  }
+
+  return { digest, pack, note: `${headlineCount} headlines, ${articleCount} articles, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}${sheetNote}` };
 }
 
 // ---- post-run editorial review -------------------------------------------------

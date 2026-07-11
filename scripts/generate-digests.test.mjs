@@ -172,3 +172,11 @@ test("teamsheet starters are sorted by jersey and names trimmed", () => {
   assert.equal(digest.teamsheet.starters[0].no, 1);
   assert.equal(digest.teamsheet.starters.at(-1).name, "Handré Pollard"); // was no 15 after reverse
 });
+
+test("hasNumberedLineup detects a real numbered XV and rejects prose", async () => {
+  const { hasNumberedLineup } = await import("./generate-digests.mjs");
+  const xv = "Springboks: 15 Aphelele Fassi, 14 Cheslin Kolbe, 13 Jesse Kriel, 12 Damian de Allende, 11 Kurt-Lee Arendse, 10 Handré Pollard, 9 Grant Williams, 8 Jasper Wiese, 7 Pieter-Steph du Toit, 6 Siya Kolisi, 5 RG Snyman, 4 Eben Etzebeth, 3 Thomas du Toit, 2 Malcolm Marx, 1 Ox Nché";
+  assert.equal(hasNumberedLineup(xv), true);
+  assert.equal(hasNumberedLineup("Rassie made 10 changes and named 5 Bulls. The 9 Grant Williams pick surprised."), false);
+  assert.equal(hasNumberedLineup("beat England 45-21 with a 6-2 bench split"), false);
+});
