@@ -806,8 +806,26 @@ export async function main({ dryRun = false } = {}) {
   const fresh = JSON.parse(await readFile(OUT, "utf8"));
   fresh.digests = mergeDigests(fresh.digests, generated);
   fresh.counts = { ...(fresh.counts || {}), digests: Object.keys(fresh.digests).length };
-  await writeFile(OUT, JSON.stringify(fresh, null, 2));
+  const payload = JSON.stringify(fresh, null, 2);
+  await writeFile(OUT, payload);
+  // The CDN serves the site-ROOT nations.json; the workflow used to be the only
+  // thing mirroring it, so a local run published squads nobody could see
+  // (2026-07-11, the RSA teamsheet). Write both copies here, unconditionally.
+  await writeFile(join(ROOT, "nations.json"), payload);
   console.log(`wrote ${Object.keys(generated).length}/12 editions${failed.length ? ` (failed: ${failed.join(", ")})` : ""}`);
+
+  // Teamsheet coverage audit: a team playing within 48h should have a squad by
+  // now (unions name teams ~2 days out). A gap here is loud on purpose — the
+  // 2026-07-11 RSA miss shipped silently because nothing owned this check.
+  const IMMINENT_MS = 48 * 60 * 60 * 1000;
+  for (const teamId of Object.keys(TEAMS).map(Number)) {
+    const fixture = (fresh.fixtures || [])
+      .filter((f) => f?.home?.id === teamId || f?.away?.id === teamId)
+      .filter((f) => { const dt = Date.parse(f.date) - now.getTime(); return dt > 0 && dt < IMMINENT_MS; })[0];
+    if (fixture && !fresh.digests?.[teamId]?.teamsheet) {
+      console.warn(`⚠️ TEAMSHEET GAP: ${TEAMS[teamId].name} play within 48h but no squad is published`);
+    }
+  }
 
   // Post-run editorial review (Gemini path only): grade the batch, persist the
   // report, and let it add standing notes to tomorrow's writer prompt. A review
