@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-11T19:56:58.947Z",
+  "updatedAt": "2026-07-11T20:09:01.120Z",
   "counts": {
     "fixtures": 24,
     "results": 12,
@@ -814,15 +814,15 @@
       "date": "2026-07-11T19:10:00+00:00",
       "week": "2",
       "status": {
-        "short": "1H",
-        "long": "First Half",
+        "short": "HT",
+        "long": "Half Time",
         "live": true
       },
       "home": {
         "id": 460,
         "name": "Argentina",
         "logo": "https://media.api-sports.io/rugby/teams/460.png",
-        "score": 14
+        "score": 28
       },
       "away": {
         "id": 391,
@@ -1040,16 +1040,16 @@
   ],
   "news": [
     {
+      "title": "Pollock’s hat-trick powers England’s 11-try Nations Championship mauling of 14-man Fiji",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOaXJMMEtvVDdZSkVaZlMwUEl2RjFPUlpwTFFDNFBBNkFEeDhFOGRwRXRXcXlhQ0hCSl9NLVNLT3pxZDNLSGYwajRjejN3NTRsRmxiRjBINnpkcHE1aUVaR1NWaEJfaDNxamdBcTQ2QWNOSzQweVlaYVlpU3ZOUk1ZSlZlOVV3dlVWeGVTRjQwTnpDUEgzOVNZbkM2SFlCeksyMXlfbmhzNA?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 11 Jul 2026 19:58:00 GMT"
+    },
+    {
       "title": "South Africa prove too strong for enterprising Scotland in Nations Championship",
       "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxOc0FWUnE5NmE3WkNiRjdJcXFBbGhZaUUzNkFoZ3BzLVJiU2JXSEpXU0tGeGN3Z1FuX01zQ1ZmX2E1Ym9sQzJEM1g0Z2gxVVlkMmJ4WXNIblJ5bEJlODZCR3B4bHNHc3lTVE1RVm84clVFLTlSWVRjUk5XbFlSSVZsbmpUbXV2Q0ItdjMzXzVrckN5WFJ0VUg4X2lzYTF0akFuNE9R?oc=5",
       "source": "The Guardian",
       "published": "Sat, 11 Jul 2026 18:44:00 GMT"
-    },
-    {
-      "title": "Pollock’s hat-trick powers England’s 11-try Nations Championship mauling of 14-man Fiji",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOaXJMMEtvVDdZSkVaZlMwUEl2RjFPUlpwTFFDNFBBNkFEeDhFOGRwRXRXcXlhQ0hCSl9NLVNLT3pxZDNLSGYwajRjejN3NTRsRmxiRjBINnpkcHE1aUVaR1NWaEJfaDNxamdBcTQ2QWNOSzQweVlaYVlpU3ZOUk1ZSlZlOVV3dlVWeGVTRjQwTnpDUEgzOVNZbkM2SFlCeksyMXlfbmhzNA?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 11 Jul 2026 18:31:00 GMT"
     },
     {
       "title": "South Africa 42-28 Scotland: Nations Championship rugby – as it happened",
@@ -1094,12 +1094,6 @@
       "published": "Sat, 11 Jul 2026 10:48:11 GMT"
     },
     {
-      "title": "Will Jordan grabs try-scoring record as All Blacks hammer Italy in Nations Championship",
-      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQZkg0ZHNsUktGLVFSb1k1R1M0VFJGTVA3T2FVSkE2Ynk4am53bDhqZ0NNdEh2bGYzRWppa2FiV21aWUJxZ2xPZHZaeWhTN0JHWjNBOF9TRU55Q1RJb0I0QlFveW5GLUEyVzd0Rnp2emdWMjJsZHBJUDdaUWNDQkZEcUtieEtBNHdIZDBnVGNSLVVhdzlISFFrLS1ubXVJbVNNYW9ta2VhY09saGI0Zmp0U2FvLVh2QlZ1LVRV?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 11 Jul 2026 10:11:00 GMT"
-    },
-    {
       "title": "France dominates Wallabies to post historic Test win",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQbmZmNjZqaHN3WlU5VmROTllUdTBWUC1wUXpWbjBvbE9sRHQzRzh5UzRpOHlXYjN3TjdoSl9DemxsR3ZyRTU3TGJScnUwOGRLX0ZOTEh3VWFaZERPeDQ2SEFSNUNFVEpkamhJM0JyNGhZNElzc2hMQlJORmFjX291LUtWanJxaWdhZnVDZkVtcTEtQ0RDMVZ4RVBHaUwwZUNqd3pXaHJFTEJSc0VQVXVxUw?oc=5",
       "source": "ABC News & Headlines – Australian Broadcasting Corporation",
@@ -1110,6 +1104,12 @@
       "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBhRm5BWGl2S2hHUDVGcmtMR1EzVkxaQWVaWXNVbV9XWXQzUjMxc0VldjdSaGtLQnU5MlBjV1dOX3B4cHl6bzI4ekU4bllLdUZIX09IM01SemllTTJycnA0Y0liTW92TmxST3JV?oc=5",
       "source": "BBC",
       "published": "Sat, 11 Jul 2026 09:13:26 GMT"
+    },
+    {
+      "title": "All Blacks v Italy, Nations Championship 2026 | NZ Rugby",
+      "link": "https://news.google.com/rss/articles/CBMie0FVX3lxTE51ZE1qUGhBSWlKMlRPeHMtOUZzS0xZWnR4OC1UcVExbzA0N3EzM0tvcGVGakNBSkxuMEljU2hCMHBWd0Z3Yzd6eV9COW1IVmxDTEFtbzNhbXQ5NkpmOV83MjNVaVdBYWJkN003bU1JU1Rha3MySUViVWNFMA?oc=5",
+      "source": "All Blacks",
+      "published": "Sat, 11 Jul 2026 05:10:00 GMT"
     },
     {
       "title": "Nations Championship 2026 Round 2: New Zealand vs Italy Fixture",
