@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-11T11:55:39.450Z",
+  "updatedAt": "2026-07-11T12:07:50.936Z",
   "counts": {
     "fixtures": 27,
     "results": 9,
@@ -814,9 +814,9 @@
       "date": "2026-07-11T10:10:00+00:00",
       "week": "2",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false
       },
       "home": {
         "id": 463,
@@ -828,7 +828,7 @@
         "id": 388,
         "name": "Ireland",
         "logo": "https://media.api-sports.io/rugby/teams/388.png",
-        "score": 29
+        "score": 36
       }
     }
   ],
@@ -852,6 +852,23 @@
     },
     {
       "rank": 2,
+      "id": 388,
+      "team": "Ireland",
+      "logo": "https://media.api-sports.io/rugby/teams/388.png",
+      "P": 2,
+      "W": 2,
+      "D": 0,
+      "L": 0,
+      "PF": 69,
+      "PA": 51,
+      "PD": 18,
+      "TF": 10,
+      "TA": 7,
+      "BP": 2,
+      "Pts": 10
+    },
+    {
+      "rank": 3,
       "id": 387,
       "team": "France",
       "logo": "https://media.api-sports.io/rugby/teams/387.png",
@@ -868,7 +885,7 @@
       "Pts": 7
     },
     {
-      "rank": 3,
+      "rank": 4,
       "id": 467,
       "team": "South Africa",
       "logo": "https://media.api-sports.io/rugby/teams/467.png",
@@ -885,7 +902,7 @@
       "Pts": 5
     },
     {
-      "rank": 4,
+      "rank": 5,
       "id": 391,
       "team": "Wales",
       "logo": "https://media.api-sports.io/rugby/teams/391.png",
@@ -902,7 +919,7 @@
       "Pts": 5
     },
     {
-      "rank": 5,
+      "rank": 6,
       "id": 390,
       "team": "Scotland",
       "logo": "https://media.api-sports.io/rugby/teams/390.png",
@@ -919,36 +936,19 @@
       "Pts": 5
     },
     {
-      "rank": 6,
-      "id": 388,
-      "team": "Ireland",
-      "logo": "https://media.api-sports.io/rugby/teams/388.png",
-      "P": 1,
-      "W": 1,
-      "D": 0,
-      "L": 0,
-      "PF": 33,
-      "PA": 31,
-      "PD": 2,
-      "TF": 5,
-      "TA": 5,
-      "BP": 1,
-      "Pts": 5
-    },
-    {
       "rank": 7,
       "id": 463,
       "team": "Japan",
       "logo": "https://media.api-sports.io/rugby/teams/463.png",
-      "P": 1,
+      "P": 2,
       "W": 1,
       "D": 0,
-      "L": 0,
-      "PF": 27,
-      "PA": 10,
-      "PD": 17,
-      "TF": 3,
-      "TA": 1,
+      "L": 1,
+      "PF": 47,
+      "PA": 46,
+      "PD": 1,
+      "TF": 5,
+      "TA": 6,
       "BP": 0,
       "Pts": 4
     },
@@ -1040,13 +1040,13 @@
   ],
   "news": [
     {
-      "title": "+!(\uff2c\uff29\uff36\uff25) Ireland vs Japan Live Free Nations Championship Rugby 2026",
+      "title": "+!(ＬＩＶＥ) Ireland vs Japan Live Free Nations Championship Rugby 2026",
       "link": "https://news.google.com/rss/articles/CBMixgNBVV95cUxQeFlsUTZsb3VURFhCQVo0aDg0UXNZRF9Da3BrVkpQOVFpVjNkMXQ1cHRRVXBzR0JFUXJtaE9nZ09pbGtOZWs1emZISWlla0g4aTlraDhES2dGU1lyU1VJWC1ZQVQ2WVpfSEF0TVduVmVIN0lrYVVIYTRnaW16dGxzWlRhSXQzeWcwTVBjaE9zc2Ffb0NNTFhhVUhCN2xocE1oWjQ2ZWRiMWRrdHRuN0w3Z3dIMzdrNFJMZDItQTVnal9rellXclJFY1V1LVJmbmkwWElSZy1UeHYwc2xJblg0MzNHQVdrVTM4cTBiTnlKSXc1akF5Ym50ampYX2pqOXRMckx5c3ktcEhja09lX2ItaGFiTElGc0dZZ08yM2tqUUo3aUE5NFJVODVObXRWa283UWRfWFdTQ09RS2hxZVZGdjRGbURwVGJoOWZjb0pvcDJiZjdLMU42ZDZNTVlTWXB2Q19PUEFsS2xxTm1VSEs0TVFBVzFIdXpWY1J0aVh6N0JzaXFhZXNiUmJVSjlKOGVRY0JhRGZuTGUxZUF4YkpTbkJHdU05UFdhTTVjUDFpM091enluQ05wWWhfZGJnRlZCaGlZR0V3?oc=5",
       "source": "MCA Sydney",
       "published": "Sat, 11 Jul 2026 10:56:05 GMT"
     },
     {
-      "title": "*\u2207#[+[!LIVESTREAMs!]CBS] Ireland vs Japan Nations Championship Rugby \ud835\udc0b\ud835\udc08\ud835\udc15\ud835\udc04 \uff26\uff52 \uff45\uff45 \ud835\udc12\ud835\udc2d\ud835\udc11\ud835\udc1e\ud835\udc00\ud835\udc26 11 July 2026",
+      "title": "*∇#[+[!LIVESTREAMs!]CBS] Ireland vs Japan Nations Championship Rugby 𝐋𝐈𝐕𝐄 Ｆｒ ｅｅ 𝐒𝐭𝐑𝐞𝐀𝐦 11 July 2026",
       "link": "https://news.google.com/rss/articles/CBMiwANBVV95cUxNY1Z3aU1BVjhWWWdlNHdjaUN2bWlNWFBaZTFLTlpPVWd0SjRxdWlGcjFWTWpUaWJURldDOXdQQTNJZHJnNkk4LVkzeWRvdXJsS0EzVUVSYTU3QlloXzVvTEVLUXdxYkhIZ1E0M05ycmN0WlZKOG1meXEzWURHMVpyODlzcUVPMDJEQXgta0ZwNmNnMmlOa3BhSkU0Rk1JT3hzd2dtd2xaakJ1U1Q1MzN4bXlGTUlIT2x1UklEb25XMmlaaFdtM09PZlRiWTlEckc1THo2RFFwc1NwbjdjV09leVhVWG5UUGFmTG8teDhPWm1TODZ0WXVlVF95QUtUdUQ2RDdSRk5pM1pKT2VuWVNBYXltSkJQWUNkZDUxZnA1SW83alR4UDE1ZDg4TUZfWG5GTVowWTdQUGNiMHQ2c0tFM1VNLXJGQzROTFBkZGhEb1JfZUJmR2xMMlF0YmhqWTRBRjhCNjNrR1VnbWVOM3NLWjExNzRxVElZblJGQ1NMVS1pLTJvZjhNVDVTR2JRYTZzUTBONy13QnU5ZF8wZGpDMkxadml2VUR1U1RPNXNDVUQ3YkJHRy1oaFlIZDBJYndw?oc=5",
       "source": "MCA Sydney",
       "published": "Sat, 11 Jul 2026 10:55:58 GMT"
@@ -1066,11 +1066,17 @@
     {
       "title": "France dominates Wallabies to post historic Test win",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQbmZmNjZqaHN3WlU5VmROTllUdTBWUC1wUXpWbjBvbE9sRHQzRzh5UzRpOHlXYjN3TjdoSl9DemxsR3ZyRTU3TGJScnUwOGRLX0ZOTEh3VWFaZERPeDQ2SEFSNUNFVEpkamhJM0JyNGhZNElzc2hMQlJORmFjX291LUtWanJxaWdhZnVDZkVtcTEtQ0RDMVZ4RVBHaUwwZUNqd3pXaHJFTEJSc0VQVXVxUw?oc=5",
-      "source": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "source": "ABC News & Headlines – Australian Broadcasting Corporation",
       "published": "Sat, 11 Jul 2026 10:09:27 GMT"
     },
     {
-      "title": "++[Official-!LIVE\u2122\"] Australia v France rugby Nations Championship 2026 \uff2c\uff49\uff56\uff45\uff26\uff52\uff45\uff45 \uff2f\uff2e \uff34\uff56 \uff23\uff48\uff41\uff4e\uff4e\uff45\uff4c 11 July 2026",
+      "title": "Nations Championship and Nations Cup back for more after red-hot opening weekend",
+      "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE02ellYUEVNMDV2cHhEVG8tVEQ4YjBnb0QxeEd2RTZBc1AtanBOc3A4b3J0QnY0Sk8yN2NuU21SZnRGUjFnYjBCd2V2Ty12VjNmWWQzZG10T1FVQUtWS3lwYks4clY5QXdFQVlsWHJR?oc=5",
+      "source": "World Rugby",
+      "published": "Sat, 11 Jul 2026 09:29:00 GMT"
+    },
+    {
+      "title": "++[Official-!LIVE™\"] Australia v France rugby Nations Championship 2026 ＬｉｖｅＦｒｅｅ ＯＮ Ｔｖ Ｃｈａｎｎｅｌ 11 July 2026",
       "link": "https://news.google.com/rss/articles/CBMi_wNBVV95cUxQbC1KMXpOQnpDUDhxUFp4X2ZsUzQ3RXV5MmQtYURxXzNQUnVJVmZCdG5JWWp4Y1BjcmxvTXUwV2N5SEFVU29RWW1vWlRlSjJQVlhxWXZmTUstZXI0MUtvejR0SlhRUlF6Z3BqYU9ubkhILURrMmc2S1pVdlhQTkxLOG9nQlhCTTBadm4xa1RsYUtvLXNEN3lIclUyU3ZlUGc3NS1SWHU3QTUtZzVlS0dRV3FwSF80bDU3MzM2ME1aSzZmYm5oREk3Tmo3RFo1djRFRXlCUWxBWDBreUIwanY1VWl1WXg4VGVXNExTUGoyUnNUcFRXWjFmR1Bad2FzVTBDVWM5VzJYYkZzclppTnlSOWlCMHBoeTZ2QWtRdzh5LW9HcXRJX0dTN05xMWtDc2JBY0paTzZvOVJXS1JXLUV1Zlc4YWx2SnREa0dKQzY0ZTdWdy1uVjJXX2hRbkFpbHBUbHFtSFAxNXBaSE96YzJmMTE3b016NTV5UlVjZE9pcUNNb3pqNjhPcE5DRWlweU1UdGhrWjVKQ3FGUGljVExEQzIzWmhhMWFvSHo1VEZqWVVSRFRfMmNQVnJtazJwa0d1anRhU3RkWEFyVXBvWkgyZzc0VnJERGN2OVpVU3NCb01wLXhabHRGUjRhWUw0V2tvc0dneFZjZHJYT3NiNzh3?oc=5",
       "source": "Business and Investment Development Agency - CzechInvest",
       "published": "Sat, 11 Jul 2026 07:55:01 GMT"
@@ -1082,10 +1088,10 @@
       "published": "Sat, 11 Jul 2026 07:14:31 GMT"
     },
     {
-      "title": "Nations Championship and Nations Cup back for more after red-hot opening weekend",
-      "link": "https://news.google.com/rss/articles/CBMibkFVX3lxTE02ellYUEVNMDV2cHhEVG8tVEQ4YjBnb0QxeEd2RTZBc1AtanBOc3A4b3J0QnY0Sk8yN2NuU21SZnRGUjFnYjBCd2V2Ty12VjNmWWQzZG10T1FVQUtWS3lwYks4clY5QXdFQVlsWHJR?oc=5",
-      "source": "World Rugby",
-      "published": "Sat, 11 Jul 2026 06:26:49 GMT"
+      "title": "‍[Reddit/Streams]!! New Zealand vs Italy Rugby Nations Championship LIVE Updates",
+      "link": "https://news.google.com/rss/articles/CBMixgNBVV95cUxQM1RvNTJfTWVUMXhsVHJYZkFtRElmcURvTnlScXB3Z2RDUWVnd0hZcExVWmRmZ0RCV21oM2xBSEFKb3lxRjRzVnBkMURIY0pERXAtcW02ZHZXMkNSNFl6cjd4bkh0RnZZLXR2U1E5Z1YzWHF4NU1lbU16RjBEb1YyQ2V0WGg5eEY3YnR0VERQcGh2eG53WXhDUUFCUXdrRUZ5M0dTSmxnWlJCRUZmeHRFdVdSdWgwc2tOTmJlbm1DQzBEdmRuZEFrY2JIS2xMR1ZtVU1LeDFnTTRpWkhqXzU5UzcxbllOMl9OUnRIV0M2eHBpbU1VWlJmVzNCMkZ3ZHpzc0ZYcjZpQW91M2xuSlpmaGhzRHROYXhodGlTa1Z2MTVJVDZJQnRkY2ZRMElxcFZkTU5tYzFsNlp6NjQ3TDRwRTlGU3pBS3ZPXy1PUjBMT2pXS3YxNUhQTlRGZlhEb2NVcUZWMGZ5YUwzMWNVSWF5eG9xTEdoTk5wZ3UxczNra0RFTzQ3STRtWDRiRi1vM3JtZC1jREhBVXpXMzlDTmtRanM3d2d4Q3JLYm1SQmEwTUVWSmQ1WjFyMkNtaFdfYmpTVFpzWi1R?oc=5",
+      "source": "MCA Sydney",
+      "published": "Sat, 11 Jul 2026 05:56:46 GMT"
     },
     {
       "title": "Nations Championship 2026 Round 2: New Zealand vs Italy Fixture",
@@ -1094,7 +1100,7 @@
       "published": "Fri, 10 Jul 2026 19:47:37 GMT"
     },
     {
-      "title": "'You probably wouldn't take notice of Australia v Ireland' \u2013 Dave Rennie's 'interesting' Nations Championship verdict",
+      "title": "'You probably wouldn't take notice of Australia v Ireland' – Dave Rennie's 'interesting' Nations Championship verdict",
       "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNZ1A3ZGpQM2QtaHo3UHdsMVlqLTdrREJRUlo5STVVbzg2cHk4d3V5S0Fma1p2cFBuU0NYQmtHTTRMTVpBM3VUcWVhZW5kT2ZCb0FaTXhmS2dYeTEzWm5TbDcxTjIxNHM4TmEwNWROTmgxRlJaTl9hOGpOdTltSTNKZlRYMlJ2SW41NXg4dHE4VVpsX3hWQVlkbVlaUG9SUXp4cWVHV1lpQVg2WVhuaXFxZHRqQzFfdEthZUE?oc=5",
       "source": "Planet Rugby",
       "published": "Thu, 09 Jul 2026 17:24:40 GMT"
@@ -1106,19 +1112,13 @@
       "published": "Sat, 04 Jul 2026 23:52:57 GMT"
     },
     {
-      "title": "Wallabies vs Ireland live: Captain\u2019s try scrubbed out in contentious obstruction call",
+      "title": "Wallabies vs Ireland live: Captain’s try scrubbed out in contentious obstruction call",
       "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQbkRhUTlPcm9naVJZQlh6dndFc1hBN0xaUlZGNHdaRk1vQ25qMm4yeUZBVldiTlV1Z3Uycm5pdS11czB0TWZYR3luZWVsQTJKdTZuX1oyM25TSnQ0UlF5UGVlSHE0Qkg2LUFWdkhWRFVsdXRDVzdzYk45ZGlJcWI5TDFuMWpENHMwMFhmdHBJb3pycEMtVDJ3MkVZcUhJVDVua1JHX0lral9KYlZIWXNXa3o3SkIzc0hZU01EbVZNcGtZZngtLVBoVjFwLUV4Wk5oVHhtYw?oc=5",
       "source": "Nine.com.au",
       "published": "Sat, 04 Jul 2026 14:42:13 GMT"
     },
     {
-      "title": "South Africa 45-21 England: Nations Championship rugby union \u2013 as it happened",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQd3dvUlU0dl9TdUlablp0aVlNeUxWYUs0dXJlR29mRmRjWTBPUUxZNHBVR0l6ajJtdEV6RWMzTXU1bndJeG1yemhfa2h0ZDhQMnVCYXh0Z2lOdGRLdXVHa3NkSk1scGJzbU5VdnA0U05LVTZMcG1TM1dtbmNNTW5VRWlsMW16UHNKdW9pa09JU015UnU2WlYzMUJrUW42YzlxS1ZvN1dfVFBLaW5QUmM5cw?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 04 Jul 2026 14:38:00 GMT"
-    },
-    {
-      "title": "Australia 31-33 Ireland: Nations Championship rugby union international \u2013 as it happened",
+      "title": "Australia 31-33 Ireland: Nations Championship rugby union international – as it happened",
       "link": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNVGs5Z3pRZGkwLVVsX0IyYmtjTXplVjBDb2NyOWRrM3JKdTdBeHY0NVpRZDZuU2dPSjFXZEN0NTllUmN0SXZudzJpNnFGWF9uTFRfcThYT2pLRk1ZWFVrTGI4QzVJRnk0OXRjMUFzeTczUVVVYjVqUnh5ZkZfQTJicTlzMFlmN1oxQ3JIN3FOLXhEX01sWXRJM1ZEZDVkX2NwVEJ5WWRrQWh3NURiOGlzV3JwZGZnMEcwR3RNT3BjQXg4Wl84NkliMjl2Z1NEUHppRHBfSkpmMDlIcUFPVWRKbWRpRFRzdw?oc=5",
       "source": "The Guardian",
       "published": "Sat, 04 Jul 2026 12:44:14 GMT"
@@ -1126,7 +1126,7 @@
     {
       "title": "Wallabies fall agonisingly short against Ireland in Nations Championship",
       "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQelRwanNfOExVV09kNFRmNzRWZWZMRmVGMTRwZ0FwQ0xfakxoZmlSQmtObTJwajRsSHd5N3c0ZDVUTHc3VlQ3NEV1UlZ2R181YU9QUjRWNTJ6Qzl5NDFtaTZadzBMcmhHZnN2c2NweDZjVDctRmEzSHVNeFJWV1Rud1MxaXBxMmZuSkZhelFJeUJhNmRxUG1UNWZDX2FYUl8xaVFOUW1PcDlVX3hBWWthWjAxYw?oc=5",
-      "source": "ABC News & Headlines \u2013 Australian Broadcasting Corporation",
+      "source": "ABC News & Headlines – Australian Broadcasting Corporation",
       "published": "Sat, 04 Jul 2026 09:08:33 GMT"
     }
   ],
@@ -1148,7 +1148,7 @@
         {
           "kicker": "The opposition",
           "heading": "Borthwick rings changes under mounting pressure",
-          "body": "England head into this clash desperate to snap a five-match losing streak, with Steve Borthwick recalling Henry Slade to the midfield. Tommy Freeman shifts to the wing to accommodate the change, while Guy Pepper starts at openside flanker. The hosts have also named three debutants on the bench\u2014Benhard Janse van Rensburg, Noah Caluori, and George Kloska\u2014as they seek a necessary response in Liverpool."
+          "body": "England head into this clash desperate to snap a five-match losing streak, with Steve Borthwick recalling Henry Slade to the midfield. Tommy Freeman shifts to the wing to accommodate the change, while Guy Pepper starts at openside flanker. The hosts have also named three debutants on the bench—Benhard Janse van Rensburg, Noah Caluori, and George Kloska—as they seek a necessary response in Liverpool."
         },
         {
           "kicker": "The stakes",
@@ -1266,17 +1266,17 @@
         {
           "kicker": "Team news",
           "heading": "Slade starts as Borthwick looks for response",
-          "body": "Steve Borthwick has handed a starting berth to Henry Slade, who returns to the midfield for today\u2019s encounter. Tommy Freeman shifts to the wing following the injury to Cadan Murley, while Guy Pepper earns a start at openside flanker. Three players\u2014Benhard Janse van Rensburg, Noah Caluori, and George Kloska\u2014are set to make their international debuts should they appear from the bench."
+          "body": "Steve Borthwick has handed a starting berth to Henry Slade, who returns to the midfield for today’s encounter. Tommy Freeman shifts to the wing following the injury to Cadan Murley, while Guy Pepper earns a start at openside flanker. Three players—Benhard Janse van Rensburg, Noah Caluori, and George Kloska—are set to make their international debuts should they appear from the bench."
         },
         {
           "kicker": "Injury desk",
           "heading": "Murley ruled out of Saturday's Test",
-          "body": "Cadan Murley is unavailable for selection today after sustaining an injury during the defeat to South Africa. The camp has not reported further fresh fitness concerns following the opening round. George Furbank, who missed last weekend\u2019s squad entirely due to appendicitis, remains out of the picture as England seek to overcome the recent momentum of five successive Test losses."
+          "body": "Cadan Murley is unavailable for selection today after sustaining an injury during the defeat to South Africa. The camp has not reported further fresh fitness concerns following the opening round. George Furbank, who missed last weekend’s squad entirely due to appendicitis, remains out of the picture as England seek to overcome the recent momentum of five successive Test losses."
         },
         {
           "kicker": "The opposition",
           "heading": "Fiji bring back veteran experience",
-          "body": "Fiji have bolstered their pack with the inclusion of Peceli Yato and Levani Botia, two Top 14 veterans, as they look to recover from their opening-round loss to Wales. Interim coach Senirusi Seruvakula has emphasised the need for greater discipline, stating that while they will stick to their attacking brand of rugby, the side \u201cmust improve its discipline and decision-making\u201d to better challenge England."
+          "body": "Fiji have bolstered their pack with the inclusion of Peceli Yato and Levani Botia, two Top 14 veterans, as they look to recover from their opening-round loss to Wales. Interim coach Senirusi Seruvakula has emphasised the need for greater discipline, stating that while they will stick to their attacking brand of rugby, the side “must improve its discipline and decision-making” to better challenge England."
         },
         {
           "kicker": "The stakes",
@@ -1409,7 +1409,7 @@
         {
           "kicker": "The stakes",
           "heading": "Finding momentum in the middle of the pack",
-          "body": "France currently sits in the middle of the log after an opening defeat, having secured zero competition points. With both teams suffering two-point losses in the first round, today\u2019s result is pivotal for establishing momentum in the tournament. A victory in Brisbane would provide a necessary reset for the side before they continue their campaign, while another loss would leave them at 0-2."
+          "body": "France currently sits in the middle of the log after an opening defeat, having secured zero competition points. With both teams suffering two-point losses in the first round, today’s result is pivotal for establishing momentum in the tournament. A victory in Brisbane would provide a necessary reset for the side before they continue their campaign, while another loss would leave them at 0-2."
         }
       ]
     },
@@ -1420,7 +1420,7 @@
         {
           "kicker": "Team news",
           "heading": "Farrell shuffles deck for Japanese challenge",
-          "body": "Andy Farrell has rotated his side significantly for today's match, making nine changes to the starting XV that edged Australia. Tadhg Beirne will captain the team for the first time, while Sean Jansen earns his first cap in the back row. Ciar\u00e1n Frawley is set for his first start at out-half, guiding a new-look lineup that includes Ronan Kelleher earning his 50th cap."
+          "body": "Andy Farrell has rotated his side significantly for today's match, making nine changes to the starting XV that edged Australia. Tadhg Beirne will captain the team for the first time, while Sean Jansen earns his first cap in the back row. Ciarán Frawley is set for his first start at out-half, guiding a new-look lineup that includes Ronan Kelleher earning his 50th cap."
         },
         {
           "kicker": "Injury desk",
@@ -1435,7 +1435,7 @@
         {
           "kicker": "The stakes",
           "heading": "Looking to build momentum",
-          "body": "Ireland enters today's match sitting fifth in the 12-team tournament table following a narrow 33-31 victory against Australia. Securing a win today is crucial for Ireland to maintain their unbeaten start to the Nations Championship before the squad travels to Auckland for next weekend\u2019s fixture against the All Blacks. Consistency remains the primary objective for this rotated side in Newcastle."
+          "body": "Ireland enters today's match sitting fifth in the 12-team tournament table following a narrow 33-31 victory against Australia. Securing a win today is crucial for Ireland to maintain their unbeaten start to the Nations Championship before the squad travels to Auckland for next weekend’s fixture against the All Blacks. Consistency remains the primary objective for this rotated side in Newcastle."
         }
       ]
     },
@@ -1472,17 +1472,17 @@
         {
           "kicker": "Team news",
           "heading": "Finn Russell returns to start in Pretoria",
-          "body": "Finn Russell is back in the Scotland starting lineup for today\u2019s fixture against South Africa at Loftus Versfeld. The fly-half returns following his recovery from a calf injury. Gregor Townsend has made 3 changes in total to the side that secured a win over Argentina last weekend, as Scotland look to build on their current position in the Nations Championship."
+          "body": "Finn Russell is back in the Scotland starting lineup for today’s fixture against South Africa at Loftus Versfeld. The fly-half returns following his recovery from a calf injury. Gregor Townsend has made 3 changes in total to the side that secured a win over Argentina last weekend, as Scotland look to build on their current position in the Nations Championship."
         },
         {
           "kicker": "Injury desk",
           "heading": "Fitness update regarding the touring squad",
-          "body": "Today\u2019s coverage confirms that Finn Russell has recovered from the calf injury that sidelined him for the opening round of the tournament. Regarding other members of the squad, there is no further information or fresh injury news provided in today\u2019s reports concerning the availability of players for this afternoon\u2019s Test match at Loftus Versfeld."
+          "body": "Today’s coverage confirms that Finn Russell has recovered from the calf injury that sidelined him for the opening round of the tournament. Regarding other members of the squad, there is no further information or fresh injury news provided in today’s reports concerning the availability of players for this afternoon’s Test match at Loftus Versfeld."
         },
         {
           "kicker": "The opposition",
           "heading": "Springboks name side for Loftus Versfeld clash",
-          "body": "South Africa have named Boan Venter, Johan Grobbelaar, and Wilco Louw in the front row for today. The hosts feature Handr\u00e9 Pollard at fly-half and have made 10 changes to their starting side following their win over England. Assistant coach Mzwandile Stick rejected the suggestion that this selection constitutes a secondary team, citing the depth of the world champions."
+          "body": "South Africa have named Boan Venter, Johan Grobbelaar, and Wilco Louw in the front row for today. The hosts feature Handré Pollard at fly-half and have made 10 changes to their starting side following their win over England. Assistant coach Mzwandile Stick rejected the suggestion that this selection constitutes a secondary team, citing the depth of the world champions."
         },
         {
           "kicker": "The stakes",
@@ -1691,12 +1691,12 @@
         {
           "kicker": "The opposition",
           "heading": "Farrell rotates his squad",
-          "body": "Ireland head coach Andy Farrell has made nine changes to his starting side for this encounter in Newcastle. Tadhg Beirne captains the team for the first time as the tourists look to build on their opening win against Australia. The selection includes four uncapped players in the matchday 23, with Ciar\u00e1n Frawley handed his first start at out-half alongside scrum-half Craig Casey."
+          "body": "Ireland head coach Andy Farrell has made nine changes to his starting side for this encounter in Newcastle. Tadhg Beirne captains the team for the first time as the tourists look to build on their opening win against Australia. The selection includes four uncapped players in the matchday 23, with Ciarán Frawley handed his first start at out-half alongside scrum-half Craig Casey."
         },
         {
           "kicker": "The stakes",
           "heading": "Japan eyes second win",
-          "body": "Following a successful opening weekend against Italy, Japan continues its Nations Championship campaign in what is technically an away game for the Brave Blossoms. With Ireland aiming to remain unbeaten, today\u2019s result is critical for Japan\u2019s momentum in the tournament. A strong performance here remains the primary focus before the squad prepares to host France in Tokyo."
+          "body": "Following a successful opening weekend against Italy, Japan continues its Nations Championship campaign in what is technically an away game for the Brave Blossoms. With Ireland aiming to remain unbeaten, today’s result is critical for Japan’s momentum in the tournament. A strong performance here remains the primary focus before the squad prepares to host France in Tokyo."
         }
       ]
     },
@@ -1717,7 +1717,7 @@
         {
           "kicker": "The opposition",
           "heading": "Ireland build momentum in Japan",
-          "body": "Ireland secured a 26-18 victory over Japan in Newcastle earlier today. The Irish were efficient in attack, with tries from Nick Timoney, Tom O\u2019Toole, Robbie Henshaw, and debutant Sean Jansen. While the visitors overcame some struggles at the line-out, they successfully navigated the challenge from the hosts. Coach Andy Farrell will now prepare his side for their journey to New Zealand for the round three encounter."
+          "body": "Ireland secured a 26-18 victory over Japan in Newcastle earlier today. The Irish were efficient in attack, with tries from Nick Timoney, Tom O’Toole, Robbie Henshaw, and debutant Sean Jansen. While the visitors overcame some struggles at the line-out, they successfully navigated the challenge from the hosts. Coach Andy Farrell will now prepare his side for their journey to New Zealand for the round three encounter."
         },
         {
           "kicker": "The stakes",
@@ -1733,7 +1733,7 @@
         {
           "kicker": "Team news",
           "heading": "Erasmus shuffles the deck for second round",
-          "body": "Rassie Erasmus has opted for significant rotation, making 10 changes to the starting line-up that secured a 45-21 victory over England. Only Jesse Kriel, Damian Willemse, Pieter-Steph du Toit, and Canan Moodie retain their starting spots from the opening round. Du Toit will captain the side at Loftus Versfeld, leading a refreshed unit that aims to build on last week\u2019s emphatic performance."
+          "body": "Rassie Erasmus has opted for significant rotation, making 10 changes to the starting line-up that secured a 45-21 victory over England. Only Jesse Kriel, Damian Willemse, Pieter-Steph du Toit, and Canan Moodie retain their starting spots from the opening round. Du Toit will captain the side at Loftus Versfeld, leading a refreshed unit that aims to build on last week’s emphatic performance."
         },
         {
           "kicker": "Injury desk",
@@ -1748,7 +1748,7 @@
         {
           "kicker": "The stakes",
           "heading": "Ranking leaders test momentum in Pretoria",
-          "body": "The Springboks head into today\u2019s encounter ranked number 1 in the world, aiming to consolidate their position after an opening victory. For Scotland, a win in Pretoria would represent a major statement against the world champions. With both teams victorious last week, the result of this fixture will be pivotal in determining the early momentum in the Nations Championship table."
+          "body": "The Springboks head into today’s encounter ranked number 1 in the world, aiming to consolidate their position after an opening victory. For Scotland, a win in Pretoria would represent a major statement against the world champions. With both teams victorious last week, the result of this fixture will be pivotal in determining the early momentum in the Nations Championship table."
         }
       ],
       "match": {
@@ -1774,7 +1774,7 @@
           },
           {
             "no": 5,
-            "name": "Ruan Nortj\u00e9"
+            "name": "Ruan Nortjé"
           },
           {
             "no": 6,
@@ -1794,7 +1794,7 @@
           },
           {
             "no": 10,
-            "name": "Handr\u00e9 Pollard"
+            "name": "Handré Pollard"
           },
           {
             "no": 11,
