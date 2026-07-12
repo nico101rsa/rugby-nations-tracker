@@ -1,0 +1,46 @@
+name: Weekly health check
+
+# Thursday health check: ALWAYS emails a summary and commits a dated report to
+# editorial/health/. Covers run reliability, digest quality grades, and what
+# changed this week; points to the manual checks (app analytics, App Store
+# review status) that a headless job can't reach.
+on:
+  schedule:
+    # Wed 21:00 UTC = Thu 07:00 AEST.
+    - cron: "0 21 * * 3"
+  workflow_dispatch:
+
+permissions:
+  actions: read # gh run list
+  contents: write # commit the report
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # git log --since needs history
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Unit tests
+        run: node --test scripts/*.test.mjs
+      - name: Build report and email
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          if [ -n "$GMAIL_APP_PASSWORD" ]; then npm install --no-save nodemailer; fi
+          node scripts/health-report.mjs
+      - name: Commit the report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add editorial/health/
+          git diff --cached --quiet && echo "No report change" && exit 0
+          git commit -m "Weekly health check $(TZ=Australia/Sydney date '+%G-W%V')"
+          # Live-refresh commits race us; only editorial/health/ is ours, so a
+          # rebase is safe.
+          git push || (git pull --rebase --autostash && git push)

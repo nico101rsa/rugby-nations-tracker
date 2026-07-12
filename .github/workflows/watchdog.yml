@@ -1,0 +1,33 @@
+name: Watchdog
+
+# Did the scheduled jobs actually run? GitHub drops scheduled runs under load
+# (cron drift), which has silently frozen live scores and dropped a morning
+# digest. This checks each watched workflow had a recent successful run and
+# emails ONLY when one is overdue — silent when healthy.
+on:
+  schedule:
+    # Daily 22:15 UTC = 08:15 AEST — after the 20:00 digest and 21:30 archive,
+    # so a dropped morning run is caught the same morning.
+    - cron: "15 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  actions: read # gh run list
+  contents: read
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check schedules and email on a miss
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: |
+          if [ -n "$GMAIL_APP_PASSWORD" ]; then npm install --no-save nodemailer; fi
+          node scripts/watchdog.mjs
