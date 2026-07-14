@@ -11,6 +11,7 @@ import {
   teamsheetGaps,
   resolveTeamsheet,
   espnTeamsheet,
+  stripTeamsheets,
 } from "./generate-digests.mjs";
 
 const body50 = Array(50).fill("word").join(" ");
@@ -390,6 +391,21 @@ test("resolveTeamsheet lets ESPN outrank both the code parse and the model", () 
   const { sheet, note } = resolveTeamsheet(wrongModel, [{ title: "Bok team", text: SA_XV }], espn);
   assert.deepEqual(sheet, espn);
   assert.match(note, /espn/i);
+});
+
+// stripTeamsheets is the whole teardown for the paused-squads state: it must
+// remove a teamsheet from a digest we DIDN'T regenerate (the stranded SA XV from
+// a prior round) while leaving every other field — and every other team — intact.
+test("stripTeamsheets removes only the teamsheet key, from every digest", () => {
+  const before = {
+    467: { edition: "Bok Watch", teamsheet: { starters: [{ no: 1, name: "X" }] }, match: { venue: "Ellis Park" } },
+    391: { edition: "Wales Watch" }, // already teamsheet-free — untouched
+  };
+  const after = stripTeamsheets(before);
+  assert.equal("teamsheet" in after[467], false);
+  assert.deepEqual(after[467], { edition: "Bok Watch", match: { venue: "Ellis Park" } });
+  assert.deepEqual(after[391], { edition: "Wales Watch" });
+  assert.equal("teamsheet" in before[467], true); // input not mutated
 });
 
 // ---- prioritiseByLineup: fetch ordering --------------------------------------
