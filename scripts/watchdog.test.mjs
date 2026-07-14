@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { evaluate, formatReport, coverageReport } from "./watchdog.mjs";
+import { evaluate, formatReport, coverageReport, alertSignature, decideIssueAction } from "./watchdog.mjs";
 
 const WATCHERS = [
   { workflow: "a.yml", label: "A", maxAgeHours: 26 },
@@ -75,4 +75,30 @@ test("coverageReport is null when every imminent team has a squad", () => {
     digests: { 467: { teamsheet: {} }, 391: { teamsheet: {} } },
   };
   assert.equal(coverageReport(nations, now), null);
+});
+
+// ---- GitHub-issue alerting ---------------------------------------------------
+// Email is dead (Gmail SMTP app-passwords 535 from Actions IPs), so alerts go to
+// a GitHub issue via the built-in GITHUB_TOKEN. It must not re-notify every day
+// for a state it already reported — the signature is what makes it idempotent.
+
+const miss = (workflow) => ({ workflow, label: workflow, maxAgeHours: 6, lastSuccessAt: null, ageHours: null });
+
+test("alertSignature is stable regardless of ordering", () => {
+  const a = alertSignature([miss("b.yml"), miss("a.yml")], { gaps: [{ team: "Wales" }, { team: "Fiji" }] });
+  const b = alertSignature([miss("a.yml"), miss("b.yml")], { gaps: [{ team: "Fiji" }, { team: "Wales" }] });
+  assert.equal(a, b);
+  assert.match(a, /Fiji/);
+  assert.notEqual(a, alertSignature([miss("a.yml")], { gaps: [{ team: "Fiji" }] })); // different state → different sig
+});
+
+test("decideIssueAction opens, stays quiet, updates on change, and closes when healthy", () => {
+  const sig = "jobs=[] squads=[Fiji]";
+  const open = { number: 7, body: `something\n<!-- sig: ${sig} -->` };
+
+  assert.equal(decideIssueAction(null, sig, false), "create"); // first time
+  assert.equal(decideIssueAction(open, sig, false), "noop"); // same state → don't re-ping daily
+  assert.equal(decideIssueAction(open, "jobs=[] squads=[Fiji,Wales]", false), "update"); // state worsened
+  assert.equal(decideIssueAction(open, "", true), "close"); // recovered
+  assert.equal(decideIssueAction(null, "", true), "noop"); // healthy, nothing open
 });
