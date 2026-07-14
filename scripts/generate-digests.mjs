@@ -490,7 +490,37 @@ export function extractLineup(text) {
 // lineup out of one of these.
 const NON_SENIOR = /\b(u-?\d{2}|under[- ]?\d{2}|women|women's|academy|schools?|sevens|7s|development|barbarians)\b/i;
 
-export function resolveTeamsheet(modelSheet, lineupArticles = []) {
+// ESPN's match summary carries the OFFICIAL announced lineup with jersey numbers
+// — structured, keyless, uncapped debutants included, and EMPTY until a squad is
+// actually named. It cannot fabricate an XV the way prose parsing can (which on
+// 2026-07-15 invented "4 Can, 5 Tidy, 6 Got, 7 The" and lifted a U20 side), so
+// it outranks every other source. Absence here is a truthful "not named yet".
+export function espnTeamsheet(summary, teamName) {
+  const entry = (summary?.rosters || []).find((r) => r?.team?.displayName === teamName);
+  if (!entry) return null;
+  const byNo = new Map();
+  for (const p of entry.roster || []) {
+    const no = parseInt(p?.jersey, 10);
+    const name = p?.athlete?.displayName?.trim();
+    if (!Number.isInteger(no) || no < 1 || no > 23 || !name) continue;
+    if (!byNo.has(no)) byNo.set(no, name);
+  }
+  const starters = [];
+  for (let n = 1; n <= 15; n++) {
+    if (!byNo.has(n)) return null; // not named yet (or partial) → honest blank
+    starters.push({ no: n, name: byNo.get(n) });
+  }
+  const bench = [];
+  for (let n = 16; n <= 23; n++) if (byNo.has(n)) bench.push({ no: n, name: byNo.get(n) });
+  const sheet = { starters };
+  if (bench.length) sheet.bench = bench;
+  return sheet;
+}
+
+export function resolveTeamsheet(modelSheet, lineupArticles = [], espnSheet = null) {
+  // ESPN is authoritative; the prose parser and the model are fallbacks for when
+  // it hasn't published yet.
+  if (espnSheet) return { sheet: espnSheet, note: ", teamsheet from ESPN (official)" };
   const senior = (lineupArticles || []).filter((a) => !NON_SENIOR.test(a.title || ""));
   const parsed = senior.map((a) => extractLineup(a.text)).find(Boolean) || null;
   if (parsed) {
@@ -535,6 +565,37 @@ export function teamsheetGaps(fixtures, digests = {}, now = new Date(), windowMs
     }
   }
   return gaps;
+}
+
+// ESPN lineup retrieval. The Nations Championship is league 17567 (the same one
+// the ratings harvester uses). Two hops: the scoreboard for the fixture's UTC
+// date gives the event id, the summary gives the announced rosters. Summaries
+// are cached per run — 6 events cover all 12 teams.
+const ESPN = "https://site.api.espn.com/apis/site/v2/sports/rugby/17567";
+const _espnCache = new Map();
+
+async function espnJson(url) {
+  if (_espnCache.has(url)) return _espnCache.get(url);
+  const res = await fetchWithTimeout(url);
+  const json = res.ok ? await res.json() : null;
+  _espnCache.set(url, json);
+  return json;
+}
+
+export async function fetchEspnTeamsheet(teamName, fixtureDateISO) {
+  try {
+    if (!fixtureDateISO) return null;
+    const ymd = new Date(fixtureDateISO).toISOString().slice(0, 10).replace(/-/g, "");
+    const board = await espnJson(`${ESPN}/scoreboard?dates=${ymd}`);
+    const event = (board?.events || []).find((e) =>
+      (e?.competitions?.[0]?.competitors || []).some((c) => c?.team?.displayName === teamName),
+    );
+    if (!event) return null;
+    const summary = await espnJson(`${ESPN}/summary?event=${event.id}`);
+    return espnTeamsheet(summary, teamName);
+  } catch {
+    return null; // ESPN is best-effort; the prose fallback still applies
+  }
 }
 
 async function fetchTeamNews(teamName, opponentName) {
@@ -822,7 +883,8 @@ JSON again.`;
   // writer transcribed (see resolveTeamsheet). Only when no numbered XV can be
   // parsed AND the writer produced nothing — yet code saw a lineup in the pack —
   // do we spend a targeted retry. A missing teamsheet must never cost the digest.
-  let { sheet, note: sheetNote } = resolveTeamsheet(digest.teamsheet, lineupArticles);
+  const espnSheet = await fetchEspnTeamsheet(params.TEAM_NAME, params.KICKOFF_ISO);
+  let { sheet, note: sheetNote } = resolveTeamsheet(digest.teamsheet, lineupArticles, espnSheet);
   if (sheet) {
     digest = { ...digest, teamsheet: sheet };
   } else if (lineupInPack) {
