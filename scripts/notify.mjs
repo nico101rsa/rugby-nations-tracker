@@ -10,6 +10,27 @@
 
 const GMAIL_USER = process.env.GMAIL_USER || "nico101rsa@gmail.com";
 const RECIPIENT = process.env.NOTIFY_TO || "nico.mcdonald@outlook.com";
+const ALERT_OWNER = process.env.ALERT_OWNER || "nico101rsa";
+
+// The working delivery channel. Gmail SMTP app-passwords are rejected (535
+// BadCredentials) from Actions datacenter IPs — the 2026-07-12 weekly-health run
+// hard-failed on exactly that — so email cannot be relied on to reach anyone.
+// A GitHub issue can: assigning + @mentioning notifies under GitHub's default
+// "Participating and @mentions", whatever the repo's watch setting is.
+export async function postIssue({ title, body, assignee = ALERT_OWNER }) {
+  const { execFile } = await import("node:child_process");
+  const { promisify } = await import("node:util");
+  const execFileAsync = promisify(execFile);
+  const { stdout } = await execFileAsync("gh", [
+    "issue", "create",
+    "--title", title,
+    "--body", `@${assignee}\n\n${body}`,
+    "--assignee", assignee,
+  ]);
+  const url = stdout.trim();
+  console.log(`Opened issue: ${url}`);
+  return url;
+}
 
 export async function sendEmail({ subject, text }) {
   const pass = process.env.GMAIL_APP_PASSWORD;

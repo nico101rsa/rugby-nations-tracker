@@ -13,6 +13,7 @@ on:
 permissions:
   actions: read # gh run list
   contents: write # commit the report
+  issues: write # deliver the report as a GitHub issue (email 535s from Actions)
 
 jobs:
   health:

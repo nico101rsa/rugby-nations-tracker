@@ -1,5 +1,9 @@
-// Weekly health check — runs Thursday, ALWAYS emails, and always writes a
-// dated markdown file to editorial/health/. Covers what a headless job can
+// Weekly health check — runs Thursday, always writes a dated markdown file to
+// editorial/health/, and delivers it as a GitHub issue (assigned + @mentioning
+// the owner). Delivery used to be email-only, which hard-failed the job every
+// week: Gmail SMTP app-passwords are rejected (535) from Actions datacenter IPs,
+// so the check went red and sent nothing. Both channels are now best-effort —
+// the committed report is the durable record. Covers what a headless job can
 // know for sure (run reliability, digest quality grades, what changed) and
 // leaves honest, qualified pointers for what it can't reach headless (app
 // analytics behind logins, App Store review status that arrives by email).
@@ -9,7 +13,7 @@ import { promisify } from "node:util";
 import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { sendEmail } from "./notify.mjs";
+import { sendEmail, postIssue } from "./notify.mjs";
 
 const execFileAsync = promisify(execFile);
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -175,7 +179,22 @@ async function main() {
   console.log(`Wrote ${outPath}`);
   console.log(report);
 
-  await sendEmail({ subject: `🩺 Rugby Tracker weekly health check — ${weekLabel}`, text: report });
+  // Delivery. The report is already committed to editorial/health/, so neither
+  // channel failing may fail the run — which is exactly what used to happen:
+  // sendEmail threw 535 (Gmail app-passwords are rejected from Actions IPs) and
+  // took the whole Thursday job down with it, so the check went red and sent
+  // nothing. The GitHub issue is the channel that actually reaches Nico.
+  const subject = `🩺 Rugby Tracker weekly health check — ${weekLabel}`;
+  try {
+    await postIssue({ title: subject, body: report });
+  } catch (err) {
+    console.error(`::warning::health issue failed (${String(err.message).split("\n")[0]}); report is at ${outPath}`);
+  }
+  try {
+    await sendEmail({ subject, text: report });
+  } catch (err) {
+    console.error(`::warning::health email failed (${String(err.message).split("\n")[0]}); the GitHub issue is the live channel`);
+  }
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
