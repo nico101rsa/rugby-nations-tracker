@@ -11,7 +11,9 @@
 
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
+import { readFile } from "node:fs/promises";
 import { sendEmail } from "./notify.mjs";
+import { teamsheetGaps } from "./generate-digests.mjs";
 
 const execFileAsync = promisify(execFile);
 
@@ -59,6 +61,34 @@ export function formatReport(misses, now) {
   return lines.join("\n");
 }
 
+// Squad coverage: which teams playing this week have no published teamsheet in
+// nations.json, resolved to names via the fixtures. Returns null when coverage
+// is complete (nothing to email). The 2026-07-14 blank-squad miss slipped
+// through because nothing here checked squads — the watchdog only asked whether
+// the jobs RAN. Early-week the list doubles as a "who's still to name" tracker;
+// a name persisting late in the week is a real gap the pipeline failed to catch.
+export function coverageReport(nations, now = new Date()) {
+  const gaps = teamsheetGaps(nations?.fixtures, nations?.digests, now);
+  if (!gaps.length) return null;
+  const nameFor = (id) => {
+    for (const f of nations?.fixtures || []) {
+      if (f?.home?.id === id) return f.home.name;
+      if (f?.away?.id === id) return f.away.name;
+    }
+    return String(id);
+  };
+  const enriched = gaps.map((g) => ({ team: nameFor(g.teamId), kickoff: g.kickoff }));
+  const text = [
+    "Rugby Tracker — teams playing within ~5 days with no published squad:",
+    "",
+    ...enriched.map((g) => `• ${g.team} — kickoff ${g.kickoff}: no published squad in nations.json`),
+    "",
+    "If a numbered XV is already out in the press, the digest pipeline missed it —",
+    "check the latest generate-digests run log for “lineup in pack but NOT extracted”.",
+  ].join("\n");
+  return { gaps: enriched, text };
+}
+
 async function lastSuccessAt(workflow) {
   // gh uses GH_TOKEN (the workflow's GITHUB_TOKEN) in Actions.
   const { stdout } = await execFileAsync("gh", [
@@ -85,17 +115,38 @@ async function main() {
   }
 
   const misses = evaluate(now, latest);
-  if (misses.length === 0) {
-    console.log("Watchdog: all watched workflows healthy — no email sent.");
+
+  // Squad coverage runs off the committed nations.json (repo root, one level up).
+  let coverage = null;
+  try {
+    const nations = JSON.parse(await readFile(new URL("../nations.json", import.meta.url), "utf8"));
+    coverage = coverageReport(nations, now);
+  } catch (err) {
+    console.error(`Coverage check skipped: ${err.message}`);
+  }
+
+  if (misses.length === 0 && !coverage) {
+    console.log("Watchdog: watched workflows healthy, squads covered — no email sent.");
     return;
   }
 
-  const report = formatReport(misses, now);
+  const report = [
+    misses.length ? formatReport(misses, now) : null,
+    coverage ? coverage.text : null,
+  ].filter(Boolean).join("\n\n———\n\n");
   console.log(report);
-  await sendEmail({
-    subject: `⚠️ Rugby Tracker: ${misses.length} scheduled job(s) overdue`,
-    text: report,
-  });
+
+  const subjectBits = [];
+  if (misses.length) subjectBits.push(`${misses.length} job(s) overdue`);
+  if (coverage) subjectBits.push(`${coverage.gaps.length} squad gap(s)`);
+  // The report is already in the log above — that's the durable record. Email is
+  // best-effort: Gmail SMTP app-passwords 535 from Actions datacenter IPs (seen
+  // 2026-07-12), so a send failure must not crash the watchdog or mask the gaps.
+  try {
+    await sendEmail({ subject: `⚠️ Rugby Tracker: ${subjectBits.join(", ")}`, text: report });
+  } catch (err) {
+    console.error(`::warning::alert email failed (${String(err.message).split("\n")[0]}); see report above`);
+  }
 }
 
 // Only run main when invoked directly (not when imported by the test).

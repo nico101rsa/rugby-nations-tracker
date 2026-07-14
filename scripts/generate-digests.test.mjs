@@ -6,6 +6,9 @@ import {
   buildFactCheckPrompt,
   parseVerdict,
   extractJson,
+  extractLineup,
+  prioritiseByLineup,
+  teamsheetGaps,
 } from "./generate-digests.mjs";
 
 const body50 = Array(50).fill("word").join(" ");
@@ -203,4 +206,107 @@ test("buildCheckerTunePrompt embeds failures, publish rate and hard limits", asy
   assert.ok(p.includes("7/12"));
   assert.ok(p.includes("existing note"));
   assert.ok(p.includes("Never propose weakening"));
+});
+
+// ---- extractLineup: code-side teamsheet parser -------------------------------
+// The 2026-07-11 fix asks the writer model to copy the XV; on 2026-07-14 England
+// and Argentina had "lineup in pack but NOT extracted" — the model was handed a
+// numbered XV and still dropped it. This deterministic parser is the fallback.
+
+const SA_XV =
+  "Springboks team to face Wales: 15 Aphelele Fassi, 14 Jaco Williams, 13 Jesse Kriel, " +
+  "12 Damian de Allende, 11 Kurt-Lee Arendse, 10 Vusi Moyo, 9 Cobus Reinach, 8 Jasper Wiese, " +
+  "7 Pieter-Steph du Toit, 6 Paul de Villiers, 5 Ruben van Heerden, 4 Cobus Wiese, 3 Carlu Sadie, " +
+  "2 Malcolm Marx, 1 Gerhard Steenekamp. Replacements: 16 Bongi Mbonambi, 17 Boan Venter, " +
+  "18 Wilco Louw, 19 Franco Mostert, 20 Marco van Staden, 21 Grant Williams, 22 Handré Pollard, " +
+  "23 Canan Moodie.";
+
+test("extractLineup parses a comma-separated 15→1 XV plus an 8-man bench", () => {
+  const sheet = extractLineup(SA_XV);
+  assert.equal(sheet.starters.length, 15);
+  assert.deepEqual(sheet.starters.find((p) => p.no === 10), { no: 10, name: "Vusi Moyo" });
+  // multi-word surnames with lowercase particles must survive intact
+  assert.deepEqual(sheet.starters.find((p) => p.no === 7), { no: 7, name: "Pieter-Steph du Toit" });
+  assert.deepEqual(sheet.starters.find((p) => p.no === 5), { no: 5, name: "Ruben van Heerden" });
+  assert.equal(sheet.starters[0].no, 1); // returned sorted low→high
+  assert.equal(sheet.bench.length, 8);
+  assert.deepEqual(sheet.bench.find((p) => p.no === 22), { no: 22, name: "Handré Pollard" });
+});
+
+test("extractLineup parses a newline '1. Name' list and omits an empty bench", () => {
+  const nl =
+    "England XV to face Argentina:\n1. Ellis Genge\n2. Jamie George\n3. Will Stuart\n4. Maro Itoje\n" +
+    "5. George Martin\n6. Tom Curry\n7. Sam Underhill\n8. Ben Earl\n9. Raffi Quirke\n10. Marcus Smith\n" +
+    "11. Tommy Freeman\n12. Fraser Dingwall\n13. Ollie Lawrence\n14. Immanuel Feyi-Waboso\n15. Freddie Steward";
+  const sheet = extractLineup(nl);
+  assert.equal(sheet.starters.length, 15);
+  assert.deepEqual(sheet.starters.find((p) => p.no === 14), { no: 14, name: "Immanuel Feyi-Waboso" });
+  assert.equal("bench" in sheet, false); // no reserves in the text → key omitted
+});
+
+test("extractLineup returns null for prose without a full numbered XV", () => {
+  assert.equal(extractLineup("Rassie made 10 changes and named 4 debutants including Vusi Moyo at 10."), null);
+});
+
+test("extractLineup returns null when a starter jersey is missing (never partial)", () => {
+  const missing3 = SA_XV.replace("3 Carlu Sadie, ", ""); // now only 14 starters
+  assert.equal(extractLineup(missing3), null);
+});
+
+test("extractLineup ignores page-chrome noise, club tags and boundary labels (real-page shape)", () => {
+  // Mirrors rugbypass/planetrugby: leading scoreboard + date noise ("13 July",
+  // "14 AEST", "10 Scotland"), per-player club parentheticals, a "Replacements:"
+  // label butting the last starter, and a trailing "Date" after the bench.
+  const MESSY =
+    "Rugby News 6 Nations U20 Watch FT South Africa 43 10 Scotland 13 July 2026 14 AEST " +
+    "Rassie Erasmus named four debutants. Springboks XV: 15 Aphelele Fassi (Toshiba); " +
+    "14 Jaco Williams (Hollywoodbets Sharks), 13 Jesse Kriel (Canon Eagles), " +
+    "12 Damian de Allende (Wild Knights), 11 Kurt-Lee Arendse (Dynaboars); 10 Vusi Moyo (Sharks), " +
+    "9 Cobus Reinach (Stormers); 1 Gerhard Steenekamp (Bulls), 2 Malcolm Marx (Spears), " +
+    "3 Carlu Sadie (Bordeaux), 4 Cobus Wiese (Bulls), 5 Ruben van Heerden (Montpellier), " +
+    "6 Paul de Villiers (Stormers), 7 Pieter-Steph du Toit (Verblitz, captain), 8 Jasper Wiese (Toulon) " +
+    "Replacements: 16 Andre-Hugo Venter, 17 Jan-Hendrik Wessels, 18 Wilco Louw, 19 Ben-Jason Dixon, " +
+    "20 Marco van Staden, 21 Herschel Jantjies, 22 Manie Libbok, 23 Damian Willemse Date published 13 July";
+  const sheet = extractLineup(MESSY);
+  assert.equal(sheet.starters.length, 15);
+  assert.deepEqual(sheet.starters.find((p) => p.no === 1), { no: 1, name: "Gerhard Steenekamp" }); // not "…Replacements"
+  assert.deepEqual(sheet.starters.find((p) => p.no === 4), { no: 4, name: "Cobus Wiese" }); // not page noise
+  assert.deepEqual(sheet.starters.find((p) => p.no === 13), { no: 13, name: "Jesse Kriel" }); // not "July"
+  assert.deepEqual(sheet.starters.find((p) => p.no === 14), { no: 14, name: "Jaco Williams" }); // not "AEST"
+  assert.equal(sheet.bench.length, 8);
+  assert.deepEqual(sheet.bench.find((p) => p.no === 23), { no: 23, name: "Damian Willemse" }); // not "…Date"
+});
+
+// ---- prioritiseByLineup: fetch ordering --------------------------------------
+// SA's 2026-07-14 run got "12 headlines, 0 articles": Bing ranked local SA
+// outlets (which fail to fetch) first, so the planetrugby/rugbypass piece that
+// prints the XV sat past the body-fetch cutoff. Fetch lineup-titled items first.
+
+test("prioritiseByLineup floats team-selection headlines ahead, order-stable otherwise", () => {
+  const items = [
+    { title: "Wales v South Africa: five talking points for Durban" },
+    { title: "Injury latest from the Springbok camp" },
+    { title: "Springbok team to face Wales named as Erasmus picks four debutants" },
+  ];
+  const out = prioritiseByLineup(items);
+  assert.equal(out[0].title, items[2].title); // the "team named" piece leads
+  assert.equal(out[1].title, items[0].title); // non-lineup items keep their order
+  assert.equal(out[2].title, items[1].title);
+});
+
+// ---- teamsheetGaps: the safeguard that was missing ---------------------------
+// The old audit only warned within 48h and only to the Actions log. This pure
+// evaluator (used by the generator audit AND the daily watchdog email) flags a
+// team playing inside the match-week window that has no published squad.
+
+test("teamsheetGaps flags an imminent team with no squad, ignores covered and distant teams", () => {
+  const now = new Date("2026-07-14T00:00:00Z");
+  const WINDOW = 5 * 24 * 60 * 60 * 1000;
+  const fixtures = [
+    { date: "2026-07-18T15:40:00+00:00", home: { id: 467 }, away: { id: 391 } }, // 4d out
+    { date: "2026-11-06T12:00:00+00:00", home: { id: 386 }, away: { id: 460 } }, // months out
+  ];
+  const digests = { 391: { teamsheet: { starters: [] } } }; // Wales covered, SA not
+  const gaps = teamsheetGaps(fixtures, digests, now, WINDOW);
+  assert.deepEqual(gaps.map((g) => g.teamId), [467]);
 });

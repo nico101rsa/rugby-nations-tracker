@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { evaluate, formatReport } from "./watchdog.mjs";
+import { evaluate, formatReport, coverageReport } from "./watchdog.mjs";
 
 const WATCHERS = [
   { workflow: "a.yml", label: "A", maxAgeHours: 26 },
@@ -47,4 +47,32 @@ test("report names the overdue job and its age", () => {
   assert.match(report, /no successful run found at all/);
   assert.match(report, /14\.0h ago/);
   assert.match(report, /cron drift/);
+});
+
+// Squad-coverage email: the safeguard the 2026-07-14 blank-squad miss revealed
+// was absent — the watchdog only checked that jobs RAN, never that squads were
+// present. It now turns teamsheetGaps into a daily alert.
+test("coverageReport lists imminent teams missing a squad, by name", () => {
+  const now = new Date("2026-07-14T00:00:00Z");
+  const nations = {
+    fixtures: [
+      { date: "2026-07-18T15:40:00+00:00", home: { id: 467, name: "South Africa" }, away: { id: 391, name: "Wales" } },
+      { date: "2026-11-06T12:00:00+00:00", home: { id: 386, name: "England" }, away: { id: 460, name: "Argentina" } },
+    ],
+    digests: { 391: { teamsheet: { starters: [] } } }, // Wales covered; SA not
+  };
+  const rep = coverageReport(nations, now);
+  assert.equal(rep.gaps.length, 1);
+  assert.equal(rep.gaps[0].team, "South Africa");
+  assert.match(rep.text, /South Africa/);
+  assert.match(rep.text, /no published squad/i);
+});
+
+test("coverageReport is null when every imminent team has a squad", () => {
+  const now = new Date("2026-07-14T00:00:00Z");
+  const nations = {
+    fixtures: [{ date: "2026-07-18T15:40:00+00:00", home: { id: 467, name: "South Africa" }, away: { id: 391, name: "Wales" } }],
+    digests: { 467: { teamsheet: {} }, 391: { teamsheet: {} } },
+  };
+  assert.equal(coverageReport(nations, now), null);
 });
