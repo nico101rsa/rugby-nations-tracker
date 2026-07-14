@@ -345,7 +345,12 @@ async function generateOne(client, data, teamId, now) {
 
 const NEWS_ITEMS = 12; // headlines + snippets per team
 const NEWS_ARTICLES = 5; // full article bodies fetched (most recent first)
-const ARTICLE_CHARS = 3000; // per-article cap keeps the prompt ~15-20K tokens
+const ARTICLE_CHARS = 3000; // per-article cap in the model PACK keeps prompt ~15-20K tokens
+// Lineup detection + code extraction scan a larger window than the pack: a
+// numbered XV often sits below 3000 chars of preamble (rugbypass prints SA's at
+// ~2600 and it runs ~700 more), so the pack slice truncates it mid-list. The
+// model still sees only ARTICLE_CHARS; the code parser gets the whole XV.
+const LINEUP_SCAN_CHARS = 12000;
 
 export function parseRss(xml) {
   return [...xml.matchAll(/<item>([\s\S]*?)<\/item>/g)].map(([, it]) => {
@@ -389,6 +394,109 @@ export function hasNumberedLineup(text) {
   return new Set(hits.map((h) => parseInt(h, 10))).size >= 10;
 }
 
+// Code-side teamsheet parser — the deterministic fallback for when a numbered XV
+// is verifiably in the pack but the writer model won't transcribe it (England +
+// Argentina were "lineup in pack but NOT extracted" on 2026-07-14). Pulls
+// "N Name" pairs directly and returns { starters, bench? } ONLY when all of 1-15
+// are present; an incomplete parse yields null, honouring the same "never a
+// partial / never reconstructed" contract the whole feature is built on.
+const _PARTICLE = "(?:van|von|der|den|de|del|di|du|da|dos|le|la|el|bin|al)";
+const _NAMEWORD = "[A-ZÀ-Ý][A-Za-zÀ-ÿ'’.\\-]*";
+// "N Name" — the name is 1-4 words (Capitalised, with optional lowercase
+// particles), stopping at the next number, a club parenthetical or a delimiter.
+const _LINEUP_RE = new RegExp(
+  `\\b(\\d{1,2})[.\\)]?\\s+(${_NAMEWORD}(?:\\s+(?:${_PARTICLE}\\s+){0,2}${_NAMEWORD}){0,3})`,
+  "g",
+);
+// Trailing tokens that are list labels / page chrome, not part of a name.
+const _NAME_STOP = /^(Replacements?|Reserves?|Bench|Substitutes?|Subs|Starters?|Captain|Coach|Date|Comments?|Share|Watch|Read|More|Related|News|Rugby|Team|Squad|XV|FT|HT|AEST|SAST|GMT|BST|CET|CEST|[A-Z]{2,})$/;
+
+function _cleanName(raw) {
+  const words = raw.replace(/[\s.,;:]+$/, "").replace(/\s+/g, " ").trim().split(" ");
+  while (words.length > 1 && _NAME_STOP.test(words[words.length - 1])) words.pop();
+  return words.join(" ");
+}
+
+export function extractLineup(text) {
+  // Candidate "N Name" hits with their positions. Real articles carry numeric
+  // noise (scoreboards, dates, nav) so we don't trust the whole page — we find
+  // the tightest character-span window that contains all of 1-15, which is the
+  // actual XV block, and read starters/bench from there (first mention wins).
+  const cands = [];
+  for (const m of String(text).matchAll(_LINEUP_RE)) {
+    const no = parseInt(m[1], 10);
+    const name = _cleanName(m[2]);
+    if (no >= 1 && no <= 23 && name) cands.push({ no, name, idx: m.index });
+  }
+
+  // Minimum window over candidates covering distinct jerseys 1-15.
+  const count = new Map();
+  let have = 0, l = 0, best = null;
+  for (let r = 0; r < cands.length; r++) {
+    const nr = cands[r].no;
+    if (nr <= 15) { count.set(nr, (count.get(nr) || 0) + 1); if (count.get(nr) === 1) have++; }
+    while (have === 15) {
+      const span = cands[r].idx - cands[l].idx;
+      if (!best || span < best.span) best = { l, r, span, start: cands[l].idx, end: cands[r].idx };
+      const nl = cands[l].no;
+      if (nl <= 15) { count.set(nl, count.get(nl) - 1); if (count.get(nl) === 0) have--; }
+      l++;
+    }
+  }
+  if (!best) return null; // never a full XV present → honest blank, not a guess
+
+  const byNo = new Map();
+  for (const c of cands.slice(best.l, best.r + 1)) if (!byNo.has(c.no)) byNo.set(c.no, c.name);
+  const starters = [];
+  for (let n = 1; n <= 15; n++) starters.push({ no: n, name: byNo.get(n) });
+
+  // Bench 16-23 immediately follows the starters block (within ~800 chars).
+  const bench = [];
+  for (let n = 16; n <= 23; n++) {
+    const c = cands.find((c) => c.no === n && c.idx >= best.start && c.idx <= best.end + 800);
+    if (c) bench.push({ no: n, name: c.name });
+  }
+  const sheet = { starters };
+  if (bench.length) sheet.bench = bench;
+  return sheet;
+}
+
+// Fetch ordering: float likely team-selection headlines to the front so the
+// article that prints the numbered XV always gets a body pulled. SA's XV was
+// published but its run got "0 articles" (2026-07-14) because Bing ranked local
+// outlets that fail to fetch above the planetrugby/rugbypass lineup piece, which
+// then sat past the fetch cutoff. Array.sort is stable, so non-lineup items keep
+// their recency order.
+const _LINEUP_TITLE =
+  /\b(team (named|to (face|play|meet)|announced)|side to (face|play)|xv to (face|play)|line[- ]?up|starting (xv|line)|name[ds]?\s+(his |the |their )?(side|team|xv)|team news)\b/i;
+
+export function prioritiseByLineup(items) {
+  return [...items].sort(
+    (a, b) => (_LINEUP_TITLE.test(b.title) ? 1 : 0) - (_LINEUP_TITLE.test(a.title) ? 1 : 0),
+  );
+}
+
+// The safeguard that was missing: which teams play inside the match-week window
+// with no published squad. Pure so both the generator's end-of-run audit and the
+// daily watchdog email share one definition (the old check warned only within
+// 48h and only to the unread Actions log).
+export function teamsheetGaps(fixtures, digests = {}, now = new Date(), windowMs = 5 * 24 * 60 * 60 * 1000) {
+  const nowMs = now.getTime();
+  const seen = new Set();
+  const gaps = [];
+  for (const f of Array.isArray(fixtures) ? fixtures : []) {
+    const dt = Date.parse(f?.date) - nowMs;
+    if (!(dt > 0 && dt < windowMs)) continue;
+    for (const side of [f?.home, f?.away]) {
+      const id = side?.id;
+      if (id == null || seen.has(id)) continue;
+      seen.add(id);
+      if (!digests?.[id]?.teamsheet) gaps.push({ teamId: id, kickoff: f.date });
+    }
+  }
+  return gaps;
+}
+
 async function fetchTeamNews(teamName, opponentName) {
   // Three queries: the match narrative, a targeted sweep for selection and
   // injury news, and a dedicated lineup query — the article that prints the
@@ -425,21 +533,24 @@ async function fetchTeamNews(teamName, opponentName) {
   if (!items.length) throw new Error("news rss returned no items");
   items.length = Math.min(items.length, NEWS_ITEMS);
 
-  // Fetch more bodies than the pack keeps, then guarantee any lineup-bearing
-  // article makes the cut: a numbered XV buried at position 7 must not lose
-  // its pack slot to a fresher preview piece.
+  // Attempt a body for EVERY headline, selection pieces first — a numbered XV
+  // buried at position 9 (local outlets that fail to fetch crowd the top) must
+  // still get pulled (2026-07-14: SA's published XV was past the old 8-item
+  // cutoff, so the run got "0 articles"). The pack still keeps only NEWS_ARTICLES.
   const fetched = [];
-  for (const item of items.slice(0, NEWS_ARTICLES + 3)) {
+  for (const item of prioritiseByLineup(items)) {
     try {
       const a = await fetchWithTimeout(item.link);
       if (!a.ok) continue;
-      const text = htmlToText(await a.text());
-      if (text.length > 400) fetched.push({ title: item.title, url: a.url, text: text.slice(0, ARTICLE_CHARS) });
+      const full = htmlToText(await a.text());
+      // `full` (up to LINEUP_SCAN_CHARS) is scanned/parsed for the XV; `text`
+      // (ARTICLE_CHARS) is what the model sees in the pack.
+      if (full.length > 400) fetched.push({ title: item.title, url: a.url, full: full.slice(0, LINEUP_SCAN_CHARS), text: full.slice(0, ARTICLE_CHARS) });
     } catch {
       // paywalled/slow publishers just drop out of the pack
     }
   }
-  const withLineup = fetched.filter((a) => hasNumberedLineup(a.text));
+  const withLineup = fetched.filter((a) => hasNumberedLineup(a.full));
   const rest = fetched.filter((a) => !withLineup.includes(a));
   const articles = [...withLineup, ...rest].slice(0, NEWS_ARTICLES);
   const lineupInPack = withLineup.length > 0;
@@ -467,7 +578,9 @@ available"): you know what was reported, not what is true in camp.
 ${lines.join("\n")}
 
 ${bodies.join("\n\n")}`;
-  return { pack, headlineCount: items.length, articleCount: articles.length, lineupInPack };
+  // Code extraction reads the wider `full` scan window, not the truncated pack.
+  const lineupArticles = withLineup.map((a) => ({ title: a.title, text: a.full }));
+  return { pack, headlineCount: items.length, articleCount: articles.length, lineupInPack, lineupArticles };
 }
 
 // ---- Gemini provider (free tier) ----------------------------------------------
@@ -609,7 +722,7 @@ export function parseVerdict(raw) {
 export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, checkerNotes = "") {
   const params = buildParams(data, teamId, now);
   const opponent = params.HOME_TEAM === params.TEAM_NAME ? params.AWAY_TEAM : params.HOME_TEAM;
-  const { pack, headlineCount, articleCount, lineupInPack } = await fetchTeamNews(params.TEAM_NAME, opponent);
+  const { pack, headlineCount, articleCount, lineupInPack, lineupArticles } = await fetchTeamNews(params.TEAM_NAME, opponent);
   const notesBlock = editorNotes
     ? `\n\n## Standing editor notes (distilled from previous editions' reviews — follow them)\n${editorNotes}`
     : "";
@@ -689,6 +802,20 @@ unchanged without a teamsheet.`);
       }
     } catch {
       // retry is best-effort only
+    }
+    // Deterministic last resort: the model was handed a numbered XV and still
+    // dropped it (England + Argentina, 2026-07-14). Parse it in code from the
+    // lineup-bearing article(s). extractLineup only returns a full, well-formed
+    // 1-15 (else null), so this can never attach a partial or malformed squad.
+    if (!digest.teamsheet) {
+      for (const art of lineupArticles || []) {
+        const sheet = extractLineup(art.text);
+        if (sheet) {
+          digest = { ...digest, teamsheet: sheet };
+          sheetNote = ", teamsheet parsed in code";
+          break;
+        }
+      }
     }
   } else if (digest.teamsheet) {
     sheetNote = ", teamsheet";
@@ -901,17 +1028,13 @@ export async function main({ dryRun = false } = {}) {
   await writeFile(join(ROOT, "nations.json"), payload);
   console.log(`wrote ${Object.keys(generated).length}/12 editions${failed.length ? ` (failed: ${failed.map((f) => f.team).join(", ")})` : ""}`);
 
-  // Teamsheet coverage audit: a team playing within 48h should have a squad by
-  // now (unions name teams ~2 days out). A gap here is loud on purpose — the
-  // 2026-07-11 RSA miss shipped silently because nothing owned this check.
-  const IMMINENT_MS = 48 * 60 * 60 * 1000;
-  for (const teamId of Object.keys(TEAMS).map(Number)) {
-    const fixture = (fresh.fixtures || [])
-      .filter((f) => f?.home?.id === teamId || f?.away?.id === teamId)
-      .filter((f) => { const dt = Date.parse(f.date) - now.getTime(); return dt > 0 && dt < IMMINENT_MS; })[0];
-    if (fixture && !fresh.digests?.[teamId]?.teamsheet) {
-      console.warn(`⚠️ TEAMSHEET GAP: ${TEAMS[teamId].name} play within 48h but no squad is published`);
-    }
+  // Teamsheet coverage audit across the whole match week (unions name teams from
+  // early in the week — SA's 2026-07-14 XV was out 4 days pre-kickoff, but the
+  // old 48h window stayed silent). Loud on purpose; the daily watchdog turns the
+  // same evaluator into an email so a gap can't hide in the Actions log.
+  const gaps = teamsheetGaps(fresh.fixtures, fresh.digests, now);
+  for (const g of gaps) {
+    console.warn(`⚠️ TEAMSHEET GAP: ${TEAMS[g.teamId]?.name ?? g.teamId} play ${g.kickoff} but no squad is published`);
   }
 
   // Post-run editorial review (Gemini path only): grade the batch, persist the
