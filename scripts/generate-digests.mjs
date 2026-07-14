@@ -408,13 +408,21 @@ const _LINEUP_RE = new RegExp(
   `\\b(\\d{1,2})[.\\)]?\\s+(${_NAMEWORD}(?:\\s+(?:${_PARTICLE}\\s+){0,2}${_NAMEWORD}){0,3})`,
   "g",
 );
+// A printed XV is compact (~700 chars for 15) and prints full names. Numbers
+// scattered through prose satisfy neither — these two thresholds are what stops
+// extractLineup inventing a squad (see the gates in extractLineup).
+const MAX_XV_SPAN = 1200;
+const MIN_FULL_NAMES = 13; // of 15 must be "First Last", not a bare word
+
 // Trailing tokens that are list labels / page chrome, not part of a name.
 const _NAME_STOP = /^(Replacements?|Reserves?|Bench|Substitutes?|Subs|Starters?|Captain|Coach|Date|Comments?|Share|Watch|Read|More|Related|News|Rugby|Team|Squad|XV|FT|HT|AEST|SAST|GMT|BST|CET|CEST|[A-Z]{2,})$/;
 
 function _cleanName(raw) {
   const words = raw.replace(/[\s.,;:]+$/, "").replace(/\s+/g, " ").trim().split(" ");
   while (words.length > 1 && _NAME_STOP.test(words[words.length - 1])) words.pop();
-  return words.join(" ");
+  // Strip again: popping a trailing label ("… Steenekamp. Replacements") can
+  // re-expose punctuation that was interior a moment ago.
+  return words.join(" ").replace(/[\s.,;:]+$/, "");
 }
 
 export function extractLineup(text) {
@@ -445,10 +453,19 @@ export function extractLineup(text) {
   }
   if (!best) return null; // never a full XV present → honest blank, not a guess
 
+  // Two gates against hallucinating a lineup out of prose. On 2026-07-15 the
+  // parser shipped a fabricated Wales XV ("4 Can, 5 Tidy, 6 Got, 7 The") by
+  // finding numbers beside capitalised sentence-openers. A printed XV is (a)
+  // COMPACT — 15 players inside ~700 chars — and (b) made of REAL NAMES, i.e.
+  // "First Last". Prose satisfies neither. A false positive is worse than a
+  // blank card, so anything that fails these is discarded outright.
+  if (best.span > MAX_XV_SPAN) return null;
+
   const byNo = new Map();
   for (const c of cands.slice(best.l, best.r + 1)) if (!byNo.has(c.no)) byNo.set(c.no, c.name);
   const starters = [];
   for (let n = 1; n <= 15; n++) starters.push({ no: n, name: byNo.get(n) });
+  if (starters.filter((p) => p.name.includes(" ")).length < MIN_FULL_NAMES) return null;
 
   // Bench 16-23 immediately follows the starters block (within ~800 chars).
   const bench = [];
@@ -467,8 +484,15 @@ export function extractLineup(text) {
 // the jerseys verbatim from the article, so a successful code parse OVERRIDES
 // the model rather than merely backfilling it. The model's sheet is kept only
 // when no numbered XV can be parsed at all.
+// Age-grade / non-senior sides print numbered XVs too, and a "Wales U20 team
+// named" piece answers the same lineup query as the senior one — on 2026-07-15
+// the parser lifted a Wales U20 side into the senior squad card. Never parse a
+// lineup out of one of these.
+const NON_SENIOR = /\b(u-?\d{2}|under[- ]?\d{2}|women|women's|academy|schools?|sevens|7s|development|barbarians)\b/i;
+
 export function resolveTeamsheet(modelSheet, lineupArticles = []) {
-  const parsed = (lineupArticles || []).map((a) => extractLineup(a.text)).find(Boolean) || null;
+  const senior = (lineupArticles || []).filter((a) => !NON_SENIOR.test(a.title || ""));
+  const parsed = senior.map((a) => extractLineup(a.text)).find(Boolean) || null;
   if (parsed) {
     const corrected = modelSheet && JSON.stringify(modelSheet) !== JSON.stringify(parsed);
     return { sheet: parsed, note: corrected ? ", teamsheet parsed in code (model transcription corrected)" : ", teamsheet parsed in code" };
