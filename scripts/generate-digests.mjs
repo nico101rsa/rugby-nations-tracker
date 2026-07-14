@@ -461,6 +461,22 @@ export function extractLineup(text) {
   return sheet;
 }
 
+// Teamsheet precedence. The model's free-text transcription is the weak link:
+// once SA's article fetch was repaired (2026-07-14) the writer produced the XV
+// itself and shipped it with jerseys 4/5 and 11/14 swapped. extractLineup reads
+// the jerseys verbatim from the article, so a successful code parse OVERRIDES
+// the model rather than merely backfilling it. The model's sheet is kept only
+// when no numbered XV can be parsed at all.
+export function resolveTeamsheet(modelSheet, lineupArticles = []) {
+  const parsed = (lineupArticles || []).map((a) => extractLineup(a.text)).find(Boolean) || null;
+  if (parsed) {
+    const corrected = modelSheet && JSON.stringify(modelSheet) !== JSON.stringify(parsed);
+    return { sheet: parsed, note: corrected ? ", teamsheet parsed in code (model transcription corrected)" : ", teamsheet parsed in code" };
+  }
+  if (modelSheet) return { sheet: modelSheet, note: ", teamsheet (model, unverified)" };
+  return { sheet: null, note: "" };
+}
+
 // Fetch ordering: float likely team-selection headlines to the front so the
 // article that prints the numbered XV always gets a body pulled. SA's XV was
 // published but its run got "0 articles" (2026-07-14) because Bing ranked local
@@ -778,12 +794,14 @@ JSON again.`;
     throw new Error(`fact-check failed after ${revisions} revisions: ${remaining}`);
   }
 
-  // Safeguard: the pack verifiably contains a numbered lineup (code-detected)
-  // but the writer left the teamsheet out — one targeted retry. If the retry
-  // fails validation or fact-check, keep the already-passed edition: a missing
-  // teamsheet must never cost the digest.
-  let sheetNote = "";
-  if (lineupInPack && !digest.teamsheet) {
+  // Teamsheet: the deterministic parse of the printed XV outranks whatever the
+  // writer transcribed (see resolveTeamsheet). Only when no numbered XV can be
+  // parsed AND the writer produced nothing — yet code saw a lineup in the pack —
+  // do we spend a targeted retry. A missing teamsheet must never cost the digest.
+  let { sheet, note: sheetNote } = resolveTeamsheet(digest.teamsheet, lineupArticles);
+  if (sheet) {
+    digest = { ...digest, teamsheet: sheet };
+  } else if (lineupInPack) {
     sheetNote = ", lineup in pack but NOT extracted";
     try {
       const retry = await draft(`## One fix — your draft omitted the teamsheet
@@ -803,22 +821,6 @@ unchanged without a teamsheet.`);
     } catch {
       // retry is best-effort only
     }
-    // Deterministic last resort: the model was handed a numbered XV and still
-    // dropped it (England + Argentina, 2026-07-14). Parse it in code from the
-    // lineup-bearing article(s). extractLineup only returns a full, well-formed
-    // 1-15 (else null), so this can never attach a partial or malformed squad.
-    if (!digest.teamsheet) {
-      for (const art of lineupArticles || []) {
-        const sheet = extractLineup(art.text);
-        if (sheet) {
-          digest = { ...digest, teamsheet: sheet };
-          sheetNote = ", teamsheet parsed in code";
-          break;
-        }
-      }
-    }
-  } else if (digest.teamsheet) {
-    sheetNote = ", teamsheet";
   }
 
   return { digest, pack, note: `${headlineCount} headlines, ${articleCount} articles, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}${sheetNote}` };
