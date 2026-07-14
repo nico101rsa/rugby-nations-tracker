@@ -9,6 +9,7 @@ import {
   extractLineup,
   prioritiseByLineup,
   teamsheetGaps,
+  resolveTeamsheet,
 } from "./generate-digests.mjs";
 
 const body50 = Array(50).fill("word").join(" ");
@@ -275,6 +276,38 @@ test("extractLineup ignores page-chrome noise, club tags and boundary labels (re
   assert.deepEqual(sheet.starters.find((p) => p.no === 14), { no: 14, name: "Jaco Williams" }); // not "AEST"
   assert.equal(sheet.bench.length, 8);
   assert.deepEqual(sheet.bench.find((p) => p.no === 23), { no: 23, name: "Damian Willemse" }); // not "…Date"
+});
+
+// ---- resolveTeamsheet: the deterministic parse outranks the model ------------
+// 2026-07-14 (post-fix): with SA's article fetch repaired, the MODEL produced the
+// teamsheet and got it wrong — jerseys 4/5 and 11/14 swapped. The code parse of
+// the same article is verbatim, so it must OVERRIDE the model, not just backfill.
+
+test("resolveTeamsheet overrides a model teamsheet that disagrees with the printed XV", () => {
+  const modelSheet = {
+    starters: [
+      { no: 1, name: "Gerhard Steenekamp" }, { no: 2, name: "Malcolm Marx" }, { no: 3, name: "Carlu Sadie" },
+      { no: 4, name: "Ruben van Heerden" }, // swapped with 5
+      { no: 5, name: "Cobus Wiese" },
+      { no: 6, name: "Paul de Villiers" }, { no: 7, name: "Pieter-Steph du Toit" }, { no: 8, name: "Jasper Wiese" },
+      { no: 9, name: "Cobus Reinach" }, { no: 10, name: "Vusi Moyo" },
+      { no: 11, name: "Jaco Williams" }, // swapped with 14
+      { no: 12, name: "Damian de Allende" }, { no: 13, name: "Jesse Kriel" },
+      { no: 14, name: "Kurt-Lee Arendse" }, { no: 15, name: "Aphelele Fassi" },
+    ],
+  };
+  const { sheet, note } = resolveTeamsheet(modelSheet, [{ text: SA_XV }]);
+  assert.deepEqual(sheet.starters.find((p) => p.no === 4), { no: 4, name: "Cobus Wiese" });
+  assert.deepEqual(sheet.starters.find((p) => p.no === 5), { no: 5, name: "Ruben van Heerden" });
+  assert.deepEqual(sheet.starters.find((p) => p.no === 11), { no: 11, name: "Kurt-Lee Arendse" });
+  assert.deepEqual(sheet.starters.find((p) => p.no === 14), { no: 14, name: "Jaco Williams" });
+  assert.match(note, /corrected/);
+});
+
+test("resolveTeamsheet keeps the model sheet when no XV can be parsed, and yields null when neither exists", () => {
+  const modelSheet = { starters: [{ no: 1, name: "Someone" }] };
+  assert.equal(resolveTeamsheet(modelSheet, [{ text: "prose only, no lineup" }]).sheet, modelSheet);
+  assert.equal(resolveTeamsheet(null, [{ text: "prose only" }]).sheet, null);
 });
 
 // ---- prioritiseByLineup: fetch ordering --------------------------------------
