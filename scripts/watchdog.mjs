@@ -102,6 +102,12 @@ export function coverageReport(nations, now = new Date()) {
 // below encodes the exact alert state, so an unchanged state is a no-op (no
 // daily ping) and a recovery closes the issue.
 export const ALERT_TITLE = "⚠️ Rugby Tracker ops alert";
+// Delivery is the whole point: an issue nobody is notified about is exactly the
+// silent-safeguard failure this alert exists to end. Watching a repo is not a
+// guarantee (there was no explicit subscription record), but ASSIGNMENT and an
+// @mention always notify under GitHub's default "Participating and @mentions".
+// So every alert is assigned to, and mentions, the owner.
+const ALERT_OWNER = process.env.ALERT_OWNER || "nico101rsa";
 
 export function alertSignature(misses = [], coverage = null) {
   const jobs = misses.map((m) => m.workflow).sort().join(",");
@@ -130,19 +136,22 @@ async function findAlertIssue() {
 export async function syncAlertIssue(report, signature, healthy) {
   const existing = await findAlertIssue();
   const action = decideIssueAction(existing, signature, healthy);
-  const body = `${report}\n\n_Updated ${new Date().toISOString()} by the watchdog._\n<!-- sig: ${signature} -->`;
+  const body = `@${ALERT_OWNER}\n\n${report}\n\n_Updated ${new Date().toISOString()} by the watchdog._\n<!-- sig: ${signature} -->`;
 
   if (action === "noop") {
     console.log(`Alert issue: no change (${healthy ? "healthy" : "same state already reported"}).`);
     return action;
   }
   if (action === "create") {
-    const url = (await gh(["issue", "create", "--title", ALERT_TITLE, "--body", body])).trim();
-    console.log(`Alert issue opened: ${url}`);
+    const url = (await gh([
+      "issue", "create", "--title", ALERT_TITLE, "--body", body, "--assignee", ALERT_OWNER,
+    ])).trim();
+    console.log(`Alert issue opened and assigned to ${ALERT_OWNER}: ${url}`);
   } else if (action === "update") {
     const n = String(existing.number);
-    await gh(["issue", "edit", n, "--body", body]);
-    await gh(["issue", "comment", n, "--body", `State changed:\n\n${report}`]);
+    await gh(["issue", "edit", n, "--body", body, "--add-assignee", ALERT_OWNER]);
+    // A new comment (not a silent body edit) is what actually re-notifies.
+    await gh(["issue", "comment", n, "--body", `@${ALERT_OWNER} state changed:\n\n${report}`]);
     console.log(`Alert issue #${n} updated.`);
   } else if (action === "close") {
     const n = String(existing.number);
