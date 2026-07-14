@@ -10,6 +10,7 @@ import {
   prioritiseByLineup,
   teamsheetGaps,
   resolveTeamsheet,
+  espnTeamsheet,
 } from "./generate-digests.mjs";
 
 const body50 = Array(50).fill("word").join(" ");
@@ -345,6 +346,50 @@ test("resolveTeamsheet ignores age-grade and non-senior lineup articles", () => 
   assert.equal(resolveTeamsheet(null, women).sheet, null);
   // the senior article still parses
   assert.ok(resolveTeamsheet(null, [{ title: "Springbok team to face Wales", text: SA_XV }]).sheet);
+});
+
+// ---- espnTeamsheet: the authoritative source ---------------------------------
+// ESPN's match summary carries the OFFICIAL announced lineup with jersey numbers
+// (site.api.espn.com/.../summary?event=). It is structured, keyless, includes
+// uncapped debutants, and is empty until a squad is actually named — so unlike
+// the news-prose parser it cannot fabricate an XV. It outranks everything.
+
+const espnRoster = (players) => ({
+  rosters: [{ team: { displayName: "South Africa" }, roster: players }],
+});
+const espnPlayer = (jersey, name) => ({ jersey: String(jersey), athlete: { displayName: name } });
+const BOK_23 = [
+  [15, "Aphelele Fassi"], [14, "Jaco Williams"], [13, "Jesse Kriel"], [12, "Damian de Allende"],
+  [11, "Kurt-Lee Arendse"], [10, "Vusi Moyo"], [9, "Cobus Reinach"], [1, "Gerhard Steenekamp"],
+  [2, "Malcolm Marx"], [3, "Carlu Sadie"], [4, "Cobus Wiese"], [5, "Ruben van Heerden"],
+  [6, "Paul de Villiers"], [7, "Pieter-Steph du Toit"], [8, "Jasper Wiese"],
+  [16, "Andre-Hugo Venter"], [17, "Jan-Hendrik Wessels"], [18, "Wilco Louw"], [19, "Ben-Jason Dixon"],
+  [20, "Marco van Staden"], [21, "Herschel Jantjies"], [22, "Manie Libbok"], [23, "Damian Willemse"],
+].map(([n, name]) => espnPlayer(n, name));
+
+test("espnTeamsheet builds the XV and bench from the announced roster", () => {
+  const sheet = espnTeamsheet(espnRoster(BOK_23), "South Africa");
+  assert.equal(sheet.starters.length, 15);
+  assert.deepEqual(sheet.starters.find((p) => p.no === 4), { no: 4, name: "Cobus Wiese" });
+  assert.deepEqual(sheet.starters.find((p) => p.no === 11), { no: 11, name: "Kurt-Lee Arendse" });
+  assert.deepEqual(sheet.starters.find((p) => p.no === 14), { no: 14, name: "Jaco Williams" });
+  assert.equal(sheet.starters[0].no, 1);
+  assert.equal(sheet.bench.length, 8);
+  assert.deepEqual(sheet.bench.find((p) => p.no === 16), { no: 16, name: "Andre-Hugo Venter" });
+});
+
+test("espnTeamsheet returns null for a squad not yet named, or an absent team", () => {
+  assert.equal(espnTeamsheet(espnRoster([]), "South Africa"), null); // roster empty until named
+  assert.equal(espnTeamsheet(espnRoster(BOK_23), "Wales"), null); // team not in this summary
+  assert.equal(espnTeamsheet(espnRoster(BOK_23.slice(0, 10)), "South Africa"), null); // partial → never partial
+});
+
+test("resolveTeamsheet lets ESPN outrank both the code parse and the model", () => {
+  const espn = espnTeamsheet(espnRoster(BOK_23), "South Africa");
+  const wrongModel = { starters: [{ no: 1, name: "Wrong Person" }] };
+  const { sheet, note } = resolveTeamsheet(wrongModel, [{ title: "Bok team", text: SA_XV }], espn);
+  assert.deepEqual(sheet, espn);
+  assert.match(note, /espn/i);
 });
 
 // ---- prioritiseByLineup: fetch ordering --------------------------------------
