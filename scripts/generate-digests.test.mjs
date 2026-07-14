@@ -310,6 +310,43 @@ test("resolveTeamsheet keeps the model sheet when no XV can be parsed, and yield
   assert.equal(resolveTeamsheet(null, [{ text: "prose only" }]).sheet, null);
 });
 
+// ---- extractLineup must not hallucinate a lineup out of prose ----------------
+// 2026-07-15: the parser shipped a FABRICATED Wales XV live — "4 Can, 5 Tidy,
+// 6 Got, 7 The" — by finding numbers next to capitalised words scattered through
+// prose, and it lifted a Wales U20 side as the senior team. A false positive is
+// worse than a blank card, so the bar is now: real names, tightly listed, senior.
+
+test("extractLineup leaves no stray punctuation when a label follows the last starter", () => {
+  // "… 1 Gerhard Steenekamp. Replacements: 16 …" — popping "Replacements"
+  // re-exposes the full stop, which used to ship as "Gerhard Steenekamp."
+  const s = extractLineup(SA_XV.replace("1 Gerhard Steenekamp.", "1 Gerhard Steenekamp. Replacements"));
+  assert.deepEqual(s.starters.find((p) => p.no === 1), { no: 1, name: "Gerhard Steenekamp" });
+});
+
+test("extractLineup rejects prose that merely has numbers beside capitalised words", () => {
+  const JUNK =
+    "Wales build-up: 1 George Tuckley impressed. 2 Tom Howe is fit. 3 Jac Pritchard returns. " +
+    "4 Can the pack hold? 5 Tidy work at the breakdown. 6 Got to be sharper. 7 The lineout wobbled. " +
+    "8 Evan Minto starts. 9 Sion Davies is named. 10 Carwyn Leggatt-Jones kicks. 11 Tom Bowen wide. " +
+    "12 Steffan Emanuel centre. 13 Osian Darwin-Lewis outside. 14 Rhys Cummings wing. 15 Lewis Edwards full-back.";
+  assert.equal(extractLineup(JUNK), null); // single-word "names" → not a lineup
+});
+
+test("extractLineup rejects a lineup spread too far apart to be a printed XV", () => {
+  const filler = " lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor. ".repeat(3);
+  const spread = Array.from({ length: 15 }, (_, i) => `${i + 1} Player Name${filler}`).join(" ");
+  assert.equal(extractLineup(spread), null); // > span limit → prose, not a team list
+});
+
+test("resolveTeamsheet ignores age-grade and non-senior lineup articles", () => {
+  const u20 = [{ title: "Wales U20 team named to face Ireland", text: SA_XV }];
+  assert.equal(resolveTeamsheet(null, u20).sheet, null);
+  const women = [{ title: "Wales Women name side", text: SA_XV }];
+  assert.equal(resolveTeamsheet(null, women).sheet, null);
+  // the senior article still parses
+  assert.ok(resolveTeamsheet(null, [{ title: "Springbok team to face Wales", text: SA_XV }]).sheet);
+});
+
 // ---- prioritiseByLineup: fetch ordering --------------------------------------
 // SA's 2026-07-14 run got "12 headlines, 0 articles": Bing ranked local SA
 // outlets (which fail to fetch) first, so the planetrugby/rugbypass piece that
