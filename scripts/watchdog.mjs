@@ -89,6 +89,70 @@ export function coverageReport(nations, now = new Date()) {
   return { gaps: enriched, text };
 }
 
+// ---- GitHub-issue alerting ---------------------------------------------------
+//
+// Email is dead: Gmail SMTP app-passwords are rejected (535 BadCredentials) from
+// Actions datacenter IPs — the 2026-07-12 weekly-health run proved it, and the
+// 2026-07-14 blank-squad miss went unnoticed partly because nothing could reach
+// Nico. So the alert channel is a GitHub issue, opened with the built-in
+// GITHUB_TOKEN (no secrets to manage). GitHub's own notification mail already
+// routes to the Outlook "iOS App" folder.
+//
+// One long-lived issue, kept current rather than re-opened daily: the signature
+// below encodes the exact alert state, so an unchanged state is a no-op (no
+// daily ping) and a recovery closes the issue.
+export const ALERT_TITLE = "⚠️ Rugby Tracker ops alert";
+
+export function alertSignature(misses = [], coverage = null) {
+  const jobs = misses.map((m) => m.workflow).sort().join(",");
+  const squads = coverage ? coverage.gaps.map((g) => g.team).sort().join(",") : "";
+  return `jobs=[${jobs}] squads=[${squads}]`;
+}
+
+export function decideIssueAction(existing, signature, healthy) {
+  if (healthy) return existing ? "close" : "noop";
+  if (!existing) return "create";
+  return existing.body?.includes(signature) ? "noop" : "update";
+}
+
+async function gh(args) {
+  const { stdout } = await execFileAsync("gh", args);
+  return stdout;
+}
+
+async function findAlertIssue() {
+  const rows = JSON.parse(await gh(["issue", "list", "--state", "open", "--limit", "50", "--json", "number,title,body"]));
+  return rows.find((r) => r.title === ALERT_TITLE) ?? null;
+}
+
+// Post/refresh/close the alert issue. Best-effort: an alerting failure must not
+// fail the watchdog — the report is already in the run log either way.
+export async function syncAlertIssue(report, signature, healthy) {
+  const existing = await findAlertIssue();
+  const action = decideIssueAction(existing, signature, healthy);
+  const body = `${report}\n\n_Updated ${new Date().toISOString()} by the watchdog._\n<!-- sig: ${signature} -->`;
+
+  if (action === "noop") {
+    console.log(`Alert issue: no change (${healthy ? "healthy" : "same state already reported"}).`);
+    return action;
+  }
+  if (action === "create") {
+    const url = (await gh(["issue", "create", "--title", ALERT_TITLE, "--body", body])).trim();
+    console.log(`Alert issue opened: ${url}`);
+  } else if (action === "update") {
+    const n = String(existing.number);
+    await gh(["issue", "edit", n, "--body", body]);
+    await gh(["issue", "comment", n, "--body", `State changed:\n\n${report}`]);
+    console.log(`Alert issue #${n} updated.`);
+  } else if (action === "close") {
+    const n = String(existing.number);
+    await gh(["issue", "comment", n, "--body", "✅ Recovered — all watched jobs are current and every imminent team has a published squad."]);
+    await gh(["issue", "close", n]);
+    console.log(`Alert issue #${n} closed (recovered).`);
+  }
+  return action;
+}
+
 async function lastSuccessAt(workflow) {
   // gh uses GH_TOKEN (the workflow's GITHUB_TOKEN) in Actions.
   const { stdout } = await execFileAsync("gh", [
@@ -125,27 +189,36 @@ async function main() {
     console.error(`Coverage check skipped: ${err.message}`);
   }
 
-  if (misses.length === 0 && !coverage) {
-    console.log("Watchdog: watched workflows healthy, squads covered — no email sent.");
-    return;
-  }
-
-  const report = [
-    misses.length ? formatReport(misses, now) : null,
-    coverage ? coverage.text : null,
-  ].filter(Boolean).join("\n\n———\n\n");
+  const healthy = misses.length === 0 && !coverage;
+  const report = healthy
+    ? "All watched jobs are current and every imminent team has a published squad."
+    : [
+        misses.length ? formatReport(misses, now) : null,
+        coverage ? coverage.text : null,
+      ].filter(Boolean).join("\n\n———\n\n");
   console.log(report);
 
+  // Primary channel: a GitHub issue (the email path 535s from Actions). Closes
+  // itself on recovery, stays silent while the state is unchanged.
+  const signature = healthy ? "" : alertSignature(misses, coverage);
+  try {
+    await syncAlertIssue(report, signature, healthy);
+  } catch (err) {
+    console.error(`::warning::alert issue sync failed (${String(err.message).split("\n")[0]}); see report above`);
+  }
+
+  if (healthy) return;
+
+  // Email stays as a best-effort second channel: it currently fails (Gmail SMTP
+  // app-passwords 535 from Actions IPs), so a send failure must never crash the
+  // watchdog or mask the gaps — the issue and the log above are the record.
   const subjectBits = [];
   if (misses.length) subjectBits.push(`${misses.length} job(s) overdue`);
   if (coverage) subjectBits.push(`${coverage.gaps.length} squad gap(s)`);
-  // The report is already in the log above — that's the durable record. Email is
-  // best-effort: Gmail SMTP app-passwords 535 from Actions datacenter IPs (seen
-  // 2026-07-12), so a send failure must not crash the watchdog or mask the gaps.
   try {
     await sendEmail({ subject: `⚠️ Rugby Tracker: ${subjectBits.join(", ")}`, text: report });
   } catch (err) {
-    console.error(`::warning::alert email failed (${String(err.message).split("\n")[0]}); see report above`);
+    console.error(`::warning::alert email failed (${String(err.message).split("\n")[0]}); the GitHub issue is the live channel`);
   }
 }
 
