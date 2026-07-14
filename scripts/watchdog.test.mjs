@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { evaluate, formatReport, coverageReport, alertSignature, decideIssueAction } from "./watchdog.mjs";
+import { PUBLISH_TEAMSHEETS } from "./generate-digests.mjs";
 
 const WATCHERS = [
   { workflow: "a.yml", label: "A", maxAgeHours: 26 },
@@ -51,8 +52,11 @@ test("report names the overdue job and its age", () => {
 
 // Squad-coverage email: the safeguard the 2026-07-14 blank-squad miss revealed
 // was absent — the watchdog only checked that jobs RAN, never that squads were
-// present. It now turns teamsheetGaps into a daily alert.
-test("coverageReport lists imminent teams missing a squad, by name", () => {
+// present. It turns teamsheetGaps into a daily alert — but ONLY while squads are
+// published. With teamsheets paused (PUBLISH_TEAMSHEETS=false), a missing squad
+// is the intended state, so coverageReport must stay silent. This test tracks
+// the live flag so it still asserts the gap listing if squads are turned back on.
+test("coverageReport: silent while paused, lists missing squads when live", () => {
   const now = new Date("2026-07-14T00:00:00Z");
   const nations = {
     fixtures: [
@@ -62,6 +66,10 @@ test("coverageReport lists imminent teams missing a squad, by name", () => {
     digests: { 391: { teamsheet: { starters: [] } } }, // Wales covered; SA not
   };
   const rep = coverageReport(nations, now);
+  if (!PUBLISH_TEAMSHEETS) {
+    assert.equal(rep, null); // teamsheets paused: a missing squad is not a gap
+    return;
+  }
   assert.equal(rep.gaps.length, 1);
   assert.equal(rep.gaps[0].team, "South Africa");
   assert.match(rep.text, /South Africa/);

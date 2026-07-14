@@ -23,6 +23,17 @@ const WEB_SEARCH_TYPE = MODEL.startsWith("claude-haiku")
   : "web_search_20260209";
 const TZ = "Australia/Sydney"; // editions are dated for the reader's day
 
+// Teamsheets (the app's "Squad · next game" card) are PAUSED — 2026-07-15.
+// The only authoritative source is ESPN's match summary, and republishing an
+// official numbered XV is the single highest-signal ESPN exposure (see the
+// options paper: docs/DATA_RIGHTS.md in the app repo — decision was Option A,
+// stay free, but pull the most-visible borrowed surface). This flag is the
+// whole switch: false = no teamsheet is fetched, and any teamsheet already in
+// nations.json is stripped on the next write, so squads vanish for every user
+// (the live app reads this feed). Flip to true to restore — no app release
+// needed, since SquadCard still ships and just shows its "not announced" state.
+export const PUBLISH_TEAMSHEETS = false;
+
 // api-sports team id → names + masthead (mirrors src/teams.js + src/digest.js;
 // duplicated because the public repo has no src/).
 export const TEAMS = {
@@ -284,6 +295,20 @@ export function validateDigest(raw, { dateISO }) {
 // the staleness visible) rather than falling back to the placeholder.
 export function mergeDigests(existing = {}, generated = {}) {
   return { ...existing, ...generated };
+}
+
+// Drop the `teamsheet` key from every digest. Runs at the write boundary when
+// PUBLISH_TEAMSHEETS is off, so a teamsheet already published for a team we did
+// NOT regenerate this run (e.g. SA's XV from a prior round) is removed too —
+// generation-side guards alone would leave it stranded in nations.json.
+export function stripTeamsheets(digests = {}) {
+  return Object.fromEntries(
+    Object.entries(digests).map(([id, d]) => {
+      if (!d || d.teamsheet == null) return [id, d];
+      const { teamsheet, ...rest } = d;
+      return [id, rest];
+    }),
+  );
 }
 
 // ---- API call ---------------------------------------------------------------
@@ -883,7 +908,9 @@ JSON again.`;
   // writer transcribed (see resolveTeamsheet). Only when no numbered XV can be
   // parsed AND the writer produced nothing — yet code saw a lineup in the pack —
   // do we spend a targeted retry. A missing teamsheet must never cost the digest.
-  const espnSheet = await fetchEspnTeamsheet(params.TEAM_NAME, params.KICKOFF_ISO);
+  const espnSheet = PUBLISH_TEAMSHEETS
+    ? await fetchEspnTeamsheet(params.TEAM_NAME, params.KICKOFF_ISO)
+    : null; // teamsheets paused — don't even call ESPN (see PUBLISH_TEAMSHEETS)
   let { sheet, note: sheetNote } = resolveTeamsheet(digest.teamsheet, lineupArticles, espnSheet);
   if (sheet) {
     digest = { ...digest, teamsheet: sheet };
@@ -1107,6 +1134,7 @@ export async function main({ dryRun = false } = {}) {
   // during the ~minutes this run spent on 12 API calls.
   const fresh = JSON.parse(await readFile(OUT, "utf8"));
   fresh.digests = mergeDigests(fresh.digests, generated);
+  if (!PUBLISH_TEAMSHEETS) fresh.digests = stripTeamsheets(fresh.digests);
   fresh.counts = { ...(fresh.counts || {}), digests: Object.keys(fresh.digests).length };
   const payload = JSON.stringify(fresh, null, 2);
   await writeFile(OUT, payload);
@@ -1120,7 +1148,10 @@ export async function main({ dryRun = false } = {}) {
   // early in the week — SA's 2026-07-14 XV was out 4 days pre-kickoff, but the
   // old 48h window stayed silent). Loud on purpose; the daily watchdog turns the
   // same evaluator into an email so a gap can't hide in the Actions log.
-  const gaps = teamsheetGaps(fresh.fixtures, fresh.digests, now);
+  // Skip the coverage audit while teamsheets are paused — otherwise every named
+  // XV reads as a "gap" and the daily watchdog would alert on the feature we
+  // deliberately turned off (see PUBLISH_TEAMSHEETS).
+  const gaps = PUBLISH_TEAMSHEETS ? teamsheetGaps(fresh.fixtures, fresh.digests, now) : [];
   for (const g of gaps) {
     console.warn(`⚠️ TEAMSHEET GAP: ${TEAMS[g.teamId]?.name ?? g.teamId} play ${g.kickoff} but no squad is published`);
   }

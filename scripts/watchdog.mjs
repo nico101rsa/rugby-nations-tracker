@@ -13,7 +13,7 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { readFile } from "node:fs/promises";
 import { sendEmail } from "./notify.mjs";
-import { teamsheetGaps } from "./generate-digests.mjs";
+import { teamsheetGaps, PUBLISH_TEAMSHEETS } from "./generate-digests.mjs";
 
 const execFileAsync = promisify(execFile);
 
@@ -68,6 +68,7 @@ export function formatReport(misses, now) {
 // the jobs RAN. Early-week the list doubles as a "who's still to name" tracker;
 // a name persisting late in the week is a real gap the pipeline failed to catch.
 export function coverageReport(nations, now = new Date()) {
+  if (!PUBLISH_TEAMSHEETS) return null; // teamsheets paused — no squad to be missing
   const gaps = teamsheetGaps(nations?.fixtures, nations?.digests, now);
   if (!gaps.length) return null;
   const nameFor = (id) => {
