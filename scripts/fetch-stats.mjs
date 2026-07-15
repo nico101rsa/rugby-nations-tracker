@@ -1,0 +1,268 @@
+// scripts/fetch-stats.mjs
+//
+// Box-score stats pipeline. Harvests scoring events + cards for finished
+// Nations Championship matches from the sports-data vendor, publishes only
+// matches whose events sum EXACTLY to the final score already in nations.json
+// (the arithmetic gate), and opens a per-match GitHub issue when one won't
+// reconcile. Runs daily from .github/workflows/stats.yml; zero manual steps.
+
+const GOAL_TYPES = {
+  try: "try",
+  twoPoints: "conversion",
+  threePoints: "penalty",
+  dropGoal: "dropGoal",
+  drop: "dropGoal",
+  penaltyTry: "penaltyTry",
+};
+const CARD_TYPES = { yellow: "yellow", red: "red", yellowRed: "red" };
+
+export function parseIncidents(incidents = []) {
+  const scoring = [];
+  const cards = [];
+  const unknown = [];
+  for (const i of incidents) {
+    if (i.incidentType === "goal") {
+      const type = GOAL_TYPES[i.incidentClass];
+      if (!type) { unknown.push(`goal:${i.incidentClass}`); continue; }
+      scoring.push({
+        min: i.time,
+        team: i.isHome ? "home" : "away",
+        type,
+        player: i.player?.name ?? null,
+        after: [i.homeScore, i.awayScore],
+      });
+    } else if (i.incidentType === "card") {
+      const type = CARD_TYPES[i.incidentClass];
+      if (!type) { unknown.push(`card:${i.incidentClass}`); continue; }
+      cards.push({ min: i.time, team: i.isHome ? "home" : "away", type, player: i.player?.name ?? null });
+    }
+    // substitutions, periods: intentionally skipped
+  }
+  // Within the same minute (a try + its conversion), the running-score total
+  // orders events truly chronologically; input order can't be trusted.
+  const total = (s) => (s.after?.[0] ?? 0) + (s.after?.[1] ?? 0);
+  return {
+    scoring: scoring.sort((a, b) => a.min - b.min || total(a) - total(b)),
+    cards: cards.sort((a, b) => a.min - b.min),
+    unknown,
+  };
+}
+
+export const POINTS = { try: 5, conversion: 2, penalty: 3, dropGoal: 3, penaltyTry: 7 };
+
+// The publish gate: a match ships only when its parsed scoring events sum
+// exactly to the final score fetched independently via api-sports.
+export function reconcile(scoring, homeFinal, awayFinal) {
+  const computed = { home: 0, away: 0 };
+  for (const s of scoring) computed[s.team] += POINTS[s.type] ?? 0;
+  return {
+    ok: computed.home === homeFinal && computed.away === awayFinal,
+    home: { expected: homeFinal, computed: computed.home },
+    away: { expected: awayFinal, computed: computed.away },
+  };
+}
+
+export function buildAggregates(matches) {
+  const done = matches.filter((m) => m.reconciled);
+  const players = new Map(); // "player|team" -> {player, team, t, c, p, d}
+  const teams = new Map();   // team -> {tries, cons, pens, drops, pointsFor, yellow, red}
+
+  const team = (name) => {
+    if (!teams.has(name)) teams.set(name, { tries: 0, cons: 0, pens: 0, drops: 0, pointsFor: 0, yellow: 0, red: 0 });
+    return teams.get(name);
+  };
+  const player = (name, teamName) => {
+    const k = `${name}|${teamName}`;
+    if (!players.has(k)) players.set(k, { player: name, team: teamName, t: 0, c: 0, p: 0, d: 0 });
+    return players.get(k);
+  };
+
+  for (const m of done) {
+    const names = { home: m.home.name, away: m.away.name };
+    team(names.home).pointsFor += m.home.score;
+    team(names.away).pointsFor += m.away.score;
+    for (const s of m.scoring) {
+      const t = team(names[s.team]);
+      if (s.type === "try" || s.type === "penaltyTry") t.tries += 1;
+      if (s.type === "conversion") t.cons += 1;
+      if (s.type === "penalty") t.pens += 1;
+      if (s.type === "dropGoal") t.drops += 1;
+      if (!s.player) continue; // penalty tries have no player
+      const p = player(s.player, names[s.team]);
+      if (s.type === "try") p.t += 1;
+      if (s.type === "conversion") p.c += 1;
+      if (s.type === "penalty") p.p += 1;
+      if (s.type === "dropGoal") p.d += 1;
+    }
+    for (const c of m.cards) team(names[c.team])[c.type] += 1;
+  }
+
+  const byThen = (key) => (a, b) => b[key] - a[key] || a.player?.localeCompare?.(b.player) || a.team?.localeCompare?.(b.team) || 0;
+  const all = [...players.values()].map((p) => ({ ...p, points: p.t * 5 + p.c * 2 + p.p * 3 + p.d * 3 }));
+
+  return {
+    topTryScorers: all.filter((p) => p.t > 0).map(({ player, team, t }) => ({ player, team, tries: t }))
+      .sort((a, b) => b.tries - a.tries || a.player.localeCompare(b.player)),
+    topPointsScorers: all.filter((p) => p.points > 0).map(({ player, team, points, t, c, p: pen, d }) => ({ player, team, points, t, c, p: pen, d }))
+      .sort(byThen("points")),
+    discipline: [...teams.entries()].map(([team, v]) => ({ team, yellow: v.yellow, red: v.red }))
+      .sort((a, b) => (b.yellow + b.red * 2) - (a.yellow + a.red * 2) || a.team.localeCompare(b.team)),
+    teamTotals: [...teams.entries()].map(([team, v]) => ({ team, tries: v.tries, cons: v.cons, pens: v.pens, drops: v.drops, pointsFor: v.pointsFor }))
+      .sort((a, b) => b.pointsFor - a.pointsFor || a.team.localeCompare(b.team)),
+  };
+}
+
+// Order-strict on purpose: a vendor home/away swap would corrupt running
+// scores, so it must fail loudly via the reconcile gate, not silently match.
+export function findEvent(events = [], homeName, awayName) {
+  return events.find((e) => e.homeTeam?.name === homeName && e.awayTeam?.name === awayName) ?? null;
+}
+
+// One issue per match: create on first failure, close on recovery, never spam.
+export function decideAlert(existingIssue, reconciled) {
+  if (reconciled) return existingIssue ? "close" : "noop";
+  return existingIssue ? "noop" : "create";
+}
+
+const BASE = "https://api.sportsapipro.com/v2/rugby";
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function defaultFetchJson(url) {
+  const res = await fetch(url, { headers: { "x-api-key": process.env.SPORTSAPIPRO_KEY } });
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+  return res.json();
+}
+
+function dayShift(dateIso, days) {
+  const d = new Date(dateIso);
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0, 10);
+}
+
+// Core pipeline, network-injectable for tests. Reads finished matches from
+// nations.json, fetches + gates each unreconciled one, returns the new
+// stats.json object plus a failure list for alerting.
+// sleepMs 6500 keeps a full first-run harvest (~18 calls: incidents + schedule
+// discovery) at ~9.2 req/min, under the vendor's 10/min free-tier ceiling —
+// ~2 min total runtime is irrelevant for a daily job. Tests inject sleepMs: 0.
+export async function runPipeline({ nations, prevStats, fetchJson = defaultFetchJson, sleepMs = 6500 }) {
+  const prev = new Map((prevStats?.matches ?? []).map((m) => [m.id, m]));
+  const finished = (nations.results ?? []).filter((r) => r.status?.short === "FT");
+  const matches = [];
+  const failures = [];
+  const scheduleCache = new Map(); // date -> events[]
+
+  const schedule = async (date) => {
+    if (!scheduleCache.has(date)) {
+      await sleep(sleepMs);
+      scheduleCache.set(date, (await fetchJson(`${BASE}/api/schedule/${date}`)).events ?? []);
+    }
+    return scheduleCache.get(date);
+  };
+
+  for (const r of finished) {
+    const kept = prev.get(r.id);
+    if (kept?.reconciled) { matches.push(kept); continue; }
+
+    // Stubs carry empty scoring/cards so every entry has the same shape —
+    // `reconciled` is the trust flag, not key presence. Real data overwrites
+    // them via Object.assign on success.
+    const entry = { id: r.id, round: r.week, date: r.date,
+      home: { id: r.home.id, name: r.home.name, score: r.home.score },
+      away: { id: r.away.id, name: r.away.name, score: r.away.score },
+      eventId: kept?.eventId ?? null, reconciled: false, scoring: [], cards: [] };
+
+    try {
+      if (!entry.eventId) {
+        // vendor calendar dates vs UTC kickoffs can differ → try day, then ±1
+        for (const shift of [0, 1, -1]) {
+          const ev = findEvent(await schedule(dayShift(r.date, shift)), r.home.name, r.away.name);
+          if (ev) { entry.eventId = ev.id; break; }
+        }
+        if (!entry.eventId) throw new Error(`no event found for ${r.home.name} v ${r.away.name} around ${r.date.slice(0, 10)}`);
+      }
+      await sleep(sleepMs);
+      const payload = await fetchJson(`${BASE}/api/match/${entry.eventId}/incidents`);
+      const { scoring, cards, unknown } = parseIncidents(payload?.data?.incidents ?? []);
+      const gate = reconcile(scoring, r.home.score, r.away.score);
+      if (!gate.ok || unknown.length) {
+        throw new Error(
+          `did not reconcile: home ${gate.home.computed}/${gate.home.expected}, away ${gate.away.computed}/${gate.away.expected}` +
+          (unknown.length ? `; unknown incident classes: ${unknown.join(", ")}` : ""),
+        );
+      }
+      Object.assign(entry, { reconciled: true, scoring, cards });
+    } catch (err) {
+      failures.push({ id: r.id, title: `Stats: ${r.home.name} v ${r.away.name} (match ${r.id}) not publishing`, reason: err.message });
+    }
+    matches.push(entry);
+  }
+
+  return {
+    stats: {
+      updatedAt: new Date().toISOString(),
+      source: "aggregated",
+      matches,
+      aggregates: buildAggregates(matches),
+    },
+    failures,
+  };
+}
+
+const ALERT_OWNER = "nico101rsa";
+
+async function gh(args) {
+  const { execFile } = await import("node:child_process");
+  const { promisify } = await import("node:util");
+  const { stdout } = await promisify(execFile)("gh", args);
+  return stdout;
+}
+
+// Best-effort per-match alert sync: create on first failure, close on recovery.
+export async function syncAlerts(matches, failures) {
+  try {
+    const open = JSON.parse(await gh(["issue", "list", "--state", "open", "--limit", "100", "--json", "number,title"]));
+    const failed = new Map(failures.map((f) => [f.title, f]));
+
+    for (const [title, f] of failed) {
+      const existing = open.find((i) => i.title === title) ?? null;
+      if (decideAlert(existing, false) === "create") {
+        await gh(["issue", "create", "--title", title, "--assignee", ALERT_OWNER,
+          "--body", `@${ALERT_OWNER}\n\n${f.reason}\n\nHeld out of stats.json; retried automatically on every run.`]);
+        console.log(`Opened alert: ${title}`);
+      }
+    }
+    for (const m of matches.filter((m) => m.reconciled)) {
+      const title = `Stats: ${m.home.name} v ${m.away.name} (match ${m.id}) not publishing`;
+      const existing = open.find((i) => i.title === title) ?? null;
+      if (decideAlert(existing, true) === "close") {
+        await gh(["issue", "close", String(existing.number), "--comment", "Reconciled on a later run — resolved automatically."]);
+        console.log(`Closed alert: ${title}`);
+      }
+    }
+  } catch (err) {
+    console.error(`::warning::alert sync failed (harvest unaffected): ${err.message}`);
+  }
+}
+
+async function main() {
+  if (!process.env.SPORTSAPIPRO_KEY) {
+    console.error("SPORTSAPIPRO_KEY is not set");
+    process.exit(1);
+  }
+  const { readFile, writeFile } = await import("node:fs/promises");
+  const nations = JSON.parse(await readFile("nations.json", "utf8"));
+  const prevStats = await readFile("stats.json", "utf8").then(JSON.parse).catch(() => null);
+
+  const { stats, failures } = await runPipeline({ nations, prevStats });
+  await writeFile("stats.json", JSON.stringify(stats, null, 2) + "\n");
+  console.log(`stats.json: ${stats.matches.filter((m) => m.reconciled).length}/${stats.matches.length} matches reconciled, ${failures.length} failure(s)`);
+
+  await syncAlerts(stats.matches, failures);
+}
+
+// Only run main when invoked directly (not when imported by the test).
+import { pathToFileURL } from "node:url";
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => { console.error(err); process.exit(1); });
+}
