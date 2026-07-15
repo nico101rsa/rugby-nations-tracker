@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { parseIncidents } from "./fetch-stats.mjs";
+import { parseIncidents, reconcile } from "./fetch-stats.mjs";
 
 const FIXTURE = JSON.parse(readFileSync(new URL("./fixtures/incidents-nzl-fra.json", import.meta.url), "utf8"));
 
@@ -48,4 +48,31 @@ test("parseIncidents: red card and drop goal map when they appear", () => {
 
 test("parseIncidents: empty input → empty output (negative case)", () => {
   assert.deepEqual(parseIncidents([]), { scoring: [], cards: [], unknown: [] });
+});
+
+test("reconcile: real match sums to 34-32", () => {
+  const { scoring } = parseIncidents(FIXTURE.data.incidents);
+  const r = reconcile(scoring, 34, 32);
+  assert.equal(r.ok, true);
+  assert.deepEqual(r.home, { expected: 34, computed: 34 });
+  assert.deepEqual(r.away, { expected: 32, computed: 32 });
+});
+
+test("reconcile: one point off fails the gate (negative case)", () => {
+  const { scoring } = parseIncidents(FIXTURE.data.incidents);
+  assert.equal(reconcile(scoring, 34, 33).ok, false);
+});
+
+test("reconcile: penalty try is worth 7", () => {
+  const scoring = [
+    { min: 10, team: "home", type: "penaltyTry", player: null, after: [7, 0] },
+    { min: 40, team: "away", type: "penalty", player: "K", after: [7, 3] },
+  ];
+  const r = reconcile(scoring, 7, 3);
+  assert.equal(r.ok, true);
+});
+
+test("reconcile: empty scoring only reconciles a 0-0 (negative case)", () => {
+  assert.equal(reconcile([], 27, 10).ok, false);
+  assert.equal(reconcile([], 0, 0).ok, true);
 });

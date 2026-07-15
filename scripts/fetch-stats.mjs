@@ -47,3 +47,17 @@ export function parseIncidents(incidents = []) {
     unknown,
   };
 }
+
+export const POINTS = { try: 5, conversion: 2, penalty: 3, dropGoal: 3, penaltyTry: 7 };
+
+// The publish gate: a match ships only when its parsed scoring events sum
+// exactly to the final score fetched independently via api-sports.
+export function reconcile(scoring, homeFinal, awayFinal) {
+  const computed = { home: 0, away: 0 };
+  for (const s of scoring) computed[s.team] += POINTS[s.type] ?? 0;
+  return {
+    ok: computed.home === homeFinal && computed.away === awayFinal,
+    home: { expected: homeFinal, computed: computed.home },
+    away: { expected: awayFinal, computed: computed.away },
+  };
+}
