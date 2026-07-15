@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseRankings, buildRankingsJson } from "./fetch-rankings.mjs";
+import { parseRankings, buildRankingsJson, withHistory } from "./fetch-rankings.mjs";
 
 // Trimmed real wikitext from Template:World_Rugby_Rankings (13 Jul 2026).
 const WIKITEXT = `{{sticky header}}
@@ -50,4 +50,30 @@ test("buildRankingsJson: keeps only competition codes, keyed by code", () => {
 
 test("buildRankingsJson: throws when too few competition teams parsed (guards a template rewrite)", () => {
   assert.throws(() => buildRankingsJson(parseRankings("junk"), "2026-07-15T00:00:00Z"), /parsed only/);
+});
+
+const snap = (asOf, rank) => ({
+  updatedAt: "x", asOf, source: "wikipedia:World_Rugby_Rankings",
+  rankings: { RSA: { rank, points: 90, move: 0 } },
+});
+
+test("withHistory: first run starts an empty history", () => {
+  const out = withHistory(null, snap("13 July 2026", 1));
+  assert.deepEqual(out.history, []);
+  assert.equal(out.rankings.RSA.rank, 1);
+});
+
+test("withHistory: same asOf keeps the previous history untouched", () => {
+  const prev = { ...snap("13 July 2026", 1), history: [{ asOf: "6 July 2026", rankings: { RSA: { rank: 2 } } }] };
+  const out = withHistory(prev, snap("13 July 2026", 1));
+  assert.equal(out.history.length, 1);
+  assert.equal(out.history[0].asOf, "6 July 2026");
+});
+
+test("withHistory: new asOf archives the previous snapshot", () => {
+  const prev = { ...snap("13 July 2026", 1), history: [] };
+  const out = withHistory(prev, snap("20 July 2026", 2));
+  assert.equal(out.history.length, 1);
+  assert.deepEqual(out.history[0], { asOf: "13 July 2026", rankings: prev.rankings });
+  assert.equal(out.rankings.RSA.rank, 2);
 });

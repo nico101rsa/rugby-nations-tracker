@@ -56,19 +56,35 @@ export function buildRankingsJson(rows, updatedAt, { min = 10 } = {}) {
   return { updatedAt, asOf: rows.asOf, source: "wikipedia:World_Rugby_Rankings", rankings };
 }
 
+// Accumulate a rankings time series: whenever the template's "as of" date
+// advances, the previous snapshot is archived into `history` (oldest first).
+// Re-runs within the same ranking week are no-ops for history. This grows a
+// small on-CDN database for future trend features (rank-over-time graphs).
+export function withHistory(prev, next) {
+  const history = [...(prev?.history ?? [])];
+  if (prev && prev.asOf && prev.asOf !== next.asOf) {
+    history.push({ asOf: prev.asOf, rankings: prev.rankings });
+  }
+  return { ...next, history };
+}
+
 const WIKI_URL =
   "https://en.wikipedia.org/w/api.php?action=parse&page=Template:World_Rugby_Rankings&format=json&prop=wikitext";
 
 async function main() {
-  const { writeFile } = await import("node:fs/promises");
+  const { readFile, writeFile } = await import("node:fs/promises");
   const res = await fetch(WIKI_URL, {
     headers: { "user-agent": "rugby-nations-tracker (github.com/nico101rsa/rugby-nations-tracker)" },
   });
   if (!res.ok) throw new Error(`Wikipedia HTTP ${res.status}`);
   const wikitext = (await res.json()).parse.wikitext["*"];
-  const out = buildRankingsJson(parseRankings(wikitext), new Date().toISOString());
+  const fresh = buildRankingsJson(parseRankings(wikitext), new Date().toISOString());
+  const prev = await readFile("rankings.json", "utf8").then(JSON.parse).catch(() => null);
+  const out = withHistory(prev, fresh);
   await writeFile("rankings.json", JSON.stringify(out, null, 1) + "\n");
-  console.log(`rankings.json written — ${Object.keys(out.rankings).length} teams, as of ${out.asOf}`);
+  console.log(
+    `rankings.json written — ${Object.keys(out.rankings).length} teams, as of ${out.asOf}, ${out.history.length} archived week(s)`,
+  );
 }
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop())) {
