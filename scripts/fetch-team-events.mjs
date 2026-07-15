@@ -78,14 +78,25 @@ const BASE = "https://api.sportsapipro.com/v2/rugby";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const PACE = 6500;
 
+let logged = false;
 async function fetchJson(url) {
   const res = await fetch(url, { headers: { "x-api-key": process.env.SPORTSAPIPRO_KEY } });
   // The events endpoints 404 when a team simply has no games on that page
   // (seen live: /events/next/0 with nothing scheduled) — that's an empty
   // result, not a failure.
-  if (res.status === 404) return { events: [] };
+  if (res.status === 404) {
+    console.log(`404 (empty) for ${url}`);
+    return { events: [] };
+  }
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
-  return res.json();
+  const body = await res.json();
+  if (!logged && url.includes("/events/")) {
+    // One raw sample per run so vendor shape drift is diagnosable from the
+    // Actions log (run 3 published 0/0 across the board with no visible why).
+    console.log(`first events response ${url}:`, JSON.stringify(body).slice(0, 700));
+    logged = true;
+  }
+  return body;
 }
 
 // Resolve vendor team ids by name from NC schedule dates (each full round
