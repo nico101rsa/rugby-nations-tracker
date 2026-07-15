@@ -80,6 +80,10 @@ const PACE = 6500;
 
 async function fetchJson(url) {
   const res = await fetch(url, { headers: { "x-api-key": process.env.SPORTSAPIPRO_KEY } });
+  // The events endpoints 404 when a team simply has no games on that page
+  // (seen live: /events/next/0 with nothing scheduled) — that's an empty
+  // result, not a failure.
+  if (res.status === 404) return { events: [] };
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
   return res.json();
 }
