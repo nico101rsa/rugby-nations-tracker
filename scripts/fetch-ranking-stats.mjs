@@ -45,11 +45,13 @@ export function parseBestWorst(wikitext) {
   return out;
 }
 
-// Timeline rows: from:dd/mm/yyyy till:(dd/mm/yyyy|$now) ... text:"[[...|Name]]"
+// Timeline rows: from:dd/mm/yyyy till:(dd/mm/yyyy|$now|end) ... text:"[[...|Name]]"
+// ("end" = the timeline's Period end = today; the live template uses it for the
+// current spell — seen 2026-07-16 when SA's current streak parsed as closed).
 export function parseLeaderSpells(wikitext) {
   const spells = [];
   const re =
-    /from:(\d{2}\/\d{2}\/\d{4})\s+till:(\$now|\d{2}\/\d{2}\/\d{4})[^\n]*text:"\[\[[^\]|]*\|([^\]]+)\]\]"/g;
+    /from:(\d{2}\/\d{2}\/\d{4})\s+till:(\$now|end|\d{2}\/\d{2}\/\d{4})[^\n]*text:"\[\[[^\]|]*\|([^\]]+)\]\]"/g;
   const toIso = (dmy) => {
     const [d, mo, y] = dmy.split("/");
     return `${y}-${mo}-${d}`;
@@ -58,7 +60,7 @@ export function parseLeaderSpells(wikitext) {
   while ((m = re.exec(wikitext)) !== null) {
     const code = NAME_TO_CODE[m[3]];
     if (!code) continue;
-    spells.push({ code, from: toIso(m[1]), till: m[2] === "$now" ? null : toIso(m[2]) });
+    spells.push({ code, from: toIso(m[1]), till: m[2] === "$now" || m[2] === "end" ? null : toIso(m[2]) });
   }
   return spells;
 }

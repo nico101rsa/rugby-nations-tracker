@@ -48,10 +48,10 @@ const TIMELINE = `PlotData=
   from:05/10/2003 till:09/11/2003 shift:(20,-10) text:"[[England national rugby union team|England]]" color:ENG
   from:09/11/2003 till:16/11/2003 shift:(20,-3) text:"[[New Zealand national rugby union team|New Zealand]]" color:NZL
   from:13/06/2004 till:21/10/2007 shift:(20,-3) text:"[[New Zealand national rugby union team|New Zealand]]" color:NZL
-  from:04/05/2026 till:$now shift:(20,0) text:"[[South Africa national rugby union team|South Africa]]" color:RSA
+  from:04/05/2026 till:end shift:(20,0) text:"[[South Africa national rugby union team|South Africa]]" color:RSA
 `;
 
-test("parseLeaderSpells: dates to ISO, $now to null, names to codes", () => {
+test("parseLeaderSpells: dates to ISO, $now/end to null, names to codes", () => {
   const spells = parseLeaderSpells(TIMELINE);
   assert.deepEqual(spells[0], { code: "ENG", from: "2003-10-05", till: "2003-11-09" });
   assert.deepEqual(spells[3], { code: "RSA", from: "2026-05-04", till: null });
