@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { parseIncidents, reconcile, buildAggregates } from "./fetch-stats.mjs";
+import { parseIncidents, reconcile, buildAggregates, findEvent, decideAlert } from "./fetch-stats.mjs";
 
 const FIXTURE = JSON.parse(readFileSync(new URL("./fixtures/incidents-nzl-fra.json", import.meta.url), "utf8"));
 
@@ -143,4 +143,32 @@ test("buildAggregates: ties broken alphabetically for stable output", () => {
   });
   const agg = buildAggregates([m]);
   assert.deepEqual(agg.topTryScorers.map((s) => s.player), ["Abe", "Zed"]);
+});
+
+const EVENTS = [
+  { id: 16098042, homeTeam: { name: "New Zealand" }, awayTeam: { name: "France" } },
+  { id: 16098052, homeTeam: { name: "Japan" }, awayTeam: { name: "Italy" } },
+];
+
+test("findEvent: exact home/away name pair", () => {
+  assert.equal(findEvent(EVENTS, "New Zealand", "France").id, 16098042);
+});
+
+test("findEvent: swapped order does NOT match (negative case)", () => {
+  assert.equal(findEvent(EVENTS, "France", "New Zealand"), null);
+});
+
+test("findEvent: absent pairing returns null (negative case)", () => {
+  assert.equal(findEvent(EVENTS, "Fiji", "Wales"), null);
+});
+
+test("decideAlert: create when failing with no open issue", () => {
+  assert.equal(decideAlert(null, false), "create");
+});
+test("decideAlert: close when reconciled and an issue is open", () => {
+  assert.equal(decideAlert({ number: 7 }, true), "close");
+});
+test("decideAlert: noop when healthy/no issue, or already reported", () => {
+  assert.equal(decideAlert(null, true), "noop");
+  assert.equal(decideAlert({ number: 7 }, false), "noop"); // one issue per match, no spam
 });

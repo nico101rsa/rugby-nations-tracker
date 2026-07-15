@@ -111,3 +111,15 @@ export function buildAggregates(matches) {
       .sort((a, b) => b.pointsFor - a.pointsFor || a.team.localeCompare(b.team)),
   };
 }
+
+// Order-strict on purpose: a vendor home/away swap would corrupt running
+// scores, so it must fail loudly via the reconcile gate, not silently match.
+export function findEvent(events = [], homeName, awayName) {
+  return events.find((e) => e.homeTeam?.name === homeName && e.awayTeam?.name === awayName) ?? null;
+}
+
+// One issue per match: create on first failure, close on recovery, never spam.
+export function decideAlert(existingIssue, reconciled) {
+  if (reconciled) return existingIssue ? "close" : "noop";
+  return existingIssue ? "noop" : "create";
+}
