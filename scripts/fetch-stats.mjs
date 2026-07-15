@@ -123,3 +123,82 @@ export function decideAlert(existingIssue, reconciled) {
   if (reconciled) return existingIssue ? "close" : "noop";
   return existingIssue ? "noop" : "create";
 }
+
+const BASE = "https://api.sportsapipro.com/v2/rugby";
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+async function defaultFetchJson(url) {
+  const res = await fetch(url, { headers: { "x-api-key": process.env.SPORTSAPIPRO_KEY } });
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+  return res.json();
+}
+
+function dayShift(dateIso, days) {
+  const d = new Date(dateIso);
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0, 10);
+}
+
+// Core pipeline, network-injectable for tests. Reads finished matches from
+// nations.json, fetches + gates each unreconciled one, returns the new
+// stats.json object plus a failure list for alerting.
+export async function runPipeline({ nations, prevStats, fetchJson = defaultFetchJson, sleepMs = 300 }) {
+  const prev = new Map((prevStats?.matches ?? []).map((m) => [m.id, m]));
+  const finished = (nations.results ?? []).filter((r) => r.status?.short === "FT");
+  const matches = [];
+  const failures = [];
+  const scheduleCache = new Map(); // date -> events[]
+
+  const schedule = async (date) => {
+    if (!scheduleCache.has(date)) {
+      await sleep(sleepMs);
+      scheduleCache.set(date, (await fetchJson(`${BASE}/api/schedule/${date}`)).events ?? []);
+    }
+    return scheduleCache.get(date);
+  };
+
+  for (const r of finished) {
+    const kept = prev.get(r.id);
+    if (kept?.reconciled) { matches.push(kept); continue; }
+
+    const entry = { id: r.id, round: r.week, date: r.date,
+      home: { id: r.home.id, name: r.home.name, score: r.home.score },
+      away: { id: r.away.id, name: r.away.name, score: r.away.score },
+      eventId: kept?.eventId ?? null, reconciled: false };
+
+    try {
+      if (!entry.eventId) {
+        // vendor calendar dates vs UTC kickoffs can differ → try day, then ±1
+        for (const shift of [0, 1, -1]) {
+          const ev = findEvent(await schedule(dayShift(r.date, shift)), r.home.name, r.away.name);
+          if (ev) { entry.eventId = ev.id; break; }
+        }
+        if (!entry.eventId) throw new Error(`no event found for ${r.home.name} v ${r.away.name} around ${r.date.slice(0, 10)}`);
+      }
+      await sleep(sleepMs);
+      const payload = await fetchJson(`${BASE}/api/match/${entry.eventId}/incidents`);
+      const { scoring, cards, unknown } = parseIncidents(payload?.data?.incidents ?? []);
+      const gate = reconcile(scoring, r.home.score, r.away.score);
+      if (!gate.ok || unknown.length) {
+        throw new Error(
+          `did not reconcile: home ${gate.home.computed}/${gate.home.expected}, away ${gate.away.computed}/${gate.away.expected}` +
+          (unknown.length ? `; unknown incident classes: ${unknown.join(", ")}` : ""),
+        );
+      }
+      Object.assign(entry, { reconciled: true, scoring, cards });
+    } catch (err) {
+      failures.push({ id: r.id, title: `Stats: ${r.home.name} v ${r.away.name} (match ${r.id}) not publishing`, reason: err.message });
+    }
+    matches.push(entry);
+  }
+
+  return {
+    stats: {
+      updatedAt: new Date().toISOString(),
+      source: "aggregated",
+      matches,
+      aggregates: buildAggregates(matches),
+    },
+    failures,
+  };
+}

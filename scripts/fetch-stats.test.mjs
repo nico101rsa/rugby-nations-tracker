@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { parseIncidents, reconcile, buildAggregates, findEvent, decideAlert } from "./fetch-stats.mjs";
+import { parseIncidents, reconcile, buildAggregates, findEvent, decideAlert, runPipeline } from "./fetch-stats.mjs";
 
 const FIXTURE = JSON.parse(readFileSync(new URL("./fixtures/incidents-nzl-fra.json", import.meta.url), "utf8"));
 
@@ -171,4 +171,98 @@ test("decideAlert: close when reconciled and an issue is open", () => {
 test("decideAlert: noop when healthy/no issue, or already reported", () => {
   assert.equal(decideAlert(null, true), "noop");
   assert.equal(decideAlert({ number: 7 }, false), "noop"); // one issue per match, no spam
+});
+
+test("runPipeline: end-to-end — reconciled match publishes, NS match skipped, bad score held", async () => {
+  const nations = {
+    results: [
+      { id: 53213, date: "2026-07-04T07:10:00+00:00", week: "1", status: { short: "FT" },
+        home: { id: 465, name: "New Zealand", score: 34 }, away: { id: 387, name: "France", score: 32 } },
+      { id: 53299, date: "2026-07-04T09:00:00+00:00", week: "1", status: { short: "FT" },
+        home: { id: 1, name: "Fiji", score: 99 }, away: { id: 2, name: "Wales", score: 0 } }, // no event → failure
+    ],
+    fixtures: [
+      { id: "static-r3-1", date: "2026-07-18T05:10:00+00:00", status: { short: "NS" },
+        home: { name: "New Zealand", score: null }, away: { name: "South Africa", score: null } },
+    ],
+  };
+  const calls = [];
+  const fetchJson = async (url) => {
+    calls.push(url);
+    if (url.includes("/api/schedule/")) {
+      return { events: [{ id: 16098042, homeTeam: { name: "New Zealand" }, awayTeam: { name: "France" } }] };
+    }
+    if (url.includes("/api/match/16098042/incidents")) return FIXTURE;
+    throw new Error(`unexpected url ${url}`);
+  };
+
+  const { stats, failures } = await runPipeline({ nations, prevStats: null, fetchJson, sleepMs: 0 });
+
+  assert.equal(stats.matches.length, 2);
+  const ok = stats.matches.find((m) => m.id === 53213);
+  assert.equal(ok.reconciled, true);
+  assert.equal(ok.eventId, 16098042);
+  assert.equal(ok.scoring.length, 18);
+  assert.equal(stats.aggregates.topTryScorers[0].tries, 2); // Jordan/Roigard on 2
+
+  const held = stats.matches.find((m) => m.id === 53299);
+  assert.equal(held.reconciled, false);
+  assert.equal(held.scoring, undefined); // nothing unverified is published
+  assert.equal(failures.length, 1);
+  assert.match(failures[0].reason, /no event found/);
+
+  // NS fixture must never trigger a fetch (negative case)
+  assert.ok(!calls.some((u) => u.includes("2026-07-18")));
+});
+
+test("runPipeline: already-reconciled matches are not refetched", async () => {
+  const nations = {
+    results: [{ id: 53213, date: "2026-07-04T07:10:00+00:00", week: "1", status: { short: "FT" },
+      home: { id: 465, name: "New Zealand", score: 34 }, away: { id: 387, name: "France", score: 32 } }],
+    fixtures: [],
+  };
+  const prevStats = { matches: [{ id: 53213, eventId: 16098042, reconciled: true,
+    home: { name: "New Zealand", score: 34 }, away: { name: "France", score: 32 }, scoring: [], cards: [] }] };
+  const fetchJson = async () => { throw new Error("must not be called"); };
+  const { failures } = await runPipeline({ nations, prevStats, fetchJson, sleepMs: 0 });
+  assert.deepEqual(failures, []);
+});
+
+test("runPipeline: score mismatch is held and reported (negative case)", async () => {
+  const nations = {
+    results: [{ id: 53213, date: "2026-07-04T07:10:00+00:00", week: "1", status: { short: "FT" },
+      home: { id: 465, name: "New Zealand", score: 34 }, away: { id: 387, name: "France", score: 35 } }], // wrong final
+    fixtures: [],
+  };
+  const fetchJson = async (url) =>
+    url.includes("/schedule/")
+      ? { events: [{ id: 16098042, homeTeam: { name: "New Zealand" }, awayTeam: { name: "France" } }] }
+      : FIXTURE;
+  const { stats, failures } = await runPipeline({ nations, prevStats: null, fetchJson, sleepMs: 0 });
+  assert.equal(stats.matches[0].reconciled, false);
+  assert.equal(stats.matches[0].eventId, 16098042); // discovery cached for the retry
+  assert.equal(failures.length, 1);
+  assert.match(failures[0].reason, /not reconcile/);
+});
+
+test("buildAggregates: penalty and drop goal terms flow into player points", () => {
+  const m = mkMatch({
+    home: { name: "A", score: 6 }, away: { name: "B", score: 3 },
+    scoring: [
+      { min: 10, team: "home", type: "penalty", player: "K1", after: [3, 0] },
+      { min: 20, team: "home", type: "dropGoal", player: "K1", after: [6, 0] },
+      { min: 30, team: "away", type: "penalty", player: "K2", after: [6, 3] },
+    ],
+    cards: [],
+  });
+  const agg = buildAggregates([m]);
+  assert.deepEqual(agg.topPointsScorers[0], { player: "K1", team: "A", points: 6, t: 0, c: 0, p: 1, d: 1 });
+});
+
+test("buildAggregates: teamTotals full shape and pointsFor ordering", () => {
+  const agg = buildAggregates([mkMatch({})]);
+  assert.deepEqual(agg.teamTotals, [
+    { team: "A", tries: 2, cons: 1, pens: 0, drops: 0, pointsFor: 12 },
+    { team: "B", tries: 1, cons: 0, pens: 0, drops: 0, pointsFor: 5 },
+  ]);
 });
