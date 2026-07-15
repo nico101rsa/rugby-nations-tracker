@@ -202,3 +202,61 @@ export async function runPipeline({ nations, prevStats, fetchJson = defaultFetch
     failures,
   };
 }
+
+const ALERT_OWNER = "nico101rsa";
+
+async function gh(args) {
+  const { execFile } = await import("node:child_process");
+  const { promisify } = await import("node:util");
+  const { stdout } = await promisify(execFile)("gh", args);
+  return stdout;
+}
+
+// Best-effort per-match alert sync: create on first failure, close on recovery.
+export async function syncAlerts(matches, failures) {
+  try {
+    const open = JSON.parse(await gh(["issue", "list", "--state", "open", "--limit", "100", "--json", "number,title"]));
+    const failed = new Map(failures.map((f) => [f.title, f]));
+
+    for (const [title, f] of failed) {
+      const existing = open.find((i) => i.title === title) ?? null;
+      if (decideAlert(existing, false) === "create") {
+        await gh(["issue", "create", "--title", title, "--assignee", ALERT_OWNER,
+          "--body", `@${ALERT_OWNER}\n\n${f.reason}\n\nHeld out of stats.json; retried automatically on every run.`]);
+        console.log(`Opened alert: ${title}`);
+      }
+    }
+    for (const m of matches.filter((m) => m.reconciled)) {
+      const title = `Stats: ${m.home.name} v ${m.away.name} (match ${m.id}) not publishing`;
+      const existing = open.find((i) => i.title === title) ?? null;
+      if (decideAlert(existing, true) === "close") {
+        await gh(["issue", "close", String(existing.number), "--comment", "Reconciled on a later run — resolved automatically."]);
+        console.log(`Closed alert: ${title}`);
+      }
+    }
+  } catch (err) {
+    console.error(`::warning::alert sync failed (harvest unaffected): ${err.message}`);
+  }
+}
+
+async function main() {
+  if (!process.env.SPORTSAPIPRO_KEY) {
+    console.error("SPORTSAPIPRO_KEY is not set");
+    process.exit(1);
+  }
+  const { readFile, writeFile } = await import("node:fs/promises");
+  const nations = JSON.parse(await readFile("nations.json", "utf8"));
+  const prevStats = await readFile("stats.json", "utf8").then(JSON.parse).catch(() => null);
+
+  const { stats, failures } = await runPipeline({ nations, prevStats });
+  await writeFile("stats.json", JSON.stringify(stats, null, 2) + "\n");
+  console.log(`stats.json: ${stats.matches.filter((m) => m.reconciled).length}/${stats.matches.length} matches reconciled, ${failures.length} failure(s)`);
+
+  await syncAlerts(stats.matches, failures);
+}
+
+// Only run main when invoked directly (not when imported by the test).
+import { pathToFileURL } from "node:url";
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((err) => { console.error(err); process.exit(1); });
+}

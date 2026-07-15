@@ -266,3 +266,21 @@ test("buildAggregates: teamTotals full shape and pointsFor ordering", () => {
     { team: "B", tries: 1, cons: 0, pens: 0, drops: 0, pointsFor: 5 },
   ]);
 });
+
+test("runPipeline: unknown incident class holds the match even when the score balances", async () => {
+  const withUnknown = structuredClone(FIXTURE);
+  withUnknown.data.incidents.push({ time: 63, incidentType: "goal", incidentClass: "mysteryBonus", player: { name: "X" }, isHome: true });
+  const nations = {
+    results: [{ id: 53213, date: "2026-07-04T07:10:00+00:00", week: "1", status: { short: "FT" },
+      home: { id: 465, name: "New Zealand", score: 34 }, away: { id: 387, name: "France", score: 32 } }],
+    fixtures: [],
+  };
+  const fetchJson = async (url) =>
+    url.includes("/schedule/")
+      ? { events: [{ id: 16098042, homeTeam: { name: "New Zealand" }, awayTeam: { name: "France" } }] }
+      : withUnknown;
+  const { stats, failures } = await runPipeline({ nations, prevStats: null, fetchJson, sleepMs: 0 });
+  assert.equal(stats.matches[0].reconciled, false);
+  assert.equal(failures.length, 1);
+  assert.match(failures[0].reason, /unknown incident classes: goal:mysteryBonus/);
+});

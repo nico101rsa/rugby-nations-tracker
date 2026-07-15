@@ -1,0 +1,44 @@
+name: Box-score stats
+
+# Daily post-match harvest -> stats.json on the Pages CDN. Matches finish by
+# ~19:10 UTC Saturday; 20:30 UTC daily lands same-evening stats and the other
+# six runs are cheap no-ops (already-reconciled matches are never refetched).
+on:
+  schedule:
+    - cron: "30 20 * * *"
+  workflow_dispatch:
+
+# Own group on purpose: sharing one with refresh-data starved queued runs once
+# (see repo history). Never merge these.
+concurrency:
+  group: stats-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Harvest and gate box scores
+        env:
+          SPORTSAPIPRO_KEY: ${{ secrets.SPORTSAPIPRO_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/fetch-stats.mjs
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add stats.json
+          git diff --cached --quiet && echo "No stats changes" && exit 0
+          git commit -m "Stats refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          git push
