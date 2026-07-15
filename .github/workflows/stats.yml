@@ -41,4 +41,6 @@ jobs:
           git add stats.json
           git diff --cached --quiet && echo "No stats changes" && exit 0
           git commit -m "Stats refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
-          git push
+          # refresh-data commits nations.json to main every ~15 min; retry the
+          # push after a rebase rather than losing that race (disjoint files).
+          git push || (git pull --rebase --autostash && git push)

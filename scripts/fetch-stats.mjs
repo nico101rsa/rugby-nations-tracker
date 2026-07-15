@@ -142,7 +142,10 @@ function dayShift(dateIso, days) {
 // Core pipeline, network-injectable for tests. Reads finished matches from
 // nations.json, fetches + gates each unreconciled one, returns the new
 // stats.json object plus a failure list for alerting.
-export async function runPipeline({ nations, prevStats, fetchJson = defaultFetchJson, sleepMs = 300 }) {
+// sleepMs 6500 keeps a full first-run harvest (~18 calls: incidents + schedule
+// discovery) at ~9.2 req/min, under the vendor's 10/min free-tier ceiling —
+// ~2 min total runtime is irrelevant for a daily job. Tests inject sleepMs: 0.
+export async function runPipeline({ nations, prevStats, fetchJson = defaultFetchJson, sleepMs = 6500 }) {
   const prev = new Map((prevStats?.matches ?? []).map((m) => [m.id, m]));
   const finished = (nations.results ?? []).filter((r) => r.status?.short === "FT");
   const matches = [];
@@ -161,10 +164,13 @@ export async function runPipeline({ nations, prevStats, fetchJson = defaultFetch
     const kept = prev.get(r.id);
     if (kept?.reconciled) { matches.push(kept); continue; }
 
+    // Stubs carry empty scoring/cards so every entry has the same shape —
+    // `reconciled` is the trust flag, not key presence. Real data overwrites
+    // them via Object.assign on success.
     const entry = { id: r.id, round: r.week, date: r.date,
       home: { id: r.home.id, name: r.home.name, score: r.home.score },
       away: { id: r.away.id, name: r.away.name, score: r.away.score },
-      eventId: kept?.eventId ?? null, reconciled: false };
+      eventId: kept?.eventId ?? null, reconciled: false, scoring: [], cards: [] };
 
     try {
       if (!entry.eventId) {

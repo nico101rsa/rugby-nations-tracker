@@ -207,7 +207,7 @@ test("runPipeline: end-to-end — reconciled match publishes, NS match skipped, 
 
   const held = stats.matches.find((m) => m.id === 53299);
   assert.equal(held.reconciled, false);
-  assert.equal(held.scoring, undefined); // nothing unverified is published
+  assert.deepEqual(held.scoring, []); // nothing unverified is published
   assert.equal(failures.length, 1);
   assert.match(failures[0].reason, /no event found/);
 
