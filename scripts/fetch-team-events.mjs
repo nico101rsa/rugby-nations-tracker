@@ -91,9 +91,15 @@ async function fetchJson(url) {
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
   const body = await res.json();
   if (!logged && url.includes("/events/")) {
-    // One raw sample per run so vendor shape drift is diagnosable from the
-    // Actions log (run 3 published 0/0 across the board with no visible why).
-    console.log(`first events response ${url}:`, JSON.stringify(body).slice(0, 700));
+    // Focused sample per run so vendor shape drift is diagnosable from the
+    // Actions log (the full event is mostly translation noise).
+    const evs = body.data?.events ?? body.events ?? [];
+    const pick = (e) => e && {
+      id: e.id, startTimestamp: e.startTimestamp, status: e.status,
+      home: e.homeTeam?.name, away: e.awayTeam?.name,
+      homeScore: e.homeScore, awayScore: e.awayScore,
+    };
+    console.log(`first events response ${url}: ${evs.length} events;`, JSON.stringify([pick(evs[0]), pick(evs[1])]).slice(0, 800));
     logged = true;
   }
   return body;
