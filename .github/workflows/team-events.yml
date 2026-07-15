@@ -1,12 +1,14 @@
 name: Team events
 
 # Each nation's recent internationals + upcoming fixtures across ALL
-# competitions -> team-events.json. Sundays only: ~24 SportsAPI Pro calls
-# paced under the 10/min ceiling, clear of the daily stats harvest budget
-# (same key, 100/day free tier).
+# competitions -> team-events.json. Daily at 01:00 UTC: ~25 SportsAPI Pro
+# calls paced under the 10/min ceiling; with the stats harvest (~5-18 calls,
+# 20:30 UTC, same key) the shared 100/day free tier stays well clear.
+# (Saturday live polling is api-sports — a different vendor — so this job
+# never competes with it.)
 on:
   schedule:
-    - cron: "0 22 * * 0"
+    - cron: "0 1 * * *"
   workflow_dispatch:
 
 # Own group on purpose — never share concurrency groups (see repo history).
