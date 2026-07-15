@@ -111,7 +111,8 @@ async function resolveTeamIds(prev) {
   for (const date of dates) {
     if (Object.keys(ids).length === 12) break;
     await sleep(PACE);
-    const events = (await fetchJson(`${BASE}/api/schedule/${date}`)).events ?? [];
+    const schedBody = await fetchJson(`${BASE}/api/schedule/${date}`);
+    const events = schedBody.data?.events ?? schedBody.events ?? [];
     for (const e of events) {
       for (const t of [e.homeTeam, e.awayTeam]) {
         const code = TRACKED_NAMES[t?.name];
@@ -134,9 +135,11 @@ async function main() {
   let dumped = false;
   for (const [code, id] of Object.entries(teamIds)) {
     await sleep(PACE);
-    const lastEvents = (await fetchJson(`${BASE}/api/teams/${id}/events/last/0`)).events ?? [];
+    const lastBody = await fetchJson(`${BASE}/api/teams/${id}/events/last/0`);
+    const lastEvents = lastBody.data?.events ?? lastBody.events ?? [];
     await sleep(PACE);
-    const nextEvents = (await fetchJson(`${BASE}/api/teams/${id}/events/next/0`)).events ?? [];
+    const nextBody = await fetchJson(`${BASE}/api/teams/${id}/events/next/0`);
+    const nextEvents = nextBody.data?.events ?? nextBody.events ?? [];
     if (!dumped && lastEvents[0]) {
       // One raw sample in the run log so a vendor shape drift is diagnosable
       // from the Actions page without re-instrumenting.
