@@ -61,3 +61,53 @@ export function reconcile(scoring, homeFinal, awayFinal) {
     away: { expected: awayFinal, computed: computed.away },
   };
 }
+
+export function buildAggregates(matches) {
+  const done = matches.filter((m) => m.reconciled);
+  const players = new Map(); // "player|team" -> {player, team, t, c, p, d}
+  const teams = new Map();   // team -> {tries, cons, pens, drops, pointsFor, yellow, red}
+
+  const team = (name) => {
+    if (!teams.has(name)) teams.set(name, { tries: 0, cons: 0, pens: 0, drops: 0, pointsFor: 0, yellow: 0, red: 0 });
+    return teams.get(name);
+  };
+  const player = (name, teamName) => {
+    const k = `${name}|${teamName}`;
+    if (!players.has(k)) players.set(k, { player: name, team: teamName, t: 0, c: 0, p: 0, d: 0 });
+    return players.get(k);
+  };
+
+  for (const m of done) {
+    const names = { home: m.home.name, away: m.away.name };
+    team(names.home).pointsFor += m.home.score;
+    team(names.away).pointsFor += m.away.score;
+    for (const s of m.scoring) {
+      const t = team(names[s.team]);
+      if (s.type === "try" || s.type === "penaltyTry") t.tries += 1;
+      if (s.type === "conversion") t.cons += 1;
+      if (s.type === "penalty") t.pens += 1;
+      if (s.type === "dropGoal") t.drops += 1;
+      if (!s.player) continue; // penalty tries have no player
+      const p = player(s.player, names[s.team]);
+      if (s.type === "try") p.t += 1;
+      if (s.type === "conversion") p.c += 1;
+      if (s.type === "penalty") p.p += 1;
+      if (s.type === "dropGoal") p.d += 1;
+    }
+    for (const c of m.cards) team(names[c.team])[c.type] += 1;
+  }
+
+  const byThen = (key) => (a, b) => b[key] - a[key] || a.player?.localeCompare?.(b.player) || a.team?.localeCompare?.(b.team) || 0;
+  const all = [...players.values()].map((p) => ({ ...p, points: p.t * 5 + p.c * 2 + p.p * 3 + p.d * 3 }));
+
+  return {
+    topTryScorers: all.filter((p) => p.t > 0).map(({ player, team, t }) => ({ player, team, tries: t }))
+      .sort((a, b) => b.tries - a.tries || a.player.localeCompare(b.player)),
+    topPointsScorers: all.filter((p) => p.points > 0).map(({ player, team, points, t, c, p: pen, d }) => ({ player, team, points, t, c, p: pen, d }))
+      .sort(byThen("points")),
+    discipline: [...teams.entries()].map(([team, v]) => ({ team, yellow: v.yellow, red: v.red }))
+      .sort((a, b) => (b.yellow + b.red * 2) - (a.yellow + a.red * 2) || a.team.localeCompare(b.team)),
+    teamTotals: [...teams.entries()].map(([team, v]) => ({ team, tries: v.tries, cons: v.cons, pens: v.pens, drops: v.drops, pointsFor: v.pointsFor }))
+      .sort((a, b) => b.pointsFor - a.pointsFor || a.team.localeCompare(b.team)),
+  };
+}

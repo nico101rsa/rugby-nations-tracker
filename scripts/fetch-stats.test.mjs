@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { parseIncidents, reconcile } from "./fetch-stats.mjs";
+import { parseIncidents, reconcile, buildAggregates } from "./fetch-stats.mjs";
 
 const FIXTURE = JSON.parse(readFileSync(new URL("./fixtures/incidents-nzl-fra.json", import.meta.url), "utf8"));
 
@@ -50,6 +50,21 @@ test("parseIncidents: empty input → empty output (negative case)", () => {
   assert.deepEqual(parseIncidents([]), { scoring: [], cards: [], unknown: [] });
 });
 
+test("parseIncidents: missing player field yields player:null (penalty try shape)", () => {
+  const { scoring, unknown } = parseIncidents([
+    { time: 9, incidentType: "goal", incidentClass: "penaltyTry", isHome: true, homeScore: 7, awayScore: 0 },
+  ]);
+  assert.deepEqual(scoring[0], { min: 9, team: "home", type: "penaltyTry", player: null, after: [7, 0] });
+  assert.deepEqual(unknown, []);
+});
+
+test("parseIncidents: 'drop' class aliases to dropGoal", () => {
+  const { scoring } = parseIncidents([
+    { time: 12, incidentType: "goal", incidentClass: "drop", player: { name: "D" }, isHome: false, homeScore: 0, awayScore: 3 },
+  ]);
+  assert.equal(scoring[0].type, "dropGoal");
+});
+
 test("reconcile: real match sums to 34-32", () => {
   const { scoring } = parseIncidents(FIXTURE.data.incidents);
   const r = reconcile(scoring, 34, 32);
@@ -75,4 +90,57 @@ test("reconcile: penalty try is worth 7", () => {
 test("reconcile: empty scoring only reconciles a 0-0 (negative case)", () => {
   assert.equal(reconcile([], 27, 10).ok, false);
   assert.equal(reconcile([], 0, 0).ok, true);
+});
+
+function mkMatch(overrides) {
+  return {
+    id: 1, reconciled: true,
+    home: { name: "A", score: 12 }, away: { name: "B", score: 5 },
+    scoring: [
+      { min: 5, team: "home", type: "try", player: "P1", after: [5, 0] },
+      { min: 15, team: "home", type: "try", player: "P1", after: [10, 0] },
+      { min: 20, team: "home", type: "conversion", player: "P2", after: [12, 0] },
+      { min: 30, team: "away", type: "try", player: "Q1", after: [12, 5] },
+    ],
+    cards: [{ min: 50, team: "away", type: "yellow", player: "Q2" }],
+    ...overrides,
+  };
+}
+
+test("buildAggregates: try scorers, points, discipline, team totals", () => {
+  const agg = buildAggregates([mkMatch({})]);
+  assert.deepEqual(agg.topTryScorers[0], { player: "P1", team: "A", tries: 2 });
+  assert.deepEqual(agg.topPointsScorers[0], { player: "P1", team: "A", points: 10, t: 2, c: 0, p: 0, d: 0 });
+  assert.deepEqual(agg.discipline, [{ team: "B", yellow: 1, red: 0 }, { team: "A", yellow: 0, red: 0 }]);
+  const a = agg.teamTotals.find((t) => t.team === "A");
+  assert.deepEqual(a, { team: "A", tries: 2, cons: 1, pens: 0, drops: 0, pointsFor: 12 });
+});
+
+test("buildAggregates: unreconciled matches are excluded (negative case)", () => {
+  const agg = buildAggregates([mkMatch({ reconciled: false })]);
+  assert.deepEqual(agg.topTryScorers, []);
+  assert.deepEqual(agg.teamTotals, []);
+});
+
+test("buildAggregates: penalty try counts for the team, not a player", () => {
+  const m = mkMatch({
+    home: { name: "A", score: 7 }, away: { name: "B", score: 0 },
+    scoring: [{ min: 9, team: "home", type: "penaltyTry", player: null, after: [7, 0] }],
+    cards: [],
+  });
+  const agg = buildAggregates([m]);
+  assert.deepEqual(agg.topTryScorers, []);
+  assert.equal(agg.teamTotals.find((t) => t.team === "A").tries, 1);
+});
+
+test("buildAggregates: ties broken alphabetically for stable output", () => {
+  const m = mkMatch({
+    scoring: [
+      { min: 5, team: "home", type: "try", player: "Zed", after: [5, 0] },
+      { min: 15, team: "away", type: "try", player: "Abe", after: [5, 5] },
+    ],
+    home: { name: "A", score: 5 }, away: { name: "B", score: 5 }, cards: [],
+  });
+  const agg = buildAggregates([m]);
+  assert.deepEqual(agg.topTryScorers.map((s) => s.player), ["Abe", "Zed"]);
 });
