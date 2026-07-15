@@ -1,9 +1,9 @@
 name: Team events
 
 # Each nation's recent internationals + upcoming fixtures across ALL
-# competitions -> team-events.json. Sundays only: ~24 SportsAPI Pro calls
-# paced under the 10/min ceiling, clear of the daily stats harvest budget
-# (same key, 100/day free tier).
+# competitions -> team-events.json. Sundays only: 24 api-sports calls
+# (12 teams x 2 seasons) must never compete with Saturday live polling
+# on the shared ~100/day free tier.
 on:
   schedule:
     - cron: "0 22 * * 0"
@@ -27,9 +27,9 @@ jobs:
         with:
           node-version: 22
 
-      - name: Fetch team events from SportsAPI Pro
+      - name: Fetch team events from api-sports
         env:
-          SPORTSAPIPRO_KEY: ${{ secrets.SPORTSAPIPRO_KEY }}
+          RUGBY_API_KEY: ${{ secrets.RUGBY_API_KEY }}
         run: node scripts/fetch-team-events.mjs
 
       - name: Commit and push if changed
