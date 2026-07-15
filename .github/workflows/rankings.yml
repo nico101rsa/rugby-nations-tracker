@@ -1,0 +1,41 @@
+name: World rankings
+
+# World Rugby rankings update Mondays (after each test window); a daily check
+# is cheap and publishes only when the Wikipedia template actually changes.
+on:
+  schedule:
+    - cron: "0 21 * * *"
+  workflow_dispatch:
+
+# Own group on purpose — never share concurrency groups (a shared group once
+# starved queued digest runs; see repo history).
+concurrency:
+  group: rankings-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  rankings:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Fetch rankings from Wikipedia
+        run: node scripts/fetch-rankings.mjs
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rankings.json
+          git diff --cached --quiet && echo "No rankings changes" && exit 0
+          git commit -m "Rankings refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          # refresh-data commits nations.json every ~15 min; retry after a
+          # rebase rather than losing that race (disjoint files).
+          git push || (git pull --rebase --autostash && git push)
