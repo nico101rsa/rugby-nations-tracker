@@ -75,9 +75,13 @@ export function leaderStats(spells, now = Date.now()) {
   const out = {};
   for (const s of spells) {
     const weeks = weeksBetween(s.from, s.till, now);
-    const t = (out[s.code] ??= { totalWeeks: 0, longestWeeks: 0, spells: 0, currentSince: null });
+    const t = (out[s.code] ??= { totalWeeks: 0, longestWeeks: 0, longestFrom: null, longestTill: null, spells: 0, currentSince: null });
     t.totalWeeks += weeks;
-    t.longestWeeks = Math.max(t.longestWeeks, weeks);
+    if (weeks > t.longestWeeks) {
+      t.longestWeeks = weeks;
+      t.longestFrom = s.from;
+      t.longestTill = s.till; // null = the longest run is the current one
+    }
     t.spells += 1;
     if (s.till === null) t.currentSince = s.from;
   }
