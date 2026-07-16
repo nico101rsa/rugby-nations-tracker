@@ -34,11 +34,14 @@ jobs:
           SPORTSAPIPRO_KEY: ${{ secrets.SPORTSAPIPRO_KEY }}
         run: node scripts/fetch-team-events.mjs
 
+      - name: Archive games into team-events-archive.json
+        run: node scripts/archive-team-events.mjs
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add team-events.json
+          git add team-events.json team-events-archive.json
           git diff --cached --quiet && echo "No team-events changes" && exit 0
           git commit -m "Team events refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
           git push || (git pull --rebase --autostash && git push)
