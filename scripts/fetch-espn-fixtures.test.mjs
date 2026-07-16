@@ -23,6 +23,7 @@ test("espnEntry: home fixture vs tracked opponent", () => {
   const e = espnEntry(espnEv(603001, "2026-08-22T15:00Z", 5, 8), "RSA", "International Test Match", () => null);
   assert.deepEqual(e, {
     id: "espn-603001",
+    venue: null,
     date: "2026-08-22T15:00Z",
     league: "International Test Match",
     opponent: "New Zealand",
@@ -33,6 +34,23 @@ test("espnEntry: home fixture vs tracked opponent", () => {
     them: null,
     result: null,
   });
+});
+
+test("espnEntry: venue from the competition (fullName + city; fullName alone when they match)", () => {
+  const ev = espnEv(603005, "2026-08-22T15:00Z", 5, 8);
+  ev.competitions[0].venue = { fullName: "Ellis Park", address: { city: "Johannesburg" } };
+  assert.equal(espnEntry(ev, "RSA", "x", () => null).venue, "Ellis Park, Johannesburg");
+  ev.competitions[0].venue = { fullName: "Twickenham" };
+  assert.equal(espnEntry(ev, "RSA", "x", () => null).venue, "Twickenham");
+});
+
+test("mergeNext: duplicate ESPN entry backfills venue onto the kept vendor entry", () => {
+  const vendor = [{ id: 1, date: "2026-07-18T15:40:00.000Z", opponent: "Wales", venue: null }];
+  const espn = [{ id: "espn-1", date: "2026-07-18T15:40Z", opponent: "Wales", venue: "Hollywoodbets Kings Park, Durban" }];
+  const merged = mergeNext(vendor, espn, NOW);
+  assert.equal(merged.length, 1);
+  assert.equal(merged[0].id, 1);
+  assert.equal(merged[0].venue, "Hollywoodbets Kings Park, Durban");
 });
 
 test("espnEntry: away fixture; untracked opponent falls back to resolver name", () => {

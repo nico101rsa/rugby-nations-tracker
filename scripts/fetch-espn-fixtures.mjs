@@ -25,9 +25,11 @@ const CODE_NAMES = {
 const ID_TO_CODE = Object.fromEntries(Object.entries(ESPN_TEAM_IDS).map(([c, id]) => [String(id), c]));
 
 // Leagues that carry internationals ESPN-side. The Nations Championship
-// (17567) is deliberately absent — SportsAPI Pro already covers it, and
-// duplicating it would only exercise the dedupe path.
+// (17567) IS included even though SportsAPI Pro covers those fixtures:
+// its duplicates are dropped by mergeNext's dedupe, but their venue is
+// backfilled onto the kept vendor entry (the vendor feed has no venues).
 const ESPN_LEAGUES = {
+  17567: "Nations Championship",
   289234: "International Test Match",
   244293: "The Rugby Championship",
   180659: "Six Nations",
@@ -50,7 +52,14 @@ export function espnEntry(event, code, leagueName, resolveName) {
   if (!home && sides.away !== ourId) return null;
   const oppId = home ? sides.away : sides.home;
   const oppCode = ID_TO_CODE[oppId] ?? null;
+  const v = comp.venue;
+  const venue = v?.fullName
+    ? v.address?.city && v.address.city !== v.fullName
+      ? `${v.fullName}, ${v.address.city}`
+      : v.fullName
+    : null;
   return {
+    venue,
     id: `espn-${event.id}`,
     date: event.date,
     league: leagueName,
@@ -70,8 +79,18 @@ export function espnEntry(event, code, leagueName, resolveName) {
 // league strings match the rest of the file).
 export function mergeNext(vendorNext, espnEntries, now = Date.now(), cap = 10) {
   const key = (e) => `${String(e.date).slice(0, 10)}|${(e.opponent ?? "").toLowerCase()}`;
-  const seen = new Set(vendorNext.map(key));
-  const extra = espnEntries.filter((e) => !seen.has(key(e)));
+  const vendorByKey = new Map(vendorNext.map((e) => [key(e), e]));
+  const extra = [];
+  for (const e of espnEntries) {
+    const dup = vendorByKey.get(key(e));
+    // Duplicate of a vendor fixture: keep the vendor entry but backfill the
+    // venue (the vendor feed has none).
+    if (dup) {
+      if (dup.venue == null && e.venue != null) dup.venue = e.venue;
+    } else {
+      extra.push(e);
+    }
+  }
   return [...vendorNext, ...extra]
     .filter((e) => new Date(e.date).getTime() >= now)
     .sort((a, b) => new Date(a.date) - new Date(b.date))
