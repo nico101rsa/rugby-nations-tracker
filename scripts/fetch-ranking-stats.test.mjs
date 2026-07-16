@@ -61,9 +61,10 @@ test("parseLeaderSpells: dates to ISO, $now/end to null, names to codes", () => 
 test("leaderStats: totals, longest stretch, spell count, current streak", () => {
   const now = new Date("2026-07-13T00:00:00Z").getTime();
   const stats = leaderStats(parseLeaderSpells(TIMELINE), now);
-  assert.deepEqual(stats.ENG, { totalWeeks: 5, longestWeeks: 5, spells: 1, currentSince: null });
+  assert.deepEqual(stats.ENG, { totalWeeks: 5, longestWeeks: 5, longestFrom: "2003-10-05", longestTill: "2003-11-09", spells: 1, currentSince: null });
   assert.equal(stats.NZL.spells, 2);
   assert.equal(stats.NZL.totalWeeks, 1 + 175);
   assert.equal(stats.NZL.longestWeeks, 175);
-  assert.deepEqual(stats.RSA, { totalWeeks: 10, longestWeeks: 10, spells: 1, currentSince: "2026-05-04" });
+  assert.deepEqual(stats.RSA, { totalWeeks: 10, longestWeeks: 10, longestFrom: "2026-05-04", longestTill: null, spells: 1, currentSince: "2026-05-04" });
+  assert.equal(stats.NZL.longestTill, "2007-10-21");
 });
