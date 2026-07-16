@@ -155,11 +155,20 @@ async function main() {
     eventsByCode[code] = { lastEvents, nextEvents };
   }
 
+  // SportsAPI Pro's next feed misses whole competitions (RSA's 2026 Aug–Sep
+  // tests were absent) — supplement upcoming fixtures from keyless ESPN.
+  const { fetchEspnFixtures, mergeNext } = await import("./fetch-espn-fixtures.mjs");
+  const teams = buildTeamEvents(eventsByCode);
+  const espn = await fetchEspnFixtures();
+  for (const [code, t] of Object.entries(teams)) {
+    t.next = mergeNext(t.next, espn[code] ?? []);
+  }
+
   const out = {
     updatedAt: new Date().toISOString(),
-    source: "sportsapipro",
+    source: "sportsapipro+espn",
     teamIds,
-    teams: buildTeamEvents(eventsByCode),
+    teams,
   };
   await writeFile("team-events.json", JSON.stringify(out, null, 1) + "\n");
   const counts = Object.entries(out.teams).map(([c, t]) => `${c}:${t.last.length}/${t.next.length}`).join(" ");
