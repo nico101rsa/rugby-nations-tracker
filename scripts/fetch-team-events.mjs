@@ -164,6 +164,19 @@ async function main() {
     t.next = mergeNext(t.next, espn[code] ?? []);
   }
 
+  // Per-game tries/cards for the last-10 window: NC games from our own
+  // stats.json, TRC/6N from ESPN; games with no source keep null (the app
+  // drops them from those averages).
+  const { ncStatsByEventId, fetchEspnFormStats, enrichLast } = await import("./fetch-form-stats.mjs");
+  const statsJson = await readFile("stats.json", "utf8").then(JSON.parse).catch(() => null);
+  const neededDaysByCode = Object.fromEntries(
+    Object.entries(teams).map(([code, t]) => [
+      code,
+      new Set((t.last ?? []).map((g) => String(g.date).slice(0, 10))),
+    ]),
+  );
+  enrichLast(teams, ncStatsByEventId(statsJson), await fetchEspnFormStats(neededDaysByCode));
+
   const out = {
     updatedAt: new Date().toISOString(),
     source: "sportsapipro+espn",
