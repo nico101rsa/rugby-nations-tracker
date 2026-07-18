@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-18T03:50:47.224Z",
+ "updatedAt": "2026-07-18T20:19:45.303Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -18,20 +18,6 @@
  "teams": {
   "NZL": {
    "last": [
-    {
-     "id": 14321531,
-     "date": "2025-09-06T07:05:00.000Z",
-     "league": "The Rugby Championship",
-     "opponent": "South Africa",
-     "opponentCode": "RSA",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 24,
-     "them": 17,
-     "result": "W",
-     "tries": 3,
-     "cards": 0
-    },
     {
      "id": 14321530,
      "date": "2025-09-13T07:05:00.000Z",
@@ -157,9 +143,7 @@
      "result": "W",
      "tries": 7,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098058,
      "date": "2026-07-18T07:10:00.000Z",
@@ -168,11 +152,14 @@
      "opponentCode": "IRE",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Eden Park, Auckland"
-    },
+     "us": 40,
+     "them": 21,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "venue": "Ellis Park, Johannesburg",
      "id": "espn-603247",
@@ -289,25 +276,23 @@
      "them": null,
      "result": null,
      "venue": "Allianz Stadium, London"
+    },
+    {
+     "id": 16248079,
+     "date": "2027-10-02T05:15:00.000Z",
+     "league": "World Cup, Pool A",
+     "opponent": "Chile",
+     "opponentCode": null,
+     "tracked": false,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
     }
    ]
   },
   "FRA": {
    "last": [
-    {
-     "id": 14807005,
-     "date": "2025-11-08T20:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "South Africa",
-     "opponentCode": "RSA",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 17,
-     "them": 32,
-     "result": "L",
-     "tries": null,
-     "cards": null
-    },
     {
      "id": 14884328,
      "date": "2025-11-15T20:10:00.000Z",
@@ -433,9 +418,7 @@
      "result": "W",
      "tries": 6,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098056,
      "date": "2026-07-18T08:40:00.000Z",
@@ -444,11 +427,14 @@
      "opponentCode": "JPN",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "MUFG Stadium, Tokyo"
-    },
+     "us": 42,
+     "them": 15,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16098079,
      "date": "2026-11-07T18:00:00.000Z",
@@ -492,20 +478,6 @@
   },
   "JPN": {
    "last": [
-    {
-     "id": 14004886,
-     "date": "2025-09-07T01:05:00.000Z",
-     "league": "Pacific Nations Cup, Group B",
-     "opponent": "USA",
-     "opponentCode": null,
-     "tracked": false,
-     "homeAway": "A",
-     "us": 47,
-     "them": 21,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
     {
      "id": 14647585,
      "date": "2025-09-14T21:35:00.000Z",
@@ -631,9 +603,7 @@
      "result": "L",
      "tries": 2,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098056,
      "date": "2026-07-18T08:40:00.000Z",
@@ -642,11 +612,14 @@
      "opponentCode": "FRA",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "MUFG Stadium, Tokyo"
-    },
+     "us": 15,
+     "them": 42,
+     "result": "L",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "venue": "Hanazono Rugby Stadium, Osaka",
      "id": "espn-603458",
@@ -741,20 +714,6 @@
   },
   "ITA": {
    "last": [
-    {
-     "id": 14884319,
-     "date": "2025-11-08T17:40:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Australia",
-     "opponentCode": "AUS",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 26,
-     "them": 19,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
     {
      "id": 14884323,
      "date": "2025-11-15T12:40:00.000Z",
@@ -880,9 +839,7 @@
      "result": "L",
      "tries": 2,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098055,
      "date": "2026-07-18T10:10:00.000Z",
@@ -891,11 +848,14 @@
      "opponentCode": "AUS",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "HBF Park, Perth"
-    },
+     "us": 10,
+     "them": 57,
+     "result": "L",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16098076,
      "date": "2026-11-07T18:00:00.000Z",
@@ -946,25 +906,23 @@
      "us": null,
      "them": null,
      "result": null
+    },
+    {
+     "id": 16248064,
+     "date": "2027-10-11T08:45:00.000Z",
+     "league": "World Cup, Pool B",
+     "opponent": "Romania",
+     "opponentCode": null,
+     "tracked": false,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
     }
    ]
   },
   "AUS": {
    "last": [
-    {
-     "id": 14240954,
-     "date": "2025-09-13T04:00:00.000Z",
-     "league": "The Rugby Championship",
-     "opponent": "Argentina",
-     "opponentCode": "ARG",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 26,
-     "them": 28,
-     "result": "L",
-     "tries": 4,
-     "cards": 1
-    },
     {
      "id": 14321527,
      "date": "2025-09-27T05:05:00.000Z",
@@ -1090,9 +1048,7 @@
      "result": "L",
      "tries": 4,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098055,
      "date": "2026-07-18T10:10:00.000Z",
@@ -1101,11 +1057,14 @@
      "opponentCode": "ITA",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "HBF Park, Perth"
-    },
+     "us": 57,
+     "them": 10,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "venue": "Hanazono Rugby Stadium, Osaka",
      "id": "espn-603458",
@@ -1222,25 +1181,24 @@
      "them": null,
      "result": null,
      "venue": "Scottish Gas Murrayfield, Edinburgh"
+    },
+    {
+     "id": 16098063,
+     "date": "2026-11-21T18:00:00.000Z",
+     "league": "Nations Championship, Group Stage",
+     "opponent": "Wales",
+     "opponentCode": "WAL",
+     "tracked": true,
+     "homeAway": "A",
+     "us": null,
+     "them": null,
+     "result": null,
+     "venue": "Principality Stadium, Cardiff"
     }
    ]
   },
   "IRE": {
    "last": [
-    {
-     "id": 14884313,
-     "date": "2025-11-08T12:40:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Japan",
-     "opponentCode": "JPN",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 41,
-     "them": 10,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
     {
      "id": 14884326,
      "date": "2025-11-15T20:10:00.000Z",
@@ -1366,9 +1324,7 @@
      "result": "W",
      "tries": 5,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098058,
      "date": "2026-07-18T07:10:00.000Z",
@@ -1377,11 +1333,14 @@
      "opponentCode": "NZL",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Eden Park, Auckland"
-    },
+     "us": 21,
+     "them": 40,
+     "result": "L",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16098060,
      "date": "2026-11-06T18:00:00.000Z",
@@ -1432,25 +1391,23 @@
      "us": null,
      "them": null,
      "result": null
+    },
+    {
+     "id": 16248071,
+     "date": "2027-10-10T09:45:00.000Z",
+     "league": "World Cup, Pool D",
+     "opponent": "Scotland",
+     "opponentCode": "SCO",
+     "tracked": true,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
     }
    ]
   },
   "FIJ": {
    "last": [
-    {
-     "id": 14124713,
-     "date": "2025-07-12T03:00:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Scotland",
-     "opponentCode": "SCO",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 29,
-     "them": 14,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
     {
      "id": 14004883,
      "date": "2025-08-30T03:00:00.000Z",
@@ -1576,9 +1533,7 @@
      "result": "L",
      "tries": 1,
      "cards": 2
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098073,
      "date": "2026-07-18T13:10:00.000Z",
@@ -1587,11 +1542,14 @@
      "opponentCode": "SCO",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Scottish Gas Murrayfield, Edinburgh"
-    },
+     "us": 17,
+     "them": 33,
+     "result": "L",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16524945,
      "date": "2026-09-12T07:00:00.000Z",
@@ -1642,25 +1600,23 @@
      "them": null,
      "result": null,
      "venue": "Bluenergy Stadium, Udine"
+    },
+    {
+     "id": 16248081,
+     "date": "2027-10-04T03:15:00.000Z",
+     "league": "World Cup, Pool C",
+     "opponent": "Spain",
+     "opponentCode": null,
+     "tracked": false,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
     }
    ]
   },
   "WAL": {
    "last": [
-    {
-     "id": 14884331,
-     "date": "2025-11-22T15:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "New Zealand",
-     "opponentCode": "NZL",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 26,
-     "them": 52,
-     "result": "L",
-     "tries": null,
-     "cards": null
-    },
     {
      "id": 14884338,
      "date": "2025-11-29T15:10:00.000Z",
@@ -1786,9 +1742,7 @@
      "result": "L",
      "tries": 3,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098074,
      "date": "2026-07-18T15:40:00.000Z",
@@ -1797,11 +1751,14 @@
      "opponentCode": "RSA",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Hollywoodbets Kings Park, Durban"
-    },
+     "us": 0,
+     "them": 43,
+     "result": "L",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16098048,
      "date": "2026-11-07T18:00:00.000Z",
@@ -1845,20 +1802,6 @@
   },
   "RSA": {
    "last": [
-    {
-     "id": 14321526,
-     "date": "2025-09-27T15:10:00.000Z",
-     "league": "The Rugby Championship",
-     "opponent": "Argentina",
-     "opponentCode": "ARG",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 67,
-     "them": 30,
-     "result": "W",
-     "tries": 9,
-     "cards": 1
-    },
     {
      "id": 14000788,
      "date": "2025-10-04T13:00:00.000Z",
@@ -1984,9 +1927,7 @@
      "result": "W",
      "tries": 6,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098074,
      "date": "2026-07-18T15:40:00.000Z",
@@ -1995,11 +1936,14 @@
      "opponentCode": "WAL",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Hollywoodbets Kings Park, Durban"
-    },
+     "us": 43,
+     "them": 0,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "venue": "Estadio José Amalfitani, Buenos Aires",
      "id": "espn-603498",
@@ -2116,6 +2060,18 @@
      "them": null,
      "result": null,
      "venue": "Aviva Stadium, Dublin"
+    },
+    {
+     "id": 16248083,
+     "date": "2027-10-03T03:45:00.000Z",
+     "league": "World Cup, Pool B",
+     "opponent": "Italy",
+     "opponentCode": "ITA",
+     "tracked": true,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
     }
    ]
   },
@@ -2263,19 +2219,6 @@
     }
    ],
    "next": [
-    {
-     "id": 16098059,
-     "date": "2026-07-18T19:10:00.000Z",
-     "league": "Nations Championship, Group Stage",
-     "opponent": "Argentina",
-     "opponentCode": "ARG",
-     "tracked": true,
-     "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Estadio Único Madre de Ciudades"
-    },
     {
      "id": 16098047,
      "date": "2026-11-08T18:00:00.000Z",
@@ -2462,19 +2405,6 @@
    ],
    "next": [
     {
-     "id": 16098059,
-     "date": "2026-07-18T19:10:00.000Z",
-     "league": "Nations Championship, Group Stage",
-     "opponent": "England",
-     "opponentCode": "ENG",
-     "tracked": true,
-     "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Estadio Único Madre de Ciudades"
-    },
-    {
      "venue": "Estadio José Amalfitani, Buenos Aires",
      "id": "espn-603498",
      "date": "2026-08-08T19:00Z",
@@ -2563,25 +2493,23 @@
      "us": null,
      "them": null,
      "result": null
+    },
+    {
+     "id": 16248065,
+     "date": "2027-10-10T04:15:00.000Z",
+     "league": "World Cup, Pool C",
+     "opponent": "Spain",
+     "opponentCode": null,
+     "tracked": false,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
     }
    ]
   },
   "SCO": {
    "last": [
-    {
-     "id": 14884316,
-     "date": "2025-11-08T15:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "New Zealand",
-     "opponentCode": "NZL",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 17,
-     "them": 25,
-     "result": "L",
-     "tries": null,
-     "cards": null
-    },
     {
      "id": 14884329,
      "date": "2025-11-16T15:10:00.000Z",
@@ -2707,9 +2635,7 @@
      "result": "L",
      "tries": 4,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098073,
      "date": "2026-07-18T13:10:00.000Z",
@@ -2718,11 +2644,14 @@
      "opponentCode": "FIJ",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Scottish Gas Murrayfield, Edinburgh"
-    },
+     "us": 33,
+     "them": 17,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16098061,
      "date": "2026-11-07T18:00:00.000Z",
@@ -2770,6 +2699,18 @@
      "opponentCode": null,
      "tracked": false,
      "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248071,
+     "date": "2027-10-10T09:45:00.000Z",
+     "league": "World Cup, Pool D",
+     "opponent": "Ireland",
+     "opponentCode": "IRE",
+     "tracked": true,
+     "homeAway": "A",
      "us": null,
      "them": null,
      "result": null
