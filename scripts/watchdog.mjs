@@ -23,6 +23,9 @@ const execFileAsync = promisify(execFile);
 export const WATCHERS = [
   { workflow: "generate-digests.yml", label: "Daily news digests", maxAgeHours: 26 },
   { workflow: "refresh-data.yml", label: "Live data refresh", maxAgeHours: 6 },
+  // Daily 01:00 UTC (+ Sat 19:00) — feeds the app's Team pages; a dropped run
+  // leaves finished games showing as upcoming fixtures (seen 2026-07-19).
+  { workflow: "team-events.yml", label: "Team events (Team pages)", maxAgeHours: 26 },
 ];
 
 // Pure core: given the last-success time per workflow, decide what's overdue.
