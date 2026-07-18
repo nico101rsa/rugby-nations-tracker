@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-18T19:11:29.106Z",
+  "updatedAt": "2026-07-18T19:23:31.204Z",
   "counts": {
-    "fixtures": 19,
-    "results": 17,
+    "fixtures": 18,
+    "results": 18,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53230,
-      "date": "2026-07-18T19:10:00+00:00",
-      "week": "3",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 460,
-        "name": "Argentina",
-        "logo": "https://media.api-sports.io/rugby/teams/460.png",
-        "score": null
-      },
-      "away": {
-        "id": 386,
-        "name": "England",
-        "logo": "https://media.api-sports.io/rugby/teams/386.png",
-        "score": null
-      }
-    },
     {
       "id": "static-r4-388",
       "date": "2026-11-06T12:00:00+00:00",
@@ -823,6 +801,28 @@
         "name": "Wales",
         "logo": "https://media.api-sports.io/rugby/teams/391.png",
         "score": 0
+      }
+    },
+    {
+      "id": 53230,
+      "date": "2026-07-18T19:10:00+00:00",
+      "week": "3",
+      "status": {
+        "short": "1H",
+        "long": "First Half",
+        "live": true
+      },
+      "home": {
+        "id": 460,
+        "name": "Argentina",
+        "logo": "https://media.api-sports.io/rugby/teams/460.png",
+        "score": 0
+      },
+      "away": {
+        "id": 386,
+        "name": "England",
+        "logo": "https://media.api-sports.io/rugby/teams/386.png",
+        "score": 5
       }
     }
   ],
