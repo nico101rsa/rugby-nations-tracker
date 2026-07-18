@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-18T12:00:02.430Z",
+  "updatedAt": "2026-07-18T12:12:05.537Z",
   "counts": {
     "fixtures": 21,
     "results": 15,
@@ -808,15 +808,15 @@
       "date": "2026-07-18T10:10:00+00:00",
       "week": "3",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false
       },
       "home": {
         "id": 461,
         "name": "Australia",
         "logo": "https://media.api-sports.io/rugby/teams/461.png",
-        "score": 50
+        "score": 57
       },
       "away": {
         "id": 389,
@@ -897,6 +897,23 @@
     },
     {
       "rank": 5,
+      "id": 461,
+      "team": "Australia",
+      "logo": "https://media.api-sports.io/rugby/teams/461.png",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PF": 114,
+      "PA": 85,
+      "PD": 29,
+      "TF": 17,
+      "TA": 13,
+      "BP": 4,
+      "Pts": 8
+    },
+    {
+      "rank": 6,
       "id": 460,
       "team": "Argentina",
       "logo": "https://media.api-sports.io/rugby/teams/460.png",
@@ -913,7 +930,7 @@
       "Pts": 6
     },
     {
-      "rank": 6,
+      "rank": 7,
       "id": 390,
       "team": "Scotland",
       "logo": "https://media.api-sports.io/rugby/teams/390.png",
@@ -930,7 +947,7 @@
       "Pts": 6
     },
     {
-      "rank": 7,
+      "rank": 8,
       "id": 386,
       "team": "England",
       "logo": "https://media.api-sports.io/rugby/teams/386.png",
@@ -947,7 +964,7 @@
       "Pts": 5
     },
     {
-      "rank": 8,
+      "rank": 9,
       "id": 391,
       "team": "Wales",
       "logo": "https://media.api-sports.io/rugby/teams/391.png",
@@ -964,7 +981,7 @@
       "Pts": 5
     },
     {
-      "rank": 9,
+      "rank": 10,
       "id": 463,
       "team": "Japan",
       "logo": "https://media.api-sports.io/rugby/teams/463.png",
@@ -981,41 +998,7 @@
       "Pts": 4
     },
     {
-      "rank": 10,
-      "id": 461,
-      "team": "Australia",
-      "logo": "https://media.api-sports.io/rugby/teams/461.png",
-      "P": 2,
-      "W": 0,
-      "D": 0,
-      "L": 2,
-      "PF": 57,
-      "PA": 75,
-      "PD": -18,
-      "TF": 9,
-      "TA": 11,
-      "BP": 3,
-      "Pts": 3
-    },
-    {
       "rank": 11,
-      "id": 389,
-      "team": "Italy",
-      "logo": "https://media.api-sports.io/rugby/teams/389.png",
-      "P": 2,
-      "W": 0,
-      "D": 0,
-      "L": 2,
-      "PF": 27,
-      "PA": 74,
-      "PD": -47,
-      "TF": 3,
-      "TA": 10,
-      "BP": 0,
-      "Pts": 0
-    },
-    {
-      "rank": 12,
       "id": 28,
       "team": "Fiji",
       "logo": "https://media.api-sports.io/rugby/teams/28.png",
@@ -1030,9 +1013,32 @@
       "TA": 17,
       "BP": 0,
       "Pts": 0
+    },
+    {
+      "rank": 12,
+      "id": 389,
+      "team": "Italy",
+      "logo": "https://media.api-sports.io/rugby/teams/389.png",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PF": 37,
+      "PA": 131,
+      "PD": -94,
+      "TF": 5,
+      "TA": 18,
+      "BP": 0,
+      "Pts": 0
     }
   ],
   "news": [
+    {
+      "title": "Australia 57-10 Italy: Nations Championship rugby union international – live reaction",
+      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOVnRSSlYtNkZUT0dFQkZBRlNHREVXcUtZMnJTdmN6cmI3TWxuQWhjUWctZFpFS1lrYTY2dkd1dFo0NGp4eXNpRnF3ZWdpSW04V2c0UEJpSnZkdXlBTVJ3SE5TSmdtZEtaMFhOX21KMElCU0o0aTFidkFCWnFYcy1BR1AyajI5c0ZBVHUtTUNMUmRXcTdJdjVLbFlCWXpjaDN3VTB6NVFpcFMyNjZ4V1o2Y294RnFyN3I2NlpGeU1HanNpRHd2NlNYV0dNU0lYMFpVZGMzZ1QtNDBfc0lWOXJ6a0RCRQ?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 18 Jul 2026 12:08:48 GMT"
+    },
     {
       "title": "Wallabies star makes captaincy pitch in Schmidt’s farewell Test",
       "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQVmdwSVZHb2hNZHJ2WXRmb29TSHBRcE81TlEzTjVpT3lSMHJJVzNlOHVVbDVWc1dJbE1obk5Vd1VDZmFiUmFWSHhPMFRvNzNLcENQUE1QZ05lSm5VYXZ1YjdGb3BjTDJmN1VrUUg3VmRlVXozVzFyYmEtajJ1N1QtTzhMQzhWV0VhSHM5Y2Z4MTVIV1dyNDVFQmtOM3BRY0tGU3VNbXRubzVMZEhjYlVKeXNISnNGdVlSZUJRZlVPV21TWHUteDdVUTh4UzloNGxlUUE?oc=5",
@@ -1062,12 +1068,6 @@
       "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOZXZUYU82SUxsRUtXRm5KUVh0SnlrcmtBSWlUbzJKX29FOTRwMEgzVzhrNmVzcnhJdklCTkFycEVHb1AyOHNOY0N6YTM2VEN1Mlp5RWVlT09sSjVLSUNrRGF2bmRkUWVKNzdUVm80Zkhvdmt1ZlJhYWx6UUVKSUVVY3p5aG05RzI2Umd0d25xRW42enl2ZmgyRFJ3SQ?oc=5",
       "source": "Rugbypass.com",
       "published": "Sat, 18 Jul 2026 09:14:33 GMT"
-    },
-    {
-      "title": "Australia v Italy: Nations Championship rugby union international – live",
-      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOVnRSSlYtNkZUT0dFQkZBRlNHREVXcUtZMnJTdmN6cmI3TWxuQWhjUWctZFpFS1lrYTY2dkd1dFo0NGp4eXNpRnF3ZWdpSW04V2c0UEJpSnZkdXlBTVJ3SE5TSmdtZEtaMFhOX21KMElCU0o0aTFidkFCWnFYcy1BR1AyajI5c0ZBVHUtTUNMUmRXcTdJdjVLbFlCWXpjaDN3VTB6NVFpcFMyNjZ4V1o2Y294RnFyN3I2NlpGeU1HanNpRHd2NlNYV0dNU0lYMFpVZGMzZ1QtNDBfc0lWOXJ6a0RCRQ?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 18 Jul 2026 09:10:00 GMT"
     },
     {
       "title": "How to watch Japan vs France for FREE: Nations Championship 2026 live streams",
