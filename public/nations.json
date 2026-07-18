@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-18T13:00:14.275Z",
+  "updatedAt": "2026-07-18T13:20:20.193Z",
   "counts": {
-    "fixtures": 21,
-    "results": 15,
+    "fixtures": 20,
+    "results": 16,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53228,
-      "date": "2026-07-18T13:10:00+00:00",
-      "week": "3",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 28,
-        "name": "Fiji",
-        "logo": "https://media.api-sports.io/rugby/teams/28.png",
-        "score": null
-      },
-      "away": {
-        "id": 390,
-        "name": "Scotland",
-        "logo": "https://media.api-sports.io/rugby/teams/390.png",
-        "score": null
-      }
-    },
     {
       "id": 53229,
       "date": "2026-07-18T15:40:00+00:00",
@@ -824,6 +802,28 @@
         "logo": "https://media.api-sports.io/rugby/teams/389.png",
         "score": 10
       }
+    },
+    {
+      "id": 53228,
+      "date": "2026-07-18T13:10:00+00:00",
+      "week": "3",
+      "status": {
+        "short": "1H",
+        "long": "First Half",
+        "live": true
+      },
+      "home": {
+        "id": 28,
+        "name": "Fiji",
+        "logo": "https://media.api-sports.io/rugby/teams/28.png",
+        "score": 0
+      },
+      "away": {
+        "id": 390,
+        "name": "Scotland",
+        "logo": "https://media.api-sports.io/rugby/teams/390.png",
+        "score": 0
+      }
     }
   ],
   "log": [
@@ -1034,6 +1034,24 @@
   ],
   "news": [
     {
+      "title": "Live Discussion: Nations Championship: Fiji V Scotland. Sat 18th Jul 2026. Scottish Gas Murrayfield, Edinburgh. Kick-off 11.00pm AEST.",
+      "link": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOVDE0cmtsUXdwNGlzalFVWFozdDh0aFBkdEoyWlk5SHc1eXF0TDV1Z2NDNlJZVlE4d04xTmZ6VGdGVWliS3dKdC1mSHlpNmdTVi1iUk5uMDlXeHNGZTIybUZqal93S1BuS3JiNUZBR1dCY2RDMzNkS1IxdmlVUEtoTnRKMVZELW1Id1dUNTNDcGxRbEJtUENqX2ZabEZiWXg4T2xuclhjc3R1ekZaamZvSDB4YmFraDRLOFI5R3Q0WUw?oc=5",
+      "source": "Green & Gold Rugby",
+      "published": "Sat, 18 Jul 2026 13:00:07 GMT"
+    },
+    {
+      "title": "Wallabies star makes captaincy pitch in Schmidt’s farewell Test",
+      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQVmdwSVZHb2hNZHJ2WXRmb29TSHBRcE81TlEzTjVpT3lSMHJJVzNlOHVVbDVWc1dJbE1obk5Vd1VDZmFiUmFWSHhPMFRvNzNLcENQUE1QZ05lSm5VYXZ1YjdGb3BjTDJmN1VrUUg3VmRlVXozVzFyYmEtajJ1N1QtTzhMQzhWV0VhSHM5Y2Z4MTVIV1dyNDVFQmtOM3BRY0tGU3VNbXRubzVMZEhjYlVKeXNISnNGdVlSZUJRZlVPV21TWHUteDdVUTh4UzloNGxlUUE?oc=5",
+      "source": "Nine.com.au",
+      "published": "Sat, 18 Jul 2026 12:52:26 GMT"
+    },
+    {
+      "title": "THAT’S better! Slick Wallabies blitz stuns rival, snaps horror streak in coach’s final Test",
+      "link": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxOZy1aME1jN0tDbEtpMUxPU2pvcW00aFd3em5ma3lUM2REc2VrdW9LVml6QXRLNThDVWU5ejJKeHZKN2VfMjY2dnZfX2RPdF9Ra3hiRkdGMHMtdjlMRmFGdVdoMXY1UWJtVkU0SjlXMUhrOEV0QV9pWkVjQVJKOUc1NDBIb1BpaFB5cVlmY2Nwb1gtTE55VkNLanBBMEpvVTVuZUdBRk9QMGcwemRqN1U5bTZsSEpPa0g1b1RrWkRYRjFpUDdlRC1xSzBFbmRlX0JRS1NVS3hLVExpcXNXNUx1QjJmMW9fRVcwQ1haV0tiWUd2NmthQ2s5RnJCU3dOQ3hMYUZQS2hHeXQtN1FRVGoyZWFFdWpuRVhiN2JfM3U1anVqZU51N2FtbtIBqAJBVV95cUxOZy1aME1jN0tDbEtpMUxPU2pvcW00aFd3em5ma3lUM2REc2VrdW9LVml6QXRLNThDVWU5ejJKeHZKN2VfMjY2dnZfX2RPdF9Ra3hiRkdGMHMtdjlMRmFGdVdoMXY1UWJtVkU0SjlXMUhrOEV0QV9pWkVjQVJKOUc1NDBIb1BpaFB5cVlmY2Nwb1gtTE55VkNLanBBMEpvVTVuZUdBRk9QMGcwemRqN1U5bTZsSEpPa0g1b1RrWkRYRjFpUDdlRC1xSzBFbmRlX0JRS1NVS3hLVExpcXNXNUx1QjJmMW9fRVcwQ1haV0tiWUd2NmthQ2s5RnJCU3dOQ3hMYUZQS2hHeXQtN1FRVGoyZWFFdWpuRVhiN2JfM3U1anVqZU51N2Ftbg?oc=5",
+      "source": "Fox Sports",
+      "published": "Sat, 18 Jul 2026 12:43:03 GMT"
+    },
+    {
       "title": "Farrell rues Ireland errors as All Blacks extend unbeaten streak at Eden Park",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQT2xKVFc4cEJZYXVjbndUYnpNNVZEQnBTUVN0YW1nTC10LXdILWVuRjd2ZkR3djRnRUhzUS1GVkxGNmVLenpVLU9RZEE4cV9PYy0tMXRLTFI4V1luQzdlMTJyclN5Qm9pUy0tQzRvbV8yaGZzcEZlcWl2dm1LNERyYVA0OWpuRGdFZzF6YXBMYUFzbGlGY1JhOEFiMEdsbXB0ZHF3MW5XUjZxemU0M3hN?oc=5",
       "source": "The Guardian",
@@ -1052,34 +1070,16 @@
       "published": "Sat, 18 Jul 2026 09:28:00 GMT"
     },
     {
-      "title": "Ireland player ratings vs New Zealand | Nations Championship 2026",
-      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOZXZUYU82SUxsRUtXRm5KUVh0SnlrcmtBSWlUbzJKX29FOTRwMEgzVzhrNmVzcnhJdklCTkFycEVHb1AyOHNOY0N6YTM2VEN1Mlp5RWVlT09sSjVLSUNrRGF2bmRkUWVKNzdUVm80Zkhvdmt1ZlJhYWx6UUVKSUVVY3p5aG05RzI2Umd0d25xRW42enl2ZmgyRFJ3SQ?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Sat, 18 Jul 2026 09:14:33 GMT"
-    },
-    {
-      "title": "Australia 57-10 Italy: Nations Championship rugby union international – as it happened",
-      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOVnRSSlYtNkZUT0dFQkZBRlNHREVXcUtZMnJTdmN6cmI3TWxuQWhjUWctZFpFS1lrYTY2dkd1dFo0NGp4eXNpRnF3ZWdpSW04V2c0UEJpSnZkdXlBTVJ3SE5TSmdtZEtaMFhOX21KMElCU0o0aTFidkFCWnFYcy1BR1AyajI5c0ZBVHUtTUNMUmRXcTdJdjVLbFlCWXpjaDN3VTB6NVFpcFMyNjZ4V1o2Y294RnFyN3I2NlpGeU1HanNpRHd2NlNYV0dNU0lYMFpVZGMzZ1QtNDBfc0lWOXJ6a0RCRQ?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 18 Jul 2026 09:10:00 GMT"
-    },
-    {
-      "title": "Nations Championship LIVE! New Zealand vs Ireland (8.10am)",
-      "link": "https://news.google.com/rss/articles/CBMiogJBVV95cUxNMW9KS29iNHV3aElzcDdReFlPVXNPeFl3cU4zX3NhSmJJQmZLRHJKaE4xWGNXajBORTN3QW9INW1WTjlxTll4UTJJb3Vuek9VUDB3Rlg0eWdIR1pyeWZ4QXB6R2ZRbjJPZ1dVbkE4dXl6SXphbDY0QUJfQmY0YW9Vd2lud0F2SEptSWEyYVBRNWUyOHNleVhoaFhndHB5TDc5N0hQdEZMWXFnV19JY3dqZFJMRFdDMEZZUm1oZ3VUems0SWVEaVdRdzBxams3NE1hN2VXanplb2NyUkQweHBqS2otU2IyTXJDeDJXYmNrUWE2U1M3N3N5S0VxdVJ5ZUV2X3dmOW1vTXF6Z1VWVmRTTWhyQWdUMkhXMC05dG9oTWczUQ?oc=5",
-      "source": "Sky Sports",
-      "published": "Sat, 18 Jul 2026 06:16:23 GMT"
+      "title": "LIVE: Nations Championship 2026 Round 3: New Zealand vs Ireland Fixture",
+      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE4xSWk1dXlrdWZvTFVKY0c0MUV6Z3Y0TW1OSDNTUWpFMXFQbFVfYzgwUFFrWjBSQkV3UmJTcXBLX0syVklhQUktbk92RGk3NjFFNnZBekk0SG5ndmxVS1dxQ3ZGcUszWXdHSGFFM29OTXpjdER6LVd6cVRn?oc=5",
+      "source": "RUGBY.com.au",
+      "published": "Sat, 18 Jul 2026 07:30:26 GMT"
     },
     {
       "title": "How to watch Japan vs France for FREE: Nations Championship 2026 live streams",
       "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQTUdCM0FkZVhYQTNrLUhLaFRrUXdRYV9ScGluZEQzc2VuSGNCRVppdkxwM3JrNC1TVUttTzBJMVUxZDVReno2aU5KMDM5c0xqU1ZmRHlQRFk3TEU0eXJhRUJFVFJxbkVzeHVveDdCd082SHRiY0xidGFwOEpCQWVBeXhoSTZtZ0FfYXdseURwUQ?oc=5",
       "source": "rugbyworld.com",
       "published": "Sat, 18 Jul 2026 06:01:07 GMT"
-    },
-    {
-      "title": "Townsend prepared for another try-fest with Fiji",
-      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFB2VEtCbVNCbWpxTTkxTmRseXNVdWZjazV0VzRVeDUxa1BtckJ3RDNwNkRtVG04enRJbjI1ZzkxQ19EZnFueDRTUk5rdmlpaDZyV2w5UUJRWUx6dmc2dEktWEJJTW1OaEZRRE04?oc=5",
-      "source": "BBC",
-      "published": "Fri, 17 Jul 2026 16:14:51 GMT"
     },
     {
       "title": "World Rugby Nations Cup 2026 round three preview",
