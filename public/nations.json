@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-18T15:42:39.096Z",
+  "updatedAt": "2026-07-18T15:54:41.053Z",
   "counts": {
-    "fixtures": 20,
-    "results": 16,
+    "fixtures": 19,
+    "results": 17,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53229,
-      "date": "2026-07-18T15:40:00+00:00",
-      "week": "3",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 467,
-        "name": "South Africa",
-        "logo": "https://media.api-sports.io/rugby/teams/467.png",
-        "score": null
-      },
-      "away": {
-        "id": 391,
-        "name": "Wales",
-        "logo": "https://media.api-sports.io/rugby/teams/391.png",
-        "score": null
-      }
-    },
     {
       "id": 53230,
       "date": "2026-07-18T19:10:00+00:00",
@@ -824,6 +802,28 @@
         "logo": "https://media.api-sports.io/rugby/teams/390.png",
         "score": 33
       }
+    },
+    {
+      "id": 53229,
+      "date": "2026-07-18T15:40:00+00:00",
+      "week": "3",
+      "status": {
+        "short": "1H",
+        "long": "First Half",
+        "live": true
+      },
+      "home": {
+        "id": 467,
+        "name": "South Africa",
+        "logo": "https://media.api-sports.io/rugby/teams/467.png",
+        "score": 7
+      },
+      "away": {
+        "id": 391,
+        "name": "Wales",
+        "logo": "https://media.api-sports.io/rugby/teams/391.png",
+        "score": 0
+      }
     }
   ],
   "log": [
@@ -1076,10 +1076,10 @@
       "published": "Sat, 18 Jul 2026 09:10:00 GMT"
     },
     {
-      "title": "LIVE: Nations Championship 2026 Round 3: New Zealand vs Ireland Fixture",
-      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE4xSWk1dXlrdWZvTFVKY0c0MUV6Z3Y0TW1OSDNTUWpFMXFQbFVfYzgwUFFrWjBSQkV3UmJTcXBLX0syVklhQUktbk92RGk3NjFFNnZBekk0SG5ndmxVS1dxQ3ZGcUszWXdHSGFFM29OTXpjdER6LVd6cVRn?oc=5",
-      "source": "RUGBY.com.au",
-      "published": "Sat, 18 Jul 2026 07:30:26 GMT"
+      "title": "2026 Nations Championship - New Zealand vs Ireland - 18-07-2026 | NZ Rugby",
+      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFAtS1hGNUJWZTZHWlZZRElLbFRpQzN5cUt6UlpIalBoMlRJMEtKT0FGNkRsM0JfR3NOcHFCMll1N1FKTUpvbHEwaUJPTG43TlNwM1B2SUVVOXlNcjZEUER2aXpOZ3B5ZXVjRkphWDdxSE5jeEd1d0t2SlVB?oc=5",
+      "source": "All Blacks",
+      "published": "Sat, 18 Jul 2026 07:10:00 GMT"
     },
     {
       "title": "Townsend prepared for another try-fest with Fiji",
