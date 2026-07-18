@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-18T14:56:38.795Z",
+  "updatedAt": "2026-07-18T15:08:41.718Z",
   "counts": {
     "fixtures": 20,
     "results": 16,
@@ -808,9 +808,9 @@
       "date": "2026-07-18T13:10:00+00:00",
       "week": "3",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false
       },
       "home": {
         "id": 28,
@@ -822,7 +822,7 @@
         "id": 390,
         "name": "Scotland",
         "logo": "https://media.api-sports.io/rugby/teams/390.png",
-        "score": 21
+        "score": 33
       }
     }
   ],
@@ -880,6 +880,23 @@
     },
     {
       "rank": 4,
+      "id": 390,
+      "team": "Scotland",
+      "logo": "https://media.api-sports.io/rugby/teams/390.png",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PF": 108,
+      "PA": 97,
+      "PD": 11,
+      "TF": 14,
+      "TA": 14,
+      "BP": 2,
+      "Pts": 10
+    },
+    {
+      "rank": 5,
       "id": 388,
       "team": "Ireland",
       "logo": "https://media.api-sports.io/rugby/teams/388.png",
@@ -896,7 +913,7 @@
       "Pts": 10
     },
     {
-      "rank": 5,
+      "rank": 6,
       "id": 461,
       "team": "Australia",
       "logo": "https://media.api-sports.io/rugby/teams/461.png",
@@ -913,7 +930,7 @@
       "Pts": 8
     },
     {
-      "rank": 6,
+      "rank": 7,
       "id": 460,
       "team": "Argentina",
       "logo": "https://media.api-sports.io/rugby/teams/460.png",
@@ -926,23 +943,6 @@
       "PD": 5,
       "TF": 10,
       "TA": 10,
-      "BP": 2,
-      "Pts": 6
-    },
-    {
-      "rank": 7,
-      "id": 390,
-      "team": "Scotland",
-      "logo": "https://media.api-sports.io/rugby/teams/390.png",
-      "P": 2,
-      "W": 1,
-      "D": 0,
-      "L": 1,
-      "PF": 75,
-      "PA": 80,
-      "PD": -5,
-      "TF": 11,
-      "TA": 11,
       "BP": 2,
       "Pts": 6
     },
@@ -999,23 +999,6 @@
     },
     {
       "rank": 11,
-      "id": 28,
-      "team": "Fiji",
-      "logo": "https://media.api-sports.io/rugby/teams/28.png",
-      "P": 2,
-      "W": 0,
-      "D": 0,
-      "L": 2,
-      "PF": 32,
-      "PA": 112,
-      "PD": -80,
-      "TF": 4,
-      "TA": 17,
-      "BP": 0,
-      "Pts": 0
-    },
-    {
-      "rank": 12,
       "id": 389,
       "team": "Italy",
       "logo": "https://media.api-sports.io/rugby/teams/389.png",
@@ -1030,9 +1013,32 @@
       "TA": 18,
       "BP": 0,
       "Pts": 0
+    },
+    {
+      "rank": 12,
+      "id": 28,
+      "team": "Fiji",
+      "logo": "https://media.api-sports.io/rugby/teams/28.png",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PF": 49,
+      "PA": 145,
+      "PD": -96,
+      "TF": 7,
+      "TA": 20,
+      "BP": 0,
+      "Pts": 0
     }
   ],
   "news": [
+    {
+      "title": "South Africa v Wales: Nations Championship Rugby – live",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOMEdqdUJWWDZMa1F5MnktSkxkMkV5SE9WTGd5RmJrMXVoR3VVaDdadXNKVXFsbjRxRGpkMGhjR0JUWmVoTnpHS2FvTEItbkpxV3MxTnp0ancyZzVvbU5aanlrZU91dEM0eUFQSHZiLUV0TWMxVzdjTUlDYjV4aDRwaklWMHM4Tmx5TlV6UTVmMVg0NVRKRE1vSzFzOWpqT3A2OWVHVHdB?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 18 Jul 2026 14:58:00 GMT"
+    },
     {
       "title": "Wallabies star makes captaincy pitch in Schmidt’s farewell Test",
       "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQVmdwSVZHb2hNZHJ2WXRmb29TSHBRcE81TlEzTjVpT3lSMHJJVzNlOHVVbDVWc1dJbE1obk5Vd1VDZmFiUmFWSHhPMFRvNzNLcENQUE1QZ05lSm5VYXZ1YjdGb3BjTDJmN1VrUUg3VmRlVXozVzFyYmEtajJ1N1QtTzhMQzhWV0VhSHM5Y2Z4MTVIV1dyNDVFQmtOM3BRY0tGU3VNbXRubzVMZEhjYlVKeXNISnNGdVlSZUJRZlVPV21TWHUteDdVUTh4UzloNGxlUUE?oc=5",
@@ -1104,12 +1110,6 @@
       "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPdXV1SXlTUUNDWGpUbHcyU2p2TTZQVDFMMjg3UFhoZlJVQXhDaVItdmlaeWx0dVVWLTNJNjVHS2l3eXBveExJX2pZOXFjQWRRamUyZFc2d0FxR3pFRHVKVnRpZFNQWlMwZG01TVNBNVJLSldzZkQ3elZaTU0xQnpJZDh0VldvcVJQemNLYWdyZXlwc0dwUVpBWWNEMFZwQVFYcFdvbXBRUWVRZGdqV2wwNF85SzRwam5IREFHb1B3OEtYcGZNLXZSSjhqWmZZbndvSFVj?oc=5",
       "source": "Nine.com.au",
       "published": "Sat, 11 Jul 2026 10:18:41 GMT"
-    },
-    {
-      "title": "Australia 26-42 France: Nations Championship rugby union international – as it happened",
-      "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNLVdIaFRhUWtMYzJjSFhydk5xUHlJbUl2UC11R3RLRkIxT0ppT1EwOV9wM01QNTFxdmNiMVU5elR0TlpLY1Ric0Z4TFpqV3pBMUItX2RtT1F6cWg0c1lzVWlWRW1OeDZNLWVRWmZEZEwxNHJnOVBLbDdZR1lwa1RXZGlLWHJkWGRWMmxhaXRJY3VINGV4OTJmYnRiOTdsVy1UelA0alRlNENzZmtnNFJjd1U5TFk0SkpseU8tMmVrQXZrSUpwUGowRXRhb29OZ3RtZWowUzl4aWVzby1EZUFHZmFNam8?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 11 Jul 2026 06:57:00 GMT"
     },
     {
       "title": "France dominates Wallabies to post historic Test win",
