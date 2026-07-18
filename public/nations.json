@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-18T17:18:55.745Z",
+  "updatedAt": "2026-07-18T17:31:01.065Z",
   "counts": {
     "fixtures": 19,
     "results": 17,
@@ -808,15 +808,15 @@
       "date": "2026-07-18T15:40:00+00:00",
       "week": "3",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false
       },
       "home": {
         "id": 467,
         "name": "South Africa",
         "logo": "https://media.api-sports.io/rugby/teams/467.png",
-        "score": 36
+        "score": 43
       },
       "away": {
         "id": 391,
@@ -829,6 +829,23 @@
   "log": [
     {
       "rank": 1,
+      "id": 467,
+      "team": "South Africa",
+      "logo": "https://media.api-sports.io/rugby/teams/467.png",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PF": 130,
+      "PA": 49,
+      "PD": 81,
+      "TF": 20,
+      "TA": 7,
+      "BP": 3,
+      "Pts": 15
+    },
+    {
+      "rank": 2,
       "id": 465,
       "team": "New Zealand",
       "logo": "https://media.api-sports.io/rugby/teams/465.png",
@@ -845,7 +862,7 @@
       "Pts": 15
     },
     {
-      "rank": 2,
+      "rank": 3,
       "id": 387,
       "team": "France",
       "logo": "https://media.api-sports.io/rugby/teams/387.png",
@@ -860,23 +877,6 @@
       "TA": 11,
       "BP": 4,
       "Pts": 12
-    },
-    {
-      "rank": 3,
-      "id": 467,
-      "team": "South Africa",
-      "logo": "https://media.api-sports.io/rugby/teams/467.png",
-      "P": 2,
-      "W": 2,
-      "D": 0,
-      "L": 0,
-      "PF": 87,
-      "PA": 49,
-      "PD": 38,
-      "TF": 13,
-      "TA": 7,
-      "BP": 2,
-      "Pts": 10
     },
     {
       "rank": 4,
@@ -968,15 +968,15 @@
       "id": 391,
       "team": "Wales",
       "logo": "https://media.api-sports.io/rugby/teams/391.png",
-      "P": 2,
+      "P": 3,
       "W": 1,
       "D": 0,
-      "L": 1,
+      "L": 2,
       "PF": 60,
-      "PA": 59,
-      "PD": 1,
+      "PA": 102,
+      "PD": -42,
       "TF": 9,
-      "TA": 8,
+      "TA": 15,
       "BP": 1,
       "Pts": 5
     },
@@ -1058,6 +1058,12 @@
       "published": "Sat, 18 Jul 2026 14:26:05 GMT"
     },
     {
+      "title": "Wallabies star makes captaincy pitch in Schmidt’s farewell Test",
+      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQVmdwSVZHb2hNZHJ2WXRmb29TSHBRcE81TlEzTjVpT3lSMHJJVzNlOHVVbDVWc1dJbE1obk5Vd1VDZmFiUmFWSHhPMFRvNzNLcENQUE1QZ05lSm5VYXZ1YjdGb3BjTDJmN1VrUUg3VmRlVXozVzFyYmEtajJ1N1QtTzhMQzhWV0VhSHM5Y2Z4MTVIV1dyNDVFQmtOM3BRY0tGU3VNbXRubzVMZEhjYlVKeXNISnNGdVlSZUJRZlVPV21TWHUteDdVUTh4UzloNGxlUUE?oc=5",
+      "source": "Nine.com.au",
+      "published": "Sat, 18 Jul 2026 13:28:42 GMT"
+    },
+    {
       "title": "THAT’S better! Slick Wallabies blitz stuns rival, snaps horror streak in coach’s final Test",
       "link": "https://news.google.com/rss/articles/CBMiqAJBVV95cUxOZy1aME1jN0tDbEtpMUxPU2pvcW00aFd3em5ma3lUM2REc2VrdW9LVml6QXRLNThDVWU5ejJKeHZKN2VfMjY2dnZfX2RPdF9Ra3hiRkdGMHMtdjlMRmFGdVdoMXY1UWJtVkU0SjlXMUhrOEV0QV9pWkVjQVJKOUc1NDBIb1BpaFB5cVlmY2Nwb1gtTE55VkNLanBBMEpvVTVuZUdBRk9QMGcwemRqN1U5bTZsSEpPa0g1b1RrWkRYRjFpUDdlRC1xSzBFbmRlX0JRS1NVS3hLVExpcXNXNUx1QjJmMW9fRVcwQ1haV0tiWUd2NmthQ2s5RnJCU3dOQ3hMYUZQS2hHeXQtN1FRVGoyZWFFdWpuRVhiN2JfM3U1anVqZU51N2FtbtIBqAJBVV95cUxOZy1aME1jN0tDbEtpMUxPU2pvcW00aFd3em5ma3lUM2REc2VrdW9LVml6QXRLNThDVWU5ejJKeHZKN2VfMjY2dnZfX2RPdF9Ra3hiRkdGMHMtdjlMRmFGdVdoMXY1UWJtVkU0SjlXMUhrOEV0QV9pWkVjQVJKOUc1NDBIb1BpaFB5cVlmY2Nwb1gtTE55VkNLanBBMEpvVTVuZUdBRk9QMGcwemRqN1U5bTZsSEpPa0g1b1RrWkRYRjFpUDdlRC1xSzBFbmRlX0JRS1NVS3hLVExpcXNXNUx1QjJmMW9fRVcwQ1haV0tiWUd2NmthQ2s5RnJCU3dOQ3hMYUZQS2hHeXQtN1FRVGoyZWFFdWpuRVhiN2JfM3U1anVqZU51N2Ftbg?oc=5",
       "source": "Fox Sports",
@@ -1076,16 +1082,10 @@
       "published": "Sat, 18 Jul 2026 10:24:28 GMT"
     },
     {
-      "title": "All Blacks v Ireland Live Updates | Nations Championship | NZ Rugby",
-      "link": "https://news.google.com/rss/articles/CBMifkFVX3lxTE12UE94d3lORFphYjBIQlpoWWM4cWtCaWFObWZMZHhNQU1pOHlVSjBWTGJRQjZkaWxPUG40TF9ib0I4ZU1MaFRjTWQyeXRNODBoZl84VE9DUmpaRktnbUNVVHRCTS1IVFlSSzlBQ2JzalFmdzNjbG9DZnEyck96dw?oc=5",
+      "title": "2026 Nations Championship - New Zealand vs Ireland - 18-07-2026 | NZ Rugby",
+      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTFAtS1hGNUJWZTZHWlZZRElLbFRpQzN5cUt6UlpIalBoMlRJMEtKT0FGNkRsM0JfR3NOcHFCMll1N1FKTUpvbHEwaUJPTG43TlNwM1B2SUVVOXlNcjZEUER2aXpOZ3B5ZXVjRkphWDdxSE5jeEd1d0t2SlVB?oc=5",
       "source": "All Blacks",
-      "published": "Sat, 18 Jul 2026 09:20:01 GMT"
-    },
-    {
-      "title": "Australia 57-10 Italy: Nations Championship rugby union international – as it happened",
-      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOVnRSSlYtNkZUT0dFQkZBRlNHREVXcUtZMnJTdmN6cmI3TWxuQWhjUWctZFpFS1lrYTY2dkd1dFo0NGp4eXNpRnF3ZWdpSW04V2c0UEJpSnZkdXlBTVJ3SE5TSmdtZEtaMFhOX21KMElCU0o0aTFidkFCWnFYcy1BR1AyajI5c0ZBVHUtTUNMUmRXcTdJdjVLbFlCWXpjaDN3VTB6NVFpcFMyNjZ4V1o2Y294RnFyN3I2NlpGeU1HanNpRHd2NlNYV0dNU0lYMFpVZGMzZ1QtNDBfc0lWOXJ6a0RCRQ?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 18 Jul 2026 09:10:00 GMT"
+      "published": "Sat, 18 Jul 2026 07:10:00 GMT"
     },
     {
       "title": "World Rugby Nations Cup 2026 round three preview",
