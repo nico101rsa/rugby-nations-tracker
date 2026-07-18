@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-18T10:07:00.325Z",
+  "updatedAt": "2026-07-18T10:19:02.598Z",
   "counts": {
-    "fixtures": 22,
-    "results": 14,
+    "fixtures": 21,
+    "results": 15,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53227,
-      "date": "2026-07-18T10:10:00+00:00",
-      "week": "3",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 461,
-        "name": "Australia",
-        "logo": "https://media.api-sports.io/rugby/teams/461.png",
-        "score": null
-      },
-      "away": {
-        "id": 389,
-        "name": "Italy",
-        "logo": "https://media.api-sports.io/rugby/teams/389.png",
-        "score": null
-      }
-    },
     {
       "id": 53228,
       "date": "2026-07-18T13:10:00+00:00",
@@ -824,6 +802,28 @@
         "logo": "https://media.api-sports.io/rugby/teams/387.png",
         "score": 42
       }
+    },
+    {
+      "id": 53227,
+      "date": "2026-07-18T10:10:00+00:00",
+      "week": "3",
+      "status": {
+        "short": "1H",
+        "long": "First Half",
+        "live": true
+      },
+      "home": {
+        "id": 461,
+        "name": "Australia",
+        "logo": "https://media.api-sports.io/rugby/teams/461.png",
+        "score": 5
+      },
+      "away": {
+        "id": 389,
+        "name": "Italy",
+        "logo": "https://media.api-sports.io/rugby/teams/389.png",
+        "score": 0
+      }
     }
   ],
   "log": [
@@ -1058,12 +1058,6 @@
       "published": "Sat, 18 Jul 2026 09:15:54 GMT"
     },
     {
-      "title": "All Blacks player ratings vs Ireland | 2026 Nations Championship",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNbW9HR0d6N1JvNGRsckYtWTVaMFYzYm5uRG9RcXVBYWoyY3VKZnk2NFJ4SWFEcVFmZFVUN1FYQVZVYjB5S3B1bm1va1I4bVMwWFpodEVtNExBd216RzlHNWU0aGtIMmJueE1PbUVZaU91UE1iNHp6UXBLRnk4MGRvUDlYSkVXQ1N1UlpwcHVCUkNCal8xNzJrU3FB?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Sat, 18 Jul 2026 09:10:17 GMT"
-    },
-    {
       "title": "Australia v Italy: Nations Championship rugby union international – live",
       "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxOVnRSSlYtNkZUT0dFQkZBRlNHREVXcUtZMnJTdmN6cmI3TWxuQWhjUWctZFpFS1lrYTY2dkd1dFo0NGp4eXNpRnF3ZWdpSW04V2c0UEJpSnZkdXlBTVJ3SE5TSmdtZEtaMFhOX21KMElCU0o0aTFidkFCWnFYcy1BR1AyajI5c0ZBVHUtTUNMUmRXcTdJdjVLbFlCWXpjaDN3VTB6NVFpcFMyNjZ4V1o2Y294RnFyN3I2NlpGeU1HanNpRHd2NlNYV0dNU0lYMFpVZGMzZ1QtNDBfc0lWOXJ6a0RCRQ?oc=5",
       "source": "The Guardian",
@@ -1082,16 +1076,22 @@
       "published": "Sat, 18 Jul 2026 07:30:26 GMT"
     },
     {
-      "title": "Nations Championship: Scotland prepared for try-fest with Fiji",
-      "link": "https://news.google.com/rss/articles/CBMia0FVX3lxTFB2VEtCbVNCbWpxTTkxTmRseXNVdWZjazV0VzRVeDUxa1BtckJ3RDNwNkRtVG04enRJbjI1ZzkxQ19EZnFueDRTUk5rdmlpaDZyV2w5UUJRWUx6dmc2dEktWEJJTW1OaEZRRE04?oc=5",
-      "source": "BBC",
-      "published": "Fri, 17 Jul 2026 16:14:51 GMT"
+      "title": "How to watch Japan vs France for FREE: Nations Championship 2026 live streams",
+      "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQTUdCM0FkZVhYQTNrLUhLaFRrUXdRYV9ScGluZEQzc2VuSGNCRVppdkxwM3JrNC1TVUttTzBJMVUxZDVReno2aU5KMDM5c0xqU1ZmRHlQRFk3TEU0eXJhRUJFVFJxbkVzeHVveDdCd082SHRiY0xidGFwOEpCQWVBeXhoSTZtZ0FfYXdseURwUQ?oc=5",
+      "source": "rugbyworld.com",
+      "published": "Sat, 18 Jul 2026 06:01:07 GMT"
     },
     {
       "title": "World Rugby Nations Cup 2026 round three preview",
       "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQbjVzMWNybkY4bzBDSTl2TFZmTTU0S3hicXY2aXBmaHFCdzdxTS03aHloeVFOOUd3VnoySHBPUGFvNEFRRmVZRHpQUVBYS2RmU2hJRXRMWTJqOWJ4Z0RjSWh2MDlDN2lROERvSlNoRFhmSmZHX2s5bjlELXduWmUxa0tWVXJfcTR6S3g0RGt3?oc=5",
       "source": "World Rugby",
       "published": "Fri, 17 Jul 2026 12:27:58 GMT"
+    },
+    {
+      "title": "World Rugby statement: Nations Cup match to be played behind closed doors",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQTnZhOTdUSDRQWnVTX2VvQ21tQkR2SzViMUpfQXRWbkdtcXZDNElkTjZxWVgyZHZfVVpyT0s2cjBnRW1mX09wVDE3RUE2Nll1UFFkdHF6ZVdFaGMwYjVxZmFuaTJyc0JuX0lXQlAxaUZMaVFyT3M5a1BsRzA4RERkSGpVYl84bzUyOEt6RkJDVk5LSGhsZGNsemZ4VHBxdWM2ejg5OGFCOA?oc=5",
+      "source": "Rugbypass.com",
+      "published": "Fri, 17 Jul 2026 11:48:46 GMT"
     },
     {
       "title": "Nations Championship: Predictions, team news, kick-off times, how to watch and referee appointments for Round Three",
