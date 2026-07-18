@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-07-18T08:35:44.570Z",
+  "updatedAt": "2026-07-18T08:47:46.753Z",
   "counts": {
-    "fixtures": 23,
-    "results": 13,
+    "fixtures": 22,
+    "results": 14,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53226,
-      "date": "2026-07-18T08:40:00+00:00",
-      "week": "3",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 463,
-        "name": "Japan",
-        "logo": "https://media.api-sports.io/rugby/teams/463.png",
-        "score": null
-      },
-      "away": {
-        "id": 387,
-        "name": "France",
-        "logo": "https://media.api-sports.io/rugby/teams/387.png",
-        "score": null
-      }
-    },
     {
       "id": 53227,
       "date": "2026-07-18T10:10:00+00:00",
@@ -816,13 +794,35 @@
         "id": 465,
         "name": "New Zealand",
         "logo": "https://media.api-sports.io/rugby/teams/465.png",
-        "score": 28
+        "score": 35
       },
       "away": {
         "id": 388,
         "name": "Ireland",
         "logo": "https://media.api-sports.io/rugby/teams/388.png",
         "score": 14
+      }
+    },
+    {
+      "id": 53226,
+      "date": "2026-07-18T08:40:00+00:00",
+      "week": "3",
+      "status": {
+        "short": "1H",
+        "long": "First Half",
+        "live": true
+      },
+      "home": {
+        "id": 463,
+        "name": "Japan",
+        "logo": "https://media.api-sports.io/rugby/teams/463.png",
+        "score": 0
+      },
+      "away": {
+        "id": 387,
+        "name": "France",
+        "logo": "https://media.api-sports.io/rugby/teams/387.png",
+        "score": 7
       }
     }
   ],
@@ -1034,10 +1034,10 @@
   ],
   "news": [
     {
-      "title": "Live Discussion: Nations Championship: Japan V France. Sat 18th Jul 2026. MUFG Stadium, Tokyo. Kick-off 6:40pm AEST.",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxNcUFlbkZtOENDTE9FSm85eGR6YW5YaThYLTEyNFo3YjhBRGVTOElKXzJ0WVBhTHpKZWQyR3A5QkM4cWxYekhCRG1YTHdzNGxmUXFuNXFwNjF1dmFmdUs3TE9GOWFtcm55RGdGUDZTZWNMdmh5aDYyaFM5VHhsdGVwVGRvWWl6RTNlZldDcXF2VWdtOHNKX2RSUUZQSGZqbWNTcW1MUDc1SDFTc0thZWhNdFNTSGlOQWdyVE1lZFpMWmV3YWtkUmc?oc=5",
-      "source": "Green & Gold Rugby",
-      "published": "Sat, 18 Jul 2026 08:33:24 GMT"
+      "title": "Nations Championship 2026 Round 3: Wallabies vs Italy Fixture",
+      "link": "https://news.google.com/rss/articles/CBMiekFVX3lxTE1sS0U1SnU1d2dUOFpZOENjT2M2V3FTNnl1M1g1YzJMdnVTc2lqdUdHV2g3bHFBWWR3SUQwcmJBcExIaHJfUFZQYm54aGQ3ZnVIekZqM2FjTlJKQndXOVE3dm5XVHJSb3dqRFMtYVo2OGVrRGoySjZyZE5R?oc=5",
+      "source": "RUGBY.com.au",
+      "published": "Sat, 18 Jul 2026 08:42:35 GMT"
     },
     {
       "title": "Wallabies star makes captaincy pitch in Schmidt’s farewell Test",
@@ -1082,6 +1082,12 @@
       "published": "Sat, 18 Jul 2026 06:20:00 GMT"
     },
     {
+      "title": "Nations Championship schedule, results, kick-off times and how to watch",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQOVRCUmVfcGdJTVNQemRubzhYSjRIeHJxMS0tWVRvaUJpUmZMUWNVdm5CVDVYRlN5Tk5lRWV0cUNXa2ZjRm9Wczd4QnpWOUI1Z2hvZHduNUpGOFJtRURodEs5eWZwVWVENzhwZ0hlSXc1UGt4THNHY3NCWEduQUc2WW5XXzZrVW9SS2xwaVRDT2Z6bFdlVVg1eF82VjFoOGFVeVlMbDgtZEFyNVloZXJoS1Z2ekItTVplY0xQZmdITVZYMUZxSlpOUVJuSQ?oc=5",
+      "source": "The Independent",
+      "published": "Sat, 18 Jul 2026 05:48:00 GMT"
+    },
+    {
       "title": "How to watch Wallabies vs. Italy: TV channel, live stream for Australia's Nations Championship match",
       "link": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxQdFFQMjZycVk1VG8zalRQdzlZTkgxeFcyVnU3RDNqc2tXUkc3a0oydlNnRW1BMm44MDBSb3hmNHIwS0kxLW5SU1BKdGVuR3IwTXdxQ1poMFFtcUxkQjZPRXBVZ1NfQ3VaYnFnSzV5Wkd4dllPN3l2ZDJGU0FrRDlscHoxanhDSHJkenh0OV9veVVxUDlkeHREejlUY3RCZzVURGExeW95NVZ1aGR3T19GTm1adTZycVZqZUppd21WVS16LVQwQ3puRW9XbmNpMXZHVHNEZHNBU0hsWFFSVFlJbjc0NzR5U213YU1kNTFaYnh5LUFCNXc?oc=5",
       "source": "sportingnews.com",
@@ -1092,12 +1098,6 @@
       "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxQbjVzMWNybkY4bzBDSTl2TFZmTTU0S3hicXY2aXBmaHFCdzdxTS03aHloeVFOOUd3VnoySHBPUGFvNEFRRmVZRHpQUVBYS2RmU2hJRXRMWTJqOWJ4Z0RjSWh2MDlDN2lROERvSlNoRFhmSmZHX2s5bjlELXduWmUxa0tWVXJfcTR6S3g0RGt3?oc=5",
       "source": "World Rugby",
       "published": "Fri, 17 Jul 2026 12:27:58 GMT"
-    },
-    {
-      "title": "World Rugby statement: Nations Cup match to be played behind closed doors",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQTnZhOTdUSDRQWnVTX2VvQ21tQkR2SzViMUpfQXRWbkdtcXZDNElkTjZxWVgyZHZfVVpyT0s2cjBnRW1mX09wVDE3RUE2Nll1UFFkdHF6ZVdFaGMwYjVxZmFuaTJyc0JuX0lXQlAxaUZMaVFyT3M5a1BsRzA4RERkSGpVYl84bzUyOEt6RkJDVk5LSGhsZGNsemZ4VHBxdWM2ejg5OGFCOA?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Fri, 17 Jul 2026 11:48:46 GMT"
     },
     {
       "title": "Nations Championship: Predictions, team news, kick-off times, how to watch and referee appointments for Round Three",
