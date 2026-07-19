@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-18T20:19:45.303Z",
+ "updatedAt": "2026-07-19T04:19:31.703Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -155,8 +155,8 @@
      "us": 40,
      "them": 21,
      "result": "W",
-     "tries": null,
-     "cards": null
+     "tries": 6,
+     "cards": 1
     }
    ],
    "next": [
@@ -430,8 +430,8 @@
      "us": 42,
      "them": 15,
      "result": "W",
-     "tries": null,
-     "cards": null
+     "tries": 6,
+     "cards": 2
     }
    ],
    "next": [
@@ -615,8 +615,8 @@
      "us": 15,
      "them": 42,
      "result": "L",
-     "tries": null,
-     "cards": null
+     "tries": 2,
+     "cards": 1
     }
    ],
    "next": [
@@ -851,8 +851,8 @@
      "us": 10,
      "them": 57,
      "result": "L",
-     "tries": null,
-     "cards": null
+     "tries": 2,
+     "cards": 1
     }
    ],
    "next": [
@@ -1060,8 +1060,8 @@
      "us": 57,
      "them": 10,
      "result": "W",
-     "tries": null,
-     "cards": null
+     "tries": 9,
+     "cards": 0
     }
    ],
    "next": [
@@ -1336,8 +1336,8 @@
      "us": 21,
      "them": 40,
      "result": "L",
-     "tries": null,
-     "cards": null
+     "tries": 3,
+     "cards": 0
     }
    ],
    "next": [
@@ -1545,8 +1545,8 @@
      "us": 17,
      "them": 33,
      "result": "L",
-     "tries": null,
-     "cards": null
+     "tries": 3,
+     "cards": 1
     }
    ],
    "next": [
@@ -1754,8 +1754,8 @@
      "us": 0,
      "them": 43,
      "result": "L",
-     "tries": null,
-     "cards": null
+     "tries": 0,
+     "cards": 1
     }
    ],
    "next": [
@@ -1939,8 +1939,8 @@
      "us": 43,
      "them": 0,
      "result": "W",
-     "tries": null,
-     "cards": null
+     "tries": 7,
+     "cards": 0
     }
    ],
    "next": [
@@ -2078,20 +2078,6 @@
   "ENG": {
    "last": [
     {
-     "id": 14884318,
-     "date": "2025-11-08T17:40:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Fiji",
-     "opponentCode": "FIJ",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 38,
-     "them": 18,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14884324,
      "date": "2025-11-15T15:10:00.000Z",
      "league": "International Friendlies",
@@ -2216,6 +2202,20 @@
      "result": "W",
      "tries": 11,
      "cards": 0
+    },
+    {
+     "id": 16098059,
+     "date": "2026-07-18T19:10:00.000Z",
+     "league": "Nations Championship, Group Stage",
+     "opponent": "Argentina",
+     "opponentCode": "ARG",
+     "tracked": true,
+     "homeAway": "A",
+     "us": 31,
+     "them": 24,
+     "result": "W",
+     "tries": null,
+     "cards": null
     }
    ],
    "next": [
@@ -2262,20 +2262,6 @@
   },
   "ARG": {
    "last": [
-    {
-     "id": 14000787,
-     "date": "2025-08-23T21:10:00.000Z",
-     "league": "The Rugby Championship",
-     "opponent": "New Zealand",
-     "opponentCode": "NZL",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 29,
-     "them": 23,
-     "result": "W",
-     "tries": 2,
-     "cards": 0
-    },
     {
      "id": 14321532,
      "date": "2025-09-06T04:30:00.000Z",
@@ -2401,6 +2387,20 @@
      "result": "W",
      "tries": 5,
      "cards": 0
+    },
+    {
+     "id": 16098059,
+     "date": "2026-07-18T19:10:00.000Z",
+     "league": "Nations Championship, Group Stage",
+     "opponent": "England",
+     "opponentCode": "ENG",
+     "tracked": true,
+     "homeAway": "H",
+     "us": 24,
+     "them": 31,
+     "result": "L",
+     "tries": null,
+     "cards": null
     }
    ],
    "next": [
@@ -2647,8 +2647,8 @@
      "us": 33,
      "them": 17,
      "result": "W",
-     "tries": null,
-     "cards": null
+     "tries": 5,
+     "cards": 0
     }
    ],
    "next": [
