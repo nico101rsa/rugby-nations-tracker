@@ -51,12 +51,13 @@ export const TEAMS = {
   28: { name: "Fiji", masthead: "Flying Fijians Watch" },
 };
 
-export const KICKERS = ["Team news", "Injury desk", "The opposition", "The stakes"];
+export const KICKERS = ["Team news"];
 
 const TEMPLATE = `You write **{MASTHEAD}**, the daily {TEAM_NAME} briefing inside Rugby Nations
-Tracker, an iOS app covering the 2026 Nations Championship. Your reader is a
-knowledgeable {TEAM_NAME} fan who checks the app once a day. Today is
-{DAY_NAME} {DATE_LONG}.
+Tracker, an iOS app covering men's international rugby (all competitions —
+Nations Championship, test series, tours, Rugby Championship, Six Nations,
+World Cup). Your reader is a knowledgeable {TEAM_NAME} fan who checks the app
+once a day. Today is {DAY_NAME} {DATE_LONG}.
 
 ## App data (trusted — do not re-verify, do not contradict)
 
@@ -83,19 +84,21 @@ knowledgeable {TEAM_NAME} fan who checks the app once a day. Today is
    led with today — if they led with a player's return, so do you, not the
    routine rotation count.
 
-## Format — exactly four sections
+## Format — ONE section: heading + one paragraph
 
-| # | kicker | Job | Rules |
-|---|---|---|---|
-| 1 | Team news | The day's biggest team story | Announcement-day colour ("named on Monday") only on Mon/Tue editions |
-| 2 | Injury desk | Who is out, pinned to the match | "ruled out of Saturday's Test" — match-specific, never season-vague. If genuinely nothing new, say what changed since yesterday or that the camp is clean |
-| 3 | The opposition | Threat assessment of the next opponent | Mon–Thu: recent form is fine. **Fri onwards: lead with the opposition's named team if announced.** Include one forward-looking fact when available |
-| 4 | The stakes | Log position + what the next result means | **Edition-relative phrasing** ("goes into the weekend top of the log"), because earlier kickoffs can move the live table while your copy is still up. Match-day editions: no absolute standings claims anywhere, headings included |
+The edition is a single story: the most interesting, talked-about {TEAM_NAME}
+story in today's coverage, from ANY current men's 15s competition — never
+limit yourself to one tournament. A selection bombshell, an injury to a key
+man, a coach's barb before a big test, a rivalry series storyline — pick the
+one a fan would text a mate about.
 
-- Section bodies **50–70 words** (the closer may run short).
-- **Skim test:** heading + first sentence of each section must deliver the
-  story on their own. Headings carry information, not just attitude — at most
-  one attitude-heading per edition.
+- **Heading:** catchy and specific — it must carry the story on its own
+  (a reader who stops there still knows what happened). No manufactured hype.
+- **Body: one paragraph, 55–90 words.** Lead with the story, then the one or
+  two supporting facts that give it weight. If the story is match-pinned,
+  say which match ("Saturday's second test"), never a vague "this season".
+- Standings claims stay **edition-relative** ("goes into the weekend top of
+  the log") — earlier kickoffs can move the live table while your copy is up.
 - At most **one direct coach quote** per edition, verbatim and sourced.
 - Register: knowing fan, dry, confident sports desk. Second reference to a
   well-known coach may be informal ("Rassie", "Razor") if that's how the
@@ -119,10 +122,7 @@ thing to mangle.
   "edition": "{DAY_NAME} {DAY_NUMBER} {MONTH}",
   "match": { "venue": "<venue, City — only if verified today>", "referee": "<name — only if verified today>" },
   "sections": [
-    { "kicker": "Team news", "heading": "…", "body": "…" },
-    { "kicker": "Injury desk", "heading": "…", "body": "…" },
-    { "kicker": "The opposition", "heading": "…", "body": "…" },
-    { "kicker": "The stakes", "heading": "…", "body": "…" }
+    { "kicker": "Team news", "heading": "…", "body": "…" }
   ],
   "teamsheet": {
     "starters": [{ "no": 1, "name": "…" }, … exactly 15, jerseys 1-15 …],
@@ -231,8 +231,8 @@ export const BANNED_COPY = [
   [/\b(AEST|AEDT|SAST|GMT|BST|UTC|CET|CEST)\b/, "timezone"],
 ];
 
-// Shape gate before anything reaches the app: exactly today's date, the four
-// kickers in order, sane word counts. Returns a *clean* object (unknown keys
+// Shape gate before anything reaches the app: exactly today's date, the
+// expected kickers in order, sane word counts. Returns a *clean* object (unknown keys
 // dropped) so the published JSON is exactly the shape digestFor() expects.
 export function validateDigest(raw, { dateISO }) {
   const errors = [];
@@ -240,13 +240,13 @@ export function validateDigest(raw, { dateISO }) {
   if (raw.date !== dateISO) errors.push(`date ${raw.date} !== ${dateISO}`);
   if (typeof raw.edition !== "string" || !raw.edition.trim()) errors.push("missing edition");
   const sections = Array.isArray(raw.sections) ? raw.sections : [];
-  if (sections.length !== KICKERS.length) errors.push(`expected 4 sections, got ${sections.length}`);
+  if (sections.length !== KICKERS.length) errors.push(`expected ${KICKERS.length} section(s), got ${sections.length}`);
   else {
     sections.forEach((s, i) => {
       if (s?.kicker !== KICKERS[i]) errors.push(`section ${i} kicker "${s?.kicker}" !== "${KICKERS[i]}"`);
       if (typeof s?.heading !== "string" || !s.heading.trim()) errors.push(`section ${i} missing heading`);
       const n = typeof s?.body === "string" ? words(s.body) : 0;
-      if (n < 20 || n > 100) errors.push(`section ${i} body ${n} words (want ~50-70)`);
+      if (n < 20 || n > 120) errors.push(`section ${i} body ${n} words (want ~55-90)`);
       for (const [re, label] of BANNED_COPY) {
         const copy = `${s?.heading ?? ""} ${s?.body ?? ""}`;
         if (re.test(copy)) errors.push(`section ${i} contains ${label}`);
@@ -953,7 +953,7 @@ const MAX_NOTES = 8;
 export function buildReviewPrompt(editions, dateISO) {
   const blocks = editions.map(({ team, digest }) => `### ${team}\n${JSON.stringify(digest, null, 1)}`);
   return `You are the reviewing editor for a suite of daily rugby team briefings
-(2026 Nations Championship). Below are today's published editions (${dateISO}).
+(men's international rugby, all competitions). Below are today's published editions (${dateISO}).
 Each was written from a per-team pack of same-day news and fact-checked.
 
 ${blocks.join("\n\n")}
@@ -974,8 +974,8 @@ ${blocks.join("\n\n")}
 }
 Only propose a prompt note for a defect visible in MULTIPLE editions today;
 one-off slips don't earn a standing rule. Notes must work WITHIN the format
-contract — every edition always has exactly four sections with fixed kickers,
-50-70 word bodies — so never propose deleting/merging sections, changing
+contract — every edition is a single section (kicker "Team news"): one catchy
+heading + one 55-90 word paragraph — so never propose adding sections, changing
 kickers, or consulting resources the writer doesn't have (its only inputs are
 the daily source pack and the app data).`;
 }
