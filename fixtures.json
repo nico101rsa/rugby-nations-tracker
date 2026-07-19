@@ -1,0 +1,791 @@
+{
+ "updatedAt": "2026-07-19T11:18:31.626Z",
+ "source": "espn",
+ "fixtures": [
+  {
+   "id": "espn-603990",
+   "date": "2026-07-18T13:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "FIJ",
+    "name": "Fiji",
+    "tracked": true
+   },
+   "away": {
+    "code": "SCO",
+    "name": "Scotland",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Scottish Gas Murrayfield, Edinburgh",
+   "round": "3"
+  },
+  {
+   "id": "espn-603991",
+   "date": "2026-07-18T15:40:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "away": {
+    "code": "WAL",
+    "name": "Wales",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Hollywoodbets Kings Park, Durban",
+   "round": "3"
+  },
+  {
+   "id": "espn-603992",
+   "date": "2026-07-18T19:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ARG",
+    "name": "Argentina",
+    "tracked": true
+   },
+   "away": {
+    "code": "ENG",
+    "name": "England",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Estadio Único Madre de Ciudades",
+   "round": "3"
+  },
+  {
+   "id": "espn-603458",
+   "date": "2026-08-08T10:05:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "JPN",
+    "name": "Japan",
+    "tracked": true
+   },
+   "away": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "comp": {
+    "key": "series-jpn-aus-2026",
+    "label": "JPN v AUS",
+    "kind": "series"
+   },
+   "venue": "Hanazono Rugby Stadium, Osaka",
+   "series": {
+    "label": "JPN v AUS",
+    "game": 1,
+    "of": 2
+   }
+  },
+  {
+   "id": "espn-603498",
+   "date": "2026-08-08T19:00:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ARG",
+    "name": "Argentina",
+    "tracked": true
+   },
+   "away": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "comp": {
+    "key": "test",
+    "label": "TEST",
+    "kind": "test"
+   },
+   "venue": "Estadio José Amalfitani, Buenos Aires"
+  },
+  {
+   "id": "espn-603459",
+   "date": "2026-08-15T05:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "away": {
+    "code": "JPN",
+    "name": "Japan",
+    "tracked": true
+   },
+   "comp": {
+    "key": "series-jpn-aus-2026",
+    "label": "JPN v AUS",
+    "kind": "series"
+   },
+   "venue": "Queensland Country Bank Stadium, Townsville",
+   "series": {
+    "label": "JPN v AUS",
+    "game": 2,
+    "of": 2
+   }
+  },
+  {
+   "id": "espn-603247",
+   "date": "2026-08-22T15:00:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "series-rsa-nzl-2026",
+    "label": "SA v NZ",
+    "kind": "series"
+   },
+   "venue": "Ellis Park, Johannesburg",
+   "series": {
+    "label": "SA v NZ",
+    "game": 1,
+    "of": 4
+   }
+  },
+  {
+   "id": "espn-603248",
+   "date": "2026-08-29T15:00:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "series-rsa-nzl-2026",
+    "label": "SA v NZ",
+    "kind": "series"
+   },
+   "venue": "DHL Stadium, Cape Town",
+   "series": {
+    "label": "SA v NZ",
+    "game": 2,
+    "of": 4
+   }
+  },
+  {
+   "id": "espn-603460",
+   "date": "2026-08-29T19:00:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ARG",
+    "name": "Argentina",
+    "tracked": true
+   },
+   "away": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "comp": {
+    "key": "series-arg-aus-2026",
+    "label": "ARG v AUS",
+    "kind": "series"
+   },
+   "venue": "Estadio 23 de Agosto, San Salvador",
+   "series": {
+    "label": "ARG v AUS",
+    "game": 1,
+    "of": 2
+   }
+  },
+  {
+   "id": "espn-603737",
+   "date": "2026-09-05T05:50:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "JPN",
+    "name": "Japan",
+    "tracked": true
+   },
+   "away": {
+    "code": "CAN",
+    "name": "Canada",
+    "tracked": false
+   },
+   "comp": {
+    "key": "test",
+    "label": "TEST",
+    "kind": "test"
+   },
+   "venue": "Denka Big Swan Stadium"
+  },
+  {
+   "id": "espn-603249",
+   "date": "2026-09-05T15:00:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "series-rsa-nzl-2026",
+    "label": "SA v NZ",
+    "kind": "series"
+   },
+   "venue": "FNB Stadium, Johannesburg",
+   "series": {
+    "label": "SA v NZ",
+    "game": 3,
+    "of": 4
+   }
+  },
+  {
+   "id": "espn-603461",
+   "date": "2026-09-05T21:00:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ARG",
+    "name": "Argentina",
+    "tracked": true
+   },
+   "away": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "comp": {
+    "key": "series-arg-aus-2026",
+    "label": "ARG v AUS",
+    "kind": "series"
+   },
+   "venue": "Estadio Malvinas Argentinas, Mendoza",
+   "series": {
+    "label": "ARG v AUS",
+    "game": 2,
+    "of": 2
+   }
+  },
+  {
+   "id": "espn-603250",
+   "date": "2026-09-12T21:00:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "series-rsa-nzl-2026",
+    "label": "SA v NZ",
+    "kind": "series"
+   },
+   "venue": "M&T Bank Stadium",
+   "series": {
+    "label": "SA v NZ",
+    "game": 4,
+    "of": 4
+   }
+  },
+  {
+   "id": "espn-603462",
+   "date": "2026-09-27T09:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "away": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "comp": {
+    "key": "test",
+    "label": "TEST",
+    "kind": "test"
+   },
+   "venue": "Optus Stadium, Perth"
+  },
+  {
+   "id": "espn-603463",
+   "date": "2026-10-10T06:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "away": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "comp": {
+    "key": "series-nzl-aus-2026",
+    "label": "NZ v AUS",
+    "kind": "series"
+   },
+   "venue": "Eden Park, Auckland",
+   "series": {
+    "label": "NZ v AUS",
+    "game": 1,
+    "of": 2
+   }
+  },
+  {
+   "id": "espn-603464",
+   "date": "2026-10-17T05:00:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "series-nzl-aus-2026",
+    "label": "NZ v AUS",
+    "kind": "series"
+   },
+   "venue": "Accor Stadium, Sydney",
+   "series": {
+    "label": "NZ v AUS",
+    "game": 2,
+    "of": 2
+   }
+  },
+  {
+   "id": "espn-603993",
+   "date": "2026-11-06T20:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "IRE",
+    "name": "Ireland",
+    "tracked": true
+   },
+   "away": {
+    "code": "ARG",
+    "name": "Argentina",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Aviva Stadium, Dublin",
+   "round": "4"
+  },
+  {
+   "id": "espn-603994",
+   "date": "2026-11-07T11:40:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ITA",
+    "name": "Italy",
+    "tracked": true
+   },
+   "away": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Allianz Stadium",
+   "round": "4"
+  },
+  {
+   "id": "espn-603995",
+   "date": "2026-11-07T14:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "SCO",
+    "name": "Scotland",
+    "tracked": true
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Scottish Gas Murrayfield, Edinburgh",
+   "round": "4"
+  },
+  {
+   "id": "espn-603996",
+   "date": "2026-11-07T16:40:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "WAL",
+    "name": "Wales",
+    "tracked": true
+   },
+   "away": {
+    "code": "JPN",
+    "name": "Japan",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Principality Stadium, Cardiff",
+   "round": "4"
+  },
+  {
+   "id": "espn-603997",
+   "date": "2026-11-07T20:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "FRA",
+    "name": "France",
+    "tracked": true
+   },
+   "away": {
+    "code": "FIJ",
+    "name": "Fiji",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Groupama Stadium, Lyon",
+   "round": "4"
+  },
+  {
+   "id": "espn-603998",
+   "date": "2026-11-08T15:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ENG",
+    "name": "England",
+    "tracked": true
+   },
+   "away": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Allianz Stadium, London",
+   "round": "4"
+  },
+  {
+   "id": "espn-603999",
+   "date": "2026-11-13T20:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "FRA",
+    "name": "France",
+    "tracked": true
+   },
+   "away": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Stade de France, Saint-Denis",
+   "round": "5"
+  },
+  {
+   "id": "espn-604000",
+   "date": "2026-11-14T11:40:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ITA",
+    "name": "Italy",
+    "tracked": true
+   },
+   "away": {
+    "code": "ARG",
+    "name": "Argentina",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Stadio Luigi Ferraris, Genova",
+   "round": "5"
+  },
+  {
+   "id": "espn-604001",
+   "date": "2026-11-14T14:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "WAL",
+    "name": "Wales",
+    "tracked": true
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Principality Stadium, Cardiff",
+   "round": "5"
+  },
+  {
+   "id": "espn-604002",
+   "date": "2026-11-14T16:40:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ENG",
+    "name": "England",
+    "tracked": true
+   },
+   "away": {
+    "code": "JPN",
+    "name": "Japan",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Allianz Stadium, London",
+   "round": "5"
+  },
+  {
+   "id": "espn-604003",
+   "date": "2026-11-14T20:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "IRE",
+    "name": "Ireland",
+    "tracked": true
+   },
+   "away": {
+    "code": "FIJ",
+    "name": "Fiji",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Aviva Stadium, Dublin",
+   "round": "5"
+  },
+  {
+   "id": "espn-604004",
+   "date": "2026-11-15T15:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "SCO",
+    "name": "Scotland",
+    "tracked": true
+   },
+   "away": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Scottish Gas Murrayfield, Edinburgh",
+   "round": "5"
+  },
+  {
+   "id": "espn-604005",
+   "date": "2026-11-21T14:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ENG",
+    "name": "England",
+    "tracked": true
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Allianz Stadium, London",
+   "round": "6"
+  },
+  {
+   "id": "espn-604006",
+   "date": "2026-11-21T14:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "SCO",
+    "name": "Scotland",
+    "tracked": true
+   },
+   "away": {
+    "code": "JPN",
+    "name": "Japan",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Scottish Gas Murrayfield, Edinburgh",
+   "round": "6"
+  },
+  {
+   "id": "espn-604007",
+   "date": "2026-11-21T16:40:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "IRE",
+    "name": "Ireland",
+    "tracked": true
+   },
+   "away": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Aviva Stadium, Dublin",
+   "round": "6"
+  },
+  {
+   "id": "espn-604008",
+   "date": "2026-11-21T16:40:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ITA",
+    "name": "Italy",
+    "tracked": true
+   },
+   "away": {
+    "code": "FIJ",
+    "name": "Fiji",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Bluenergy Stadium, Udine",
+   "round": "6"
+  },
+  {
+   "id": "espn-604009",
+   "date": "2026-11-21T20:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "FRA",
+    "name": "France",
+    "tracked": true
+   },
+   "away": {
+    "code": "ARG",
+    "name": "Argentina",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Stade de France, Saint-Denis",
+   "round": "6"
+  },
+  {
+   "id": "espn-604010",
+   "date": "2026-11-21T20:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "WAL",
+    "name": "Wales",
+    "tracked": true
+   },
+   "away": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rnc-2026",
+    "label": "RNC '26",
+    "kind": "competition"
+   },
+   "venue": "Principality Stadium, Cardiff",
+   "round": "6"
+  }
+ ]
+}

@@ -106,16 +106,18 @@ async function getJson(url) {
   return res.json();
 }
 
-// All future ESPN fixtures per tracked-team code: { RSA: [entry, ...], ... }.
-// Covers the current + next calendar year in each supplement league.
-export async function fetchEspnFixtures(now = Date.now()) {
+// Raw future ESPN events across all supplement leagues, deduped by event id
+// (each fixture appears in both teams' feeds): { events, names } where
+// events = [{ event, leagueName }] and names maps untracked ESPN team ids
+// to display names. Covers the current + next calendar year.
+export async function fetchEspnEvents(now = Date.now()) {
   const year = new Date(now).getUTCFullYear();
   const seasons = [year, year + 1];
-  const eventCache = new Map(); // event $ref -> event JSON (each fixture appears for both teams)
-  const nameCache = new Map(); // untracked ESPN team id -> displayName
+  const eventCache = new Map(); // event $ref -> event JSON
+  const byId = new Map(); // event id -> { event, leagueName }
+  const names = new Map(); // untracked ESPN team id -> displayName
 
-  const byCode = Object.fromEntries(Object.keys(ESPN_TEAM_IDS).map((c) => [c, []]));
-  for (const [code, teamId] of Object.entries(ESPN_TEAM_IDS)) {
+  for (const teamId of Object.values(ESPN_TEAM_IDS)) {
     for (const [league, leagueName] of Object.entries(ESPN_LEAGUES)) {
       for (const season of seasons) {
         const list = await getJson(`${BASE}/${league}/seasons/${season}/teams/${teamId}/events?limit=100`);
@@ -126,20 +128,32 @@ export async function fetchEspnFixtures(now = Date.now()) {
             eventCache.set(item.$ref, event);
           }
           if (!event || new Date(event.date).getTime() < now) continue;
-          const entry = espnEntry(event, code, leagueName, (oppId) => nameCache.get(oppId) ?? null);
-          if (!entry) continue;
-          if (!entry.tracked && entry.opponent == null) {
-            const oppRef = event.competitions[0].competitors.find(
-              (c) => teamIdFromRef(c.team?.$ref) !== String(teamId),
-            )?.team?.$ref;
-            const team = oppRef ? await getJson(oppRef) : null;
-            const oppId = teamIdFromRef(oppRef);
-            if (team?.displayName && oppId) nameCache.set(oppId, team.displayName);
-            entry.opponent = team?.displayName ?? "Unknown";
+          if (!byId.has(event.id)) byId.set(event.id, { event, leagueName });
+          // Resolve display names for any untracked side once.
+          for (const c of event.competitions?.[0]?.competitors ?? []) {
+            const id = teamIdFromRef(c.team?.$ref);
+            if (id && !ID_TO_CODE[id] && !names.has(id)) {
+              const team = await getJson(c.team.$ref);
+              if (team?.displayName) names.set(id, team.displayName);
+            }
           }
-          byCode[code].push(entry);
         }
       }
+    }
+  }
+  return { events: [...byId.values()], names };
+}
+
+// All future ESPN fixtures per tracked-team code: { RSA: [entry, ...], ... }.
+export async function fetchEspnFixtures(now = Date.now(), prefetched = null) {
+  const { events, names } = prefetched ?? (await fetchEspnEvents(now));
+  const byCode = Object.fromEntries(Object.keys(ESPN_TEAM_IDS).map((c) => [c, []]));
+  for (const code of Object.keys(ESPN_TEAM_IDS)) {
+    for (const { event, leagueName } of events) {
+      const entry = espnEntry(event, code, leagueName, (oppId) => names.get(oppId) ?? null);
+      if (!entry) continue;
+      if (!entry.tracked && entry.opponent == null) entry.opponent = "Unknown";
+      byCode[code].push(entry);
     }
   }
   return byCode;
