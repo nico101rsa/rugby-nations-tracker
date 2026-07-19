@@ -20,9 +20,6 @@ const goodDigest = (overrides = {}) => ({
   edition: "Saturday 11 July",
   sections: [
     { kicker: "Team news", heading: "H", body: body50 },
-    { kicker: "Injury desk", heading: "H", body: body50 },
-    { kicker: "The opposition", heading: "H", body: body50 },
-    { kicker: "The stakes", heading: "H", body: body50 },
   ],
   ...overrides,
 });
@@ -42,11 +39,11 @@ test("validateDigest rejects leaked citation markup", () => {
 
 test("validateDigest rejects clock times and timezones but allows scores", () => {
   const withTime = goodDigest();
-  withTime.sections[3].body = `kickoff at 17:40 tonight ${body50}`;
+  withTime.sections[0].body = `kickoff at 17:40 tonight ${body50}`;
   assert.equal(validateDigest(withTime, { dateISO: "2026-07-11" }).ok, false);
 
   const withTz = goodDigest();
-  withTz.sections[3].heading = "Kickoff 5pm SAST";
+  withTz.sections[0].heading = "Kickoff 5pm SAST";
   assert.equal(validateDigest(withTz, { dateISO: "2026-07-11" }).ok, false);
 
   const withScore = goodDigest();
