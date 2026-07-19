@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   BANNED_COPY,
+  SECTION_COUNT,
   validateDigest,
   buildFactCheckPrompt,
   parseVerdict,
@@ -437,4 +438,40 @@ test("teamsheetGaps flags an imminent team with no squad, ignores covered and di
   const digests = { 391: { teamsheet: { starters: [] } } }; // Wales covered, SA not
   const gaps = teamsheetGaps(fixtures, digests, now, WINDOW);
   assert.deepEqual(gaps.map((g) => g.teamId), [467]);
+});
+
+// Regression (2026-07-20): after the single-story switch the validator still
+// demanded the literal kicker "Team news", so 9/12 teams failed — the model
+// labels the story it wrote ("Coaching scrutiny", "Opponent watch"). The
+// kicker contract is shape-only now.
+test("validateDigest accepts any short topical kicker", () => {
+  for (const k of ["Team news", "Coaching scrutiny", "Opponent watch", "Injury blow"]) {
+    const d = goodDigest();
+    d.sections[0].kicker = k;
+    const { ok, errors } = validateDigest(d, { dateISO: "2026-07-11" });
+    assert.equal(ok, true, `${k}: ${errors.join("; ")}`);
+  }
+});
+
+test("validateDigest rejects a missing or over-long kicker, and trims it", () => {
+  const missing = goodDigest();
+  missing.sections[0].kicker = "   ";
+  assert.equal(validateDigest(missing, { dateISO: "2026-07-11" }).ok, false);
+
+  const long = goodDigest();
+  long.sections[0].kicker = "x".repeat(31);
+  const r = validateDigest(long, { dateISO: "2026-07-11" });
+  assert.equal(r.ok, false);
+  assert.ok(r.errors.some((e) => e.includes("over 30 chars")), r.errors.join("; "));
+
+  const padded = goodDigest();
+  padded.sections[0].kicker = "  Selection call  ";
+  assert.equal(validateDigest(padded, { dateISO: "2026-07-11" }).digest.sections[0].kicker, "Selection call");
+});
+
+test("the edition is exactly one section", () => {
+  assert.equal(SECTION_COUNT, 1);
+  const two = goodDigest();
+  two.sections.push({ kicker: "Extra", heading: "H", body: body50 });
+  assert.equal(validateDigest(two, { dateISO: "2026-07-11" }).ok, false);
 });

@@ -51,7 +51,14 @@ export const TEAMS = {
   28: { name: "Fiji", masthead: "Flying Fijians Watch" },
 };
 
-export const KICKERS = ["Team news"];
+// The edition is ONE section. Its `kicker` is a short topical label the writer
+// chooses ("Coaching scrutiny", "Injury blow", "Team news") — the app renders
+// it verbatim above the heading. It was a fixed enum when editions had four
+// fixed sections; pinning it to a literal after the single-story switch made
+// 9/12 teams fail validation on 2026-07-20 (the model naturally labels the
+// story it wrote), so the contract is now shape-only.
+export const SECTION_COUNT = 1;
+const KICKER_MAX = 30;
 
 const TEMPLATE = `You write **{MASTHEAD}**, the daily {TEAM_NAME} briefing inside Rugby Nations
 Tracker, an iOS app covering men's international rugby (all competitions —
@@ -92,6 +99,10 @@ limit yourself to one tournament. A selection bombshell, an injury to a key
 man, a coach's barb before a big test, a rivalry series storyline — pick the
 one a fan would text a mate about.
 
+- **Kicker:** a 1–3 word topical label for the story, ≤30 characters, rendered
+  in small caps above the heading ("Coaching scrutiny", "Injury blow",
+  "Selection call", "Team news"). Label THIS story — don't reuse a generic
+  default when something sharper fits.
 - **Heading:** catchy and specific — it must carry the story on its own
   (a reader who stops there still knows what happened). No manufactured hype.
 - **Body: one paragraph, 55–90 words.** Lead with the story, then the one or
@@ -122,7 +133,7 @@ thing to mangle.
   "edition": "{DAY_NAME} {DAY_NUMBER} {MONTH}",
   "match": { "venue": "<venue, City — only if verified today>", "referee": "<name — only if verified today>" },
   "sections": [
-    { "kicker": "Team news", "heading": "…", "body": "…" }
+    { "kicker": "<1-3 word topical label>", "heading": "…", "body": "…" }
   ],
   "teamsheet": {
     "starters": [{ "no": 1, "name": "…" }, … exactly 15, jerseys 1-15 …],
@@ -240,10 +251,12 @@ export function validateDigest(raw, { dateISO }) {
   if (raw.date !== dateISO) errors.push(`date ${raw.date} !== ${dateISO}`);
   if (typeof raw.edition !== "string" || !raw.edition.trim()) errors.push("missing edition");
   const sections = Array.isArray(raw.sections) ? raw.sections : [];
-  if (sections.length !== KICKERS.length) errors.push(`expected ${KICKERS.length} section(s), got ${sections.length}`);
+  if (sections.length !== SECTION_COUNT) errors.push(`expected ${SECTION_COUNT} section(s), got ${sections.length}`);
   else {
     sections.forEach((s, i) => {
-      if (s?.kicker !== KICKERS[i]) errors.push(`section ${i} kicker "${s?.kicker}" !== "${KICKERS[i]}"`);
+      const kicker = typeof s?.kicker === "string" ? s.kicker.trim() : "";
+      if (!kicker) errors.push(`section ${i} missing kicker`);
+      else if (kicker.length > KICKER_MAX) errors.push(`section ${i} kicker "${kicker}" over ${KICKER_MAX} chars`);
       if (typeof s?.heading !== "string" || !s.heading.trim()) errors.push(`section ${i} missing heading`);
       const n = typeof s?.body === "string" ? words(s.body) : 0;
       if (n < 20 || n > 120) errors.push(`section ${i} body ${n} words (want ~55-90)`);
@@ -281,7 +294,7 @@ export function validateDigest(raw, { dateISO }) {
   const digest = {
     date: raw.date,
     edition: raw.edition.trim(),
-    sections: sections.map((s) => ({ kicker: s.kicker, heading: s.heading.trim(), body: s.body.trim() })),
+    sections: sections.map((s) => ({ kicker: s.kicker.trim(), heading: s.heading.trim(), body: s.body.trim() })),
   };
   const match = {};
   if (typeof raw.match?.venue === "string" && raw.match.venue.trim()) match.venue = raw.match.venue.trim();
@@ -974,7 +987,7 @@ ${blocks.join("\n\n")}
 }
 Only propose a prompt note for a defect visible in MULTIPLE editions today;
 one-off slips don't earn a standing rule. Notes must work WITHIN the format
-contract — every edition is a single section (kicker "Team news"): one catchy
+contract — every edition is a single section (a short topical kicker): one catchy
 heading + one 55-90 word paragraph — so never propose adding sections, changing
 kickers, or consulting resources the writer doesn't have (its only inputs are
 the daily source pack and the app data).`;
