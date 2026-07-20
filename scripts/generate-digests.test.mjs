@@ -15,6 +15,8 @@ import {
   stripTeamsheets,
   stripLeads,
   readNewsPool,
+  expireNotes,
+  dedupeNotes,
 } from "./generate-digests.mjs";
 
 const body50 = Array(50).fill("word").join(" ");
@@ -519,4 +521,56 @@ test("stripLeads: removes editorial telemetry before publishing", () => {
 
 test("readNewsPool: a missing or unreadable pool is survivable, not fatal", async () => {
   assert.deepEqual(await readNewsPool("/nonexistent/news-pool.json"), []);
+});
+
+test("expireNotes: ages out stale notes, keeps fresh and hand-written ones", () => {
+  const lines = [
+    "- Fresh rule _(added 2026-07-18)_",
+    "- Old rule _(added 2026-07-01)_",
+    "- Hand-written rule with no stamp",
+  ];
+  const kept = expireNotes(lines, "2026-07-20");
+  assert.equal(kept.length, 2);
+  assert.ok(kept.some((l) => /Fresh rule/.test(l)));
+  assert.ok(kept.some((l) => /Hand-written/.test(l)), "un-stamped notes are never auto-expired");
+  assert.ok(!kept.some((l) => /Old rule/.test(l)));
+});
+
+test("expireNotes: the boundary day is still in", () => {
+  const onTheEdge = ["- Edge rule _(added 2026-07-07)_"]; // 13 days before
+  assert.equal(expireNotes(onTheEdge, "2026-07-20").length, 1);
+  assert.equal(expireNotes(["- Gone _(added 2026-07-06)_"], "2026-07-20").length, 0);
+});
+
+// "Stop saying no fresh injury news" landed three times in three days.
+test("dedupeNotes: a re-proposed note replaces its older twin", () => {
+  const merged = dedupeNotes([
+    "- Eliminate boilerplate 'no fresh injury news' filler sentences entirely _(added 2026-07-20)_",
+    "- Eliminate boilerplate 'no fresh injury news' filler sentences _(added 2026-07-19)_",
+    "- Vary the heading verbs across editions _(added 2026-07-19)_",
+  ]);
+  assert.equal(merged.length, 2);
+  assert.match(merged[0], /2026-07-20/, "the newest wording survives");
+});
+
+test("buildReviewPrompt: shows retrieval, the pick, and bars writer notes for famine", () => {
+  const prompt = buildReviewPrompt(
+    [
+      {
+        team: "South Africa",
+        quiet: false,
+        shortlist: [{ score: 54, corroboration: 2, title: "Erasmus provides fitness update" }],
+        digest: { edition: "Monday 20 July", lead: { candidate: 1, why: "the day's story" }, sections: [] },
+      },
+      { team: "Fiji", quiet: true, shortlist: [], digest: { edition: "Monday 20 July", sections: [] } },
+    ],
+    "2026-07-20",
+  );
+  assert.match(prompt, /Erasmus provides fitness update/);
+  assert.match(prompt, /led with #1/);
+  assert.match(prompt, /Fiji — QUIET DAY/);
+  assert.match(prompt, /the press carried nothing about this team today/);
+  assert.match(prompt, /RETRIEVAL-STARVED/);
+  assert.match(prompt, /source_notes/);
+  assert.ok(!/"lead":/.test(prompt.split("Published edition:")[1] ?? ""), "lead is not shown twice as published content");
 });

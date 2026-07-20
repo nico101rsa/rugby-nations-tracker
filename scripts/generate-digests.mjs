@@ -1033,57 +1033,145 @@ const REVIEWS_DIR = join(ROOT, "editorial", "reviews");
 const MAX_NOTES = 8;
 
 export function buildReviewPrompt(editions, dateISO) {
-  const blocks = editions.map(({ team, digest }) => `### ${team}\n${JSON.stringify(digest, null, 1)}`);
+  const blocks = editions.map(({ team, digest, shortlist = [], quiet = false }) => {
+    const candidates = shortlist.length
+      ? shortlist.map((s, n) => `  ${n + 1}. [score ${s.score}${s.corroboration > 1 ? `, ${s.corroboration} outlets` : ""}] ${s.title}`).join("\n")
+      : "  (none — the press carried nothing about this team today)";
+    const led = digest.lead ? `led with #${digest.lead.candidate}: "${digest.lead.why}"` : "did not record a pick";
+    return `### ${team}${quiet ? " — QUIET DAY" : ""}
+What retrieval offered:
+${candidates}
+The writer ${led}.
+Published edition:
+${JSON.stringify({ ...digest, lead: undefined }, null, 1)}`;
+  });
+
   return `You are the reviewing editor for a suite of daily rugby team briefings
-(men's international rugby, all competitions). Below are today's published editions (${dateISO}).
-Each was written from a per-team pack of same-day news and fact-checked.
+(men's international rugby, all competitions). Below are today's editions (${dateISO}).
+
+For each team you are shown THREE things: the ranked shortlist retrieval offered
+the writer, which candidate the writer chose and why, and what it published.
 
 ${blocks.join("\n\n")}
+
+## Classify before you prescribe
+
+Every weak edition is one of two things, and they need OPPOSITE fixes:
+
+- **RETRIEVAL-STARVED** — the shortlist was empty, thin, or all match reports.
+  The writer had nothing and did the best available. Nothing the writer could
+  have done differently would have helped.
+- **BADLY-CHOSEN** — the shortlist held a genuinely interesting story and the
+  writer led with a duller one, or buried the interesting one in the body.
+
+You MUST classify each weak edition before commenting on it. **A note for the
+WRITER may only address a BADLY-CHOSEN defect or a craft defect (heading, prose,
+structure).** Never write a writer note about a retrieval famine: telling a
+writer to stop saying "no fresh injury news" when the pack genuinely contained
+none does not conjure news, it licenses invention. That exact note ran for three
+days in July 2026 and produced fabricated "recovery protocols" copy.
+
+Retrieval problems go in \`source_notes\` instead, which humans read — they are
+not injected into any prompt.
 
 ## Review criteria
 1. **Facts**: internal contradictions between editions (two teams describing
    the same match differently), impossible claims, hedges masquerading as facts.
-2. **Quality**: flat or repetitive headings, filler sentences, manufactured
-   hype, name echoes, sections that fail the skim test (heading + first
-   sentence must carry the story).
-3. **Sources**: over-reliance on one storyline, claims that read as invented
-   colour rather than reported fact, missing attribution on quotes.
+2. **Choice**: did the writer lead with the best story on offer? Is the kicker
+   about the right team? A story that merely MENTIONS this team is not a story
+   about it.
+3. **Quality**: flat or repetitive headings, filler, manufactured hype, name
+   echoes. A heading must name someone and say what happened.
+4. **Sources**: invented colour presented as reported fact, missing attribution.
 
 ## Output — strict JSON, nothing else
 {
-  "report": "<markdown, max 300 words: today's grade (A-F), the 2-3 most important observations, one example each>",
-  "prompt_notes": ["<up to 2 short imperative notes for the WRITER prompt that would prevent today's recurring defects, e.g. 'Vary heading verbs across sections — three of four editions led with =names=', or empty array if nothing systematic>"]
+  "report": "<markdown, max 300 words: today's grade (A-F), the 2-3 most important observations with one example each. Say how many editions were retrieval-starved vs badly-chosen.>",
+  "prompt_notes": ["<up to 2 short imperative notes for the WRITER prompt, addressing CHOICE or CRAFT defects seen in MULTIPLE editions. Empty array if today's weakness was retrieval.>"],
+  "source_notes": ["<up to 2 notes about RETRIEVAL for human readers — which teams the press ignored, which outlets are missing, whether the ranking mis-ordered. Empty array if retrieval was fine.>"]
 }
-Only propose a prompt note for a defect visible in MULTIPLE editions today;
-one-off slips don't earn a standing rule. Notes must work WITHIN the format
-contract — every edition is a single section (a short topical kicker): one catchy
-heading + one 55-90 word paragraph — so never propose adding sections, changing
-kickers, or consulting resources the writer doesn't have (its only inputs are
-the daily source pack and the app data).`;
+Only propose a prompt note for a defect visible in MULTIPLE editions; one-off
+slips don't earn a standing rule. Notes must work WITHIN the format contract —
+every edition is a single section: a short topical kicker, one heading of 10-12
+words, one 55-90 word paragraph — so never propose adding sections or consulting
+resources the writer doesn't have (its only inputs are the shortlist, the source
+pack and the app data).`;
+}
+
+// Standing notes expire. Without this the file only ever grows: it reached eight
+// entries in nine days in July 2026, several of them restating the same fix in
+// slightly different words, and a note for a defect that was long since fixed
+// kept steering the writer anyway. A rule that still matters gets re-proposed
+// and its date refreshed; one that doesn't, ages out.
+export const NOTE_TTL_DAYS = 14;
+
+export function expireNotes(lines, dateISO, ttlDays = NOTE_TTL_DAYS) {
+  const today = Date.parse(`${dateISO}T00:00:00Z`);
+  return lines.filter((line) => {
+    const stamp = line.match(/_\(added (\d{4}-\d{2}-\d{2})\)_/)?.[1];
+    if (!stamp) return true; // hand-written note, never auto-expired
+    const age = (today - Date.parse(`${stamp}T00:00:00Z`)) / 86_400_000;
+    return Number.isNaN(age) ? true : age < ttlDays;
+  });
+}
+
+// A re-proposed note replaces its older twin rather than sitting beside it —
+// that duplication is how "stop saying no fresh injury news" ended up in the
+// file three times in three days.
+export function dedupeNotes(lines) {
+  // Word-set overlap, not a prefix: the review rewords the TAIL of a repeated
+  // note ("…filler sentences" vs "…filler sentences entirely"), so a fixed-length
+  // prefix key treats twins as distinct. Newest wins — earlier entries in the
+  // list are the fresher ones.
+  const words = (line) =>
+    new Set(
+      line.replace(/_\(added \d{4}-\d{2}-\d{2}\)_/, "").toLowerCase().replace(/[^a-z0-9 ]/g, " ").split(/\s+/).filter((w) => w.length > 3),
+    );
+  const overlap = (a, b) => {
+    if (!a.size || !b.size) return 0;
+    let shared = 0;
+    for (const w of a) if (b.has(w)) shared++;
+    return shared / Math.min(a.size, b.size);
+  };
+  const kept = [];
+  for (const line of lines) {
+    const w = words(line);
+    if (kept.some((k) => overlap(w, k.words) >= 0.75)) continue;
+    kept.push({ line, words: w });
+  }
+  return kept.map((k) => k.line);
 }
 
 async function reviewRun(apiKey, editions, dateISO) {
   const raw = extractJson(await geminiCall(apiKey, buildReviewPrompt(editions, dateISO)));
   if (!raw || typeof raw.report !== "string") throw new Error("review returned no usable JSON");
-  const notes = (Array.isArray(raw.prompt_notes) ? raw.prompt_notes : [])
-    .filter((n) => typeof n === "string" && n.trim())
-    .slice(0, 2);
+  const clean = (list) => (Array.isArray(list) ? list : []).filter((n) => typeof n === "string" && n.trim()).slice(0, 2);
+  const notes = clean(raw.prompt_notes);
+  // Retrieval findings are for humans, never for the writer prompt — the writer
+  // cannot fix a famine, it can only paper over one.
+  const sourceNotes = clean(raw.source_notes);
 
   const { mkdir } = await import("node:fs/promises");
   await mkdir(REVIEWS_DIR, { recursive: true });
-  await writeFile(join(REVIEWS_DIR, `${dateISO}.md`), `# Digest review — ${dateISO}\n\n${raw.report}\n`);
+  const sourceBlock = sourceNotes.length ? `\n\n## Retrieval notes (not injected into any prompt)\n${sourceNotes.map((n) => `- ${n.trim()}`).join("\n")}\n` : "";
+  await writeFile(join(REVIEWS_DIR, `${dateISO}.md`), `# Digest review — ${dateISO}\n\n${raw.report}\n${sourceBlock}`);
 
-  if (notes.length) {
-    let existing = [];
-    try {
-      existing = (await readFile(NOTES_FILE, "utf8")).split("\n").filter((l) => l.startsWith("- "));
-    } catch {
-      // first run: no notes file yet
-    }
-    const merged = [...notes.map((n) => `- ${n.trim()} _(added ${dateISO})_`), ...existing].slice(0, MAX_NOTES);
-    await writeFile(NOTES_FILE, `# Standing editor notes\n\nInjected into the writer prompt daily; curated by the post-run review. Prune freely.\n\n${merged.join("\n")}\n`);
+  let existing = [];
+  try {
+    existing = (await readFile(NOTES_FILE, "utf8")).split("\n").filter((l) => l.startsWith("- "));
+  } catch {
+    // first run: no notes file yet
   }
-  return { notes };
+  const merged = dedupeNotes([
+    ...notes.map((n) => `- ${n.trim()} _(added ${dateISO})_`),
+    ...expireNotes(existing, dateISO),
+  ]).slice(0, MAX_NOTES);
+  const expired = existing.length - expireNotes(existing, dateISO).length;
+  await writeFile(
+    NOTES_FILE,
+    `# Standing editor notes\n\nInjected into the writer prompt daily; curated by the post-run review.\nNotes age out after ${NOTE_TTL_DAYS} days unless re-earned. Prune freely.\n\n${merged.join("\n")}\n`,
+  );
+  return { notes, sourceNotes, expired };
 }
 
 const CHECKER_NOTES_FILE = join(ROOT, "editorial", "checker-notes.md");
@@ -1199,11 +1287,13 @@ export async function main({ dryRun = false } = {}) {
   }
 
   const generated = {};
+  const retrieval = {}; // shortlist + quiet flag per team, for the review
   const failed = [];
   for (const teamId of Object.keys(TEAMS).map(Number)) {
     try {
-      const { digest, note } = await generateFor(teamId);
+      const { digest, note, shortlist = [], quiet = false } = await generateFor(teamId);
       generated[teamId] = digest;
+      retrieval[teamId] = { shortlist, quiet };
       console.log(`${TEAMS[teamId].name}: ok (${digest.edition}${note ? `, ${note}` : ""})`);
     } catch (e) {
       failed.push({ team: TEAMS[teamId].name, reason: e.message.slice(0, 300) });
@@ -1250,9 +1340,18 @@ export async function main({ dryRun = false } = {}) {
   if (geminiKey && Object.keys(generated).length) {
     try {
       const dateISO = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
-      const editions = Object.entries(generated).map(([id, digest]) => ({ team: TEAMS[id].name, digest }));
-      const { notes } = await reviewRun(geminiKey, editions, dateISO);
-      console.log(`review written (editorial/reviews/${dateISO}.md)${notes.length ? `; new prompt notes: ${notes.join(" | ")}` : "; no new prompt notes"}`);
+      const editions = Object.entries(generated).map(([id, digest]) => ({
+        team: TEAMS[id].name,
+        digest,
+        ...(retrieval[id] ?? {}),
+      }));
+      const { notes, sourceNotes, expired } = await reviewRun(geminiKey, editions, dateISO);
+      console.log(
+        `review written (editorial/reviews/${dateISO}.md)` +
+          `${notes.length ? `; new prompt notes: ${notes.join(" | ")}` : "; no new prompt notes"}` +
+          `${sourceNotes.length ? `; retrieval notes: ${sourceNotes.join(" | ")}` : ""}` +
+          `${expired ? `; ${expired} note(s) aged out` : ""}`,
+      );
     } catch (e) {
       console.warn(`review step failed (editions unaffected): ${e.message}`);
     }
