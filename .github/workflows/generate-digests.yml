@@ -50,6 +50,21 @@ jobs:
       - name: Publish nations.json at site root
         run: cp public/nations.json nations.json
 
+      # After the editions exist, not before — the email reports on the run.
+      # Skips itself when RESEND_API_KEY is unset, and never fails the job: the
+      # briefings are already written by this point and a mail problem must not
+      # cost them.
+      - name: Email the daily briefings
+        continue-on-error: true
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          # Recipient is a SECRET, not a variable: this repo is public, so its
+          # workflow logs are public, and a variable would put Nico's personal
+          # address in them. As a secret, Actions masks it in any log output.
+          DIGEST_EMAIL_TO: ${{ secrets.DIGEST_EMAIL_TO }}
+          DIGEST_EMAIL_FROM: ${{ vars.DIGEST_EMAIL_FROM }}
+        run: node scripts/email-digests.mjs
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
@@ -68,7 +83,7 @@ jobs:
           # wholesale would silently revert any harvest that landed during the
           # ~10 minutes this run spends on 12 model calls.
           rm -rf /tmp/editorial-ours && mkdir -p /tmp/editorial-ours
-          cp -R editorial/reviews editorial/health /tmp/editorial-ours/ 2>/dev/null || true
+          cp -R editorial/reviews editorial/health editorial/runs /tmp/editorial-ours/ 2>/dev/null || true
           cp editorial/editor-notes.md editorial/checker-notes.md /tmp/editorial-ours/ 2>/dev/null || true
           git fetch origin main
           git reset --hard origin/main

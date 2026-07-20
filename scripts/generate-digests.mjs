@@ -358,6 +358,48 @@ export function stripLeads(digests = {}) {
   );
 }
 
+// A per-run record of what retrieval offered and what the writer did with it.
+// Pure so it can be tested; the caller writes it.
+export function buildRunReport(dateISO, teams, generated, retrieval, failed = []) {
+  const rows = Object.entries(generated).map(([id, digest]) => {
+    const { shortlist = [], quiet = false } = retrieval[id] ?? {};
+    return {
+      team: teams[id]?.name ?? id,
+      quiet,
+      heading: digest.sections?.[0]?.heading ?? "",
+      kicker: digest.sections?.[0]?.kicker ?? "",
+      body: digest.sections?.[0]?.body ?? "",
+      source: digest.source?.name ?? null,
+      lead: digest.lead ?? null,
+      candidates: shortlist.map((s) => ({ title: s.title, score: s.score, corroboration: s.corroboration, outlets: s.outlets })),
+    };
+  });
+  return {
+    date: dateISO,
+    counts: {
+      editions: rows.length,
+      quiet: rows.filter((r) => r.quiet).length,
+      failed: failed.length,
+      noLead: rows.filter((r) => !r.lead).length,
+    },
+    failed,
+    teams: rows,
+  };
+}
+
+async function writeRunReport(now, generated, retrieval, failed) {
+  try {
+    const dateISO = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+    const { mkdir } = await import("node:fs/promises");
+    const dir = join(ROOT, "editorial", "runs");
+    await mkdir(dir, { recursive: true });
+    await writeFile(join(dir, `${dateISO}.json`), JSON.stringify(buildRunReport(dateISO, TEAMS, generated, retrieval, failed), null, 2));
+  } catch (e) {
+    // Diagnostics must never cost an edition.
+    console.warn(`run report not written: ${e.message}`);
+  }
+}
+
 // The hourly harvest's pool. Absent or unreadable is survivable — the widener
 // still runs, which is exactly the position Japan and Fiji are in every day.
 export async function readNewsPool(path = join(ROOT, "editorial", "news-pool.json")) {
@@ -1346,6 +1388,12 @@ export async function main({ dryRun = false } = {}) {
   // (2026-07-11, the RSA teamsheet). Write both copies here, unconditionally.
   await writeFile(join(ROOT, "nations.json"), payload);
   console.log(`wrote ${Object.keys(generated).length}/12 editions${failed.length ? ` (failed: ${failed.map((f) => f.team).join(", ")})` : ""}`);
+
+  // Persist what retrieval offered each team. In-memory it dies with the run,
+  // and it is the only record of WHY an edition reads the way it does — the
+  // daily email reports from it, and it is the first thing to look at when a
+  // team goes bland.
+  await writeRunReport(now, generated, retrieval, failed);
 
   // Teamsheet coverage audit across the whole match week (unions name teams from
   // early in the week — SA's 2026-07-14 XV was out 4 days pre-kickoff, but the
