@@ -13,6 +13,7 @@ import {
   isQuiet,
   renderShortlist,
   QUIET_THRESHOLD,
+  subjectWeight,
 } from "./news-sources.mjs";
 
 const NOW = new Date("2026-07-20T10:00:00Z");
@@ -217,4 +218,39 @@ test("renderShortlist: numbers candidates and shows why each scored", () => {
   assert.match(out, /^1\. \[score /);
   assert.match(out, /2 outlets \(planetrugby, bbc\)/);
   assert.match(renderShortlist([]), /coverage is silent/);
+});
+
+// The Springbok briefing led on "Kiwi confidence" on 2026-07-20 because a New
+// Zealand story named the Boks in a subordinate clause of its headline.
+test("subjectWeight: a team leading the headline is the subject", () => {
+  assert.equal(subjectWeight("Springboks name their side for Argentina", TEAM_ALIASES[467]), 1);
+  assert.equal(subjectWeight("Rassie Erasmus provides a fitness update", TEAM_ALIASES[467]), 1);
+});
+
+test("subjectWeight: a team after an opposition marker is a mention, not the subject", () => {
+  const t = "All Blacks great hails statement shift from forward who will be needed against Springboks";
+  assert.equal(subjectWeight(t, TEAM_ALIASES[467]), 0.35, "'against Springboks' is a mention");
+});
+
+// Demoted, not dismissed: it IS a Fiji story, just told from Scotland's side.
+// Only the explicit opposition construction drops to the floor.
+test("subjectWeight: a team named late without an opposition marker is demoted, not dismissed", () => {
+  assert.equal(subjectWeight("Scotland flirt with defeat before overpowering Fiji", TEAM_ALIASES[28]), 0.55);
+});
+
+test("subjectWeight: the New Zealand story still reads as a NZ subject", () => {
+  const t = "All Blacks great hails statement shift from forward who will be needed against Springboks";
+  assert.equal(subjectWeight(t, TEAM_ALIASES[465]), 1, "it is a New Zealand story");
+});
+
+test("buildShortlist: a genuine team story outranks a passing mention in a bigger one", () => {
+  const list = buildShortlist(
+    [
+      item("All Blacks great hails statement shift from forward who will be needed against Springboks", { position: 0 }),
+      item("Rassie Erasmus provides Feinberg-Mngomezulu fitness update", { position: 3 }),
+    ],
+    467,
+    NOW,
+  );
+  assert.match(list[0].title, /Erasmus provides/, "the Bok briefing must lead on a Bok story");
 });

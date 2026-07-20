@@ -10,6 +10,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
+import { buildShortlist, isQuiet, renderShortlist } from "./news-sources.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public", "nations.json");
@@ -103,8 +104,15 @@ one a fan would text a mate about.
   in small caps above the heading ("Coaching scrutiny", "Injury blow",
   "Selection call", "Team news"). Label THIS story — don't reuse a generic
   default when something sharper fits.
-- **Heading:** catchy and specific — it must carry the story on its own
-  (a reader who stops there still knows what happened). No manufactured hype.
+- **Heading: 10-12 words.** It must (a) NAME someone — a player, a coach, or
+  the team — and (b) state WHAT HAPPENED. A heading that names nobody, or that
+  describes a situation rather than an event, has failed: "Moving up the table",
+  "Questions persist over long-term identity" and "Squad managing end-of-season
+  toll" are all real headings from this brief and all three are unusable.
+  You MAY carry a short quoted fragment when the pack gives you one worth
+  carrying ("Rassie Erasmus' honest 'pressure' admission over certain
+  Springboks") — permitted, never required, and never manufactured to seem
+  livelier than the story is.
 - **Body: one paragraph, 55–90 words.** Lead with the story, then the one or
   two supporting facts that give it weight. If the story is match-pinned,
   say which match ("Saturday's second test"), never a vague "this season".
@@ -119,6 +127,11 @@ one a fan would text a mate about.
 
 ## Style
 
+**British English (en-GB) throughout** — "prioritise", "organised",
+"defence", "criticised", "favourite". This is a British-register rugby desk and
+US spellings read as a different publication ("prioritize" reached a live
+edition on 2026-07-20).
+
 Words for one–nine and any heading/sentence-initial number; numerals for 10+;
 numerals always for scores and splits ("45-21", "6-2"); "No. 1" fixed form.
 Hyphen in scores; spaced em dash for asides. Terminal punctuation inside
@@ -132,6 +145,7 @@ thing to mangle.
   "date": "{DATE_ISO}",
   "edition": "{DAY_NAME} {DAY_NUMBER} {MONTH}",
   "match": { "venue": "<venue, City — only if verified today>", "referee": "<name — only if verified today>" },
+  "lead": { "candidate": <the shortlist number you led with>, "why": "<one short sentence: why this one>" },
   "sections": [
     { "kicker": "<1-3 word topical label>", "heading": "…", "body": "…" }
   ],
@@ -296,6 +310,15 @@ export function validateDigest(raw, { dateISO }) {
     edition: raw.edition.trim(),
     sections: sections.map((s) => ({ kicker: s.kicker.trim(), heading: s.heading.trim(), body: s.body.trim() })),
   };
+  // `lead` records WHICH shortlist candidate the writer led with and why. It is
+  // never published to the app — it exists so the daily review can tell a
+  // retrieval famine from a badly-chosen lead, which it could not do while it
+  // saw only finished editions (and so spent three days prescribing style
+  // patches for a retrieval problem). Missing `lead` never fails an edition.
+  const candidate = Number(raw.lead?.candidate);
+  if (Number.isInteger(candidate) && candidate > 0) {
+    digest.lead = { candidate, why: typeof raw.lead?.why === "string" ? raw.lead.why.trim().slice(0, 200) : "" };
+  }
   const match = {};
   if (typeof raw.match?.venue === "string" && raw.match.venue.trim()) match.venue = raw.match.venue.trim();
   if (typeof raw.match?.referee === "string" && raw.match.referee.trim()) match.referee = raw.match.referee.trim();
@@ -314,6 +337,31 @@ export function mergeDigests(existing = {}, generated = {}) {
 // PUBLISH_TEAMSHEETS is off, so a teamsheet already published for a team we did
 // NOT regenerate this run (e.g. SA's XV from a prior round) is removed too —
 // generation-side guards alone would leave it stranded in nations.json.
+// `lead` is editorial telemetry for the daily review, not app content. Strip it
+// at the write boundary so it never reaches nations.json (which the live app
+// reads) — same pattern as stripTeamsheets, and for the same reason: a
+// generation-side guard alone would strand it for any team not regenerated.
+export function stripLeads(digests = {}) {
+  return Object.fromEntries(
+    Object.entries(digests).map(([id, d]) => {
+      if (!d || d.lead == null) return [id, d];
+      const { lead, ...rest } = d;
+      return [id, rest];
+    }),
+  );
+}
+
+// The hourly harvest's pool. Absent or unreadable is survivable — the widener
+// still runs, which is exactly the position Japan and Fiji are in every day.
+export async function readNewsPool(path = join(ROOT, "editorial", "news-pool.json")) {
+  try {
+    const parsed = JSON.parse(await readFile(path, "utf8"));
+    return Array.isArray(parsed?.items) ? parsed.items : [];
+  } catch {
+    return [];
+  }
+}
+
 export function stripTeamsheets(digests = {}) {
   return Object.fromEntries(
     Object.entries(digests).map(([id, d]) => {
@@ -636,17 +684,19 @@ export async function fetchEspnTeamsheet(teamName, fixtureDateISO) {
   }
 }
 
-async function fetchTeamNews(teamName, opponentName) {
-  // Three queries: the match narrative, a targeted sweep for selection and
-  // injury news, and a dedicated lineup query — the article that prints the
-  // numbered XV is usually a "team named" piece the generic queries miss
-  // (2026-07-11: RSA's announced side was absent from every generic pack).
-  const opp = opponentName && opponentName !== "TBC" ? opponentName : "team news";
-  const queries = [
-    `${teamName} rugby ${opp}`,
-    `${teamName} rugby team announcement OR injury OR squad`,
-    `${teamName} rugby team to face ${opp} lineup`,
-  ];
+// The WIDENER (docs/adr/0001 in the app repo). The publisher spine sets the
+// agenda; this catches what its five-outlet roster misses, and for teams the
+// roster does not cover it is the only source at all — Japan and Fiji drew 0 of
+// 99 spine headlines on 2026-07-20.
+//
+// ONE query, team-anchored. The previous three were all anchored on the NEXT
+// FIXTURE'S OPPONENT, which made a team's biggest current story structurally
+// unreachable unless it happened to concern that opponent, and two of the three
+// hunted numbered lineups for a feature that is switched off
+// (PUBLISH_TEAMSHEETS). That is why the 2026-07-20 Bok edition led with the log
+// table while the press led with Erasmus on Feinberg-Mngomezulu's fitness.
+async function fetchTeamNews(teamName) {
+  const queries = [`${teamName} rugby news`];
   const seen = new Set();
   const items = [];
   // Two passes: Bing's RSS intermittently returns empty (cost NZ its edition
@@ -669,57 +719,85 @@ async function fetchTeamNews(teamName, opponentName) {
       }
     }
   }
-  if (!items.length) throw new Error("news rss returned no items");
-  items.length = Math.min(items.length, NEWS_ITEMS);
+  // The widener is best-effort. An empty Bing response is no longer fatal —
+  // the spine pool carries the edition. It WAS fatal when Bing was the only
+  // source (it cost NZ its edition on 2026-07-11).
+  return items.slice(0, NEWS_ITEMS).map((item, n) => ({
+    title: item.title,
+    link: item.link,
+    desc: item.desc,
+    date: item.date,
+    feedId: "search",
+    feedName: "Web search",
+    // Search results sit BELOW the spine on position: a hit ranked third by Bing
+    // is not the editorial signal that third in Planet Rugby's feed is.
+    position: n + 12,
+  }));
+}
 
-  // Attempt a body for EVERY headline, selection pieces first — a numbered XV
-  // buried at position 9 (local outlets that fail to fetch crowd the top) must
-  // still get pulled (2026-07-14: SA's published XV was past the old 8-item
-  // cutoff, so the run got "0 articles"). The pack still keeps only NEWS_ARTICLES.
-  const fetched = [];
-  for (const item of prioritiseByLineup(items)) {
+// Build the source pack for one team: spine pool + widener, ranked into a
+// shortlist, with article bodies for the top candidates.
+//
+// The writer may only lead with something on this shortlist. That constraint is
+// the point of the redesign, not a detail — handed an unranked pack, a cheap
+// model retreats to the safest thing in the prompt (the fixture, the log), which
+// is what three days of style notes failed to fix.
+export async function buildSourcePack(teamId, teamName, now, pool = []) {
+  let widened = [];
+  try {
+    widened = await fetchTeamNews(teamName);
+  } catch {
+    // Spine-only is a perfectly good pack; carry on.
+  }
+  const shortlist = buildShortlist([...pool, ...widened], teamId, now);
+  const quiet = isQuiet(shortlist);
+
+  // Bodies for the top candidates only. The old code fetched every headline and
+  // re-sorted for numbered lineups (prioritiseByLineup) — dead weight while
+  // teamsheets are paused, and it pushed the actual story down the pack.
+  const articles = [];
+  for (const candidate of shortlist.slice(0, NEWS_ARTICLES)) {
     try {
-      const a = await fetchWithTimeout(item.link);
+      const a = await fetchWithTimeout(candidate.link);
       if (!a.ok) continue;
       const full = htmlToText(await a.text());
-      // `full` (up to LINEUP_SCAN_CHARS) is scanned/parsed for the XV; `text`
-      // (ARTICLE_CHARS) is what the model sees in the pack.
-      if (full.length > 400) fetched.push({ title: item.title, url: a.url, full: full.slice(0, LINEUP_SCAN_CHARS), text: full.slice(0, ARTICLE_CHARS) });
+      if (full.length > 400) articles.push({ title: candidate.title, url: a.url, text: full.slice(0, ARTICLE_CHARS) });
     } catch {
       // paywalled/slow publishers just drop out of the pack
     }
   }
-  const withLineup = fetched.filter((a) => hasNumberedLineup(a.full));
-  const rest = fetched.filter((a) => !withLineup.includes(a));
-  const articles = [...withLineup, ...rest].slice(0, NEWS_ARTICLES);
-  const lineupInPack = withLineup.length > 0;
 
-  const lines = items.map((i, n) => `${n + 1}. [${i.date}] ${i.title}${i.desc ? ` — ${i.desc}` : ""}`);
   const bodies = articles.map((a, n) => `### Article ${n + 1}: ${a.title}\n(${a.url})\n${a.text}`);
   const pack = `## Source pack — today's coverage (your ONLY factual sources)
 
-You have no web access. The headlines and articles below are your entire fact
-sheet — they replace the research step. Every factual claim in your edition
-must trace to this pack or to the trusted app data. If the pack doesn't cover
-something (e.g. no team announcement yet), say so honestly rather than
-guessing; never invent or assume "no news".
+You have no web access. The shortlist and articles below are your entire fact
+sheet. Every factual claim in your edition must trace to this pack or to the
+trusted app data. If the pack doesn't cover something, say so honestly rather
+than guessing; never invent or assume "no news".
 
 Quotes: quotation marks are a verbatim contract — only use words that appear
 inside quotation marks in the pack, character for character. If the pack only
 paraphrases what someone said, paraphrase too, without quote marks.
 
-When the pack is silent on a topic the format requires (usually the injury
-desk), attribute the silence to the coverage — "no fresh injury news in
-today's coverage" — never to reality ("the camp is clean", "everyone is
-available"): you know what was reported, not what is true in camp.
+Where the pack is silent, attribute the silence to the COVERAGE — "no coverage
+of that in today's press" — never to reality ("the camp is clean", "everyone is
+available"). You know what was reported, not what is true in camp. Never pad an
+edition with unsourced routine ("recovery protocols", "training intensity") to
+fill space.
 
-### Headlines
-${lines.join("\n")}
+## Today's shortlist — lead with ONE of these
 
+Ranked by how much the rugby press is actually making of each story:
+corroboration across outlets first, then where the outlet placed it, then how
+fresh it is. **You must lead with one of these candidates.** Pick the one a fan
+would text a mate about — not the most routine one, and not the league table.
+Record which you picked in the \`lead\` field.
+
+${renderShortlist(shortlist)}
+${quiet ? "\n**Today is QUIET for this team** — nothing on the shortlist has real weight. Say so plainly rather than inflating a thin story.\n" : ""}
 ${bodies.join("\n\n")}`;
-  // Code extraction reads the wider `full` scan window, not the truncated pack.
-  const lineupArticles = withLineup.map((a) => ({ title: a.title, text: a.full }));
-  return { pack, headlineCount: items.length, articleCount: articles.length, lineupInPack, lineupArticles };
+
+  return { pack, shortlist, quiet, articleCount: articles.length, poolCount: pool.length, widenedCount: widened.length };
 }
 
 // ---- Gemini provider (free tier) ----------------------------------------------
@@ -858,10 +936,9 @@ export function parseVerdict(raw) {
   return { verdict: issues.length ? "fail" : "pass", issues };
 }
 
-export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, checkerNotes = "") {
+export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, checkerNotes = "", pool = []) {
   const params = buildParams(data, teamId, now);
-  const opponent = params.HOME_TEAM === params.TEAM_NAME ? params.AWAY_TEAM : params.HOME_TEAM;
-  const { pack, headlineCount, articleCount, lineupInPack, lineupArticles } = await fetchTeamNews(params.TEAM_NAME, opponent);
+  const { pack, shortlist, quiet, articleCount, poolCount, widenedCount } = await buildSourcePack(teamId, params.TEAM_NAME, now, pool);
   const notesBlock = editorNotes
     ? `\n\n## Standing editor notes (distilled from previous editions' reviews — follow them)\n${editorNotes}`
     : "";
@@ -917,39 +994,31 @@ JSON again.`;
     throw new Error(`fact-check failed after ${revisions} revisions: ${remaining}`);
   }
 
-  // Teamsheet: the deterministic parse of the printed XV outranks whatever the
-  // writer transcribed (see resolveTeamsheet). Only when no numbered XV can be
-  // parsed AND the writer produced nothing — yet code saw a lineup in the pack —
-  // do we spend a targeted retry. A missing teamsheet must never cost the digest.
-  const espnSheet = PUBLISH_TEAMSHEETS
-    ? await fetchEspnTeamsheet(params.TEAM_NAME, params.KICKOFF_ISO)
-    : null; // teamsheets paused — don't even call ESPN (see PUBLISH_TEAMSHEETS)
-  let { sheet, note: sheetNote } = resolveTeamsheet(digest.teamsheet, lineupArticles, espnSheet);
-  if (sheet) {
-    digest = { ...digest, teamsheet: sheet };
-  } else if (lineupInPack) {
-    sheetNote = ", lineup in pack but NOT extracted";
-    try {
-      const retry = await draft(`## One fix — your draft omitted the teamsheet
-An article in the source pack prints an explicit numbered lineup for
-${params.TEAM_NAME}'s next match. Re-output the complete edition JSON, keeping
-every section as-is, and add the "teamsheet" field copied verbatim
-(number-for-number, diacritics intact) from that article. If the numbered
-lineup is for a different team or an already-played match, output the edition
-unchanged without a teamsheet.`);
-      if (retry.teamsheet) {
-        const recheck = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, retry, pack, checkerNotes))));
-        if (recheck.verdict === "pass") {
-          digest = retry;
-          sheetNote = ", teamsheet extracted on retry";
-        }
-      }
-    } catch {
-      // retry is best-effort only
-    }
+  // Teamsheet: only ESPN's official XV, and only when teamsheets are published.
+  //
+  // The pack-scanning half of this is GONE with the old retrieval — the source
+  // pack no longer fetches every headline looking for a printed numbered lineup
+  // (prioritiseByLineup / hasNumberedLineup / LINEUP_SCAN_CHARS), because that
+  // machinery served a feature switched off since 2026-07-15 and it pushed the
+  // day's actual story down the pack. If PUBLISH_TEAMSHEETS is ever flipped back
+  // on, lineup scanning has to be re-added to buildSourcePack — flipping the
+  // flag alone now yields ESPN-only squads, not the prose fallback.
+  let sheetNote = "";
+  if (PUBLISH_TEAMSHEETS) {
+    const espnSheet = await fetchEspnTeamsheet(params.TEAM_NAME, params.KICKOFF_ISO);
+    const resolved = resolveTeamsheet(digest.teamsheet, [], espnSheet);
+    sheetNote = resolved.note;
+    if (resolved.sheet) digest = { ...digest, teamsheet: resolved.sheet };
   }
 
-  return { digest, pack, note: `${headlineCount} headlines, ${articleCount} articles, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}${sheetNote}` };
+  const lead = digest.lead ? `, led with #${digest.lead.candidate}` : ", NO lead recorded";
+  return {
+    digest,
+    pack,
+    shortlist,
+    quiet,
+    note: `${shortlist.length} candidates (${poolCount} pooled, ${widenedCount} searched), ${articleCount} articles${lead}${quiet ? ", QUIET" : ""}, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}${sheetNote}`,
+  };
 }
 
 // ---- post-run editorial review -------------------------------------------------
@@ -1113,7 +1182,12 @@ export async function main({ dryRun = false } = {}) {
     if (editorNotes) console.log(`standing editor notes:\n${editorNotes}`);
     const checkerNotes = await loadCheckerNotes();
     if (checkerNotes) console.log(`standing checker notes:\n${checkerNotes}`);
-    generateFor = (teamId) => generateOneGemini(geminiKey, data, teamId, now, editorNotes, checkerNotes);
+    // The spine pool, harvested hourly (harvest-news.yml). Read ONCE and shared
+    // across all 12 teams — it is one file covering every team, which is the
+    // whole reason the publisher spine replaced 36 per-team queries.
+    const pool = await readNewsPool();
+    console.log(`news pool: ${pool.length} items`);
+    generateFor = (teamId) => generateOneGemini(geminiKey, data, teamId, now, editorNotes, checkerNotes, pool);
   } else if (process.env.ANTHROPIC_API_KEY) {
     console.log(`provider: anthropic (${MODEL})`);
     const { default: Anthropic } = await import("@anthropic-ai/sdk");
@@ -1148,6 +1222,7 @@ export async function main({ dryRun = false } = {}) {
   const fresh = JSON.parse(await readFile(OUT, "utf8"));
   fresh.digests = mergeDigests(fresh.digests, generated);
   if (!PUBLISH_TEAMSHEETS) fresh.digests = stripTeamsheets(fresh.digests);
+  fresh.digests = stripLeads(fresh.digests);
   fresh.counts = { ...(fresh.counts || {}), digests: Object.keys(fresh.digests).length };
   const payload = JSON.stringify(fresh, null, 2);
   await writeFile(OUT, payload);

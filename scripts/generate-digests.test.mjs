@@ -13,9 +13,12 @@ import {
   resolveTeamsheet,
   espnTeamsheet,
   stripTeamsheets,
+  stripLeads,
+  readNewsPool,
 } from "./generate-digests.mjs";
 
 const body50 = Array(50).fill("word").join(" ");
+const WORDS_70 = Array(70).fill("word").join(" ");
 const goodDigest = (overrides = {}) => ({
   date: "2026-07-11",
   edition: "Saturday 11 July",
@@ -474,4 +477,46 @@ test("the edition is exactly one section", () => {
   const two = goodDigest();
   two.sections.push({ kicker: "Extra", heading: "H", body: body50 });
   assert.equal(validateDigest(two, { dateISO: "2026-07-11" }).ok, false);
+});
+
+// ---- retrieval redesign (docs/adr/0001, 0002 in the app repo) ----------------
+
+test("validateDigest: records the lead candidate and why", () => {
+  const raw = {
+    date: "2026-07-20",
+    edition: "Monday 20 July",
+    lead: { candidate: 2, why: "Erasmus on Feinberg-Mngomezulu's fitness is the day's story" },
+    sections: [{ kicker: "Team news", heading: "Erasmus clears Feinberg-Mngomezulu to face Argentina", body: WORDS_70 }],
+  };
+  const { ok, digest } = validateDigest(raw, { dateISO: "2026-07-20" });
+  assert.ok(ok);
+  assert.equal(digest.lead.candidate, 2);
+  assert.match(digest.lead.why, /Feinberg/);
+});
+
+test("validateDigest: a missing or malformed lead never fails an edition", () => {
+  const base = {
+    date: "2026-07-20",
+    edition: "Monday 20 July",
+    sections: [{ kicker: "Team news", heading: "Erasmus clears Feinberg-Mngomezulu", body: WORDS_70 }],
+  };
+  for (const lead of [undefined, null, {}, { candidate: "two" }, { candidate: 0 }]) {
+    const { ok, digest } = validateDigest({ ...base, lead }, { dateISO: "2026-07-20" });
+    assert.ok(ok, `lead ${JSON.stringify(lead)} must not fail the edition`);
+    assert.equal(digest.lead, undefined);
+  }
+});
+
+test("stripLeads: removes editorial telemetry before publishing", () => {
+  const stripped = stripLeads({
+    467: { edition: "Monday 20 July", lead: { candidate: 1, why: "x" }, sections: [] },
+    460: { edition: "Monday 20 July", sections: [] },
+  });
+  assert.equal(stripped[467].lead, undefined);
+  assert.equal(stripped[467].edition, "Monday 20 July", "the rest of the edition survives");
+  assert.deepEqual(stripped[460], { edition: "Monday 20 July", sections: [] });
+});
+
+test("readNewsPool: a missing or unreadable pool is survivable, not fatal", async () => {
+  assert.deepEqual(await readNewsPool("/nonexistent/news-pool.json"), []);
 });

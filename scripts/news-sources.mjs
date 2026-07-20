@@ -181,6 +181,42 @@ export function isMatchReport(title) {
   return MATCH_REPORT.test(String(title || ""));
 }
 
+// Being named in a headline is not the same as being its SUBJECT. "All Blacks
+// great hails statement shift from forward who will be needed against
+// Springboks" names the Boks in a subordinate clause — it is a New Zealand
+// story, and on 2026-07-20 it led the Springbok briefing under the kicker "Kiwi
+// confidence", which is not what a Bok fan opened the app for.
+//
+// Two cheap positional signals separate subject from mention:
+//   - where in the headline the alias falls (subjects lead)
+//   - whether an opposition marker precedes it ("against Springboks", "v Wales")
+const OPPOSITION_MARKER = /\b(against|versus|vs?\.?|face|faces|facing|host|hosts|hosting|beat|beaten by|defeat|defeated by|lost to|ahead of|before)\s*$/i;
+
+// 1.0 when the team is plainly the subject, down to 0.35 when it is named in
+// passing. A multiplier rather than a filter — a passing mention on a huge story
+// can still out-rank a thin story that is genuinely about the team.
+export function subjectWeight(title, aliases) {
+  const hay = String(title || "");
+  let best = 0.35;
+  for (const alias of aliases) {
+    // Word-boundary, matching mentionsTeam. A plain indexOf found "Boks" INSIDE
+    // "Springboks" at a position whose preceding text was "…ainst Spring" — no
+    // opposition marker — so Math.max quietly lifted "against Springboks" from
+    // 0.35 to 0.55 and the demotion half-failed.
+    const at = hay.search(new RegExp(`(^|[^\\p{L}])${escapeRe(alias)}($|[^\\p{L}])`, "iu"));
+    if (at === -1) continue;
+    const preceding = hay.slice(0, at).replace(/["'‘“(]\s*$/, "");
+    if (OPPOSITION_MARKER.test(preceding)) {
+      best = Math.max(best, 0.35);
+      continue;
+    }
+    // Fraction of the headline before the mention: 0 is the first word.
+    const depth = hay.length ? at / hay.length : 0;
+    best = Math.max(best, depth <= 0.35 ? 1 : depth <= 0.6 ? 0.8 : 0.55);
+  }
+  return best;
+}
+
 const SHORTLIST_SIZE = 5;
 
 // The salience floor below which a day counts as Quiet.
@@ -210,8 +246,10 @@ export function buildShortlist(items, teamId, now, size = SHORTLIST_SIZE) {
   // name who the story is about — that is what a headline is for.
   const mine = items.filter((i) => mentionsTeam(i.title, aliases));
   const scored = clusterStories(mine).map((s) => {
-    const base = scoreStory(s, now);
-    return { ...s, score: isMatchReport(s.title) ? Math.round(base * 0.45 * 10) / 10 : base, matchReport: isMatchReport(s.title) };
+    const matchReport = isMatchReport(s.title);
+    const subject = subjectWeight(s.title, aliases);
+    const score = scoreStory(s, now) * (matchReport ? 0.45 : 1) * subject;
+    return { ...s, score: Math.round(score * 10) / 10, matchReport, subject };
   });
   scored.sort((a, b) => b.score - a.score || a.position - b.position);
   return scored.slice(0, size);
