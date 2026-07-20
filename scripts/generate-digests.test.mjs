@@ -17,6 +17,7 @@ import {
   readNewsPool,
   expireNotes,
   dedupeNotes,
+  buildRunReport,
 } from "./generate-digests.mjs";
 
 const body50 = Array(50).fill("word").join(" ");
@@ -573,4 +574,39 @@ test("buildReviewPrompt: shows retrieval, the pick, and bars writer notes for fa
   assert.match(prompt, /RETRIEVAL-STARVED/);
   assert.match(prompt, /source_notes/);
   assert.ok(!/"lead":/.test(prompt.split("Published edition:")[1] ?? ""), "lead is not shown twice as published content");
+});
+
+test("buildRunReport: records what retrieval offered and what the writer did", () => {
+  const report = buildRunReport(
+    "2026-07-20",
+    { 467: { name: "South Africa" }, 28: { name: "Fiji" } },
+    {
+      467: {
+        sections: [{ kicker: "Injury concern", heading: "Erasmus confirms Pollard injury", body: "…" }],
+        source: { name: "Planet Rugby" },
+        lead: { candidate: 2, why: "the day's story" },
+      },
+      28: { sections: [{ kicker: "Slide", heading: "Fiji fall to Scotland", body: "…" }] },
+    },
+    {
+      467: { quiet: false, shortlist: [{ title: "a", score: 20, corroboration: 1, outlets: ["bbc"] }] },
+      28: { quiet: true, shortlist: [] },
+    },
+    [{ team: "Japan", reason: "fact-check failed" }],
+  );
+  assert.equal(report.counts.editions, 2);
+  assert.equal(report.counts.quiet, 1);
+  assert.equal(report.counts.failed, 1);
+  assert.equal(report.counts.noLead, 1, "Fiji recorded no lead");
+  const sa = report.teams.find((t) => t.team === "South Africa");
+  assert.equal(sa.source, "Planet Rugby");
+  assert.equal(sa.lead.candidate, 2);
+  assert.equal(sa.candidates.length, 1);
+});
+
+test("buildRunReport: survives a team with no retrieval entry", () => {
+  const report = buildRunReport("2026-07-20", { 467: { name: "South Africa" } }, { 467: { sections: [] } }, {});
+  assert.equal(report.counts.editions, 1);
+  assert.equal(report.teams[0].quiet, false);
+  assert.deepEqual(report.teams[0].candidates, []);
 });
