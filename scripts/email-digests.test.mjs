@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { subjectFor, buildEmailHtml } from "./email-digests.mjs";
+import { subjectFor, buildEmailHtml, redact } from "./email-digests.mjs";
 
 const report = {
   date: "2026-07-20",
@@ -94,4 +94,13 @@ test("buildEmailHtml: a team with no candidates still renders", () => {
   const html = buildEmailHtml({ date: "2026-07-20", counts: { editions: 1 }, teams: [report.teams[1]] });
   assert.match(html, /Tevita Ikanivere/);
   assert.ok(!/What retrieval offered/.test(html), "no disclosure block when there was nothing on offer");
+});
+
+// This repo is public, so its workflow logs are public.
+test("redact: never prints a full address in a log line", () => {
+  const out = redact("nico.mcdonald@outlook.com");
+  assert.ok(!out.includes("nico.mcdonald"), "local part must not survive");
+  assert.ok(!out.includes("outlook"), "the provider must not survive either");
+  assert.equal(redact(""), "(unset)");
+  assert.equal(redact(undefined), "(unset)");
 });

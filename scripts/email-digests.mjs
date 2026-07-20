@@ -19,10 +19,22 @@ import { dirname, join } from "node:path";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const TZ = "Australia/Sydney";
 
-const TO = process.env.DIGEST_EMAIL_TO || "nico.mcdonald@outlook.com";
-// Resend's shared sender works with no domain configured, but it will only
-// deliver to the address that owns the Resend account. Sending to himself, so
-// that is fine — set DIGEST_EMAIL_FROM once a domain is verified.
+// No default recipient in the source. This repo is PUBLIC — a hard-coded
+// address would be committed in the clear, which is exactly what the secret
+// exists to avoid. No address configured means no email, loudly.
+const TO = process.env.DIGEST_EMAIL_TO || "";
+
+// Logs of this workflow are public. Actions masks secrets, but only if they
+// appear verbatim — never print the address, masked or not.
+export const redact = (addr) => {
+  const [user = "", domain = ""] = String(addr).split("@");
+  return user && domain ? `${user.slice(0, 2)}***@${domain.replace(/^[^.]*/, "***")}` : "(unset)";
+};
+// Sender comes from the DIGEST_EMAIL_FROM repo variable, set to an address on
+// Nico's already-verified pbimodel.com. Preferred over Resend's shared
+// onboarding@resend.dev for two reasons: the shared sender only ever delivers
+// to the Resend account owner, and Outlook treats a sender shared by thousands
+// of accounts far more harshly than a DKIM-signed domain of one's own.
 const FROM = process.env.DIGEST_EMAIL_FROM || "Rugby Nations Tracker <onboarding@resend.dev>";
 const RESEND_URL = "https://api.resend.com/emails";
 
@@ -116,6 +128,10 @@ export async function main({ now = new Date() } = {}) {
     console.log("RESEND_API_KEY not set — daily briefing email skipped");
     return { skipped: "no-key" };
   }
+  if (!TO) {
+    console.log("DIGEST_EMAIL_TO not set — daily briefing email skipped");
+    return { skipped: "no-recipient" };
+  }
 
   const dateISO = todayISO(now);
   const raw = await readIfPresent(join(ROOT, "editorial", "runs", `${dateISO}.json`));
@@ -138,7 +154,7 @@ export async function main({ now = new Date() } = {}) {
     console.error(`email send failed (HTTP ${res.status}): ${detail.slice(0, 300)}`);
     return { failed: res.status };
   }
-  console.log(`daily briefing email sent to ${TO} (${report.counts?.editions ?? 0} editions)`);
+  console.log(`daily briefing email sent to ${redact(TO)} (${report.counts?.editions ?? 0} editions)`);
   return { sent: true };
 }
 
