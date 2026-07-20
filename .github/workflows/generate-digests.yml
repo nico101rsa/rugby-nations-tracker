@@ -63,7 +63,13 @@ jobs:
           # origin: keep their fresh scores, re-apply our digests block and
           # editorial output (only digest runs write editorial/).
           cp public/nations.json /tmp/digests-ours.json
-          cp -R editorial /tmp/editorial-ours
+          # Snapshot only what THIS workflow authors. The news pool is written
+          # hourly by harvest-news.yml, so restoring the whole editorial/ dir
+          # wholesale would silently revert any harvest that landed during the
+          # ~10 minutes this run spends on 12 model calls.
+          rm -rf /tmp/editorial-ours && mkdir -p /tmp/editorial-ours
+          cp -R editorial/reviews editorial/health /tmp/editorial-ours/ 2>/dev/null || true
+          cp editorial/editor-notes.md editorial/checker-notes.md /tmp/editorial-ours/ 2>/dev/null || true
           git fetch origin main
           git reset --hard origin/main
           node -e '
@@ -75,7 +81,9 @@ jobs:
             fs.writeFileSync("public/nations.json", payload);
             fs.writeFileSync("nations.json", payload);
           '
-          rm -rf editorial && cp -R /tmp/editorial-ours editorial
+          # Copy our own output back over origin's tree, leaving origin's
+          # news-pool.json (and anything else we do not author) intact.
+          cp -R /tmp/editorial-ours/. editorial/
           git add nations.json public/nations.json editorial/
           git commit -m "Daily digests $(TZ=Australia/Sydney date '+%F %H:%M AEST') (reapplied over live refresh)"
           git push || (git pull --rebase --autostash && git push)
