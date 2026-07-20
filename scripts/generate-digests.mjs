@@ -113,6 +113,13 @@ one a fan would text a mate about.
   carrying ("Rassie Erasmus' honest 'pressure' admission over certain
   Springboks") — permitted, never required, and never manufactured to seem
   livelier than the story is.
+- **Angle it at {TEAM_NAME}.** Big incidents involve two nations, and the other
+  side's edition is written from the same pack — so a heading that would serve
+  either team equally has failed. Write it from {TEAM_NAME}'s stake in the
+  story. After the England-Argentina press-room row on 2026-07-20 BOTH editions
+  ran the identical heading "Felipe Contepomi storms out of press conference
+  accusing England of disrespect". That is Argentina's story; England's edition
+  needed Borthwick's side of it.
 - **Body: one paragraph, 55–90 words.** Lead with the story, then the one or
   two supporting facts that give it weight. If the story is match-pinned,
   say which match ("Saturday's second test"), never a vague "this season".
@@ -794,7 +801,16 @@ would text a mate about — not the most routine one, and not the league table.
 Record which you picked in the \`lead\` field.
 
 ${renderShortlist(shortlist)}
-${quiet ? "\n**Today is QUIET for this team** — nothing on the shortlist has real weight. Say so plainly rather than inflating a thin story.\n" : ""}
+${quiet ? `
+**Coverage of this team is thin today.** Write the best real story on the
+shortlist, shorter and plainer than usual, and do not inflate it.
+
+NEVER write ABOUT the thinness. The reader does not know or care what our news
+cycle looked like — references to the day, the week, the volume of coverage or
+the state of the sport are meta-commentary and are banned outright: no "on a
+quiet Monday of reflection", no "today's quiet French rugby landscape", no
+"with the window wrapped up". Open on the story itself.
+` : ""}
 ${bodies.join("\n\n")}`;
 
   return { pack, shortlist, quiet, articleCount: articles.length, poolCount: pool.length, widenedCount: widened.length };
@@ -1009,6 +1025,15 @@ JSON again.`;
     const resolved = resolveTeamsheet(digest.teamsheet, [], espnSheet);
     sheetNote = resolved.note;
     if (resolved.sheet) digest = { ...digest, teamsheet: resolved.sheet };
+  }
+
+  // Attribution. Agreed mitigation for leaning the product on a five-outlet
+  // spine we have no relationship with: name the outlet in the card. Derived
+  // from the candidate the writer actually led with, never from the model — it
+  // would guess, and a wrong byline is worse than none.
+  const chosen = digest.lead ? shortlist[digest.lead.candidate - 1] : null;
+  if (chosen?.feedName && chosen.feedId !== "search") {
+    digest = { ...digest, source: { name: chosen.feedName } };
   }
 
   const lead = digest.lead ? `, led with #${digest.lead.candidate}` : ", NO lead recorded";
