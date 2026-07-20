@@ -1,0 +1,45 @@
+name: Harvest news pool
+
+on:
+  schedule:
+    # Hourly. A publisher feed holds ~12 items and turns over inside a day, so a
+    # once-daily pull misses stories that break and rotate before the digest run
+    # (2026-07-20: the Erasmus story on Feinberg-Mngomezulu's fitness was in the
+    # feed at 08:00 AEST and gone by 19:30). GitHub drops a fair share of
+    # scheduled runs — that is fine here, the pool holds 72h and only needs most
+    # hours, not every one.
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+# Own group. Sharing a concurrency group is what starved the match-day digests
+# (GitHub keeps only one pending run per group), so the harvest gets its own.
+concurrency:
+  group: harvest-news
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  harvest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Harvest the publisher spine into the pool
+        run: node scripts/harvest-news.mjs
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add editorial/news-pool.json
+          git diff --cached --quiet && echo "No new items" && exit 0
+          git commit -m "News pool $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          # Only this workflow writes the pool, so a rebase onto whatever else
+          # landed is always safe — no wholesale-rewrite conflict to handle.
+          git push || (git pull --rebase --autostash && git push)
