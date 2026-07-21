@@ -84,7 +84,10 @@ jobs:
           # ~10 minutes this run spends on 12 model calls.
           rm -rf /tmp/editorial-ours && mkdir -p /tmp/editorial-ours
           cp -R editorial/reviews editorial/health editorial/runs /tmp/editorial-ours/ 2>/dev/null || true
-          cp editorial/editor-notes.md editorial/checker-notes.md /tmp/editorial-ours/ 2>/dev/null || true
+          # storylines.json is authored HERE (the quiet-day backlog) and carries
+          # the use counts. Omitting it from this snapshot would silently revert
+          # the day's backlog update on any push race.
+          cp editorial/editor-notes.md editorial/checker-notes.md editorial/storylines.json /tmp/editorial-ours/ 2>/dev/null || true
           git fetch origin main
           git reset --hard origin/main
           node -e '

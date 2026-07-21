@@ -64,12 +64,34 @@ function teamBlock(t) {
     })
     .join("");
 
+  // Which rung of the quiet-day ladder carried this edition. Shown because a
+  // thin news edition and a thin DATA edition look identical in the copy and
+  // need opposite responses — one is a retrieval problem, the other is the
+  // format working as designed (docs/adr/0002).
+  const rungTag = t.rung === "storyline"
+    ? ' <span style="color:#3d6b9e">· storyline</span>'
+    : t.rung === "data"
+      ? ' <span style="color:#7a5aa8">· data edition</span>'
+      : t.quiet ? ' <span style="color:#b26b00">· quiet</span>' : "";
+
+  const rungDetail = t.rung === "storyline" && t.storyline
+    ? `<div style="font:400 12px/1.5 -apple-system,sans-serif;color:#777;margin:8px 0 0;padding:8px 10px;background:#f2f5f9;border-radius:6px">
+        <strong>Returned to an open storyline.</strong><br>${esc(t.storyline.subject)}<br>
+        <span style="color:#999">Stays open ${esc(t.storyline.resolution)} · re-check search found ${t.storyline.recheckHits} result(s)</span>
+      </div>`
+    : t.rung === "data"
+      ? `<div style="font:400 12px/1.5 -apple-system,sans-serif;color:#777;margin:8px 0 0;padding:8px 10px;background:#f6f3f9;border-radius:6px">
+          <strong>No press coverage and no live storyline</strong> — written from the app's own match data (${esc(t.dataAngle ?? "")} angle).
+        </div>`
+      : "";
+
   return `<div style="margin:0 0 26px;padding:0 0 20px;border-bottom:1px solid #e6e6e6">
     <div style="font:600 11px/1.4 -apple-system,Segoe UI,sans-serif;letter-spacing:1.6px;text-transform:uppercase;color:#6b7f70">
-      ${esc(t.team)}${t.quiet ? ' <span style="color:#b26b00">· quiet</span>' : ""} · ${esc(t.kicker)}
+      ${esc(t.team)}${rungTag} · ${esc(t.kicker)}
     </div>
     <div style="font:700 19px/1.25 Georgia,serif;color:#111;margin:5px 0 0">${esc(t.heading)}</div>
     <p style="font:400 15px/1.6 Georgia,serif;color:#333;margin:8px 0 0">${esc(t.body)}</p>
+    ${rungDetail}
     ${t.source ? `<div style="font:400 12px/1.4 -apple-system,sans-serif;color:#999;margin:8px 0 0">Source: ${esc(t.source)}</div>` : ""}
     ${candidates ? `<details style="margin:10px 0 0"><summary style="font:400 12px/1.4 -apple-system,sans-serif;color:#999;cursor:pointer">What retrieval offered${t.lead?.why ? " · why this one" : ""}</summary>
       ${t.lead?.why ? `<div style="font:400 12px/1.5 -apple-system,sans-serif;color:#777;margin:6px 0 4px"><em>${esc(t.lead.why)}</em></div>` : ""}
@@ -79,11 +101,14 @@ function teamBlock(t) {
 }
 
 export function buildEmailHtml(report, reviewMarkdown = "") {
-  const { editions = 0, quiet = 0, failed = 0, noLead = 0 } = report?.counts ?? {};
+  const { editions = 0, quiet = 0, failed = 0, noLead = 0, storyline = 0, dataEdition = 0 } = report?.counts ?? {};
   const teams = report?.teams ?? [];
 
+  // "Quiet" counts the teams the press ignored; the two rung counts say what
+  // was done about it. Quiet minus those two is the number that fell all the
+  // way to a thin news edition — the number actually worth watching.
   const summary = `<div style="background:#f4f6f4;border-radius:8px;padding:12px 14px;margin:0 0 26px;font:400 13px/1.6 -apple-system,Segoe UI,sans-serif;color:#333">
-    <strong>${editions}/12 editions</strong>${quiet ? ` · <span style="color:#b26b00">${quiet} written on thin coverage</span>` : ""}${noLead ? ` · ${noLead} recorded no lead` : ""}${failed ? ` · <span style="color:#b00020">${failed} failed</span>` : ""}
+    <strong>${editions}/12 editions</strong>${quiet ? ` · <span style="color:#b26b00">${quiet} quiet</span>` : ""}${storyline ? ` · <span style="color:#3d6b9e">${storyline} from the storyline backlog</span>` : ""}${dataEdition ? ` · <span style="color:#7a5aa8">${dataEdition} data edition${dataEdition === 1 ? "" : "s"}</span>` : ""}${noLead ? ` · ${noLead} recorded no lead` : ""}${failed ? ` · <span style="color:#b00020">${failed} failed</span>` : ""}
     ${(report?.failed ?? []).length ? `<div style="margin:6px 0 0;color:#b00020">${report.failed.map((f) => `${esc(f.team)}: ${esc(f.reason)}`).join("<br>")}</div>` : ""}
   </div>`;
 

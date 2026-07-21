@@ -47,6 +47,40 @@ test("subjectFor: survives a missing report shape", () => {
   assert.match(subjectFor({}), /today/);
 });
 
+test("buildEmailHtml: distinguishes a data edition from a thin news one", () => {
+  // The whole point: in the copy these look identical, but one is a retrieval
+  // problem and the other is the format working as designed.
+  const html = buildEmailHtml({
+    date: "2026-07-21",
+    counts: { editions: 12, quiet: 5, storyline: 2, dataEdition: 3 },
+    teams: [
+      { team: "Japan", rung: "data", dataAngle: "scoring", kicker: "Snapshot", heading: "H", body: "B", quiet: true },
+      {
+        team: "Fiji", rung: "storyline", kicker: "Contract", heading: "H2", body: "B2", quiet: true,
+        storyline: { subject: "Nasova's next club", resolution: "until he signs somewhere", recheckHits: 4 },
+      },
+    ],
+  });
+  assert.match(html, /data edition/);
+  assert.match(html, /from the storyline backlog/);
+  assert.match(html, /written from the app's own match data \(scoring angle\)/);
+  // esc() escapes &, <, > and " — an apostrophe needs no escaping in HTML text
+  // content, so it survives verbatim.
+  assert.match(html, /Nasova's next club/);
+  assert.match(html, /until he signs somewhere/);
+  assert.match(html, /re-check search found 4 result/);
+});
+
+test("buildEmailHtml: a news edition shows no rung chrome", () => {
+  const html = buildEmailHtml({
+    date: "2026-07-21",
+    counts: { editions: 12, quiet: 0 },
+    teams: [{ team: "South Africa", rung: "news", kicker: "Injury", heading: "H", body: "B", quiet: false }],
+  });
+  assert.doesNotMatch(html, /data edition/);
+  assert.doesNotMatch(html, /storyline backlog/);
+});
+
 test("buildEmailHtml: renders every team's edition", () => {
   const html = buildEmailHtml(report);
   assert.match(html, /South Africa/);

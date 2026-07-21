@@ -604,6 +604,62 @@ test("buildRunReport: records what retrieval offered and what the writer did", (
   assert.equal(sa.candidates.length, 1);
 });
 
+test("buildRunReport: records which ladder rung carried each edition", () => {
+  const report = buildRunReport(
+    "2026-07-21",
+    { 463: { name: "Japan" }, 28: { name: "Fiji" }, 467: { name: "South Africa" } },
+    {
+      463: { sections: [{ kicker: "Snapshot", heading: "Japan concede 30 a game", body: "…" }] },
+      28: { sections: [{ kicker: "Contract", heading: "Nasova stays", body: "…" }] },
+      467: { sections: [{ kicker: "Injury", heading: "Pollard doubt", body: "…" }], lead: { candidate: 1, why: "x" } },
+    },
+    {
+      463: { quiet: true, shortlist: [], ladder: { rung: "data", angle: "scoring" } },
+      28: {
+        quiet: true, shortlist: [],
+        ladder: {
+          rung: "storyline", freshCount: 4,
+          storyline: { subject: "Nasova's next club", resolution: "until he signs somewhere" },
+        },
+      },
+      467: { quiet: false, shortlist: [{ title: "a", score: 40, corroboration: 2, outlets: ["bbc", "gu"] }] },
+    },
+  );
+  assert.equal(report.counts.storyline, 1);
+  assert.equal(report.counts.dataEdition, 1);
+  assert.equal(report.counts.quiet, 2);
+
+  const jpn = report.teams.find((t) => t.team === "Japan");
+  assert.equal(jpn.rung, "data");
+  assert.equal(jpn.dataAngle, "scoring");
+  assert.equal(jpn.storyline, null);
+
+  const fij = report.teams.find((t) => t.team === "Fiji");
+  assert.equal(fij.rung, "storyline");
+  assert.equal(fij.storyline.recheckHits, 4);
+  assert.match(fij.storyline.resolution, /until he signs/);
+
+  // A normal news edition must still report as "news", not as a missing rung.
+  assert.equal(report.teams.find((t) => t.team === "South Africa").rung, "news");
+});
+
+test("buildReviewPrompt: tells the review a ladder edition had a different brief", () => {
+  const prompt = buildReviewPrompt([
+    {
+      team: "Japan",
+      digest: { sections: [{ kicker: "Snapshot", heading: "Japan concede 30 a game", body: "…" }] },
+      shortlist: [{ title: "a dull preview", score: 8, corroboration: 1 }],
+      quiet: true,
+      ladder: { rung: "data", angle: "scoring" },
+    },
+  ], "2026-07-21");
+  assert.match(prompt, /LADDER: DATA/);
+  assert.match(prompt, /instructed NOT to lead from it/);
+  // The guard that stops the reviewer marking a data edition down for being dull
+  // and writing a writer-note the writer cannot act on.
+  assert.match(prompt, /Never criticise a ladder edition for being less exciting/);
+});
+
 test("buildRunReport: survives a team with no retrieval entry", () => {
   const report = buildRunReport("2026-07-20", { 467: { name: "South Africa" } }, { 467: { sections: [] } }, {});
   assert.equal(report.counts.editions, 1);
