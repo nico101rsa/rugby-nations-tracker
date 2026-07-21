@@ -11,6 +11,11 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 import { buildShortlist, isQuiet, renderShortlist } from "./news-sources.mjs";
+import {
+  extractionCandidates, buildExtractionPrompt, parseStorylines, mergeBacklog,
+  pickStoryline, markUsed, renderStorylineEdition, recheckQuery,
+} from "./storylines.mjs";
+import { buildDataEdition, renderDataEdition } from "./data-edition.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public", "nations.json");
@@ -37,19 +42,25 @@ export const PUBLISH_TEAMSHEETS = false;
 
 // api-sports team id → names + masthead (mirrors src/teams.js + src/digest.js;
 // duplicated because the public repo has no src/).
+//
+// `code` is the three-letter key used by BOTH team-events-archive.json and
+// ranking-stats.json, which the quiet-day data edition reads. Those two files
+// are keyed by code while everything else here is keyed by api-sports id, so
+// this is the only join between them — a wrong code yields a silently empty
+// data edition rather than an error, which is why it is asserted in the tests.
 export const TEAMS = {
-  386: { name: "England", masthead: "Rose Watch" },
-  387: { name: "France", masthead: "Bleus Watch" },
-  388: { name: "Ireland", masthead: "Shamrock Watch" },
-  389: { name: "Italy", masthead: "Azzurri Watch" },
-  390: { name: "Scotland", masthead: "Thistle Watch" },
-  391: { name: "Wales", masthead: "Dragon Watch" },
-  460: { name: "Argentina", masthead: "Puma Watch" },
-  461: { name: "Australia", masthead: "Wallaby Watch" },
-  463: { name: "Japan", masthead: "Blossom Watch" },
-  465: { name: "New Zealand", masthead: "All Blacks Watch" },
-  467: { name: "South Africa", masthead: "Bok Watch" },
-  28: { name: "Fiji", masthead: "Flying Fijians Watch" },
+  386: { name: "England", masthead: "Rose Watch", code: "ENG" },
+  387: { name: "France", masthead: "Bleus Watch", code: "FRA" },
+  388: { name: "Ireland", masthead: "Shamrock Watch", code: "IRE" },
+  389: { name: "Italy", masthead: "Azzurri Watch", code: "ITA" },
+  390: { name: "Scotland", masthead: "Thistle Watch", code: "SCO" },
+  391: { name: "Wales", masthead: "Dragon Watch", code: "WAL" },
+  460: { name: "Argentina", masthead: "Puma Watch", code: "ARG" },
+  461: { name: "Australia", masthead: "Wallaby Watch", code: "AUS" },
+  463: { name: "Japan", masthead: "Blossom Watch", code: "JPN" },
+  465: { name: "New Zealand", masthead: "All Blacks Watch", code: "NZL" },
+  467: { name: "South Africa", masthead: "Bok Watch", code: "RSA" },
+  28: { name: "Fiji", masthead: "Flying Fijians Watch", code: "FIJ" },
 };
 
 // The edition is ONE section. Its `kicker` is a short topical label the writer
@@ -362,10 +373,18 @@ export function stripLeads(digests = {}) {
 // Pure so it can be tested; the caller writes it.
 export function buildRunReport(dateISO, teams, generated, retrieval, failed = []) {
   const rows = Object.entries(generated).map(([id, digest]) => {
-    const { shortlist = [], quiet = false } = retrieval[id] ?? {};
+    const { shortlist = [], quiet = false, ladder = null } = retrieval[id] ?? {};
     return {
       team: teams[id]?.name ?? id,
       quiet,
+      // Which rung of the quiet-day ladder carried this edition. Without it a
+      // thin edition is indistinguishable from a thin STORYLINE edition, and
+      // the two need opposite fixes (docs/adr/0002).
+      rung: ladder?.rung ?? "news",
+      storyline: ladder?.rung === "storyline"
+        ? { subject: ladder.storyline.subject, resolution: ladder.storyline.resolution, recheckHits: ladder.freshCount }
+        : null,
+      dataAngle: ladder?.rung === "data" ? ladder.angle : null,
       heading: digest.sections?.[0]?.heading ?? "",
       kicker: digest.sections?.[0]?.kicker ?? "",
       body: digest.sections?.[0]?.body ?? "",
@@ -379,6 +398,8 @@ export function buildRunReport(dateISO, teams, generated, retrieval, failed = []
     counts: {
       editions: rows.length,
       quiet: rows.filter((r) => r.quiet).length,
+      storyline: rows.filter((r) => r.rung === "storyline").length,
+      dataEdition: rows.filter((r) => r.rung === "data").length,
       failed: failed.length,
       noLead: rows.filter((r) => !r.lead).length,
     },
@@ -397,6 +418,16 @@ async function writeRunReport(now, generated, retrieval, failed) {
   } catch (e) {
     // Diagnostics must never cost an edition.
     console.warn(`run report not written: ${e.message}`);
+  }
+}
+
+// Read a JSON file, or null. Used for the data-edition inputs, which are
+// optional: a missing archive costs that rung, never the run.
+export async function readJsonOrNull(path) {
+  try {
+    return JSON.parse(await readFile(path, "utf8"));
+  } catch {
+    return null;
   }
 }
 
@@ -419,6 +450,43 @@ export function stripTeamsheets(digests = {}) {
       return [id, rest];
     }),
   );
+}
+
+// ---- Storyline backlog file ---------------------------------------------------
+
+const BACKLOG_FILE = join(ROOT, "editorial", "storylines.json");
+
+// Missing or corrupt is survivable and expected on the first run — an empty
+// backlog just means every quiet team drops to the data edition.
+export async function readBacklog(path = BACKLOG_FILE) {
+  try {
+    const parsed = JSON.parse(await readFile(path, "utf8"));
+    return Array.isArray(parsed?.storylines) ? parsed.storylines : [];
+  } catch {
+    return [];
+  }
+}
+
+export async function writeBacklog(storylines, now, path = BACKLOG_FILE) {
+  const payload = {
+    updatedAt: now.toISOString(),
+    note: "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
+    count: storylines.length,
+    storylines,
+  };
+  await writeFile(path, `${JSON.stringify(payload, null, 2)}\n`);
+}
+
+// One extraction call for ALL twelve teams. The pool is a single shared spine,
+// so per-team calls would re-read the same ~120 headlines twelve times for no
+// extra signal (docs/adr/0002).
+export async function extractBacklog(apiKey, pool, existing, now, dateISO) {
+  const items = extractionCandidates(pool);
+  if (!items.length) return existing;
+  const names = Object.fromEntries(Object.entries(TEAMS).map(([id, t]) => [id, t.name]));
+  const text = await geminiCall(apiKey, buildExtractionPrompt(items, names, dateISO));
+  const parsed = parseStorylines(extractJson(text), items, dateISO);
+  return mergeBacklog(existing, parsed, dateISO, now);
 }
 
 // ---- API call ---------------------------------------------------------------
@@ -791,7 +859,12 @@ async function fetchTeamNews(teamName) {
 // the point of the redesign, not a detail — handed an unranked pack, a cheap
 // model retreats to the safest thing in the prompt (the fixture, the log), which
 // is what three days of style notes failed to fix.
-export async function buildSourcePack(teamId, teamName, now, pool = []) {
+// `resolveLadder` is an optional async callback the CALLER supplies, invoked
+// only when the day reads Quiet. It exists because rungs 2 and 3 of the
+// quiet-day ladder (Storyline backlog, data edition) need the backlog file, the
+// match archive and a live re-check search — all I/O this function has no
+// business owning. It returns { rung, block } or null.
+export async function buildSourcePack(teamId, teamName, now, pool = [], resolveLadder = null) {
   let widened = [];
   try {
     widened = await fetchTeamNews(teamName);
@@ -800,6 +873,7 @@ export async function buildSourcePack(teamId, teamName, now, pool = []) {
   }
   const shortlist = buildShortlist([...pool, ...widened], teamId, now);
   const quiet = isQuiet(shortlist);
+  const ladder = quiet && resolveLadder ? await resolveLadder(shortlist) : null;
 
   // Bodies for the top candidates only. The old code fetched every headline and
   // re-sorted for numbered lineups (prioritiseByLineup) — dead weight while
@@ -834,16 +908,20 @@ available"). You know what was reported, not what is true in camp. Never pad an
 edition with unsourced routine ("recovery protocols", "training intensity") to
 fill space.
 
-## Today's shortlist — lead with ONE of these
+## Today's shortlist${ladder ? " — background only" : " — lead with ONE of these"}
 
 Ranked by how much the rugby press is actually making of each story:
 corroboration across outlets first, then where the outlet placed it, then how
-fresh it is. **You must lead with one of these candidates.** Pick the one a fan
+fresh it is.${ladder ? `
+
+**Nothing here cleared the bar today, so do NOT lead from this list.** It is
+printed only so you know what was available. Your instructions are in the
+section below, and they override the shortlist rule.` : ` **You must lead with one of these candidates.** Pick the one a fan
 would text a mate about — not the most routine one, and not the league table.
-Record which you picked in the \`lead\` field.
+Record which you picked in the \`lead\` field.`}
 
 ${renderShortlist(shortlist)}
-${quiet ? `
+${quiet && !ladder ? `
 **Coverage of this team is thin today.** Write the best real story on the
 shortlist, shorter and plainer than usual, and do not inflate it.
 
@@ -853,9 +931,13 @@ the state of the sport are meta-commentary and are banned outright: no "on a
 quiet Monday of reflection", no "today's quiet French rugby landscape", no
 "with the window wrapped up". Open on the story itself.
 ` : ""}
+${ladder ? `\n${ladder.block}\n` : ""}
 ${bodies.join("\n\n")}`;
 
-  return { pack, shortlist, quiet, articleCount: articles.length, poolCount: pool.length, widenedCount: widened.length };
+  return {
+    pack, shortlist, quiet, ladder,
+    articleCount: articles.length, poolCount: pool.length, widenedCount: widened.length,
+  };
 }
 
 // ---- Gemini provider (free tier) ----------------------------------------------
@@ -984,6 +1066,57 @@ closer-to-source). When unsure, or when your reasoning contains "however" /
 issues array if the draft is clean.`;
 }
 
+// ---- the quiet-day ladder ------------------------------------------------------
+//
+// Rung 1 (news) is handled by the shortlist and never reaches here. This walks
+// the two rungs below it, in order, and returns the prompt block for whichever
+// answers first — or null, which lands the edition on the honest bottom rung
+// ("no coverage today"). See docs/adr/0002 in the app repo.
+//
+// The Storyline rung re-checks relevance with a LIVE SEARCH on the storyline's
+// subject rather than trusting any stored date. That is the whole design: a
+// date can only tell you a thread is old, while a search tells you what
+// happened to it — and a thread that resolved yesterday is usually a better
+// edition than the open question was.
+async function resolveLadder(ctx, teamId, params, now) {
+  const { backlog, archive, rankingStats } = ctx;
+
+  const storyline = pickStoryline(backlog, teamId, now);
+  if (storyline) {
+    let freshItems = [];
+    try {
+      freshItems = await fetchTeamNews(recheckQuery(storyline, params.TEAM_NAME));
+    } catch {
+      // A failed re-check is not a failed edition: the writer is told plainly
+      // that the search returned nothing and must not dress the stored headline
+      // up as today's news.
+    }
+    ctx.used.push({ teamId, storylineId: storyline.id });
+    return {
+      rung: "storyline",
+      storyline,
+      freshCount: freshItems.length,
+      block: renderStorylineEdition(storyline, freshItems, params.TEAM_NAME),
+    };
+  }
+
+  const teamCode = TEAMS[teamId]?.code;
+  const edition = buildDataEdition({
+    teamCode,
+    teamName: params.TEAM_NAME,
+    games: archive?.games?.[teamCode],
+    rankingStats: rankingStats?.teams?.[teamCode],
+    // The opponent NAME, never a code — four of Fiji's eleven archived games
+    // carry a null opponentCode (docs/adr/0002).
+    nextOpponent: params.TEAM_NAME === params.HOME_TEAM ? params.AWAY_TEAM : params.HOME_TEAM,
+    dateISO: params.DATE_ISO,
+  });
+  if (edition) {
+    return { rung: "data", angle: edition.angle, block: renderDataEdition(edition, params.TEAM_NAME) };
+  }
+  return null;
+}
+
 // The verdict is computed here, not trusted from the model: only material
 // issues fail an edition (Flash's own global verdicts contradicted its
 // per-issue reasoning in testing). Minor issues are dropped.
@@ -994,9 +1127,10 @@ export function parseVerdict(raw) {
   return { verdict: issues.length ? "fail" : "pass", issues };
 }
 
-export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, checkerNotes = "", pool = []) {
+export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, checkerNotes = "", pool = [], ladderCtx = null) {
   const params = buildParams(data, teamId, now);
-  const { pack, shortlist, quiet, articleCount, poolCount, widenedCount } = await buildSourcePack(teamId, params.TEAM_NAME, now, pool);
+  const { pack, shortlist, quiet, ladder, articleCount, poolCount, widenedCount } =
+    await buildSourcePack(teamId, params.TEAM_NAME, now, pool, ladderCtx ? () => resolveLadder(ladderCtx, teamId, params, now) : null);
   const notesBlock = editorNotes
     ? `\n\n## Standing editor notes (distilled from previous editions' reviews — follow them)\n${editorNotes}`
     : "";
@@ -1073,18 +1207,40 @@ JSON again.`;
   // spine we have no relationship with: name the outlet in the card. Derived
   // from the candidate the writer actually led with, never from the model — it
   // would guess, and a wrong byline is worse than none.
-  const chosen = digest.lead ? shortlist[digest.lead.candidate - 1] : null;
-  if (chosen?.feedName && chosen.feedId !== "search") {
-    digest = { ...digest, source: { name: chosen.feedName } };
+  //
+  // GUARDED ON THE LADDER: on a quiet day the writer is told to ignore the
+  // shortlist, but it may still emit a `lead` number out of habit. Indexing the
+  // shortlist with it would then byline an outlet the edition was NOT written
+  // from — precisely the wrong-byline failure this block exists to avoid. A
+  // ladder edition takes its attribution from the rung, or none at all.
+  if (ladder?.rung === "storyline") {
+    // Written from a live re-check search plus the remembered sources, so the
+    // honest attribution is the storyline's own outlet.
+    const outlet = ladder.storyline?.sources?.[0]?.feedName;
+    if (outlet) digest = { ...digest, source: { name: outlet } };
+  } else if (!ladder) {
+    const chosen = digest.lead ? shortlist[digest.lead.candidate - 1] : null;
+    if (chosen?.feedName && chosen.feedId !== "search") {
+      digest = { ...digest, source: { name: chosen.feedName } };
+    }
   }
+  // A data edition is written from the app's own match data and gets NO source
+  // — naming an outlet would be a straight falsehood. See the note in the PR:
+  // the app's fallback line still reads "written from published team news",
+  // which is wrong for this rung and wants a one-line app-side fix.
+  if (ladder) digest = { ...digest, rung: ladder.rung };
 
   const lead = digest.lead ? `, led with #${digest.lead.candidate}` : ", NO lead recorded";
+  const rungNote = ladder
+    ? `, LADDER=${ladder.rung}${ladder.rung === "storyline" ? ` (recheck: ${ladder.freshCount} hits)` : ` (${ladder.angle})`}`
+    : "";
   return {
     digest,
     pack,
     shortlist,
     quiet,
-    note: `${shortlist.length} candidates (${poolCount} pooled, ${widenedCount} searched), ${articleCount} articles${lead}${quiet ? ", QUIET" : ""}, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}${sheetNote}`,
+    ladder,
+    note: `${shortlist.length} candidates (${poolCount} pooled, ${widenedCount} searched), ${articleCount} articles${lead}${quiet ? ", QUIET" : ""}${rungNote}, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}${sheetNote}`,
   };
 }
 
@@ -1100,11 +1256,37 @@ const REVIEWS_DIR = join(ROOT, "editorial", "reviews");
 const MAX_NOTES = 8;
 
 export function buildReviewPrompt(editions, dateISO) {
-  const blocks = editions.map(({ team, digest, shortlist = [], quiet = false }) => {
+  const blocks = editions.map(({ team, digest, shortlist = [], quiet = false, ladder = null }) => {
     const candidates = shortlist.length
       ? shortlist.map((s, n) => `  ${n + 1}. [score ${s.score}${s.corroboration > 1 ? `, ${s.corroboration} outlets` : ""}] ${s.title}`).join("\n")
       : "  (none — the press carried nothing about this team today)";
     const led = digest.lead ? `led with #${digest.lead.candidate}: "${digest.lead.why}"` : "did not record a pick";
+
+    // A ladder edition was written under DIFFERENT instructions — the writer was
+    // told explicitly not to lead from the shortlist. Reviewing it against the
+    // shortlist would mark it down for obeying its brief, which is the same
+    // "critic cannot see the input" failure this whole review block exists to
+    // fix (docs/adr/0002).
+    if (ladder) {
+      const brief = ladder.rung === "storyline"
+        ? `STORYLINE EDITION. The press had nothing today, so this returned to an open thread from the backlog:
+    subject   : ${ladder.storyline.subject}
+    stays open: ${ladder.storyline.resolution}
+    a fresh search on that subject returned ${ladder.freshCount} result(s), and the
+    writer was told to lead with whatever that search showed — including the
+    thread having resolved, which is a BETTER edition, not a failure.`
+        : `DATA EDITION. The press had nothing and the backlog was dry, so this was
+    written from the app's own match data on the "${ladder.angle}" angle. It is
+    meant to read as a plain stat-desk note, NOT as a news story.`;
+      return `### ${team} — LADDER: ${ladder.rung.toUpperCase()}
+What retrieval offered:
+${candidates}
+  (nothing here cleared the salience bar, so the writer was instructed NOT to lead from it)
+The writer's actual brief: ${brief}
+Published edition:
+${JSON.stringify({ ...digest, lead: undefined }, null, 1)}`;
+    }
+
     return `### ${team}${quiet ? " — QUIET DAY" : ""}
 What retrieval offered:
 ${candidates}
@@ -1123,13 +1305,23 @@ ${blocks.join("\n\n")}
 
 ## Classify before you prescribe
 
-Every weak edition is one of two things, and they need OPPOSITE fixes:
+Every weak edition is one of three things, and they need OPPOSITE fixes:
 
 - **RETRIEVAL-STARVED** — the shortlist was empty, thin, or all match reports.
   The writer had nothing and did the best available. Nothing the writer could
   have done differently would have helped.
 - **BADLY-CHOSEN** — the shortlist held a genuinely interesting story and the
   writer led with a duller one, or buried the interesting one in the body.
+- **LADDER EDITION** — the block above says "LADDER: STORYLINE" or
+  "LADDER: DATA". These were written to a DIFFERENT brief: the writer was told
+  not to lead from the shortlist at all. Judge them ONLY on their own terms —
+  a data edition should read as a plain, correctly-bounded stat note, and a
+  storyline edition should reflect what its re-check search actually found.
+  **Never criticise a ladder edition for being less exciting than a news
+  edition, and never fault it for not leading with a shortlist candidate** —
+  it was explicitly forbidden from doing so. If a data edition reads thin, that
+  is the format working as designed, not a defect. Judge the FACTS and the
+  PROSE; a note about it being "low-impact" is noise the writer cannot act on.
 
 You MUST classify each weak edition before commenting on it. **A note for the
 WRITER may only address a BADLY-CHOSEN defect or a craft defect (heading, prose,
@@ -1331,6 +1523,7 @@ export async function main({ dryRun = false } = {}) {
   // set; Claude Haiku as the fallback path; skip cleanly when neither key is.
   const geminiKey = process.env.GEMINI_API_KEY;
   let generateFor;
+  let ladderCtx = null;
   if (geminiKey) {
     console.log(`provider: gemini (${GEMINI_MODEL}, RSS source pack + fact-check pass)`);
     const editorNotes = await loadEditorNotes();
@@ -1342,7 +1535,21 @@ export async function main({ dryRun = false } = {}) {
     // whole reason the publisher spine replaced 36 per-team queries.
     const pool = await readNewsPool();
     console.log(`news pool: ${pool.length} items`);
-    generateFor = (teamId) => generateOneGemini(geminiKey, data, teamId, now, editorNotes, checkerNotes, pool);
+    // Quiet-day ladder context, read once and shared. `used` collects the
+    // storylines that actually carried an edition, so their use counts are
+    // incremented AFTER the run — incrementing at pick time would burn a
+    // storyline on a team whose edition later failed fact-check.
+    ladderCtx = {
+      backlog: await readBacklog(),
+      archive: await readJsonOrNull(join(ROOT, "team-events-archive.json")),
+      rankingStats: await readJsonOrNull(join(ROOT, "ranking-stats.json")),
+      // Carried here rather than closed over: `pool` is scoped to this branch,
+      // and the backlog refresh at the end of main() is outside it.
+      pool,
+      used: [],
+    };
+    console.log(`storyline backlog: ${ladderCtx.backlog.length} open`);
+    generateFor = (teamId) => generateOneGemini(geminiKey, data, teamId, now, editorNotes, checkerNotes, pool, ladderCtx);
   } else if (process.env.ANTHROPIC_API_KEY) {
     console.log(`provider: anthropic (${MODEL})`);
     const { default: Anthropic } = await import("@anthropic-ai/sdk");
@@ -1358,9 +1565,9 @@ export async function main({ dryRun = false } = {}) {
   const failed = [];
   for (const teamId of Object.keys(TEAMS).map(Number)) {
     try {
-      const { digest, note, shortlist = [], quiet = false } = await generateFor(teamId);
+      const { digest, note, shortlist = [], quiet = false, ladder = null } = await generateFor(teamId);
       generated[teamId] = digest;
-      retrieval[teamId] = { shortlist, quiet };
+      retrieval[teamId] = { shortlist, quiet, ladder };
       console.log(`${TEAMS[teamId].name}: ok (${digest.edition}${note ? `, ${note}` : ""})`);
     } catch (e) {
       failed.push({ team: TEAMS[teamId].name, reason: e.message.slice(0, 300) });
@@ -1394,6 +1601,30 @@ export async function main({ dryRun = false } = {}) {
   // daily email reports from it, and it is the first thing to look at when a
   // team goes bland.
   await writeRunReport(now, generated, retrieval, failed);
+
+  // Refresh the Storyline backlog for TOMORROW's quiet teams.
+  //
+  // Runs after publishing, and never fails the run: the editions are already
+  // written by this point, and a backlog that misses a day costs one quiet-day
+  // rung, not an edition. Same reasoning as the email step being
+  // continue-on-error — nothing after publication may cost what was published.
+  if (geminiKey && ladderCtx) {
+    try {
+      // Only storylines that actually carried a published edition are charged a
+      // use — a team that failed fact-check keeps its thread for tomorrow.
+      const today = sydneyDateParts(now).DATE_ISO;
+      let backlog = ladderCtx.backlog;
+      for (const { teamId, storylineId } of ladderCtx.used) {
+        if (generated[teamId]) backlog = markUsed(backlog, storylineId, today);
+      }
+      const before = backlog.length;
+      backlog = await extractBacklog(geminiKey, ladderCtx.pool, backlog, now, today);
+      await writeBacklog(backlog, now);
+      console.log(`storyline backlog: ${before} → ${backlog.length} open`);
+    } catch (e) {
+      console.warn(`storyline backlog refresh failed (editions unaffected): ${e.message.slice(0, 200)}`);
+    }
+  }
 
   // Teamsheet coverage audit across the whole match week (unions name teams from
   // early in the week — SA's 2026-07-14 XV was out 4 days pre-kickoff, but the
