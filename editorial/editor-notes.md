@@ -3,6 +3,7 @@
 Injected into the writer prompt daily; curated by the post-run review.
 Notes age out after 14 days unless re-earned. Prune freely.
 
+- Never fuse two independent statistics into a single phrase. Each number carries its own unit and denominator, and a record is not a quantity of points: write "unbeaten in three, 130 points scored", never "an unbeaten record of 130 points scored".
 - Ensure the heading explicitly names key individuals or provides a concrete outcome; avoid vague descriptors like 'Japanese player' or 'improvement'. _(added 2026-07-21)_
 - Lead every edition with the most objective, high-impact news available in the shortlist (scorelines or definitive roster moves) before addressing coaching quotes or subjective analysis. _(added 2026-07-21)_
 - Cross-check match venues, scores, and standings across all editions to ensure the 'Nations Championship' narrative is internally consistent. _(added 2026-07-20)_
