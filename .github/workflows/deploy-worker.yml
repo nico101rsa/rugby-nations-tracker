@@ -27,9 +27,34 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      # The Cloudflare secrets are Nico's to create, so between this workflow
+      # landing and him setting them every push to worker/ would hard-fail and
+      # email him a red run — training him to ignore exactly the channel the
+      # alerting depends on. Skip with a notice instead, and say what is
+      # missing. It goes green the moment the secrets exist.
+      - name: Skip unless the deploy secrets exist
+        id: gate
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          DISPATCH: ${{ secrets.GH_DISPATCH_TOKEN }}
+        run: |
+          missing=""
+          [ -z "$CF_TOKEN" ] && missing="$missing CLOUDFLARE_API_TOKEN"
+          [ -z "$CF_ACCOUNT" ] && missing="$missing CLOUDFLARE_ACCOUNT_ID"
+          [ -z "$DISPATCH" ] && missing="$missing GH_DISPATCH_TOKEN"
+          if [ -n "$missing" ]; then
+            echo "::notice::Cron Worker not deployed — missing secret(s):$missing. Setup steps are in worker/README.md."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.gate.outputs.ready == 'true'
 
       - name: Deploy to Cloudflare
+        if: steps.gate.outputs.ready == 'true'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
