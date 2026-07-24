@@ -1,0 +1,206 @@
+{
+ "updatedAt": "2026-07-24T22:33:15.115Z",
+ "source": "espn",
+ "current": "rnc-2026",
+ "competitions": [
+  {
+   "key": "6n-2026",
+   "label": "6N '26",
+   "name": "Six Nations",
+   "espnLeagueId": 180659,
+   "season": 2026,
+   "startDate": "2026-02-05",
+   "endDate": "2026-03-14",
+   "structure": "table",
+   "groups": null,
+   "teams": [
+    "ENG",
+    "FRA",
+    "IRE",
+    "ITA",
+    "SCO",
+    "WAL"
+   ],
+   "fixtureCount": 15,
+   "status": "complete",
+   "defaultFrom": "2026-02-05",
+   "defaultUntil": "2026-03-28"
+  },
+  {
+   "key": "rnc-2026",
+   "label": "RNC '26",
+   "name": "Nations Championship",
+   "espnLeagueId": 17567,
+   "season": 2026,
+   "startDate": "2026-07-04",
+   "endDate": "2026-11-21",
+   "structure": "conference",
+   "groups": [
+    {
+     "name": "South",
+     "teams": [
+      "NZL",
+      "JPN",
+      "AUS",
+      "FIJ",
+      "RSA",
+      "ARG"
+     ]
+    },
+    {
+     "name": "North",
+     "teams": [
+      "FRA",
+      "ITA",
+      "IRE",
+      "WAL",
+      "ENG",
+      "SCO"
+     ]
+    }
+   ],
+   "teams": [
+    "ARG",
+    "AUS",
+    "ENG",
+    "FIJ",
+    "FRA",
+    "IRE",
+    "ITA",
+    "JPN",
+    "NZL",
+    "RSA",
+    "SCO",
+    "WAL"
+   ],
+   "fixtureCount": 36,
+   "status": "live",
+   "defaultFrom": "2026-03-28",
+   "defaultUntil": "2026-12-05"
+  },
+  {
+   "key": "rwc-2027",
+   "label": "RWC '27",
+   "name": "Rugby World Cup",
+   "espnLeagueId": 164205,
+   "season": 2027,
+   "startDate": "2027-10-01",
+   "endDate": "2027-10-17",
+   "structure": "pools",
+   "groups": [
+    {
+     "name": null,
+     "teams": [
+      "AUS",
+      "HKG",
+      "CHI",
+      "NZL"
+     ]
+    },
+    {
+     "name": null,
+     "teams": [
+      "WAL",
+      "ENG",
+      "TGA",
+      "ZIM"
+     ]
+    },
+    {
+     "name": null,
+     "teams": [
+      "FRA",
+      "USA",
+      "SAM",
+      "JPN"
+     ]
+    },
+    {
+     "name": null,
+     "teams": [
+      "RSA",
+      "ROU",
+      "GEO",
+      "ITA"
+     ]
+    },
+    {
+     "name": null,
+     "teams": [
+      "SCO",
+      "URU",
+      "POR",
+      "IRE"
+     ]
+    },
+    {
+     "name": null,
+     "teams": [
+      "FIJ",
+      "ARG",
+      "CAN",
+      "ESP"
+     ]
+    }
+   ],
+   "teams": [
+    "ARG",
+    "AUS",
+    "CAN",
+    "CHI",
+    "ENG",
+    "ESP",
+    "FIJ",
+    "FRA",
+    "GEO",
+    "HKG",
+    "IRE",
+    "ITA",
+    "JPN",
+    "NZL",
+    "POR",
+    "ROU",
+    "RSA",
+    "SAM",
+    "SCO",
+    "TGA",
+    "URU",
+    "USA",
+    "WAL",
+    "ZIM"
+   ],
+   "fixtureCount": 36,
+   "status": "scheduled",
+   "defaultFrom": "2026-12-05",
+   "defaultUntil": "2027-10-31"
+  },
+  {
+   "key": "6n-2027",
+   "label": "6N '27",
+   "name": "Six Nations",
+   "espnLeagueId": 180659,
+   "season": 2027,
+   "startDate": null,
+   "endDate": null,
+   "structure": null,
+   "groups": null,
+   "teams": [],
+   "fixtureCount": 0,
+   "status": "announced"
+  },
+  {
+   "key": "trc-2026",
+   "label": "TRC '26",
+   "name": "The Rugby Championship",
+   "espnLeagueId": 244293,
+   "season": 2026,
+   "startDate": null,
+   "endDate": null,
+   "structure": null,
+   "groups": null,
+   "teams": [],
+   "fixtureCount": 0,
+   "status": "announced"
+  }
+ ]
+}
