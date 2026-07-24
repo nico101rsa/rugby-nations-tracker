@@ -957,10 +957,57 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 // Free-tier traffic is shed first under load (503) and rate-limited hard
 // (429). Retry with backoff, then fall back down the flash family — a sibling
 // model beats a failed edition.
-const GEMINI_FALLBACKS = [GEMINI_MODEL, "gemini-3-flash-preview", "gemini-3.1-flash-lite"];
+const GEMINI_FALLBACKS = [
+  GEMINI_MODEL,
+  "gemini-3-flash-preview",
+  "gemini-3.1-flash-lite",
+  // Added 2026-07-25 after measurement: the run was completing on what used
+  // to be the LAST rung every single day, so a bad afternoon on
+  // 3.1-flash-lite would have taken the whole digest down with nothing left
+  // to fall to. This rung exists to be the spare, not to be used.
+  //
+  // Every entry above was re-verified against the live API on 2026-07-25, and
+  // the obvious older-generation choice for this slot, gemini-2.5-flash-lite,
+  // was rejected: it answers 404 "no longer available to new accounts". A
+  // fallback that 404s is worse than no fallback, because it burns the retry
+  // ladder before failing.
+  "gemini-3.5-flash-lite",
+]; // ordered best -> most available
 // Sticky start index: once a model serves a request, later calls skip straight
 // to it instead of re-burning the retry ladder on a throttled sibling.
 let geminiStickyIdx = 0;
+
+// Per-model call tally, so a run can SAY how much of the ladder it burned
+// (map #198). Measured 2026-07-25 across four consecutive scheduled runs:
+// gemini-3.5-flash and gemini-3-flash-preview exhausted on EVERY one, and
+// every digest completed on gemini-3.1-flash-lite — the last rung. The
+// standing comment "worst case 4 calls/team = 48/day, well inside the free
+// quota" was describing call VOLUME, which is fine; the constraint is
+// AVAILABILITY, and there is currently no rung left below the one serving us.
+const geminiTally = new Map(); // model -> { ok, 429, 503, other }
+const bump = (model, key) => {
+  const row = geminiTally.get(model) ?? { ok: 0, 429: 0, 503: 0, other: 0 };
+  row[key] = (row[key] ?? 0) + 1;
+  geminiTally.set(model, row);
+};
+
+// { rows, servedBy, onLastRung } — servedBy is the model that answered the
+// most calls, which after the sticky fallback is the one that carried the run.
+export function geminiUsage() {
+  const rows = [...geminiTally.entries()].map(([model, r]) => ({ model, ...r }));
+  const served = rows.filter((r) => r.ok > 0).sort((a, b) => b.ok - a.ok)[0] ?? null;
+  return {
+    rows,
+    servedBy: served?.model ?? null,
+    totalCalls: rows.reduce((n, r) => n + r.ok, 0),
+    totalRejections: rows.reduce((n, r) => n + r[429] + r[503] + r.other, 0),
+    onLastRung: served?.model === GEMINI_FALLBACKS[GEMINI_FALLBACKS.length - 1],
+  };
+}
+
+export function resetGeminiUsage() {
+  geminiTally.clear();
+}
 
 async function geminiCall(apiKey, prompt) {
   const waits = [15000, 45000];
@@ -976,9 +1023,11 @@ async function geminiCall(apiKey, prompt) {
       });
       if (res.ok) {
         geminiStickyIdx = mi;
+        bump(model, "ok");
         const body = await res.json();
         return (body.candidates?.[0]?.content?.parts ?? []).map((p) => p.text ?? "").join("\n");
       }
+      bump(model, res.status === 429 || res.status === 503 ? String(res.status) : "other");
       lastErr = new Error(`gemini(${model}) ${res.status}: ${(await res.text()).slice(0, 200)}`);
       if (res.status !== 429 && res.status !== 503) throw lastErr;
       if (attempt < waits.length) {
@@ -1601,6 +1650,24 @@ export async function main({ dryRun = false } = {}) {
   // daily email reports from it, and it is the first thing to look at when a
   // team goes bland.
   await writeRunReport(now, generated, retrieval, failed);
+
+  // What the run actually cost in model calls, per model (map #198). Printed
+  // every run so the answer is never a guess again — and so a shift in which
+  // rung carries the load is visible the day it happens rather than after an
+  // outage.
+  const usage = geminiUsage();
+  console.log(
+    `gemini: ${usage.totalCalls} calls served, ${usage.totalRejections} rejections — ` +
+      usage.rows.map((r) => `${r.model} ok=${r.ok} 429=${r[429]} 503=${r[503]}`).join(" | "),
+  );
+  if (usage.onLastRung) {
+    console.log(
+      "::warning::The digest completed on the LAST rung of the model ladder. " +
+        "Every rung above it was exhausted, so there is no spare left: if this model sheds " +
+        "traffic too, the run fails. Free-tier calls stay $0 — the constraint is availability, " +
+        "not cost.",
+    );
+  }
 
   // Refresh the Storyline backlog for TOMORROW's quiet teams.
   //
