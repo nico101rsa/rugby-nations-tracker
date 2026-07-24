@@ -24,11 +24,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Check schedules and email on a miss
+      # Same Gmail-SMTP-is-dead-from-Actions port as weekly-health.yml: app
+      # passwords are rejected from datacenter IPs (535), so this job's email
+      # half has been a no-op. Resend is a plain HTTPS POST, no nodemailer.
+      - name: Check schedules, file an issue and email on a miss
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: |
-          if [ -n "$GMAIL_APP_PASSWORD" ]; then npm install --no-save nodemailer; fi
-          node scripts/watchdog.mjs
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
+          DIGEST_EMAIL_TO: ${{ secrets.DIGEST_EMAIL_TO }}
+        run: node scripts/watchdog.mjs

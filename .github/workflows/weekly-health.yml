@@ -27,14 +27,17 @@ jobs:
           node-version: 22
       - name: Unit tests
         run: node --test scripts/*.test.mjs
-      - name: Build report and email
+      # Email now goes over the Resend HTTP API. Gmail SMTP app-passwords are
+      # rejected from Actions datacenter IPs (535), which hard-failed this job
+      # on 2026-07-12 and meant it had been silently delivering nothing since.
+      # No nodemailer install needed — it is a plain HTTPS POST.
+      - name: Build report, file the issue, and email
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-        run: |
-          if [ -n "$GMAIL_APP_PASSWORD" ]; then npm install --no-save nodemailer; fi
-          node scripts/health-report.mjs
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
+          DIGEST_EMAIL_TO: ${{ secrets.DIGEST_EMAIL_TO }}
+        run: node scripts/health-report.mjs
       - name: Commit the report
         run: |
           git config user.name "github-actions[bot]"
