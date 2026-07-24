@@ -1,15 +1,27 @@
-// Shared email helper for the watchdog + weekly health check.
+// Shared alert helpers for the watchdog + weekly health check.
 //
-// Sends from nico101rsa@gmail.com via Gmail SMTP (app password). The Life-os
-// gmail_send.py uses local OAuth (Mac-only), which a headless Actions runner
-// can't use — so cloud jobs authenticate with a Gmail App Password instead,
-// stored as the GMAIL_APP_PASSWORD secret (GMAIL_USER overrides the address).
+// Email goes out over the RESEND HTTP API (map #202). It used to go over Gmail
+// SMTP with an app password, which does not work from Actions at all: Google
+// rejects app-password auth from datacenter IPs with a 535, and the
+// 2026-07-12 weekly-health run hard-failed on exactly that. The job has been
+// sending nothing ever since. HTTPS to api.resend.com has no such problem, and
+// scripts/email-digests.mjs has been delivering the daily briefing over it for
+// weeks — this reuses that proven path rather than inventing a second one.
 //
-// If the secret isn't set yet the send is a no-op that returns { sent:false }:
+// If RESEND_API_KEY isn't set the send is a no-op returning { sent:false }:
 // the job still runs and still writes its report file, it just can't email.
+//
+// ⚠️ Email is the SECONDARY channel. postIssue below is the one that provably
+// reaches Nico, and every caller treats email as best-effort.
 
-const GMAIL_USER = process.env.GMAIL_USER || "nico101rsa@gmail.com";
-const RECIPIENT = process.env.NOTIFY_TO || "nico.mcdonald@outlook.com";
+const RESEND_URL = "https://api.resend.com/emails";
+// Same verified sender the daily briefing uses. The recipient is held in a
+// secret because this repo is public and its workflow logs are public with it.
+const FROM = process.env.NOTIFY_EMAIL_FROM || "Rugby Tracker Ops <rugby@pbimodel.com>";
+// Falls back to DIGEST_EMAIL_TO, which already holds the same address and is
+// already set — so this port needs no new secret and starts working on merge.
+// NOTIFY_TO stays supported for the case where ops mail should go elsewhere.
+const RECIPIENT = process.env.NOTIFY_TO || process.env.DIGEST_EMAIL_TO || "";
 const ALERT_OWNER = process.env.ALERT_OWNER || "nico101rsa";
 
 // The working delivery channel. Gmail SMTP app-passwords are rejected (535
@@ -32,27 +44,33 @@ export async function postIssue({ title, body, assignee = ALERT_OWNER }) {
   return url;
 }
 
+// Never print the recipient — these logs are public.
+const redact = (addr) => String(addr).replace(/^(.).*(@.*)$/, "$1***$2");
+
 export async function sendEmail({ subject, text }) {
-  const pass = process.env.GMAIL_APP_PASSWORD;
-  if (!pass) {
-    console.log("::notice::GMAIL_APP_PASSWORD not set — email skipped (report still written)");
+  const key = process.env.RESEND_API_KEY;
+  if (!key) {
+    console.log("::notice::RESEND_API_KEY not set — email skipped (report still written, issue still filed)");
     return { sent: false, reason: "no-credentials" };
   }
-  // nodemailer is npm-installed --no-save by the workflow, same pattern the
-  // digest job uses for the Anthropic SDK.
-  const { default: nodemailer } = await import("nodemailer");
-  const transport = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: { user: GMAIL_USER, pass },
+  if (!RECIPIENT) {
+    console.log("::notice::NOTIFY_TO not set — email skipped (report still written, issue still filed)");
+    return { sent: false, reason: "no-recipient" };
+  }
+
+  const res = await fetch(RESEND_URL, {
+    method: "POST",
+    headers: { authorization: `Bearer ${key}`, "content-type": "application/json" },
+    body: JSON.stringify({ from: FROM, to: [RECIPIENT], subject, text }),
   });
-  await transport.sendMail({
-    from: `Rugby Tracker Ops <${GMAIL_USER}>`,
-    to: RECIPIENT,
-    subject,
-    text,
-  });
-  console.log(`Emailed "${subject}" to ${RECIPIENT}`);
+
+  if (!res.ok) {
+    // Loud but never fatal: the committed report is the durable record, and
+    // the GitHub issue is the channel that actually reaches him.
+    const detail = await res.text();
+    console.log(`::warning::email send failed (HTTP ${res.status}): ${detail.slice(0, 200)}`);
+    return { sent: false, reason: `http-${res.status}` };
+  }
+  console.log(`Emailed "${subject}" to ${redact(RECIPIENT)}`);
   return { sent: true };
 }
