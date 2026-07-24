@@ -14,6 +14,7 @@ import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { sendEmail, postIssue } from "./notify.mjs";
+import { silentFailuresSection } from "./silent-failures.mjs";
 
 const execFileAsync = promisify(execFile);
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -116,7 +117,7 @@ async function gitChanges(sinceDays = 7) {
 
 // ---- report --------------------------------------------------------------
 
-export function buildReport({ weekLabel, now, reviews, runTallies, changes }) {
+export function buildReport({ weekLabel, now, reviews, runTallies, changes, backlog = null, stats = null }) {
   const L = [`# Weekly health check — ${weekLabel}`, "", `_Generated ${now.toISOString()} (UTC)._`, ""];
 
   L.push("## Run reliability (last 7 days)", "");
@@ -127,6 +128,10 @@ export function buildReport({ weekLabel, now, reviews, runTallies, changes }) {
     L.push(`- **${label}** (${file}) — ${tally.success}✅ / ${tally.failure}❌ / ${tally.cancelled}⏹ of ${tally.total} runs; ${last}${flag}`);
   }
   L.push("");
+
+  // The two deliberately non-fatal pipelines. They come FIRST after run
+  // reliability because a green run log is exactly what they hide behind.
+  L.push(silentFailuresSection(backlog, stats, now.getTime()), "");
 
   L.push("## Digest quality (post-run editor grades)", "");
   if (reviews.length === 0) {
@@ -170,8 +175,11 @@ async function main() {
     runTallies.push({ ...w, tally: rows ? tallyRuns(rows, now) : null });
   }
   const changes = await gitChanges();
+  // Missing files are a finding, not a crash — the checks report them.
+  const backlog = await readFile(join(ROOT, "editorial", "storylines.json"), "utf8").then(JSON.parse).catch(() => null);
+  const stats = await readFile(join(ROOT, "stats.json"), "utf8").then(JSON.parse).catch(() => null);
 
-  const report = buildReport({ weekLabel, now, reviews, runTallies, changes });
+  const report = buildReport({ weekLabel, now, reviews, runTallies, changes, backlog, stats });
 
   await mkdir(HEALTH_DIR, { recursive: true });
   const outPath = join(HEALTH_DIR, `${weekLabel}.md`);
