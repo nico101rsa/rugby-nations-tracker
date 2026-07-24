@@ -13,6 +13,7 @@
 
 import { readFile, writeFile } from "node:fs/promises";
 import { fetchEspnEvents, ESPN_TEAM_IDS } from "./fetch-espn-fixtures.mjs";
+import { fetchLeagueFixtures, loadRegistry } from "./fetch-league-fixtures.mjs";
 
 const ID_TO_CODE = Object.fromEntries(Object.entries(ESPN_TEAM_IDS).map(([c, id]) => [String(id), c]));
 
@@ -29,6 +30,9 @@ const UNTRACKED_CODES = {
   Georgia: "GEO", Portugal: "POR", Uruguay: "URU", Spain: "ESP", Chile: "CHI",
   Samoa: "SAM", Tonga: "TGA", Romania: "ROU", Namibia: "NAM", Canada: "CAN",
   "United States": "USA", USA: "USA", Barbarians: "BAR", "Hong Kong": "HKG",
+  // ESPN's league-wide feed spells it out; the 3-letter fallback would make
+  // this "UNI".
+  "United States of America": "USA", Zimbabwe: "ZIM",
 };
 
 // Short forms for series labels ("SA v NZ", not "RSA v NZL").
@@ -38,6 +42,11 @@ const SERIES_SHORT = {
 };
 
 const teamIdFromRef = (ref) => (String(ref ?? "").match(/\/teams\/(\d+)/) ?? [])[1] ?? null;
+
+// Two ESPN shapes feed this file. The per-team core API nests the team behind
+// a `$ref` URL; the league-wide site-API scoreboard carries `team.id` inline.
+// Both are the same id space, so one accessor reads either.
+const competitorId = (c) => (c?.team?.id != null ? String(c.team.id) : teamIdFromRef(c?.team?.$ref));
 
 function side(espnId, names) {
   const code = ID_TO_CODE[espnId];
@@ -57,6 +66,10 @@ export function compFor(leagueName, year) {
       return { key: `trc-${year}`, label: `TRC '${yy}`, kind: "competition" };
     case "Six Nations":
       return { key: `6n-${year}`, label: `6N '${yy}`, kind: "competition" };
+    case "Rugby World Cup":
+      // Was missing, so RWC events fell through to `kind: "test"` and the
+      // series pass would have paired pool matches into a fictional "series".
+      return { key: `rwc-${year}`, label: `RWC '${yy}`, kind: "competition" };
     default:
       return { key: "test", label: "TEST", kind: "test" };
   }
@@ -82,17 +95,22 @@ export function roundLookup(nations) {
 export function buildFixtures(events, names, nations) {
   const findRound = roundLookup(nations);
   const out = [];
-  for (const { event, leagueName } of events) {
+  for (const { event, leagueName, comp: registryComp, registered } of events) {
     const comp0 = event.competitions?.[0];
     if (!comp0) continue;
     const sides = {};
-    for (const c of comp0.competitors ?? []) sides[c.homeAway] = teamIdFromRef(c.team?.$ref);
+    for (const c of comp0.competitors ?? []) sides[c.homeAway] = competitorId(c);
     if (!sides.home || !sides.away) continue;
     const home = side(sides.home, names);
     const away = side(sides.away, names);
-    if (!home.tracked && !away.tracked) continue;
+    // The ≥1-tracked-nation filter keeps unregistered noise out, but a match
+    // in a REGISTERED competition belongs in the list whoever is playing —
+    // this is exactly what would have excluded RWC's Chile v Hong Kong.
+    if (!registered && !home.tracked && !away.tracked) continue;
     const date = new Date(event.date).toISOString();
-    const comp = compFor(leagueName, new Date(date).getUTCFullYear());
+    // Registered comps carry their tag from competitions.json so the key the
+    // app filters by cannot drift from the registry.
+    const comp = registryComp ?? compFor(leagueName, new Date(date).getUTCFullYear());
     const v = comp0.venue;
     const venue = v?.fullName
       ? v.address?.city && v.address.city !== v.fullName
@@ -139,13 +157,32 @@ export function buildFixtures(events, names, nations) {
   return out.sort((a, b) => new Date(a.date) - new Date(b.date) || (a.id < b.id ? -1 : 1));
 }
 
+// Per-team events + league-wide events -> one list, deduped by ESPN event id.
+// The league-wide entry wins: it carries the registry's comp tag, and a match
+// in a registered competition should be filed under that competition even
+// though the per-team walk also found it.
+export function mergeSources(teamEvents, leagueEvents) {
+  const byId = new Map();
+  for (const e of teamEvents) byId.set(String(e.event?.id ?? Math.random()), e);
+  for (const e of leagueEvents) byId.set(String(e.event?.id ?? Math.random()), e);
+  return [...byId.values()];
+}
+
 async function main() {
   // 24h grace so today's already-kicked-off matches survive the daily build —
   // the app owns the device-local "until the day ends" cutoff.
   const now = Date.now() - 24 * 3600 * 1000;
   const { events, names } = await fetchEspnEvents(now);
+  // League-wide pass over every registered competition. Runs alongside the
+  // per-team walk rather than replacing it: the per-team feed still supplies
+  // one-off tests and series, which belong to no competition.
+  const registry = await loadRegistry().catch(() => null);
+  const league = registry
+    ? await fetchLeagueFixtures(registry, undefined, now)
+    : { events: [], names: new Map() };
+  for (const [id, name] of league.names) if (!names.has(id)) names.set(id, name);
   const nations = JSON.parse(await readFile("public/nations.json", "utf8"));
-  const fixtures = buildFixtures(events, names, nations);
+  const fixtures = buildFixtures(mergeSources(events, league.events), names, nations);
   const out = { updatedAt: new Date().toISOString(), source: "espn", fixtures };
   await writeFile("fixtures.json", JSON.stringify(out, null, 1) + "\n");
   const kinds = fixtures.reduce((m, f) => ((m[f.comp.label] = (m[f.comp.label] ?? 0) + 1), m), {});

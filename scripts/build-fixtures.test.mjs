@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildFixtures, compFor, roundLookup } from "./build-fixtures.mjs";
+import { buildFixtures, compFor, roundLookup, mergeSources } from "./build-fixtures.mjs";
 
 const ref = (id) => ({ $ref: `http://sports.core.api.espn.com/v2/sports/rugby/leagues/1/seasons/2026/teams/${id}?lang=en` });
 const ev = (id, iso, homeId, awayId, extra = {}) => ({
@@ -91,4 +91,84 @@ test("untracked-vs-untracked events are dropped; venue formatted", () => {
   const out = buildFixtures(events, NAMES, {});
   assert.equal(out.length, 1);
   assert.equal(out[0].venue, "Ellis Park, Johannesburg");
+});
+
+// --- league-wide ingest for registered competitions (#205) ----------------
+
+// The site-API scoreboard shape: `team.id` inline rather than behind a $ref.
+const siteEv = (id, iso, home, away, comp) => ({
+  event: {
+    id: String(id),
+    date: iso,
+    competitions: [{
+      timeValid: true,
+      competitors: [
+        { homeAway: "home", team: { id: String(home) } },
+        { homeAway: "away", team: { id: String(away) } },
+      ],
+    }],
+  },
+  leagueName: "Rugby World Cup",
+  comp,
+  registered: true,
+});
+
+const RWC = { key: "rwc-2027", label: "RWC '27", kind: "competition" };
+
+test("compFor maps the Rugby World Cup — it used to fall through to a test", () => {
+  assert.deepEqual(compFor("Rugby World Cup", 2027), { key: "rwc-2027", label: "RWC '27", kind: "competition" });
+});
+
+test("a registered comp keeps a match between two UNTRACKED nations", () => {
+  // Chile(289243) v Hong Kong(289268) — the fixture the old filter dropped.
+  const names = new Map([["289243", "Chile"], ["289268", "Hong Kong"]]);
+  const out = buildFixtures([siteEv(1, "2027-10-05T10:45:00Z", 289243, 289268, RWC)], names, {});
+  assert.equal(out.length, 1);
+  assert.deepEqual(out[0].home, { code: "CHI", name: "Chile", tracked: false });
+  assert.deepEqual(out[0].away, { code: "HKG", name: "Hong Kong", tracked: false });
+  assert.deepEqual(out[0].comp, RWC);
+});
+
+test("an UNREGISTERED match between two untracked nations is still dropped", () => {
+  const names = new Map([["289243", "Chile"], ["289268", "Hong Kong"]]);
+  const ev = siteEv(2, "2027-06-05T10:45:00Z", 289243, 289268, undefined);
+  ev.registered = false;
+  ev.leagueName = "International Test Match";
+  assert.equal(buildFixtures([ev], names, {}).length, 0);
+});
+
+test("the site-API id shape resolves the same as the core-API $ref shape", () => {
+  const out = buildFixtures([siteEv(3, "2027-10-05T10:45:00Z", 5, 1, RWC)], new Map(), {});
+  assert.deepEqual(out[0].home, { code: "RSA", name: "South Africa", tracked: true });
+  assert.deepEqual(out[0].away, { code: "ENG", name: "England", tracked: true });
+});
+
+test("registered pool matches never become a fictional series", () => {
+  // Four RWC matches involving the same pair would trip the series pass if
+  // they were tagged as tests, which is what the missing compFor case did.
+  const out = buildFixtures(
+    [
+      siteEv(4, "2027-10-01T10:45:00Z", 5, 1, RWC),
+      siteEv(5, "2027-10-08T10:45:00Z", 1, 5, RWC),
+    ],
+    new Map(),
+    {},
+  );
+  assert.equal(out.every((f) => f.comp.kind === "competition"), true);
+  assert.equal(out.every((f) => f.series === undefined), true);
+});
+
+test("United States of America resolves to USA, not UNI", () => {
+  const names = new Map([["11", "United States of America"]]);
+  const out = buildFixtures([siteEv(6, "2027-10-05T10:45:00Z", 11, 5, RWC)], names, {});
+  assert.equal(out[0].home.code, "USA");
+});
+
+test("mergeSources dedupes by event id and lets the league-wide entry win", () => {
+  const team = { event: { id: "99" }, leagueName: "International Test Match" };
+  const league = siteEv(99, "2027-10-05T10:45:00Z", 5, 1, RWC);
+  const merged = mergeSources([team], [league]);
+  assert.equal(merged.length, 1);
+  assert.deepEqual(merged[0].comp, RWC);
+  assert.equal(merged[0].registered, true);
 });

@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-24T04:03:13.305Z",
+ "updatedAt": "2026-07-24T22:40:56.631Z",
  "source": "espn",
  "fixtures": [
   {
@@ -77,7 +77,7 @@
   },
   {
    "id": "espn-603247",
-   "date": "2026-08-22T15:00:00.000Z",
+   "date": "2026-08-22T15:10:00.000Z",
    "timeTBC": false,
    "home": {
     "code": "RSA",
@@ -103,7 +103,7 @@
   },
   {
    "id": "espn-603248",
-   "date": "2026-08-29T15:00:00.000Z",
+   "date": "2026-08-29T15:10:00.000Z",
    "timeTBC": false,
    "home": {
     "code": "RSA",
@@ -176,7 +176,7 @@
   },
   {
    "id": "espn-603249",
-   "date": "2026-09-05T15:00:00.000Z",
+   "date": "2026-09-05T15:10:00.000Z",
    "timeTBC": false,
    "home": {
     "code": "RSA",
@@ -741,6 +741,762 @@
    },
    "venue": "Principality Stadium, Cardiff",
    "round": "6"
+  },
+  {
+   "id": "espn-603499",
+   "date": "2027-10-01T10:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "away": {
+    "code": "HKG",
+    "name": "Hong Kong",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Optus Stadium, Perth"
+  },
+  {
+   "id": "espn-603500",
+   "date": "2027-10-02T02:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "WAL",
+    "name": "Wales",
+    "tracked": true
+   },
+   "away": {
+    "code": "ZIM",
+    "name": "Zimbabwe",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Adelaide Oval, Adelaide"
+  },
+  {
+   "id": "espn-603501",
+   "date": "2027-10-02T05:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "away": {
+    "code": "CHI",
+    "name": "Chile",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Optus Stadium, Perth"
+  },
+  {
+   "id": "espn-603502",
+   "date": "2027-10-02T07:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "FRA",
+    "name": "France",
+    "tracked": true
+   },
+   "away": {
+    "code": "USA",
+    "name": "United States of America",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Marvel Stadium, Melbourne"
+  },
+  {
+   "id": "espn-603503",
+   "date": "2027-10-02T10:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ENG",
+    "name": "England",
+    "tracked": true
+   },
+   "away": {
+    "code": "TGA",
+    "name": "Tonga",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Suncorp Stadium, Brisbane"
+  },
+  {
+   "id": "espn-603504",
+   "date": "2027-10-03T01:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "JPN",
+    "name": "Japan",
+    "tracked": true
+   },
+   "away": {
+    "code": "SAM",
+    "name": "Samoa",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "McDonald Jones Stadium, Newcastle"
+  },
+  {
+   "id": "espn-603505",
+   "date": "2027-10-03T03:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "away": {
+    "code": "ITA",
+    "name": "Italy",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Adelaide Oval, Adelaide"
+  },
+  {
+   "id": "espn-603506",
+   "date": "2027-10-03T06:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "SCO",
+    "name": "Scotland",
+    "tracked": true
+   },
+   "away": {
+    "code": "URU",
+    "name": "Uruguay",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Marvel Stadium, Melbourne"
+  },
+  {
+   "id": "espn-603507",
+   "date": "2027-10-03T10:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "GEO",
+    "name": "Georgia",
+    "tracked": false
+   },
+   "away": {
+    "code": "ROU",
+    "name": "Romania",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Queensland Country Bank Stadium, Townsville"
+  },
+  {
+   "id": "espn-603508",
+   "date": "2027-10-04T03:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "FIJ",
+    "name": "Fiji",
+    "tracked": true
+   },
+   "away": {
+    "code": "ESP",
+    "name": "Spain",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "McDonald Jones Stadium, Newcastle"
+  },
+  {
+   "id": "espn-603509",
+   "date": "2027-10-04T06:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "IRE",
+    "name": "Ireland",
+    "tracked": true
+   },
+   "away": {
+    "code": "POR",
+    "name": "Portugal",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Allianz Stadium, Sydney"
+  },
+  {
+   "id": "espn-603510",
+   "date": "2027-10-04T08:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ARG",
+    "name": "Argentina",
+    "tracked": true
+   },
+   "away": {
+    "code": "CAN",
+    "name": "Canada",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Suncorp Stadium, Brisbane"
+  },
+  {
+   "id": "espn-603511",
+   "date": "2027-10-08T07:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "WAL",
+    "name": "Wales",
+    "tracked": true
+   },
+   "away": {
+    "code": "TGA",
+    "name": "Tonga",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Marvel Stadium, Melbourne"
+  },
+  {
+   "id": "espn-603512",
+   "date": "2027-10-08T09:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ENG",
+    "name": "England",
+    "tracked": true
+   },
+   "away": {
+    "code": "ZIM",
+    "name": "Zimbabwe",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Adelaide Oval, Adelaide"
+  },
+  {
+   "id": "espn-603513",
+   "date": "2027-10-09T04:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "USA",
+    "name": "United States of America",
+    "tracked": false
+   },
+   "away": {
+    "code": "SAM",
+    "name": "Samoa",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Optus Stadium, Perth"
+  },
+  {
+   "id": "espn-603514",
+   "date": "2027-10-09T06:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "away": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Accor Stadium, Sydney"
+  },
+  {
+   "id": "espn-603515",
+   "date": "2027-10-09T08:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "FRA",
+    "name": "France",
+    "tracked": true
+   },
+   "away": {
+    "code": "JPN",
+    "name": "Japan",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Suncorp Stadium, Brisbane"
+  },
+  {
+   "id": "espn-603516",
+   "date": "2027-10-09T10:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "CHI",
+    "name": "Chile",
+    "tracked": false
+   },
+   "away": {
+    "code": "HKG",
+    "name": "Hong Kong",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Queensland Country Bank Stadium, Townsville"
+  },
+  {
+   "id": "espn-603517",
+   "date": "2027-10-10T01:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "FIJ",
+    "name": "Fiji",
+    "tracked": true
+   },
+   "away": {
+    "code": "CAN",
+    "name": "Canada",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Adelaide Oval, Adelaide"
+  },
+  {
+   "id": "espn-603518",
+   "date": "2027-10-10T04:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ARG",
+    "name": "Argentina",
+    "tracked": true
+   },
+   "away": {
+    "code": "ESP",
+    "name": "Spain",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Marvel Stadium, Melbourne"
+  },
+  {
+   "id": "espn-603519",
+   "date": "2027-10-10T06:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "away": {
+    "code": "GEO",
+    "name": "Georgia",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Suncorp Stadium, Brisbane"
+  },
+  {
+   "id": "espn-603520",
+   "date": "2027-10-10T09:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "IRE",
+    "name": "Ireland",
+    "tracked": true
+   },
+   "away": {
+    "code": "SCO",
+    "name": "Scotland",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Optus Stadium, Perth"
+  },
+  {
+   "id": "espn-603521",
+   "date": "2027-10-11T06:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "URU",
+    "name": "Uruguay",
+    "tracked": false
+   },
+   "away": {
+    "code": "POR",
+    "name": "Portugal",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "McDonald Jones Stadium, Newcastle"
+  },
+  {
+   "id": "espn-603522",
+   "date": "2027-10-11T08:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ITA",
+    "name": "Italy",
+    "tracked": true
+   },
+   "away": {
+    "code": "ROU",
+    "name": "Romania",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Allianz Stadium, Sydney"
+  },
+  {
+   "id": "espn-603523",
+   "date": "2027-10-15T06:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "away": {
+    "code": "HKG",
+    "name": "Hong Kong",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Marvel Stadium, Melbourne"
+  },
+  {
+   "id": "espn-603524",
+   "date": "2027-10-15T09:30:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "JPN",
+    "name": "Japan",
+    "tracked": true
+   },
+   "away": {
+    "code": "USA",
+    "name": "United States of America",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Adelaide Oval, Adelaide"
+  },
+  {
+   "id": "espn-603525",
+   "date": "2027-10-15T10:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "TGA",
+    "name": "Tonga",
+    "tracked": false
+   },
+   "away": {
+    "code": "ZIM",
+    "name": "Zimbabwe",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Queensland Country Bank Stadium, Townsville"
+  },
+  {
+   "id": "espn-603526",
+   "date": "2027-10-16T02:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ARG",
+    "name": "Argentina",
+    "tracked": true
+   },
+   "away": {
+    "code": "FIJ",
+    "name": "Fiji",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Adelaide Oval, Adelaide"
+  },
+  {
+   "id": "espn-603527",
+   "date": "2027-10-16T05:10:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "AUS",
+    "name": "Australia",
+    "tracked": true
+   },
+   "away": {
+    "code": "CHI",
+    "name": "Chile",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Suncorp Stadium, Brisbane"
+  },
+  {
+   "id": "espn-603528",
+   "date": "2027-10-16T08:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ENG",
+    "name": "England",
+    "tracked": true
+   },
+   "away": {
+    "code": "WAL",
+    "name": "Wales",
+    "tracked": true
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Accor Stadium, Sydney"
+  },
+  {
+   "id": "espn-603529",
+   "date": "2027-10-16T10:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ESP",
+    "name": "Spain",
+    "tracked": false
+   },
+   "away": {
+    "code": "CAN",
+    "name": "Canada",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Queensland Country Bank Stadium, Townsville"
+  },
+  {
+   "id": "espn-603530",
+   "date": "2027-10-17T01:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "ITA",
+    "name": "Italy",
+    "tracked": true
+   },
+   "away": {
+    "code": "GEO",
+    "name": "Georgia",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "McDonald Jones Stadium, Newcastle"
+  },
+  {
+   "id": "espn-603531",
+   "date": "2027-10-17T03:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "IRE",
+    "name": "Ireland",
+    "tracked": true
+   },
+   "away": {
+    "code": "URU",
+    "name": "Uruguay",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Marvel Stadium, Melbourne"
+  },
+  {
+   "id": "espn-603532",
+   "date": "2027-10-17T06:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "SCO",
+    "name": "Scotland",
+    "tracked": true
+   },
+   "away": {
+    "code": "POR",
+    "name": "Portugal",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Suncorp Stadium, Brisbane"
+  },
+  {
+   "id": "espn-603533",
+   "date": "2027-10-17T08:45:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "FRA",
+    "name": "France",
+    "tracked": true
+   },
+   "away": {
+    "code": "SAM",
+    "name": "Samoa",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Allianz Stadium, Sydney"
+  },
+  {
+   "id": "espn-603534",
+   "date": "2027-10-17T11:15:00.000Z",
+   "timeTBC": false,
+   "home": {
+    "code": "RSA",
+    "name": "South Africa",
+    "tracked": true
+   },
+   "away": {
+    "code": "ROU",
+    "name": "Romania",
+    "tracked": false
+   },
+   "comp": {
+    "key": "rwc-2027",
+    "label": "RWC '27",
+    "kind": "competition"
+   },
+   "venue": "Optus Stadium, Perth"
   }
  ]
 }
