@@ -15,6 +15,7 @@ concurrency:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   rankings:
@@ -31,6 +32,16 @@ jobs:
 
       - name: Fetch historical ranking stats from Wikipedia
         run: node scripts/fetch-ranking-stats.mjs
+
+      # The app computes "#1 for N wks" from `currentSince` AGAINST TODAY, so a
+      # timeline that lags reality keeps counting upward and reports a wrong
+      # number for months with nothing going red. Cross-check the live table's
+      # No. 1 against the timeline's open spell — same cron, two Wikipedia
+      # pages, so they can check each other.
+      - name: Cross-check the No. 1 timeline against the live table
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/check-rankings.mjs
 
       - name: Commit and push if changed
         run: |
