@@ -1,0 +1,56 @@
+name: Competitions watcher
+
+# Rebuilds competitions.json — the registry the app's Fixtures dropdown and
+# Standings tab both read — and raises a GitHub issue when a registered
+# competition publishes fixtures for the first time, loses them, moves its
+# window, or classifies as UNKNOWN.
+#
+# Weekly is the right cadence: fixture lists are announced months ahead, and
+# the daily fixtures build (team-events.yml) already re-reads the registry
+# every day, so a competition that lands mid-week is in the app within 24h of
+# the registry noticing it. Monday 20:00 UTC = Tuesday ~07:00 AEST.
+#
+# Its first real job is already waiting: Six Nations 2027 has a season record
+# (31 Jan–17 Mar 2027, league 180659) with zero events.
+on:
+  schedule:
+    - cron: "0 20 * * 1"
+  workflow_dispatch:
+
+# Own group on purpose. Sharing one starved the match-day digests once (PR
+# #13) — GitHub keeps only ONE pending run per concurrency group, so a slow
+# job in a shared group silently evicts whatever queued behind it.
+concurrency:
+  group: competitions-watcher
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  competitions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run tests
+        run: node --test scripts/*.test.mjs
+
+      - name: Rebuild the registry and raise anything worth seeing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/watch-competitions.mjs
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add competitions.json
+          git diff --cached --quiet && echo "No competition changes" && exit 0
+          git commit -m "Competitions registry refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          git push || (git pull --rebase --autostash && git push)
