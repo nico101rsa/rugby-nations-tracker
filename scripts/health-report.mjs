@@ -95,7 +95,7 @@ async function runRows(workflowFile) {
   try {
     const { stdout } = await execFileAsync("gh", [
       "run", "list", "--workflow", workflowFile,
-      "--limit", "100", "--json", "createdAt,conclusion",
+      "--limit", "100", "--json", "createdAt,conclusion,event",
     ]);
     return JSON.parse(stdout);
   } catch (err) {
@@ -117,7 +117,7 @@ async function gitChanges(sinceDays = 7) {
 
 // ---- report --------------------------------------------------------------
 
-export function buildReport({ weekLabel, now, reviews, runTallies, changes, backlog = null, stats = null }) {
+export function buildReport({ weekLabel, now, reviews, runTallies, changes, backlog = null, stats = null, refreshRows = null }) {
   const L = [`# Weekly health check — ${weekLabel}`, "", `_Generated ${now.toISOString()} (UTC)._`, ""];
 
   L.push("## Run reliability (last 7 days)", "");
@@ -131,7 +131,7 @@ export function buildReport({ weekLabel, now, reviews, runTallies, changes, back
 
   // The two deliberately non-fatal pipelines. They come FIRST after run
   // reliability because a green run log is exactly what they hide behind.
-  L.push(silentFailuresSection(backlog, stats, now.getTime()), "");
+  L.push(silentFailuresSection(backlog, stats, now.getTime(), refreshRows), "");
 
   L.push("## Digest quality (post-run editor grades)", "");
   if (reviews.length === 0) {
@@ -170,8 +170,10 @@ async function main() {
 
   const reviews = await recentReviews(now);
   const runTallies = [];
+  let refreshRows = null;
   for (const w of WORKFLOWS) {
     const rows = await runRows(w.file);
+    if (w.file === "refresh-data.yml") refreshRows = rows;
     runTallies.push({ ...w, tally: rows ? tallyRuns(rows, now) : null });
   }
   const changes = await gitChanges();
@@ -179,7 +181,7 @@ async function main() {
   const backlog = await readFile(join(ROOT, "editorial", "storylines.json"), "utf8").then(JSON.parse).catch(() => null);
   const stats = await readFile(join(ROOT, "stats.json"), "utf8").then(JSON.parse).catch(() => null);
 
-  const report = buildReport({ weekLabel, now, reviews, runTallies, changes, backlog, stats });
+  const report = buildReport({ weekLabel, now, reviews, runTallies, changes, backlog, stats, refreshRows });
 
   await mkdir(HEALTH_DIR, { recursive: true });
   const outPath = join(HEALTH_DIR, `${weekLabel}.md`);
