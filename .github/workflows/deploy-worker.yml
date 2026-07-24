@@ -1,0 +1,44 @@
+name: Deploy cron worker
+
+# Deploys the Cloudflare Worker that dispatches refresh-data.yml (app map
+# #196). Runs from Actions rather than Nico's Mac, per the standing cloud-first
+# directive: the whole point of this Worker is that it survives the Mac being
+# asleep for months, so deploying it from that Mac would be an odd place to
+# start.
+#
+# Deploys only when the worker actually changes, plus on demand.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "worker/**"
+      - ".github/workflows/deploy-worker.yml"
+  workflow_dispatch:
+
+# Own group — never share (a shared group once starved queued digest runs).
+concurrency:
+  group: deploy-cron-worker
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: worker
+          # Push the dispatch token as a Worker secret on every deploy, so
+          # rotating it is a one-line `gh secret set` here rather than a
+          # separate wrangler session on the Mac.
+          secrets: |
+            GITHUB_DISPATCH_TOKEN
+        env:
+          GITHUB_DISPATCH_TOKEN: ${{ secrets.GH_DISPATCH_TOKEN }}

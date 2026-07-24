@@ -104,9 +104,10 @@ export function checkUnreconciled(stats) {
 }
 
 // Both checks as one markdown section for the weekly health report.
-export function silentFailuresSection(backlog, stats, now = Date.now()) {
+export function silentFailuresSection(backlog, stats, now = Date.now(), refreshRows = null) {
   const b = checkStorylineBacklog(backlog, now);
   const u = checkUnreconciled(stats);
+  const w = refreshRows === null ? null : checkCronWorker(refreshRows, now);
   const mark = (c) => (c.ok ? "✅" : c.severity === "alert" ? "🔴" : "🟡");
 
   const parts = [
@@ -119,5 +120,50 @@ export function silentFailuresSection(backlog, stats, now = Date.now()) {
   if (!b.ok) parts.push("", b.detail);
   parts.push("", `${mark(u)} **Box-score reconciliation** — ${u.headline}`);
   if (!u.ok && u.detail) parts.push("", u.detail);
+  if (w) {
+    parts.push("", `${mark(w)} **Match-day cron Worker** — ${w.headline}`);
+    if (!w.ok && w.detail) parts.push("", w.detail);
+  }
   return parts.join("\n");
+}
+
+// Is the Cloudflare cron Worker actually firing? (map #196)
+//
+// The Worker's own logs are in a Cloudflare dashboard nobody opens, so they
+// are not evidence. What IS evidence, and visible from here, is that
+// `workflow_dispatch`-triggered refresh runs keep appearing in the Actions
+// history — GitHub's own scheduler produces `schedule` runs, so the two are
+// distinguishable without any Cloudflare access at all.
+//
+// A dead Worker is invisible otherwise: the scheduled crons still fire often
+// enough that nothing looks broken, right up until the Saturday they don't.
+export function checkCronWorker(refreshRows, now = Date.now(), sinceDays = 7) {
+  if (!refreshRows) {
+    return { ok: false, severity: "warn", headline: "Could not query refresh-data run history" };
+  }
+  const cutoff = now - sinceDays * DAY;
+  const recent = refreshRows.filter((r) => new Date(r.createdAt).getTime() >= cutoff);
+  const dispatched = recent.filter((r) => r.event === "workflow_dispatch").length;
+  const scheduled = recent.filter((r) => r.event === "schedule").length;
+
+  if (dispatched === 0) {
+    return {
+      ok: false,
+      severity: "alert",
+      headline: `No Worker-dispatched refresh runs in ${sinceDays} days (${scheduled} from GitHub's scheduler)`,
+      detail:
+        "The Cloudflare cron Worker dispatches `refresh-data.yml`, which shows up as a " +
+        "`workflow_dispatch` run. None have appeared, so either the Worker is not deployed, its " +
+        "GitHub token has expired, or its cron triggers are off.\n\n" +
+        "**This is invisible without the check**: GitHub's own scheduler still fires often enough " +
+        "that nothing looks broken — right up until a Saturday when it drops the run and there is " +
+        "no backstop. Hit the Worker's `/health` route to test the token without spending " +
+        "api-sports quota.",
+    };
+  }
+
+  return {
+    ok: true,
+    headline: `Cron Worker alive — ${dispatched} dispatched + ${scheduled} scheduled refresh runs in ${sinceDays}d`,
+  };
 }

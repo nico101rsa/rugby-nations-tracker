@@ -120,3 +120,35 @@ test("the section marks each check and folds in the detail only when unhealthy",
   assert.match(sick, /🔴 \*\*Storyline backlog\*\*/);
   assert.match(sick, /Argentina, England/);
 });
+
+// --- cron worker liveness (#196) -----------------------------------------
+
+import { checkCronWorker } from "./silent-failures.mjs";
+
+const run = (event, days) => ({ event, createdAt: daysAgo(days), conclusion: "success" });
+
+test("dispatched runs present: the Worker is alive", () => {
+  const r = checkCronWorker([run("workflow_dispatch", 1), run("schedule", 1), run("schedule", 2)], NOW);
+  assert.equal(r.ok, true);
+  assert.match(r.headline, /1 dispatched \+ 2 scheduled/);
+});
+
+test("no dispatched runs alerts, and says why it is otherwise invisible", () => {
+  const r = checkCronWorker([run("schedule", 1), run("schedule", 2)], NOW);
+  assert.equal(r.ok, false);
+  assert.equal(r.severity, "alert");
+  assert.match(r.headline, /No Worker-dispatched refresh runs/);
+  assert.match(r.detail, /invisible without the check/);
+  assert.match(r.detail, /\/health/);
+});
+
+test("old dispatched runs outside the window do not count as alive", () => {
+  // A Worker that died last month must not look healthy on last month's runs.
+  const r = checkCronWorker([run("workflow_dispatch", 30), run("schedule", 1)], NOW);
+  assert.equal(r.ok, false);
+});
+
+test("an unqueryable run history is a warning, not a false all-clear", () => {
+  assert.equal(checkCronWorker(null, NOW).ok, false);
+  assert.equal(checkCronWorker(null, NOW).severity, "warn");
+});

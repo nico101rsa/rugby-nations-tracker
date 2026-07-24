@@ -1,0 +1,26 @@
+name = "rugby-tracker-cron"
+main = "src/index.js"
+compatibility_date = "2026-07-25"
+
+# Two schedules, mirroring refresh-data.yml's own crons. Cloudflare's FREE plan
+# allows 5 Cron Triggers PER ACCOUNT (not per Worker), verified against the
+# Workers limits page 2026-07-25 — so this uses two of Nico's five, and the
+# Pages projects on the same account do not consume any.
+#
+# Request cost is irrelevant here: ~96 fires/day plus ~108 on Saturdays, against
+# a 100,000/day free allowance.
+[triggers]
+crons = [
+  # Every 15 minutes, matching refresh-data.yml's baseline.
+  "*/15 * * * *",
+  # Saturday match window (UTC): a Round's six matches run ~05:10-19:10 UTC, so
+  # a denser cadence means more chances one fire lands and latches the ~2h
+  # in-process burst poll.
+  "*/10 4-21 * * 6",
+]
+
+# GITHUB_DISPATCH_TOKEN is a SECRET, set out of band — never in this file.
+#   npx wrangler secret put GITHUB_DISPATCH_TOKEN
+# or, for the Actions-based deploy, as the GH_DISPATCH_TOKEN repo secret which
+# deploy-worker.yml pipes in. It needs exactly one permission on this repo:
+# Actions: Read and write.
