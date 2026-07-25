@@ -6,6 +6,17 @@
   "name": "rugby-tracker-cron",
   "main": "src/index.js",
 
+  // Nico's Cloudflare account. This is an IDENTIFIER, not a credential — it
+  // appears in every dashboard URL and grants nothing without an API token,
+  // which is why Cloudflare's own docs commit it to wrangler config.
+  //
+  // It lives here rather than in a GitHub secret deliberately. As a secret it
+  // was opaque and unverifiable, and a wrong value fails as
+  // "Could not route to /accounts/***/workers/services/... perhaps your object
+  // identifier is invalid? [code: 7003]" — which reads like a Worker problem,
+  // not a typo'd account. Here it can be checked by eye against the dashboard.
+  "account_id": "997d246130cd10a5c973035bf7ab227c",
+
   // Keep within ~30 days of the current runtime; review quarterly.
   "compatibility_date": "2026-07-25",
 

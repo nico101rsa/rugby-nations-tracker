@@ -36,12 +36,10 @@ jobs:
         id: gate
         env:
           CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           DISPATCH: ${{ secrets.GH_DISPATCH_TOKEN }}
         run: |
           missing=""
           [ -z "$CF_TOKEN" ] && missing="$missing CLOUDFLARE_API_TOKEN"
-          [ -z "$CF_ACCOUNT" ] && missing="$missing CLOUDFLARE_ACCOUNT_ID"
           [ -z "$DISPATCH" ] && missing="$missing GH_DISPATCH_TOKEN"
           if [ -n "$missing" ]; then
             echo "::notice::Cron Worker not deployed — missing secret(s):$missing. Setup steps are in worker/README.md."
@@ -65,7 +63,6 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: worker
           # wrangler-action@v3 defaults to wrangler 3.90.0, which CANNOT READ
           # wrangler.jsonc — JSON config arrived in wrangler 4. On 3.90 it finds
@@ -79,7 +76,6 @@ jobs:
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: worker
           wranglerVersion: "4"
           # Pushed on every deploy, so rotating the token is a one-line
