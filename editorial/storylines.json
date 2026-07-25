@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-07-25T09:28:20.532Z",
+  "updatedAt": "2026-07-25T13:02:14.865Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 31,
+  "count": 37,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -314,12 +314,17 @@
     },
     {
       "id": "embrose-papier-s-selection-anjrny",
-      "subject": "Embrose Papier's selection for the Springboks",
+      "subject": "Embrose Papier's selection for the Springboks squad against New Zealand",
       "teams": [
         467
       ],
       "resolution": "until the Springbok squad for the upcoming Tests is finalized and he is either selected or excluded",
       "sources": [
+        {
+          "title": "Mallett explains Herschel over Embrose",
+          "link": "https://www.sarugbymag.co.za/mallett-explains-herschel-over-embrose/",
+          "feedName": "SA Rugby Magazine"
+        },
         {
           "title": "Ackers: Bulls might not pick Papier",
           "link": "https://www.sarugbymag.co.za/ackers-bulls-might-not-pick-papier/",
@@ -332,7 +337,7 @@
         }
       ],
       "firstSeen": "2026-07-24",
-      "lastSeen": "2026-07-24",
+      "lastSeen": "2026-07-25",
       "uses": 0
     },
     {
@@ -479,7 +484,8 @@
       ],
       "firstSeen": "2026-07-25",
       "lastSeen": "2026-07-25",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-07-25"
     },
     {
       "id": "dave-rennie-s-selection-1okslyb",
@@ -491,6 +497,11 @@
       "resolution": "until the final All Blacks squad is officially named and confirmed",
       "sources": [
         {
+          "title": "Rennie to pick rookie as Savea’s stand-in",
+          "link": "https://www.sarugbymag.co.za/rennie-pick-rookie-saveas-stand/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
           "title": "Sir Steve Hansen: The 'critical' thing the All Blacks must get right in South Africa as the players have to be 'uncomfortable'",
           "link": "https://www.planetrugby.com/news/sir-steve-hansen-the-critical-thing-the-all-blacks-must-get-right-in-south-africa-as-the-players-have-to-be-uncomfortable",
           "feedName": "Planet Rugby"
@@ -499,11 +510,6 @@
           "title": "All Blacks for Rugby’s Greatest Rivalry named",
           "link": "https://www.sarugbymag.co.za/blacks-rugbys-greatest-rivalry-named/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "All Blacks bolter to crack Dave Rennie's touring squad and what it means for Ardie Savea",
-          "link": "https://www.planetrugby.com/news/all-blacks-bolter-to-crack-dave-rennies-touring-squad-and-what-it-means-for-ardie-savea",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-07-25",
@@ -797,6 +803,180 @@
         {
           "title": "Mallett explains Herschel over Embrose",
           "link": "https://www.sarugbymag.co.za/mallett-explains-herschel-over-embrose/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-07-25",
+      "lastSeen": "2026-07-25",
+      "uses": 0
+    },
+    {
+      "id": "world-rugby-misconduct-investigation-288str",
+      "subject": "World Rugby misconduct investigation into Tomás Albornoz and Argentina's conduct against England",
+      "teams": [
+        460,
+        386
+      ],
+      "resolution": "until World Rugby announces the findings and sanctions resulting from the investigation into the Nations Championship match",
+      "sources": [
+        {
+          "title": "World Rugby act on disgraceful Argentina v England scenes as Los Pumas star hit with 'misconduct charges'",
+          "link": "https://www.planetrugby.com/news/world-rugby-act-on-disgraceful-argentina-v-england-scenes-as-los-pumas-star-hit-with-misconduct-charges",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Los Pumas No 10 charged for referee abuse",
+          "link": "https://www.sarugbymag.co.za/los-pumas-no-10-charged-for-referee-abuse/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Argentina coach accuses England of lack of respect",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cn4nvx0zxzqo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-07-25",
+      "lastSeen": "2026-07-25",
+      "uses": 0
+    },
+    {
+      "id": "the-future-of-the-i4owit",
+      "subject": "The future of the brain injury litigation against rugby governing bodies following legal representation changes",
+      "teams": [
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        460,
+        461,
+        463,
+        465,
+        467
+      ],
+      "resolution": "until the High Court delivers a ruling on the governing bodies' application to dismiss the cases",
+      "sources": [
+        {
+          "title": "Brain injury cases should be thrown out, High Court told",
+          "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Rugby players seek new lawyers for brain injury cases against governing bodies",
+          "link": "https://www.theguardian.com/sport/2026/jul/22/players-brain-injury-cases-rugby-league-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Concussion lawsuit loses lawyer",
+          "link": "https://www.sarugbymag.co.za/concussion-lawsuit-loses-lawyer/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-07-25",
+      "lastSeen": "2026-07-25",
+      "uses": 0
+    },
+    {
+      "id": "siya-kolisi-s-fitness-kavpwb",
+      "subject": "Siya Kolisi's fitness and position in the Springbok squad",
+      "teams": [
+        467
+      ],
+      "resolution": "until the team is selected for the first Test against New Zealand",
+      "sources": [
+        {
+          "title": "Rassie: It feels like the guard is changing",
+          "link": "https://www.sarugbymag.co.za/rassie-it-feels-like-the-guard-is-changing/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Springboks: Nick Mallett's verdict on Siya Kolisi versus Paul de Villiers debate",
+          "link": "https://www.planetrugby.com/news/springboks-nick-malletts-verdict-on-siya-kolisi-versus-paul-de-villiers-debate",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Mallett: Siya must play well to keep Paul out",
+          "link": "https://www.sarugbymag.co.za/mallett-siya-must-play-well-to-keep-paul-out/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-07-25",
+      "lastSeen": "2026-07-25",
+      "uses": 0
+    },
+    {
+      "id": "eben-etzebeth-s-performance-pbfud2",
+      "subject": "Eben Etzebeth's performance form ahead of the All Blacks series",
+      "teams": [
+        467
+      ],
+      "resolution": "until the completion of the opening matches of the Rugby's Greatest Rivalry series",
+      "sources": [
+        {
+          "title": "Big Jim: ‘Nasty’ All Blacks will smash Eben",
+          "link": "https://www.sarugbymag.co.za/big-jim-nasty-blacks-will-smash-eben/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Nick Mallett: Why Argentina is a 'massive game' for Eben Etzebeth and other Springboks",
+          "link": "https://www.planetrugby.com/news/nick-mallett-why-argentina-is-a-massive-game-for-eben-etzebeth-and-springboks",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Eben 'can only live on reputation for so long’",
+          "link": "https://www.sarugbymag.co.za/eben-can-live-reputation-long/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-07-25",
+      "lastSeen": "2026-07-25",
+      "uses": 0
+    },
+    {
+      "id": "potential-changes-to-the-27u2j",
+      "subject": "Potential changes to the Nations Championship format due to player welfare and travel concerns",
+      "teams": [
+        386
+      ],
+      "resolution": "until World Rugby confirms whether the schedule for future rounds will be amended",
+      "sources": [
+        {
+          "title": "England players question ‘brutal’ travel demands in Nations Championship format",
+          "link": "https://www.theguardian.com/sport/2026/jul/20/england-rugby-union-argentina-nations-championship-travel-demands",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Earl wants changes to 'brutal' Nations Championship format",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c74g58vzjj4o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-07-25",
+      "lastSeen": "2026-07-25",
+      "uses": 0
+    },
+    {
+      "id": "the-stormers-captaincy-and-1lki3xn",
+      "subject": "The Stormers' captaincy and lineup for the Currie Cup",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Stormers complete their match against the Boland Cavaliers",
+      "sources": [
+        {
+          "title": "New Stormers skipper for Boland battle",
+          "link": "https://www.sarugbymag.co.za/new-stormers-skipper-boland-battle/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Stormers get Junior Boks, flyhalf boost",
+          "link": "https://www.sarugbymag.co.za/stormers-get-junior-boks-flyhalf-boost/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Stormers lose lock for derby clash",
+          "link": "https://www.sarugbymag.co.za/stormers-lose-lock-derby-clash/",
           "feedName": "SA Rugby Magazine"
         }
       ],
