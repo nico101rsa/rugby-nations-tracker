@@ -22,6 +22,8 @@
 
 const REPO = "nico101rsa/rugby-nations-tracker";
 const WORKFLOW = "refresh-data.yml";
+// Must match the string silent-failures.mjs looks for in run titles.
+const WORKER_SOURCE = "cloudflare-worker";
 
 async function dispatch(env) {
   const res = await fetch(
@@ -36,7 +38,13 @@ async function dispatch(env) {
         "user-agent": "rugby-tracker-cron-worker",
         "x-github-api-version": "2022-11-28",
       },
-      body: JSON.stringify({ ref: "main" }),
+      // `source` lands in the run's title via refresh-data.yml's run-name, and
+      // is the ONLY thing distinguishing a Worker fire from the Mac pinger's:
+      // both dispatch the same workflow and both authenticate as nico101rsa.
+      // Without it the liveness check reports this Worker healthy on pinger
+      // traffic alone — a placebo, when the whole point is the months the Mac
+      // is asleep.
+      body: JSON.stringify({ ref: "main", inputs: { source: WORKER_SOURCE } }),
     },
   );
 
