@@ -1,19 +1,14 @@
 {
   "date": "2026-07-25",
   "counts": {
-    "editions": 11,
-    "quiet": 2,
-    "storyline": 2,
-    "dataEdition": 0,
-    "failed": 1,
-    "noLead": 1
+    "editions": 12,
+    "quiet": 3,
+    "storyline": 0,
+    "dataEdition": 3,
+    "failed": 0,
+    "noLead": 3
   },
-  "failed": [
-    {
-      "team": "Italy",
-      "reason": "gemini(gemini-3-flash-preview) 400: {\n  \"error\": {\n    \"code\": 400,\n    \"message\": \"Request contains an invalid argument.\",\n    \"status\": \"INVALID_ARGUMENT\"\n  }\n}\n"
-    }
-  ],
+  "failed": [],
   "teams": [
     {
       "team": "Fiji",
@@ -21,18 +16,27 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Joji Nasova remains with Fijian Drua as Newcastle Red Bulls move collapses",
-      "kicker": "Transfer u-turn",
-      "body": "Olympic sevens silver medallist Joji Nasova has withdrawn from a move to Newcastle Red Bulls, with the Premiership side agreeing to release the 25-year-old wing for personal reasons. Nasova, who has scored four tries in three test appearances, will now remain in Fiji with the Drua. Newcastle general manager Neil McIlroy stated the club \"fully understand and respect\" the circumstances behind the decision. The retention provides a timely boost for the domestic game following the national side's winless opening leg of the Nations Championship.",
+      "heading": "Joji Nasova stays with Fijian Drua after Newcastle contract release",
+      "kicker": "Transfer U-turn",
+      "body": "Fijian wing Joji Nasova will remain with the Fijian Drua after Newcastle Red Bulls agreed to release him from his contract due to personal reasons. The 25-year-old, who won an Olympic sevens silver medal in Paris and has scored four tries in three appearances for Fiji, had signed to join the Premiership club. Newcastle general manager Neil McIlroy confirmed the release, stating the club \"fully understand and respect the unique personal circumstances that have led to this decision.\"",
       "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 3,
-        "why": "The collapse of Nasova's high-profile move to the Premiership and his decision to remain with the Drua is the most significant news regarding a key player's future."
+        "candidate": 4,
+        "why": "The collapse of Joji Nasova's transfer to Newcastle and his retention by the Fijian Drua is the most high-impact roster news."
       },
       "candidates": [
         {
+          "title": "Waratahs spoil Fijian Drua party to claim third straight Super Rugby Women’s title",
+          "score": 90.8,
+          "corroboration": 2,
+          "outlets": [
+            "guardian",
+            "search"
+          ]
+        },
+        {
           "title": "State of the Nation: Fiji's indiscipline 'exaggerated the inevitable' while duo provide very real hope for the nation",
-          "score": 39.4,
+          "score": 35.2,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -40,7 +44,7 @@
         },
         {
           "title": "Macdonald's Coral Coast Fiji 7s Announce Rule Trials for 2027 Tournament",
-          "score": 34.2,
+          "score": 31.5,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -48,23 +52,15 @@
         },
         {
           "title": "Nasova stays in Fiji as Newcastle move called off",
-          "score": 3.6,
+          "score": 3.1,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ]
         },
         {
-          "title": "Watch Fiji vs. England Rugby Live: Round 2 Nations Championship Preview",
-          "score": 1.9,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
           "title": "Fiji rugby fixtures and 2026 schedule in the Nations Championship",
-          "score": 1.7,
+          "score": 1.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -78,43 +74,36 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Ben Youngs brands Argentina \"disgraceful\" as fallout from England's victory intensifies",
-      "kicker": "Disciplinary row",
-      "body": "Former England internationals Ben Youngs and Anthony Watson are urging World Rugby to take action following the chaotic conclusion of the round three win over Argentina. The former scrum-half criticised Los Pumas head coach Felipe Contepomi—who accused England of a \"lack of respect\" before storming out of his press conference—while labelling the team's conduct toward referee Angus Gardner as \"unforgivable behaviour.\" The Santiago fixture was marred by a record number of yellow cards and scuffles, including an alleged strike on Tommy Freeman. England sit fourth in the table.",
+      "heading": "Ben Youngs urges World Rugby to punish Argentina after 'disgraceful' Santiago antics",
+      "kicker": "Santiago fallout",
+      "body": "Former England players Ben Youngs and Anthony Watson have called on World Rugby to issue bans following Argentina’s \"disgraceful, unforgivable behaviour\" during England’s 31-24 victory in Santiago. Speaking on the For The Love of Rugby podcast, Youngs condemned Los Pumas for confronting referee Angus Gardner and criticised Tomás Albornoz for striking Tommy Freeman in the face. With objects also thrown from the stands and head coach Felipe Contepomi storming out of his press conference, Youngs warned that the hostile attitude \"starts from the head guy\".",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 5,
-        "why": "High-profile former players using strong language regarding the controversial fallout from the Argentina test is the primary talking point in today's coverage."
+        "candidate": 4,
+        "why": "Former England legends Ben Youngs and Anthony Watson have strongly condemned Argentina's behaviour in Santiago, calling for World Rugby to issue bans."
       },
       "candidates": [
         {
+          "title": "Argentina 24-31 England: Nations Championship rugby – as it happened",
+          "score": 30,
+          "corroboration": 3,
+          "outlets": [
+            "bbc",
+            "guardian",
+            "search"
+          ]
+        },
+        {
           "title": "Scarratt joins England coaching team permanently",
-          "score": 31.3,
+          "score": 29.5,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ]
         },
         {
-          "title": "Rating every England player from the 2026 Nations Championship: Fin Smith 'settles key debate' as Henry Pollock leaves Steve Borthwick with 'major dilemma'",
-          "score": 30.3,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "Argentina 24-31 England: Nations Championship rugby – as it happened",
-          "score": 19.5,
-          "corroboration": 2,
-          "outlets": [
-            "bbc",
-            "guardian"
-          ]
-        },
-        {
           "title": "Red Roses latest: England legend lands permanent coaching role with Test side after Six Nations success",
-          "score": 18.8,
+          "score": 17,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -122,7 +111,15 @@
         },
         {
           "title": "England greats slam 'disgraceful' and 'pathetic' Argentina as World Rugby urged to act after racist abuse was 'brushed under the rug'",
-          "score": 18.4,
+          "score": 16.7,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Loose Pass: Two incidents that 'defied belief', 'tantrum-prone' Argentines while Steve Borthwick is fooling nobody",
+          "score": 16.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -133,22 +130,18 @@
     {
       "team": "France",
       "quiet": true,
-      "rung": "storyline",
-      "storyline": {
-        "subject": "Potential changes to the Nations Championship format following player criticism",
-        "resolution": "until the organisers officially announce amendments to the tournament schedule following player concerns over travel demands",
-        "recheckHits": 0
-      },
-      "dataAngle": null,
-      "heading": "France sit third as tournament organisers ignore Ben Earl's travel schedule complaints",
-      "kicker": "Travel concerns",
-      "body": "There has been no update today from tournament organisers regarding the \"brutal\" travel schedule criticised by players earlier this week. The issue remains unresolved following the conclusion of the first Nations Championship leg, with no new reports of officials addressing the logistical concerns first raised by England's Ben Earl on Wednesday. France currently sit third in the overall standings following their 42-15 win over Japan, though today's press carries no mention of the French camp commenting on their recent cross-hemisphere tour travel.",
-      "source": "Guardian Rugby Union",
+      "rung": "data",
+      "storyline": null,
+      "dataAngle": "form",
+      "heading": "France secure consecutive test victories to conclude their July international fixtures",
+      "kicker": "Form guide",
+      "body": "France ended their July international fixtures with a run of two straight victories. In their last five matches, the team registered three wins. They also suffered two defeats over that same five-game period. The most recent result was a 42-15 away win against Japan in the Nations Championship group stage. Les Bleus have scored 116 points in the tournament. They have conceded 75 points so far.",
+      "source": null,
       "lead": null,
       "candidates": [
         {
           "title": "Schalk Burger: Where the Springboks can put the All Blacks 'under immense pressure' after not being 'challenged' by France or Ireland",
-          "score": 20.9,
+          "score": 18.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -156,31 +149,31 @@
         },
         {
           "title": "Test power rankings: Springboks top the charts 'in every department' after 'sublime' Nations Championship while France 'set alarm bells ringing'",
-          "score": 13.1,
+          "score": 11.2,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
+          "title": "France rugby fixtures and 2026 schedule in the Nations Championship",
+          "score": 1.5,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
           "title": "Watch Japan vs. France Rugby Live: Les Bleus Visit Brave Blossoms In Round 3",
-          "score": 1.7,
+          "score": 1.4,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "France vs. Ireland rugby score, live updates, Six Nations 2026",
+          "title": "Galthie confirms Edwards to exit in France rugby coaching shake-up",
           "score": 1.3,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Why Bromley-born Aaron Grandidier-Nkanang, France's two try debutant, owes a debt to English rugby",
-          "score": 1.1,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -194,18 +187,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Brian O'Driscoll insists Jack Crowley remains Ireland's premier fly-half over Sam Prendergast",
-      "kicker": "FLY-HALF DEBATE",
-      "body": "Brian O'Driscoll has dismissed suggestions that Sam Prendergast’s mid-year run has jeopardised Jack Crowley’s status as Ireland’s first-choice No. 10. Prendergast had a \"mixed bag\" in the 40-21 defeat to New Zealand, missing six of 22 tackle attempts as the All Blacks targeted his defensive channel. Crowley has been sidelined since April with a blood vessel injury, but O'Driscoll believes the defensive gap between the playmakers remains \"night and day\" as Farrell’s squad concludes the season with two wins from three matches.",
+      "heading": "Brian O'Driscoll backed Jack Crowley as Ireland's premier fly-half after Auckland defeat",
+      "kicker": "Playmaker debate",
+      "body": "Jack Crowley's position as Ireland's premier fly-half remains unchallenged following Sam Prendergast's struggles in last weekend's 40-21 defeat to New Zealand. Sidelined since mid-April with a leg blood vessel injury, the first-choice playmaker watched as his understudy failed to secure the role in Auckland, prompting Brian O'Driscoll to label the performance a 'mixed bag'. Prendergast was targeted defensively by the All Blacks, missing six of his 22 tackle attempts, while also committing several handling errors.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 2,
-        "why": "The debate over Ireland's long-term fly-half hierarchy following Sam Prendergast’s difficult tour finale is the most significant selection storyline for fans."
+        "why": "Brian O'Driscoll's expert assessment of Ireland's fly-half position following the Eden Park defeat is the week's most prominent player narrative."
       },
       "candidates": [
         {
           "title": "Farrell rues Ireland errors as All Blacks extend unbeaten streak at Eden Park",
-          "score": 42.1,
+          "score": 41.9,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -214,7 +207,7 @@
         },
         {
           "title": "Brian O'Driscoll: Jack Crowley still Ireland's 10 after Sam Prendergast's 'mixed bag' as no one's stock 'necessarily went up'",
-          "score": 36.2,
+          "score": 32.9,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -222,26 +215,79 @@
         },
         {
           "title": "All Blacks great blasts Ireland as a 'pack of whingers' who should stop 'blaming everyone else'",
-          "score": 31.1,
+          "score": 29.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "Schalk Burger: Where the Springboks can put the All Blacks 'under immense pressure' after not being 'challenged' by France or Ireland",
-          "score": 20.9,
+          "title": "The top 50 Irish rugby players of 2026 — the final countdown from 10 to 1",
+          "score": 24,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "'I would have given a red card' – Nigel Owens believes All Blacks star was 'very lucky' not to be sent off against Ireland",
+          "score": 18.9,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Italy",
+      "quiet": true,
+      "rung": "data",
+      "storyline": null,
+      "dataAngle": "lastMeeting",
+      "heading": "Italy aim to avenge their 32-14 home defeat against South Africa",
+      "kicker": "SPRINGBOK CHALLENGE",
+      "body": "The Azzurri face South Africa in their next Nations Championship fixture, aiming to improve on their last encounter. During that single meeting in November 2025, Italy fell to a 32-14 home defeat against the Springboks. The team must rebuild after a difficult tournament campaign so far. In their last three matches, Italy have suffered three losses. They have conceded 131 points across those games, and they have scored 37 points of their own. Their latest fixture ended in a 10-57 defeat against Australia.",
+      "source": null,
+      "lead": null,
+      "candidates": [
+        {
+          "title": "Italy powerhouse banned for 'unusual' red card following 'touchline brawl' against Wallabies",
+          "score": 10.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "Ireland scores late try to beat Australia 33-31 at Nations Championship match in Sydney",
-          "score": 18.6,
-          "corroboration": 2,
+          "title": "Italy prop Riccioni gets 2-week ban for sideline red card in Nations Championship rugby test",
+          "score": 5.9,
+          "corroboration": 1,
           "outlets": [
-            "bbc",
+            "search"
+          ]
+        },
+        {
+          "title": "Josh Canham leads Wallabies to nine-try rout of Italy in coach Schmidt’s farewell Test",
+          "score": 1.8,
+          "corroboration": 1,
+          "outlets": [
+            "guardian"
+          ]
+        },
+        {
+          "title": "Italy's Cannone suspended for 4 weeks for head-butting in rugby's Nations Championship",
+          "score": 1.5,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "World Rugby bans Italy coach Gonzalo Quesada for 2 matches over referee comments",
+          "score": 1.4,
+          "corroboration": 1,
+          "outlets": [
             "search"
           ]
         }
@@ -253,26 +299,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Pierre Schoeman claims Scotland are a top-five team after Nations Championship tour",
-      "kicker": "World status",
-      "body": "Pierre Schoeman has rejected the idea that Scotland are merely \"closing the gap\" on rugby's elite, asserting that Gregor Townsend’s side already belongs in the world’s top five. Following the 33-17 victory over Fiji, the loosehead prop echoed recent praise from Rassie Erasmus, who suggested the Scots are currently a top-three nation. While a narrow defeat in Pretoria denied them a statement victory, two wins from three in the Southern Hemisphere leg leave Scotland as the leading Home Union on 11 points.",
+      "heading": "Pierre Schoeman claims Scotland belong in the world's top five rugby nations",
+      "kicker": "Bold claim",
+      "body": "Following Scotland's 33-17 victory over Fiji to close their summer campaign, prop Pierre Schoeman rejected the idea that the national side are merely closing the gap on rugby's elite. \"I feel we are a top-three, top-five team in the world,\" the front-rower asserted, pointing to wins over France and England. While a narrow defeat in South Africa showed Scotland can match the world champions, Gregor Townsend's men still chase a defining statement victory. They sit second in the northern standings before the autumn tests.",
       "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 2,
-        "why": "Schoeman's bold assertion regarding Scotland's global ranking is the most significant talking point following the conclusion of the summer tour."
+        "candidate": 1,
+        "why": "Pierre Schoeman's bold assertion about Scotland's global ranking is the most provocative and discussed storyline following the conclusion of the summer tests."
       },
       "candidates": [
         {
-          "title": "State of the Nation: 'Close but no cigar' Scotland on the right track but 'statement win' still eludes Gregor Townsend's side",
-          "score": 37.7,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
           "title": "Room for improvement but Scotland heading in right direction",
-          "score": 34.9,
+          "score": 34.7,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -280,8 +318,16 @@
           ]
         },
         {
+          "title": "State of the Nation: 'Close but no cigar' Scotland on the right track but 'statement win' still eludes Gregor Townsend's side",
+          "score": 33.9,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
           "title": "Scotland rugby autumn tests: dates, venues, tickets and 'finals weekend' details for Nations Championship",
-          "score": 5.4,
+          "score": 4.2,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -311,18 +357,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Leigh Halfpenny joins Cardiff full-time after Nations Championship stint with Wales",
-      "kicker": "COACHING APPOINTMENT",
-      "body": "Leigh Halfpenny has formalised his move into coaching by joining Cardiff full-time following a stint with the Wales national squad. The 101-cap legend, who scored 801 points during his decorated international career, served as kicking coach during the opening three rounds of the Nations Championship. Cardiff head coach Corniel van Zyl cited Halfpenny’s \"meticulous approach\" as key to his appointment. The 37-year-old will now lead kicking and skills development at the Arms Park, working across the senior squad and academy systems.",
-      "source": "SA Rugby Magazine",
+      "heading": "Jac Morgan defends Wales progression after scoreless thrashing by South Africa",
+      "kicker": "Defiant stance",
+      "body": "Wales flanker Jac Morgan has defended his side’s progress despite concluding their southern hemisphere Nations Championship tour with a scoreless 43-0 defeat against South Africa. The flanker, who made 22 tackles during the Durban drubbing, believes Steve Tandy’s squad are closing the gap on the world’s elite. Pointing to their opening 39-24 victory over Fiji, Morgan insisted, \"the more we play together, the more experience we gain and the more we can improve.\" Wales finished the three-match leg with a single win.",
+      "source": "BBC Rugby Union",
       "lead": {
         "candidate": 5,
-        "why": "The appointment of a national legend to a full-time coaching role after his immediate contribution to the test squad is the most definitive news event."
+        "why": "Flanker Jac Morgan defended Wales' progress following their scoreless 43-0 defeat to South Africa."
       },
       "candidates": [
         {
           "title": "South Africa 43-0 Wales: Nations Championship Rugby – as it happened",
-          "score": 29.9,
+          "score": 29.8,
           "corroboration": 3,
           "outlets": [
             "bbc",
@@ -331,8 +377,16 @@
           ]
         },
         {
+          "title": "Wales stars confused as Sam Warburton identifies change and new tournament launched",
+          "score": 24.4,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
           "title": "Dan Biggar: What All Blacks must do to beat the Springboks as Wales great makes bold Greatest Rivalry prediction",
-          "score": 29,
+          "score": 22.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -340,26 +394,18 @@
         },
         {
           "title": "State of the Nation: Wales create new 'winning identity' but remain unable to cope with 'global superpowers'",
-          "score": 18.2,
+          "score": 16.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "Newcastle United man emerges as frontrunner for big new Wales rugby job",
-          "score": 11.8,
+          "title": "Wales closing the gap to world's best - Morgan",
+          "score": 4.5,
           "corroboration": 1,
           "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Wales legend to mould Cardiff kickers",
-          "score": 11.2,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
+            "bbc"
           ]
         }
       ]
@@ -370,18 +416,26 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "World Rugby charges Tomás Albornoz with misconduct after contact with Angus Gardner",
-      "kicker": "DISCIPLINARY OUTCOME",
-      "body": "Tomás Albornoz faces a World Rugby misconduct charge following his confrontation with referee Angus Gardner after the 31-24 defeat to England. The fly-half made contact with the official while protesting the decision to disallow Bautista Delguy’s last-minute try in Santiago del Estero. Nigel Owens condemned the \"totally unacceptable\" behaviour of the players and the crowd, who threw objects at the officials. Owens backed the call but noted the lengthy review fuelled the post-match hostility.",
+      "heading": "Tomás Albornoz faces World Rugby misconduct charges following loss to England",
+      "kicker": "MISCONDUCT CHARGE",
+      "body": "World Rugby has issued misconduct charges against Tomás Albornoz after the fly-half remonstrated with and made physical contact with referee Angus Gardner following last Saturday’s 31-24 loss to England. Former Test official Nigel Owens condemned the “totally, totally unacceptable” scenes in Santiago del Estero, which included spectators throwing objects at the officiating team. While Albornoz and his teammates protested the decision to deny Bautista Delguy a match-levelling try in the final moments, Owens backed Gardner’s call, suggesting the officials reached the correct conclusion under intense pressure.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "The misconduct charge against a starting fly-half is the most significant disciplinary and roster-impacting news following the England match."
+        "candidate": 2,
+        "why": "It involves a significant disciplinary development for a key player following the recent Nations Championship match."
       },
       "candidates": [
         {
+          "title": "Nick Mallett: Why Argentina is a 'massive game' for Eben Etzebeth and other Springboks",
+          "score": 51.7,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
           "title": "Nigel Owens calls for action after 'totally unacceptable' referee 'abuse' following Argentina's disallowed try decision against England",
-          "score": 27.6,
+          "score": 23.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -389,35 +443,27 @@
         },
         {
           "title": "Lions turn to Moos for Pumas tussle",
-          "score": 25.5,
+          "score": 22,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
-          ]
-        },
-        {
-          "title": "Nigel slams ref ‘abuse’ in Argentina",
-          "score": 21.2,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
-          ]
-        },
-        {
-          "title": "England players risk Argentina wrath with actions in Brazil days after match",
-          "score": 20.7,
-          "corroboration": 1,
-          "outlets": [
-            "search"
           ]
         },
         {
           "title": "Argentina 24-31 England: Nations Championship rugby – as it happened",
-          "score": 19.5,
+          "score": 19.4,
           "corroboration": 2,
           "outlets": [
             "guardian",
             "search"
+          ]
+        },
+        {
+          "title": "Nigel slams ref ‘abuse’ in Argentina",
+          "score": 17,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
           ]
         }
       ]
@@ -428,18 +474,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Les Kiss recalls Lukhan Salakaia-Loto in his first Wallabies squad",
-      "kicker": "Selection news",
-      "body": "New head coach Les Kiss has unveiled his first 34-man Wallabies squad, headlined by the return of Reds forward Lukhan Salakaia-Loto. Following a \"robust conversation\" among the coaching staff, the powerhouse lock joins uncapped centre Isaac Henry and Isaac Kailea as the primary new faces. While Kiss has retained Harry Wilson as captain, he warned that nobody is guaranteed a spot, prioritising form and cohesion as the team begins preparations for the upcoming two-Test series against Japan.",
+      "heading": "Les Kiss retains Harry Wilson as captain and recalls Lukhan Salakaia-Loto",
+      "kicker": "Selection call",
+      "body": "New head coach Les Kiss has signalled \"evolution not revolution\" by naming his first 34-man squad for next month's series against Japan. Harry Wilson remains captain despite speculation regarding Fraser McReight, while lock Lukhan Salakaia-Loto returns following what Kiss described as a robust conversation between the coaching staff. With Len Ikitau sidelined by injury, Reds centre Isaac Henry is the sole uncapped player included. Veteran James Slipper is the most significant omission, with the 154-Test veteran reportedly rested.",
       "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The recall of Lukhan Salakaia-Loto is the most significant personnel shift in Les Kiss' inaugural squad announcement."
+        "why": "It covers the first squad announcement of the Les Kiss era, including the captaincy and a major recall."
       },
       "candidates": [
         {
           "title": "Lukhan Salakaia-Loto recalled in first Wallabies squad under coach Les Kiss",
-          "score": 49.3,
+          "score": 47.1,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -448,7 +494,7 @@
         },
         {
           "title": "Wallabies: Les Kiss gives blunt verdict on which position he will use 'super athlete' Joseph-Aukuso Suaalii in",
-          "score": 48.2,
+          "score": 41.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -456,7 +502,7 @@
         },
         {
           "title": "State of the Nation: Wallabies focusing on improvement as 'new era' under Les Kiss' leadership gets underway",
-          "score": 32.9,
+          "score": 30.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -464,7 +510,7 @@
         },
         {
           "title": "Les Kiss explains Lukhan Salakaia-Loto's Wallabies recall after 'robust conversation' as stark 'no promises' message sent out",
-          "score": 23.7,
+          "score": 20.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -472,7 +518,7 @@
         },
         {
           "title": "Kiss keeps faith with Wallabies skipper",
-          "score": 17.8,
+          "score": 15.5,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -483,25 +529,18 @@
     {
       "team": "Japan",
       "quiet": true,
-      "rung": "storyline",
-      "storyline": {
-        "subject": "Potential changes to the Nations Championship format following player criticism",
-        "resolution": "until the organisers officially announce amendments to the tournament schedule following player concerns over travel demands",
-        "recheckHits": 1
-      },
-      "dataAngle": null,
-      "heading": "Les Kiss names 34-man Wallabies squad for Japan test series",
-      "kicker": "Selection call",
-      "body": "New Wallabies head coach Les Kiss has named a 34-man squad for the upcoming two-test series against Japan, featuring Reds centre Isaac Henry as the group's only uncapped player. Henry earns his call-up following an ankle injury to Len Ikitau. Kiss also confirmed that Harry Wilson will retain the captaincy for the tour, which begins in Osaka on August 8. Addressing the selection process, Kiss said: “As coaches we’ve looked to bring together a group based on form, cohesion and how we want to play.”",
-      "source": "Guardian Rugby Union",
-      "lead": {
-        "candidate": 1,
-        "why": "The squad announcement for the upcoming test series against Japan provides the most current, high-impact news."
-      },
+      "rung": "data",
+      "storyline": null,
+      "dataAngle": "scoring",
+      "heading": "Japan concede 334 points across last 11 games despite Tonga win",
+      "kicker": "SCORING METRICS",
+      "body": "Japan have scored 278 points across their last 11 international fixtures. In that same window, the side have conceded 334 points to their opponents. This results in a per-match average of 25.3 points scored. Furthermore, the defence have shipped 30.4 points per game. The most significant result in this period remains the 62-24 victory over Tonga in September 2025. This offensive peak stands as the team’s biggest winning margin during the current 11-match cycle.",
+      "source": null,
+      "lead": null,
       "candidates": [
         {
           "title": "Wallabies squad: Les Kiss forced to select one uncapped player as Len Ikitau ruled out for Japan series",
-          "score": 9.5,
+          "score": 7.7,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -509,7 +548,7 @@
         },
         {
           "title": "New Wallabies coach Les Kiss announces his first squad for rugby test series against Japan",
-          "score": 7.7,
+          "score": 5.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -524,15 +563,15 @@
           ]
         },
         {
-          "title": "Japan Vs. Italy Rugby Lineups, Kickoff Time",
-          "score": 1.8,
+          "title": "Japan Rugby vs. Ireland Rugby Lineups And Kickoff Time",
+          "score": 1.7,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "Japan rugby coach Eddie Jones eyes Jose Mourinho-like laundry stunt to escape ban",
+          "title": "Japan stifles Italy for the first time since 2018 in Nations Championship rugby",
           "score": 1.5,
           "corroboration": 1,
           "outlets": [
@@ -547,18 +586,35 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Fabian Holland makes successful return for Otago ahead of Springboks tour",
-      "kicker": "Injury boost",
-      "body": "All Blacks second-row Fabian Holland has returned to action following a five-month layoff caused by a shoulder dislocation. The 23-year-old played 40 minutes for Otago in their 78-14 victory over Mid Canterbury on Friday. Having established himself as a first-choice starter with 12 Test appearances last year, Holland’s comeback provides head coach Dave Rennie with a vital option for the upcoming tour of South Africa, where New Zealand will face the Springboks in a high-stakes four-match series.",
+      "heading": "All Blacks legend Ma'a Nonu signs short-term Sharks deal in South Africa",
+      "kicker": "Club move",
+      "body": "All Blacks legend Ma'a Nonu has completed a surprise move to the Sharks, signing a short-term deal with the Durban-based franchise. The 44-year-old double World Cup winner arrives in South Africa following a second stint at Toulon, where he recently became the oldest player to feature in the Investec Champions Cup. Nonu, who joins his eighth professional club, is expected to provide veteran leadership and mentor young centres Jurenzo Julius and Ethan Hooker. The move follows a high-performance review at the franchise now led by JP Pietersen.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 2,
-        "why": "The return of a key forward like Fabian Holland is a concrete, impactful development ahead of the upcoming tour."
+        "candidate": 1,
+        "why": "The surprise signing of an All Blacks legend by a South African franchise is the day's biggest talking point."
       },
       "candidates": [
         {
+          "title": "All Blacks legend Ma'a Nonu makes bombshell South African move, signing for the Sharks",
+          "score": 81.3,
+          "corroboration": 2,
+          "outlets": [
+            "planetrugby",
+            "sarugbymag"
+          ]
+        },
+        {
           "title": "How All Blacks' vast array of playmakers can break down the Springboks defence as Sir Steve Hansen pinpoints South Africa's linchpin",
-          "score": 53.1,
+          "score": 44.8,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "'I would have given a red card' – Nigel Owens believes All Blacks star was 'very lucky' not to be sent off against Ireland",
+          "score": 43.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -566,7 +622,7 @@
         },
         {
           "title": "All Blacks boosted ahead of Greatest Rivalry series as breakout star makes long-awaited return to action",
-          "score": 46.7,
+          "score": 40.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -574,26 +630,10 @@
         },
         {
           "title": "All Blacks for Rugby’s Greatest Rivalry named",
-          "score": 37.2,
+          "score": 33.6,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
-          ]
-        },
-        {
-          "title": "All Blacks: Sean Fitzpatrick reveals why Greatest Rivalry series victory over Springboks could be springboard for Rugby World Cup triumph",
-          "score": 36.9,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "Dan Biggar: What All Blacks must do to beat the Springboks as Wales great makes bold Greatest Rivalry prediction",
-          "score": 36.3,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
           ]
         }
       ]
@@ -604,18 +644,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Rassie Erasmus recalls 10 Springboks as five players are released",
-      "kicker": "Squad update",
-      "body": "Rassie Erasmus has bolstered his 43-man squad with 10 returning players, including Siya Kolisi and Sacha Feinberg-Mngomezulu, as focus shifts to upcoming Tests against Argentina and New Zealand. Erasmus stated that splitting the squad will allow players returning from injury to gain valuable game time while others prepare for the All Blacks series. Meanwhile, five players including Embrose Papier have been released to their franchises, providing them an opportunity to face the All Blacks in midweek fixtures.",
+      "heading": "Rassie Erasmus recalls Siya Kolisi and Handré Pollard while dropping Embrose Papier",
+      "kicker": "SELECTION CALL",
+      "body": "Springboks head coach Rassie Erasmus has named a 43-man squad for upcoming Tests against Argentina and New Zealand, welcoming back 10 injury-recovered stars including Eben Etzebeth, Siya Kolisi, and Handré Pollard. Five players were released to their franchises, most notably Bulls scrum-half Embrose Papier. Despite Papier’s domestic form, Erasmus favoured Herschel Jantjies and the fit-again Morné van den Berg for the next phase. Erasmus explained that the side lacked \"wiele\" (pace), a quality Nick Mallett noted Jantjies provided during the recent 43-0 victory over Wales.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 5,
-        "why": "The squad update, involving the return of 10 key players and the release of five others, is the primary news shaping the team's immediate future."
+        "why": "Rassie Erasmus has named a massive 43-man squad featuring 10 major injury returns and five high-profile releases."
       },
       "candidates": [
         {
           "title": "The Springboks who should be 'disappointed' after Rassie Erasmus' squad announcement as Nick Mallett offers theory for controversial snub",
-          "score": 49.1,
+          "score": 42,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -623,7 +663,7 @@
         },
         {
           "title": "How All Blacks' vast array of playmakers can break down the Springboks defence as Sir Steve Hansen pinpoints South Africa's linchpin",
-          "score": 42.5,
+          "score": 35.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -631,23 +671,25 @@
         },
         {
           "title": "Schalk Burger: Where the Springboks can put the All Blacks 'under immense pressure' after not being 'challenged' by France or Ireland",
-          "score": 38,
+          "score": 34.2,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "Springboks: Nick Mallett's verdict on Siya Kolisi versus Paul de Villiers debate",
-          "score": 35.5,
-          "corroboration": 1,
+          "title": "South Africa 43-0 Wales: Nations Championship Rugby – as it happened",
+          "score": 29.8,
+          "corroboration": 3,
           "outlets": [
-            "planetrugby"
+            "bbc",
+            "guardian",
+            "search"
           ]
         },
         {
           "title": "Springboks squad: 10 stars return including Sacha and Siya Kolisi as Rassie Erasmus releases five before All Blacks and Argentina showdowns",
-          "score": 30.7,
+          "score": 29,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
