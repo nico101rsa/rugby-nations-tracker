@@ -1,0 +1,42 @@
+{
+  // Cloudflare's own wrangler guidance prefers JSONC over TOML — newer Worker
+  // features are JSON-only — so this replaces the wrangler.toml this Worker
+  // shipped with. JSONC keeps comments, which matters here: the cron schedules
+  // below are the whole point of the Worker and need their reasoning attached.
+  "name": "rugby-tracker-cron",
+  "main": "src/index.js",
+
+  // Keep within ~30 days of the current runtime; review quarterly.
+  "compatibility_date": "2026-07-25",
+
+  // Two schedules, mirroring refresh-data.yml's own crons. Cloudflare's FREE
+  // plan allows 5 Cron Triggers PER ACCOUNT (not per Worker), verified against
+  // the Workers limits page 2026-07-25 — so this uses two of Nico's five, and
+  // the Pages projects on the same account consume none.
+  //
+  // Request cost is irrelevant: ~96 fires/day plus ~108 on Saturdays, against a
+  // 100,000/day free allowance.
+  "triggers": {
+    "crons": [
+      // Every 15 minutes, matching refresh-data.yml's baseline.
+      "*/15 * * * *",
+      // Saturday match window (UTC): a Round's six matches run ~05:10-19:10
+      // UTC, so a denser cadence means more chances one fire lands and latches
+      // the ~2h in-process burst poll in scripts/refresh.mjs.
+      "*/10 4-21 * * 6"
+    ]
+  },
+
+  // Log pushes to the dashboard. Cheap, and the only way to see a dispatch
+  // failure from Cloudflare's side — though the durable evidence Nico actually
+  // sees is the weekly health report counting workflow_dispatch runs.
+  "observability": {
+    "enabled": true
+  }
+
+  // GITHUB_DISPATCH_TOKEN is a SECRET and is deliberately absent from this
+  // file. deploy-worker.yml pushes it from the GH_DISPATCH_TOKEN repo secret on
+  // every deploy; to set it by hand instead:
+  //   npx wrangler secret put GITHUB_DISPATCH_TOKEN
+  // It needs exactly one permission on the data repo: Actions read and write.
+}
