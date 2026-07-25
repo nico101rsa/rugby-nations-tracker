@@ -60,6 +60,13 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           workingDirectory: worker
+          # wrangler-action@v3 defaults to wrangler 3.90.0, which CANNOT READ
+          # wrangler.jsonc — JSON config arrived in wrangler 4. On 3.90 it finds
+          # no config at all and fails with the misleading "Required Worker name
+          # missing", as it did on the first real deploy (run 30150966895).
+          # Pin 4 rather than reverting the config: 3.90 is out of date enough
+          # that wrangler itself prints an update warning on every run.
+          wranglerVersion: "4"
           # Push the dispatch token as a Worker secret on every deploy, so
           # rotating it is a one-line `gh secret set` here rather than a
           # separate wrangler session on the Mac.
