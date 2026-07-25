@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-07-25T17:51:31.685Z",
+  "updatedAt": "2026-07-25T20:39:49.222Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 44,
+  "count": 47,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -840,45 +840,6 @@
       "uses": 0
     },
     {
-      "id": "the-future-of-the-i4owit",
-      "subject": "The future of the brain injury litigation against rugby governing bodies following legal representation changes",
-      "teams": [
-        386,
-        387,
-        388,
-        389,
-        390,
-        391,
-        460,
-        461,
-        463,
-        465,
-        467
-      ],
-      "resolution": "until the High Court delivers a ruling on the governing bodies' application to dismiss the cases",
-      "sources": [
-        {
-          "title": "Brain injury cases should be thrown out, High Court told",
-          "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Rugby players seek new lawyers for brain injury cases against governing bodies",
-          "link": "https://www.theguardian.com/sport/2026/jul/22/players-brain-injury-cases-rugby-league-rugby-union",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Concussion lawsuit loses lawyer",
-          "link": "https://www.sarugbymag.co.za/concussion-lawsuit-loses-lawyer/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-07-25",
-      "lastSeen": "2026-07-25",
-      "uses": 2,
-      "lastUsed": "2026-07-26"
-    },
-    {
       "id": "siya-kolisi-s-fitness-kavpwb",
       "subject": "Siya Kolisi's fitness and position in the Springbok squad",
       "teams": [
@@ -987,12 +948,17 @@
     },
     {
       "id": "embrose-papier-s-future-k1ooez",
-      "subject": "Embrose Papier's future in the Springbok squad",
+      "subject": "Embrose Papier's future in the Springboks squad following his release",
       "teams": [
         467
       ],
       "resolution": "until Rassie Erasmus clarifies if Papier will be recalled or permanently excluded",
       "sources": [
+        {
+          "title": "Mallett explains Herschel over Embrose",
+          "link": "https://www.sarugbymag.co.za/mallett-explains-herschel-over-embrose/",
+          "feedName": "SA Rugby Magazine"
+        },
         {
           "title": "Ackers: Bulls might not pick Papier",
           "link": "https://www.sarugbymag.co.za/ackers-bulls-might-not-pick-papier/",
@@ -1002,11 +968,6 @@
           "title": "POLL: Jantjies or Papier?",
           "link": "https://www.sarugbymag.co.za/poll-jantjies-or-papier/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "The Springboks who should be 'disappointed' after Rassie Erasmus' squad announcement as Nick Mallett offers theory for controversial snub",
-          "link": "https://www.planetrugby.com/news/springboks-nick-malletts-theory-for-embrose-papier-snub",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-07-26",
@@ -1075,7 +1036,7 @@
     },
     {
       "id": "the-composition-of-the-xoyhq2",
-      "subject": "The composition of the All Blacks touring squad for the Greatest Rivalry series",
+      "subject": "The composition of the All Blacks squad for the Greatest Rivalry series against South Africa",
       "teams": [
         465,
         467
@@ -1164,6 +1125,99 @@
         {
           "title": "New investment talks ongoing says Gloucester CEO",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cn8nxpvzrg5o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-07-26",
+      "lastSeen": "2026-07-26",
+      "uses": 0
+    },
+    {
+      "id": "the-disciplinary-sanction-against-y655a4",
+      "subject": "The disciplinary sanction against Argentina flyhalf Tomás Albornoz for referee abuse",
+      "teams": [
+        460
+      ],
+      "resolution": "until World Rugby announces the duration of the ban or penalty",
+      "sources": [
+        {
+          "title": "World Rugby act on disgraceful Argentina v England scenes as Los Pumas star hit with 'misconduct charges'",
+          "link": "https://www.planetrugby.com/news/world-rugby-act-on-disgraceful-argentina-v-england-scenes-as-los-pumas-star-hit-with-misconduct-charges",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Los Pumas No 10 charged for referee abuse",
+          "link": "https://www.sarugbymag.co.za/los-pumas-no-10-charged-for-referee-abuse/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Nigel Owens calls for action after 'totally unacceptable' referee 'abuse' following Argentina's disallowed try decision against England",
+          "link": "https://www.planetrugby.com/news/nigel-owens-verdict-on-argentinas-disallowed-try-and-slams-referee-abuse",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-07-26",
+      "lastSeen": "2026-07-26",
+      "uses": 0
+    },
+    {
+      "id": "the-potential-inclusion-of-12ultox",
+      "subject": "The potential inclusion of Ma'a Nonu in the Sharks' matchday squad to face the All Blacks",
+      "teams": [
+        465,
+        467
+      ],
+      "resolution": "until the Sharks confirm the team selection for the tour match",
+      "sources": [
+        {
+          "title": "All Blacks legend Ma'a Nonu makes bombshell South African move, signing for the Sharks",
+          "link": "https://www.planetrugby.com/news/all-blacks-legend-maa-nonu-makes-bombshell-south-african-move-signing-for-the-sharks",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Sharks sign All Blacks legend",
+          "link": "https://www.sarugbymag.co.za/sharks-sign-blacks-legend/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Ma'a Nonu: All Blacks legend reveals why he has signed for the Sharks",
+          "link": "https://www.planetrugby.com/news/maa-nonu-all-blacks-legend-reveals-why-he-has-signed-for-the-sharks",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-07-26",
+      "lastSeen": "2026-07-26",
+      "uses": 0
+    },
+    {
+      "id": "the-search-for-new-wn9yrm",
+      "subject": "The search for new investment in Gloucester Rugby",
+      "teams": [
+        386
+      ],
+      "resolution": "until the club announces a formal investment agreement",
+      "sources": [
+        {
+          "title": "New investment talks ongoing says Gloucester CEO",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cn8nxpvzrg5o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-07-26",
+      "lastSeen": "2026-07-26",
+      "uses": 0
+    },
+    {
+      "id": "wales-midfield-partnership-consistency-4rat84",
+      "subject": "Wales' midfield partnership consistency under head coach evaluation",
+      "teams": [
+        391
+      ],
+      "resolution": "until the coaching staff settles on a permanent first-choice center pairing",
+      "sources": [
+        {
+          "title": "Have Wales got their midfield partnership right?",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cly98eny8j0o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
