@@ -26,6 +26,7 @@
 // `name: null`; naming them is the consuming tab's problem, not ours.
 
 import { writeFile } from "node:fs/promises";
+import { SEEDS, seededCompetition } from "./seed-competitions.mjs";
 
 // The competitions the app tracks as competitions. "International Test Match"
 // (league 289234) is deliberately absent — it is a bucket of one-off tests
@@ -347,6 +348,14 @@ export async function buildRegistry(seasons, today = iso(Date.now())) {
       out.push(entryFor(meta, season, await fetchEvents(meta.espnLeagueId, win), today));
     }
   }
+  // Substitute a seed for any competition the vendor has published nothing
+  // for. Without this the handover chain skips it entirely — see
+  // seed-competitions.mjs for why that is worse than it sounds.
+  for (const [i, c] of out.entries()) {
+    const seed = SEEDS[c.key];
+    if (seed && c.fixtureCount === 0) out[i] = seededCompetition(seed);
+  }
+
   out.sort((a, b) => (a.startDate ?? "9999").localeCompare(b.startDate ?? "9999") || a.key.localeCompare(b.key));
   return chainDefaults(out);
 }

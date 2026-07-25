@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-07-24T22:33:15.115Z",
+ "updatedAt": "2026-07-25T07:53:24.069Z",
  "source": "espn",
  "current": "rnc-2026",
  "competitions": [
@@ -77,6 +77,30 @@
    "status": "live",
    "defaultFrom": "2026-03-28",
    "defaultUntil": "2026-12-05"
+  },
+  {
+   "key": "6n-2027",
+   "label": "6N '27",
+   "name": "Six Nations",
+   "espnLeagueId": 180659,
+   "season": 2027,
+   "startDate": "2027-02-05",
+   "endDate": "2027-03-13",
+   "structure": "table",
+   "groups": null,
+   "teams": [
+    "ENG",
+    "FRA",
+    "IRE",
+    "ITA",
+    "SCO",
+    "WAL"
+   ],
+   "fixtureCount": 15,
+   "status": "scheduled",
+   "seeded": true,
+   "defaultFrom": "2026-12-05",
+   "defaultUntil": "2027-03-27"
   },
   {
    "key": "rwc-2027",
@@ -171,22 +195,8 @@
    ],
    "fixtureCount": 36,
    "status": "scheduled",
-   "defaultFrom": "2026-12-05",
+   "defaultFrom": "2027-03-27",
    "defaultUntil": "2027-10-31"
-  },
-  {
-   "key": "6n-2027",
-   "label": "6N '27",
-   "name": "Six Nations",
-   "espnLeagueId": 180659,
-   "season": 2027,
-   "startDate": null,
-   "endDate": null,
-   "structure": null,
-   "groups": null,
-   "teams": [],
-   "fixtureCount": 0,
-   "status": "announced"
   },
   {
    "key": "trc-2026",

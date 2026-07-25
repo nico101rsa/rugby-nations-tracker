@@ -22,6 +22,7 @@ concurrency:
 
 permissions:
   contents: write
+  issues: write
 
 jobs:
   team-events:
@@ -41,14 +42,36 @@ jobs:
       - name: Archive games into team-events-archive.json
         run: node scripts/archive-team-events.mjs
 
+      # Rebuild the registry daily, not just weekly. build-fixtures reads it,
+      # and a seeded competition must retire within a DAY of the vendor
+      # publishing real fixtures rather than sitting alongside them for a week.
+      # Keyless ESPN calls, so this costs no quota. The weekly watcher still
+      # owns raising an issue when a competition first appears.
+      - name: Rebuild competitions.json (registry + structure classifier)
+        run: node scripts/build-competitions.mjs
+
       - name: Build fixtures.json (match-level upcoming list, keyless ESPN)
         run: node scripts/build-fixtures.mjs
+
+      # Daily integrity check on what the app is actually being shown. Catches
+      # the class Nico found by opening TestFlight — Six Nations 2026 finished
+      # in March and was still on offer in the dropdown in late July, with
+      # nothing anywhere noticing. Asserts: nothing expired is the default,
+      # fixture counts match their classified shape (arithmetic), the registry
+      # and fixtures.json agree, and each structure still holds against its own
+      # published fixtures. Raises a GitHub issue, never fails the build — the
+      # data is already published by this point.
+      - name: Check competition integrity
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/check-competitions.mjs
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add team-events.json team-events-archive.json fixtures.json
+          git add team-events.json team-events-archive.json fixtures.json competitions.json
           git diff --cached --quiet && echo "No team-events changes" && exit 0
           git commit -m "Team events refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
           git push || (git pull --rebase --autostash && git push)

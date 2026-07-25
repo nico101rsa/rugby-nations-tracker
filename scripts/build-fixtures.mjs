@@ -14,6 +14,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { fetchEspnEvents, ESPN_TEAM_IDS } from "./fetch-espn-fixtures.mjs";
 import { fetchLeagueFixtures, loadRegistry } from "./fetch-league-fixtures.mjs";
+import { seededFixtures } from "./seed-competitions.mjs";
 
 const ID_TO_CODE = Object.fromEntries(Object.entries(ESPN_TEAM_IDS).map(([c, id]) => [String(id), c]));
 
@@ -183,6 +184,14 @@ async function main() {
   for (const [id, name] of league.names) if (!names.has(id)) names.set(id, name);
   const nations = JSON.parse(await readFile("public/nations.json", "utf8"));
   const fixtures = buildFixtures(mergeSources(events, league.events), names, nations);
+
+  // Seeded fixtures for competitions the vendor still has nothing for. They
+  // are already in published shape, so they are appended rather than rebuilt,
+  // and they drop out automatically the moment ESPN carries that competition.
+  const seeded = registry ? seededFixtures(registry).filter((f) => new Date(f.date).getTime() >= now) : [];
+  if (seeded.length) console.log(`seeded ${seeded.length} fixtures for competitions ESPN has not published`);
+  fixtures.push(...seeded);
+  fixtures.sort((a, b) => new Date(a.date) - new Date(b.date) || (a.id < b.id ? -1 : 1));
   const out = { updatedAt: new Date().toISOString(), source: "espn", fixtures };
   await writeFile("fixtures.json", JSON.stringify(out, null, 1) + "\n");
   const kinds = fixtures.reduce((m, f) => ((m[f.comp.label] = (m[f.comp.label] ?? 0) + 1), m), {});
