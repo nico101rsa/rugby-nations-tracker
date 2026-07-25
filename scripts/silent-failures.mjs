@@ -127,23 +127,29 @@ export function silentFailuresSection(backlog, stats, now = Date.now(), refreshR
   return parts.join("\n");
 }
 
+// The string the Worker stamps into a run's title via refresh-data.yml's
+// run-name. Counting bare `workflow_dispatch` runs is NOT enough: the Mac
+// pinger dispatches the same workflow and authenticates as the same user, so
+// an event-only check reports the Worker healthy on pinger traffic — a placebo,
+// when the Worker exists precisely for the months the Mac is asleep.
+export const WORKER_SOURCE = "cloudflare-worker";
+
 // Is the Cloudflare cron Worker actually firing? (map #196)
 //
 // The Worker's own logs are in a Cloudflare dashboard nobody opens, so they
-// are not evidence. What IS evidence, and visible from here, is that
-// `workflow_dispatch`-triggered refresh runs keep appearing in the Actions
-// history — GitHub's own scheduler produces `schedule` runs, so the two are
-// distinguishable without any Cloudflare access at all.
+// are not evidence. What IS evidence, and visible from here, is its stamped
+// runs appearing in the Actions history — no Cloudflare access needed.
 //
-// A dead Worker is invisible otherwise: the scheduled crons still fire often
-// enough that nothing looks broken, right up until the Saturday they don't.
+// A dead Worker is invisible otherwise: GitHub's scheduled crons still fire
+// often enough that nothing looks broken, right up until the Saturday they
+// don't.
 export function checkCronWorker(refreshRows, now = Date.now(), sinceDays = 7) {
   if (!refreshRows) {
     return { ok: false, severity: "warn", headline: "Could not query refresh-data run history" };
   }
   const cutoff = now - sinceDays * DAY;
   const recent = refreshRows.filter((r) => new Date(r.createdAt).getTime() >= cutoff);
-  const dispatched = recent.filter((r) => r.event === "workflow_dispatch").length;
+  const dispatched = recent.filter((r) => (r.displayTitle ?? "").includes(WORKER_SOURCE)).length;
   const scheduled = recent.filter((r) => r.event === "schedule").length;
 
   if (dispatched === 0) {
@@ -152,9 +158,12 @@ export function checkCronWorker(refreshRows, now = Date.now(), sinceDays = 7) {
       severity: "alert",
       headline: `No Worker-dispatched refresh runs in ${sinceDays} days (${scheduled} from GitHub's scheduler)`,
       detail:
-        "The Cloudflare cron Worker dispatches `refresh-data.yml`, which shows up as a " +
-        "`workflow_dispatch` run. None have appeared, so either the Worker is not deployed, its " +
-        "GitHub token has expired, or its cron triggers are off.\n\n" +
+        "The Cloudflare cron Worker stamps `" + WORKER_SOURCE + "` into the title of every run it " +
+        "dispatches. None have appeared, so either the Worker is not deployed, its GitHub token has " +
+        "expired, or its cron triggers are off.\n\n" +
+        "Note this counts the STAMP, not the event: the Mac pinger dispatches the same workflow as " +
+        "the same user, so counting `workflow_dispatch` runs would report the Worker healthy on " +
+        "pinger traffic alone.\n\n" +
         "**This is invisible without the check**: GitHub's own scheduler still fires often enough " +
         "that nothing looks broken — right up until a Saturday when it drops the run and there is " +
         "no backstop. Hit the Worker's `/health` route to test the token without spending " +

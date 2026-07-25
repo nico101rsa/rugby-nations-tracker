@@ -95,7 +95,7 @@ async function runRows(workflowFile) {
   try {
     const { stdout } = await execFileAsync("gh", [
       "run", "list", "--workflow", workflowFile,
-      "--limit", "100", "--json", "createdAt,conclusion,event",
+      "--limit", "100", "--json", "createdAt,conclusion,event,displayTitle",
     ]);
     return JSON.parse(stdout);
   } catch (err) {

@@ -1,5 +1,15 @@
 name: Refresh match data
 
+# The run title carries WHO asked for it. Both the Cloudflare cron Worker and
+# the Mac pinger dispatch this workflow, both authenticate as nico101rsa, and
+# both show up as `workflow_dispatch` — so without this the Worker-liveness
+# check in silent-failures.mjs cannot tell them apart, and would report the
+# Worker healthy on pinger traffic alone. That is a placebo safeguard, and the
+# Worker exists precisely for the months when the Mac is asleep.
+run-name: >-
+  Refresh match data
+  (${{ github.event_name == 'workflow_dispatch' && inputs.source || github.event_name }})
+
 on:
   schedule:
     # Every 15 min. scripts/refresh.mjs decides per-run how much API budget to
@@ -17,6 +27,11 @@ on:
     # latch a burst. The concurrency group below serialises overlaps.
     - cron: "*/10 4-21 * * 6"
   workflow_dispatch:
+    inputs:
+      source:
+        description: Who dispatched this run
+        required: false
+        default: manual
 
 concurrency:
   group: refresh-data

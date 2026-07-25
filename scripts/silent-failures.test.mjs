@@ -125,12 +125,30 @@ test("the section marks each check and folds in the detail only when unhealthy",
 
 import { checkCronWorker } from "./silent-failures.mjs";
 
-const run = (event, days) => ({ event, createdAt: daysAgo(days), conclusion: "success" });
+const run = (event, days, title = "") => ({ event, createdAt: daysAgo(days), displayTitle: title, conclusion: "success" });
+const workerRun = (days) => run("workflow_dispatch", days, "Refresh match data (cloudflare-worker)");
+// The Mac pinger: same event, same user, DIFFERENT stamp.
+const pingerRun = (days) => run("workflow_dispatch", days, "Refresh match data (manual)");
 
-test("dispatched runs present: the Worker is alive", () => {
-  const r = checkCronWorker([run("workflow_dispatch", 1), run("schedule", 1), run("schedule", 2)], NOW);
+test("stamped runs present: the Worker is alive", () => {
+  const r = checkCronWorker([workerRun(1), run("schedule", 1), run("schedule", 2)], NOW);
   assert.equal(r.ok, true);
   assert.match(r.headline, /1 dispatched \+ 2 scheduled/);
+});
+
+test("MAC PINGER traffic must NOT count as the Worker being alive", () => {
+  // The pinger dispatches the same workflow as the same user. Counting bare
+  // workflow_dispatch runs made this check a placebo — it would have gone
+  // green on pinger traffic while the Worker was dead, which is the exact
+  // failure the Worker exists to prevent.
+  const r = checkCronWorker([pingerRun(1), pingerRun(2), run("schedule", 1)], NOW);
+  assert.equal(r.ok, false);
+  assert.equal(r.severity, "alert");
+});
+
+test("the Worker is alive even when the pinger is also firing", () => {
+  const r = checkCronWorker([workerRun(1), pingerRun(1), run("schedule", 1)], NOW);
+  assert.equal(r.ok, true);
 });
 
 test("no dispatched runs alerts, and says why it is otherwise invisible", () => {
@@ -144,7 +162,7 @@ test("no dispatched runs alerts, and says why it is otherwise invisible", () => 
 
 test("old dispatched runs outside the window do not count as alive", () => {
   // A Worker that died last month must not look healthy on last month's runs.
-  const r = checkCronWorker([run("workflow_dispatch", 30), run("schedule", 1)], NOW);
+  const r = checkCronWorker([workerRun(30), run("schedule", 1)], NOW);
   assert.equal(r.ok, false);
 });
 
