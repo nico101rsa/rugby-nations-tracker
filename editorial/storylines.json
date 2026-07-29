@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-07-28T20:58:07.478Z",
+  "updatedAt": "2026-07-29T20:42:18.746Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 65,
+  "count": 71,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -69,7 +69,7 @@
         }
       ],
       "firstSeen": "2026-07-22",
-      "lastSeen": "2026-07-29",
+      "lastSeen": "2026-07-30",
       "uses": 0
     },
     {
@@ -291,25 +291,30 @@
     },
     {
       "id": "england-s-nations-championship-1py7w3y",
-      "subject": "England's Nations Championship scheduling and format concerns",
+      "subject": "England players' concerns over the Nations Championship travel and competition format",
       "teams": [
         386
       ],
       "resolution": "until World Rugby addresses the format complaints or makes changes to the competition schedule",
       "sources": [
         {
+          "title": "England players question ‘brutal’ travel demands in Nations Championship format",
+          "link": "https://www.theguardian.com/sport/2026/jul/20/england-rugby-union-argentina-nations-championship-travel-demands",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Reassessing the England forwards depth chart following Nations Championship that gave Steve Borthwick 'chance to reflect'",
+          "link": "https://www.planetrugby.com/news/reassessing-the-england-forwards-depth-chart-following-nations-championship-that-gave-steve-borthwick-chance-to-reflect",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Earl wants changes to 'brutal' Nations Championship format",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c74g58vzjj4o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "England star slams Nations Champs format",
-          "link": "https://www.sarugbymag.co.za/england-star-slams-nations-champs-format/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-07-24",
-      "lastSeen": "2026-07-24",
+      "lastSeen": "2026-07-30",
       "uses": 0
     },
     {
@@ -777,7 +782,8 @@
       "id": "gloucester-s-search-for-hz58vl",
       "subject": "Gloucester’s search for new external investment and its impact on the club's financial future",
       "teams": [
-        386
+        386,
+        389
       ],
       "resolution": "until CEO Alex Brown announces the conclusion of investment talks or names a new partner",
       "sources": [
@@ -788,7 +794,7 @@
         }
       ],
       "firstSeen": "2026-07-25",
-      "lastSeen": "2026-07-27",
+      "lastSeen": "2026-07-30",
       "uses": 0
     },
     {
@@ -1460,7 +1466,8 @@
       ],
       "firstSeen": "2026-07-27",
       "lastSeen": "2026-07-27",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-07-30"
     },
     {
       "id": "potential-reforms-to-the-1rtxpa8",
@@ -1703,6 +1710,143 @@
       ],
       "firstSeen": "2026-07-29",
       "lastSeen": "2026-07-29",
+      "uses": 0
+    },
+    {
+      "id": "the-legal-action-regarding-isw190",
+      "subject": "The legal action regarding brain damage in rugby union",
+      "teams": [
+        386,
+        388,
+        390,
+        391
+      ],
+      "resolution": "until a final ruling or settlement is reached in the High Court proceedings",
+      "sources": [
+        {
+          "title": "Rugby brain injury case reaches crisis point as judge retires to consider 95% strikeouts",
+          "link": "https://www.theguardian.com/sport/2026/jul/23/rugby-brain-injury-case-reaches-crisis-point-as-judge-retires-to-consider-95-strikeouts",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Dismissed solicitor is still acting for footballers in brain injury court case",
+          "link": "https://www.theguardian.com/sport/2026/jul/24/discarded-solicitor-still-acting-for-footballers-over-brin-injuries",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Rugby’s landmark concussion case enters crucial week: the key questions answered",
+          "link": "https://www.theguardian.com/sport/2026/jul/22/rugbys-landmark-concussion-case-enters-crucial-week-the-key-questions-answered",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-07-30",
+      "lastSeen": "2026-07-30",
+      "uses": 0
+    },
+    {
+      "id": "wales-regional-rugby-restructuring-z02s3v",
+      "subject": "Wales' regional rugby restructuring and the planned cutting of a professional team",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union confirms whether the Ospreys or the Scarlets will be cut",
+      "sources": [
+        {
+          "title": "WRU confirms Scarlets or Ospreys will be cut",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c171w048jdgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-07-30",
+      "lastSeen": "2026-07-30",
+      "uses": 0
+    },
+    {
+      "id": "ardie-savea-s-arrival-hseseh",
+      "subject": "Ardie Savea's arrival timeline and stand-in captaincy for the All Blacks in South Africa",
+      "teams": [
+        465,
+        467
+      ],
+      "resolution": "until Ardie Savea joins the All Blacks squad and his replacement captaincy is settled",
+      "sources": [
+        {
+          "title": "All Blacks squad: Dave Rennie names three uncapped players for Greatest Rivalry series as key men make timely returns",
+          "link": "https://www.planetrugby.com/news/all-blacks-squad-dave-rennie-names-three-uncapped-players-for-greatest-rivalry-series-as-key-men-make-timely-returns",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Dave Rennie: Why Ardie Savea will arrive late in South Africa and who will be the All Blacks' stand-in tour captain",
+          "link": "https://www.planetrugby.com/news/all-blacks-dave-rennie-explains-why-ardie-savea-will-arrive-late-in-south-africa",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Three bolters in All Blacks squad, Savea rested",
+          "link": "https://www.sarugbymag.co.za/three-bolters-in-all-blacks-squad-savea-rested/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-07-30",
+      "lastSeen": "2026-07-30",
+      "uses": 0
+    },
+    {
+      "id": "faf-de-klerk-s-fcu9vy",
+      "subject": "Faf de Klerk's potential recall to the Springboks",
+      "teams": [
+        467
+      ],
+      "resolution": "until Rassie Erasmus confirms the squad for the upcoming Tests against Argentina and New Zealand",
+      "sources": [
+        {
+          "title": "Victor Matfield: Faf de Klerk is 'very close' to Springboks recall as legend issues damning Currie Cup assessment",
+          "link": "https://www.planetrugby.com/news/victor-matfield-faf-de-klerk-is-very-close-to-springboks-recall",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-07-30",
+      "lastSeen": "2026-07-30",
+      "uses": 0
+    },
+    {
+      "id": "richie-mo-unga-s-xkvba1",
+      "subject": "Richie Mo'unga's return to professional rugby and eligibility for the All Blacks tour",
+      "teams": [
+        465
+      ],
+      "resolution": "until Richie Mo'unga completes his NPC appearance and official squad confirmation for the tour",
+      "sources": [
+        {
+          "title": "Mo'unga eyes All Blacks tour",
+          "link": "https://www.sarugbymag.co.za/mounga-eyes-blacks-tour/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "All Blacks: Richie Mo'unga set to become eligible for Greatest Rivalry tour after NPC selection",
+          "link": "https://www.planetrugby.com/news/all-blacks-richie-mounga-set-to-become-eligible-for-greatest-rivalry-tour-after-npc-selection",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-07-30",
+      "lastSeen": "2026-07-30",
+      "uses": 0
+    },
+    {
+      "id": "herschel-jantjies-future-at-1dndptb",
+      "subject": "Herschel Jantjies' future at Bayonne",
+      "teams": [
+        467
+      ],
+      "resolution": "until Jantjies or the club clarifies his contractual status",
+      "sources": [
+        {
+          "title": "Herschel's future thrown into doubt",
+          "link": "https://www.sarugbymag.co.za/herschels-future-thrown-doubt/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-07-30",
+      "lastSeen": "2026-07-30",
       "uses": 0
     }
   ]
