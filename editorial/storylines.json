@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-07-30T20:55:08.064Z",
+  "updatedAt": "2026-07-31T20:52:36.598Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 75,
+  "count": 77,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -795,8 +795,8 @@
       ],
       "firstSeen": "2026-07-25",
       "lastSeen": "2026-07-30",
-      "uses": 1,
-      "lastUsed": "2026-07-31"
+      "uses": 2,
+      "lastUsed": "2026-08-01"
     },
     {
       "id": "johan-ackermann-s-decision-9lvjut",
@@ -1834,12 +1834,17 @@
     },
     {
       "id": "herschel-jantjies-future-at-1dndptb",
-      "subject": "Herschel Jantjies' future at Bayonne",
+      "subject": "Herschel Jantjies' potential move from Bayonne",
       "teams": [
         467
       ],
       "resolution": "until Jantjies or the club clarifies his contractual status",
       "sources": [
+        {
+          "title": "Rugby Transfers: Gareth Anscombe returns to Wales, ex-junior All Black heads to Japan and Springbok tipped for exit",
+          "link": "https://www.planetrugby.com/news/rugby-transfers-gareth-anscombe-returns-to-wales-ex-junior-all-black-heads-to-japan-and-springbok-tipped-for-exit",
+          "feedName": "Planet Rugby"
+        },
         {
           "title": "Herschel's future thrown into doubt",
           "link": "https://www.sarugbymag.co.za/herschels-future-thrown-doubt/",
@@ -1847,12 +1852,12 @@
         }
       ],
       "firstSeen": "2026-07-30",
-      "lastSeen": "2026-07-30",
+      "lastSeen": "2026-08-01",
       "uses": 0
     },
     {
       "id": "the-welsh-rugby-union-b7i2mt",
-      "subject": "The Welsh Rugby Union's decision to cut a professional region (Ospreys or Scarlets)",
+      "subject": "The future of the Ospreys and Scarlets after the WRU's decision to cut a professional region",
       "teams": [
         391
       ],
@@ -1875,7 +1880,7 @@
         }
       ],
       "firstSeen": "2026-07-31",
-      "lastSeen": "2026-07-31",
+      "lastSeen": "2026-08-01",
       "uses": 0
     },
     {
@@ -1910,7 +1915,7 @@
     },
     {
       "id": "michael-cheika-s-return-16pkut8",
-      "subject": "Michael Cheika’s return to Super Rugby coaching",
+      "subject": "Michael Cheika's potential return to Super Rugby coaching",
       "teams": [
         461
       ],
@@ -1923,7 +1928,7 @@
         }
       ],
       "firstSeen": "2026-07-31",
-      "lastSeen": "2026-07-31",
+      "lastSeen": "2026-08-01",
       "uses": 0
     },
     {
@@ -1947,6 +1952,54 @@
       ],
       "firstSeen": "2026-07-31",
       "lastSeen": "2026-07-31",
+      "uses": 0
+    },
+    {
+      "id": "the-legal-action-regarding-1ptu2tf",
+      "subject": "The legal action regarding rugby concussion claims against governing bodies",
+      "teams": [
+        386,
+        390,
+        391
+      ],
+      "resolution": "until the court rules on whether the case proceeds or is struck out",
+      "sources": [
+        {
+          "title": "Rugby players seek new lawyers for brain injury cases against governing bodies",
+          "link": "https://www.theguardian.com/sport/2026/jul/22/players-brain-injury-cases-rugby-league-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Rugby brain injury case reaches crisis point as judge retires to consider 95% strikeouts",
+          "link": "https://www.theguardian.com/sport/2026/jul/23/rugby-brain-injury-case-reaches-crisis-point-as-judge-retires-to-consider-95-strikeouts",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Dismissed solicitor is still acting for footballers in brain injury court case",
+          "link": "https://www.theguardian.com/sport/2026/jul/24/discarded-solicitor-still-acting-for-footballers-over-brin-injuries",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-01",
+      "lastSeen": "2026-08-01",
+      "uses": 0
+    },
+    {
+      "id": "zac-lomax-s-eligibility-6oybm2",
+      "subject": "Zac Lomax's eligibility for the Wallabies following his return to rugby league",
+      "teams": [
+        461
+      ],
+      "resolution": "until Les Kiss confirms whether Lomax remains in the international selection pool",
+      "sources": [
+        {
+          "title": "Les Kiss reveals whether Zac Lomax will still be considered for Wallabies selection after confirmation of rugby league return",
+          "link": "https://www.planetrugby.com/news/les-kiss-reveals-whether-zac-lomax-will-still-be-considered-for-wallabies-selection-after-confirmation-of-rugby-league-return",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-08-01",
+      "lastSeen": "2026-08-01",
       "uses": 0
     }
   ]
