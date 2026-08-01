@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-01T20:39:40.963Z",
+  "updatedAt": "2026-08-01T22:44:20.404Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 91,
+  "count": 94,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -1201,7 +1201,7 @@
         }
       ],
       "firstSeen": "2026-07-26",
-      "lastSeen": "2026-07-28",
+      "lastSeen": "2026-08-02",
       "uses": 0
     },
     {
@@ -1695,12 +1695,15 @@
     },
     {
       "id": "the-legal-action-regarding-isw190",
-      "subject": "The legal action regarding brain damage in rugby union",
+      "subject": "The landmark legal action and concussion case regarding brain damage in rugby",
       "teams": [
         386,
         388,
         390,
-        391
+        391,
+        461,
+        465,
+        467
       ],
       "resolution": "until a final ruling or settlement is reached in the High Court proceedings",
       "sources": [
@@ -1721,7 +1724,7 @@
         }
       ],
       "firstSeen": "2026-07-30",
-      "lastSeen": "2026-07-30",
+      "lastSeen": "2026-08-02",
       "uses": 0
     },
     {
@@ -1844,6 +1847,11 @@
       "resolution": "until the WRU confirms which of the two teams will be discontinued",
       "sources": [
         {
+          "title": "Scarlets vow to remain at heart of west Wales",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyeq2n79n9o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "WRU confirms Scarlets or Ospreys will be cut",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c171w048jdgo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -1852,15 +1860,10 @@
           "title": "WRU confirm roadmap to axing one region as Ospreys or Scarlets face cut",
           "link": "https://www.planetrugby.com/news/wru-confirm-roadmap-to-axing-one-region-as-ospreys-or-scarlets-face-cut",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Welsh rivals face fight for survival",
-          "link": "https://www.sarugbymag.co.za/welsh-rivals-face-fight-survival/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-07-31",
-      "lastSeen": "2026-08-01",
+      "lastSeen": "2026-08-02",
       "uses": 0
     },
     {
@@ -1909,7 +1912,7 @@
         }
       ],
       "firstSeen": "2026-07-31",
-      "lastSeen": "2026-08-01",
+      "lastSeen": "2026-08-02",
       "uses": 0
     },
     {
@@ -1967,7 +1970,8 @@
       ],
       "firstSeen": "2026-08-01",
       "lastSeen": "2026-08-01",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-02"
     },
     {
       "id": "zac-lomax-s-eligibility-6oybm2",
@@ -2337,6 +2341,70 @@
           "title": "Have Wales got their midfield partnership right?",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cly98eny8j0o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-02",
+      "lastSeen": "2026-08-02",
+      "uses": 0
+    },
+    {
+      "id": "samoa-s-potential-four-132f4d3",
+      "subject": "Samoa's potential four-year international rugby ban following government withdrawal of support",
+      "teams": [
+        28
+      ],
+      "resolution": "until the outcome of the threatened World Rugby suspension and the resolution of the government funding dispute is finalized",
+      "sources": [
+        {
+          "title": "Samoa faces four-year ban",
+          "link": "https://www.sarugbymag.co.za/samoa-faces-four-year-ban/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "World Rugby threatens to suspend Rugby World Cup regulars – report",
+          "link": "https://www.planetrugby.com/news/world-rugby-threatens-to-suspend-rugby-world-cup-regulars-report",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-08-02",
+      "lastSeen": "2026-08-02",
+      "uses": 0
+    },
+    {
+      "id": "the-future-of-scotland-1apveuj",
+      "subject": "The future of Scotland's rugby leadership following the sacking of CEO Alex Williamson",
+      "teams": [
+        390
+      ],
+      "resolution": "until a permanent successor for the chief executive role is appointed",
+      "sources": [
+        {
+          "title": "Scottish Rugby sacks chief executive Williamson after inquiry",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c4gk8jd4dv9o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Scotland boss sacked",
+          "link": "https://www.sarugbymag.co.za/scotland-boss-sacked/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-02",
+      "lastSeen": "2026-08-02",
+      "uses": 0
+    },
+    {
+      "id": "zac-lomax-s-potential-6r4oi3",
+      "subject": "Zac Lomax's potential inclusion in the Wallabies despite his return to rugby league",
+      "teams": [
+        461
+      ],
+      "resolution": "until Les Kiss confirms whether Lomax remains eligible for national selection",
+      "sources": [
+        {
+          "title": "Les Kiss reveals whether Zac Lomax will still be considered for Wallabies selection after confirmation of rugby league return",
+          "link": "https://www.planetrugby.com/news/les-kiss-reveals-whether-zac-lomax-will-still-be-considered-for-wallabies-selection-after-confirmation-of-rugby-league-return",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-02",
