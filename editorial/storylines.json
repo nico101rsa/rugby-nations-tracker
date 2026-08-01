@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-01T12:57:05.430Z",
+  "updatedAt": "2026-08-01T17:53:04.320Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 85,
+  "count": 87,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -1971,7 +1971,7 @@
     },
     {
       "id": "zac-lomax-s-eligibility-6oybm2",
-      "subject": "Zac Lomax's eligibility for the Wallabies following his return to rugby league",
+      "subject": "Zac Lomax's eligibility for Wallabies selection following his return to rugby league",
       "teams": [
         461
       ],
@@ -1984,7 +1984,7 @@
         }
       ],
       "firstSeen": "2026-08-01",
-      "lastSeen": "2026-08-01",
+      "lastSeen": "2026-08-02",
       "uses": 0
     },
     {
@@ -2173,12 +2173,17 @@
     },
     {
       "id": "the-potential-cutting-of-dsfixx",
-      "subject": "The potential cutting of a Welsh professional region (Ospreys or Scarlets)",
+      "subject": "The WRU professional region restructuring and the potential axing of the Ospreys or Scarlets",
       "teams": [
         391
       ],
       "resolution": "until the WRU confirms which of the two teams will be cut",
       "sources": [
+        {
+          "title": "Scarlets vow to remain at heart of west Wales",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyeq2n79n9o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
         {
           "title": "WRU confirms Scarlets or Ospreys will be cut",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c171w048jdgo?at_medium=RSS&at_campaign=rss",
@@ -2188,15 +2193,56 @@
           "title": "WRU confirm roadmap to axing one region as Ospreys or Scarlets face cut",
           "link": "https://www.planetrugby.com/news/wru-confirm-roadmap-to-axing-one-region-as-ospreys-or-scarlets-face-cut",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Welsh rivals face fight for survival",
-          "link": "https://www.sarugbymag.co.za/welsh-rivals-face-fight-survival/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-08-01",
-      "lastSeen": "2026-08-01",
+      "lastSeen": "2026-08-02",
+      "uses": 0
+    },
+    {
+      "id": "steve-borthwick-s-long-qn70zf",
+      "subject": "Steve Borthwick's long-term plan for the England squad and his job security",
+      "teams": [
+        386
+      ],
+      "resolution": "until England shows consistent improvement in the next series of matches to stabilize their recent Nations Championship performances",
+      "sources": [
+        {
+          "title": "Reassessing England's backline depth chart following Nations Championship as Steve Borthwick gets 'answers' to 'lingering questions'",
+          "link": "https://www.planetrugby.com/news/reassessing-the-england-backs-depth-chart-following-nations-championship-as-steve-borthwick-gets-answers-to-lingering-questions",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Boks unleash big-game brutality on Borthwick's faltering England",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cz752234r45o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Feyi-Waboso gives England more bite but there is no ignoring elephant in the room",
+          "link": "https://www.theguardian.com/sport/2026/jul/19/england-argentina-summer-tour-steve-borthwick-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-02",
+      "lastSeen": "2026-08-02",
+      "uses": 0
+    },
+    {
+      "id": "the-international-future-of-g3uzob",
+      "subject": "The international future of Quade Cooper with the Wallabies",
+      "teams": [
+        461
+      ],
+      "resolution": "until it is confirmed whether he is included in the squad for the 2027 Rugby World Cup",
+      "sources": [
+        {
+          "title": "Quade eyes World Cup comeback",
+          "link": "https://www.sarugbymag.co.za/quade-eyes-world-cup-comeback/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-02",
+      "lastSeen": "2026-08-02",
       "uses": 0
     }
   ]
