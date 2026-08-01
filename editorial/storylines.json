@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-01T09:49:44.676Z",
+  "updatedAt": "2026-08-01T12:57:05.430Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 84,
+  "count": 85,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -53,23 +53,23 @@
       "resolution": "until Rassie Erasmus confirms whether Kolisi retains the captaincy or if Paul de Villiers takes over",
       "sources": [
         {
+          "title": "Siya: I'll know when it's time to retire",
+          "link": "https://www.sarugbymag.co.za/siya-ill-know-when-its-time-to-retire/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Springboks: Siya Kolisi reveals the post-playing career option that would drive him ‘crazy’ and names ‘best place to be’ when ‘going through a tough time’",
+          "link": "https://www.planetrugby.com/news/springboks-siya-kolisi-reveals-the-post-playing-career-option-that-would-drive-him-crazy-and-names-best-place-to-be-when-going-through-a-tough-time",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "The Money Man &#038; Rich Pickings: Is Siya Kolisi done?",
           "link": "https://www.sarugbymag.co.za/money-man-rich-pickings-siya-kolisi-done/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "King Kolisi's reign is not over",
-          "link": "https://www.sarugbymag.co.za/king-kolisis-reign-is-not-over/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Victor Matfield's verdict on Siya Kolisi's Springboks future: 'With Rassie, everyone is under pressure to perform'",
-          "link": "https://www.planetrugby.com/news/victor-matfields-verdict-on-siya-kolisis-springboks-future",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-07-22",
-      "lastSeen": "2026-07-31",
+      "lastSeen": "2026-08-01",
       "uses": 0
     },
     {
@@ -1895,7 +1895,7 @@
     },
     {
       "id": "michael-cheika-s-return-16pkut8",
-      "subject": "Michael Cheika's potential return to Super Rugby coaching",
+      "subject": "Michael Cheika's potential return to Super Rugby as head coach",
       "teams": [
         461,
         460
@@ -1941,23 +1941,27 @@
       "teams": [
         386,
         390,
-        391
+        391,
+        388,
+        461,
+        465,
+        467
       ],
       "resolution": "until the court rules on whether the case proceeds or is struck out",
       "sources": [
         {
+          "title": "Rugby’s landmark concussion case enters crucial week: the key questions answered",
+          "link": "https://www.theguardian.com/sport/2026/jul/22/rugbys-landmark-concussion-case-enters-crucial-week-the-key-questions-answered",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "High Court leaves rugby brain injury case in balance",
+          "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "Rugby players seek new lawyers for brain injury cases against governing bodies",
           "link": "https://www.theguardian.com/sport/2026/jul/22/players-brain-injury-cases-rugby-league-rugby-union",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Rugby brain injury case reaches crisis point as judge retires to consider 95% strikeouts",
-          "link": "https://www.theguardian.com/sport/2026/jul/23/rugby-brain-injury-case-reaches-crisis-point-as-judge-retires-to-consider-95-strikeouts",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Dismissed solicitor is still acting for footballers in brain injury court case",
-          "link": "https://www.theguardian.com/sport/2026/jul/24/discarded-solicitor-still-acting-for-footballers-over-brin-injuries",
           "feedName": "Guardian Rugby Union"
         }
       ],
@@ -2160,6 +2164,34 @@
         {
           "title": "Siya: I'll know when it's time to retire",
           "link": "https://www.sarugbymag.co.za/siya-ill-know-when-its-time-to-retire/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-01",
+      "lastSeen": "2026-08-01",
+      "uses": 0
+    },
+    {
+      "id": "the-potential-cutting-of-dsfixx",
+      "subject": "The potential cutting of a Welsh professional region (Ospreys or Scarlets)",
+      "teams": [
+        391
+      ],
+      "resolution": "until the WRU confirms which of the two teams will be cut",
+      "sources": [
+        {
+          "title": "WRU confirms Scarlets or Ospreys will be cut",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c171w048jdgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "WRU confirm roadmap to axing one region as Ospreys or Scarlets face cut",
+          "link": "https://www.planetrugby.com/news/wru-confirm-roadmap-to-axing-one-region-as-ospreys-or-scarlets-face-cut",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Welsh rivals face fight for survival",
+          "link": "https://www.sarugbymag.co.za/welsh-rivals-face-fight-survival/",
           "feedName": "SA Rugby Magazine"
         }
       ],
