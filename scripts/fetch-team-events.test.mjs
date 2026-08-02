@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { normalizeEvent, buildTeamEvents } from "./fetch-team-events.mjs";
+import { normalizeEvent, buildTeamEvents, trackedCodeFor } from "./fetch-team-events.mjs";
 
 const NOW = new Date("2026-07-15T00:00:00Z").getTime();
 const ts = (iso) => Math.floor(new Date(iso).getTime() / 1000);
@@ -54,6 +54,52 @@ test("buildTeamEvents: unfinished entries never land in last; past-dated stale f
     NOW,
   );
   assert.deepEqual(IRE, { last: [], next: [] });
+});
+
+// --- exact-name guard (NZ tour spec, T2): lookalike sides must NEVER -------
+// --- resolve to the real nation --------------------------------------------
+
+test("trackedCodeFor: exact tracked names resolve; lookalike sides never do", () => {
+  assert.equal(trackedCodeFor("South Africa"), "RSA");
+  assert.equal(trackedCodeFor("New Zealand"), "NZL");
+  // The negative cases are the point of the guard.
+  for (const name of [
+    "South Africa A",
+    "South Africa XV",
+    "New Zealand XV",
+    "New Zealand A",
+    "Emerging Ireland",
+    "Junior Japan",
+    "France U20",
+    "Australia Under-20",
+    "England Women",
+    "Fiji Invitational",
+    "South Africa Development",
+    " South Africa", // whitespace is not the same name
+    "south africa",  // nor is a case variant — vendor names are exact
+  ]) {
+    assert.equal(trackedCodeFor(name), null, `${JSON.stringify(name)} must not resolve`);
+  }
+  assert.equal(trackedCodeFor(null), null);
+  assert.equal(trackedCodeFor("toString"), null); // prototype pollution guard
+});
+
+test("normalizeEvent: a lookalike opponent stays untracked with no code", () => {
+  const n = normalizeEvent(ev(7, "2026-08-07T17:10:00Z", "South Africa A", "New Zealand", 19, 31), "NZL");
+  assert.equal(n.opponent, "South Africa A");
+  assert.equal(n.opponentCode, null);
+  assert.equal(n.tracked, false);
+  assert.equal(n.homeAway, "A");
+  assert.equal(n.result, "W");
+});
+
+test("normalizeEvent: 'New Zealand XV' as the home side is not us — NZ's game reads as away", () => {
+  // If the guard failed, homeCode would be NZL and the real NZ side would be
+  // misread as home with the wrong score orientation.
+  const n = normalizeEvent(ev(8, "2026-08-11T17:10:00Z", "New Zealand XV", "New Zealand", 10, 40), "NZL");
+  assert.equal(n.homeAway, "A");
+  assert.equal(n.us, 40);
+  assert.equal(n.result, "W");
 });
 
 test("normalizeEvent: plain-number scores and ISO date fields also parse", () => {

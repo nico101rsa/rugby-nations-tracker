@@ -23,6 +23,25 @@ const TRACKED_NAMES = {
   Japan: "JPN", "New Zealand": "NZL", "South Africa": "RSA", Fiji: "FIJ",
 };
 
+// Exact-name guard for team resolution. Lookalike sides — "South Africa A",
+// "New Zealand XV", "Emerging Ireland", age-grade and women's teams — play on
+// tours and MUST never resolve to the real nation: one fuzzy hit would leak a
+// franchise-strength game into a nation's form record. The TRACKED_NAMES
+// lookup is already exact (own-property, no trimming, no substring), and the
+// lookalike patterns are belt-and-braces: even if someone later "improves"
+// matching with normalisation, these names still return null. All resolution
+// in this file goes through here — never index TRACKED_NAMES directly.
+const LOOKALIKE = [
+  /\s+(?:a|b|xv|development|invitational|legends|classic|president'?s\s+xv)$/i, // "South Africa A", "New Zealand XV"
+  /^(?:emerging|junior|young)\s+/i, // "Emerging Ireland", "Junior Japan"
+  /\b(?:u-?\d+|under[\s-]?\d+|women)\b/i, // "France U20", "Australia Women"
+];
+export function trackedCodeFor(name) {
+  if (typeof name !== "string") return null;
+  if (LOOKALIKE.some((re) => re.test(name))) return null;
+  return Object.prototype.hasOwnProperty.call(TRACKED_NAMES, name) ? TRACKED_NAMES[name] : null;
+}
+
 const scoreOf = (s) =>
   s == null ? null : typeof s === "number" ? s : s.current ?? s.display ?? null;
 
@@ -33,7 +52,7 @@ const isFinished = (e) =>
 // score/date shapes (score may be a number or {current,display}; date may be
 // a unix startTimestamp or an ISO string).
 export function normalizeEvent(e, teamCode) {
-  const homeCode = TRACKED_NAMES[e.homeTeam?.name] ?? null;
+  const homeCode = trackedCodeFor(e.homeTeam?.name);
   const home = homeCode === teamCode;
   const opp = home ? e.awayTeam : e.homeTeam;
   const us = scoreOf(home ? e.homeScore : e.awayScore);
@@ -47,8 +66,8 @@ export function normalizeEvent(e, teamCode) {
     date,
     league: e.tournament?.name ?? e.season?.name ?? null,
     opponent: opp?.name ?? null,
-    opponentCode: TRACKED_NAMES[opp?.name] ?? null,
-    tracked: (opp?.name ?? "") in TRACKED_NAMES,
+    opponentCode: trackedCodeFor(opp?.name),
+    tracked: trackedCodeFor(opp?.name) != null,
     homeAway: home ? "H" : "A",
     us: finished ? us : null,
     them: finished ? them : null,
@@ -121,7 +140,7 @@ async function resolveTeamIds(prev) {
     const events = schedBody.data?.events ?? schedBody.events ?? [];
     for (const e of events) {
       for (const t of [e.homeTeam, e.awayTeam]) {
-        const code = TRACKED_NAMES[t?.name];
+        const code = trackedCodeFor(t?.name);
         if (code && t?.id != null) ids[code] = t.id;
       }
     }
