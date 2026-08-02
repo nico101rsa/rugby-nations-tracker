@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-01T22:44:20.404Z",
+  "updatedAt": "2026-08-02T20:42:08.663Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 94,
+  "count": 101,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -1725,7 +1725,8 @@
       ],
       "firstSeen": "2026-07-30",
       "lastSeen": "2026-08-02",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-03"
     },
     {
       "id": "wales-regional-rugby-restructuring-z02s3v",
@@ -1755,23 +1756,23 @@
       "resolution": "until Ardie Savea joins the All Blacks squad and his replacement captaincy is settled",
       "sources": [
         {
+          "title": "'Ardie's absence exposes poor management'",
+          "link": "https://www.sarugbymag.co.za/ardies-absence-exposes-poor-management/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "All Blacks: Dave Rennie on ‘phenomenal’ Rassie Erasmus, ‘time out’ Ardie Savea and why Greatest Rivalry is ‘completely different to a World Cup’",
+          "link": "https://www.planetrugby.com/news/all-blacks-dave-rennie-on-phenomenal-rassie-erasmus-time-out-ardie-savea-and-why-greatest-rivalry-is-completely-different-to-a-world-cup",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "All Blacks squad: Dave Rennie names three uncapped players for Greatest Rivalry series as key men make timely returns",
           "link": "https://www.planetrugby.com/news/all-blacks-squad-dave-rennie-names-three-uncapped-players-for-greatest-rivalry-series-as-key-men-make-timely-returns",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Dave Rennie: Why Ardie Savea will arrive late in South Africa and who will be the All Blacks' stand-in tour captain",
-          "link": "https://www.planetrugby.com/news/all-blacks-dave-rennie-explains-why-ardie-savea-will-arrive-late-in-south-africa",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Three bolters in All Blacks squad, Savea rested",
-          "link": "https://www.sarugbymag.co.za/three-bolters-in-all-blacks-squad-savea-rested/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-07-30",
-      "lastSeen": "2026-07-30",
+      "lastSeen": "2026-08-03",
       "uses": 0
     },
     {
@@ -2030,13 +2031,23 @@
       "resolution": "until the All Blacks confirm whether Mo'unga will be added to the touring squad following his NPC appearance",
       "sources": [
         {
-          "title": "All Blacks: Richie Mo'unga set to become eligible for Greatest Rivalry tour after NPC selection",
-          "link": "https://www.planetrugby.com/news/all-blacks-richie-mounga-set-to-become-eligible-for-greatest-rivalry-tour-after-npc-selection",
+          "title": "Returning All Black Richie Mo'unga scores winner in provincial return despite 'shaky' start",
+          "link": "https://www.planetrugby.com/news/returning-all-black-richie-mounga-scores-winner-in-provincial-return-despite-shaky-start",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Mo'unga marks comeback in style",
+          "link": "https://www.sarugbymag.co.za/mounga-marks-comeback-style/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Richie Mo'unga coy on possible All Blacks return for Rugby's Greatest Rivalry tour",
+          "link": "https://www.planetrugby.com/news/richie-mounga-coy-on-possible-all-blacks-return-for-rugbys-greatest-rivalry-tour",
           "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-01",
-      "lastSeen": "2026-08-01",
+      "lastSeen": "2026-08-03",
       "uses": 0
     },
     {
@@ -2120,13 +2131,18 @@
       "resolution": "until Quade Cooper is either selected for a Wallabies squad or announces his professional retirement",
       "sources": [
         {
+          "title": "Quade Cooper backed by SA Rugby boss after stunning Wallabies hint ahead of Rugby World Cup",
+          "link": "https://www.planetrugby.com/news/quade-cooper-backed-by-sa-rugby-boss-after-stunning-wallabies-hint-ahead-of-rugby-world-cup",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Quade eyes World Cup comeback",
           "link": "https://www.sarugbymag.co.za/quade-eyes-world-cup-comeback/",
           "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-08-01",
-      "lastSeen": "2026-08-02",
+      "lastSeen": "2026-08-03",
       "uses": 0
     },
     {
@@ -2409,6 +2425,148 @@
       ],
       "firstSeen": "2026-08-02",
       "lastSeen": "2026-08-02",
+      "uses": 0
+    },
+    {
+      "id": "the-welsh-rugby-union-8ec2g0",
+      "subject": "The Welsh Rugby Union's decision to cut either Scarlets or Ospreys",
+      "teams": [
+        391
+      ],
+      "resolution": "until the WRU officially announces which of the two south-west Wales regions will be removed from the professional structure",
+      "sources": [
+        {
+          "title": "Scarlets vow to remain at heart of west Wales",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyeq2n79n9o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "WRU confirms Scarlets or Ospreys will be cut",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c171w048jdgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-03",
+      "lastSeen": "2026-08-03",
+      "uses": 0
+    },
+    {
+      "id": "kai-pratt-s-b-1bsk3oh",
+      "subject": "Kai Pratt's B-sample test results following an adverse doping finding",
+      "teams": [
+        467
+      ],
+      "resolution": "until the official results of Junior Springbok prop Kai Pratt's B-sample are released and a verdict is reached",
+      "sources": [
+        {
+          "title": "Junior Bok's anxious wait continues",
+          "link": "https://www.sarugbymag.co.za/junior-boks-anxious-wait-continues/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-03",
+      "lastSeen": "2026-08-03",
+      "uses": 0
+    },
+    {
+      "id": "scottish-rugby-s-search-164kx5q",
+      "subject": "Scottish Rugby's search for a new permanent chief executive",
+      "teams": [
+        390
+      ],
+      "resolution": "until Scottish Rugby appoints a permanent successor to the sacked Alex Williamson",
+      "sources": [
+        {
+          "title": "Scottish Rugby sacks chief executive Williamson after inquiry",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c4gk8jd4dv9o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-03",
+      "lastSeen": "2026-08-03",
+      "uses": 0
+    },
+    {
+      "id": "andr-esterhuizen-s-potential-7vuip2",
+      "subject": "André Esterhuizen's potential transition to number 8 for the Springboks",
+      "teams": [
+        467
+      ],
+      "resolution": "until André Esterhuizen is selected to start an international match at number 8 or the coaching staff ends the experiment",
+      "sources": [
+        {
+          "title": "Boks poised to unleash Giant at 8",
+          "link": "https://www.sarugbymag.co.za/boks-poised-unleash-giant-8/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-03",
+      "lastSeen": "2026-08-03",
+      "uses": 0
+    },
+    {
+      "id": "senior-master-cook-s-bkr9af",
+      "subject": "Senior Master Cook's ruling on the rugby concussion group litigation",
+      "teams": [
+        386,
+        391
+      ],
+      "resolution": "until Senior Master Cook delivers a judgment on the applications to strike out the legal claims of former players",
+      "sources": [
+        {
+          "title": "Dismissed solicitor is still acting for footballers in brain injury court case",
+          "link": "https://www.theguardian.com/sport/2026/jul/24/discarded-solicitor-still-acting-for-footballers-over-brin-injuries",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Rugby’s landmark concussion case enters crucial week: the key questions answered",
+          "link": "https://www.theguardian.com/sport/2026/jul/22/rugbys-landmark-concussion-case-enters-crucial-week-the-key-questions-answered",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "High Court leaves rugby brain injury case in balance",
+          "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-03",
+      "lastSeen": "2026-08-03",
+      "uses": 0
+    },
+    {
+      "id": "frans-malherbe-s-recovery-19hyt7h",
+      "subject": "Frans Malherbe's recovery and return to play for the Springboks",
+      "teams": [
+        467
+      ],
+      "resolution": "until Frans Malherbe makes his return to competitive professional rugby following his injury layoff",
+      "sources": [
+        {
+          "title": "Frans set for January comeback?",
+          "link": "https://www.sarugbymag.co.za/frans-set-january-comeback/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-03",
+      "lastSeen": "2026-08-03",
+      "uses": 0
+    },
+    {
+      "id": "the-absence-of-jerry-inzo7",
+      "subject": "The absence of Jerry Flannery and Tony Brown from the Springbok tour of Argentina",
+      "teams": [
+        467
+      ],
+      "resolution": "until coaches Jerry Flannery and Tony Brown rejoin the squad or the union provides an official reason for their continued absence",
+      "sources": [
+        {
+          "title": "Boks prep for Los Pumas duel without coaches",
+          "link": "https://www.sarugbymag.co.za/boks-prep-los-pumas-duel-without-coaches/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-03",
+      "lastSeen": "2026-08-03",
       "uses": 0
     }
   ]
