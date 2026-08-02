@@ -5,6 +5,7 @@ import { pathToFileURL } from "node:url";
 import { execSync } from "node:child_process";
 import { scheduleKickoffs } from "./static-fixtures.mjs";
 import { refresh, refreshNewsOnly, utcDateStr, datesForWindow } from "./fetch-nations.mjs";
+import { runTourProbe } from "./probe-tour.mjs";
 
 const PRE_MS = 15 * 60000;    // start polling 15 min before kickoff
 const POST_MS = 150 * 60000;  // keep polling 150 min after (play + HT + FT settle)
@@ -110,6 +111,16 @@ async function mainRun() {
     remaining: null, // first run of the process has no prior header; guard applies next time
   });
   console.log(`[refresh] mode=${decision.mode} — ${decision.reason} — dates=${decision.dates.join(",") || "none"}`);
+
+  // NZ-tour match days: one api-sports request after the final whistle to
+  // learn coverage + auto-fill the score (scripts/probe-tour.mjs — its own
+  // ledger caps spend at 1 request/day, independent of the mode above).
+  try {
+    const probe = await runTourProbe();
+    if (probe.probed) console.log(`[refresh] tour probe: found=${probe.found}`, probe.result ?? "");
+  } catch (e) {
+    console.warn(`[refresh] tour probe failed (non-fatal): ${e.message}`);
+  }
 
   if (decision.mode === "live") {
     // Live: poll in a loop, publishing each fetch, so one landed fire covers

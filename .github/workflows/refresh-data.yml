@@ -62,7 +62,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add nations.json public/nations.json scripts/.cache-games.json scripts/match-tries.json
+          git add nations.json public/nations.json scripts/.cache-games.json scripts/match-tries.json scripts/tour-results.json
           git diff --cached --quiet && echo "No data changes" && exit 0
           git commit -m "Data refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
           # Retry after a rebase rather than losing a push race. This job runs
