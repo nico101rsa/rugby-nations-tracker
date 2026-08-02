@@ -15,6 +15,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fetchEspnEvents, ESPN_TEAM_IDS } from "./fetch-espn-fixtures.mjs";
 import { fetchLeagueFixtures, loadRegistry } from "./fetch-league-fixtures.mjs";
 import { seededFixtures } from "./seed-competitions.mjs";
+import { tourFixtures, loadProbeResults } from "./seed-tour.mjs";
 
 const ID_TO_CODE = Object.fromEntries(Object.entries(ESPN_TEAM_IDS).map(([c, id]) => [String(id), c]));
 
@@ -191,6 +192,13 @@ async function main() {
   const seeded = registry ? seededFixtures(registry).filter((f) => new Date(f.date).getTime() >= now) : [];
   if (seeded.length) console.log(`seeded ${seeded.length} fixtures for competitions ESPN has not published`);
   fixtures.push(...seeded);
+  // The NZ tour midweek games (kind:"tour") — no vendor carries them, so no
+  // future-only filter: a played tour game persists with its score (from
+  // HAND_RESULTS or the match-day probe), because the seed IS the record.
+  // Appended after buildFixtures, so the series pass never sees them.
+  const tour = tourFixtures(await loadProbeResults());
+  console.log(`seeded ${tour.length} NZ-tour fixtures (${tour.filter((f) => f.score).length} with results)`);
+  fixtures.push(...tour);
   fixtures.sort((a, b) => new Date(a.date) - new Date(b.date) || (a.id < b.id ? -1 : 1));
   const out = { updatedAt: new Date().toISOString(), source: "espn", fixtures };
   await writeFile("fixtures.json", JSON.stringify(out, null, 1) + "\n");
