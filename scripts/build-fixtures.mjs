@@ -94,7 +94,15 @@ export function roundLookup(nations) {
 }
 
 // Pure core: raw ESPN events -> the published fixtures array.
-export function buildFixtures(events, names, nations) {
+//
+// `now` (default 0 = keep everything, so tests stay time-independent) drops
+// already-played games EXCEPT kind:"series" ones: the app's series scoreboard
+// is derived from fixtures.json series entries + scores, so a played test
+// must persist — with its final via `scores` ({ "espn-<id>": {home, away} },
+// see fillSeriesScores) — or the scoreboard would grey out games already won.
+// Played one-off tests and competition games still drop as before (the
+// registered-league fetch is future-only upstream anyway).
+export function buildFixtures(events, names, nations, { now = 0, scores = {} } = {}) {
   const findRound = roundLookup(nations);
   const out = [];
   for (const { event, leagueName, comp: registryComp, registered } of events) {
@@ -156,7 +164,48 @@ export function buildFixtures(events, names, nations) {
     });
   }
 
-  return out.sort((a, b) => new Date(a.date) - new Date(b.date) || (a.id < b.id ? -1 : 1));
+  // Past-game policy (see the function comment): series games persist and
+  // pick up their score; everything else played drops.
+  const kept = out.filter((e) => {
+    const played = new Date(e.date).getTime() < now;
+    if (played && e.comp.kind !== "series") return false;
+    const s = scores[e.id];
+    if (played && s) {
+      e.homeScore = s.home;
+      e.awayScore = s.away;
+    }
+    return true;
+  });
+
+  return kept.sort((a, b) => new Date(a.date) - new Date(b.date) || (a.id < b.id ? -1 : 1));
+}
+
+// Finals for already-played series games, from ESPN's keyless core API: each
+// competitor's `score` is a $ref on the raw event, so this costs 2 small
+// fetches per PLAYED series game (max 8 for a 4-test series — cheap, and
+// only after each test is actually played). Returns the buildFixtures
+// `scores` map keyed by our fixture id, oriented home/away as ESPN lists
+// them (the same orientation buildFixtures publishes).
+export async function fetchSeriesScores(playedSeriesEvents, fetchJson = defaultGetJson) {
+  const scores = {};
+  for (const { event } of playedSeriesEvents) {
+    const bySide = {};
+    for (const c of event.competitions?.[0]?.competitors ?? []) {
+      if (!c.score?.$ref) continue;
+      const s = await fetchJson(c.score.$ref).catch(() => null);
+      if (s?.value != null) bySide[c.homeAway] = s.value;
+    }
+    if (bySide.home != null && bySide.away != null) {
+      scores[`espn-${event.id}`] = { home: bySide.home, away: bySide.away };
+    }
+  }
+  return scores;
+}
+
+async function defaultGetJson(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+  return res.json();
 }
 
 // Per-team events + league-wide events -> one list, deduped by ESPN event id.
@@ -174,7 +223,8 @@ async function main() {
   // 24h grace so today's already-kicked-off matches survive the daily build —
   // the app owns the device-local "until the day ends" cutoff.
   const now = Date.now() - 24 * 3600 * 1000;
-  const { events, names } = await fetchEspnEvents(now);
+  // keepPast: played events must reach buildFixtures so series games persist.
+  const { events, names } = await fetchEspnEvents(now, { keepPast: true });
   // League-wide pass over every registered competition. Runs alongside the
   // per-team walk rather than replacing it: the per-team feed still supplies
   // one-off tests and series, which belong to no competition.
@@ -184,7 +234,23 @@ async function main() {
     : { events: [], names: new Map() };
   for (const [id, name] of league.names) if (!names.has(id)) names.set(id, name);
   const nations = JSON.parse(await readFile("public/nations.json", "utf8"));
-  const fixtures = buildFixtures(mergeSources(events, league.events), names, nations);
+  const merged = mergeSources(events, league.events);
+  let fixtures = buildFixtures(merged, names, nations, { now });
+
+  // Two-pass score fill for played series games: the first pass tells us
+  // which persisted series entries lack a final; their scores come from the
+  // raw events' competitor score $refs, then the (cheap, pure) build reruns
+  // with the map. No played series games -> no extra fetches at all.
+  const playedSeries = fixtures.filter(
+    (f) => f.comp.kind === "series" && new Date(f.date).getTime() < now && f.homeScore == null,
+  );
+  if (playedSeries.length) {
+    const byId = new Map(merged.map((e) => [`espn-${e.event?.id}`, e]));
+    const raw = playedSeries.map((f) => byId.get(f.id)).filter(Boolean);
+    const scores = await fetchSeriesScores(raw);
+    console.log(`filled finals for ${Object.keys(scores).length}/${playedSeries.length} played series games`);
+    fixtures = buildFixtures(merged, names, nations, { now, scores });
+  }
 
   // Seeded fixtures for competitions the vendor still has nothing for. They
   // are already in published shape, so they are appended rather than rebuilt,
@@ -197,7 +263,7 @@ async function main() {
   // HAND_RESULTS or the match-day probe), because the seed IS the record.
   // Appended after buildFixtures, so the series pass never sees them.
   const tour = tourFixtures(await loadProbeResults());
-  console.log(`seeded ${tour.length} NZ-tour fixtures (${tour.filter((f) => f.score).length} with results)`);
+  console.log(`seeded ${tour.length} NZ-tour fixtures (${tour.filter((f) => f.homeScore != null).length} with results)`);
   fixtures.push(...tour);
   fixtures.sort((a, b) => new Date(a.date) - new Date(b.date) || (a.id < b.id ? -1 : 1));
   const out = { updatedAt: new Date().toISOString(), source: "espn", fixtures };

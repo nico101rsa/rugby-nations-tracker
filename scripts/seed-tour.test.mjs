@@ -25,11 +25,16 @@ test("tour seed: 4 games, NZ tracked-away, franchise untracked-home, kind tour",
   );
 });
 
-test("tour seed: score null until played; probe result fills it", () => {
-  assert.equal(tourFixtures().every((f) => f.score === null), true);
+test("tour seed: homeScore/awayScore null until played; a probe result fills them", () => {
+  // Top-level homeScore/awayScore — the shape the app's live-status merge
+  // writes — NOT a nested score object.
+  assert.equal(tourFixtures().every((f) => f.homeScore === null && f.awayScore === null), true);
   const out = tourFixtures({ "seed-tour-nzl2026-sto": { home: 19, away: 31 } });
-  assert.deepEqual(out.find((f) => f.home.code === "STO").score, { home: 19, away: 31 });
-  assert.equal(out.find((f) => f.home.code === "SHA").score, null);
+  const sto = out.find((f) => f.home.code === "STO");
+  assert.equal(sto.homeScore, 19);
+  assert.equal(sto.awayScore, 31);
+  assert.equal("score" in sto, false);
+  assert.equal(out.find((f) => f.home.code === "SHA").homeScore, null);
 });
 
 test("tour seed: every fixture id has a HAND_RESULTS slot (the hand-edit fallback)", () => {

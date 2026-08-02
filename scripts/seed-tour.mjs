@@ -11,8 +11,9 @@
 // static-fixtures.mjs: seed the announced schedule from public sources.
 //
 // UNLIKE those seeds, no vendor record will ever supersede these — so this
-// module also owns the RESULTS path. Each fixture carries a `score` field
-// (null until played). It fills from, in order of precedence:
+// module also owns the RESULTS path. Each fixture carries top-level
+// `homeScore`/`awayScore` (the shape the app's live-status merge writes;
+// null until played). They fill from, in order of precedence:
 //   1. HAND_RESULTS below — a hand-edit after each game, the fallback of
 //      record (edit the null to { home, away } and let CI publish);
 //   2. scripts/tour-results.json — written by the match-day api-sports probe
@@ -74,8 +75,8 @@ export async function loadProbeResults(file = RESULTS_FILE) {
   }
 }
 
-// The four fixtures in published fixtures.json shape (+ `score`). Pure so
-// tests can inject probe results.
+// The four fixtures in published fixtures.json shape (+ homeScore/awayScore).
+// Pure so tests can inject probe results.
 //
 // ⚠️ NO FUTURE-ONLY FILTER APPLIES TO THESE. seed-competitions fixtures are
 // dropped once their date passes (ESPN owns the played record); these have
@@ -85,6 +86,9 @@ export async function loadProbeResults(file = RESULTS_FILE) {
 export function tourFixtures(probeResults = {}) {
   return GAMES.map(([slug, date, code, name, venue]) => {
     const id = `seed-tour-nzl2026-${slug}`;
+    // Hand edit beats probe (a human correction must stick). Both are stored
+    // as { home, away } from the fixture's perspective (home = franchise).
+    const result = HAND_RESULTS[id] ?? probeResults[id] ?? null;
     return {
       id,
       date,
@@ -94,8 +98,8 @@ export function tourFixtures(probeResults = {}) {
       comp: { ...TOUR_COMP },
       venue,
       seeded: true,
-      // Hand edit beats probe (a human correction must stick).
-      score: HAND_RESULTS[id] ?? probeResults[id] ?? null,
+      homeScore: result?.home ?? null,
+      awayScore: result?.away ?? null,
     };
   });
 }
