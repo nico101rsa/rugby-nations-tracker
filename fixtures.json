@@ -1,7 +1,31 @@
 {
- "updatedAt": "2026-08-02T04:21:26.775Z",
+ "updatedAt": "2026-08-02T13:18:11.016Z",
  "source": "espn",
  "fixtures": [
+  {
+   "id": "seed-tour-nzl2026-sto",
+   "date": "2026-08-07T17:10:00Z",
+   "timeTBC": false,
+   "home": {
+    "code": "STO",
+    "name": "Stormers",
+    "tracked": false
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "tour-nzl-2026",
+    "label": "TOUR",
+    "kind": "tour"
+   },
+   "venue": "Cape Town Stadium, Cape Town",
+   "seeded": true,
+   "homeScore": null,
+   "awayScore": null
+  },
   {
    "id": "espn-603458",
    "date": "2026-08-08T10:05:00.000Z",
@@ -50,6 +74,30 @@
    "venue": "Estadio José Amalfitani, Buenos Aires"
   },
   {
+   "id": "seed-tour-nzl2026-sha",
+   "date": "2026-08-11T17:10:00Z",
+   "timeTBC": false,
+   "home": {
+    "code": "SHA",
+    "name": "Sharks",
+    "tracked": false
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "tour-nzl-2026",
+    "label": "TOUR",
+    "kind": "tour"
+   },
+   "venue": "Kings Park, Durban",
+   "seeded": true,
+   "homeScore": null,
+   "awayScore": null
+  },
+  {
    "id": "espn-603459",
    "date": "2026-08-15T05:15:00.000Z",
    "timeTBC": false,
@@ -76,6 +124,30 @@
    }
   },
   {
+   "id": "seed-tour-nzl2026-bul",
+   "date": "2026-08-15T17:10:00Z",
+   "timeTBC": false,
+   "home": {
+    "code": "BUL",
+    "name": "Bulls",
+    "tracked": false
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "tour-nzl-2026",
+    "label": "TOUR",
+    "kind": "tour"
+   },
+   "venue": "Loftus Versfeld, Pretoria",
+   "seeded": true,
+   "homeScore": null,
+   "awayScore": null
+  },
+  {
    "id": "espn-603247",
    "date": "2026-08-22T15:10:00.000Z",
    "timeTBC": false,
@@ -100,6 +172,30 @@
     "game": 1,
     "of": 4
    }
+  },
+  {
+   "id": "seed-tour-nzl2026-lio",
+   "date": "2026-08-25T17:10:00Z",
+   "timeTBC": false,
+   "home": {
+    "code": "LIO",
+    "name": "Lions",
+    "tracked": false
+   },
+   "away": {
+    "code": "NZL",
+    "name": "New Zealand",
+    "tracked": true
+   },
+   "comp": {
+    "key": "tour-nzl-2026",
+    "label": "TOUR",
+    "kind": "tour"
+   },
+   "venue": "Ellis Park, Johannesburg",
+   "seeded": true,
+   "homeScore": null,
+   "awayScore": null
   },
   {
    "id": "espn-603248",

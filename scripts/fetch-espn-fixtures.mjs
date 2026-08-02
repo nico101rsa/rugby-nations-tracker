@@ -110,7 +110,13 @@ async function getJson(url) {
 // (each fixture appears in both teams' feeds): { events, names } where
 // events = [{ event, leagueName }] and names maps untracked ESPN team ids
 // to display names. Covers the current + next calendar year.
-export async function fetchEspnEvents(now = Date.now()) {
+//
+// `keepPast` retains already-played events too (build-fixtures needs them so
+// a played series test can persist with its score). It costs no extra
+// network: the per-team feed lists the whole season and each event is
+// fetched before its date is known either way — the cutoff only decides
+// retention. Default stays future-only for the team-events supplement path.
+export async function fetchEspnEvents(now = Date.now(), { keepPast = false } = {}) {
   const year = new Date(now).getUTCFullYear();
   const seasons = [year, year + 1];
   const eventCache = new Map(); // event $ref -> event JSON
@@ -127,7 +133,7 @@ export async function fetchEspnEvents(now = Date.now()) {
             event = await getJson(item.$ref);
             eventCache.set(item.$ref, event);
           }
-          if (!event || new Date(event.date).getTime() < now) continue;
+          if (!event || (!keepPast && new Date(event.date).getTime() < now)) continue;
           if (!byId.has(event.id)) byId.set(event.id, { event, leagueName });
           // Resolve display names for any untracked side once.
           for (const c of event.competitions?.[0]?.competitors ?? []) {

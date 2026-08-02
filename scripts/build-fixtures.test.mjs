@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildFixtures, compFor, roundLookup, mergeSources } from "./build-fixtures.mjs";
+import { buildFixtures, compFor, roundLookup, mergeSources, fetchSeriesScores } from "./build-fixtures.mjs";
 
 const ref = (id) => ({ $ref: `http://sports.core.api.espn.com/v2/sports/rugby/leagues/1/seasons/2026/teams/${id}?lang=en` });
 const ev = (id, iso, homeId, awayId, extra = {}) => ({
@@ -162,6 +162,78 @@ test("United States of America resolves to USA, not UNI", () => {
   const names = new Map([["11", "United States of America"]]);
   const out = buildFixtures([siteEv(6, "2027-10-05T10:45:00Z", 11, 5, RWC)], names, {});
   assert.equal(out[0].home.code, "USA");
+});
+
+// --- played-game persistence (NZ tour spec: series scoreboard) -------------
+
+// NOTE: no real SA-NZ test has been played yet (first is 22 Aug 2026) —
+// these tests FABRICATE a finished state to pin the behaviour.
+
+const NOW = new Date("2026-08-25T00:00:00Z").getTime(); // between tests 1 and 2
+
+test("a played series test persists with its score; future legs keep numbering", () => {
+  const events = [
+    ev(11, "2026-08-22T15:10:00Z", 5, 8), // RSA v NZL test 1 — played at NOW
+    ev(12, "2026-08-29T15:10:00Z", 5, 8), // test 2 — future
+    ev(13, "2026-09-12T21:00:00Z", 8, 5), // test 3 — future
+  ];
+  const scores = { "espn-11": { home: 19, away: 31 } };
+  const out = buildFixtures(events, NAMES, {}, { now: NOW, scores });
+  assert.equal(out.length, 3);
+  const g1 = out.find((e) => e.id === "espn-11");
+  assert.equal(g1.comp.kind, "series");
+  assert.deepEqual(g1.series, { label: "SA v NZ", game: 1, of: 3 });
+  assert.equal(g1.homeScore, 19); // RSA home — orientation preserved
+  assert.equal(g1.awayScore, 31);
+  // Future legs persist unscored, numbering intact.
+  assert.equal(out.find((e) => e.id === "espn-12").homeScore, undefined);
+  assert.deepEqual(out.find((e) => e.id === "espn-13").series, { label: "SA v NZ", game: 3, of: 3 });
+});
+
+test("a played series test persists even before its score is fetchable", () => {
+  const events = [
+    ev(11, "2026-08-22T15:10:00Z", 5, 8),
+    ev(12, "2026-08-29T15:10:00Z", 5, 8),
+  ];
+  const out = buildFixtures(events, NAMES, {}, { now: NOW });
+  assert.equal(out.length, 2);
+  assert.equal(out[0].homeScore, undefined);
+});
+
+test("played one-off tests and competition games still drop", () => {
+  const events = [
+    ev(21, "2026-08-01T14:00:00Z", 4, 55), // WAL v GEO one-off — played
+    ev(22, "2026-08-22T14:00:00Z", 5, 10, { leagueName: "The Rugby Championship" }), // played comp game
+    ev(23, "2026-09-05T14:00:00Z", 2, 55), // future SCO v GEO one-off — kept
+    // (23 is a different pair from 21 on purpose: a repeat WAL v GEO would
+    // legitimately fold into a 2-game series and persist.)
+  ];
+  const out = buildFixtures(events, NAMES, {}, { now: NOW });
+  assert.deepEqual(out.map((e) => e.id), ["espn-23"]);
+});
+
+test("default now=0 keeps everything — existing callers/tests are unaffected", () => {
+  const out = buildFixtures([ev(31, "2020-01-01T14:00:00Z", 4, 55)], NAMES, {});
+  assert.equal(out.length, 1);
+});
+
+test("fetchSeriesScores follows competitor score $refs, keyed by fixture id", async () => {
+  const raw = [{
+    event: {
+      id: "11",
+      competitions: [{
+        competitors: [
+          { homeAway: "home", score: { $ref: "http://x/score-home" } },
+          { homeAway: "away", score: { $ref: "http://x/score-away" } },
+        ],
+      }],
+    },
+  }];
+  const fetchJson = async (url) => ({ value: url.endsWith("home") ? 19 : 31 });
+  assert.deepEqual(await fetchSeriesScores(raw, fetchJson), { "espn-11": { home: 19, away: 31 } });
+  // A missing/failed score ref yields no entry rather than a half-score.
+  const broken = async () => { throw new Error("404"); };
+  assert.deepEqual(await fetchSeriesScores(raw, broken), {});
 });
 
 test("mergeSources dedupes by event id and lets the league-wide entry win", () => {
