@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-04T21:01:27.713Z",
+  "updatedAt": "2026-08-05T20:56:28.862Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 111,
+  "count": 114,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -973,30 +973,30 @@
     },
     {
       "id": "tom-s-albornoz-s-777nwu",
-      "subject": "Tomás Albornoz's misconduct charges for referee abuse",
+      "subject": "Tomás Albornoz's suspension following misconduct charges",
       "teams": [
         460
       ],
       "resolution": "until World Rugby announces the disciplinary hearing outcome and potential suspension",
       "sources": [
         {
-          "title": "World Rugby act on disgraceful Argentina v England scenes as Los Pumas star hit with 'misconduct charges'",
-          "link": "https://www.planetrugby.com/news/world-rugby-act-on-disgraceful-argentina-v-england-scenes-as-los-pumas-star-hit-with-misconduct-charges",
+          "title": "Tomás Albornoz banned after World Rugby misconduct charges for altercation with referee",
+          "link": "https://www.planetrugby.com/news/tomas-albornoz-banned-after-world-rugby-misconduct-charges-for-altercation-with-referee",
           "feedName": "Planet Rugby"
         },
         {
-          "title": "Los Pumas No 10 charged for referee abuse",
-          "link": "https://www.sarugbymag.co.za/los-pumas-no-10-charged-for-referee-abuse/",
+          "title": "Argentina’s Albornoz given four-match ban for intimidating referee after England defeat",
+          "link": "https://www.theguardian.com/sport/2026/aug/05/tomas-albornoz-four-match-ban-intimidating-referee-argentina-england-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Los Pumas flyhalf banned for intimidating ref",
+          "link": "https://www.sarugbymag.co.za/los-pumas-flyhalf-banned-for-intimidating-ref/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Nigel Owens calls for action after 'totally unacceptable' referee 'abuse' following Argentina's disallowed try decision against England",
-          "link": "https://www.planetrugby.com/news/nigel-owens-verdict-on-argentinas-disallowed-try-and-slams-referee-abuse",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-07-26",
-      "lastSeen": "2026-07-26",
+      "lastSeen": "2026-08-06",
       "uses": 0
     },
     {
@@ -1127,7 +1127,7 @@
         }
       ],
       "firstSeen": "2026-07-26",
-      "lastSeen": "2026-08-05",
+      "lastSeen": "2026-08-06",
       "uses": 0
     },
     {
@@ -1726,8 +1726,8 @@
       ],
       "firstSeen": "2026-07-30",
       "lastSeen": "2026-08-02",
-      "uses": 1,
-      "lastUsed": "2026-08-03"
+      "uses": 2,
+      "lastUsed": "2026-08-06"
     },
     {
       "id": "wales-regional-rugby-restructuring-z02s3v",
@@ -2495,7 +2495,7 @@
         }
       ],
       "firstSeen": "2026-08-03",
-      "lastSeen": "2026-08-03",
+      "lastSeen": "2026-08-06",
       "uses": 0
     },
     {
@@ -2583,7 +2583,7 @@
     },
     {
       "id": "henry-pollock-s-contract-1t0lhun",
-      "subject": "Henry Pollock's contract negotiations with Northampton Saints",
+      "subject": "Henry Pollock's contract negotiation and salary demands at Northampton Saints",
       "teams": [
         386
       ],
@@ -2606,7 +2606,7 @@
         }
       ],
       "firstSeen": "2026-08-04",
-      "lastSeen": "2026-08-04",
+      "lastSeen": "2026-08-06",
       "uses": 0
     },
     {
@@ -2818,7 +2818,86 @@
         }
       ],
       "firstSeen": "2026-08-05",
-      "lastSeen": "2026-08-05",
+      "lastSeen": "2026-08-06",
+      "uses": 0
+    },
+    {
+      "id": "the-future-of-the-oyrijc",
+      "subject": "The future of the Scarlets or Ospreys regarding the WRU plan to cut a Welsh team",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union makes a final decision on which team will be cut",
+      "sources": [
+        {
+          "title": "Scarlets vow to remain at heart of west Wales",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyeq2n79n9o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "WRU confirms Scarlets or Ospreys will be cut",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c171w048jdgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Scarlets chief Daniels dismisses Ospreys merger",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c39ep099pw0o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-06",
+      "lastSeen": "2026-08-06",
+      "uses": 0
+    },
+    {
+      "id": "the-legal-battle-between-mspdha",
+      "subject": "The legal battle between former players and rugby's governing bodies over concussion",
+      "teams": [
+        386,
+        388,
+        390,
+        391,
+        465,
+        467
+      ],
+      "resolution": "until the High Court concludes the legal proceedings regarding the brain injury claims",
+      "sources": [
+        {
+          "title": "Dismissed solicitor is still acting for footballers in brain injury court case",
+          "link": "https://www.theguardian.com/sport/2026/jul/24/discarded-solicitor-still-acting-for-footballers-over-brin-injuries",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Rugby’s landmark concussion case enters crucial week: the key questions answered",
+          "link": "https://www.theguardian.com/sport/2026/jul/22/rugbys-landmark-concussion-case-enters-crucial-week-the-key-questions-answered",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "High Court leaves rugby brain injury case in balance",
+          "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-06",
+      "lastSeen": "2026-08-06",
+      "uses": 0
+    },
+    {
+      "id": "search-for-a-new-1d141o",
+      "subject": "Search for a new Scotland Women head coach",
+      "teams": [
+        390
+      ],
+      "resolution": "until Scotland Rugby appoints a permanent successor to Sione Fukofuka",
+      "sources": [
+        {
+          "title": "'Family stress' forces Scotland boss Fukofuka to step down",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq89el4pz7do?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-06",
+      "lastSeen": "2026-08-06",
       "uses": 0
     }
   ]
