@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-07T00:49:53.301Z",
+  "updatedAt": "2026-08-07T20:28:47.223Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 119,
+  "count": 123,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -1128,8 +1128,8 @@
       ],
       "firstSeen": "2026-07-26",
       "lastSeen": "2026-08-06",
-      "uses": 1,
-      "lastUsed": "2026-08-07"
+      "uses": 2,
+      "lastUsed": "2026-08-08"
     },
     {
       "id": "the-disciplinary-sanction-against-y655a4",
@@ -1190,7 +1190,7 @@
     },
     {
       "id": "the-search-for-new-wn9yrm",
-      "subject": "The search for new investment in Gloucester Rugby",
+      "subject": "Gloucester Rugby's search for new external investment",
       "teams": [
         386
       ],
@@ -1203,7 +1203,7 @@
         }
       ],
       "firstSeen": "2026-07-26",
-      "lastSeen": "2026-08-02",
+      "lastSeen": "2026-08-08",
       "uses": 0
     },
     {
@@ -2059,7 +2059,7 @@
     },
     {
       "id": "high-court-ruling-on-pglr0d",
-      "subject": "High Court ruling on the strikeout application in rugby's concussion litigation",
+      "subject": "The High Court ruling on strikeout applications in the rugby brain injury litigation",
       "teams": [
         386,
         388,
@@ -2069,6 +2069,11 @@
       "resolution": "until the High Court issues a formal ruling on the 95% strikeout application and the future of the legal case",
       "sources": [
         {
+          "title": "Dismissed solicitor is still acting for footballers in brain injury court case",
+          "link": "https://www.theguardian.com/sport/2026/jul/24/discarded-solicitor-still-acting-for-footballers-over-brin-injuries",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Rugby brain injury case reaches crisis point as judge retires to consider 95% strikeouts",
           "link": "https://www.theguardian.com/sport/2026/jul/23/rugby-brain-injury-case-reaches-crisis-point-as-judge-retires-to-consider-95-strikeouts",
           "feedName": "Guardian Rugby Union"
@@ -2077,15 +2082,10 @@
           "title": "Rugby’s landmark concussion case enters crucial week: the key questions answered",
           "link": "https://www.theguardian.com/sport/2026/jul/22/rugbys-landmark-concussion-case-enters-crucial-week-the-key-questions-answered",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "High Court leaves rugby brain injury case in balance",
-          "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-01",
-      "lastSeen": "2026-08-01",
+      "lastSeen": "2026-08-08",
       "uses": 1,
       "lastUsed": "2026-08-04"
     },
@@ -2397,7 +2397,8 @@
       ],
       "firstSeen": "2026-08-02",
       "lastSeen": "2026-08-02",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-08"
     },
     {
       "id": "the-future-of-scotland-1apveuj",
@@ -2449,6 +2450,11 @@
       "resolution": "until the WRU officially announces which of the two south-west Wales regions will be removed from the professional structure",
       "sources": [
         {
+          "title": "Scarlets chief Daniels dismisses Ospreys merger",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c39ep099pw0o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "Scarlets vow to remain at heart of west Wales",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyeq2n79n9o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -2460,7 +2466,7 @@
         }
       ],
       "firstSeen": "2026-08-03",
-      "lastSeen": "2026-08-03",
+      "lastSeen": "2026-08-08",
       "uses": 0
     },
     {
@@ -2483,7 +2489,7 @@
     },
     {
       "id": "scottish-rugby-s-search-164kx5q",
-      "subject": "Scottish Rugby's search for a new permanent chief executive",
+      "subject": "The appointment of a permanent Scottish Rugby Chief Executive",
       "teams": [
         390
       ],
@@ -2496,7 +2502,7 @@
         }
       ],
       "firstSeen": "2026-08-03",
-      "lastSeen": "2026-08-06",
+      "lastSeen": "2026-08-08",
       "uses": 0
     },
     {
@@ -2727,12 +2733,17 @@
     },
     {
       "id": "henry-pollock-s-contract-1i6peb",
-      "subject": "Henry Pollock's contract negotiation and £1m salary demand",
+      "subject": "Henry Pollock's contract negotiations and £1m salary valuation",
       "teams": [
         386
       ],
       "resolution": "until Northampton Saints confirm whether they have reached a new salary agreement with Henry Pollock",
       "sources": [
+        {
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
         {
           "title": "Henry Pollock: Eddie Hearn 'demands' Northampton Saints make England superstar a 'seven-figure player'",
           "link": "https://www.planetrugby.com/news/henry-pollock-eddie-hearn-demands-northampton-saints-make-england-superstar-a-seven-figure-player",
@@ -2742,15 +2753,10 @@
           "title": "Pollock to demand £1m a year at Northampton - Hearn",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c05q1g9v2evo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "'Pollock's worth £1-million a year'",
-          "link": "https://www.sarugbymag.co.za/pollocks-worth-1-million-a-year/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-08-05",
-      "lastSeen": "2026-08-05",
+      "lastSeen": "2026-08-08",
       "uses": 0
     },
     {
@@ -2886,7 +2892,7 @@
     },
     {
       "id": "search-for-a-new-1d141o",
-      "subject": "The future of Scotland Women's head coach role",
+      "subject": "The appointment of a permanent Scotland Women head coach",
       "teams": [
         390,
         391
@@ -2910,7 +2916,7 @@
         }
       ],
       "firstSeen": "2026-08-06",
-      "lastSeen": "2026-08-07",
+      "lastSeen": "2026-08-08",
       "uses": 0
     },
     {
@@ -3018,7 +3024,8 @@
       ],
       "firstSeen": "2026-08-07",
       "lastSeen": "2026-08-07",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-08"
     },
     {
       "id": "codie-taylor-s-injury-14djpow",
@@ -3036,6 +3043,79 @@
       ],
       "firstSeen": "2026-08-07",
       "lastSeen": "2026-08-07",
+      "uses": 0
+    },
+    {
+      "id": "thomas-ramos-s-next-1c107is",
+      "subject": "Thomas Ramos's next club destination following his departure from Toulouse",
+      "teams": [
+        387
+      ],
+      "resolution": "until Thomas Ramos announces which club he will join for the 2027-28 season",
+      "sources": [
+        {
+          "title": "Ramos to quit Toulouse in bombshell move",
+          "link": "https://www.sarugbymag.co.za/ramos-quit-toulouse-bombshell-move/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-08",
+      "lastSeen": "2026-08-08",
+      "uses": 0
+    },
+    {
+      "id": "quade-cooper-s-bid-x9b255",
+      "subject": "Quade Cooper's bid for inclusion in the Australia 2027 Rugby World Cup squad",
+      "teams": [
+        461
+      ],
+      "resolution": "until the 2027 Wallabies World Cup squad is finalized",
+      "sources": [
+        {
+          "title": "Wallabies greats back Quade comeback",
+          "link": "https://www.sarugbymag.co.za/wallabies-greats-back-quade-comeback/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-08",
+      "lastSeen": "2026-08-08",
+      "uses": 0
+    },
+    {
+      "id": "codie-taylor-s-return-ab4bem",
+      "subject": "Codie Taylor's return to fitness and resumption of All Blacks captaincy",
+      "teams": [
+        465
+      ],
+      "resolution": "until Codie Taylor is named in a matchday 23 and his captaincy status is confirmed",
+      "sources": [
+        {
+          "title": "All Blacks sweat on injured skipper",
+          "link": "https://www.sarugbymag.co.za/blacks-sweat-injured-skipper/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-08",
+      "lastSeen": "2026-08-08",
+      "uses": 0
+    },
+    {
+      "id": "england-s-stance-on-zq7wc8",
+      "subject": "England's stance on walking off the pitch in Argentina due to potential racist abuse",
+      "teams": [
+        386,
+        460
+      ],
+      "resolution": "until the conclusion of the current Test tour in Argentina",
+      "sources": [
+        {
+          "title": "England rugby players may walk off pitch in Argentina if racist abuse is repeated",
+          "link": "https://www.theguardian.com/sport/2026/jul/17/england-rugby-players-argentina-racist-abuse-rugby-union-nations-championship",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-08",
+      "lastSeen": "2026-08-08",
       "uses": 0
     }
   ]
