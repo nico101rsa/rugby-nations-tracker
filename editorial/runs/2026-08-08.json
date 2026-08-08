@@ -1,19 +1,14 @@
 {
   "date": "2026-08-08",
   "counts": {
-    "editions": 11,
+    "editions": 12,
     "quiet": 3,
     "storyline": 3,
     "dataEdition": 0,
-    "failed": 1,
+    "failed": 0,
     "noLead": 2
   },
-  "failed": [
-    {
-      "team": "Scotland",
-      "reason": "fetch failed"
-    }
-  ],
+  "failed": [],
   "teams": [
     {
       "team": "Fiji",
@@ -22,15 +17,34 @@
       "storyline": {
         "subject": "Samoa's potential four-year international rugby ban following government withdrawal of support",
         "resolution": "until the outcome of the threatened World Rugby suspension and the resolution of the government funding dispute is finalized",
-        "recheckHits": 0
+        "recheckHits": 2
       },
       "dataAngle": null,
-      "heading": "Fiji's neighbours Samoa see their threatened international ban remain unresolved",
-      "kicker": "Suspension watch",
-      "body": "There have been no fresh updates in today's press regarding the potential four-year international rugby ban facing Pacific neighbours Samoa, following the government's withdrawal of financial support reported last week. The threat of a World Rugby suspension, which first emerged on 2 August, remains unresolved as the funding dispute between the union and local authorities continues. Fiji fans monitoring the regional landscape must wait for any official confirmation on how this crisis will impact the Pacific nations.",
+      "heading": "World Rugby denies issuing suspension ultimatum as Samoa funding dispute continues",
+      "kicker": "PACIFIC RUGBY",
+      "body": "The threat of a four-year international suspension hanging over Pacific neighbours Samoa has taken a fresh turn, with World Rugby denying they issued an ultimatum to the nation. While local media previously reported that the governing body threatened a ban following the Samoan government withdrawing its financial support, the global authority has moved to clarify their position. Despite the denial, the country's political blame game continues to roll on, leaving the long-term status of Samoan rugby unresolved as regional partners watch on.",
       "source": "SA Rugby Magazine",
-      "lead": null,
+      "lead": {
+        "candidate": 2,
+        "why": "It provides a major update on the threatened suspension of Fiji's Pacific rivals with World Rugby's official denial of an ultimatum."
+      },
       "candidates": [
+        {
+          "title": "Fiji Rugby defends scheduling after women's test match put between school games",
+          "score": 11.5,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Rugby League World Cup: FNRL helping Wests Tigers Fainu brothers prove their Fijian heritage",
+          "score": 6.2,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
         {
           "title": "Waratahs spoil Fijian Drua party to claim third straight Super Rugby Women’s title",
           "score": 5,
@@ -41,7 +55,7 @@
         },
         {
           "title": "Newcastle sign Fiji hooker Togiatama",
-          "score": 4.8,
+          "score": 4.1,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -49,26 +63,10 @@
         },
         {
           "title": "Libbie leads Bok Women in Fiji",
-          "score": 4.3,
+          "score": 3.5,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
-          ]
-        },
-        {
-          "title": "Pollock scores hat-trick as 11-try England thrash Fiji",
-          "score": 0.8,
-          "corroboration": 1,
-          "outlets": [
-            "bbc"
-          ]
-        },
-        {
-          "title": "Highlights: Fiji 24-39 Wales",
-          "score": 0.2,
-          "corroboration": 1,
-          "outlets": [
-            "bbc"
           ]
         }
       ]
@@ -79,18 +77,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "RFU expects 10 million pound loss after England's worst Six Nations campaign",
+      "heading": "RFU expects £10m loss after Steve Borthwick's England finished fifth",
       "kicker": "Financial blow",
-      "body": "The Rugby Football Union is forecasting a 10 million pound net loss for the financial year, hit hard by England's worst ever Six Nations performance. Steve Borthwick's side finished second bottom after losing four of their five matches, severely reducing the union's prize money. Despite the slump, RFU chief executive Bill Sweeney insisted the governing body has \"continued to perform in line with our plans despite significant headwinds,\" with rising sponsorship revenues expected to soften the blow.",
+      "body": "The Rugby Football Union is forecasting a £10m net loss for the 2025/26 financial year, driven by England's worst Six Nations campaign under Steve Borthwick. Finishing second bottom after losing four matches severely dented prize money, highlighting Twickenham's financial reliance on the men's senior side. Despite chief executive Bill Sweeney insisting the union 'continued to perform in line with our plans', the deficit would have been wider without a lucrative extra autumn Test against Australia. Meanwhile, sponsorship revenues rose by 50% since 2024.",
       "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 4,
-        "why": "The RFU's projected 10 million pound loss following England's disappointing Six Nations campaign represents a major institutional and financial development."
+        "why": "The RFU's projected £10m loss following England's worst-ever Six Nations campaign represents a major institutional and financial development."
       },
       "candidates": [
         {
           "title": "PREM Rugby signings XV: England, Wales and All Blacks aces lead star-studded side",
-          "score": 31.3,
+          "score": 29.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -98,7 +96,7 @@
         },
         {
           "title": "Ex-England prop Marler to become BBC's first celebrity Gladiator",
-          "score": 31.3,
+          "score": 29.5,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -106,7 +104,7 @@
         },
         {
           "title": "Argentina 24-31 England: Nations Championship rugby – as it happened",
-          "score": 29.4,
+          "score": 29.3,
           "corroboration": 3,
           "outlets": [
             "bbc",
@@ -116,7 +114,7 @@
         },
         {
           "title": "RFU expects £10m loss off the back of England’s worst Six Nations campaign",
-          "score": 24.3,
+          "score": 23.1,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -124,7 +122,7 @@
         },
         {
           "title": "'I feel incredibly fortunate' – Ex-England international Freddie Burns calls time on professional career",
-          "score": 24.3,
+          "score": 20.9,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -142,18 +140,15 @@
         "recheckHits": 6
       },
       "dataAngle": null,
-      "heading": "Thomas Ramos confirms Toulouse exit to join Top 14 rivals Racing 92",
-      "kicker": "Toulouse exit",
-      "body": "France fullback Thomas Ramos has confirmed his departure from Toulouse, agreeing to join Top 14 rivals Racing 92 at the end of the 2026-27 season. The announcement resolves speculation surrounding the international's long-term future. Reflecting on his decision, Ramos admitted, \"This decision was particularly difficult to make\" after his long tenure with the club. The fullback remains committed to Toulouse for the upcoming campaign before completing his move to Paris.",
+      "heading": "Thomas Ramos confirms shock Toulouse departure to sign for Racing 92",
+      "kicker": "Club Future",
+      "body": "France full-back Thomas Ramos has confirmed his shock decision to leave Toulouse and join rivals Racing 92. The bombshell transfer, which will see the international star depart at the end of the 2026-27 season, has stunned French rugby. Ramos admitted, 'This decision was particularly difficult to make', following his long association with Toulouse. His move marks a major domestic shake-up as France build towards their autumn campaign.",
       "source": "Planet Rugby",
-      "lead": {
-        "candidate": 1,
-        "why": "Thomas Ramos has officially confirmed his departure from Toulouse to join Top 14 rivals Racing 92."
-      },
+      "lead": null,
       "candidates": [
         {
           "title": "Eight-try SA U18 smash French",
-          "score": 19.3,
+          "score": 15.1,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -168,15 +163,15 @@
           ]
         },
         {
-          "title": "France Rugby vs. Fiji Kickoff Time, Lineups",
-          "score": 1.6,
+          "title": "Watch Japan vs. France Rugby Live: Les Bleus Visit Brave Blossoms In Round 3",
+          "score": 1.4,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "Watch Japan vs. France Rugby Live: Les Bleus Visit Brave Blossoms In Round 3",
+          "title": "Former France forward Paul Willemse retires from rugby after multiple concussions",
           "score": 1.4,
           "corroboration": 1,
           "outlets": [
@@ -199,45 +194,53 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Herbie Doyle scores brace but Ireland youth side loses to South Africa",
-      "kicker": "Age-grade defeat",
-      "body": "Ireland Under-18s opened their International Series campaign with a narrow 32-31 defeat to South Africa U18 A in Durbanville. Despite trailing 17-7 at the interval, the visitors launched a spirited second-half comeback. Hooker Herbie Doyle crossed twice, while Micheal Smyth and Matthew McCarthy also touched down to help Ireland seize a late 29-28 lead. However, replacement fly-half Travis Pheiffer slotted a late penalty to snatch victory for the hosts, leaving the Irish development squad empty-handed.",
+      "heading": "Herbie Doyle brace not enough as Ireland fall to South Africa A",
+      "kicker": "U18 international",
+      "body": "Ireland's U18 squad suffered a 32-31 defeat against South Africa A in Durbanville on Friday. Trailing 17-7 at the break, the visitors rallied with three second-half tries. Hooker Herbie Doyle scored a brace, while Micheal Smyth and Matthew McCarthy also crossed. David Nolan and Luke Coffey kicked two conversions each, with Coffey adding a penalty. That put Ireland 29-28 ahead, but a late penalty from replacement Travis Pheiffer snatched victory for the hosts.",
       "source": "SA Rugby Magazine",
       "lead": {
         "candidate": 1,
-        "why": "It covers the most recent match involving an Irish representative team, reporting on yesterday's age-grade fixture in South Africa."
+        "why": "Ireland's U18 squad suffered a dramatic 32-31 defeat to South Africa A, representing the freshest match action in today's coverage."
       },
       "candidates": [
         {
           "title": "SA U18 A edge Irish in thriller",
-          "score": 29.4,
+          "score": 23.8,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
           ]
         },
         {
-          "title": "Farrell rues Ireland errors as All Blacks extend unbeaten streak at Eden Park",
-          "score": 1.3,
+          "title": "Preview: Ireland braced for rugby's toughest Test in Auckland",
+          "score": 1.7,
           "corroboration": 1,
           "outlets": [
-            "guardian"
+            "search"
           ]
         },
         {
-          "title": "Highlights: New Zealand crush Ireland at Eden Park",
-          "score": 0.5,
+          "title": "Can Ireland Rugby Do What No One Has Done In 32 Years: Beat The All Blacks In Eden Park?",
+          "score": 1.5,
           "corroboration": 1,
           "outlets": [
-            "bbc"
+            "search"
           ]
         },
         {
-          "title": "Watch: Late drama as Ireland beat Australia in Sydney",
-          "score": 0.4,
+          "title": "Irish rugby to 'turn Chicago green' for New Zealand 'rematch' in November",
+          "score": 1.4,
           "corroboration": 1,
           "outlets": [
-            "bbc"
+            "search"
+          ]
+        },
+        {
+          "title": "Ireland Rugby: Player Ratings After Mixed Performance In Bonus Point Win Over Japan",
+          "score": 1.4,
+          "corroboration": 1,
+          "outlets": [
+            "search"
           ]
         }
       ]
@@ -249,27 +252,18 @@
       "storyline": {
         "subject": "Gloucester Rugby's ongoing investment talks",
         "resolution": "until the club confirms the outcome of negotiations with new investors",
-        "recheckHits": 0
+        "recheckHits": 2
       },
       "dataAngle": null,
-      "heading": "Gloucester Rugby investment negotiations remain stalled with no new updates reported",
+      "heading": "Gloucester Rugby secure no fresh breakthroughs in search for new investment",
       "kicker": "Investment talks",
-      "body": "Gloucester Rugby's search for new investment remains unresolved, with no further updates reported since club-led negotiations were first disclosed on 26 July. The Premiership side's ongoing talks with potential new financial backers have yielded no fresh announcements or concrete developments in today's press. While the initial discussions generated considerable speculation, the current silence indicates that negotiations remain ongoing behind closed doors with no resolution yet reached.",
+      "body": "Today's rugby press provides no new updates or verifiable details regarding Gloucester Rugby's ongoing investment talks. While negotiations with potential new backers remain open, neither the club nor today's search results have confirmed any fresh progress or resolved the discussions first reported on 26 July. We will continue to monitor the situation for any confirmed developments that could impact the club's financial outlook.",
       "source": "BBC Rugby Union",
       "lead": null,
       "candidates": [
         {
-          "title": "Australia 57-10 Italy: Nations Championship rugby union international – as it happened",
-          "score": 18.7,
-          "corroboration": 2,
-          "outlets": [
-            "guardian",
-            "search"
-          ]
-        },
-        {
           "title": "Northampton sign Italian international Neculai",
-          "score": 3.9,
+          "score": 3.4,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -277,15 +271,7 @@
         },
         {
           "title": "World Rugby bans Italy coach Gonzalo Quesada for 2 matches over referee comments",
-          "score": 1.7,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Italy's Cannone suspended for 4 weeks for head-butting in rugby's Nations Championship",
-          "score": 1.5,
+          "score": 1.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -293,7 +279,81 @@
         },
         {
           "title": "Italy prop Riccioni gets 2-week ban for sideline red card in Nations Championship rugby test",
-          "score": 1.3,
+          "score": 1.4,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "How to watch Italy vs. South Africa online for free",
+          "score": 1.1,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "World Rugby stamp down on ref-bashing as Italy boss slapped first ban after Shape of the Game agreement",
+          "score": 1,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Scotland",
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
+      "dataAngle": null,
+      "heading": "Sione Fukofuka steps down as Scotland Women head coach over family strain",
+      "kicker": "Coaching exit",
+      "body": "Scotland Women head coach Sione Fukofuka has unexpectedly stepped down from his post, citing the personal toll of being separated from his Australia-based family. The former United States boss, who took charge late last year, requested a release on compassionate grounds after his wife's parents fell ill. Forwards coach Dave Butcher takes over on an interim basis ahead of the upcoming WXV Global Series. Fukofuka explained that \"the stress and the strain on my family, who are back in Australia away from me, proved too much\" to continue.",
+      "source": "BBC Rugby Union",
+      "lead": {
+        "candidate": 1,
+        "why": "Sione Fukofuka's sudden departure as Scotland Women head coach due to family reasons is the most significant and widely covered story in the rugby press."
+      },
+      "candidates": [
+        {
+          "title": "'Family stress' forces Scotland boss Fukofuka to step down",
+          "score": 34.9,
+          "corroboration": 2,
+          "outlets": [
+            "bbc",
+            "search"
+          ]
+        },
+        {
+          "title": "Scotland Women’s 32-player squad announced for Vodafone Scotland WXV Series",
+          "score": 2.9,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Scotland appoint two new assistant coaches as another senior figure departs",
+          "score": 2.8,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Changes to Scotland Women coaching staff confirmed",
+          "score": 2.4,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Scotland Rugby Vs Fiji Rugby Lineups: Scots Name Team For Round 3 Match",
+          "score": 1.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -307,18 +367,26 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Sons of Ryan Jones and James Hook named in Ospreys squad",
-      "kicker": "Next generation",
-      "body": "The next generation of Welsh rugby has arrived at the Ospreys, with the sons of four Grand Slam winners named in the region's Under-18 squad for the upcoming Regional Age Grade competition. Playmaker Harisson Hook, son of James Hook, joins second-row Jacob Jones—son of former national captain Ryan Jones—in the pathway side. Prop Mason James and hooker Bobbie Bennett, sons of Paul James and Huw Bennett respectively, also feature. Both Jones and Bennett have also earned selection for the Wales Under-18 development squad.",
+      "heading": "Steve Tandy's Wales will reclaim 10th spot if Australia beat Japan",
+      "kicker": "Rankings update",
+      "body": "Steve Tandy's men could return to the world's top 10 today for the first time in more than two years without even taking the field. A Wallabies victory over Japan in Osaka would see the Brave Blossoms slip two places, elevating Wales to 10th. Tandy's side currently sit 11th, trailing Japan by a mere 0.04 points. It would represent a welcome climb for Wales, who plummeted as low as 14th last summer following a defeat in Kitakyushu.",
       "source": null,
       "lead": {
         "candidate": 3,
-        "why": "It highlights the famous rugby lineage entering the Welsh regional system with the sons of several national legends."
+        "why": "Wales are on the brink of returning to the world's top ten rankings today without playing, relying on Australia's result against Japan in Osaka."
       },
       "candidates": [
         {
-          "title": "South Africa 43-0 Wales: Nations Championship Rugby – as it happened",
-          "score": 29.3,
+          "title": "PREM Rugby signings XV: England, Wales and All Blacks aces lead star-studded side",
+          "score": 23.6,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Nations Championship highlights: South Africa 43-0 Wales",
+          "score": 16.1,
           "corroboration": 3,
           "outlets": [
             "bbc",
@@ -327,24 +395,8 @@
           ]
         },
         {
-          "title": "PREM Rugby signings XV: England, Wales and All Blacks aces lead star-studded side",
-          "score": 25,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "Sons of four Wales Grand Slam heroes named in Welsh team's squad for new season",
-          "score": 21.6,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
           "title": "Wales unveil new home and away jerseys as kit change made",
-          "score": 11.2,
+          "score": 8.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -352,7 +404,15 @@
         },
         {
           "title": "Henry Pollock warning issued, rugby club held to ransom and Wales star to return",
-          "score": 9.8,
+          "score": 7.2,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Wales set to be reinstated into world's top 10 as rankings update issued",
+          "score": 5.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -366,27 +426,26 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Tomás Albornoz banned for four matches for intimidating referee Angus Gardner",
-      "kicker": "Disciplinary ban",
-      "body": "Tomás Albornoz has received a four-match suspension after accepting a misconduct charge for intimidating referee Angus Gardner following the 31-24 defeat by England. The Pumas fly-half had to be restrained by teammates in Santiago del Estero after being denied a late try. Albornoz denied his actions were abusive or threatening, but his ban sidelines him against South Africa. Santiago Carreras consequently shifts from full-back to fly-half, while Pablo Matera captains a side missing several European-based regulars.",
+      "heading": "Tomás Albornoz banned for four matches after intimidating referee Angus Gardner",
+      "kicker": "Disciplinary blow",
+      "body": "The Pumas will be without Tomás Albornoz for Saturday's clash with South Africa after the fly-half received a four-match ban for misconduct. Albornoz accepted that his behaviour towards referee Angus Gardner after the 31-24 loss to England was intimidatory, having made contact with the official. Santiago Carreras shifts from fullback to fly-half for the fixture at Vélez, as the hosts look to move past the post-match controversies.",
       "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 2,
-        "why": "This is a major disciplinary sanction for a key player that forces immediate tactical reshuffling."
+        "why": "The fly-half's four-match ban for intimidating referee Angus Gardner is the dominant news ahead of the Springboks clash."
       },
       "candidates": [
         {
-          "title": "England rugby players may walk off pitch in Argentina if racist abuse is repeated",
-          "score": 33.4,
-          "corroboration": 2,
+          "title": "Argentina v Springboks prediction: Los Pumas to run Rassie's men 'closer' than expected before the Bomb Squad blows inexperienced hosts away",
+          "score": 54.5,
+          "corroboration": 1,
           "outlets": [
-            "guardian",
-            "search"
+            "planetrugby"
           ]
         },
         {
           "title": "Argentina’s Albornoz given four-match ban for intimidating referee after England defeat",
-          "score": 32.2,
+          "score": 30.2,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -394,26 +453,26 @@
         },
         {
           "title": "Boks brace for 'emotional' Argentina",
-          "score": 28.9,
+          "score": 24.6,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
+          ]
+        },
+        {
+          "title": "Is Argentina v South Africa on TV? Channel, time and how to watch",
+          "score": 24.3,
+          "corroboration": 1,
+          "outlets": [
+            "search"
           ]
         },
         {
           "title": "Carreras to pull strings for Los Pumas",
-          "score": 21.9,
+          "score": 19.6,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
-          ]
-        },
-        {
-          "title": "'A slap in the face' – Rassie Erasmus makes Argentina vow amid Greatest Rivalry talk",
-          "score": 21.5,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
           ]
         }
       ]
@@ -424,18 +483,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Les Kiss selects Ryan Lonergan and Declan Meredith to start against Japan",
+      "heading": "Les Kiss names Ryan Lonergan and Declan Meredith to face Japan",
       "kicker": "Selection call",
-      "body": "New Wallabies head coach Les Kiss begins his tenure in Osaka today, persisting with the inexperienced halves pairing of Ryan Lonergan and Declan Meredith. Despite the return to fitness of Carter Gordon, Kiss has opted for continuity for the Nations Championship clash. Prop Aidan Ross and lock Miles Amatosero earn their first Test starts, while Isaac Henry is poised for a debut. Kiss noted that selecting the matchday 23 was a \"real challenge\" after the squad \"pushed hard over the last fortnight.\"",
+      "body": "New head coach Les Kiss has backed the inexperienced halves pairing of Ryan Lonergan and Declan Meredith to start Saturday's Test against Japan in Osaka. It marks Kiss's first match in charge, with first starts handed to Aidan Ross and Miles Amatosero, while Hunter Paisami replaces the injured Len Ikitau. \"Every single player in the squad has pushed hard over the last fortnight to get us to this point, making selecting the matchday 23 a real challenge for the coaches,\" Kiss said.",
       "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 2,
-        "why": "The selection of an inexperienced halves pairing for Kiss's first Test is the primary selection talking point in today's coverage."
+        "why": "The selection of Lonergan and Meredith as the starting halves pairing for Les Kiss's debut Test in charge represents the most significant tactical and selection development today."
       },
       "candidates": [
         {
           "title": "Wallabies need to handle the heat as Les Kiss era begins in sweltering Japan | Jack Snape",
-          "score": 50.8,
+          "score": 43.5,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -443,7 +502,7 @@
         },
         {
           "title": "Inexperienced halves pair get nod for first Wallabies Test under new coach Les Kiss",
-          "score": 28,
+          "score": 25.8,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -451,7 +510,7 @@
         },
         {
           "title": "Wallabies team: No.999 to wait patiently from the bench as 'privilege and responsibility' issued to those in gold",
-          "score": 23.8,
+          "score": 20.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -459,7 +518,7 @@
         },
         {
           "title": "Rugby Transfers: Wallabies veterans return to Australia, England ace makes decision on future and Mike Catt lands fresh coaching role following Waratahs exit",
-          "score": 19.8,
+          "score": 16.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -467,7 +526,7 @@
         },
         {
           "title": "Japan vs Australia 2026 Lipovitan D Challenge Cup Match Preview",
-          "score": 12.7,
+          "score": 11.6,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -481,18 +540,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Eddie Jones leads Japan against Wallabies in sweltering 36C Osaka heat",
-      "kicker": "Test clash",
-      "body": "Japan pursue a historic first victory over Australia as the Brave Blossoms host the Wallabies in Hanazono today. With temperatures in Osaka forecast to reach 36C, Eddie Jones faces his former side in a Test marked by extreme humidity and the potential arrival of Typhoon Dolphin. The visitors, under new head coach Les Kiss, previously edged a narrow 19-15 win in 2025. Jones looks to exploit the conditions, while Wallabies' defensive coach Scott McLeod noted Japan \"hold onto the ball really well.\"",
+      "heading": "Eddie Jones targets historic first Japan victory over Wallabies in Osaka",
+      "kicker": "Wallabies clash",
+      "body": "Eddie Jones leads a refreshed Brave Blossoms side into Saturday's clash against Australia in Osaka, chasing Japan's first-ever victory over the Wallabies. Amid forecast temperatures of 36C at Hanazono Rugby Stadium and the looming threat of Typhoon Dolphin, Japan field a vastly altered squad from their narrow 19-15 defeat to Australia in Tokyo last year, with only 11 players retained in the matchday 23. Wallabies coach Les Kiss, taking charge of his first Test, has resisted major changes despite the extreme humidity.",
       "source": "Rugby Asia 247",
       "lead": {
         "candidate": 3,
-        "why": "The historic opportunity for a first win over Australia in extreme conditions dominates today's coverage."
+        "why": "It previews Japan's historic opportunity to claim their first-ever victory over Australia on home soil."
       },
       "candidates": [
         {
           "title": "Wallabies need to handle the heat as Les Kiss era begins in sweltering Japan | Jack Snape",
-          "score": 49.9,
+          "score": 45.9,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -501,7 +560,7 @@
         },
         {
           "title": "Rugby Transfers: World Cup-winning All Black named as Dave Rennie's Japan replacement, Ulster make double signing and Blues bolster ranks",
-          "score": 41.4,
+          "score": 35.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -509,7 +568,7 @@
         },
         {
           "title": "Japan vs Australia 2026 Lipovitan D Challenge Cup Match Preview",
-          "score": 36.3,
+          "score": 33.1,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -517,7 +576,7 @@
         },
         {
           "title": "Japan v Wallabies: How to watch Test in Australia, teams, fixtures and more",
-          "score": 18.1,
+          "score": 21.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -525,7 +584,7 @@
         },
         {
           "title": "Eddie Jones wants to coach first NRL Japan team, opens up on messy Wallabies exit",
-          "score": 14.5,
+          "score": 10.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -539,18 +598,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Dave Rennie launches throwback South Africa tour with opening Stormers fixture",
-      "kicker": "Tour launch",
-      "body": "The All Blacks have commenced their first full-scale tour of South Africa in 30 years, opening an eight-match itinerary with a provincial clash against the Stormers. Dave Rennie’s side carries significant momentum into the Republic following three straight Nations Championship wins, most recently accounting for Ireland 40-21. While legal disputes over the tour's commercial branding continue, the schedule features four matches against provincial outfits before the four-Test series against the world champion Springboks begins later this month.",
-      "source": "Guardian Rugby Union",
+      "heading": "Dave Rennie praises All Blacks character after victory over the Stormers",
+      "kicker": "Tour opener",
+      "body": "Head coach Dave Rennie praised New Zealand's character after the All Blacks overcame two yellow cards to defeat the Stormers 38-21 in Cape Town. Despite playing with 13 men at times, the visitors scored six tries to open their tour. Rennie noted that surviving the pressure highlights \"a lot of the character that the boys showed under a bit of pressure.\" Although outside centre Billy Proctor suffered a suspected shoulder injury, the squad now heads to Durban to face the Sharks.",
+      "source": "SA Rugby Magazine",
       "lead": {
-        "candidate": 1,
-        "why": "The launch of a rare eight-match throwback tour of South Africa is the dominant story in today's press."
+        "candidate": 5,
+        "why": "Dave Rennie's post-match reaction to the All Blacks' victory over the Stormers, highlighting their defensive character and Billy Proctor's injury."
       },
       "candidates": [
         {
           "title": "Springboks and All Blacks flex financial muscles with ‘Greatest Rivalry’ tour",
-          "score": 78.2,
+          "score": 74.4,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -559,7 +618,7 @@
         },
         {
           "title": "All Blacks legend 'confident' for Springboks series despite the 'million people' in Rassie Erasmus' squad",
-          "score": 51.5,
+          "score": 44,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -567,26 +626,26 @@
         },
         {
           "title": "All Blacks outcast: I don’t fit in Rens’ picture",
-          "score": 46.4,
+          "score": 40.3,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
           ]
         },
         {
-          "title": "Justin Marshall: All Blacks 'fluctuations' not 'rocket science' as there's a lack of 'trust' in one area",
-          "score": 41.8,
+          "title": "Rugby Transfers: World Cup-winning All Black named as Dave Rennie's Japan replacement, Ulster make double signing and Blues bolster ranks",
+          "score": 35.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "Rugby Transfers: World Cup-winning All Black named as Dave Rennie's Japan replacement, Ulster make double signing and Blues bolster ranks",
-          "score": 41.4,
+          "title": "Rennie: We got rewards from SA introduction",
+          "score": 34.5,
           "corroboration": 1,
           "outlets": [
-            "planetrugby"
+            "sarugbymag"
           ]
         }
       ]
@@ -597,18 +656,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Eben Etzebeth returns for Argentina clash with South Africa’s top ranking at stake",
-      "kicker": "Rankings risk",
-      "body": "Eben Etzebeth makes his injury comeback in Saturday’s test against Argentina in Buenos Aires, a fixture where the Springboks risk losing their world No. 1 status. While victory at the Estadio José Amalfitani offers zero rankings points, defeat could see New Zealand leapfrog South Africa before their upcoming series. Assistant coach Mzwandile Stick dismissed suggestions of a weakened Pumas side, noting \"nothing changes when it comes to our standard\" as the world champions brace for a collision against an emotional home crowd.",
+      "heading": "Eben Etzebeth and Siya Kolisi return for the Springboks against Argentina",
+      "kicker": "CAPTAIN'S RETURN",
+      "body": "Siya Kolisi returns to lead South Africa in tonight's test against Argentina at Vélez Sarsfield, marking his first appearance of the year following injury. The captain is among 13 changes made by Rassie Erasmus, who also welcomes back record cap-holder Eben Etzebeth and fly-half Sacha Feinberg-Mngomezulu to the starting XV. Assistant coach Mzwandile Stick expects an emotional challenge from Los Pumas, noting they are \"playing in the right areas\" and \"more disciplined than before.\" Only Aphelele Fassi and Cobus Reinach retain their spots from the Wales win.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 4,
-        "why": "It combines the immediate tactical news of Etzebeth’s return with the high-stakes rankings permutations of today's Test."
+        "candidate": 5,
+        "why": "The return of the national captain and the record cap-holder for a test match taking place today is the most significant news for a South African supporter."
       },
       "candidates": [
         {
           "title": "Springboks and All Blacks flex financial muscles with ‘Greatest Rivalry’ tour",
-          "score": 78.2,
+          "score": 74.4,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -616,8 +675,16 @@
           ]
         },
         {
+          "title": "Stormers v All Blacks: Winners and losers as Springbok hero 'puts injury hell behind him' while Dave Rennie left 'frustrated' by key area",
+          "score": 46.5,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
           "title": "Boks brace for 'emotional' Argentina",
-          "score": 52.6,
+          "score": 44.8,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -625,26 +692,18 @@
         },
         {
           "title": "All Blacks legend 'confident' for Springboks series despite the 'million people' in Rassie Erasmus' squad",
-          "score": 51.5,
+          "score": 44,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "World Rugby Rankings: How the Springboks could lose top spot before All Blacks series",
-          "score": 47.8,
+          "title": "Argentina v Springboks prediction: Los Pumas to run Rassie's men 'closer' than expected before the Bomb Squad blows inexperienced hosts away",
+          "score": 43.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
-          ]
-        },
-        {
-          "title": "Lose-lose for Boks in Buenos Aires",
-          "score": 38.5,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
           ]
         }
       ]

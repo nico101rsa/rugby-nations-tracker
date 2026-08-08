@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-07T20:28:47.223Z",
+  "updatedAt": "2026-08-08T08:28:35.130Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 123,
+  "count": 128,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -1112,26 +1112,6 @@
       "uses": 0
     },
     {
-      "id": "gloucester-rugby-s-ongoing-1czdi9a",
-      "subject": "Gloucester Rugby's ongoing investment talks",
-      "teams": [
-        386,
-        389
-      ],
-      "resolution": "until the club confirms the outcome of negotiations with new investors",
-      "sources": [
-        {
-          "title": "New investment talks ongoing says Gloucester CEO",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cn8nxpvzrg5o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-07-26",
-      "lastSeen": "2026-08-06",
-      "uses": 2,
-      "lastUsed": "2026-08-08"
-    },
-    {
       "id": "the-disciplinary-sanction-against-y655a4",
       "subject": "The disciplinary sanction against Argentina flyhalf Tomás Albornoz for referee abuse",
       "teams": [
@@ -2059,7 +2039,7 @@
     },
     {
       "id": "high-court-ruling-on-pglr0d",
-      "subject": "The High Court ruling on strikeout applications in the rugby brain injury litigation",
+      "subject": "The High Court’s ruling on the strikeout application in the landmark rugby brain injury litigation",
       "teams": [
         386,
         388,
@@ -2069,6 +2049,11 @@
       "resolution": "until the High Court issues a formal ruling on the 95% strikeout application and the future of the legal case",
       "sources": [
         {
+          "title": "High Court leaves rugby brain injury case in balance",
+          "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "Dismissed solicitor is still acting for footballers in brain injury court case",
           "link": "https://www.theguardian.com/sport/2026/jul/24/discarded-solicitor-still-acting-for-footballers-over-brin-injuries",
           "feedName": "Guardian Rugby Union"
@@ -2076,11 +2061,6 @@
         {
           "title": "Rugby brain injury case reaches crisis point as judge retires to consider 95% strikeouts",
           "link": "https://www.theguardian.com/sport/2026/jul/23/rugby-brain-injury-case-reaches-crisis-point-as-judge-retires-to-consider-95-strikeouts",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Rugby’s landmark concussion case enters crucial week: the key questions answered",
-          "link": "https://www.theguardian.com/sport/2026/jul/22/rugbys-landmark-concussion-case-enters-crucial-week-the-key-questions-answered",
           "feedName": "Guardian Rugby Union"
         }
       ],
@@ -2132,7 +2112,7 @@
     },
     {
       "id": "quade-cooper-s-bid-dffgx8",
-      "subject": "Quade Cooper's potential return to the Wallabies for the 2027 World Cup",
+      "subject": "Quade Cooper’s attempt to return to the Australia squad for the 2027 World Cup",
       "teams": [
         461
       ],
@@ -2155,7 +2135,7 @@
         }
       ],
       "firstSeen": "2026-08-01",
-      "lastSeen": "2026-08-07",
+      "lastSeen": "2026-08-08",
       "uses": 0
     },
     {
@@ -2360,7 +2340,7 @@
     },
     {
       "id": "wales-midfield-partnership-of-xkefh0",
-      "subject": "Wales' midfield partnership of Ben Thomas and Max Llewellyn",
+      "subject": "Warren Gatland’s long-term decision on the Ben Thomas and Max Llewellyn midfield partnership for Wales",
       "teams": [
         391
       ],
@@ -2373,7 +2353,7 @@
         }
       ],
       "firstSeen": "2026-08-02",
-      "lastSeen": "2026-08-02",
+      "lastSeen": "2026-08-08",
       "uses": 0
     },
     {
@@ -2397,7 +2377,7 @@
       ],
       "firstSeen": "2026-08-02",
       "lastSeen": "2026-08-02",
-      "uses": 1,
+      "uses": 2,
       "lastUsed": "2026-08-08"
     },
     {
@@ -2590,12 +2570,17 @@
     },
     {
       "id": "henry-pollock-s-contract-1t0lhun",
-      "subject": "Henry Pollock's contract negotiation and salary demands at Northampton Saints",
+      "subject": "Henry Pollock’s contract negotiations with Northampton Saints amid reported £1m salary demands",
       "teams": [
         386
       ],
       "resolution": "until Henry Pollock signs a new deal with Northampton or moves to a new club",
       "sources": [
+        {
+          "title": "Pollock scores hat-trick as 11-try England thrash Fiji",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/videos/cz0jv2y07m1o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
         {
           "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
@@ -2605,15 +2590,10 @@
           "title": "Henry Pollock: Eddie Hearn 'demands' Northampton Saints make England superstar a 'seven-figure player'",
           "link": "https://www.planetrugby.com/news/henry-pollock-eddie-hearn-demands-northampton-saints-make-england-superstar-a-seven-figure-player",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Pollock to demand £1m a year at Northampton - Hearn",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c05q1g9v2evo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-04",
-      "lastSeen": "2026-08-07",
+      "lastSeen": "2026-08-08",
       "uses": 0
     },
     {
@@ -3024,7 +3004,7 @@
       ],
       "firstSeen": "2026-08-07",
       "lastSeen": "2026-08-07",
-      "uses": 1,
+      "uses": 2,
       "lastUsed": "2026-08-08"
     },
     {
@@ -3112,6 +3092,142 @@
           "title": "England rugby players may walk off pitch in Argentina if racist abuse is repeated",
           "link": "https://www.theguardian.com/sport/2026/jul/17/england-rugby-players-argentina-racist-abuse-rugby-union-nations-championship",
           "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-08",
+      "lastSeen": "2026-08-08",
+      "uses": 0
+    },
+    {
+      "id": "the-survival-of-the-1hgr3p2",
+      "subject": "The survival of the Ospreys or Scarlets following the WRU's decision to cut a regional team",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union confirms which team will be discontinued or merged",
+      "sources": [
+        {
+          "title": "Scarlets chief Daniels dismisses Ospreys merger",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c39ep099pw0o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Scarlets vow to remain at heart of west Wales",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyeq2n79n9o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "WRU confirms Scarlets or Ospreys will be cut",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c171w048jdgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-08",
+      "lastSeen": "2026-08-08",
+      "uses": 0
+    },
+    {
+      "id": "the-search-for-a-1u67bim",
+      "subject": "The search for a new Scotland Women head coach following Sione Fukofuka’s resignation",
+      "teams": [
+        390
+      ],
+      "resolution": "until Scottish Rugby appoints a permanent successor to Sione Fukofuka",
+      "sources": [
+        {
+          "title": "Robbie Fergusson Leaves Hong Kong China 7s Programme – Joins as Head Coach of Glasgow Warriors Women",
+          "link": "https://www.rugbyasia247.com/robbie-fergusson-leaves-hong-kong-china-7s-programme-joins-as-head-coach-of-glasgow-warriors-women/",
+          "feedName": "Rugby Asia 247"
+        },
+        {
+          "title": "'Family stress' forces Scotland boss Fukofuka to step down",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq89el4pz7do?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-08",
+      "lastSeen": "2026-08-08",
+      "uses": 0
+    },
+    {
+      "id": "the-appointment-of-a-1a2ovpu",
+      "subject": "The appointment of a new Scottish Rugby chief executive following the sacking of Alex Williamson",
+      "teams": [
+        390
+      ],
+      "resolution": "until Scottish Rugby names a permanent CEO to replace Alex Williamson",
+      "sources": [
+        {
+          "title": "Scottish Rugby sacks chief executive Williamson after inquiry",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c4gk8jd4dv9o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-08",
+      "lastSeen": "2026-08-08",
+      "uses": 0
+    },
+    {
+      "id": "codie-taylor-s-injury-6dtlmt",
+      "subject": "Codie Taylor’s injury recovery and availability for the All Blacks' series against South Africa",
+      "teams": [
+        465,
+        467
+      ],
+      "resolution": "until the All Blacks confirm Codie Taylor's fitness for a matchday squad in the Greatest Rivalry series",
+      "sources": [
+        {
+          "title": "All Blacks sweat on injured skipper",
+          "link": "https://www.sarugbymag.co.za/blacks-sweat-injured-skipper/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-08",
+      "lastSeen": "2026-08-08",
+      "uses": 0
+    },
+    {
+      "id": "gloucester-rugby-s-ongoing-15zuyoh",
+      "subject": "Gloucester Rugby’s ongoing search for new investment under CEO Alex Brown",
+      "teams": [
+        386
+      ],
+      "resolution": "until Gloucester Rugby confirms a new investment deal or the termination of negotiations",
+      "sources": [
+        {
+          "title": "New investment talks ongoing says Gloucester CEO",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cn8nxpvzrg5o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-08",
+      "lastSeen": "2026-08-08",
+      "uses": 0
+    },
+    {
+      "id": "south-africa-s-status-el5koc",
+      "subject": "South Africa's status as the World Rugby number-one ranked team ahead of the All Blacks series",
+      "teams": [
+        460,
+        465,
+        467
+      ],
+      "resolution": "until the World Rugby rankings are updated following the Springboks' Test against Argentina",
+      "sources": [
+        {
+          "title": "World Rugby Rankings: How the Springboks could lose top spot before All Blacks series",
+          "link": "https://www.planetrugby.com/news/world-rugby-rankings-how-the-springboks-could-lose-top-spot-before-all-blacks-series",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Lose-lose for Boks in Buenos Aires",
+          "link": "https://www.sarugbymag.co.za/lose-lose-boks-buenos-aires/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Argentina v Springboks prediction: Los Pumas to run Rassie's men 'closer' than expected before the Bomb Squad blows inexperienced hosts away",
+          "link": "https://www.planetrugby.com/news/argentina-v-springboks-prediction-los-pumas-to-run-rassies-men-closer-than-expected",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-08",
