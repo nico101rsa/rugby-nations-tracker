@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-08-08T02:51:02.754Z",
+ "updatedAt": "2026-08-08T19:36:37.978Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -477,20 +477,6 @@
   "JPN": {
    "last": [
     {
-     "id": 14647585,
-     "date": "2025-09-14T21:35:00.000Z",
-     "league": "Pacific Nations Cup, Knockout Stage",
-     "opponent": "Tonga",
-     "opponentCode": null,
-     "tracked": false,
-     "homeAway": "A",
-     "us": 62,
-     "them": 24,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14694902,
      "date": "2025-09-21T01:35:00.000Z",
      "league": "Pacific Nations Cup, Knockout Stage",
@@ -615,9 +601,7 @@
      "result": "L",
      "tries": 2,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16715500,
      "date": "2026-08-08T10:05:00.000Z",
@@ -626,11 +610,14 @@
      "opponentCode": "AUS",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Hanazono Rugby Stadium, Osaka"
-    },
+     "us": 32,
+     "them": 35,
+     "result": "L",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "venue": "Queensland Country Bank Stadium, Townsville",
      "id": "espn-603459",
@@ -935,20 +922,6 @@
   "AUS": {
    "last": [
     {
-     "id": 14321527,
-     "date": "2025-09-27T05:05:00.000Z",
-     "league": "The Rugby Championship",
-     "opponent": "New Zealand",
-     "opponentCode": "NZL",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 24,
-     "them": 33,
-     "result": "L",
-     "tries": 3,
-     "cards": 1
-    },
-    {
      "id": 14572776,
      "date": "2025-10-04T09:45:00.000Z",
      "league": "The Rugby Championship",
@@ -1073,9 +1046,7 @@
      "result": "W",
      "tries": 9,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16715500,
      "date": "2026-08-08T10:05:00.000Z",
@@ -1084,11 +1055,14 @@
      "opponentCode": "JPN",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Hanazono Rugby Stadium, Osaka"
-    },
+     "us": 35,
+     "them": 32,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "venue": "Queensland Country Bank Stadium, Townsville",
      "id": "espn-603459",
@@ -1205,6 +1179,18 @@
      "them": null,
      "result": null,
      "venue": "Principality Stadium, Cardiff"
+    },
+    {
+     "id": 16248062,
+     "date": "2027-10-01T10:45:00.000Z",
+     "league": "World Cup, Pool A",
+     "opponent": "Hong Kong",
+     "opponentCode": null,
+     "tracked": false,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
     }
    ]
   },
@@ -1969,19 +1955,6 @@
    ],
    "next": [
     {
-     "id": 16702808,
-     "date": "2026-08-08T19:00:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Argentina",
-     "opponentCode": "ARG",
-     "tracked": true,
-     "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Estadio José Amalfitani, Buenos Aires"
-    },
-    {
      "id": 16651329,
      "date": "2026-08-22T15:00:00.000Z",
      "league": "International Friendlies",
@@ -2047,17 +2020,17 @@
      "result": null
     },
     {
-     "venue": "Allianz Stadium",
-     "id": "espn-603994",
-     "date": "2026-11-07T11:40Z",
-     "league": "Nations Championship",
+     "id": 16098076,
+     "date": "2026-11-07T18:00:00.000Z",
+     "league": "Nations Championship, Group Stage",
      "opponent": "Italy",
      "opponentCode": "ITA",
      "tracked": true,
      "homeAway": "A",
      "us": null,
      "them": null,
-     "result": null
+     "result": null,
+     "venue": "Allianz Stadium"
     },
     {
      "venue": "Stade de France, Saint-Denis",
@@ -2417,19 +2390,6 @@
    ],
    "next": [
     {
-     "id": 16702808,
-     "date": "2026-08-08T19:00:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "South Africa",
-     "opponentCode": "RSA",
-     "tracked": true,
-     "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Estadio José Amalfitani, Buenos Aires"
-    },
-    {
      "venue": "Estadio 23 de Agosto, San Salvador",
      "id": "espn-603460",
      "date": "2026-08-29T19:00Z",
@@ -2499,6 +2459,18 @@
      "date": "2027-10-04T08:45:00.000Z",
      "league": "World Cup, Pool C",
      "opponent": "Canada",
+     "opponentCode": null,
+     "tracked": false,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248065,
+     "date": "2027-10-10T04:15:00.000Z",
+     "league": "World Cup, Pool C",
+     "opponent": "Spain",
      "opponentCode": null,
      "tracked": false,
      "homeAway": "H",
