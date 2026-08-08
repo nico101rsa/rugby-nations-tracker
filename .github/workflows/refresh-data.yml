@@ -58,11 +58,24 @@ jobs:
       - name: Publish nations.json at site root
         run: cp public/nations.json nations.json
 
+      # The tour probe writes scores into scripts/tour-results.json, but the
+      # app reads them from fixtures.json — which otherwise only rebuilds in
+      # the daily team-events job (01:00 UTC). For a 17:10Z tour kickoff that
+      # meant a ~7.5h lag before the Stormers score reached the app
+      # (2026-08-07). Rebuild here whenever the probe recorded something new;
+      # build-fixtures is keyless ESPN, so the guard is about not hammering
+      # ESPN every 15 min, not quota.
+      - name: Rebuild fixtures.json if the tour probe recorded a result
+        run: |
+          if ! git diff --quiet scripts/tour-results.json; then
+            node scripts/build-fixtures.mjs
+          fi
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add nations.json public/nations.json scripts/.cache-games.json scripts/match-tries.json scripts/tour-results.json
+          git add nations.json public/nations.json scripts/.cache-games.json scripts/match-tries.json scripts/tour-results.json fixtures.json
           git diff --cached --quiet && echo "No data changes" && exit 0
           git commit -m "Data refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
           # Retry after a rebase rather than losing a push race. This job runs
