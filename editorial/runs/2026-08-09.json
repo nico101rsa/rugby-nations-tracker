@@ -1,14 +1,19 @@
 {
   "date": "2026-08-09",
   "counts": {
-    "editions": 12,
-    "quiet": 3,
-    "storyline": 2,
+    "editions": 11,
+    "quiet": 5,
+    "storyline": 4,
     "dataEdition": 1,
-    "failed": 0,
-    "noLead": 0
+    "failed": 1,
+    "noLead": 1
   },
-  "failed": [],
+  "failed": [
+    {
+      "team": "South Africa",
+      "reason": "fact-check failed after 3 revisions: The source pack indicates the All Blacks won the match 38-21, not the Stormers."
+    }
+  ],
   "teams": [
     {
       "team": "Fiji",
@@ -16,18 +21,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Fijian forward Saimoni Vunilagi dies in Japan from suspected heatstroke",
-      "kicker": "Tragic news",
-      "body": "Fijian back rower Saimoni Vunilagi has tragically passed away in Japan at the age of 26. His club, Kyuden Voltex, confirmed that Vunilagi died in a Fukuoka hospital on Friday following a training session where he suffered severe symptoms of suspected heatstroke. The Fukuoka-based second-division side, along with Japan Rugby League One, expressed deep devastation. The forward, who previously represented top-flight Tokyo Sungoliath, had only joined his new club last month, with Kyushu KV staff praising his generous spirit.",
+      "heading": "Fijian back-rower Saimoni Vunilagi dies of suspected heatstroke in Japan",
+      "kicker": "Tragic loss",
+      "body": "Fijian back-rower Saimoni Vunilagi has died at the age of 26 following a training session in Japan. His club, Kyuden Voltex, confirmed the forward passed away on Friday after showing symptoms of severe heatstroke during practice earlier in the week in Fukuoka, where temperatures reached 35C. The giant back-rower, who previously represented Tokyo Sungoliath in Japan Rugby League One, had only recently joined the second-division side, who expressed deep devastation.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The tragic passing of Fijian forward Saimoni Vunilagi in Japan has drawn widespread coverage and condolences across the rugby world."
+        "why": "The tragic and sudden death of Fijian forward Saimoni Vunilagi in Japan is the most prominent and widely reported story."
       },
       "candidates": [
         {
           "title": "Fijian Vunilagi dies in Japan from suspected heatstroke",
-          "score": 113.4,
+          "score": 111.4,
           "corroboration": 3,
           "outlets": [
             "bbc",
@@ -37,7 +42,7 @@
         },
         {
           "title": "Saimoni Vunilagi dead at 26: Fiji rugby ace dies of suspected heatstroke after training session with club ‘devastated’",
-          "score": 18.8,
+          "score": 24.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -45,15 +50,7 @@
         },
         {
           "title": "Fiji Rugby defends scheduling after women's test match put between school games",
-          "score": 12.2,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Rugby League World Cup: FNRL helping Wests Tigers Fainu brothers prove their Fijian heritage",
-          "score": 6.7,
+          "score": 11.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -66,53 +63,56 @@
           "outlets": [
             "guardian"
           ]
+        },
+        {
+          "title": "Newcastle sign Fiji hooker Togiatama",
+          "score": 3.5,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
+          ]
         }
       ]
     },
     {
       "team": "England",
-      "quiet": false,
-      "rung": "news",
-      "storyline": null,
+      "quiet": true,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "Henry Pollock’s contract negotiations with Northampton Saints amid reported £1m salary demands",
+        "resolution": "until Henry Pollock signs a new deal with Northampton or moves to a new club",
+        "recheckHits": 5
+      },
       "dataAngle": null,
-      "heading": "Tomás Albornoz receives four-match ban for intimidating referee after England victory",
-      "kicker": "Disciplinary fallout",
-      "body": "The fallout from England's controversial 31-24 victory in Santiago del Estero has culminated in a four-match ban for Pumas fly-half Tomás Albornoz. A disciplinary committee suspended Albornoz after he admitted to intimidating referee Angus Gardner following the final whistle. The fly-half, who had to be restrained by teammates, was incensed after being denied a last-gasp try that would have given him a conversion to draw the match. The decision secured a much-needed victory for Steve Borthwick's side, while Albornoz will now miss Argentina’s Test against South Africa.",
-      "source": "Guardian Rugby Union",
+      "heading": "Henry Pollock and Northampton Saints remain in contract negotiation stand-off stalemate",
+      "kicker": "Contract impasse",
+      "body": "Negotiations between Henry Pollock and Northampton Saints remain unresolved following reports earlier this week that the England flanker’s camp is holding out for a £1 million annual salary. Despite speculation surrounding his future at the club, there have been no confirmed developments since the initial reporting of the seven-figure demand. The standoff continues to draw significant attention as stakeholders debate whether the financial package requested is sustainable for a Premiership side, leaving the young international’s immediate club future uncertain.",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 3,
-        "why": "The disciplinary fallout from England's recent victory over Argentina represents the most competitive, talkable storyline today."
+        "candidate": 4,
+        "why": "The ongoing negotiations regarding Henry Pollock remain the most significant unresolved personnel matter for English rugby."
       },
       "candidates": [
         {
-          "title": "Argentina 24-31 England: Nations Championship rugby – as it happened",
-          "score": 29.4,
-          "corroboration": 3,
-          "outlets": [
-            "bbc",
-            "guardian",
-            "search"
-          ]
-        },
-        {
           "title": "'I feel incredibly fortunate' – Ex-England international Freddie Burns calls time on professional career",
-          "score": 19.1,
+          "score": 18.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "Argentina’s Albornoz given four-match ban for intimidating referee after England defeat",
-          "score": 16,
-          "corroboration": 1,
+          "title": "Argentina 24-31 England: Nations Championship rugby – as it happened",
+          "score": 18.6,
+          "corroboration": 2,
           "outlets": [
+            "bbc",
             "guardian"
           ]
         },
         {
           "title": "Ex-England prop Marler to become BBC's first celebrity Gladiator",
-          "score": 16,
+          "score": 15.7,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -120,10 +120,18 @@
         },
         {
           "title": "Rugby Transfers: Wallabies veterans return to Australia, England ace makes decision on future and Mike Catt lands fresh coaching role following Waratahs exit",
-          "score": 11.8,
+          "score": 11.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
+          ]
+        },
+        {
+          "title": "RFU expects £10m loss off the back of England’s worst Six Nations campaign",
+          "score": 5.6,
+          "corroboration": 1,
+          "outlets": [
+            "guardian"
           ]
         }
       ]
@@ -133,23 +141,20 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "Thomas Ramos' move from Toulouse",
-        "resolution": "until his departure is finalized at the end of the 2026-27 season",
-        "recheckHits": 6
+        "subject": "Thomas Ramos's next club destination following his departure from Toulouse",
+        "resolution": "until Thomas Ramos announces which club he will join for the 2027-28 season",
+        "recheckHits": 2
       },
       "dataAngle": null,
-      "heading": "Superstar Thomas Ramos confirms departure from Toulouse to join Racing 92",
-      "kicker": "Transfer bombshell",
-      "body": "France fullback Thomas Ramos has confirmed his departure from Toulouse to join Top 14 rivals Racing 92 at the end of the 2026-27 season. Describing the move as \"particularly difficult to make\", the superstar ends a career-long association with the red and black to seek a new challenge. Toulouse officials verified the bombshell transfer following Friday's reports, marking a significant shift for the national team's primary goal-kicker. Elsewhere, the Under-18s suffered a heavy 52-7 defeat against South Africa in Durbanville on Friday.",
-      "source": "Planet Rugby",
-      "lead": {
-        "candidate": 5,
-        "why": "The confirmed exit of a mainstay player from the nation's most successful club to a direct rival is the weekend's most significant domestic story."
-      },
+      "heading": "Thomas Ramos confirms departure from Toulouse to join Racing 92 squad",
+      "kicker": "Transfer news",
+      "body": "Thomas Ramos is set to depart Toulouse for Racing 92, bringing an end to his long tenure at the club. Following the initial speculation surrounding his future, recent reports have confirmed the fullback’s move to the Parisian side. Ramos has previously described the decision to leave as particularly difficult to make. This high-profile switch marks a significant change for the French international as he prepares to transition into a new chapter of his professional career ahead of the 2027-28 season.",
+      "source": "SA Rugby Magazine",
+      "lead": null,
       "candidates": [
         {
           "title": "Eight-try SA U18 smash French",
-          "score": 12.8,
+          "score": 12.2,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -194,31 +199,31 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "The legal action by rugby players against governing bodies over brain injuries",
-        "resolution": "until the High Court reaches a final decision on the strikeout application for the concussion lawsuit",
-        "recheckHits": 6
+        "subject": "The ongoing High Court legal action regarding rugby concussion claims",
+        "resolution": "until the High Court reaches a verdict or resolves the status of the strikeout applications",
+        "recheckHits": 0
       },
       "dataAngle": null,
-      "heading": "Ireland U18 suffer narrow defeat against South Africa in series opener",
+      "heading": "Ireland Under-18s suffer narrow defeat against South Africa in thriller",
       "kicker": "U18 International Series",
-      "body": "Ireland’s U18s opened their international series with a painful 32-31 defeat to South Africa U18 A at Hoërskool Durbanville on Friday. Despite trailing at half-time, Ireland surged back in the second period, with hooker Herbie Doyle crossing for a brace of tries to secure a late lead. However, the hosts regained the advantage in the dying minutes when replacement flyhalf Travis Pheiffer slotted a decisive penalty, leaving the Irish side just one point short at the final whistle.",
+      "body": "Ireland’s Under-18 side fell to a 32-31 defeat against South Africa U18 A in the opening match of their International Series on Friday. Despite a spirited performance featuring a brace of tries from hooker Herbie Doyle and further scores from Micheal Smyth and Matthew McCarthy, the visitors were unable to hold a late lead. A penalty goal from replacement flyhalf Travis Pheiffer proved decisive, securing the win for the hosts at Hoërskool Durbanville.",
       "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "It is the only fresh, direct result involving an Irish side from this week's coverage."
+        "why": "The U18 team's narrow loss to South Africa is the only fresh, actual event reported today."
       },
       "candidates": [
         {
           "title": "SA U18 A edge Irish in thriller",
-          "score": 20.9,
+          "score": 20,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
           ]
         },
         {
-          "title": "Can Ireland Rugby Do What No One Has Done In 32 Years: Beat The All Blacks In Eden Park?",
-          "score": 1.7,
+          "title": "Preview: Ireland braced for rugby's toughest Test in Auckland",
+          "score": 1.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -233,15 +238,15 @@
           ]
         },
         {
-          "title": "Andy Farrell signs Ireland rugby contract through 2031",
-          "score": 1.4,
+          "title": "Can Ireland Rugby Do What No One Has Done In 32 Years: Beat The All Blacks In Eden Park?",
+          "score": 1.5,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "Ireland Rugby: Player Ratings After Mixed Performance In Bonus Point Win Over Japan",
+          "title": "Predicting Ireland's First-Choice 23 For The 2027 Rugby World Cup",
           "score": 1.3,
           "corroboration": 1,
           "outlets": [
@@ -256,18 +261,18 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "ranking",
-      "heading": "Ion Neculai joins Northampton Saints following five seasons at Zebre Parma",
+      "heading": "Ion Neculai joins Northampton Saints after leaving Italian side Zebre",
       "kicker": "Transfer news",
-      "body": "Italian international Ion Neculai has signed for Northampton Saints after completing five seasons with Zebre Parma. The 25-year-old tight-head prop, who has earned four senior caps for Italy, moves to the English Premiership champions ahead of the new campaign. Saints director of rugby Phil Dowson described the forward as a \"very physical prop who enjoys the tough side of the game.\" Neculai most recently featured for the Azzurri during their Nations Championship match against Australia in Perth.",
+      "body": "Italian international prop Ion Neculai has signed for Northampton Saints following five seasons at Zebre Parma. The 25-year-old, who has earned four senior caps for his country, most recently featured off the bench against Australia in the Nations Championship. Saints director of rugby Phil Dowson described the tight-head as a very physical prop who enjoys the tough side of the game. Neculai has already linked up with his new squad for pre-season training ahead of the upcoming campaign.",
       "source": null,
       "lead": {
         "candidate": 1,
-        "why": "Northampton signing Ion Neculai is the only fresh development in the current press cycle."
+        "why": "The signing of a current Italian international by the reigning Premiership champions is the most significant confirmed news."
       },
       "candidates": [
         {
           "title": "Northampton sign Italian international Neculai",
-          "score": 3.2,
+          "score": 3.1,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -283,7 +288,7 @@
         },
         {
           "title": "Italy's Cannone suspended for 4 weeks for head-butting in rugby's Nations Championship",
-          "score": 1.3,
+          "score": 1.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -291,7 +296,7 @@
         },
         {
           "title": "Italy prop Riccioni gets 2-week ban for sideline red card in Nations Championship rugby test",
-          "score": 1.2,
+          "score": 1.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -313,18 +318,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Sione Fukofuka steps down as Scotland Women head coach citing stress",
+      "heading": "Sione Fukofuka resigns as Scotland Women head coach due to stress",
       "kicker": "Coaching upheaval",
-      "body": "Sione Fukofuka has resigned as Scotland Women head coach due to the personal strain of living apart from his family in Australia. Forwards coach Dave Butcher will lead the team on an interim basis as they prepare for the upcoming WXV Global Series. The union has also confirmed the departure of senior assistant Ioan Cunningham, with Chris Laidlaw and Tom Luke joining the coaching ticket to support the transition ahead of next month's home fixtures.",
+      "body": "Sione Fukofuka has stepped down as Scotland Women head coach, citing the personal strain of living away from his family in Australia. Forwards coach Dave Butcher will lead the team on an interim basis for the upcoming WXV Global Series. The news follows a broader reshuffle within the coaching set-up, with senior assistant Ioan Cunningham also departing the organisation. Scottish Rugby confirmed that Chris Laidlaw and Tom Luke have been appointed as assistant coaches to support Butcher during this transition period.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The sudden departure of a head coach is the most significant news currently affecting the Scotland national set-up."
+        "why": "The departure of a national head coach is the most significant development in the current Scottish rugby landscape."
       },
       "candidates": [
         {
           "title": "'Family stress' forces Scotland boss Fukofuka to step down",
-          "score": 34.7,
+          "score": 34.6,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -333,14 +338,6 @@
         },
         {
           "title": "Scotland Women’s 32-player squad announced for Vodafone Scotland WXV Series",
-          "score": 2.6,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Scotland appoint two new assistant coaches as another senior figure departs",
           "score": 2.5,
           "corroboration": 1,
           "outlets": [
@@ -348,8 +345,16 @@
           ]
         },
         {
+          "title": "Scotland appoint two new assistant coaches as another senior figure departs",
+          "score": 2.3,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
           "title": "Changes to Scotland Women coaching staff confirmed",
-          "score": 2.2,
+          "score": 2.1,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -367,22 +372,26 @@
     },
     {
       "team": "Wales",
-      "quiet": false,
-      "rung": "news",
-      "storyline": null,
+      "quiet": true,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "The Welsh Rugby Union's decision to cut either Scarlets or Ospreys",
+        "resolution": "until the WRU officially announces which of the two south-west Wales regions will be removed from the professional structure",
+        "recheckHits": 0
+      },
       "dataAngle": null,
-      "heading": "Teenage Cardiff hooker Tom Howe prioritises club debut over national hype",
-      "kicker": "Prospect Watch",
-      "body": "Cardiff academy hooker Tom Howe is focusing on his domestic development rather than recent speculation regarding a senior Wales call-up. Despite an impressive showing at the Junior World Championship, the 18-year-old remains grounded as he transitions to professional training. Former Wales hooker Scott Baldwin noted that Tandy has already identified the teenager as a prospect for the next 18 months, yet Howe insists he is simply looking to learn from his peers while working toward a senior club debut.",
+      "heading": "Tom Howe prioritises Cardiff debut over premature international Wales selection hype",
+      "kicker": "Rising talent",
+      "body": "Cardiff academy hooker Tom Howe is focusing on his domestic breakthrough despite growing external speculation regarding his international prospects. Following a strong showing at the Junior World Championship, where he impressed with 28 carries and 54 tackles, Steve Tandy has reportedly earmarked the 18-year-old as a long-term prospect. However, Howe remains grounded, looking to challenge established internationals for a starting berth in the coming campaign rather than chasing early Test honours in a position where Wales currently possess significant depth.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 4,
-        "why": "The article highlights an emerging talent generating significant interest regarding the national team's future hooker depth."
+        "why": "The article provides fresh insight into the development of a high-potential player, contrasting with the stagnant status of the regional restructuring story."
       },
       "candidates": [
         {
           "title": "Wales international's son signs first professional deal with English club",
-          "score": 22.9,
+          "score": 21.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -400,7 +409,7 @@
         },
         {
           "title": "Wales unveil new home and away jerseys as kit change made",
-          "score": 6.9,
+          "score": 6.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -408,14 +417,14 @@
         },
         {
           "title": "The teenage Cardiff hooker ignoring Wales hype",
-          "score": 3,
+          "score": 2.9,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ]
         },
         {
-          "title": "Troubled Wales rugby team names Steve Tandy new coach",
+          "title": "Rugby-Wales to reduce professional franchises from four to three",
           "score": 1.4,
           "corroboration": 1,
           "outlets": [
@@ -430,18 +439,27 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Tomas Albornoz misses four matches after admitting to intimidating match official",
-      "kicker": "Selection blow",
-      "body": "Argentina will be without fly-half Tomas Albornoz for the immediate future following a four-match suspension for his conduct towards referee Angus Gardner after the recent defeat to England. Albornoz accepted charges of intimidation at a disciplinary hearing, where it was noted he made contact with the official. The ban rules him out of the upcoming fixture against South Africa and the subsequent double-header with Australia, forcing Felipe Contepomi to reshuffle his backline as the team looks to recover its 2025 form.",
-      "source": "Guardian Rugby Union",
+      "heading": "Pablo Matera captains much-changed Argentina against touring South Africa side",
+      "kicker": "Selection call",
+      "body": "Pablo Matera will lead a vastly altered side at Vélez as Argentina navigate significant unavailability. With Julián Montoya back at his club and fly-half Tomás Albornoz serving a four-match suspension following his confrontation with officials, head coach Felipe Contepomi has made 13 changes to the starting XV. The match-day 23 features four uncapped players as Los Pumas attempt to reset after a challenging run of results, including last month’s narrow defeat to England in Santiago del Estero.",
+      "source": "Planet Rugby",
       "lead": {
         "candidate": 3,
-        "why": "The disciplinary sanction against a key playmaker is the most significant news item impacting team composition."
+        "why": "It addresses the significant personnel and leadership changes facing Argentina ahead of the Springboks test."
       },
       "candidates": [
         {
+          "title": "LIVE: Los Pumas vs Springboks",
+          "score": 93.5,
+          "corroboration": 2,
+          "outlets": [
+            "sarugbymag",
+            "search"
+          ]
+        },
+        {
           "title": "Pumas survive Bulls comeback",
-          "score": 53.2,
+          "score": 51,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -449,34 +467,25 @@
         },
         {
           "title": "Argentina v Springboks prediction: Los Pumas to run Rassie's men 'closer' than expected before the Bomb Squad blows inexperienced hosts away",
-          "score": 48.1,
+          "score": 46.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "Argentina’s Albornoz given four-match ban for intimidating referee after England defeat",
-          "score": 29,
-          "corroboration": 1,
-          "outlets": [
-            "guardian"
-          ]
-        },
-        {
           "title": "Boks brace for 'emotional' Argentina",
-          "score": 22.3,
+          "score": 21.6,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
           ]
         },
         {
-          "title": "Argentina 24-31 England: Nations Championship rugby – as it happened",
-          "score": 18.7,
-          "corroboration": 2,
+          "title": "Springboks hit back to level after Argentina make strong start",
+          "score": 21.1,
+          "corroboration": 1,
           "outlets": [
-            "guardian",
             "search"
           ]
         }
@@ -488,18 +497,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Les Kiss guides Australia to dramatic victory over Japan in Osaka",
+      "heading": "Les Kiss guides Australia to narrow victory over Eddie Jones’ Japan",
       "kicker": "Winning start",
-      "body": "Les Kiss began his tenure as Wallabies head coach with a hard-fought 35-32 win against Japan on Saturday. Despite playing a significant portion of the match with 14 men following a red card for Miles Amatosero, Australia secured the result through tries from Harry Potter, Tom Wright, Max Jorgensen, Fraser McReight, and Taniela Tupou. Reflecting on the challenging, high-tempo conditions, Kiss admitted: “I’m really enjoying this process and obviously, it comes down to 80 minutes where it won’t be cooling.”",
+      "body": "The Les Kiss era began with a hard-fought 35-32 victory against Japan in Osaka. Australia secured the win through tries from Harry Potter, Tom Wright, Max Jorgensen, Fraser McReight and Taniela Tupou. The match was defined by a frantic pace and a major disciplinary setback, as lock Miles Amatosero was issued a 20-minute red card for a high tackle. Reflecting on the challenge of his first match, Kiss noted, “Smooth waters at the moment. They can get rough at any time, and I’m ready for the ride.”",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 1,
-        "why": "The debut win under Les Kiss and the red card controversy is the most significant news from the weekend."
+        "why": "The match report on the Les Kiss era debut victory is the primary news story for Australia fans today."
       },
       "candidates": [
         {
           "title": "Wallabies v Japan: Five takeaways as Les Kiss' charges 'grind out a win' despite thug's 'brain-fade' against a Brave Blossoms side finding its mojo",
-          "score": 51.4,
+          "score": 49.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -507,7 +516,7 @@
         },
         {
           "title": "Wallabies need to handle the heat as Les Kiss era begins in sweltering Japan | Jack Snape",
-          "score": 39.4,
+          "score": 38.3,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -515,7 +524,7 @@
         },
         {
           "title": "Wallabies edge Japan in Osaka heartstopper",
-          "score": 34.4,
+          "score": 32.4,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -523,7 +532,7 @@
         },
         {
           "title": "New coach Kiss off to a winning start as Wallabies rumble past bold Japan",
-          "score": 31.7,
+          "score": 30,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -531,7 +540,7 @@
         },
         {
           "title": "Inexperienced halves pair get nod for first Wallabies Test under new coach Les Kiss",
-          "score": 24.5,
+          "score": 24.2,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -545,18 +554,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Japan Brave Blossoms fall to Australia in tight Osaka Test match",
-      "kicker": "Narrow defeat",
-      "body": "Eddie Jones’ side fell to a 32-35 defeat against Australia in Osaka on Saturday. Despite Japan capitalising on a 20-minute red card for Australian lock Miles Amatosero, the visitors held firm in sweltering conditions. Tries from Ryunosuke Ito, Faulua Makisi, Kazuma Ueda and captain Warner Dearns kept the hosts in contention until the final whistle, but the Wallabies ultimately secured a three-point victory in Les Kiss’s first match as head coach.",
-      "source": "Guardian Rugby Union",
+      "heading": "Kyuden Voltex confirm Saimoni Vunilagi passes away from suspected heatstroke",
+      "kicker": "Tragic loss",
+      "body": "The Japanese rugby community is mourning the death of Saimoni Vunilagi, who has died aged 26 following a training session with his club, Kyuden Voltex. The second-division side announced that Vunilagi suffered symptoms consistent with severe heatstroke after practice on Monday. Despite being hospitalised, he passed away on Friday. The back rower, who previously played for Tokyo Sungoliath, was remembered by his club for his generous spirit and powerful style of play during his short tenure in Fukuoka.",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 4,
-        "why": "The narrow defeat to Australia in the Lipovitan D Challenge Cup is the primary sporting outcome for the team."
+        "candidate": 1,
+        "why": "The tragic death of Saimoni Vunilagi is a significant development impacting the domestic rugby community in Japan."
       },
       "candidates": [
         {
           "title": "Fijian Vunilagi dies in Japan from suspected heatstroke",
-          "score": 90.7,
+          "score": 89.1,
           "corroboration": 3,
           "outlets": [
             "bbc",
@@ -566,7 +575,7 @@
         },
         {
           "title": "Japan vs Australia 2026 Lipovitan D Challenge Cup Match Preview",
-          "score": 71.4,
+          "score": 70.9,
           "corroboration": 2,
           "outlets": [
             "rugbyasia247",
@@ -575,7 +584,7 @@
         },
         {
           "title": "Japan v Australia: rugby union international – live",
-          "score": 49.4,
+          "score": 47.4,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -583,7 +592,7 @@
         },
         {
           "title": "New coach Kiss off to a winning start as Wallabies rumble past bold Japan",
-          "score": 43.8,
+          "score": 42.6,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -592,7 +601,7 @@
         },
         {
           "title": "Wallabies edge Japan in Osaka heartstopper",
-          "score": 34.4,
+          "score": 32.4,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -606,27 +615,35 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Media criticise All Blacks following unconvincing victory over the Stormers side",
-      "kicker": "Tour scrutiny",
-      "body": "The All Blacks have faced heavy criticism at home following their 38-21 win against the Stormers in Cape Town. While Dave Rennie’s side secured the result, commentators identified significant flaws, including a messy scrum, poor high-ball reception, and an inability to contain the driving maul. Media analysis warns that repeating these errors against the Springboks in the upcoming Test series will leave the team unable to compete against the intensity of the back-to-back world champions.",
+      "heading": "New Zealand media criticise All Blacks for flawed performance against Stormers",
+      "kicker": "Media backlash",
+      "body": "The All Blacks have faced heavy criticism following their victory over the Stormers in Cape Town. While Dave Rennie’s side secured the result, commentators were quick to highlight a string of technical errors, including a struggling scrum, conceded penalties, and difficulties with the high ball. “The All Blacks pulled off the improbable feat in Cape Town of managing to secure a victory in which they filled the bingo card of all the things that teams can’t afford to get wrong,” wrote Gregor Paul.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 2,
-        "why": "The performance against the Stormers is the immediate talking point following the conclusion of the tour-opening match."
+        "candidate": 3,
+        "why": "The performance against the Stormers has dominated the headlines and is the primary topic of discussion for fans."
       },
       "candidates": [
         {
           "title": "Springboks and All Blacks flex financial muscles with ‘Greatest Rivalry’ tour",
-          "score": 72.4,
+          "score": 71.8,
           "corroboration": 2,
           "outlets": [
             "guardian",
             "search"
+          ]
+        },
+        {
+          "title": "Dave Rennie: Rassie Erasmus has done it for eight years, we've had two months",
+          "score": 54.2,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
           ]
         },
         {
           "title": "All Blacks can forget about being 'vaguely competitive' against Springboks as New Zealand media slam performance versus Stormers",
-          "score": 49.9,
+          "score": 48,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -634,81 +651,15 @@
         },
         {
           "title": "Springboks legend: The 'big issue' for the All Blacks in South Africa is 'the way they play'",
-          "score": 43.4,
+          "score": 41.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "All Blacks legend 'confident' for Springboks series despite the 'million people' in Rassie Erasmus' squad",
-          "score": 39.8,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "All Blacks great points out the Richie Mo'unga 'irony' over 'bizarre' NZ Rugby law: 'This is not a World Rugby thing'",
-          "score": 37.4,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        }
-      ]
-    },
-    {
-      "team": "South Africa",
-      "quiet": false,
-      "rung": "news",
-      "storyline": null,
-      "dataAngle": null,
-      "heading": "Springboks and All Blacks kick off the Greatest Rivalry tour series",
-      "kicker": "Greatest Rivalry",
-      "body": "The highly anticipated Rugby’s Greatest Rivalry series has begun with the opening provincial fixture in Cape Town. While the four-Test series between the Springboks and the All Blacks does not commence until 22 August, the tour—which marketing departments have heavily promoted—is already generating significant interest. South African union president Mark Alexander believes the series could eclipse the stature of British & Irish Lions tours, despite ongoing legal discussions regarding the commercial branding of the event.",
-      "source": "Guardian Rugby Union",
-      "lead": {
-        "candidate": 1,
-        "why": "It addresses the commercial and historical significance of the 'Rugby’s Greatest Rivalry' series as the provincial tour leg commences."
-      },
-      "candidates": [
-        {
-          "title": "Springboks and All Blacks flex financial muscles with ‘Greatest Rivalry’ tour",
-          "score": 72.4,
-          "corroboration": 2,
-          "outlets": [
-            "guardian",
-            "search"
-          ]
-        },
-        {
-          "title": "Springboks legend: The 'big issue' for the All Blacks in South Africa is 'the way they play'",
-          "score": 54.3,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "Stormers v All Blacks: Winners and losers as Springbok hero 'puts injury hell behind him' while Dave Rennie left 'frustrated' by key area",
-          "score": 41.8,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "Boks brace for 'emotional' Argentina",
-          "score": 40.5,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
-          ]
-        },
-        {
-          "title": "All Blacks legend 'confident' for Springboks series despite the 'million people' in Rassie Erasmus' squad",
-          "score": 39.8,
+          "title": "All Blacks great: Springboks will look to use 'all form of intimidation' as Ellis Park Test set up to make a 'statement'",
+          "score": 41.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"

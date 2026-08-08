@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-08T17:20:51.939Z",
+  "updatedAt": "2026-08-08T20:16:42.691Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 132,
+  "count": 135,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -1928,7 +1928,7 @@
     },
     {
       "id": "the-legal-action-regarding-1ptu2tf",
-      "subject": "The legal action regarding rugby concussion claims against governing bodies",
+      "subject": "The legal outcome of the rugby concussion class-action lawsuit against governing bodies",
       "teams": [
         386,
         390,
@@ -1941,6 +1941,11 @@
       "resolution": "until the court rules on whether the case proceeds or is struck out",
       "sources": [
         {
+          "title": "High Court leaves rugby brain injury case in balance",
+          "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "Dismissed solicitor is still acting for footballers in brain injury court case",
           "link": "https://www.theguardian.com/sport/2026/jul/24/discarded-solicitor-still-acting-for-footballers-over-brin-injuries",
           "feedName": "Guardian Rugby Union"
@@ -1949,15 +1954,10 @@
           "title": "Rugby brain injury case reaches crisis point as judge retires to consider 95% strikeouts",
           "link": "https://www.theguardian.com/sport/2026/jul/23/rugby-brain-injury-case-reaches-crisis-point-as-judge-retires-to-consider-95-strikeouts",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Rugby’s landmark concussion case enters crucial week: the key questions answered",
-          "link": "https://www.theguardian.com/sport/2026/jul/22/rugbys-landmark-concussion-case-enters-crucial-week-the-key-questions-answered",
-          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-08-01",
-      "lastSeen": "2026-08-05",
+      "lastSeen": "2026-08-09",
       "uses": 2,
       "lastUsed": "2026-08-05"
     },
@@ -2447,7 +2447,8 @@
       ],
       "firstSeen": "2026-08-03",
       "lastSeen": "2026-08-09",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-09"
     },
     {
       "id": "kai-pratt-s-b-1bsk3oh",
@@ -2594,7 +2595,8 @@
       ],
       "firstSeen": "2026-08-04",
       "lastSeen": "2026-08-09",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-09"
     },
     {
       "id": "the-welsh-rugby-union-1qzcov6",
@@ -3012,8 +3014,8 @@
       ],
       "firstSeen": "2026-08-08",
       "lastSeen": "2026-08-08",
-      "uses": 1,
-      "lastUsed": "2026-08-08"
+      "uses": 2,
+      "lastUsed": "2026-08-09"
     },
     {
       "id": "quade-cooper-s-bid-x9b255",
@@ -3330,6 +3332,76 @@
         {
           "title": "High Court leaves rugby brain injury case in balance",
           "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-09",
+      "lastSeen": "2026-08-09",
+      "uses": 1,
+      "lastUsed": "2026-08-09"
+    },
+    {
+      "id": "all-blacks-flyhalf-richie-1d2lcp5",
+      "subject": "All Blacks flyhalf Richie Mo'unga potential return to the squad",
+      "teams": [
+        465
+      ],
+      "resolution": "until New Zealand confirms whether Richie Mo'unga is recalled to the team following Billy Proctor's injury",
+      "sources": [
+        {
+          "title": "All Blacks great points out the Richie Mo'unga 'irony' over 'bizarre' NZ Rugby law: 'This is not a World Rugby thing'",
+          "link": "https://www.planetrugby.com/news/all-blacks-great-points-out-the-richie-mounga-irony-over-bizarre-nz-rugby-law-this-is-not-a-world-rugby-thing",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Rennie confirms Richie recall decision",
+          "link": "https://www.sarugbymag.co.za/rennie-confirms-richie-recall-decision/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-09",
+      "lastSeen": "2026-08-09",
+      "uses": 0
+    },
+    {
+      "id": "welsh-regional-rugby-survival-1mx6cz9",
+      "subject": "Welsh regional rugby survival and the proposed merger of Scarlets and Ospreys",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union makes a final decision on which team will be cut",
+      "sources": [
+        {
+          "title": "Scarlets vow to remain at heart of west Wales",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyeq2n79n9o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "WRU confirms Scarlets or Ospreys will be cut",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c171w048jdgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Scarlets chief Daniels dismisses Ospreys merger",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c39ep099pw0o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-09",
+      "lastSeen": "2026-08-09",
+      "uses": 0
+    },
+    {
+      "id": "the-future-of-alex-19njlw2",
+      "subject": "The future of Alex Brown's investment talks for Gloucester Rugby",
+      "teams": [
+        386
+      ],
+      "resolution": "until new investment in Gloucester is confirmed or the talks conclude",
+      "sources": [
+        {
+          "title": "New investment talks ongoing says Gloucester CEO",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cn8nxpvzrg5o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
