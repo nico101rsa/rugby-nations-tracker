@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-08T20:16:42.691Z",
+  "updatedAt": "2026-08-08T22:18:17.294Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 135,
+  "count": 138,
   "storylines": [
     {
       "id": "handr-pollard-s-hamstring-10fmwd2",
@@ -2739,7 +2739,8 @@
       ],
       "firstSeen": "2026-08-05",
       "lastSeen": "2026-08-08",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-09"
     },
     {
       "id": "wales-midfield-partnership-selection-4kygbu",
@@ -2997,25 +2998,6 @@
       "firstSeen": "2026-08-07",
       "lastSeen": "2026-08-07",
       "uses": 0
-    },
-    {
-      "id": "thomas-ramos-s-next-1c107is",
-      "subject": "Thomas Ramos's next club destination following his departure from Toulouse",
-      "teams": [
-        387
-      ],
-      "resolution": "until Thomas Ramos announces which club he will join for the 2027-28 season",
-      "sources": [
-        {
-          "title": "Ramos to quit Toulouse in bombshell move",
-          "link": "https://www.sarugbymag.co.za/ramos-quit-toulouse-bombshell-move/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-08-08",
-      "lastSeen": "2026-08-08",
-      "uses": 2,
-      "lastUsed": "2026-08-09"
     },
     {
       "id": "quade-cooper-s-bid-x9b255",
@@ -3337,7 +3319,7 @@
       ],
       "firstSeen": "2026-08-09",
       "lastSeen": "2026-08-09",
-      "uses": 1,
+      "uses": 2,
       "lastUsed": "2026-08-09"
     },
     {
@@ -3402,6 +3384,101 @@
         {
           "title": "New investment talks ongoing says Gloucester CEO",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cn8nxpvzrg5o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-09",
+      "lastSeen": "2026-08-09",
+      "uses": 0
+    },
+    {
+      "id": "the-future-of-the-16318q6",
+      "subject": "The future of the Ospreys and Scarlets amid Welsh Rugby Union cuts",
+      "teams": [
+        391
+      ],
+      "resolution": "until the WRU confirms which team will be cut and the restructuring process is complete",
+      "sources": [
+        {
+          "title": "Scarlets vow to remain at heart of west Wales",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyeq2n79n9o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "WRU confirms Scarlets or Ospreys will be cut",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c171w048jdgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Scarlets chief Daniels dismisses Ospreys merger",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c39ep099pw0o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-09",
+      "lastSeen": "2026-08-09",
+      "uses": 0
+    },
+    {
+      "id": "the-outcome-of-the-7yn127",
+      "subject": "The outcome of the legal battle regarding rugby-related brain injuries",
+      "teams": [
+        386,
+        388,
+        390,
+        391
+      ],
+      "resolution": "until the High Court reaches a final verdict on the player claims",
+      "sources": [
+        {
+          "title": "Rugby’s landmark concussion case enters crucial week: the key questions answered",
+          "link": "https://www.theguardian.com/sport/2026/jul/22/rugbys-landmark-concussion-case-enters-crucial-week-the-key-questions-answered",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "High Court leaves rugby brain injury case in balance",
+          "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Rugby players seek new lawyers for brain injury cases against governing bodies",
+          "link": "https://www.theguardian.com/sport/2026/jul/22/players-brain-injury-cases-rugby-league-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-09",
+      "lastSeen": "2026-08-09",
+      "uses": 0
+    },
+    {
+      "id": "gloucester-rugby-s-potential-13ty62y",
+      "subject": "Gloucester Rugby's potential new investment",
+      "teams": [
+        386
+      ],
+      "resolution": "until the club confirms the outcome of the investment talks",
+      "sources": [
+        {
+          "title": "New investment talks ongoing says Gloucester CEO",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cn8nxpvzrg5o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-09",
+      "lastSeen": "2026-08-09",
+      "uses": 0
+    },
+    {
+      "id": "the-search-for-a-1jgkvab",
+      "subject": "The search for a new CEO of Scottish Rugby following Alex Williamson's dismissal",
+      "teams": [
+        390
+      ],
+      "resolution": "until a permanent chief executive is appointed",
+      "sources": [
+        {
+          "title": "Scottish Rugby sacks chief executive Williamson after inquiry",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c4gk8jd4dv9o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
