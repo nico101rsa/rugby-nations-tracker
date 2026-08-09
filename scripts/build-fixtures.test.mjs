@@ -200,16 +200,20 @@ test("a played series test persists even before its score is fetchable", () => {
   assert.equal(out[0].homeScore, undefined);
 });
 
-test("played one-off tests and competition games still drop", () => {
+test("played one-off tests persist (Results tab shows them); competition games still drop", () => {
   const events = [
-    ev(21, "2026-08-01T14:00:00Z", 4, 55), // WAL v GEO one-off — played
-    ev(22, "2026-08-22T14:00:00Z", 5, 10, { leagueName: "The Rugby Championship" }), // played comp game
+    ev(21, "2026-08-01T14:00:00Z", 4, 55), // WAL v GEO one-off — played, persists
+    ev(22, "2026-08-22T14:00:00Z", 5, 10, { leagueName: "The Rugby Championship" }), // played comp game — drops
     ev(23, "2026-09-05T14:00:00Z", 2, 55), // future SCO v GEO one-off — kept
     // (23 is a different pair from 21 on purpose: a repeat WAL v GEO would
     // legitimately fold into a 2-game series and persist.)
   ];
   const out = buildFixtures(events, NAMES, {}, { now: NOW });
-  assert.deepEqual(out.map((e) => e.id), ["espn-23"]);
+  assert.deepEqual(out.map((e) => e.id), ["espn-21", "espn-23"]);
+  // And a played test picks up its final from the scores map, like series do.
+  const scored = buildFixtures(events, NAMES, {}, { now: NOW, scores: { "espn-21": { home: 31, away: 12 } } });
+  assert.equal(scored[0].homeScore, 31);
+  assert.equal(scored[0].awayScore, 12);
 });
 
 test("default now=0 keeps everything — existing callers/tests are unaffected", () => {
