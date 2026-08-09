@@ -248,3 +248,41 @@ test("mergeSources dedupes by event id and lets the league-wide entry win", () =
   assert.deepEqual(merged[0].comp, RWC);
   assert.equal(merged[0].registered, true);
 });
+
+test("fetchLiveStates: in-play game returns live+running score, post returns final, pre skipped", async () => {
+  const refs = {
+    "http://x/status-live": { type: { state: "in", shortDetail: "2nd Half" } },
+    "http://x/status-post": { type: { state: "post" } },
+    "http://x/status-pre": { type: { state: "pre" } },
+    "http://x/sh": { value: 14 }, "http://x/sa": { value: 9 },
+  };
+  const mk = (id, statusRef) => ({
+    event: {
+      id,
+      competitions: [{
+        status: { $ref: statusRef },
+        competitors: [
+          { homeAway: "home", score: { $ref: "http://x/sh" } },
+          { homeAway: "away", score: { $ref: "http://x/sa" } },
+        ],
+      }],
+    },
+  });
+  const { fetchLiveStates } = await import("./build-fixtures.mjs");
+  const out = await fetchLiveStates(
+    [mk("1", "http://x/status-live"), mk("2", "http://x/status-post"), mk("3", "http://x/status-pre")],
+    async (u) => refs[u],
+  );
+  assert.deepEqual(out["espn-1"], { home: 14, away: 9, live: true, short: "2nd Half" });
+  assert.deepEqual(out["espn-2"], { home: 14, away: 9, live: false, short: "FT" });
+  assert.equal(out["espn-3"], undefined);
+});
+
+test("buildFixtures: a live scores-map entry attaches status.live + running score", () => {
+  const events = [ev(61, "2026-08-01T14:00:00Z", 4, 55)];
+  const out = buildFixtures(events, NAMES, {}, {
+    now: NOW, scores: { "espn-61": { home: 7, away: 3, live: true, short: "1st Half" } },
+  });
+  assert.equal(out[0].homeScore, 7);
+  assert.deepEqual(out[0].status, { short: "1st Half", live: true });
+});
