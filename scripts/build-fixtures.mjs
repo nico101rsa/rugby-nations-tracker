@@ -96,12 +96,16 @@ export function roundLookup(nations) {
 // Pure core: raw ESPN events -> the published fixtures array.
 //
 // `now` (default 0 = keep everything, so tests stay time-independent) drops
-// already-played games EXCEPT kind:"series" ones: the app's series scoreboard
-// is derived from fixtures.json series entries + scores, so a played test
-// must persist — with its final via `scores` ({ "espn-<id>": {home, away} },
-// see fillSeriesScores) — or the scoreboard would grey out games already won.
-// Played one-off tests and competition games still drop as before (the
-// registered-league fetch is future-only upstream anyway).
+// already-played games EXCEPT kind:"series" and kind:"test" ones: the app's
+// series scoreboard is derived from fixtures.json series entries + scores,
+// and the app's Results tab lists played tour/series/test games (2026-08-09
+// — ARG v RSA was invisible everywhere because played one-offs dropped).
+// Both kinds persist with their final via `scores` ({ "espn-<id>":
+// {home, away} }, see fetchSeriesScores). A played test that still has no
+// score is kept too — the next build's fill pass needs to see it; the 24h
+// `now` grace bounds how long a scoreless one can linger if a vendor never
+// scores it, because upstream stops carrying it. Played competition games
+// still drop (the registered-league fetch is future-only upstream anyway).
 export function buildFixtures(events, names, nations, { now = 0, scores = {} } = {}) {
   const findRound = roundLookup(nations);
   const out = [];
@@ -164,13 +168,13 @@ export function buildFixtures(events, names, nations, { now = 0, scores = {} } =
     });
   }
 
-  // Past-game policy (see the function comment): series games persist and
-  // pick up their score; everything else played drops.
+  // Past-game policy (see the function comment): series and one-off test
+  // games persist and pick up their score; everything else played drops.
   const kept = out.filter((e) => {
     const played = new Date(e.date).getTime() < now;
-    if (played && e.comp.kind !== "series") return false;
+    if (played && e.comp.kind !== "series" && e.comp.kind !== "test") return false;
     const s = scores[e.id];
-    if (played && s) {
+    if (s) {
       e.homeScore = s.home;
       e.awayScore = s.away;
     }
@@ -237,18 +241,28 @@ async function main() {
   const merged = mergeSources(events, league.events);
   let fixtures = buildFixtures(merged, names, nations, { now });
 
-  // Two-pass score fill for played series games: the first pass tells us
-  // which persisted series entries lack a final; their scores come from the
-  // raw events' competitor score $refs, then the (cheap, pure) build reruns
-  // with the map. No played series games -> no extra fetches at all.
-  const playedSeries = fixtures.filter(
-    (f) => f.comp.kind === "series" && new Date(f.date).getTime() < now && f.homeScore == null,
+  // Two-pass score fill for played series/test games: the first pass tells
+  // us which persisted entries lack a final; their scores come from the raw
+  // events' competitor score $refs, then the (cheap, pure) build reruns with
+  // the map. No played games -> no extra fetches at all.
+  //
+  // "Played" here is the REAL clock + settle, not the grace-shifted `now`:
+  // the grace exists so today's games stay listed, but judging playedness by
+  // it meant a Saturday final sat scoreless until Sunday's build (JPN v AUS,
+  // 2026-08-09). 150 min = kickoff + play + settle, same as the tour probe.
+  const SETTLED_MS = 150 * 60000;
+  const playedCutoff = Date.now() - SETTLED_MS;
+  const scoreable = fixtures.filter(
+    (f) =>
+      (f.comp.kind === "series" || f.comp.kind === "test") &&
+      new Date(f.date).getTime() < playedCutoff &&
+      f.homeScore == null,
   );
-  if (playedSeries.length) {
+  if (scoreable.length) {
     const byId = new Map(merged.map((e) => [`espn-${e.event?.id}`, e]));
-    const raw = playedSeries.map((f) => byId.get(f.id)).filter(Boolean);
+    const raw = scoreable.map((f) => byId.get(f.id)).filter(Boolean);
     const scores = await fetchSeriesScores(raw);
-    console.log(`filled finals for ${Object.keys(scores).length}/${playedSeries.length} played series games`);
+    console.log(`filled finals for ${Object.keys(scores).length}/${scoreable.length} played series/test games`);
     fixtures = buildFixtures(merged, names, nations, { now, scores });
   }
 
