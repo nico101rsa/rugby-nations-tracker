@@ -58,16 +58,19 @@ jobs:
       - name: Publish nations.json at site root
         run: cp public/nations.json nations.json
 
-      # The tour probe writes scores into scripts/tour-results.json, but the
-      # app reads them from fixtures.json — which otherwise only rebuilds in
-      # the daily team-events job (01:00 UTC). For a 17:10Z tour kickoff that
-      # meant a ~7.5h lag before the Stormers score reached the app
-      # (2026-08-07). Rebuild here whenever the probe recorded something new;
+      # fixtures.json otherwise only rebuilds in the daily team-events job
+      # (01:00 UTC) — which meant a ~7.5h lag on the Stormers tour score
+      # (2026-08-07) and Saturday's test/series finals sitting scoreless
+      # overnight (2026-08-09). Rebuild every tick that can change what the
+      # app shows: a test/series/tour game live right now (build-fixtures
+      # attaches LIVE status + the running score from ESPN), a recent one
+      # still missing its final, or the tour probe recording a result.
       # build-fixtures is keyless ESPN, so the guard is about not hammering
       # ESPN every 15 min, not quota.
-      - name: Rebuild fixtures.json if the tour probe recorded a result
+      - name: Rebuild fixtures.json when live/finals/tour-probe warrant it
         run: |
-          if ! git diff --quiet scripts/tour-results.json; then
+          DUE=$(node scripts/fixtures-refresh-due.mjs)
+          if [ "$DUE" = "due" ] || ! git diff --quiet scripts/tour-results.json; then
             node scripts/build-fixtures.mjs
           fi
 
