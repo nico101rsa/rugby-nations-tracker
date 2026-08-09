@@ -1,0 +1,657 @@
+{
+  "date": "2026-08-10",
+  "counts": {
+    "editions": 11,
+    "quiet": 4,
+    "storyline": 3,
+    "dataEdition": 1,
+    "failed": 1,
+    "noLead": 4
+  },
+  "failed": [
+    {
+      "team": "Italy",
+      "reason": "gemini(gemini-3.5-flash) 500: {\n  \"error\": {\n    \"code\": 500,\n    \"message\": \"Internal error encountered.\",\n    \"status\": \"INTERNAL\"\n  }\n}\n"
+    }
+  ],
+  "teams": [
+    {
+      "team": "Fiji",
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
+      "dataAngle": null,
+      "heading": "Fijian forward Saimoni Vunilagi dies in Japan after suspected training heatstroke",
+      "kicker": "Tragic loss",
+      "body": "The Fijian rugby community is mourning the tragic passing of back-rower Saimoni Vunilagi, who died in Japan on Friday aged 26. Vunilagi, who recently joined second-division club Kyuden Voltex, was hospitalised after showing severe symptoms of heatstroke following a practice session last Monday in Fukuoka, where temperatures reached 35C. The 6ft 5in forward previously played for Tokyo Sungoliath. His devastated club released a statement saying: \"We humbly pray for the repose of his soul and extend our heartfelt condolences to his bereaved family.\"",
+      "source": "BBC Rugby Union",
+      "lead": {
+        "candidate": 1,
+        "why": "The sudden and tragic death of Fijian forward Saimoni Vunilagi in Japan has shocked the rugby community and led today's coverage."
+      },
+      "candidates": [
+        {
+          "title": "Fijian Vunilagi dies in Japan from suspected heatstroke",
+          "score": 100.2,
+          "corroboration": 3,
+          "outlets": [
+            "bbc",
+            "sarugbymag",
+            "search"
+          ]
+        },
+        {
+          "title": "Newcastle sign Fiji hooker Togiatama",
+          "score": 34.9,
+          "corroboration": 2,
+          "outlets": [
+            "bbc",
+            "search"
+          ]
+        },
+        {
+          "title": "Saimoni Vunilagi dead at 26: Fiji rugby ace dies of suspected heatstroke after training session with club ‘devastated’",
+          "score": 13.7,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Waratahs spoil Fijian Drua party to claim third straight Super Rugby Women’s title",
+          "score": 5,
+          "corroboration": 1,
+          "outlets": [
+            "guardian"
+          ]
+        },
+        {
+          "title": "Fiji Rugby defends scheduling after women's test match put between school games",
+          "score": 4.9,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "England",
+      "quiet": true,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "The outcome of the legal battle regarding rugby-related brain injuries",
+        "resolution": "until the High Court reaches a final verdict on the player claims",
+        "recheckHits": 0
+      },
+      "dataAngle": null,
+      "heading": "England's former players await ruling as High Court concussion case remains stalled",
+      "kicker": "LEGAL BATTLE",
+      "body": "There are no fresh updates in the landmark concussion litigation involving former England players and rugby's governing bodies. Following recent High Court proceedings, which left the brain injury case in the balance as players sought new legal representation, the situation remains unchanged. The legal battle remains stalled with no further rulings or announcements made today, leaving claimants waiting for a definitive path forward.",
+      "source": "Guardian Rugby Union",
+      "lead": null,
+      "candidates": [
+        {
+          "title": "Argentina 24-31 England: Nations Championship rugby – as it happened",
+          "score": 18.6,
+          "corroboration": 2,
+          "outlets": [
+            "bbc",
+            "guardian"
+          ]
+        },
+        {
+          "title": "Ex-England prop Marler to become BBC's first celebrity Gladiator",
+          "score": 14.2,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
+          ]
+        },
+        {
+          "title": "Time to find out what Pollock can do from the start as England’s No.8",
+          "score": 9.1,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "RFU expects £10m loss off the back of England’s worst Six Nations campaign",
+          "score": 4.5,
+          "corroboration": 1,
+          "outlets": [
+            "guardian"
+          ]
+        },
+        {
+          "title": "Argentina’s Albornoz given four-match ban for intimidating referee after England defeat",
+          "score": 3.4,
+          "corroboration": 1,
+          "outlets": [
+            "guardian"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "France",
+      "quiet": true,
+      "rung": "data",
+      "storyline": null,
+      "dataAngle": "scoring",
+      "heading": "Fabien Galthié's France scored 426 points across their last 11 tests",
+      "kicker": "Attacking metrics",
+      "body": "France have established a formidable scoring rate in their recent outings, accumulating 426 points over their last 11 matches. This clinical run translates to an impressive average of 38.7 points scored per game, whilst Fabien Galthié's defence conceded an average of 26.5 points per match by shipping 291 points in total. The peak of this high-scoring window arrived in February 2026 during the Six Nations, when Les Bleus dismantled Wales 54-12 away from home.",
+      "source": null,
+      "lead": null,
+      "candidates": [
+        {
+          "title": "Eight-try SA U18 smash French",
+          "score": 8.5,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ]
+        },
+        {
+          "title": "France Rugby Fixtures And 2026 Schedule In The Nations Championship",
+          "score": 1.8,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "France rugby vs. All Blacks: 5 things to know before July 4",
+          "score": 1.7,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "France: TF1 to air Rugby World Cup 2027",
+          "score": 1.3,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "France beats Japan 42-15 in Nations Championship rugby as Lucu tallies 15 points",
+          "score": 0.9,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Ireland",
+      "quiet": true,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "The outcome of the legal battle regarding rugby-related brain injuries",
+        "resolution": "until the High Court reaches a final verdict on the player claims",
+        "recheckHits": 0
+      },
+      "dataAngle": null,
+      "heading": "Ireland players await ruling as landmark rugby concussion case remains unresolved",
+      "kicker": "Legal battle",
+      "body": "There are no fresh developments in the High Court today regarding the landmark rugby-related brain injury litigation, with the legal battle still unresolved. The case, which entered a crucial week as reported yesterday by the Guardian and BBC, remains in the balance as former players seek a final verdict on their claims against the governing bodies. Some claimants are reportedly seeking new lawyers to represent them, but we await further updates on whether any definitive ruling has been reached.",
+      "source": "Guardian Rugby Union",
+      "lead": null,
+      "candidates": [
+        {
+          "title": "SA U18 A edge Irish in thriller",
+          "score": 15.1,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ]
+        },
+        {
+          "title": "Preview: Ireland braced for rugby's toughest Test in Auckland",
+          "score": 1.8,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Can Ireland Rugby Do What No One Has Done In 32 Years: Beat The All Blacks In Eden Park?",
+          "score": 1.6,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Predicting Ireland's First-Choice 23 For The 2027 Rugby World Cup",
+          "score": 1.5,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Is Ireland's Men's Rugby team getting a Chicago rematch with New Zealand?",
+          "score": 1.4,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Scotland",
+      "quiet": true,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "The outcome of the legal battle regarding rugby-related brain injuries",
+        "resolution": "until the High Court reaches a final verdict on the player claims",
+        "recheckHits": 0
+      },
+      "dataAngle": null,
+      "heading": "Scotland watch from afar as landmark High Court concussion case remains stalled",
+      "kicker": "Legal battle",
+      "body": "The landmark High Court legal battle concerning rugby-related brain injuries remains unresolved, with no further developments reported in the press this week. The litigation, first seen last week, remains in the balance as the High Court has yet to reach a final verdict. No new updates have been published regarding the former players' claims against rugby governing bodies, and the legal teams have not announced any further actions. The timeline for a final decision remains indefinite.",
+      "source": "Guardian Rugby Union",
+      "lead": null,
+      "candidates": [
+        {
+          "title": "'Family stress' forces Scotland boss Fukofuka to step down",
+          "score": 2.2,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
+          ]
+        },
+        {
+          "title": "Scotland Rugby Vs Fiji Rugby Lineups: Scots Name Team For Round 3 Match",
+          "score": 1.9,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Changes to Scotland Women coaching staff confirmed",
+          "score": 1.8,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Scotland vs. England rugby Six Nations 2026 lineups kickoff time",
+          "score": 1.6,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Gregor Townsend to stay on as Scotland rugby coach until 2027 World Cup",
+          "score": 1.5,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Wales",
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
+      "dataAngle": null,
+      "heading": "Joe Jenkins keeps Wales options open following Leicester Tigers switch",
+      "kicker": "Eligibility debate",
+      "body": "Dual-qualified centre Joe Jenkins has admitted he is keeping an open mind about his international future following his summer move to Leicester Tigers. The 22-year-old, who left Bristol Bears after four years, is eligible for Wales through his father. While Jenkins represented England at under-20s level, former Wales age-grade coach Byron Hayward previously claimed the midfielder wanted to wear the red jersey. However, Jenkins insists his immediate focus remains on earning a starting spot with his new Premiership club.",
+      "source": null,
+      "lead": {
+        "candidate": 2,
+        "why": "The dual-qualified centre's open-minded stance on his international future represents a highly compelling player storyline for Welsh fans."
+      },
+      "candidates": [
+        {
+          "title": "The truth about Welsh rugby's mess and the two-team endgame that could yet unfold",
+          "score": 24.8,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "England U20s star considers Wales switch as he targets Test call-up after move",
+          "score": 23.1,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Scarlets vow to remain at heart of west Wales",
+          "score": 22.9,
+          "corroboration": 2,
+          "outlets": [
+            "bbc",
+            "search"
+          ]
+        },
+        {
+          "title": "Latest World Rugby rankings: Springboks retain top spot ahead of All Blacks Tests as Wales rise to two-year high",
+          "score": 22.6,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Nations Championship highlights: South Africa 43-0 Wales",
+          "score": 16.1,
+          "corroboration": 3,
+          "outlets": [
+            "bbc",
+            "guardian",
+            "search"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Argentina",
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
+      "dataAngle": null,
+      "heading": "Felipe Contepomi's makeshift Argentina side suffer narrow defeat to South Africa",
+      "kicker": "Test defeat",
+      "body": "A makeshift Argentina line-up pushed world champions South Africa to the limit on Saturday, ultimately falling to a narrow 17-10 defeat in Buenos Aires. Despite missing suspended fly-half Tomás Albornoz and captain Julián Montoya, Los Pumas led early through a Benjamín Grondona try. An inexperienced front row featuring debutant Francisco Moreno and loosehead Boris Wenger excelled, while wings Rodrigo Isgro and Ignacio Mendy constantly threatened. However, South Africa's powerful bench eventually overwhelmed the hosts, denying Felipe Contepomi's side a famous victory.",
+      "source": "Planet Rugby",
+      "lead": {
+        "candidate": 1,
+        "why": "It highlights the standout performers and crucial moments from Argentina's narrow Test defeat against the Springboks on Saturday."
+      },
+      "candidates": [
+        {
+          "title": "Argentina v Springboks: Winners and losers as it almost goes 'horribly wrong' for Rassie Erasmus but Handre Pollard 'steadies ship' after Sacha's errors",
+          "score": 46,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Argentina v Springboks: Five takeaways as world champions win 'when nothing is working' and where Rassie Erasmus 'will look hardest'",
+          "score": 41,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "LIVE: Los Pumas vs Springboks",
+          "score": 39.6,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ]
+        },
+        {
+          "title": "Pumas survive Bulls comeback",
+          "score": 38.3,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ]
+        },
+        {
+          "title": "Argentina v Springboks prediction: Los Pumas to run Rassie's men 'closer' than expected before the Bomb Squad blows inexperienced hosts away",
+          "score": 35.9,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Australia",
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
+      "dataAngle": null,
+      "heading": "Les Kiss guides Wallabies to tense debut victory over Japan",
+      "kicker": "Kiss era begins",
+      "body": "Les Kiss began his tenure as Wallabies head coach with a gritty 35-32 victory over Japan in Osaka on Saturday. Despite playing in sweltering 32C heat and losing lock Miles Amatosero to a 20-minute red card just before half-time, Australia held off a fierce fightback. Tries from Harry Potter, Tom Wright, Max Jorgensen, Fraser McReight and Taniela Tupou secured the win. 'When we had to find a way, we did find a way,' Kiss said.",
+      "source": "Planet Rugby",
+      "lead": {
+        "candidate": 1,
+        "why": "Les Kiss secured a victory in his first match as Wallabies head coach."
+      },
+      "candidates": [
+        {
+          "title": "Les Kiss reflects on debut Wallabies win over Japan: 'When we had to find a way, we did find a way'",
+          "score": 87.8,
+          "corroboration": 2,
+          "outlets": [
+            "planetrugby",
+            "search"
+          ]
+        },
+        {
+          "title": "Wallabies v Japan: Five takeaways as Les Kiss' charges 'grind out a win' despite thug's 'brain-fade' against a Brave Blossoms side finding its mojo",
+          "score": 37.5,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Wallabies need to handle the heat as Les Kiss era begins in sweltering Japan | Jack Snape",
+          "score": 31.8,
+          "corroboration": 1,
+          "outlets": [
+            "guardian"
+          ]
+        },
+        {
+          "title": "Les Kiss and his Wallabies have a mountain to climb but gritty win over Japan is a big first step | Angus Fontaine",
+          "score": 30.3,
+          "corroboration": 1,
+          "outlets": [
+            "guardian"
+          ]
+        },
+        {
+          "title": "Brave Blossoms Narrowly Lose to Wallabies in Osaka",
+          "score": 24.4,
+          "corroboration": 1,
+          "outlets": [
+            "rugbyasia247"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "Japan",
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
+      "dataAngle": null,
+      "heading": "Warner Dearns scores late but Brave Blossoms fall to Australia",
+      "kicker": "Narrow defeat",
+      "body": "Japan pushed Australia all the way in sweltering Osaka conditions on Saturday, ultimately falling to a 35-32 defeat. Despite the Wallabies playing with 14 men following Miles Amatosero's red card, the hosts struggled to capitalise, though they stayed in touch with tries from Ryunosuke Ito, Faulua Makisi, and Ueda. A late converted try from Warner Dearns in the 78th minute brought the Brave Blossoms within three points, but the visitors held on to deny Japan their first Test victory over the Wallabies.",
+      "source": "Rugby Asia 247",
+      "lead": {
+        "candidate": 2,
+        "why": "Japan pushed Australia exceptionally close in a sweltering 35-32 Test match in Osaka."
+      },
+      "candidates": [
+        {
+          "title": "Fijian Vunilagi dies in Japan from suspected heatstroke",
+          "score": 80.2,
+          "corroboration": 3,
+          "outlets": [
+            "bbc",
+            "sarugbymag",
+            "search"
+          ]
+        },
+        {
+          "title": "Brave Blossoms Narrowly Lose to Wallabies in Osaka",
+          "score": 44.4,
+          "corroboration": 1,
+          "outlets": [
+            "rugbyasia247"
+          ]
+        },
+        {
+          "title": "Les Kiss reflects on debut Wallabies win over Japan: 'When we had to find a way, we did find a way'",
+          "score": 38.2,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Japan v Australia: rugby union international – live",
+          "score": 36.5,
+          "corroboration": 1,
+          "outlets": [
+            "guardian"
+          ]
+        },
+        {
+          "title": "Rugby Transfers: World Cup-winning All Black named as Dave Rennie's Japan replacement, Ulster make double signing and Blues bolster ranks",
+          "score": 25.7,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "New Zealand",
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
+      "dataAngle": null,
+      "heading": "Patrick Tuipulotu admits shock as Ma'a Nonu named for Sharks clash",
+      "kicker": "Tour spectacle",
+      "body": "All Blacks lock Patrick Tuipulotu admitted surprise following the selection of 44-year-old legend Ma'a Nonu for Tuesday's tour match in Durban. Nonu, a double World Cup winner, was named on the Sharks bench to face his former side at Kings Park, a move Tuipulotu described as a spectacle for the game. Skipper Luke Jacobson leads a power-packed New Zealand side featuring Damian McKenzie and Jordie Barrett, as Dave Rennie's men look to build on Friday's 38-21 victory over the Stormers.",
+      "source": "Planet Rugby",
+      "lead": {
+        "candidate": 1,
+        "why": "The selection of 44-year-old legend Ma'a Nonu to face his former national team is a unique and high-interest storyline for New Zealand fans."
+      },
+      "candidates": [
+        {
+          "title": "All Blacks relishing Ma'a Nonu 'spectacle' as reason for Sharks veteran's longevity revealed",
+          "score": 52.2,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "All Blacks dealt Rugby's Greatest Rivalry setback as second player forced to return home",
+          "score": 49.9,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "All Blacks team: Five takeaways as Dave Rennie's 'power-packed' side results in 'gulf in class' against Sharks",
+          "score": 49.6,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Springboks and All Blacks flex financial muscles with ‘Greatest Rivalry’ tour",
+          "score": 48.5,
+          "corroboration": 2,
+          "outlets": [
+            "guardian",
+            "search"
+          ]
+        },
+        {
+          "title": "Comment: All Blacks need not 'worry' after Springboks 'escaped to victory' against Argentina",
+          "score": 48.4,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        }
+      ]
+    },
+    {
+      "team": "South Africa",
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
+      "dataAngle": null,
+      "heading": "Rassie Erasmus recalls 39-year-old Deon Fourie for upcoming All Blacks series",
+      "kicker": "SQUAD RECALL",
+      "body": "The Springboks have handed a shock recall to veteran utility forward Deon Fourie following his standout performance for the Stormers against New Zealand on Friday. Fourie, who turns 40 next month, was drafted into the squad after captain Siya Kolisi suffered a hamstring injury during Saturday’s 17-10 win over Argentina. While Erasmus confirmed the skipper’s setback \"doesn't look too bad,\" the inclusion of \"Brannas\" provides experienced cover for a gruelling schedule. André Esterhuizen also remains a doubt following a late head injury assessment in Buenos Aires.",
+      "source": "SA Rugby Magazine",
+      "lead": {
+        "candidate": 1,
+        "why": "The shock recall of a 39-year-old veteran is the most significant selection story today, directly addressing the squad's urgent injury concerns in the back row."
+      },
+      "candidates": [
+        {
+          "title": "Watch: Boks to call on Brannas?",
+          "score": 50.5,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ]
+        },
+        {
+          "title": "Siya Kolisi injury update as Springboks face nervous wait ahead of Rugby's Greatest Rivalry series with All Blacks",
+          "score": 47.3,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Erasmus sheds light on crocked Siya",
+          "score": 42.1,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ]
+        },
+        {
+          "title": "John Dobson reveals how 'feedback' on Stormers v All Blacks clash could help Springboks with Greatest Rivalry Test preparations",
+          "score": 40.9,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Boks left rattled by feisty Pumas",
+          "score": 40.8,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ]
+        }
+      ]
+    }
+  ]
+}
