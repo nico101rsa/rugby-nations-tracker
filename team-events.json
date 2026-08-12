@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-08-11T03:00:44.957Z",
+ "updatedAt": "2026-08-12T03:19:46.647Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -18,20 +18,6 @@
  "teams": {
   "NZL": {
    "last": [
-    {
-     "id": 14321527,
-     "date": "2025-09-27T05:05:00.000Z",
-     "league": "The Rugby Championship",
-     "opponent": "Australia",
-     "opponentCode": "AUS",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 33,
-     "them": 24,
-     "result": "W",
-     "tries": 4,
-     "cards": 0
-    },
     {
      "id": 14572776,
      "date": "2025-10-04T09:45:00.000Z",
@@ -157,9 +143,7 @@
      "result": "W",
      "tries": null,
      "cards": null
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16715507,
      "date": "2026-08-11T17:00:00.000Z",
@@ -168,10 +152,14 @@
      "opponentCode": null,
      "tracked": false,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null
-    },
+     "us": 54,
+     "them": 0,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16716847,
      "date": "2026-08-15T17:00:00.000Z",
@@ -223,17 +211,17 @@
      "venue": "DHL Stadium, Cape Town"
     },
     {
-     "venue": "FNB Stadium, Johannesburg",
-     "id": "espn-603249",
-     "date": "2026-09-05T15:10Z",
-     "league": "International Test Match",
+     "id": 16651326,
+     "date": "2026-09-05T15:00:00.000Z",
+     "league": "International Friendlies",
      "opponent": "South Africa",
      "opponentCode": "RSA",
      "tracked": true,
      "homeAway": "A",
      "us": null,
      "them": null,
-     "result": null
+     "result": null,
+     "venue": "FNB Stadium, Johannesburg"
     },
     {
      "venue": "M&T Bank Stadium",
@@ -281,6 +269,19 @@
      "league": "Nations Championship",
      "opponent": "Scotland",
      "opponentCode": "SCO",
+     "tracked": true,
+     "homeAway": "A",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "venue": "Principality Stadium, Cardiff",
+     "id": "espn-604001",
+     "date": "2026-11-14T14:10Z",
+     "league": "Nations Championship",
+     "opponent": "Wales",
+     "opponentCode": "WAL",
      "tracked": true,
      "homeAway": "A",
      "us": null,
@@ -619,17 +620,17 @@
    ],
    "next": [
     {
-     "venue": "Queensland Country Bank Stadium, Townsville",
-     "id": "espn-603459",
-     "date": "2026-08-15T05:15Z",
-     "league": "International Test Match",
+     "id": 16786650,
+     "date": "2026-08-15T05:15:00.000Z",
+     "league": "International Friendlies",
      "opponent": "Australia",
      "opponentCode": "AUS",
      "tracked": true,
      "homeAway": "A",
      "us": null,
      "them": null,
-     "result": null
+     "result": null,
+     "venue": "Queensland Country Bank Stadium, Townsville"
     },
     {
      "venue": "Denka Big Swan Stadium",
@@ -1064,17 +1065,17 @@
    ],
    "next": [
     {
-     "venue": "Queensland Country Bank Stadium, Townsville",
-     "id": "espn-603459",
-     "date": "2026-08-15T05:15Z",
-     "league": "International Test Match",
+     "id": 16786650,
+     "date": "2026-08-15T05:15:00.000Z",
+     "league": "International Friendlies",
      "opponent": "Japan",
      "opponentCode": "JPN",
      "tracked": true,
      "homeAway": "H",
      "us": null,
      "them": null,
-     "result": null
+     "result": null,
+     "venue": "Queensland Country Bank Stadium, Townsville"
     },
     {
      "venue": "Estadio 23 de Agosto, San Salvador",
