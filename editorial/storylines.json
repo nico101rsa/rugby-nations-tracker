@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-15T17:12:13.409Z",
+  "updatedAt": "2026-08-15T20:10:34.036Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 150,
+  "count": 152,
   "storylines": [
     {
       "id": "siya-kolisi-s-future-1mzkfov",
@@ -1888,7 +1888,7 @@
         }
       ],
       "firstSeen": "2026-08-04",
-      "lastSeen": "2026-08-15",
+      "lastSeen": "2026-08-16",
       "uses": 1,
       "lastUsed": "2026-08-09"
     },
@@ -2170,7 +2170,7 @@
     },
     {
       "id": "search-for-a-new-1d141o",
-      "subject": "The search for a new head coach for the Scotland Women's team",
+      "subject": "Scotland Women's search for a new head coach following Sione Fukofuka's resignation",
       "teams": [
         390,
         391
@@ -2194,7 +2194,7 @@
         }
       ],
       "firstSeen": "2026-08-06",
-      "lastSeen": "2026-08-15",
+      "lastSeen": "2026-08-16",
       "uses": 1,
       "lastUsed": "2026-08-11"
     },
@@ -2246,7 +2246,7 @@
         }
       ],
       "firstSeen": "2026-08-07",
-      "lastSeen": "2026-08-15",
+      "lastSeen": "2026-08-16",
       "uses": 2,
       "lastUsed": "2026-08-15"
     },
@@ -2406,7 +2406,8 @@
       ],
       "firstSeen": "2026-08-08",
       "lastSeen": "2026-08-15",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-16"
     },
     {
       "id": "the-appointment-of-a-1a2ovpu",
@@ -3217,18 +3218,18 @@
       "resolution": "until Les Kiss selects a consistent starting fly-half for a string of consecutive Test matches",
       "sources": [
         {
-          "title": "Gordon returns as Wallabies ring changes",
-          "link": "https://www.sarugbymag.co.za/gordon-returns-wallabies-ring-changes/",
-          "feedName": "SA Rugby Magazine"
+          "title": "Wallabies swing the changes as Les Kiss searches for pieces to fit playmaker puzzle | Jack Snape",
+          "link": "https://www.theguardian.com/sport/2026/aug/14/wallabies-australia-japan-carter-gordon-rugby-union-test-nations-championship-preview",
+          "feedName": "Guardian Rugby Union"
         },
         {
-          "title": "Wallabies team v Japan: Les Kiss makes latest fly-half call amid EIGHT changes while No. 1000 set to be capped",
-          "link": "https://www.planetrugby.com/news/wallabies-team-v-japan-les-kiss-makes-latest-fly-half-call-amid-eight-changes-while-no-1000-set-to-be-capped",
-          "feedName": "Planet Rugby"
+          "title": "Hard-hitters, gritty stayers and smart cookies: Kiss’s first Wallabies squad is built in his image",
+          "link": "https://www.theguardian.com/sport/2026/jul/23/wallabies-australia-squad-named-japan-les-kiss-rugby-selection",
+          "feedName": "Guardian Rugby Union"
         },
         {
-          "title": "Inexperienced halves pair get nod for first Wallabies Test under new coach Les Kiss",
-          "link": "https://www.theguardian.com/sport/2026/aug/06/australia-wallabies-v-japan-team-lonergan-meredith-halves",
+          "title": "Carter Gordon impresses on return as Wallabies surge clear of Japan for dominant win",
+          "link": "https://www.theguardian.com/sport/2026/aug/15/wallabies-australia-japan-nations-championship-rugby-union-match-report",
           "feedName": "Guardian Rugby Union"
         }
       ],
@@ -3378,9 +3379,10 @@
     },
     {
       "id": "will-jordan-s-back-1a90wfc",
-      "subject": "Will Jordan's back injury fitness for Springboks series",
+      "subject": "Will Jordan's recovery from a back injury for the Springboks Test series",
       "teams": [
-        465
+        465,
+        467
       ],
       "resolution": "until New Zealand confirms his availability for the Springboks series",
       "sources": [
@@ -3396,7 +3398,7 @@
         }
       ],
       "firstSeen": "2026-08-15",
-      "lastSeen": "2026-08-15",
+      "lastSeen": "2026-08-16",
       "uses": 0
     },
     {
@@ -3794,7 +3796,8 @@
       "id": "richie-mo-unga-s-2lsc1o",
       "subject": "Richie Mo'unga's role and eligibility for the All Blacks in the Rugby's Greatest Rivalry series",
       "teams": [
-        465
+        465,
+        467
       ],
       "resolution": "until the end of the All Blacks' tour against South Africa",
       "sources": [
@@ -3812,6 +3815,65 @@
           "title": "Richie Mo'unga makes honest 'trust has to be earnt' admission as star fly-half addresses All Blacks recall",
           "link": "https://www.planetrugby.com/news/richie-mounga-makes-honest-trust-has-to-be-earnt-admission-as-star-fly-half-addresses-all-blacks-recall",
           "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-08-16",
+      "lastSeen": "2026-08-16",
+      "uses": 0
+    },
+    {
+      "id": "wales-professional-region-restructuring-4z7sr0",
+      "subject": "Wales' professional region restructuring and the WRU's three-team plan",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union finalizes the decision to cut a professional region or abandons the plan",
+      "sources": [
+        {
+          "title": "Scarlets chief Daniels dismisses Ospreys merger",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c39ep099pw0o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "WRU condemns abuse and doubles down on three-team plan",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq891l3g3keo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "WRU condemn 'highly personal insults and attacks' as Union doubles down on three-region plan",
+          "link": "https://www.planetrugby.com/news/wru-condemn-highly-personal-insults-and-attacks-as-union-doubles-down-on-three-region-plan",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-08-16",
+      "lastSeen": "2026-08-16",
+      "uses": 0
+    },
+    {
+      "id": "legal-case-involving-brain-133wkth",
+      "subject": "Legal case involving brain injuries among former rugby players",
+      "teams": [
+        386,
+        388,
+        390,
+        391
+      ],
+      "resolution": "until a judicial decision is reached regarding the strikeout applications or a settlement is announced",
+      "sources": [
+        {
+          "title": "Rugby’s landmark concussion case enters crucial week: the key questions answered",
+          "link": "https://www.theguardian.com/sport/2026/jul/22/rugbys-landmark-concussion-case-enters-crucial-week-the-key-questions-answered",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Rugby players seek new lawyers for brain injury cases against governing bodies",
+          "link": "https://www.theguardian.com/sport/2026/jul/22/players-brain-injury-cases-rugby-league-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Rugby brain injury case reaches crisis point as judge retires to consider 95% strikeouts",
+          "link": "https://www.theguardian.com/sport/2026/jul/23/rugby-brain-injury-case-reaches-crisis-point-as-judge-retires-to-consider-95-strikeouts",
+          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-08-16",
