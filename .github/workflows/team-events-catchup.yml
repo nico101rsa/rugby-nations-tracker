@@ -1,0 +1,73 @@
+name: Team events catch-up
+
+# Publishes a just-finished result to the app's Team page (form bar chart,
+# last-10 averages) without waiting for the next FULL team-events run.
+#
+# The full job runs 01:00 UTC daily + 19:00 UTC Saturday, and that Saturday
+# slot assumes Northern-Hemisphere kickoffs finishing ~17:20 UTC. Asia-Pacific
+# tests finish around 07:00 UTC and fell into a ~12h hole: on 2026-08-15
+# Australia beat Japan 56-17 at 05:15 UTC and the Team page still showed the
+# game as an upcoming placeholder at 20:24 AEST.
+#
+# Every 3h across 05:00-14:00 UTC, which brackets the AP and early-European
+# kickoffs the two scheduled runs miss; evening NH games stay with the 19:00
+# UTC Saturday and 01:00 UTC daily runs (no point paying twice). It starts at
+# 05:00 rather than 02:00 because the full 01:00 run takes ~3.5h to walk its
+# paced calls (2026-08-15: committed 04:49 UTC) — an earlier tick would only
+# sit in the queue behind it and then find nothing to do.
+#
+# Quota: the due check is pure local JSON, so a run with nothing to publish
+# makes NO vendor call at all — most of these are free no-ops. When a game IS
+# due it costs 2 SportsAPI Pro calls per team (4 for a lone test), capped at 8
+# teams, against the 100/day free tier shared with the full job (~25/run) and
+# the box-score harvest (~5-18). A team stops being due as soon as its result
+# lands, so a catch-up is not repeated; see refresh-played-teams.mjs for the
+# settle/window/cap bounds.
+on:
+  schedule:
+    - cron: "0 5,8,11,14 * * *"
+  workflow_dispatch:
+
+# The one deliberate exception to this repo's "never share a concurrency group"
+# rule: this job and team-events.yml write the SAME file, and a concurrent
+# writer is worse than a dropped run here. Two runs in flight would each hold a
+# checkout from a different commit, so the loser's rebase either conflicts on
+# team-events.json or reverts the winner's teams. Sharing the group makes the
+# overlap impossible. The rule's usual harm — GitHub keeping only one pending
+# run per group — costs nothing in this case: any catch-up that queues behind a
+# full run is one whose teams that run has already published, so it wakes up
+# with nothing to do. Never cancel-in-progress: a half-written refresh must not
+# be interrupted.
+concurrency:
+  group: team-events-pipeline
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  catchup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Publish results for teams whose game has finished
+        env:
+          SPORTSAPIPRO_KEY: ${{ secrets.SPORTSAPIPRO_KEY }}
+        run: node scripts/refresh-played-teams.mjs
+
+      - name: Archive games into team-events-archive.json
+        run: node scripts/archive-team-events.mjs
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add team-events.json team-events-archive.json
+          git diff --cached --quiet && echo "No team-events changes" && exit 0
+          git commit -m "Team events catch-up $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          git push || (git pull --rebase --autostash && git push)

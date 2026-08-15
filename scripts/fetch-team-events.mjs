@@ -150,12 +150,10 @@ async function resolveTeamIds(prev) {
   return ids;
 }
 
-async function main() {
-  const { readFile, writeFile } = await import("node:fs/promises");
-  if (!process.env.SPORTSAPIPRO_KEY) throw new Error("SPORTSAPIPRO_KEY not set");
-  const prev = await readFile("team-events.json", "utf8").then(JSON.parse).catch(() => null);
-  const teamIds = await resolveTeamIds(prev);
-
+// Paced vendor fetch for a code -> vendor-team-id map (2 calls per team).
+// Exported so the post-match catch-up job (refresh-played-teams.mjs) can pull
+// the same feed for a SUBSET of teams instead of all twelve.
+export async function fetchEventsByCode(teamIds) {
   const eventsByCode = {};
   let dumped = false;
   for (const [code, id] of Object.entries(teamIds)) {
@@ -173,7 +171,14 @@ async function main() {
     }
     eventsByCode[code] = { lastEvents, nextEvents };
   }
+  return eventsByCode;
+}
 
+// Raw vendor events -> published team entries: ESPN fixtures merged into
+// `next`, per-game tries/cards enriched onto `last`. Both supplements are
+// keyless (no SportsAPI Pro quota), so the catch-up job runs this too and its
+// partial rebuild is shaped exactly like the full one.
+export async function assembleTeams(eventsByCode, statsJson) {
   // SportsAPI Pro's next feed misses whole competitions (RSA's 2026 Aug–Sep
   // tests were absent) — supplement upcoming fixtures from keyless ESPN.
   const { fetchEspnFixtures, mergeNext } = await import("./fetch-espn-fixtures.mjs");
@@ -187,7 +192,6 @@ async function main() {
   // stats.json, TRC/6N from ESPN; games with no source keep null (the app
   // drops them from those averages).
   const { ncStatsByEventId, fetchEspnFormStats, enrichLast } = await import("./fetch-form-stats.mjs");
-  const statsJson = await readFile("stats.json", "utf8").then(JSON.parse).catch(() => null);
   const neededDaysByCode = Object.fromEntries(
     Object.entries(teams).map(([code, t]) => [
       code,
@@ -195,6 +199,18 @@ async function main() {
     ]),
   );
   enrichLast(teams, ncStatsByEventId(statsJson), await fetchEspnFormStats(neededDaysByCode));
+  return teams;
+}
+
+async function main() {
+  const { readFile, writeFile } = await import("node:fs/promises");
+  if (!process.env.SPORTSAPIPRO_KEY) throw new Error("SPORTSAPIPRO_KEY not set");
+  const prev = await readFile("team-events.json", "utf8").then(JSON.parse).catch(() => null);
+  const teamIds = await resolveTeamIds(prev);
+
+  const eventsByCode = await fetchEventsByCode(teamIds);
+  const statsJson = await readFile("stats.json", "utf8").then(JSON.parse).catch(() => null);
+  const teams = await assembleTeams(eventsByCode, statsJson);
 
   const out = {
     updatedAt: new Date().toISOString(),
