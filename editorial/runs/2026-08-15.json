@@ -2,41 +2,33 @@
   "date": "2026-08-15",
   "counts": {
     "editions": 12,
-    "quiet": 4,
-    "storyline": 3,
+    "quiet": 5,
+    "storyline": 4,
     "dataEdition": 1,
     "failed": 0,
-    "noLead": 3
+    "noLead": 2
   },
   "failed": [],
   "teams": [
     {
       "team": "Fiji",
-      "quiet": false,
-      "rung": "news",
-      "storyline": null,
-      "dataAngle": null,
-      "heading": "Fijian rugby forward Saimoni Vunilagi dies after training session in Japan",
-      "kicker": "Tragic loss",
-      "body": "The Fijian rugby community is mourning the sudden death of back-row forward Saimoni Vunilagi, who has passed away in Japan at the age of 26. Vunilagi’s second-division club, Kyushu KV, confirmed he died on Friday morning in a Fukuoka hospital after developing severe symptoms consistent with heatstroke following a team practice. The 196cm, 117kg forward had played in Japan since beginning his professional career in 2023. His club expressed their devastation, extending condolences to the family.",
-      "source": null,
-      "lead": {
-        "candidate": 1,
-        "why": "The tragic passing of Fijian forward Saimoni Vunilagi in Japan is the most widely reported and significant news story today."
+      "quiet": true,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "Samoa's potential four-year international rugby ban following government withdrawal of support",
+        "resolution": "until the outcome of the threatened World Rugby suspension and the resolution of the government funding dispute is finalized",
+        "recheckHits": 2
       },
+      "dataAngle": null,
+      "heading": "Fiji's regional rivals Samoa face four-year international rugby ban",
+      "kicker": "PACIFIC CRISIS",
+      "body": "Fiji's closest regional rivals Samoa remain on the brink of a devastating four-year international ban, with the opposition warning of a World Rugby suspension over the Prime Minister's 'political madness.' The crisis, which began when the Samoan government withdrew its financial support, threatens to freeze the nation out of global competitions. While the dispute remains unresolved, the looming suspension would dismantle regional schedules and leave Fiji without their traditional Pacific partners.",
+      "source": "SA Rugby Magazine",
+      "lead": null,
       "candidates": [
         {
-          "title": "Fiji rugby player dies in Japan of suspected heatstroke as high of 35C hit",
-          "score": 41.9,
-          "corroboration": 2,
-          "outlets": [
-            "bbc",
-            "search"
-          ]
-        },
-        {
           "title": "Fiji yet to sign Pacific Rugby League Partnership",
-          "score": 4.8,
+          "score": 4.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -65,6 +57,14 @@
           "outlets": [
             "search"
           ]
+        },
+        {
+          "title": "Fiji scrumhalf Kuruvoli banned 4 weeks for physical abuse in rugby Nations Championship match",
+          "score": 1.6,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
         }
       ]
     },
@@ -74,18 +74,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Steve Borthwick awards five new England contracts while axing Elliot Daly",
-      "kicker": "Contract Shake-up",
-      "body": "England head coach Steve Borthwick has shaken up his squad, awarding five players their first enhanced Elite Player Squad contracts. Prop Asher Opoku-Fordjour, lock Alex Coles, flanker Guy Pepper, scrum-half Jack van Poortvliet, and centre Seb Atkinson have secured the £150,000 deals. Conversely, Elliot Daly and Ben Curry have been axed alongside Ollie Lawrence, Tom Roebuck, and France-bound Tom Willis. The hybrid deals give Borthwick final say over medical and conditioning matters as England build towards their autumn campaign.",
+      "heading": "Steve Borthwick axes Elliot Daly as five newcomers earn enhanced England contracts",
+      "kicker": "SELECTION CALL",
+      "body": "Steve Borthwick has reshaped his core group for the upcoming season, handing enhanced Elite Player Squad contracts to five rising stars while dropping several established names. Seb Atkinson, Alex Coles, Asher Opoku-Fordjour, Guy Pepper, and Jack van Poortvliet all receive the hybrid deals, which grant Borthwick increased control over their medical and sports science programmes. However, there is no place for British and Irish Lion Elliot Daly or centre Ollie Lawrence, as the head coach prioritises a fresh cohort ahead of November’s Tests against Australia, Japan, and New Zealand.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 3,
-        "why": "This represents a major selection and contract overhaul of the national squad by Steve Borthwick ahead of the upcoming season."
+        "why": "The announcement of centrally-contracted players and the axing of high-profile veterans like Elliot Daly is a major selection milestone ahead of the November Tests."
       },
       "candidates": [
         {
           "title": "Start of England's community rugby season postponed",
-          "score": 84.6,
+          "score": 82.5,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -94,7 +94,7 @@
         },
         {
           "title": "Northampton Saints: England ace lands key role following George Furbank departure",
-          "score": 33.3,
+          "score": 32.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -102,7 +102,7 @@
         },
         {
           "title": "England: Five players handed fresh Elite Player Squad contracts but British and Irish Lion among axed cohort",
-          "score": 29.7,
+          "score": 29.2,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -110,7 +110,7 @@
         },
         {
           "title": "Five players get first England deals in Borthwick shake-up",
-          "score": 23.8,
+          "score": 23.4,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -133,18 +133,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Kicking coach Vlok Cilliers joins Bulls after shock France departure",
-      "kicker": "Coaching exit",
-      "body": "Former France kicking coach Vlok Cilliers has joined the Bulls backroom staff following his sudden departure from Fabien Galthié's setup. The French Rugby Federation confirmed reports that Cilliers — who spent seven years sharpening the national side's tactical kicking and Thomas Ramos' goal-kicking — was relieved of his duties alongside defence specialist Shaun Edwards. Galthié reportedly instigated the shake-up to revitalise the squad ahead of the World Cup, prompting the 58-year-old Cilliers to return to Pretoria.",
+      "heading": "Vlok Cilliers joins Bulls as Fabien Galthié overhauls France coaching staff",
+      "kicker": "COACHING SHAKE-UP",
+      "body": "The departure of Vlok Cilliers from the France setup is official following his appointment as the Bulls’ new kicking coach. His exit, alongside defence coach Shaun Edwards, confirms a significant shake-up by Fabien Galthié as he prepares for the next World Cup cycle. Cilliers, who spent seven years with Les Bleus, was instrumental in developing Thomas Ramos’ world-class accuracy. \"Being with France for seven years was an amazing time, and I picked up so much experience,\" Cilliers said, following reports that Edwards was no longer \"universally liked.\"",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 1,
-        "why": "It details the confirmed next move of long-serving kicking coach Vlok Cilliers following his sudden departure from Galthié's staff."
+        "why": "The official confirmation of Vlok Cilliers' new role at the Bulls solidifies the reports of a major coaching shake-up involving Shaun Edwards."
       },
       "candidates": [
         {
           "title": "Respected coach lands new gig after shock France exit amid fielding ‘several offers’",
-          "score": 33.4,
+          "score": 32,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -152,7 +152,7 @@
         },
         {
           "title": "Top 10 hookers in rugby: Springboks stalwart tops chart from Ireland's carrying king and a French bruiser",
-          "score": 22.7,
+          "score": 21.7,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -160,7 +160,7 @@
         },
         {
           "title": "The All Blacks' 'point of difference' under Dave Rennie: 'We're better than even the French'",
-          "score": 19.8,
+          "score": 19.1,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -190,18 +190,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Former Ireland out-half Brian Smith has passed away aged 59",
-      "kicker": "Obituary",
-      "body": "The Irish rugby community is mourning the death of former dual-international playmaker Brian Smith, who has passed away aged 59. Capped nine times for Ireland at out-half during his studies at Oxford University, Smith also won six Test caps for Australia. The IRFU stated they were 'saddened to hear of the passing of former out-half Brian Smith following a short illness', paying tribute to a player and coach who excelled across both hemispheres.",
+      "heading": "Former Ireland and Wallabies out-half Brian Smith passes away aged 59",
+      "kicker": "Sad loss",
+      "body": "The Irish rugby community is mourning Brian Smith, the dual-international out-half who has passed away at 59 following a short illness. Smith earned nine caps for Ireland during his studies at Oxford University, having previously represented Australia six times, including at the inaugural 1987 World Cup. The IRFU praised his “illustrious career” across both hemispheres, which included a successful period as director of rugby at London Irish and a stint as England’s attack coach during the Martin Johnson era.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 1,
-        "why": "The rugby world is mourning the passing of former Ireland and Australia playmaker Brian Smith at the age of 59."
+        "why": "The death of a dual-international out-half and former coach is the most significant and widely reported story in the Irish press today."
       },
       "candidates": [
         {
           "title": "Ex-Wallabies and Ireland back Brian Smith passes away aged 59",
-          "score": 69.4,
+          "score": 68.9,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
@@ -210,7 +210,15 @@
         },
         {
           "title": "Top 10 hookers in rugby: Springboks stalwart tops chart from Ireland's carrying king and a French bruiser",
-          "score": 33,
+          "score": 31.6,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "England: Five players handed fresh Elite Player Squad contracts but British and Irish Lion among axed cohort",
+          "score": 16.1,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -218,23 +226,15 @@
         },
         {
           "title": "Ireland hand out four new central contracts",
-          "score": 17,
+          "score": 15.4,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "England: Five players handed fresh Elite Player Squad contracts but British and Irish Lion among axed cohort",
-          "score": 16.3,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
           "title": "Ex-Ireland rugby ace Brian Smith, 59, remembered as ‘Great bloke, father and coach’ after tragic death",
-          "score": 5.1,
+          "score": 4.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -248,15 +248,15 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "lastMeeting",
-      "heading": "Italy target South Africa turnaround after losing last year's home test",
-      "kicker": "FORM GUIDE",
-      "body": "Italy lost 32-14 to South Africa in their last meeting at home during an international friendly in November 2025. Gli Azzurri enter the next round of fixtures sitting 11th out of 12 teams in the Nations Championship table. The side has suffered three defeats from their opening three games of the tournament. Their most recent outing resulted in a heavy 57-10 loss against Australia in the third round.",
+      "heading": "Italy lost 32-14 to South Africa in last home meeting",
+      "kicker": "Previous encounter",
+      "body": "The Azzurri focus on their November return to action following a challenging start to the current campaign. Italy lost to South Africa 32-14 at home during the November 2025 international friendlies. In the current Nations Championship, the team has recorded three losses from their opening three fixtures. The squad has conceded 131 points across those first three matches. Gonzalo Quesada’s side currently sits 11th in the standings as they prepare to face the Springboks in Round 4.",
       "source": null,
       "lead": null,
       "candidates": [
         {
           "title": "Italy prop Riccioni gets 2-week ban for sideline red card in Nations Championship rugby test",
-          "score": 1.6,
+          "score": 1.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -264,6 +264,14 @@
         },
         {
           "title": "World Rugby stamp down on ref-bashing as Italy boss slapped first ban after Shape of the Game agreement",
+          "score": 1.5,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "World Rugby ban hammer for Italy coach after referee rant",
           "score": 1.4,
           "corroboration": 1,
           "outlets": [
@@ -271,24 +279,16 @@
           ]
         },
         {
-          "title": "How to watch Italy vs. South Africa online for free",
-          "score": 1.2,
+          "title": "Japan vs. Italy rugby lineups, kickoff time",
+          "score": 0.6,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "All Blacks vs Italy in Wellington: Gli Azzurri on the rise",
-          "score": 1,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Australia 57-10 Italy: Nations Championship rugby union international – as it happened",
-          "score": 0.8,
+          "title": "Nations Championship rugby: Will Jordan breaks New Zealand try-scoring record in 47-17 victory over Italy",
+          "score": 0.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -301,35 +301,22 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "Landmark legal action over rugby concussion injuries",
-        "resolution": "until the judge reaches a final ruling on the current hearing",
+        "subject": "The High Court decision on the landmark rugby concussion group litigation",
+        "resolution": "until the judge delivers the ruling on the application to strike out the players' claims",
         "recheckHits": 1
       },
       "dataAngle": null,
-      "heading": "Landmark concussion lawsuit at risk of dismissal after claimants change lawyers",
-      "kicker": "Legal battle",
-      "body": "Rugby's landmark concussion group litigation faces potential dismissal after a significant legal shake-up, with claimants seeking new representation. While rugby's governing bodies face the high-stakes proceedings, the transition has placed the long-running lawsuit in jeopardy. The legal action, which addresses brain injuries suffered by former players during their careers, enters a critical phase as the court determines whether the case can proceed under new counsel.",
+      "heading": "Rugby’s landmark concussion lawsuit remains at risk of judicial dismissal",
+      "kicker": "Legal proceedings",
+      "body": "The high-profile concussion litigation continues to face uncertainty as the case remains at risk of being struck out. Following a recent shift in legal representation for the claimants, the proceedings are currently awaiting a definitive judicial ruling on the application to dismiss the group litigation. With the judge having previously retired to consider the potential for a 95% strikeout, the status of these claims remains unresolved while the sport monitors the outcome of this significant legal challenge.",
       "source": "Guardian Rugby Union",
-      "lead": null,
+      "lead": {
+        "candidate": 1,
+        "why": "The landmark concussion lawsuit faces a critical juncture regarding potential dismissal following recent counsel changes."
+      },
       "candidates": [
         {
-          "title": "Scotland ‘surprised’ as Fukofuka unveiled as Australia coach",
-          "score": 3.9,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
           "title": "Scottish Rugby 'surprised' as former head coach appointed by Australia days after release",
-          "score": 3.7,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Scotland coach lands top job with rivals days after leaving for 'family reasons'",
           "score": 3.5,
           "corroboration": 1,
           "outlets": [
@@ -337,16 +324,32 @@
           ]
         },
         {
-          "title": "Every Scotland rugby player to win the Champions Cup as 2026 crop bid to add their name to list",
-          "score": 1.8,
+          "title": "Scotland coach lands top job with rivals days after leaving for 'family reasons'",
+          "score": 3.2,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "Scotland Women’s 32-player squad announced for Vodafone Scotland WXV Series",
-          "score": 1.5,
+          "title": "Scotland ‘surprised’ as Fukofuka unveiled as Australia coach",
+          "score": 3.1,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Every Scotland rugby player to win the Champions Cup as 2026 crop bid to add their name to list",
+          "score": 1.9,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Scotland vs. England rugby Six Nations 2026 lineups kickoff time",
+          "score": 1.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -359,28 +362,23 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "Wales' WRU board and future governance",
-        "resolution": "until the WRU board either resigns or is replaced",
-        "recheckHits": 7
+        "subject": "The WRU's potential reduction of Welsh professional teams from four to three",
+        "resolution": "until the Welsh Rugby Union board confirms the long-term professional team structure",
+        "recheckHits": 6
       },
       "dataAngle": null,
-      "heading": "Welsh Rugby Union governance dispute remains unresolved as regional reform stalls",
-      "kicker": "Governance crisis",
-      "body": "There is no new coverage in today's press regarding the WRU governance dispute. The thread remains open following the Welsh Rugby Union's October 2025 plan to cut a professional region, which players previously warned would drive elite talent away. Critics continue to demand the governing body publish the underlying evidence behind the decision, while clubs have accused the union of 'scaremongering' during this prolonged standoff.",
+      "heading": "Lisa Neumann returns as Wales name extended training squad for WXV",
+      "kicker": "Squad update",
+      "body": "Wing Lisa Neumann has been recalled to the Wales training squad as head coach Sean Lynn prepares his side for the upcoming four-match WXV Global Series. The 32-year-old, who has been without a club since leaving Harlequins in July, returns to the 46-player setup after missing nearly all of the 2026 Six Nations through injury. Lynn has also included 14 uncapped players in his preparations for the autumn campaign, which includes home Tests against South Africa and the USA.",
       "source": "BBC Rugby Union",
-      "lead": null,
+      "lead": {
+        "candidate": 1,
+        "why": "The women's squad announcement provides current, verifiable news for the Wales programme as they prepare for the upcoming WXV Global Series."
+      },
       "candidates": [
         {
-          "title": "Ticket price hikes proof Wales Rugby Union is tone deaf to loyal fan concerns",
-          "score": 13.7,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
           "title": "Neumann back in Wales' extended WXV training squad",
-          "score": 3,
+          "score": 2.9,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -388,7 +386,7 @@
         },
         {
           "title": "The best rugby grounds in Wales out of the 282 Welsh clubs",
-          "score": 2.2,
+          "score": 2.1,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -396,7 +394,7 @@
         },
         {
           "title": "World Rugby rankings change published as Wales reinstatement announced",
-          "score": 2,
+          "score": 1.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -404,6 +402,14 @@
         },
         {
           "title": "Prince William Supports Wales at Rugby World Cup Day in France After Kate Middleton Attended Another Game",
+          "score": 1.5,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Troubled Wales rugby team names Steve Tandy new coach",
           "score": 1.3,
           "corroboration": 1,
           "outlets": [
@@ -417,31 +423,23 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "Tomás Albornoz's four-match suspension for referee altercation",
-        "resolution": "until Albornoz serves his ban for intimidating the referee",
-        "recheckHits": 7
+        "subject": "South Africa's status as the World Rugby number-one ranked team ahead of the All Blacks series",
+        "resolution": "until the World Rugby rankings are updated following the Springboks' Test against Argentina",
+        "recheckHits": 1
       },
       "dataAngle": null,
-      "heading": "Tomás Albornoz remains suspended for upcoming Argentina matches against Australia",
-      "kicker": "Fly-half ban",
-      "body": "Tomás Albornoz’s four-match suspension, handed down last week following his altercation with referee Angus Gardner after the defeat to England, remains ongoing. The ban rules the fly-half out of Argentina’s matches against South Africa and the upcoming double-header against Australia, as well as a fixture for his club Toulon. The disciplinary committee noted Albornoz had to be restrained by teammates after twice approaching Gardner, though he denied his behaviour was abusive or offensive.",
+      "heading": "Tomás Albornoz serves second match of four-game suspension for intimidation",
+      "kicker": "Disciplinary update",
+      "body": "Fly-half Tomás Albornoz remains sidelined today as he serves the second match of his four-game suspension. The ban was issued by a disciplinary committee following the fly-half’s conduct toward referee Angus Gardner after the final whistle of the defeat against England last month. Having accepted the charges of intimidation, Albornoz is currently unavailable for selection, missing this weekend's action alongside forthcoming fixtures against Australia and Toulon. His absence leaves Felipe Contepomi to manage his playmaking options during this period.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 5,
-        "why": "The edition provides an update on the ongoing suspension of Tomás Albornoz following his confrontation with referee Angus Gardner."
+        "candidate": 4,
+        "why": "The disciplinary ban regarding Tomás Albornoz remains the most significant active issue affecting the squad's composition following recent match events."
       },
       "candidates": [
         {
-          "title": "Stormers bolster pack for Pumas battle",
-          "score": 16.1,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
-          ]
-        },
-        {
           "title": "Springboks latest: Canan Moodie reveals how 'important' Argentina Test was with preparations for Rugby’s Greatest Rivalry series",
-          "score": 10.4,
+          "score": 10,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -449,7 +447,7 @@
         },
         {
           "title": "Argentina rugby fans display Falklands banner in defeat by South Africa",
-          "score": 2.3,
+          "score": 2.2,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -470,6 +468,14 @@
           "outlets": [
             "guardian"
           ]
+        },
+        {
+          "title": "Argentina too strong as they halt Wales' mini-revival",
+          "score": 1.3,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
+          ]
         }
       ]
     },
@@ -479,18 +485,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Taniela Tupou scores twice as Wallabies crush Japan for third straight win",
-      "kicker": "Test triumph",
-      "body": "The Wallabies secured their first three-match winning streak since 2024 with a clinical 56-17 victory over Japan in Townsville. After leading 21-17 at the interval, Les Kiss’s side scored 35 unanswered points in the second half, crossing for eight tries in total. Prop Taniela Tupou bagged a brace, while fly-half Carter Gordon impressed on his return from a calf injury. Kiss noted the squad found \"balance in the selection\" after making eight changes to the side that narrowly defeated the Brave Blossoms in Osaka last week.",
+      "heading": "Australia crush Japan as Wallabies secure third consecutive Test victory",
+      "kicker": "Winning streak",
+      "body": "Australia surged to a 56-17 victory over Japan in Townsville, marking their third straight win. Despite trailing early, the Wallabies capitalised on a dominant second half, scoring 35 unanswered points to complete the rout. Prop Taniela Tupou scored twice, while debutant Massimo De Lutiis also crossed the whitewash. Head coach Les Kiss has now overseen a successful transition, with the team building on their previous wins against Italy and Japan to string together a consistent run of form.",
       "source": "SA Rugby Magazine",
       "lead": {
         "candidate": 1,
-        "why": "Australia's dominant eight-try victory and first three-match winning streak since 2024 is the day's primary story."
+        "why": "The Wallabies' dominant 56-17 victory over Japan in Townsville marks their third consecutive win."
       },
       "candidates": [
         {
           "title": "Wallabies crush Eddie’s Blossoms",
-          "score": 54.2,
+          "score": 51.1,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -498,7 +504,7 @@
         },
         {
           "title": "Australia v Japan: Nations Championship rugby union international – live",
-          "score": 52.1,
+          "score": 49.2,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -506,7 +512,7 @@
         },
         {
           "title": "Gordon returns as Wallabies ring changes",
-          "score": 44.2,
+          "score": 43.5,
           "corroboration": 2,
           "outlets": [
             "sarugbymag",
@@ -514,16 +520,16 @@
           ]
         },
         {
-          "title": "Carter Gordon impresses on return as Wallabies surge clear of Japan for dominant win",
-          "score": 33.4,
+          "title": "Wallabies v Japan: Five takeaways as Australia's big men 'obliterate' Brave Blossoms in second half romp with a 'clear difference' emerging",
+          "score": 35,
           "corroboration": 1,
           "outlets": [
-            "guardian"
+            "planetrugby"
           ]
         },
         {
           "title": "Wallabies vs Brave Blossoms Lipovitan D Challenge Cup Match 15 August 2026 Preview",
-          "score": 32,
+          "score": 31.3,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -537,18 +543,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Eddie Jones' Japan collapses in Townsville as Australia secure dominant 56-17 win",
-      "kicker": "Test defeat",
-      "body": "Japan suffered a heavy 56-17 defeat to Australia on Saturday after a competitive opening period in Townsville crumbled into a second-half rout. Despite leading 17-14 following tries from Harry Hockings, Naoto Saito, and Dylan Riley, the Brave Blossoms conceded 42 unanswered points. \"The ball carrier is king, and then everyone else has got to follow after that,\" Jones noted regarding his use of geese videos, yet his side finished with 14 men after Harada's yellow card.",
+      "heading": "Japan suffer heavy 56-17 loss to Australia in Townsville test",
+      "kicker": "Series defeat",
+      "body": "Japan’s tour of Australia concluded with a comprehensive 56-17 defeat in Townsville, as the hosts dominated the second half to pull away from the visitors. Despite a competitive opening 40 minutes that saw Japan stay within reach through tries from Harry Hockings and Naoto Saito, Australia capitalised on gaps to pile on points after the interval. The result follows last weekend’s narrow 35-32 loss in Osaka, leaving Japan with a challenging return from the two-match series.",
       "source": "Guardian Rugby Union",
       "lead": {
-        "candidate": 3,
-        "why": "Japan led the Wallabies after 33 minutes before conceding 42 unanswered points in a second-half collapse in Townsville."
+        "candidate": 1,
+        "why": "The result in Townsville is the most significant development in the team's current competitive standing."
       },
       "candidates": [
         {
           "title": "Australia v Japan: Nations Championship rugby union international – live",
-          "score": 32.2,
+          "score": 31.2,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -556,8 +562,16 @@
           ]
         },
         {
+          "title": "Wallabies v Japan: Five takeaways as Australia's big men 'obliterate' Brave Blossoms in second half romp with a 'clear difference' emerging",
+          "score": 28,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
           "title": "Fijian rugby player Saimoni Vunilagi, 26, dies after suspected heatstroke at training in Japan",
-          "score": 23.1,
+          "score": 23.2,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -566,7 +580,7 @@
         },
         {
           "title": "Carter Gordon impresses on return as Wallabies surge clear of Japan for dominant win",
-          "score": 23,
+          "score": 21.3,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -574,18 +588,10 @@
         },
         {
           "title": "Jones turns to geese to inspire Japan",
-          "score": 17.9,
+          "score": 17.5,
           "corroboration": 1,
           "outlets": [
             "bbc"
-          ]
-        },
-        {
-          "title": "Carter Gordon returns for Wallabies in ‘balanced selection’ for second Japan Test",
-          "score": 17.4,
-          "corroboration": 1,
-          "outlets": [
-            "guardian"
           ]
         }
       ]
@@ -596,28 +602,28 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Caleb Clarke ruled out of South Africa tour following shoulder surgery requirement",
+      "heading": "Caleb Clarke ruled out of remainder of All Blacks South Africa tour",
       "kicker": "Injury blow",
-      "body": "All Blacks wing Caleb Clarke is returning home from South Africa after scans confirmed a ruptured shoulder tendon sustained during Tuesday’s victory over the Sharks. The 27-year-old requires surgery, making him the second backline casualty of the tour following Billy Proctor’s earlier exit. While Richie Mo’unga has joined the squad as cover, Dave Rennie is yet to summon a replacement for Clarke, noting that \"the side we are playing against the Bulls will be quite different to the first Test team.\"",
+      "body": "The All Blacks have suffered a significant backline setback with wing Caleb Clarke ruled out for the remainder of the tour. Clarke will return home after suffering a ruptured shoulder tendon during Tuesday's victory over the Sharks, leaving head coach Dave Rennie to navigate further reshuffling. This follows the earlier departure of centre Billy Proctor, who returned to New Zealand with a serious shoulder injury. Rennie confirmed no immediate injury replacement will be called up at this stage of the campaign.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 2,
-        "why": "The injury to Caleb Clarke is a major squad setback that impacts selection for the upcoming Springboks series and reduces backline depth."
+        "why": "The loss of Caleb Clarke to a tournament-ending injury is the most significant tactical development ahead of the upcoming fixtures."
       },
       "candidates": [
         {
-          "title": "Nonu performs solo haka in response to All Blacks",
-          "score": 50.9,
+          "title": "All Blacks great Ma’a Nonu performs solo haka against New Zealand in South Africa tour match",
+          "score": 69.9,
           "corroboration": 3,
           "outlets": [
-            "bbc",
             "guardian",
+            "bbc",
             "search"
           ]
         },
         {
           "title": "All Blacks suffer second backline casualty as Greatest Rivalry tour over for experienced wing",
-          "score": 45.9,
+          "score": 43.7,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -625,7 +631,7 @@
         },
         {
           "title": "Heyneke: All Blacks lack Boks' depth",
-          "score": 44.1,
+          "score": 42.1,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -633,7 +639,7 @@
         },
         {
           "title": "Dave Rennie: Performances against the Bulls can 'tilt' All Blacks selections for Springboks Tests",
-          "score": 43.5,
+          "score": 41.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -641,7 +647,7 @@
         },
         {
           "title": "All Blacks legend: Springboks 'danger factor' Tony Brown the tourists' 'biggest issue'",
-          "score": 42.3,
+          "score": 40.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -655,18 +661,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Josh Kronfeld labels Tony Brown the biggest danger to the All Blacks",
-      "kicker": "TACTICAL EDGE",
-      "body": "All Blacks legend Josh Kronfeld believes attack coach Tony Brown is the most significant threat to New Zealand in the upcoming four-Test series. Kronfeld argued that Brown’s influence prevents the Springboks from retreating into a conservative shell under pressure, providing the \"danger factor\" required to maintain an expansive game. While the world champions remain top of the log, Kronfeld warned that Rassie Erasmus’ side now possesses \"way more dynamics\" than previous eras, making it harder for opponents to exploit their traditional reliance on set-piece and kicking.",
-      "source": "Planet Rugby",
+      "heading": "Rassie Erasmus confirms refreshed Springboks are ready for All Blacks series",
+      "kicker": "Series preparation",
+      "body": "Rassie Erasmus has declared his squad recovered and aligned following their recent return from Argentina. After managing the travel fatigue of the touring party, the Springboks completed two days of collective training this weekend to sharpen their focus for the opening Test. Erasmus emphasised that the four-match series demands a mentality similar to knockout rugby, stating: “It’s a new and exciting challenge, and we have been putting in a lot of work behind the scenes.”",
+      "source": "SA Rugby Magazine",
       "lead": {
-        "candidate": 5,
-        "why": "Kronfeld's identification of Tony Brown as the primary tactical threat highlights the Boks' successful evolution into a more dynamic side."
+        "candidate": 2,
+        "why": "It captures the immediate focus of the Springbok camp as they finalise preparations for the upcoming series."
       },
       "candidates": [
         {
           "title": "'It's not just the Springboks' – All Blacks great reveals 'admiration' for South African rugby over contrasting 'mentalities'",
-          "score": 67.4,
+          "score": 65.8,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
@@ -674,11 +680,11 @@
           ]
         },
         {
-          "title": "Josh Kronfeld believes Springboks series 'not super fair' on Dave Rennie as All Blacks role is a 'deal for the World Cup'",
-          "score": 45.3,
+          "title": "Refreshed Boks ready to knock out All Blacks",
+          "score": 53.2,
           "corroboration": 1,
           "outlets": [
-            "planetrugby"
+            "sarugbymag"
           ]
         },
         {
@@ -691,19 +697,19 @@
           ]
         },
         {
-          "title": "Fleckie warns Boks of Rennie’s brutality",
-          "score": 42.6,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
-          ]
-        },
-        {
-          "title": "All Blacks legend: Springboks 'danger factor' Tony Brown the tourists' 'biggest issue'",
-          "score": 42.3,
+          "title": "Josh Kronfeld believes Springboks series 'not super fair' on Dave Rennie as All Blacks role is a 'deal for the World Cup'",
+          "score": 43.1,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
+          ]
+        },
+        {
+          "title": "Fleckie warns Boks of Rennie’s brutality",
+          "score": 40.8,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
           ]
         }
       ]
