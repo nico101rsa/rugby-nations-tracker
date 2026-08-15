@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-08-15T02:09:30.583Z",
+ "updatedAt": "2026-08-15T14:29:58.557Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -478,20 +478,6 @@
   "JPN": {
    "last": [
     {
-     "id": 14694902,
-     "date": "2025-09-21T01:35:00.000Z",
-     "league": "Pacific Nations Cup, Knockout Stage",
-     "opponent": "Fiji",
-     "opponentCode": "FIJ",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 27,
-     "them": 33,
-     "result": "L",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14874944,
      "date": "2025-10-25T05:50:00.000Z",
      "league": "International Friendlies",
@@ -616,9 +602,7 @@
      "result": "L",
      "tries": null,
      "cards": null
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16786650,
      "date": "2026-08-15T05:15:00.000Z",
@@ -627,11 +611,14 @@
      "opponentCode": "AUS",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Queensland Country Bank Stadium, Townsville"
-    },
+     "us": 17,
+     "them": 56,
+     "result": "L",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "venue": "Denka Big Swan Stadium",
      "id": "espn-603737",
@@ -923,20 +910,6 @@
   "AUS": {
    "last": [
     {
-     "id": 14572776,
-     "date": "2025-10-04T09:45:00.000Z",
-     "league": "The Rugby Championship",
-     "opponent": "New Zealand",
-     "opponentCode": "NZL",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 14,
-     "them": 28,
-     "result": "L",
-     "tries": 1,
-     "cards": 2
-    },
-    {
      "id": 14874944,
      "date": "2025-10-25T05:50:00.000Z",
      "league": "International Friendlies",
@@ -1061,9 +1034,7 @@
      "result": "W",
      "tries": null,
      "cards": null
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16786650,
      "date": "2026-08-15T05:15:00.000Z",
@@ -1072,11 +1043,14 @@
      "opponentCode": "JPN",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Queensland Country Bank Stadium, Townsville"
-    },
+     "us": 56,
+     "them": 17,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "venue": "Estadio 23 de Agosto, San Salvador",
      "id": "espn-603460",
@@ -1189,6 +1163,18 @@
      "opponentCode": null,
      "tracked": false,
      "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248078,
+     "date": "2027-10-09T06:10:00.000Z",
+     "league": "World Cup, Pool A",
+     "opponent": "New Zealand",
+     "opponentCode": "NZL",
+     "tracked": true,
+     "homeAway": "A",
      "us": null,
      "them": null,
      "result": null
