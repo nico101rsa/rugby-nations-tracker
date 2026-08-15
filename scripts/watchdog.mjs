@@ -26,6 +26,12 @@ export const WATCHERS = [
   // Daily 01:00 UTC (+ Sat 19:00) — feeds the app's Team pages; a dropped run
   // leaves finished games showing as upcoming fixtures (seen 2026-07-19).
   { workflow: "team-events.yml", label: "Team events (Team pages)", maxAgeHours: 26 },
+  // Every 3h across 05:00-14:00 UTC — publishes a finished game to the Team
+  // pages between full runs (an Asia-Pacific kickoff otherwise waits ~12h).
+  // Most runs are deliberate no-ops, so success here means "the check ran",
+  // which is exactly the liveness signal worth watching. Four runs a day, so
+  // 26h only fires after several consecutive drops.
+  { workflow: "team-events-catchup.yml", label: "Team events catch-up (post-match)", maxAgeHours: 26 },
 ];
 
 // Pure core: given the last-success time per workflow, decide what's overdue.

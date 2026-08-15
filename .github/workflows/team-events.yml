@@ -9,6 +9,11 @@ name: Team events
 # calls, 20:30 UTC, same key) still clears the shared 100/day free tier.
 # (Saturday live polling is api-sports — a different vendor — so this job
 # never competes with it.)
+#
+# That Saturday slot is tuned to Northern-Hemisphere kickoffs, so games that
+# finish far from it — Asia-Pacific tests, ~07:00 UTC — waited up to ~12h to
+# reach the Team pages. team-events-catchup.yml closes that gap by re-fetching
+# only the teams that just played; this job stays the full, authoritative walk.
 on:
   schedule:
     - cron: "0 1 * * *"
