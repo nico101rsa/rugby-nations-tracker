@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-08-15T14:29:58.557Z",
+ "updatedAt": "2026-08-15T19:27:13.473Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -18,20 +18,6 @@
  "teams": {
   "NZL": {
    "last": [
-    {
-     "id": 14572776,
-     "date": "2025-10-04T09:45:00.000Z",
-     "league": "The Rugby Championship",
-     "opponent": "Australia",
-     "opponentCode": "AUS",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 28,
-     "them": 14,
-     "result": "W",
-     "tries": 4,
-     "cards": 0
-    },
     {
      "id": 14884310,
      "date": "2025-11-01T20:10:00.000Z",
@@ -157,9 +143,7 @@
      "result": "W",
      "tries": null,
      "cards": null
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16716847,
      "date": "2026-08-15T17:00:00.000Z",
@@ -168,14 +152,18 @@
      "opponentCode": null,
      "tracked": false,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null
-    },
+     "us": 50,
+     "them": 19,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16651329,
      "date": "2026-08-22T15:00:00.000Z",
-     "league": "International Friendlies",
+     "league": "Rugbys Greatest Rivalry",
      "opponent": "South Africa",
      "opponentCode": "RSA",
      "tracked": true,
@@ -224,17 +212,17 @@
      "venue": "FNB Stadium, Johannesburg"
     },
     {
-     "venue": "M&T Bank Stadium",
-     "id": "espn-603250",
-     "date": "2026-09-12T21:00Z",
-     "league": "International Test Match",
+     "id": 16651328,
+     "date": "2026-09-12T21:00:00.000Z",
+     "league": "International Friendlies",
      "opponent": "South Africa",
      "opponentCode": "RSA",
      "tracked": true,
      "homeAway": "A",
      "us": null,
      "them": null,
-     "result": null
+     "result": null,
+     "venue": "M&T Bank Stadium"
     },
     {
      "venue": "Eden Park, Auckland",
@@ -282,6 +270,19 @@
      "league": "Nations Championship",
      "opponent": "Wales",
      "opponentCode": "WAL",
+     "tracked": true,
+     "homeAway": "A",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "venue": "Allianz Stadium, London",
+     "id": "espn-604005",
+     "date": "2026-11-21T14:10Z",
+     "league": "Nations Championship",
+     "opponent": "England",
+     "opponentCode": "ENG",
      "tracked": true,
      "homeAway": "A",
      "us": null,
@@ -1944,7 +1945,7 @@
     {
      "id": 16651329,
      "date": "2026-08-22T15:00:00.000Z",
-     "league": "International Friendlies",
+     "league": "Rugbys Greatest Rivalry",
      "opponent": "New Zealand",
      "opponentCode": "NZL",
      "tracked": true,
