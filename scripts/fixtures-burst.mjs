@@ -24,6 +24,8 @@ const POST_MS = 150 * 60000;           // play + HT + the FT settle, as refresh.
 const POLL_MS = 3 * 60000;
 const BURST_MAX_MS = 2 * 60 * 60000;   // one landed fire covers a full match, well under the 6h job cap
 const LIVE_KINDS = new Set(["test", "series", "tour"]);
+const MAX_CONSECUTIVE_FAILURES = 5;    // ~15 min of nothing working — stop pretending
+const PUSH_ATTEMPTS = 4;
 
 // Is a test/series/tour game actually in play right now?
 //
@@ -56,15 +58,31 @@ export async function runFixturesBurst({
 } = {}) {
   const started = now();
   let iterations = 0;
+  let consecutiveFailures = 0;
   while (true) {
-    await build();
-    iterations++;
-    publish(`Live fixtures refresh ${new Date().toISOString()}`);
+    try {
+      await build();
+      iterations++;
+      publish(`Live fixtures refresh ${new Date().toISOString()}`);
+      consecutiveFailures = 0;
+    } catch (err) {
+      // A blip at ESPN or a lost push race must NOT end the burst. Run 4349 on
+      // 2026-08-22 died at 16:41 on exactly this: one rejected push threw out
+      // of gitPublish and took the whole run with it, mid-match. The next pass
+      // republishes the newer score anyway, so a single bad pass costs three
+      // minutes, not the rest of the game.
+      consecutiveFailures++;
+      console.warn(`[fixtures-burst] pass failed (${consecutiveFailures} in a row): ${err.message}`);
+      if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
+        console.error(`[fixtures-burst] ${consecutiveFailures} consecutive failures — giving up`);
+        break;
+      }
+    }
     if (now() - started >= burstMs) break;    // burst window elapsed
     if (!(await stillLive())) break;          // nothing in play any more
     await sleep(intervalMs);
   }
-  return { iterations };
+  return { iterations, consecutiveFailures };
 }
 
 // Mid-burst publish, mirroring refresh.mjs's gitPublish. CI only — locally the
@@ -75,8 +93,21 @@ function gitPublish(msg) {
   execSync("git add fixtures.json");
   if (!execSync("git diff --cached --name-only").toString().trim()) return; // no change → no Pages build
   execSync(`git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m ${JSON.stringify(msg)}`);
-  try { execSync("git push"); }
-  catch { execSync("git pull --rebase --autostash && git push"); }
+
+  // main is shared with the digests, news, rankings and team-events jobs, and
+  // at a 3-min cadence this loop races them about four times as often as the
+  // 12-min nations burst. One rebase-and-retry was not enough: on 2026-08-22
+  // the retry lost a second race and threw. Try a few times, then leave the
+  // commit local — the next pass carries it along with fresher data.
+  for (let attempt = 1; attempt <= PUSH_ATTEMPTS; attempt++) {
+    try { execSync("git push"); return; }
+    catch {
+      if (attempt === PUSH_ATTEMPTS) break;
+      try { execSync("git pull --rebase --autostash"); }
+      catch { /* rebase lost too — just try the push again next time round */ }
+    }
+  }
+  console.warn("[fixtures-burst] push kept losing races; commit stays local for the next pass");
 }
 
 const readFixtures = async () => {
