@@ -252,3 +252,29 @@ test("mergeRefreshed: an ANSWERED empty half really does empty it", () => {
   const out = mergeRefreshed(prev, fresh);
   assert.deepEqual(out.RSA.next, []);
 });
+
+// 23 Aug 2026: RSA's `last` came back fresh with Ellis Park at 16-33 while the
+// `next` call 503'd, so the kept `next` still carried the same event id
+// unscored. The Team page charted the game and listed it as upcoming at once,
+// and teamsDue kept re-requesting a result it already had.
+test("mergeRefreshed: a kept `next` drops games the fresh `last` has now played", () => {
+  const prev = {
+    RSA: {
+      last: [{ id: 900 }],
+      next: [{ id: 16651329, date: "2026-08-22T15:00:00Z" }, { id: 16651327, date: "2026-08-29T15:00:00Z" }],
+    },
+  };
+  const fresh = {
+    RSA: { last: [{ id: 900 }, { id: 16651329, us: 16, them: 33 }], next: [], nextUnknown: true },
+  };
+  const out = mergeRefreshed(prev, fresh);
+  assert.deepEqual(out.RSA.next.map((g) => g.id), [16651327]);
+  assert.equal(out.RSA.last.at(-1).them, 33);
+});
+
+test("mergeRefreshed: a kept `next` with nothing played through is untouched", () => {
+  const prev = { RSA: { last: [{ id: 900 }], next: [{ id: 16651327, date: "2026-08-29T15:00:00Z" }] } };
+  const fresh = { RSA: { last: [{ id: 900 }], next: [], nextUnknown: true } };
+  const out = mergeRefreshed(prev, fresh);
+  assert.deepEqual(out.RSA.next, prev.RSA.next);
+});

@@ -279,7 +279,14 @@ export function mergeRefreshed(prevTeams, freshTeams) {
     // A half the vendor never answered keeps what's on file — blanking it
     // would drop the whole Fixtures list for that team off the Team page.
     if (merged.lastUnknown) merged.last = prevTeam?.last ?? [];
-    if (merged.nextUnknown) merged.next = prevTeam?.next ?? [];
+    if (merged.nextUnknown) {
+      // A kept `next` goes stale the moment the fresh `last` moves past it.
+      // On 23 Aug 2026 the Springboks' Ellis Park game landed in `last` at
+      // 16-33 while the kept `next` still carried the same event id unscored,
+      // so the Team page charted it and listed it as upcoming at once.
+      const played = new Set((merged.last ?? []).map((g) => String(g.id)));
+      merged.next = (prevTeam?.next ?? []).filter((g) => !played.has(String(g.id)));
+    }
     delete merged.lastUnknown;
     delete merged.nextUnknown;
     out[code] = merged;
