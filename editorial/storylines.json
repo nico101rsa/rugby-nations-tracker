@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-22T12:19:09.619Z",
+  "updatedAt": "2026-08-22T17:11:57.713Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 160,
+  "count": 163,
   "storylines": [
     {
       "id": "siya-kolisi-s-future-1mzkfov",
@@ -139,12 +139,15 @@
     },
     {
       "id": "rugby-brain-injury-concussion-1n2dgxv",
-      "subject": "Rugby brain injury concussion legal battle",
+      "subject": "Rugby union concussion legal battle outcome",
       "teams": [
         386,
         391,
         467,
-        465
+        465,
+        388,
+        390,
+        461
       ],
       "resolution": "until the High Court reaches a final ruling on whether to strike out the claims",
       "sources": [
@@ -165,7 +168,7 @@
         }
       ],
       "firstSeen": "2026-07-29",
-      "lastSeen": "2026-08-22",
+      "lastSeen": "2026-08-23",
       "uses": 0
     },
     {
@@ -2700,8 +2703,8 @@
       ],
       "firstSeen": "2026-08-15",
       "lastSeen": "2026-08-15",
-      "uses": 1,
-      "lastUsed": "2026-08-18"
+      "uses": 2,
+      "lastUsed": "2026-08-23"
     },
     {
       "id": "damian-mckenzie-s-injury-9yspj5",
@@ -3456,7 +3459,8 @@
       ],
       "firstSeen": "2026-08-20",
       "lastSeen": "2026-08-22",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-23"
     },
     {
       "id": "cam-roigard-s-recovery-1c5vwd4",
@@ -3827,33 +3831,6 @@
       "uses": 0
     },
     {
-      "id": "the-outcome-of-the-1x5op1c",
-      "subject": "The outcome of the High Court brain injury litigation involving 500+ former players",
-      "teams": [
-        386,
-        388,
-        390,
-        391
-      ],
-      "resolution": "until the High Court issues a final judgment or a settlement is reached between the claimants and the governing bodies",
-      "sources": [
-        {
-          "title": "Rugby brain injury case able to continue after high court ruling",
-          "link": "https://www.theguardian.com/sport/2026/aug/21/rugby-brain-injury-case-able-to-continue-after-high-court-ruling",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "High court allows rugby brain injury case to go on",
-          "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
-      "uses": 2,
-      "lastUsed": "2026-08-22"
-    },
-    {
       "id": "lisa-neumann-s-search-1tcov8t",
       "subject": "Lisa Neumann's search for a new club following her departure from Harlequins",
       "teams": [
@@ -3916,6 +3893,11 @@
       "resolution": "until he either cements his place in the position or is rotated out by Rassie Erasmus",
       "sources": [
         {
+          "title": "Ex-All Black expects Springboks to 'fight fire with fire' after Rassie Erasmus' 'fixation' on accusations",
+          "link": "https://www.planetrugby.com/news/ex-all-black-expects-springboks-to-fight-fire-with-fire-after-rassie-erasmus-fixation-on-accusations",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "‘Sacha has done wonderful things for us’",
           "link": "https://www.sarugbymag.co.za/sacha-done-wonderful-things-us/",
           "feedName": "SA Rugby Magazine"
@@ -3924,15 +3906,10 @@
           "title": "Springboks team: Five takeaways as 'rusty' Sacha Feinberg-Mngomezulu preferred and powerhouse given task of 'destroying' All Blacks",
           "link": "https://www.planetrugby.com/news/springboks-team-five-takeaways-as-rusty-sacha-feinberg-mngomezulu-preferred-and-powerhouse-given-task-of-destroying-all-blacks",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Rassie Erasmus' honest 'touch-and-go' admission on half-back selection for All Blacks showdown as Sacha Feinberg-Mngomezulu call explained",
-          "link": "https://www.planetrugby.com/news/rassie-erasmus-honest-touch-and-go-admission-on-half-back-selection-for-all-blacks-showdown-as-sacha-feinberg-mngomezulu-call-explained",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
+      "lastSeen": "2026-08-23",
       "uses": 0
     },
     {
@@ -4046,6 +4023,103 @@
       ],
       "firstSeen": "2026-08-22",
       "lastSeen": "2026-08-22",
+      "uses": 0
+    },
+    {
+      "id": "ardie-savea-s-potential-ihggl9",
+      "subject": "Ardie Savea's potential transfer to NRL",
+      "teams": [
+        465
+      ],
+      "resolution": "until Ardie Savea confirms his future or signs a new rugby union contract",
+      "sources": [
+        {
+          "title": "Rugby Transfers: Ardie Savea linked with NRL move, Springboks hopeful extends Sharks stay and Leicester Tigers sign Tonga star",
+          "link": "https://www.planetrugby.com/news/rugby-transfers-ardie-savea-linked-with-nrl-move-springboks-hopeful-extends-sharks-stay-and-leicester-tigers-sign-tonga-star",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-08-23",
+      "lastSeen": "2026-08-23",
+      "uses": 0
+    },
+    {
+      "id": "wallabies-fly-half-search-gx25si",
+      "subject": "Wallabies fly-half search and playmaker experimentation",
+      "teams": [
+        461
+      ],
+      "resolution": "until Les Kiss establishes a consistent first-choice fly-half pairing",
+      "sources": [
+        {
+          "title": "Wallabies search for pieces to fit playmaker puzzle as Kiss swings changes | Jack Snape",
+          "link": "https://www.theguardian.com/sport/2026/aug/14/wallabies-australia-japan-carter-gordon-rugby-union-test-nations-championship-preview",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Carter Gordon impresses on return as Wallabies surge clear of Japan for dominant win",
+          "link": "https://www.theguardian.com/sport/2026/aug/15/wallabies-australia-japan-nations-championship-rugby-union-match-report",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Inexperienced halves pair get nod for first Wallabies Test under new coach Les Kiss",
+          "link": "https://www.theguardian.com/sport/2026/aug/06/australia-wallabies-v-japan-team-lonergan-meredith-halves",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-23",
+      "lastSeen": "2026-08-23",
+      "uses": 0
+    },
+    {
+      "id": "welsh-rugby-union-board-jyo067",
+      "subject": "Welsh Rugby Union board tenure and future management",
+      "teams": [
+        391
+      ],
+      "resolution": "until the WRU board either resigns or secures a vote of confidence",
+      "sources": [
+        {
+          "title": "Davies calls for WRU board to step down",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c330yrpdlz0o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "WRU condemns abuse and doubles down on three-team plan",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq891l3g3keo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-23",
+      "lastSeen": "2026-08-23",
+      "uses": 0
+    },
+    {
+      "id": "henry-pollock-s-potential-1r0ohn9",
+      "subject": "Henry Pollock's potential England breakthrough and salary discussions",
+      "teams": [
+        386
+      ],
+      "resolution": "until the resolution of his contract value and regular inclusion in Borthwick's matchday squads",
+      "sources": [
+        {
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Pollock scores hat-trick as 11-try England thrash Fiji",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/videos/cz0jv2y07m1o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Rugby Union Weekly: Pollock hat-trick helps England end losing run",
+          "link": "https://www.bbc.co.uk/sounds/play/p0ny8qgp?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-23",
+      "lastSeen": "2026-08-23",
       "uses": 0
     }
   ]
