@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-22T20:10:48.299Z",
+  "updatedAt": "2026-08-22T22:12:04.906Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 166,
+  "count": 169,
   "storylines": [
     {
       "id": "siya-kolisi-s-future-1mzkfov",
@@ -695,7 +695,8 @@
       ],
       "firstSeen": "2026-08-03",
       "lastSeen": "2026-08-14",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-23"
     },
     {
       "id": "andr-esterhuizen-s-potential-7vuip2",
@@ -3646,7 +3647,8 @@
       ],
       "firstSeen": "2026-08-22",
       "lastSeen": "2026-08-23",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-23"
     },
     {
       "id": "michael-cheika-s-return-1q448cc",
@@ -3751,8 +3753,8 @@
       ],
       "firstSeen": "2026-08-22",
       "lastSeen": "2026-08-22",
-      "uses": 1,
-      "lastUsed": "2026-08-22"
+      "uses": 2,
+      "lastUsed": "2026-08-23"
     },
     {
       "id": "the-high-court-concussion-1cseaex",
@@ -4108,7 +4110,7 @@
     },
     {
       "id": "springboks-response-to-losing-1hqo7uo",
-      "subject": "Springboks' response to losing world No 1 ranking",
+      "subject": "Springboks' response to losing world number one ranking",
       "teams": [
         467,
         465
@@ -4116,19 +4118,19 @@
       "resolution": "until the conclusion of the Rugby's Greatest Rivalry series",
       "sources": [
         {
-          "title": "All Blacks take No 1 ranking from Boks",
-          "link": "https://www.sarugbymag.co.za/all-blacks-take-no-1-ranking-from-boks/",
+          "title": "Proud Rennie wary of Bok response",
+          "link": "https://www.sarugbymag.co.za/proud-rennie-wary-bok-response/",
           "feedName": "SA Rugby Magazine"
         },
         {
-          "title": "Latest World Rugby rankings: All Blacks dethrone Springboks at the summit after dominant Greatest Rivalry victory",
-          "link": "https://www.planetrugby.com/news/latest-world-rugby-rankings-all-blacks-dethrone-springboks",
-          "feedName": "Planet Rugby"
+          "title": "Rassie: Bok loss not catastrophic",
+          "link": "https://www.sarugbymag.co.za/rassie-bok-loss-not-catastrophic/",
+          "feedName": "SA Rugby Magazine"
         },
         {
-          "title": "Rassie Erasmus makes blunt admission after Springboks' defeat to 'team that is now number one in the world'",
-          "link": "https://www.planetrugby.com/news/rassie-erasmus-makes-blunt-admission-after-springboks-defeat-to-team-that-is-now-number-one-in-the-world",
-          "feedName": "Planet Rugby"
+          "title": "All Blacks take No 1 ranking from Boks",
+          "link": "https://www.sarugbymag.co.za/all-blacks-take-no-1-ranking-from-boks/",
+          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-08-23",
@@ -4177,6 +4179,70 @@
           "title": "High court allows rugby brain injury case to go on",
           "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-23",
+      "lastSeen": "2026-08-23",
+      "uses": 0
+    },
+    {
+      "id": "wales-permanent-coaching-and-11nvdbz",
+      "subject": "Wales' permanent coaching and leadership structure",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union responds to calls for board resignations and defines the future of its professional team strategy",
+      "sources": [
+        {
+          "title": "Davies calls for WRU board to step down",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c330yrpdlz0o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "WRU condemns abuse and doubles down on three-team plan",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq891l3g3keo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-23",
+      "lastSeen": "2026-08-23",
+      "uses": 0
+    },
+    {
+      "id": "springboks-injury-status-for-kcvjik",
+      "subject": "Springboks' injury status for frontline wingers",
+      "teams": [
+        467
+      ],
+      "resolution": "until Rassie Erasmus confirms the availability of the injured wings for the next Test",
+      "sources": [
+        {
+          "title": "Rassie sweats on Bok flyers",
+          "link": "https://www.sarugbymag.co.za/rassie-sweats-on-bok-flyers/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-23",
+      "lastSeen": "2026-08-23",
+      "uses": 0
+    },
+    {
+      "id": "wallabies-fly-half-selection-bno7xr",
+      "subject": "Wallabies' fly-half selection options",
+      "teams": [
+        461
+      ],
+      "resolution": "until Les Kiss settles on a preferred starting playmaker ahead of the next World Cup cycle",
+      "sources": [
+        {
+          "title": "Carter Gordon impresses on return as Wallabies surge clear of Japan for dominant win",
+          "link": "https://www.theguardian.com/sport/2026/aug/15/wallabies-australia-japan-nations-championship-rugby-union-match-report",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Wallabies search for pieces to fit playmaker puzzle as Kiss swings changes | Jack Snape",
+          "link": "https://www.theguardian.com/sport/2026/aug/14/wallabies-australia-japan-carter-gordon-rugby-union-test-nations-championship-preview",
+          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-08-23",
