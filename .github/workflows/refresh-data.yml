@@ -67,11 +67,20 @@ jobs:
       # still missing its final, or the tour probe recording a result.
       # build-fixtures is keyless ESPN, so the guard is about not hammering
       # ESPN every 15 min, not quota.
+      #
+      # fixtures-burst then KEEPS rebuilding while a test/series/tour game is
+      # in play, publishing each pass — the same trick the nations.json burst
+      # above uses, and for the same reason. decideMode() only latches "live"
+      # off the Nations Championship schedule, so on a test Saturday nothing
+      # bursts and this feed's only cadence is whether the cron fires. On
+      # 2026-08-22 the */10 slot dropped and the Springboks-New Zealand opener
+      # sat on 3-0 for 11.5 minutes while ESPN already had 10-5. Outside a
+      # live window it builds exactly once, as before.
       - name: Rebuild fixtures.json when live/finals/tour-probe warrant it
         run: |
           DUE=$(node scripts/fixtures-refresh-due.mjs)
           if [ "$DUE" = "due" ] || ! git diff --quiet scripts/tour-results.json; then
-            node scripts/build-fixtures.mjs
+            node scripts/fixtures-burst.mjs
           fi
 
       - name: Commit and push if changed
