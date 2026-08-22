@@ -162,20 +162,55 @@ test("fetchEventsByCode: a team that never recovers is skipped, the rest still l
   assert.deepEqual(Object.keys(out), ["WAL"]);
 });
 
-test("fetchEventsByCode: every team failing is still fatal", async (t) => {
+// The 23 Aug 2026 catch-up got 30 good events back for South Africa and then
+// lost the whole team because the separate `next` call 503'd — so the Ellis
+// Park result it had in hand went unpublished.
+test("fetchEventsByCode: a good `last` survives a failing `next`", async (t) => {
+  const real = globalThis.fetch;
+  t.after(() => { globalThis.fetch = real; });
+  stubFetch((url) => (url.includes("/next/") ? { status: 503 } : { body: okBody("South Africa") }));
+
+  const out = await fetchEventsByCode({ RSA: 4227 }, FAST);
+  assert.equal(out.RSA.lastEvents.length, 1);
+  // null, not [] — "didn't get told" must stay distinct from "no fixtures".
+  assert.equal(out.RSA.nextEvents, null);
+});
+
+test("fetchEventsByCode: neither half answering drops the team entirely", async (t) => {
+  const real = globalThis.fetch;
+  t.after(() => { globalThis.fetch = real; });
+  stubFetch((url) => (url.includes("/teams/4227/") ? { status: 503 } : { body: okBody("Wales") }));
+
+  const out = await fetchEventsByCode({ RSA: 4227, WAL: 900 }, FAST);
+  assert.equal("RSA" in out, false);
+});
+
+test("fetchEventsByCode: nothing coming back at all is still fatal", async (t) => {
   const real = globalThis.fetch;
   t.after(() => { globalThis.fetch = real; });
   stubFetch(() => ({ status: 503 }));
 
-  await assert.rejects(() => fetchEventsByCode({ RSA: 4227, WAL: 900 }, FAST), /all 2 teams/);
+  await assert.rejects(() => fetchEventsByCode({ RSA: 4227, WAL: 900 }, FAST), /any of 2 teams/);
 });
 
-test("fetchEventsByCode: a 4xx is a real answer and is not retried", async (t) => {
+test("fetchEventsByCode: the retry budget caps a sustained outage", async (t) => {
+  const real = globalThis.fetch;
+  t.after(() => { globalThis.fetch = real; });
+  const calls = stubFetch(() => ({ status: 503 }));
+
+  await assert.rejects(() =>
+    fetchEventsByCode({ RSA: 4227, WAL: 900, NZL: 901 }, { ...FAST, retryBudget: 2 }));
+  // 6 halves attempted once each, plus exactly 2 retries from the shared pot.
+  assert.equal(calls.length, 8);
+});
+
+test("fetchEventsByCode: a rejected key is not retried and aborts on the spot", async (t) => {
   const real = globalThis.fetch;
   t.after(() => { globalThis.fetch = real; });
   const calls = stubFetch(() => ({ status: 401 }));
 
-  await assert.rejects(() => fetchEventsByCode({ RSA: 4227 }, FAST));
+  await assert.rejects(() => fetchEventsByCode({ RSA: 4227, WAL: 900 }, FAST), /HTTP 401/);
+  // One call, not 4 — a bad key will not come good later in the same run.
   assert.equal(calls.length, 1);
 });
 
@@ -195,4 +230,25 @@ test("mergeRefreshed: a null enrichment in the fresh copy defers to the old one"
   const fresh = { RSA: { last: [{ id: 1, tries: null, cards: null, venue: null }], next: [] } };
   const out = mergeRefreshed(prev, fresh);
   assert.deepEqual(out.RSA.last[0], { id: 1, tries: 4, cards: 1, venue: "Ellis Park" });
+});
+
+test("buildTeamEvents: a null half is marked unknown, an empty one is not", () => {
+  const out = buildTeamEvents({ RSA: { lastEvents: [], nextEvents: null } }, NOW);
+  assert.equal(out.RSA.lastUnknown, undefined);
+  assert.equal(out.RSA.nextUnknown, true);
+});
+
+test("mergeRefreshed: an unanswered half keeps what is already published", () => {
+  const prev = { RSA: { last: [{ id: 1, us: 16, them: 33 }], next: [{ id: 2, date: "2026-08-29T15:00:00Z" }] } };
+  const fresh = { RSA: { last: [{ id: 1, us: 16, them: 33 }], next: [], nextUnknown: true } };
+  const out = mergeRefreshed(prev, fresh);
+  assert.deepEqual(out.RSA.next, prev.RSA.next);
+  assert.equal("nextUnknown" in out.RSA, false);
+});
+
+test("mergeRefreshed: an ANSWERED empty half really does empty it", () => {
+  const prev = { RSA: { last: [{ id: 1 }], next: [{ id: 2, date: "2026-08-29T15:00:00Z" }] } };
+  const fresh = { RSA: { last: [{ id: 1 }], next: [] } };
+  const out = mergeRefreshed(prev, fresh);
+  assert.deepEqual(out.RSA.next, []);
 });
