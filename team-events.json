@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-08-20T02:12:23.446Z",
+ "updatedAt": "2026-08-22T23:11:41.556Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -161,19 +161,6 @@
    ],
    "next": [
     {
-     "id": 16651329,
-     "date": "2026-08-22T15:00:00.000Z",
-     "league": "Rugbys Greatest Rivalry",
-     "opponent": "South Africa",
-     "opponentCode": "RSA",
-     "tracked": true,
-     "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Ellis Park, Johannesburg"
-    },
-    {
      "id": 16716848,
      "date": "2026-08-25T17:00:00.000Z",
      "league": "Rugbys Greatest Rivalry",
@@ -188,7 +175,7 @@
     {
      "id": 16651327,
      "date": "2026-08-29T15:00:00.000Z",
-     "league": "International Friendlies",
+     "league": "Rugbys Greatest Rivalry",
      "opponent": "South Africa",
      "opponentCode": "RSA",
      "tracked": true,
@@ -222,7 +209,7 @@
      "us": null,
      "them": null,
      "result": null,
-     "venue": "M&T Bank Stadium"
+     "venue": "M&T Bank Stadium, Baltimore"
     },
     {
      "venue": "Eden Park, Auckland",
@@ -251,17 +238,17 @@
      "result": null
     },
     {
-     "venue": "Scottish Gas Murrayfield, Edinburgh",
-     "id": "espn-603995",
-     "date": "2026-11-07T14:10Z",
-     "league": "Nations Championship",
+     "id": 16098061,
+     "date": "2026-11-07T18:00:00.000Z",
+     "league": "Nations Championship, Group Stage",
      "opponent": "Scotland",
      "opponentCode": "SCO",
      "tracked": true,
      "homeAway": "A",
      "us": null,
      "them": null,
-     "result": null
+     "result": null,
+     "venue": "Scottish Gas Murrayfield, Edinburgh"
     },
     {
      "venue": "Principality Stadium, Cardiff",
@@ -1801,20 +1788,6 @@
   "RSA": {
    "last": [
     {
-     "id": 14874948,
-     "date": "2025-11-01T16:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Japan",
-     "opponentCode": "JPN",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 61,
-     "them": 7,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14807005,
      "date": "2025-11-08T20:10:00.000Z",
      "league": "International Friendlies",
@@ -1937,6 +1910,20 @@
      "us": 17,
      "them": 10,
      "result": "W",
+     "tries": null,
+     "cards": null
+    },
+    {
+     "id": 16651329,
+     "date": "2026-08-22T15:10:00.000Z",
+     "league": "Rugbys Greatest Rivalry",
+     "opponent": "New Zealand",
+     "opponentCode": "NZL",
+     "tracked": true,
+     "homeAway": "H",
+     "us": 16,
+     "them": 33,
+     "result": "L",
      "tries": null,
      "cards": null
     }
