@@ -16,6 +16,7 @@ import { fetchEspnEvents, ESPN_TEAM_IDS } from "./fetch-espn-fixtures.mjs";
 import { fetchLeagueFixtures, loadRegistry } from "./fetch-league-fixtures.mjs";
 import { seededFixtures } from "./seed-competitions.mjs";
 import { tourFixtures, loadProbeResults } from "./seed-tour.mjs";
+import { venueLabel } from "./venues.mjs";
 
 const ID_TO_CODE = Object.fromEntries(Object.entries(ESPN_TEAM_IDS).map(([c, id]) => [String(id), c]));
 
@@ -125,12 +126,7 @@ export function buildFixtures(events, names, nations, { now = 0, scores = {} } =
     // Registered comps carry their tag from competitions.json so the key the
     // app filters by cannot drift from the registry.
     const comp = registryComp ?? compFor(leagueName, new Date(date).getUTCFullYear());
-    const v = comp0.venue;
-    const venue = v?.fullName
-      ? v.address?.city && v.address.city !== v.fullName
-        ? `${v.fullName}, ${v.address.city}`
-        : v.fullName
-      : null;
+    const venue = venueLabel(comp0.venue);
     const entry = {
       id: `espn-${event.id}`,
       date,

@@ -10,6 +10,8 @@
 // event fetches are cached across teams since every fixture appears twice.
 // Scores are never fetched — this module only supplies FUTURE fixtures.
 
+import { venueLabel } from "./venues.mjs";
+
 // ESPN team ids differ from every other vendor's; fixed field, so hardcoded.
 export const ESPN_TEAM_IDS = {
   ENG: 1, SCO: 2, IRE: 3, WAL: 4, RSA: 5, AUS: 6,
@@ -52,12 +54,7 @@ export function espnEntry(event, code, leagueName, resolveName) {
   if (!home && sides.away !== ourId) return null;
   const oppId = home ? sides.away : sides.home;
   const oppCode = ID_TO_CODE[oppId] ?? null;
-  const v = comp.venue;
-  const venue = v?.fullName
-    ? v.address?.city && v.address.city !== v.fullName
-      ? `${v.fullName}, ${v.address.city}`
-      : v.fullName
-    : null;
+  const venue = venueLabel(comp.venue);
   return {
     venue,
     id: `espn-${event.id}`,
