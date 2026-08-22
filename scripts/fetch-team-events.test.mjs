@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { normalizeEvent, buildTeamEvents, trackedCodeFor } from "./fetch-team-events.mjs";
+import { normalizeEvent, buildTeamEvents, trackedCodeFor, fetchEventsByCode, mergeRefreshed } from "./fetch-team-events.mjs";
 
 const NOW = new Date("2026-07-15T00:00:00Z").getTime();
 const ts = (iso) => Math.floor(new Date(iso).getTime() / 1000);
@@ -113,4 +113,86 @@ test("normalizeEvent: plain-number scores and ISO date fields also parse", () =>
   assert.equal(n.them, 15);
   assert.equal(n.result, "L");
   assert.equal(n.date, "2026-06-01T00:00:00Z");
+});
+
+// --- vendor 5xx tolerance ---
+// 21-23 Aug 2026: SportsAPI Pro 503'd on the first team of the walk three runs
+// running, each one aborting all twelve. The feed sat three days stale with the
+// Springboks' Ellis Park result still filed as an upcoming fixture.
+const FAST = { paceMs: 0, backoff: [0, 0, 0] };
+const okBody = (name) => ({
+  events: [{
+    id: 1, startTimestamp: ts("2026-08-22T15:00:00Z"), tournament: { name: "Test Match" },
+    homeTeam: { name }, awayTeam: { name: "New Zealand" },
+    homeScore: { current: 16 }, awayScore: { current: 33 }, status: { type: "finished" },
+  }],
+});
+
+// Serves a canned status/body per URL; records every call so retries are visible.
+function stubFetch(plan) {
+  const calls = [];
+  globalThis.fetch = async (url) => {
+    calls.push(url);
+    const step = plan(url, calls.filter((u) => u === url).length);
+    if (step.status && step.status >= 400) return { ok: false, status: step.status };
+    return { ok: true, status: 200, json: async () => step.body };
+  };
+  return calls;
+}
+
+test("fetchEventsByCode: a 5xx that clears on retry does not lose the team", async (t) => {
+  const real = globalThis.fetch;
+  t.after(() => { globalThis.fetch = real; });
+  const calls = stubFetch((url, nth) =>
+    url.includes("/events/last/") && nth === 1 ? { status: 503 } : { body: okBody("South Africa") });
+
+  const out = await fetchEventsByCode({ RSA: 4227 }, FAST);
+  assert.deepEqual(Object.keys(out), ["RSA"]);
+  assert.equal(out.RSA.lastEvents.length, 1);
+  // 1 failed + 1 retried last call, plus the next call.
+  assert.equal(calls.length, 3);
+});
+
+test("fetchEventsByCode: a team that never recovers is skipped, the rest still land", async (t) => {
+  const real = globalThis.fetch;
+  t.after(() => { globalThis.fetch = real; });
+  stubFetch((url) => (url.includes("/teams/4227/") ? { status: 503 } : { body: okBody("Wales") }));
+
+  const out = await fetchEventsByCode({ RSA: 4227, WAL: 900 }, FAST);
+  assert.deepEqual(Object.keys(out), ["WAL"]);
+});
+
+test("fetchEventsByCode: every team failing is still fatal", async (t) => {
+  const real = globalThis.fetch;
+  t.after(() => { globalThis.fetch = real; });
+  stubFetch(() => ({ status: 503 }));
+
+  await assert.rejects(() => fetchEventsByCode({ RSA: 4227, WAL: 900 }, FAST), /all 2 teams/);
+});
+
+test("fetchEventsByCode: a 4xx is a real answer and is not retried", async (t) => {
+  const real = globalThis.fetch;
+  t.after(() => { globalThis.fetch = real; });
+  const calls = stubFetch(() => ({ status: 401 }));
+
+  await assert.rejects(() => fetchEventsByCode({ RSA: 4227 }, FAST));
+  assert.equal(calls.length, 1);
+});
+
+test("mergeRefreshed: a team missing from the fresh set keeps its previous entry", () => {
+  const prev = {
+    RSA: { last: [{ id: 1, us: 16, them: 33, tries: 2 }], next: [] },
+    WAL: { last: [{ id: 2, us: 0, them: 43 }], next: [] },
+  };
+  const fresh = { WAL: { last: [{ id: 2, us: 0, them: 43, tries: 0 }], next: [] } };
+  const out = mergeRefreshed(prev, fresh);
+  assert.deepEqual(out.RSA, prev.RSA);
+  assert.equal(out.WAL.last[0].tries, 0);
+});
+
+test("mergeRefreshed: a null enrichment in the fresh copy defers to the old one", () => {
+  const prev = { RSA: { last: [{ id: 1, tries: 4, cards: 1, venue: "Ellis Park" }], next: [] } };
+  const fresh = { RSA: { last: [{ id: 1, tries: null, cards: null, venue: null }], next: [] } };
+  const out = mergeRefreshed(prev, fresh);
+  assert.deepEqual(out.RSA.last[0], { id: 1, tries: 4, cards: 1, venue: "Ellis Park" });
 });

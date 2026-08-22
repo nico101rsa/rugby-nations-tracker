@@ -28,7 +28,7 @@
 // A team stops being due the moment the game lands in `last`, so a successful
 // catch-up makes every later run a no-op by itself.
 
-import { fetchEventsByCode, assembleTeams } from "./fetch-team-events.mjs";
+import { fetchEventsByCode, assembleTeams, mergeRefreshed } from "./fetch-team-events.mjs";
 
 const SETTLE_MS = 150 * 60000; // kickoff -> earliest attempt
 const WINDOW_MS = 12 * 3600 * 1000; // kickoff -> last attempt
@@ -53,29 +53,10 @@ export function teamsDue(teams, nowMs = Date.now(), max = MAX_TEAMS) {
   return due.sort((a, b) => b.kickoff - a.kickoff).slice(0, max).map((d) => d.code);
 }
 
-// Splice freshly fetched teams into the published map. Only the refreshed
-// codes change; every other team is left byte-identical. A non-null enrichment
-// already on file is never clobbered by a null re-fetch (same rule as
-// archive-team-events.mjs — an ESPN stats hiccup must not erase tries/cards).
-export function mergeRefreshed(prevTeams, freshTeams) {
-  const out = { ...(prevTeams ?? {}) };
-  for (const [code, fresh] of Object.entries(freshTeams ?? {})) {
-    const prevById = new Map((prevTeams?.[code]?.last ?? []).map((g) => [String(g.id), g]));
-    out[code] = {
-      ...fresh,
-      last: (fresh.last ?? []).map((g) => {
-        const prev = prevById.get(String(g.id));
-        if (!prev) return g;
-        const merged = { ...g };
-        for (const k of ["tries", "cards", "venue"]) {
-          if (g[k] == null && prev[k] != null) merged[k] = prev[k];
-        }
-        return merged;
-      }),
-    };
-  }
-  return out;
-}
+// Re-exported for this module's tests and callers: the merge now lives in
+// fetch-team-events.mjs, because the full run needs the same "keep the
+// previous entry" rule for teams a vendor 5xx made it skip.
+export { mergeRefreshed };
 
 async function main() {
   const { readFile, writeFile } = await import("node:fs/promises");
