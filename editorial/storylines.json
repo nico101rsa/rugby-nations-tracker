@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-22T08:17:37.261Z",
+  "updatedAt": "2026-08-22T12:19:09.619Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 155,
+  "count": 160,
   "storylines": [
     {
       "id": "siya-kolisi-s-future-1mzkfov",
@@ -142,28 +142,30 @@
       "subject": "Rugby brain injury concussion legal battle",
       "teams": [
         386,
-        391
+        391,
+        467,
+        465
       ],
       "resolution": "until the High Court reaches a final ruling on whether to strike out the claims",
       "sources": [
         {
-          "title": "High Court leaves rugby brain injury case in balance",
-          "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Rugby players seek new lawyers for brain injury cases against governing bodies",
-          "link": "https://www.theguardian.com/sport/2026/jul/22/players-brain-injury-cases-rugby-league-rugby-union",
+          "title": "Rugby brain injury case able to continue after high court ruling",
+          "link": "https://www.theguardian.com/sport/2026/aug/21/rugby-brain-injury-case-able-to-continue-after-high-court-ruling",
           "feedName": "Guardian Rugby Union"
         },
         {
-          "title": "Former Wales star releases statement as 'scale and complexity' rises in multi-million-pound concussion legal battle",
-          "link": "https://www.planetrugby.com/news/former-wales-star-releases-statement-as-scale-and-complexity-rises-in-multi-million-pound-concussion-legal-battle",
-          "feedName": "Planet Rugby"
+          "title": "High court allows rugby brain injury case to go on",
+          "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "High Court leaves rugby brain injury case in balance",
+          "link": "https://www.bbc.co.uk/sport/articles/cx27my7j2r7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-07-29",
-      "lastSeen": "2026-08-07",
+      "lastSeen": "2026-08-22",
       "uses": 0
     },
     {
@@ -531,23 +533,23 @@
       "resolution": "until the WRU confirms whether the Ospreys or Scarlets will be cut",
       "sources": [
         {
+          "title": "Wales sports minister meets WRU after fans' fears",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cm2gd4ken4jo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "WRU condemns abuse and doubles down on three-team plan",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq891l3g3keo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "WRU confirm roadmap to axing one region as Ospreys or Scarlets face cut",
           "link": "https://www.planetrugby.com/news/wru-confirm-roadmap-to-axing-one-region-as-ospreys-or-scarlets-face-cut",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Welsh rivals face fight for survival",
-          "link": "https://www.sarugbymag.co.za/welsh-rivals-face-fight-survival/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Scarlets vow to remain at heart of west Wales",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyeq2n79n9o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-02",
-      "lastSeen": "2026-08-02",
+      "lastSeen": "2026-08-22",
       "uses": 0
     },
     {
@@ -2193,7 +2195,8 @@
       ],
       "firstSeen": "2026-08-14",
       "lastSeen": "2026-08-22",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-22"
     },
     {
       "id": "henry-pollock-s-contract-7ljcxs",
@@ -3847,7 +3850,8 @@
       ],
       "firstSeen": "2026-08-22",
       "lastSeen": "2026-08-22",
-      "uses": 0
+      "uses": 2,
+      "lastUsed": "2026-08-22"
     },
     {
       "id": "lisa-neumann-s-search-1tcov8t",
@@ -3897,6 +3901,147 @@
           "title": "Knowles has top-flight ambition for Cornish Pirates",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cdew0k8n3g3o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-22",
+      "lastSeen": "2026-08-22",
+      "uses": 0
+    },
+    {
+      "id": "sacha-feinberg-mngomezulu-s-175kmta",
+      "subject": "Sacha Feinberg-Mngomezulu's performance as Springboks starting fly-half",
+      "teams": [
+        467
+      ],
+      "resolution": "until he either cements his place in the position or is rotated out by Rassie Erasmus",
+      "sources": [
+        {
+          "title": "‘Sacha has done wonderful things for us’",
+          "link": "https://www.sarugbymag.co.za/sacha-done-wonderful-things-us/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Springboks team: Five takeaways as 'rusty' Sacha Feinberg-Mngomezulu preferred and powerhouse given task of 'destroying' All Blacks",
+          "link": "https://www.planetrugby.com/news/springboks-team-five-takeaways-as-rusty-sacha-feinberg-mngomezulu-preferred-and-powerhouse-given-task-of-destroying-all-blacks",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Rassie Erasmus' honest 'touch-and-go' admission on half-back selection for All Blacks showdown as Sacha Feinberg-Mngomezulu call explained",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-honest-touch-and-go-admission-on-half-back-selection-for-all-blacks-showdown-as-sacha-feinberg-mngomezulu-call-explained",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-08-22",
+      "lastSeen": "2026-08-22",
+      "uses": 0
+    },
+    {
+      "id": "england-s-ongoing-search-1xfmoj3",
+      "subject": "England's ongoing search for a consistent matchday 23 under Steve Borthwick",
+      "teams": [
+        386
+      ],
+      "resolution": "until the squad shows stable performance and contract structure ahead of the 2027 World Cup",
+      "sources": [
+        {
+          "title": "Ranking seven England World Cup bolters to watch in the PREM including latest 'rising star' and 'next cab off the rank'",
+          "link": "https://www.planetrugby.com/news/ranking-seven-england-world-cup-bolters-to-watch-in-the-prem-including-latest-rising-star-and-next-cab-off-the-rank",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Five players get first England deals in Borthwick shake-up",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwy427n1dnvo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Lawrence and Daly lose England central contracts as Borthwick looks to World Cup",
+          "link": "https://www.theguardian.com/sport/2026/aug/12/ollie-lawrence-elliot-daly-lose-england-central-contracts-rugby-union-world-cup",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-22",
+      "lastSeen": "2026-08-22",
+      "uses": 0
+    },
+    {
+      "id": "wallabies-playmaker-puzzle-and-da5nay",
+      "subject": "Wallabies' playmaker puzzle and Les Kiss's fly-half options",
+      "teams": [
+        461
+      ],
+      "resolution": "until a permanent starting fly-half is established for the 2027 World Cup cycle",
+      "sources": [
+        {
+          "title": "Wallabies search for pieces to fit playmaker puzzle as Kiss swings changes | Jack Snape",
+          "link": "https://www.theguardian.com/sport/2026/aug/14/wallabies-australia-japan-carter-gordon-rugby-union-test-nations-championship-preview",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Carter Gordon impresses on return as Wallabies surge clear of Japan for dominant win",
+          "link": "https://www.theguardian.com/sport/2026/aug/15/wallabies-australia-japan-nations-championship-rugby-union-match-report",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Inexperienced halves pair get nod for first Wallabies Test under new coach Les Kiss",
+          "link": "https://www.theguardian.com/sport/2026/aug/06/australia-wallabies-v-japan-team-lonergan-meredith-halves",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-22",
+      "lastSeen": "2026-08-22",
+      "uses": 0
+    },
+    {
+      "id": "alun-wyn-jones-s-vkq2ln",
+      "subject": "Alun Wyn Jones's new board role at Ospreys",
+      "teams": [
+        391
+      ],
+      "resolution": "until he officially begins his tenure as a director",
+      "sources": [
+        {
+          "title": "Wales great Jones returns to Ospreys as a director",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cp870222y26o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Wales legend Alun Wyn Jones joins Ospreys board amid URC club's fight for survival",
+          "link": "https://www.planetrugby.com/news/wales-legend-alun-wyn-jones-joins-ospreys-board-amid-urc-clubs-fight-for-survival",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Wales great Jones set to join Ospreys board",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwy44131ydno?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-22",
+      "lastSeen": "2026-08-22",
+      "uses": 0
+    },
+    {
+      "id": "rugby-s-greatest-rivalry-1y6e30l",
+      "subject": "Rugby's Greatest Rivalry Test series result",
+      "teams": [
+        467,
+        465
+      ],
+      "resolution": "until the series between the Springboks and All Blacks is completed",
+      "sources": [
+        {
+          "title": "Loose Pass: Rugby's Greatest Rivalry questions as tour hasn't hit the hype heights of the British and Irish Lions",
+          "link": "https://www.planetrugby.com/news/loose-pass-springboks-and-all-blacks-questions-before-rugbys-greatest-rivalry",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Rugby's Greatest Rivalry trophy revealed",
+          "link": "https://www.sarugbymag.co.za/rugbys-greatest-rivalry-trophy-revealed/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Rugby's Greatest Rivalry: Trophy 'like no other' revealed ahead of Test series opener",
+          "link": "https://www.planetrugby.com/news/rugbys-greatest-rivalry-trophy-like-no-other-revealed-ahead-of-test-series-opener",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-22",
