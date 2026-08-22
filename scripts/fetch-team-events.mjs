@@ -97,15 +97,33 @@ const BASE = "https://api.sportsapipro.com/v2/rugby";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const PACE = 6500;
 
+// SportsAPI Pro throws short 5xx bursts — 503/504 on a single team, gone a
+// minute later. Retry those; a 4xx is a real answer and must not be retried.
+const RETRY_BACKOFF = [2000, 6000, 15000];
+
 let logged = false;
-async function fetchJson(url) {
-  const res = await fetch(url, { headers: { "x-api-key": process.env.SPORTSAPIPRO_KEY } });
+async function fetchJson(url, backoff = RETRY_BACKOFF) {
+  let res;
+  try {
+    res = await fetch(url, { headers: { "x-api-key": process.env.SPORTSAPIPRO_KEY } });
+  } catch (err) {
+    // DNS/socket failures are the same transient class as a 503.
+    if (!backoff.length) throw err;
+    console.log(`${err.message} for ${url} — retrying in ${backoff[0] / 1000}s`);
+    await sleep(backoff[0]);
+    return fetchJson(url, backoff.slice(1));
+  }
   // The events endpoints 404 when a team simply has no games on that page
   // (seen live: /events/next/0 with nothing scheduled) — that's an empty
   // result, not a failure.
   if (res.status === 404) {
     console.log(`404 (empty) for ${url}`);
     return { events: [] };
+  }
+  if (res.status >= 500 && backoff.length) {
+    console.log(`HTTP ${res.status} for ${url} — retrying in ${backoff[0] / 1000}s`);
+    await sleep(backoff[0]);
+    return fetchJson(url, backoff.slice(1));
   }
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
   const body = await res.json();
@@ -153,25 +171,70 @@ async function resolveTeamIds(prev) {
 // Paced vendor fetch for a code -> vendor-team-id map (2 calls per team).
 // Exported so the post-match catch-up job (refresh-played-teams.mjs) can pull
 // the same feed for a SUBSET of teams instead of all twelve.
-export async function fetchEventsByCode(teamIds) {
+//
+// A team that still fails after the retries is SKIPPED, not fatal: it drops
+// out of the returned map and the caller keeps its previous entry. One team's
+// vendor 5xx used to abort the whole twelve-team walk, which is how the feed
+// froze for three days over 21-23 Aug 2026 while the Springboks' Ellis Park
+// result sat unpublished.
+// `paceMs`/`backoff` are overridable so the tests can run the retry and skip
+// paths without sitting through 6.5s of real vendor pacing per call.
+export async function fetchEventsByCode(teamIds, { paceMs = PACE, backoff = RETRY_BACKOFF } = {}) {
   const eventsByCode = {};
+  const skipped = [];
   let dumped = false;
   for (const [code, id] of Object.entries(teamIds)) {
-    await sleep(PACE);
-    const lastBody = await fetchJson(`${BASE}/api/teams/${id}/events/last/0`);
-    const lastEvents = lastBody.data?.events ?? lastBody.events ?? [];
-    await sleep(PACE);
-    const nextBody = await fetchJson(`${BASE}/api/teams/${id}/events/next/0`);
-    const nextEvents = nextBody.data?.events ?? nextBody.events ?? [];
-    if (!dumped && lastEvents[0]) {
-      // One raw sample in the run log so a vendor shape drift is diagnosable
-      // from the Actions page without re-instrumenting.
-      console.log("sample raw event:", JSON.stringify(lastEvents[0]).slice(0, 600));
-      dumped = true;
+    try {
+      await sleep(paceMs);
+      const lastBody = await fetchJson(`${BASE}/api/teams/${id}/events/last/0`, backoff);
+      const lastEvents = lastBody.data?.events ?? lastBody.events ?? [];
+      await sleep(paceMs);
+      const nextBody = await fetchJson(`${BASE}/api/teams/${id}/events/next/0`, backoff);
+      const nextEvents = nextBody.data?.events ?? nextBody.events ?? [];
+      if (!dumped && lastEvents[0]) {
+        // One raw sample in the run log so a vendor shape drift is diagnosable
+        // from the Actions page without re-instrumenting.
+        console.log("sample raw event:", JSON.stringify(lastEvents[0]).slice(0, 600));
+        dumped = true;
+      }
+      eventsByCode[code] = { lastEvents, nextEvents };
+    } catch (err) {
+      skipped.push(code);
+      console.log(`skipping ${code} — ${err.message}`);
     }
-    eventsByCode[code] = { lastEvents, nextEvents };
+  }
+  if (skipped.length) console.log(`kept previous entries for: ${skipped.join(", ")}`);
+  // Every team failing is an outage or a dead key, not vendor flakiness —
+  // that still has to go red so the health monitor sees it.
+  if (Object.keys(teamIds).length && !Object.keys(eventsByCode).length) {
+    throw new Error(`vendor returned nothing for all ${skipped.length} teams`);
   }
   return eventsByCode;
+}
+
+// Fresh team entries laid over the previous ones: a code absent from `fresh`
+// keeps what it had. Used by the full run for teams the vendor skipped, and by
+// the catch-up job, which only ever rebuilds the handful of teams that played.
+// Per-game `tries`/`cards`/`venue` come from supplements the partial rebuild
+// may not have re-fetched, so a null in the fresh copy defers to the old one.
+export function mergeRefreshed(prevTeams, freshTeams) {
+  const out = { ...(prevTeams ?? {}) };
+  for (const [code, fresh] of Object.entries(freshTeams ?? {})) {
+    const prevById = new Map((prevTeams?.[code]?.last ?? []).map((g) => [String(g.id), g]));
+    out[code] = {
+      ...fresh,
+      last: (fresh.last ?? []).map((g) => {
+        const prev = prevById.get(String(g.id));
+        if (!prev) return g;
+        const merged = { ...g };
+        for (const k of ["tries", "cards", "venue"]) {
+          if (g[k] == null && prev[k] != null) merged[k] = prev[k];
+        }
+        return merged;
+      }),
+    };
+  }
+  return out;
 }
 
 // Raw vendor events -> published team entries: ESPN fixtures merged into
@@ -210,13 +273,15 @@ async function main() {
 
   const eventsByCode = await fetchEventsByCode(teamIds);
   const statsJson = await readFile("stats.json", "utf8").then(JSON.parse).catch(() => null);
-  const teams = await assembleTeams(eventsByCode, statsJson);
+  const fresh = await assembleTeams(eventsByCode, statsJson);
 
   const out = {
     updatedAt: new Date().toISOString(),
     source: "sportsapipro+espn",
     teamIds,
-    teams,
+    // Layer over the previous file so a team the vendor skipped keeps its
+    // entry instead of disappearing from the Team page.
+    teams: mergeRefreshed(prev?.teams, fresh),
   };
   await writeFile("team-events.json", JSON.stringify(out, null, 1) + "\n");
   const counts = Object.entries(out.teams).map(([c, t]) => `${c}:${t.last.length}/${t.next.length}`).join(" ");
