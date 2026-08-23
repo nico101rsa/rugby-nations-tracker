@@ -117,7 +117,7 @@ async function gitChanges(sinceDays = 7) {
 
 // ---- report --------------------------------------------------------------
 
-export function buildReport({ weekLabel, now, reviews, runTallies, changes, backlog = null, stats = null, refreshRows = null }) {
+export function buildReport({ weekLabel, now, reviews, runTallies, changes, backlog = null, stats = null, refreshRows = null, teamEvents = null, fixtures = null }) {
   const L = [`# Weekly health check — ${weekLabel}`, "", `_Generated ${now.toISOString()} (UTC)._`, ""];
 
   L.push("## Run reliability (last 7 days)", "");
@@ -131,7 +131,7 @@ export function buildReport({ weekLabel, now, reviews, runTallies, changes, back
 
   // The two deliberately non-fatal pipelines. They come FIRST after run
   // reliability because a green run log is exactly what they hide behind.
-  L.push(silentFailuresSection(backlog, stats, now.getTime(), refreshRows), "");
+  L.push(silentFailuresSection(backlog, stats, now.getTime(), refreshRows, teamEvents, fixtures), "");
 
   L.push("## Digest quality (post-run editor grades)", "");
   if (reviews.length === 0) {
@@ -180,8 +180,13 @@ async function main() {
   // Missing files are a finding, not a crash — the checks report them.
   const backlog = await readFile(join(ROOT, "editorial", "storylines.json"), "utf8").then(JSON.parse).catch(() => null);
   const stats = await readFile(join(ROOT, "stats.json"), "utf8").then(JSON.parse).catch(() => null);
+  // The two feeds the published-results check compares against each other.
+  const teamEvents = await readFile(join(ROOT, "team-events.json"), "utf8")
+    .then((raw) => JSON.parse(raw).teams ?? null).catch(() => null);
+  const fixtures = await readFile(join(ROOT, "fixtures.json"), "utf8")
+    .then((raw) => JSON.parse(raw).fixtures ?? null).catch(() => null);
 
-  const report = buildReport({ weekLabel, now, reviews, runTallies, changes, backlog, stats, refreshRows });
+  const report = buildReport({ weekLabel, now, reviews, runTallies, changes, backlog, stats, refreshRows, teamEvents, fixtures });
 
   await mkdir(HEALTH_DIR, { recursive: true });
   const outPath = join(HEALTH_DIR, `${weekLabel}.md`);
