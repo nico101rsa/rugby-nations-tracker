@@ -6,6 +6,7 @@ import { execSync } from "node:child_process";
 import { scheduleKickoffs } from "./static-fixtures.mjs";
 import { refresh, refreshNewsOnly, utcDateStr, datesForWindow } from "./fetch-nations.mjs";
 import { runTourProbe } from "./probe-tour.mjs";
+import { pushWithRetries } from "./git-push-retry.mjs";
 
 const PRE_MS = 15 * 60000;    // start polling 15 min before kickoff
 const POST_MS = 150 * 60000;  // keep polling 150 min after (play + HT + FT settle)
@@ -18,6 +19,7 @@ const SWEEP_WINDOW_DAYS = 2;  // today..+2 UTC = 3 calls per sweep
 // The GUARD_FLOOR backstop stops a burst before the daily budget is exhausted.
 const LIVE_POLL_INTERVAL_MS = 12 * 60000;   // 12 min between live fetches (quota-safe)
 const LIVE_BURST_MAX_MS = 2 * 60 * 60000;   // one landed fire covers ~a full match (<6h job cap)
+const MAX_CONSECUTIVE_FAILURES = 3;         // 3 x 12 min — past that nothing is working
 
 // mode: "live" | "sweep" | "idle" | "guard"
 export function decideMode({ now, schedule, remaining, guardFloor = GUARD_FLOOR }) {
@@ -59,8 +61,12 @@ function defaultIsLive() {
 // CI (GITHUB_ACTIONS) — locally it's a no-op so a live-window run just writes
 // the file, as before. The CDN serves the site-ROOT nations.json (the workflow
 // normally cp's it once at the end); during a live burst we must mirror it per
-// iteration or the phone sees nothing until the run exits. Retries once through
-// a rebase if a concurrent push raced us.
+// iteration or the phone sees nothing until the run exits.
+//
+// The push goes through pushWithRetries, shared with the fixtures burst. This
+// used to retry once and then throw, which is the fault that killed the
+// fixtures burst's run 4349 mid-match on 2026-08-22 — the same three lines,
+// the same failure, waiting here for a November round.
 function gitPublish(msg) {
   if (!process.env.GITHUB_ACTIONS) return;
   execSync("cp public/nations.json nations.json");   // mirror the file the CDN serves
@@ -68,8 +74,7 @@ function gitPublish(msg) {
   const staged = execSync("git diff --cached --name-only").toString().trim();
   if (!staged) return;                               // nothing changed → no Pages build
   execSync(`git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m ${JSON.stringify(msg)}`);
-  try { execSync("git push"); }
-  catch { execSync("git pull --rebase --autostash && git push"); }
+  pushWithRetries();
 }
 
 // When a match is live, one landed cron run polls in a loop — publishing each
@@ -86,22 +91,43 @@ export async function runLiveBurst({
   intervalMs = LIVE_POLL_INTERVAL_MS,
   burstMs = LIVE_BURST_MAX_MS,
   guardFloor = GUARD_FLOOR,
+  maxConsecutiveFailures = MAX_CONSECUTIVE_FAILURES,
 } = {}) {
   const started = now();
   let iterations = 0;
+  let consecutiveFailures = 0;
   while (true) {
-    const result = await doRefresh({ dates });
-    iterations++;
-    publish(`data: live refresh (${new Date().toISOString()})`);
-    if (result.remaining != null && result.remaining < guardFloor) {
-      console.warn(`[refresh] live burst stop: budget ${result.remaining} < ${guardFloor}`);
-      break;
+    try {
+      const result = await doRefresh({ dates });
+      iterations++;
+      publish(`data: live refresh (${new Date().toISOString()})`);
+      // Reset only once the pass has fully landed, publish included, so a
+      // persistently broken publish still escalates to the failure cap
+      // instead of resetting the streak every time round.
+      consecutiveFailures = 0;
+      if (result.remaining != null && result.remaining < guardFloor) {
+        console.warn(`[refresh] live burst stop: budget ${result.remaining} < ${guardFloor}`);
+        break;
+      }
+    } catch (err) {
+      // A vendor blip or a lost push race must not end the burst — the next
+      // poll republishes anyway, so a bad pass costs one interval rather than
+      // the rest of the match. The cap is tighter than the fixtures burst's
+      // because each pass here spends real api-sports quota and the interval
+      // is four times longer: 3 x 12 min is already 36 minutes of nothing
+      // working, which is long enough to stop pretending.
+      consecutiveFailures++;
+      console.warn(`[refresh] live pass failed (${consecutiveFailures} in a row): ${err.message}`);
+      if (consecutiveFailures >= maxConsecutiveFailures) {
+        console.error(`[refresh] live burst stop: ${consecutiveFailures} consecutive failures`);
+        break;
+      }
     }
     if (now() - started >= burstMs) break;   // burst window elapsed
     if (!isLive()) break;                     // match window closed
     await sleep(intervalMs);
   }
-  return { iterations };
+  return { iterations, consecutiveFailures };
 }
 
 async function mainRun() {
