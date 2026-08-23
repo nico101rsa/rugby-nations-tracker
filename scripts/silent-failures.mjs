@@ -1,4 +1,5 @@
-// The two failures that are SILENT by design (map #201, #203).
+// The failures that are SILENT by design (map #201, #203, and the missing
+// result below).
 //
 // Both of these are deliberately non-fatal, and that is exactly why they need
 // watching: nothing else will ever go red for them.
@@ -16,6 +17,13 @@
 //    these accumulate every "last N" denominator shrinks with no visible
 //    cause. This does NOT change the gate or the averaging — it only makes
 //    the refusals countable.
+//
+// 3. A RESULT MISSING FROM A TEAM'S `last`. The catch-up job exits GREEN with
+//    "no finished-but-unpublished games" when it has nothing to do — and a
+//    game lost from both `last` and `next` looks exactly like nothing to do.
+//    New Zealand's 22 Aug 2026 loss at Ellis Park sat that way while South
+//    Africa's copy of the same match published normally, so one Team page
+//    charted the game and the other did not, for a day, with every job green.
 
 const DAY = 86400000;
 
@@ -103,17 +111,92 @@ export function checkUnreconciled(stats) {
   };
 }
 
+// Is any played game missing from the team whose chart should show it?
+//
+// This is the check nothing else performs. The catch-up job exits green when
+// it finds nothing due, and a game lost from BOTH `last` and `next` IS nothing
+// due — the very shape refresh-played-teams.teamsMissingResults now hunts.
+// This asks the question from the outside, of the published file, so it stays
+// true even if that hunt regresses.
+//
+// fixtures.json is the witness: built from ESPN rather than the events vendor,
+// it knows a game was played even when the vendor's `last` never delivered it.
+// Matching is by calendar day and opponent, not id — the feeds number events
+// differently.
+//
+// Grace is generous. A game finished an hour ago is not late; the catch-up
+// runs every three hours and the full run daily. Past a day, something is
+// wrong and the chart is quietly incomplete until someone looks.
+export const RESULT_GRACE_HOURS = 24;
+
+export function checkMissingResults(teams, fixtures, now = Date.now(), graceHours = RESULT_GRACE_HOURS) {
+  if (!teams || !fixtures) {
+    return { ok: false, severity: "warn", headline: "Could not read team-events.json or fixtures.json" };
+  }
+  const dayKey = (d) => {
+    const t = new Date(d).getTime();
+    return Number.isFinite(t) ? new Date(t).toISOString().slice(0, 10) : null;
+  };
+
+  const missing = [];
+  for (const f of fixtures) {
+    if (f?.homeScore == null || f?.awayScore == null || f?.status?.live) continue;
+    const kickoff = new Date(f?.date).getTime();
+    if (!Number.isFinite(kickoff)) continue;
+    const ageHours = (now - kickoff) / 3600000;
+    if (ageHours < graceHours) continue;
+    for (const [side, other] of [[f.home, f.away], [f.away, f.home]]) {
+      if (!side?.tracked || !side?.code) continue;
+      const t = teams[side.code];
+      if (!t?.last) continue;
+      // Match on the CALENDAR DAY alone. A national side does not play twice in
+      // a day, and the two feeds disagree about what a tour side is called —
+      // fixtures.json says "Stormers" and "Bulls" where team-events carries
+      // "Vodacom Bulls XV" and "Fidelity ADT Lions". Comparing opponents made
+      // every one of New Zealand's tour games read as missing when all three
+      // were published correctly. Day alone is both simpler and stricter.
+      const sameGame = (g) => dayKey(g?.date) === dayKey(kickoff);
+      if (t.last.some(sameGame)) continue;
+      // A game older than the oldest entry in a full last-10 has simply aged
+      // out of the window — that is the list working, not a gap.
+      const oldest = t.last.length >= 10 ? new Date(t.last[0].date).getTime() : -Infinity;
+      if (kickoff <= oldest) continue;
+      missing.push({ code: side.code, opponent: other?.name ?? "?", date: dayKey(kickoff), ageHours });
+    }
+  }
+
+  if (!missing.length) {
+    return { ok: true, headline: "Every played game is on the team page that should chart it" };
+  }
+  missing.sort((a, b) => b.ageHours - a.ageHours);
+  return {
+    ok: false,
+    severity: "alert",
+    headline: `${missing.length} played game(s) missing from a team's last-10`,
+    detail:
+      missing
+        .map((m) => `- **${m.code}** has no record of ${m.date} v ${m.opponent} (${Math.floor(m.ageHours)}h ago)`)
+        .join("\n") +
+      "\n\nThe form bar chart and the rolling averages both read `last`, so each of these is a " +
+      "chart that is quietly wrong. Every job stays green: the catch-up reports nothing due, because " +
+      "a game absent from `next` AND `last` looks exactly like nothing to do.\n\n" +
+      "Usual cause is the events vendor answering one half of a team's fetch and not the other " +
+      "(see refresh-played-teams.teamsMissingResults). Check the recent `Team events` runs for 5xx.",
+  };
+}
+
 // Both checks as one markdown section for the weekly health report.
-export function silentFailuresSection(backlog, stats, now = Date.now(), refreshRows = null) {
+export function silentFailuresSection(backlog, stats, now = Date.now(), refreshRows = null, teamEvents = null, fixtures = null) {
   const b = checkStorylineBacklog(backlog, now);
   const u = checkUnreconciled(stats);
   const w = refreshRows === null ? null : checkCronWorker(refreshRows, now);
+  const r = teamEvents === null && fixtures === null ? null : checkMissingResults(teamEvents, fixtures, now);
   const mark = (c) => (c.ok ? "✅" : c.severity === "alert" ? "🔴" : "🟡");
 
   const parts = [
     "## Silent failures",
     "",
-    "Two pipelines are deliberately non-fatal, so nothing else will ever go red for them.",
+    "These pipelines are deliberately non-fatal, so nothing else will ever go red for them.",
     "",
     `${mark(b)} **Storyline backlog** — ${b.headline}`,
   ];
@@ -123,6 +206,10 @@ export function silentFailuresSection(backlog, stats, now = Date.now(), refreshR
   if (w) {
     parts.push("", `${mark(w)} **Match-day cron Worker** — ${w.headline}`);
     if (!w.ok && w.detail) parts.push("", w.detail);
+  }
+  if (r) {
+    parts.push("", `${mark(r)} **Published results** — ${r.headline}`);
+    if (!r.ok && r.detail) parts.push("", r.detail);
   }
   return parts.join("\n");
 }

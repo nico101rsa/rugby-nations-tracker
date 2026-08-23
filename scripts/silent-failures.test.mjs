@@ -5,6 +5,7 @@ import {
   checkUnreconciled,
   silentFailuresSection,
   BACKLOG_STALE_DAYS,
+  checkMissingResults,
 } from "./silent-failures.mjs";
 
 const NOW = new Date("2026-07-25T00:00:00Z").getTime();
@@ -169,4 +170,69 @@ test("old dispatched runs outside the window do not count as alive", () => {
 test("an unqueryable run history is a warning, not a false all-clear", () => {
   assert.equal(checkCronWorker(null, NOW).ok, false);
   assert.equal(checkCronWorker(null, NOW).severity, "warn");
+});
+
+// ---- checkMissingResults -----------------------------------------------------
+// The catch-up exits GREEN with "no finished-but-unpublished games" when it has
+// nothing to do, and a game lost from both `last` and `next` looks exactly like
+// nothing to do. This asks the question from outside, of the published files.
+
+const MR_KO = Date.parse("2026-08-22T15:10:00.000Z");
+const MR_LATER = MR_KO + 25 * 3600 * 1000;
+
+const mrTest = (over = {}) => ({
+  date: "2026-08-22T15:10:00.000Z",
+  home: { code: "RSA", name: "South Africa", tracked: true },
+  away: { code: "NZL", name: "New Zealand", tracked: true },
+  homeScore: 16, awayScore: 33,
+  ...over,
+});
+const mrTour = () => ({
+  date: "2026-08-07T17:00:00.000Z",
+  home: { code: "STO", name: "Stormers", tracked: false },
+  away: { code: "NZL", name: "New Zealand", tracked: true },
+  homeScore: 21, awayScore: 38,
+});
+const mrGame = (date, oppCode, opponent) => ({ id: 1, date, opponentCode: oppCode, opponent, us: 1, them: 0 });
+
+test("a played game absent from the team that should chart it is an alert", () => {
+  const teams = { NZL: { last: [mrGame("2026-08-15T17:00:00Z", null, "Vodacom Bulls XV")] } };
+  const r = checkMissingResults(teams, [mrTest()], MR_LATER);
+  assert.equal(r.ok, false);
+  assert.equal(r.severity, "alert");
+  assert.match(r.detail, /NZL/);
+});
+
+test("the side that did publish it is not flagged", () => {
+  const teams = {
+    RSA: { last: [mrGame("2026-08-22T15:10:00Z", "NZL", "New Zealand")] },
+    NZL: { last: [mrGame("2026-08-15T17:00:00Z", null, "Vodacom Bulls XV")] },
+  };
+  const r = checkMissingResults(teams, [mrTest()], MR_LATER);
+  assert.match(r.detail, /NZL/);
+  assert.doesNotMatch(r.detail, /\*\*RSA\*\*/);
+});
+
+test("a tour game the feeds name differently is NOT a false alarm", () => {
+  // fixtures.json says "Stormers"; team-events carries the vendor's own name.
+  // Comparing opponents made all three of New Zealand's published tour games
+  // read as missing, which is why the match is on calendar day alone.
+  const teams = { NZL: { last: [mrGame("2026-08-07T17:00:00Z", null, "Stormers XV")] } };
+  assert.equal(checkMissingResults(teams, [mrTour()], MR_LATER).ok, true);
+});
+
+test("inside the grace period nothing is reported", () => {
+  const teams = { NZL: { last: [] } };
+  assert.equal(checkMissingResults(teams, [mrTest()], MR_KO + 3 * 3600 * 1000).ok, true);
+});
+
+test("a game older than a full last-10 has aged out, not gone missing", () => {
+  const ten = Array.from({ length: 10 }, (_, i) =>
+    mrGame(`2026-09-${String(i + 1).padStart(2, "0")}T12:00:00Z`, "ENG", "England"));
+  assert.equal(checkMissingResults({ NZL: { last: ten } }, [mrTest()], MR_LATER).ok, true);
+});
+
+test("missing inputs are reported as a warning, not a crash", () => {
+  assert.equal(checkMissingResults(null, null).severity, "warn");
+  assert.equal(checkMissingResults({ NZL: { last: [] } }, [null, {}, mrTest({ date: "nope" })], MR_LATER).ok, true);
 });

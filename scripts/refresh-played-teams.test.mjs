@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { teamsDue, mergeRefreshed, teamsMissingResults } from "./refresh-played-teams.mjs";
+import { teamsDue, mergeRefreshed, teamsMissingResults, overdueResults } from "./refresh-played-teams.mjs";
 
 const NOW = new Date("2026-08-15T10:24:00Z").getTime(); // the screenshot moment
 const at = (hoursAgo) => new Date(NOW - hoursAgo * 3600 * 1000).toISOString();
@@ -158,4 +158,35 @@ test("a malformed fixture cannot crash the scan", () => {
   const junk = [null, undefined, {}, ellisPark({ date: "not-a-date" }), { homeScore: 1, awayScore: 2 }];
   assert.deepEqual(teamsMissingResults(teams, junk, EP_NOW), []);
   assert.deepEqual(teamsMissingResults(teams, undefined, EP_NOW), []);
+});
+
+// ---- overdueResults: the alarm, not the work list ---------------------------
+// Until this existed the catch-up's only failure mode was a vendor error. A
+// team quietly stuck without its result exited GREEN, because a game absent
+// from both `last` and `next` looks exactly like nothing to do.
+
+test("a freshly missing result is work to do, not yet an alarm", () => {
+  const teams = { NZL: { last: [], next: [] } };
+  const at = EP_KO + 4 * 3600 * 1000;   // 4h after kickoff
+  assert.deepEqual(teamsMissingResults(teams, [ellisPark()], at), ["NZL"], "on the work list");
+  assert.deepEqual(overdueResults(teams, [ellisPark()], at), [], "but not overdue");
+});
+
+test("still missing a day later goes red", () => {
+  const teams = { NZL: { last: [], next: [] } };
+  assert.deepEqual(overdueResults(teams, [ellisPark()], EP_KO + 25 * 3600 * 1000), ["NZL"]);
+});
+
+test("the alarm clears once the hunt gives up, rather than staying red forever", () => {
+  // A red run nobody can act on is one people learn to ignore. Past the 72h
+  // window teamsMissingResults has stopped trying, so the weekly health report
+  // owns it from there.
+  const teams = { NZL: { last: [], next: [] } };
+  assert.deepEqual(overdueResults(teams, [ellisPark()], EP_KO + 71 * 3600 * 1000), ["NZL"]);
+  assert.deepEqual(overdueResults(teams, [ellisPark()], EP_KO + 73 * 3600 * 1000), []);
+});
+
+test("a published result never raises the alarm", () => {
+  const teams = { NZL: { last: [played("2026-08-22T15:10:00Z", "RSA")], next: [] } };
+  assert.deepEqual(overdueResults(teams, [ellisPark()], EP_KO + 25 * 3600 * 1000), []);
 });

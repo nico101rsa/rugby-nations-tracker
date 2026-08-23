@@ -85,7 +85,13 @@ const dayKey = (d) => {
 // one is for a game already known to be played and simply lost — and while it
 // stays lost the form chart is silently wrong, so it is worth hunting across a
 // weekend of vendor trouble rather than a single evening.
-export function teamsMissingResults(teams, fixtures, nowMs = Date.now(), max = MAX_TEAMS) {
+export function teamsMissingResults(
+  teams,
+  fixtures,
+  nowMs = Date.now(),
+  max = MAX_TEAMS,
+  { minAgeMs = SETTLE_MS, maxAgeMs = LOST_WINDOW_MS } = {},
+) {
   const latest = new Map();
 
   for (const f of fixtures ?? []) {
@@ -94,15 +100,19 @@ export function teamsMissingResults(teams, fixtures, nowMs = Date.now(), max = M
     const kickoff = new Date(f?.date).getTime();
     if (!Number.isFinite(kickoff)) continue;
     const age = nowMs - kickoff;
-    if (age < SETTLE_MS || age > LOST_WINDOW_MS) continue;
+    if (age < minAgeMs || age > maxAgeMs) continue;
 
     for (const [side, other] of [[f.home, f.away], [f.away, f.home]]) {
       if (!side?.tracked || !side?.code) continue;               // untracked tour sides have no entry
       const t = teams?.[side.code];
       if (!t) continue;
-      const sameGame = (g) =>
-        dayKey(g?.date) === dayKey(kickoff) &&
-        (other?.code ? g?.opponentCode === other.code : (g?.opponent ?? null) === (other?.name ?? null));
+      // Match on the CALENDAR DAY alone. A national side does not play twice in
+      // a day, and the two feeds disagree about what a tour side is called —
+      // fixtures.json says "Stormers" and "Bulls" where team-events carries
+      // "Vodacom Bulls XV" and "Fidelity ADT Lions". Comparing opponents made
+      // every one of New Zealand's tour games read as missing when all three
+      // were published correctly. Day alone is both simpler and stricter.
+      const sameGame = (g) => dayKey(g?.date) === dayKey(kickoff);
       if ((t.last ?? []).some(sameGame)) continue;               // already published
       if ((t.next ?? []).some(sameGame)) continue;               // teamsDue owns this one
       if (!latest.has(side.code) || kickoff > latest.get(side.code)) latest.set(side.code, kickoff);
@@ -113,6 +123,25 @@ export function teamsMissingResults(teams, fixtures, nowMs = Date.now(), max = M
     .sort((a, b) => b[1] - a[1])
     .slice(0, max)
     .map(([code]) => code);
+}
+
+// Teams whose missing result is now old enough to be a fault rather than a
+// wait. teamsMissingResults is the work list; this is the alarm, and it is
+// deliberately the same scan with a longer fuse — one source of truth for
+// "which game is missing", two thresholds for what to do about it.
+export const OVERDUE_HOURS = 24;
+
+export function overdueResults(teams, fixtures, nowMs = Date.now(), overdueHours = OVERDUE_HOURS) {
+  // The SAME scan, with the floor raised from "settled" to "overdue" and the
+  // ceiling left where the hunt gives up. So the job is red exactly while a
+  // lost game is still worth chasing — roughly 24h to 72h past kickoff — and
+  // goes green again once teamsMissingResults has stopped trying. A red run
+  // nobody can act on is a red run people learn to ignore; past 72h the weekly
+  // health report carries it instead.
+  return teamsMissingResults(teams, fixtures, nowMs, Number.MAX_SAFE_INTEGER, {
+    minAgeMs: overdueHours * 3600000,
+    maxAgeMs: LOST_WINDOW_MS,
+  });
 }
 
 // Re-exported for this module's tests and callers: the merge now lives in
@@ -161,6 +190,21 @@ async function main() {
     `team-events.json written — results published for: ${landed.join(", ") || "none"}` +
       (still.length ? `; vendor still has no final for: ${still.join(", ")}` : ""),
   );
+
+  // Go RED when a game the app already knows was played is STILL missing a day
+  // after kickoff. Until now this job's only failure mode was a vendor error;
+  // a team quietly stuck without its result exited green, because a game
+  // absent from both `last` and `next` looks exactly like nothing to do. That
+  // is how New Zealand's 22 Aug loss stayed off its own chart for a day while
+  // every run in the pipeline reported success. The 24h grace clears the
+  // ordinary case: the catch-up runs four times a day and the full run nightly.
+  const stale = overdueResults(out.teams, fixtures);
+  if (stale.length) {
+    throw new Error(
+      `played but still unpublished ${OVERDUE_HOURS}h after kickoff: ${stale.join(", ")} — ` +
+        "the form chart for these teams is incomplete; check recent Team events runs for vendor 5xx",
+    );
+  }
 }
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop())) {
