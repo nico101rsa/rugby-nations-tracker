@@ -1,37 +1,40 @@
-# Read-only SportsAPI Pro health check. Hits one team's `last` and `next`
-# endpoints and prints HTTP status + event count — no files written, nothing
-# committed, no other endpoint touched. Two vendor calls against the 100/day
-# tier, so it is a cheap way to ask "is the vendor up right now?" without
-# spending a full 24-call team-events run.
-#
-# Added 2026-08-23: the nightly team-events job failed four nights running
-# (36 separate 503s on 23 Aug, all 12 teams skipped) and there was no way to
-# check the vendor without either a full run or waiting for the next cron.
+# Read-only SportsAPI Pro health check — see scripts/vendor-probe.mjs for why.
+# Four vendor calls a night (2 teams x last/next), writes only the probe log,
+# never team-events.json. Files an assigned issue at three dead nights.
 name: Vendor probe
 
 on:
+  schedule:
+    # Nightly 09:45 UTC = 19:45 AEST, matching the hour the 23 Aug probe ran
+    # so the readings are comparable night to night.
+    - cron: "45 9 * * *"
   workflow_dispatch:
-    inputs:
-      team:
-        description: "Vendor team id (4227 = New Zealand, 4231 = South Africa)"
-        required: false
-        default: "4227"
+
+permissions:
+  contents: write # commit the probe log
+  issues: write # the escalation issue at three dead nights
 
 jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: Probe last + next
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Probe the vendor
         env:
           SPORTSAPIPRO_KEY: ${{ secrets.SPORTSAPIPRO_KEY }}
-          TEAM: ${{ inputs.team }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/vendor-probe.mjs
+
+      - name: Commit the probe log
         run: |
-          for half in last next; do
-            url="https://api.sportsapipro.com/v2/rugby/api/teams/${TEAM}/events/${half}/0"
-            body=$(mktemp)
-            # The key goes in via -H from the environment, never on the command
-            # line — an inline secret lands in the process table and the log.
-            code=$(curl -s -o "$body" -w "%{http_code}" -H "x-api-key: ${SPORTSAPIPRO_KEY}" "$url")
-            count=$(node -e 'try{const d=JSON.parse(require("fs").readFileSync(process.argv[1],"utf8"));console.log((d.events??[]).length)}catch{console.log("n/a")}' "$body")
-            echo "team ${TEAM} ${half}: HTTP ${code}, ${count} events"
-          done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vendor-probe-log.json
+          git diff --cached --quiet && echo "no change" && exit 0
+          git commit -m "Vendor probe $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git pull --rebase --autostash
+          git push
