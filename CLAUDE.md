@@ -53,3 +53,14 @@ Quota is the real constraint on fixes here: SportsAPI Pro is 100 calls/day
 shared across jobs. Prefer a targeted refresh over a broader schedule, and make
 the no-op path cost nothing —
 `scripts/refresh-played-teams.mjs` is the worked example.
+
+## Handing unfinished tasks to Nico's PA
+
+Unfinished tasks for Nico's PA go in `~/Documents/Life-os/journal/admin-tasks.md`
+(append, date-stamp `YYYY-MM-DD`, heading `## From <project name>`); don't edit
+other sections. That file is the one thing `/pa` reads every session, so anything
+appended there gets picked up.
+
+A remote session (Claude Code on the web) has no access to that path — hand the
+list back in chat instead, formatted ready to paste, and say why. The PA's own
+rules live at `~/Documents/Life-os/agents/administrator.md` if they are needed.
