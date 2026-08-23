@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { teamsDue, mergeRefreshed } from "./refresh-played-teams.mjs";
+import { teamsDue, mergeRefreshed, teamsMissingResults } from "./refresh-played-teams.mjs";
 
 const NOW = new Date("2026-08-15T10:24:00Z").getTime(); // the screenshot moment
 const at = (hoursAgo) => new Date(NOW - hoursAgo * 3600 * 1000).toISOString();
@@ -87,4 +87,75 @@ test("mergeRefreshed: `next` comes wholly from the fresh build (stale fixtures d
   const prev = { AUS: { last: [], next: [{ id: 1, date: at(4) }, { id: 2, date: "2026-08-29T19:00Z" }] } };
   const fresh = { AUS: { last: [{ id: 1, date: at(4), us: 56, them: 17 }], next: [{ id: 2, date: "2026-08-29T19:00Z" }] } };
   assert.deepEqual(mergeRefreshed(prev, fresh).AUS.next, [{ id: 2, date: "2026-08-29T19:00Z" }]);
+});
+
+// ---- teamsMissingResults -----------------------------------------------------
+// A game in NEITHER list. teamsDue cannot see it (it only reads `next`) and it
+// is not in `last` to be charted, so without this rule it stays lost forever.
+// New Zealand's 22 Aug 2026 loss at Ellis Park sat exactly like that while
+// South Africa's copy of the same match published normally.
+
+const EP_KO = Date.parse("2026-08-22T15:10:00.000Z");
+const EP_NOW = EP_KO + 14 * 3600 * 1000;              // the next morning, as it was found
+
+const ellisPark = (over = {}) => ({
+  id: "espn-603247",
+  date: "2026-08-22T15:10:00.000Z",
+  home: { code: "RSA", name: "South Africa", tracked: true },
+  away: { code: "NZL", name: "New Zealand", tracked: true },
+  homeScore: 16,
+  awayScore: 33,
+  ...over,
+});
+
+const played = (date, oppCode) => ({ id: 1, date, opponentCode: oppCode, opponent: oppCode, us: 10, them: 5 });
+
+test("a game missing from both lists makes its team due", () => {
+  const teams = { NZL: { last: [played("2026-08-15T17:00:00Z", null)], next: [] } };
+  assert.deepEqual(teamsMissingResults(teams, [ellisPark()], EP_NOW), ["NZL"]);
+});
+
+test("the side that DID publish the same game is not due", () => {
+  const teams = {
+    RSA: { last: [played("2026-08-22T15:10:00Z", "NZL")], next: [] },
+    NZL: { last: [played("2026-08-15T17:00:00Z", null)], next: [] },
+  };
+  // Exactly the 23 Aug state: one side charted, the other lost.
+  assert.deepEqual(teamsMissingResults(teams, [ellisPark()], EP_NOW), ["NZL"]);
+});
+
+test("a game still sitting in `next` is left to teamsDue, not double-counted", () => {
+  const teams = { NZL: { last: [], next: [{ id: 9, date: "2026-08-22T15:10:00Z", opponentCode: "RSA" }] } };
+  assert.deepEqual(teamsMissingResults(teams, [ellisPark()], EP_NOW), []);
+});
+
+test("an unfinished fixture is not a missing result", () => {
+  const teams = { NZL: { last: [], next: [] } };
+  assert.deepEqual(teamsMissingResults(teams, [ellisPark({ homeScore: null, awayScore: null })], EP_NOW), []);
+  assert.deepEqual(teamsMissingResults(teams, [ellisPark({ status: { live: true } })], EP_NOW), []);
+});
+
+test("untracked tour sides are never due — they have no team entry to chart", () => {
+  const tour = ellisPark({
+    id: "seed-tour-nzl2026-sto",
+    home: { code: "STO", name: "Stormers", tracked: false },
+    away: { code: "NZL", name: "New Zealand", tracked: true },
+  });
+  const teams = { NZL: { last: [], next: [] } };
+  assert.deepEqual(teamsMissingResults(teams, [tour], EP_NOW), ["NZL"], "the tracked side still counts");
+  assert.deepEqual(teamsMissingResults({ STO: { last: [], next: [] } }, [tour], EP_NOW), [], "the untracked one does not");
+});
+
+test("respects the settle delay and the 72h give-up window", () => {
+  const teams = { NZL: { last: [], next: [] } };
+  assert.deepEqual(teamsMissingResults(teams, [ellisPark()], EP_KO + 60 * 60000), [], "too soon after kickoff");
+  assert.deepEqual(teamsMissingResults(teams, [ellisPark()], EP_KO + 71 * 3600 * 1000), ["NZL"], "inside the window");
+  assert.deepEqual(teamsMissingResults(teams, [ellisPark()], EP_KO + 73 * 3600 * 1000), [], "given up on");
+});
+
+test("a malformed fixture cannot crash the scan", () => {
+  const teams = { NZL: { last: [], next: [] } };
+  const junk = [null, undefined, {}, ellisPark({ date: "not-a-date" }), { homeScore: 1, awayScore: 2 }];
+  assert.deepEqual(teamsMissingResults(teams, junk, EP_NOW), []);
+  assert.deepEqual(teamsMissingResults(teams, undefined, EP_NOW), []);
 });
