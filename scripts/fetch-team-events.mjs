@@ -294,6 +294,71 @@ export function mergeRefreshed(prevTeams, freshTeams) {
   return out;
 }
 
+// A tracked-vs-tracked international is ONE game with two sides, so a result
+// that reaches only one of them is a vendor gap, not a fact. On 22 Aug 2026
+// SportsAPI Pro's `last` endpoint for New Zealand (team 4227) 503'd on every
+// attempt for ten hours while the same team's `next` answered fine, so the
+// 33-16 win over South Africa charted on the RSA Team page and was missing
+// from NZL's. Rebuild the absent side from the side that landed.
+//
+// Only the scoreline travels. tries/cards are per-team counts belonging to
+// whichever side reported them, so a mirrored row carries null and the app
+// shrinks that average's window rather than crediting an opponent's tries.
+const MIRROR_DAY_MS = 24 * 3600 * 1000;
+const sameFixture = (a, b) =>
+  (a.id != null && b.id != null && String(a.id) === String(b.id)) ||
+  (a.opponentCode != null &&
+    a.opponentCode === b.opponentCode &&
+    Math.abs(new Date(a.date) - new Date(b.date)) < MIRROR_DAY_MS);
+
+export function mirrorMissingResults(teams) {
+  if (!teams) return teams;
+  const nameByCode = Object.fromEntries(
+    Object.entries(TRACKED_NAMES).map(([name, code]) => [code, name]),
+  );
+  // Sources are read off a snapshot taken before any writing, so a mirrored
+  // row can never become a source and cascade back to where it came from.
+  const snapshot = Object.entries(teams).map(([code, t]) => [code, (t?.last ?? []).slice()]);
+  const out = {};
+  for (const [code, entry] of Object.entries(teams)) {
+    if (!entry) { out[code] = entry; continue; }
+    const own = entry.last ?? [];
+    const added = [];
+    for (const [srcCode, srcLast] of snapshot) {
+      if (srcCode === code || !nameByCode[srcCode]) continue;
+      for (const g of srcLast) {
+        if (g.opponentCode !== code || g.us == null || g.them == null) continue;
+        const flipped = {
+          id: g.id,
+          date: g.date,
+          league: g.league,
+          opponent: nameByCode[srcCode],
+          opponentCode: srcCode,
+          tracked: true,
+          homeAway: g.homeAway === "H" ? "A" : "H",
+          us: g.them,
+          them: g.us,
+          result: g.them > g.us ? "W" : g.them < g.us ? "L" : "D",
+          tries: null,
+          cards: null,
+          mirroredFrom: srcCode,
+        };
+        if (g.venue != null) flipped.venue = g.venue;
+        if ([...own, ...added].some((h) => sameFixture(h, flipped))) continue;
+        added.push(flipped);
+      }
+    }
+    if (!added.length) { out[code] = entry; continue; }
+    const last = [...own, ...added]
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .slice(-10);
+    // The game is played; it must not also sit in the upcoming list.
+    const next = (entry.next ?? []).filter((f) => !added.some((h) => sameFixture(f, h)));
+    out[code] = { ...entry, last, next };
+  }
+  return out;
+}
+
 // Raw vendor events -> published team entries: ESPN fixtures merged into
 // `next`, per-game tries/cards enriched onto `last`. Both supplements are
 // keyless (no SportsAPI Pro quota), so the catch-up job runs this too and its
@@ -338,7 +403,8 @@ async function main() {
     teamIds,
     // Layer over the previous file so a team the vendor skipped keeps its
     // entry instead of disappearing from the Team page.
-    teams: mergeRefreshed(prev?.teams, fresh),
+    // Then rebuild any tracked-vs-tracked result that reached only one side.
+    teams: mirrorMissingResults(mergeRefreshed(prev?.teams, fresh)),
   };
   await writeFile("team-events.json", JSON.stringify(out, null, 1) + "\n");
   const counts = Object.entries(out.teams).map(([c, t]) => `${c}:${t.last.length}/${t.next.length}`).join(" ");

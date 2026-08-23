@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { normalizeEvent, buildTeamEvents, trackedCodeFor, fetchEventsByCode, mergeRefreshed } from "./fetch-team-events.mjs";
+import { normalizeEvent, buildTeamEvents, trackedCodeFor, fetchEventsByCode, mergeRefreshed, mirrorMissingResults } from "./fetch-team-events.mjs";
 
 const NOW = new Date("2026-07-15T00:00:00Z").getTime();
 const ts = (iso) => Math.floor(new Date(iso).getTime() / 1000);
@@ -277,4 +277,79 @@ test("mergeRefreshed: a kept `next` with nothing played through is untouched", (
   const fresh = { RSA: { last: [{ id: 900 }], next: [], nextUnknown: true } };
   const out = mergeRefreshed(prev, fresh);
   assert.deepEqual(out.RSA.next, prev.RSA.next);
+});
+
+// --- symmetry: a result only one side's vendor call returned ---
+
+const played = (over) => ({
+  id: 16651329, date: "2026-08-22T15:10:00.000Z", league: "Rugbys Greatest Rivalry",
+  opponent: "New Zealand", opponentCode: "NZL", tracked: true,
+  homeAway: "H", us: 16, them: 33, result: "L", tries: 4, cards: 2, ...over,
+});
+
+test("mirrorMissingResults: a game only the opponent's feed returned is rebuilt from their side", () => {
+  const out = mirrorMissingResults({
+    RSA: { last: [played()], next: [] },
+    NZL: { last: [], next: [{ id: 16651329, date: "2026-08-22T15:10:00.000Z", opponentCode: "RSA", us: null, them: null }] },
+  });
+  assert.equal(out.NZL.last.length, 1);
+  const g = out.NZL.last[0];
+  assert.equal(g.opponent, "South Africa");
+  assert.equal(g.opponentCode, "RSA");
+  assert.equal(g.homeAway, "A");
+  assert.equal(g.us, 33);
+  assert.equal(g.them, 16);
+  assert.equal(g.result, "W");
+  assert.equal(g.mirroredFrom, "RSA");
+  // Per-team counts never cross sides — RSA's 4 tries are not New Zealand's.
+  assert.equal(g.tries, null);
+  assert.equal(g.cards, null);
+  // Played, so it leaves the upcoming list too.
+  assert.deepEqual(out.NZL.next, []);
+  // The side that already had it is untouched.
+  assert.deepEqual(out.RSA.last, [played()]);
+});
+
+test("mirrorMissingResults: a game both sides already have is never duplicated", () => {
+  const nzl = { id: 16651329, date: "2026-08-22T15:10:00.000Z", league: "Rugbys Greatest Rivalry", opponent: "South Africa", opponentCode: "RSA", tracked: true, homeAway: "A", us: 33, them: 16, result: "W", tries: 5, cards: 0 };
+  const out = mirrorMissingResults({ RSA: { last: [played()], next: [] }, NZL: { last: [nzl], next: [] } });
+  assert.equal(out.NZL.last.length, 1);
+  assert.equal(out.NZL.last[0].tries, 5, "the real row wins over a mirror");
+  assert.equal(out.RSA.last.length, 1);
+});
+
+test("mirrorMissingResults: differing vendor ids still dedupe on opponent + kickoff", () => {
+  const nzl = { id: "espn-999", date: "2026-08-22T15:40:00.000Z", opponent: "South Africa", opponentCode: "RSA", tracked: true, homeAway: "A", us: 33, them: 16, result: "W", tries: null, cards: null };
+  const out = mirrorMissingResults({ RSA: { last: [played()], next: [] }, NZL: { last: [nzl], next: [] } });
+  assert.equal(out.NZL.last.length, 1);
+});
+
+test("mirrorMissingResults: an untracked or unfinished game is never mirrored", () => {
+  const out = mirrorMissingResults({
+    RSA: { last: [
+      played({ id: 1, opponent: "Fidelity ADT Lions", opponentCode: null, tracked: false }),
+      played({ id: 2, us: null, them: null, result: null }),
+    ], next: [] },
+    NZL: { last: [], next: [] },
+  });
+  assert.deepEqual(out.NZL.last, []);
+});
+
+test("mirrorMissingResults: mirroring holds the rolling-10 contract, oldest dropped", () => {
+  const filler = Array.from({ length: 10 }, (_, i) => ({
+    id: 900 + i, date: `2026-0${i < 5 ? 1 : 2}-${String(i + 10)}T00:00:00.000Z`,
+    opponent: "Italy", opponentCode: "ITA", tracked: true, homeAway: "H",
+    us: 20, them: 10, result: "W", tries: null, cards: null,
+  }));
+  const out = mirrorMissingResults({ RSA: { last: [played()], next: [] }, NZL: { last: filler, next: [] } });
+  assert.equal(out.NZL.last.length, 10);
+  assert.equal(out.NZL.last.at(-1).opponentCode, "RSA", "the new game is the newest");
+  assert.equal(out.NZL.last.some((g) => g.id === 900), false, "the oldest went");
+});
+
+test("mirrorMissingResults: a mirrored row never cascades back as a source", () => {
+  const out = mirrorMissingResults({ RSA: { last: [played()], next: [] }, NZL: { last: [], next: [] } });
+  const again = mirrorMissingResults(out);
+  assert.equal(again.NZL.last.length, 1);
+  assert.equal(again.RSA.last.length, 1, "RSA does not gain a copy of its own game back");
 });
