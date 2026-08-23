@@ -18,6 +18,7 @@
 
 import { execSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
+import { pushWithRetries } from "./git-push-retry.mjs";
 
 const PRE_MS = 15 * 60000;             // start 15 min before kickoff
 const POST_MS = 150 * 60000;           // play + HT + the FT settle, as refresh.mjs uses
@@ -25,7 +26,6 @@ const POLL_MS = 3 * 60000;
 const BURST_MAX_MS = 2 * 60 * 60000;   // one landed fire covers a full match, well under the 6h job cap
 const LIVE_KINDS = new Set(["test", "series", "tour"]);
 const MAX_CONSECUTIVE_FAILURES = 5;    // ~15 min of nothing working — stop pretending
-const PUSH_ATTEMPTS = 4;
 
 // Is a test/series/tour game actually in play right now?
 //
@@ -94,20 +94,7 @@ function gitPublish(msg) {
   if (!execSync("git diff --cached --name-only").toString().trim()) return; // no change → no Pages build
   execSync(`git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m ${JSON.stringify(msg)}`);
 
-  // main is shared with the digests, news, rankings and team-events jobs, and
-  // at a 3-min cadence this loop races them about four times as often as the
-  // 12-min nations burst. One rebase-and-retry was not enough: on 2026-08-22
-  // the retry lost a second race and threw. Try a few times, then leave the
-  // commit local — the next pass carries it along with fresher data.
-  for (let attempt = 1; attempt <= PUSH_ATTEMPTS; attempt++) {
-    try { execSync("git push"); return; }
-    catch {
-      if (attempt === PUSH_ATTEMPTS) break;
-      try { execSync("git pull --rebase --autostash"); }
-      catch { /* rebase lost too — just try the push again next time round */ }
-    }
-  }
-  console.warn("[fixtures-burst] push kept losing races; commit stays local for the next pass");
+  pushWithRetries();
 }
 
 const readFixtures = async () => {

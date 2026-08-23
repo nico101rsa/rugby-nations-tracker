@@ -25,7 +25,7 @@ test("datesForWindow is inclusive and UTC", () => {
   );
 });
 
-import { decideMode } from "./refresh.mjs";
+import { decideMode, runLiveBurst } from "./refresh.mjs";
 
 const SCHED = [
   { week: "2", date: "2026-07-11T05:10:00+00:00", timeConfirmed: true },
@@ -78,4 +78,81 @@ test("budget guard: remaining < floor forces guard mode, no fetch", () => {
   const d = decideMode({ now: at("2026-07-11T06:00:00Z"), schedule: SCHED, remaining: 5 });
   assert.equal(d.mode, "guard");
   assert.deepEqual(d.dates, []);
+});
+
+// ---- runLiveBurst resilience -------------------------------------------------
+// The nations burst had no tests at all, and carried the identical fault that
+// killed the fixtures burst's run 4349 on 2026-08-22: one rejected push threw
+// out of gitPublish and took the whole run down mid-match. Here it would have
+// waited until a November round to show itself.
+
+test("live burst: a failed pass does not end the burst", async () => {
+  let passes = 0;
+  const r = await runLiveBurst({
+    dates: ["2026-11-07"],
+    refresh: async () => { passes++; if (passes === 2) throw new Error("api-sports 502"); return { remaining: 50 }; },
+    isLive: () => passes < 4,
+    publish: () => {},
+    sleep: async () => {},
+    now: () => 0,
+  });
+  assert.equal(passes, 4, "the bad pass is skipped, the rest still run");
+  assert.equal(r.iterations, 3, "only successful passes count");
+});
+
+test("live burst: a failed PUBLISH does not end the burst — the run 4349 shape", async () => {
+  let passes = 0;
+  const r = await runLiveBurst({
+    dates: ["2026-11-07"],
+    refresh: async () => { passes++; return { remaining: 50 }; },
+    publish: () => { if (passes === 1) throw new Error("failed to push some refs"); },
+    isLive: () => passes < 3,
+    sleep: async () => {},
+    now: () => 0,
+  });
+  assert.equal(passes, 3);
+  assert.equal(r.consecutiveFailures, 0, "the streak resets once a pass succeeds");
+});
+
+test("live burst: stops after 3 consecutive failures rather than burning quota", async () => {
+  let passes = 0;
+  const r = await runLiveBurst({
+    dates: ["2026-11-07"],
+    refresh: async () => { passes++; throw new Error("everything is broken"); },
+    isLive: () => true,               // would otherwise loop the whole window
+    publish: () => {},
+    sleep: async () => {},
+    now: () => 0,
+  });
+  assert.equal(passes, 3, "tighter than the fixtures burst: each pass costs api-sports quota");
+  assert.equal(r.iterations, 0);
+});
+
+test("live burst: the budget guard still stops it", async () => {
+  let passes = 0;
+  const r = await runLiveBurst({
+    dates: ["2026-11-07"],
+    refresh: async () => { passes++; return { remaining: 2 }; },   // below guardFloor
+    isLive: () => true,
+    publish: () => {},
+    sleep: async () => {},
+    now: () => 0,
+  });
+  assert.equal(r.iterations, 1, "one pass, then the guard breaks out");
+});
+
+test("live burst: a persistently broken publish escalates to the cap", async () => {
+  // The streak must not reset on a pass whose publish threw, or a broken
+  // checkout would loop for the whole window looking healthy.
+  let passes = 0;
+  const r = await runLiveBurst({
+    dates: ["2026-11-07"],
+    refresh: async () => { passes++; return { remaining: 50 }; },
+    publish: () => { throw new Error("git commit failed"); },
+    isLive: () => true,
+    sleep: async () => {},
+    now: () => 0,
+  });
+  assert.equal(passes, 3, "stops at the failure cap rather than looping the window");
+  assert.equal(r.consecutiveFailures, 3);
 });
