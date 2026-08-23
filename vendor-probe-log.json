@@ -1,0 +1,35 @@
+{
+ "entries": [
+  {
+   "at": "2026-08-23T09:56:51.828Z",
+   "healthy": false,
+   "summary": "NZL/last 503, RSA/last 404, RSA/next 404",
+   "rows": [
+    {
+     "code": "NZL",
+     "half": "last",
+     "status": 503,
+     "events": 0
+    },
+    {
+     "code": "NZL",
+     "half": "next",
+     "status": 200,
+     "events": 0
+    },
+    {
+     "code": "RSA",
+     "half": "last",
+     "status": 404,
+     "events": 0
+    },
+    {
+     "code": "RSA",
+     "half": "next",
+     "status": 404,
+     "events": 0
+    }
+   ]
+  }
+ ]
+}
