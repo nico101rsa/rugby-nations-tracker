@@ -36,6 +36,15 @@ export async function probe(team, half, fetchImpl = fetch) {
 
 // A night is healthy only if EVERY probed call returned 200. A partial answer
 // is what broke New Zealand's chart in the first place, so it is not "up".
+//
+// 404 counts as degraded HERE even though fetch-team-events.mjs reads it as an
+// empty page (a real thing: /events/next/0 404s when a team has nothing
+// scheduled). Both probed teams always have recent games and upcoming
+// fixtures, so a 404 on either is the vendor losing the team, not an empty
+// result. Do not copy this rule to a team that may genuinely have no games.
+//
+// Seen 23 Aug: South Africa answered 503 at 19:50 and 404 at 19:56 — the same
+// endpoint giving different errors six minutes apart is itself the finding.
 export function verdict(rows) {
   const bad = rows.filter((r) => r.status !== 200);
   if (!bad.length) return { healthy: true, summary: "all endpoints 200" };
