@@ -28,7 +28,7 @@
 // A team stops being due the moment the game lands in `last`, so a successful
 // catch-up makes every later run a no-op by itself.
 
-import { fetchEventsByCode, assembleTeams, mergeRefreshed } from "./fetch-team-events.mjs";
+import { fetchEventsByCode, assembleTeams, mergeRefreshed, mirrorMissingResults } from "./fetch-team-events.mjs";
 
 const SETTLE_MS = 150 * 60000; // kickoff -> earliest attempt
 const WINDOW_MS = 12 * 3600 * 1000; // kickoff -> last attempt
@@ -149,6 +149,18 @@ export function overdueResults(teams, fixtures, nowMs = Date.now(), overdueHours
 // previous entry" rule for teams a vendor 5xx made it skip.
 export { mergeRefreshed };
 
+// Which games the mirror rebuilt this run, as "NZL v RSA" labels for the log.
+export function mirroredSince(before, after) {
+  const out = [];
+  for (const [code, t] of Object.entries(after ?? {})) {
+    const had = new Set((before?.[code]?.last ?? []).map((g) => String(g.id)));
+    for (const g of t?.last ?? []) {
+      if (g.mirroredFrom && !had.has(String(g.id))) out.push(`${code} v ${g.mirroredFrom}`);
+    }
+  }
+  return out;
+}
+
 async function main() {
   const { readFile, writeFile } = await import("node:fs/promises");
   const te = JSON.parse(await readFile("team-events.json", "utf8"));
@@ -159,12 +171,32 @@ async function main() {
     .then((raw) => JSON.parse(raw).fixtures ?? [])
     .catch(() => []);
 
-  const waiting = teamsDue(te.teams);
-  const lost = teamsMissingResults(te.teams, fixtures);
+  // Vendor-free repair FIRST. A tracked-vs-tracked international is one game
+  // with two sides, so a result that reached only one of them is recoverable
+  // from the other for zero vendor calls — worth having on a 100/day tier.
+  // Order matters: New Zealand's 22 Aug loss was unrecoverable precisely
+  // because the vendor's `last` endpoint for team 4227 503'd on every attempt
+  // for ten hours, and a repair that ran after the fetch never got reached.
+  const teams = mirrorMissingResults(te.teams);
+  const mirrored = mirroredSince(te.teams, teams);
+  if (mirrored.length) console.log(`rebuilt from the opponent's feed: ${mirrored.join(", ")}`);
+  const write = (t) =>
+    writeFile(
+      "team-events.json",
+      JSON.stringify({ ...te, updatedAt: new Date().toISOString(), teams: t }, null, 1) + "\n",
+    );
+
+  const waiting = teamsDue(teams);
+  const lost = teamsMissingResults(teams, fixtures);
   if (lost.length) console.log(`played but missing from BOTH lists: ${lost.join(", ")}`);
   const due = [...new Set([...waiting, ...lost])].slice(0, MAX_TEAMS);
   if (due.length === 0) {
-    console.log("no finished-but-unpublished games — no vendor calls made");
+    if (mirrored.length) await write(teams);
+    console.log(
+      mirrored.length
+        ? "team-events.json written from the opponent's feed — no vendor calls made"
+        : "no finished-but-unpublished games — no vendor calls made",
+    );
     return;
   }
   if (!process.env.SPORTSAPIPRO_KEY) throw new Error("SPORTSAPIPRO_KEY not set");
@@ -177,11 +209,20 @@ async function main() {
   if (Object.keys(teamIds).length === 0) return;
 
   console.log(`catching up ${Object.keys(teamIds).join(", ")} (${Object.keys(teamIds).length * 2} vendor calls)`);
-  const eventsByCode = await fetchEventsByCode(teamIds);
-  const statsJson = await readFile("stats.json", "utf8").then(JSON.parse).catch(() => null);
-  const fresh = await assembleTeams(eventsByCode, statsJson);
+  let fresh;
+  try {
+    const eventsByCode = await fetchEventsByCode(teamIds);
+    const statsJson = await readFile("stats.json", "utf8").then(JSON.parse).catch(() => null);
+    fresh = await assembleTeams(eventsByCode, statsJson);
+  } catch (err) {
+    // The vendor gave us nothing — but a repair we already made without it
+    // must not be thrown away with the failure. Publish, then still go red.
+    if (mirrored.length) await write(teams);
+    throw err;
+  }
 
-  const out = { ...te, updatedAt: new Date().toISOString(), teams: mergeRefreshed(te.teams, fresh) };
+  const merged = mirrorMissingResults(mergeRefreshed(teams, fresh));
+  const out = { ...te, updatedAt: new Date().toISOString(), teams: merged };
   await writeFile("team-events.json", JSON.stringify(out, null, 1) + "\n");
 
   const still = [...new Set([...teamsDue(out.teams), ...teamsMissingResults(out.teams, fixtures)])];
