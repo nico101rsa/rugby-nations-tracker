@@ -54,6 +54,42 @@ shared across jobs. Prefer a targeted refresh over a broader schedule, and make
 the no-op path cost nothing —
 `scripts/refresh-played-teams.mjs` is the worked example.
 
+## A result is symmetric — never trust one team's record alone
+
+`team-events.json` holds twelve **separately-fetched** per-team records, so a
+single game exists twice and either copy can be missing. A tracked-vs-tracked
+international is one game with two sides: a result present on one side and
+absent from the other is a vendor gap, not a fact about the match.
+
+`mirrorMissingResults` in `scripts/fetch-team-events.mjs` rebuilds the absent
+side from the side that landed. Two rules it encodes, both easy to break:
+
+- **Only the scoreline travels.** `tries` and `cards` are per-team counts
+  belonging to whichever side reported them, so a mirrored row carries null.
+  Copying them across would credit an opponent's tries to the wrong team.
+- **The repair runs BEFORE the vendor call**, in both `fetch-team-events.mjs`
+  and `refresh-played-teams.mjs`. This is load-bearing, not stylistic: the fetch
+  throws when the vendor answers nothing, so a repair placed after it is never
+  reached in the exact case it exists for. It also costs zero calls, which
+  matters on a 100/day tier.
+
+Don't diagnose a missing game from one team's entry, and don't move the mirror
+after the fetch. Both were the 2026-08-23 bug: New Zealand's 22 Aug loss charted
+for South Africa and not for New Zealand.
+
+## SportsAPI Pro may be going away (2026-08-23)
+
+The free tier has returned 503s for five days; the nightly `team-events` job
+logged 36 of them and skipped all twelve teams on 23 Aug. It is **not**
+team-specific — South Africa probed worse than New Zealand — and the results
+(`last`) endpoint is sicker than fixtures (`next`).
+
+`scripts/vendor-probe.mjs` records health nightly to `vendor-probe-log.json`.
+**Read that log before claiming anything about vendor health**, and don't assume
+this vendor is up when planning work that depends on it. The likely answer is
+moving the results call onto keyless ESPN, which already feeds `next` through
+`scripts/fetch-espn-fixtures.mjs`.
+
 ## Handing unfinished tasks to Nico's PA
 
 Unfinished tasks for Nico's PA go in `~/Documents/Life-os/journal/admin-tasks.md`
