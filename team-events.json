@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-08-25T02:14:04.872Z",
+ "updatedAt": "2026-08-26T02:20:43.081Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -18,20 +18,6 @@
  "teams": {
   "NZL": {
    "last": [
-    {
-     "id": 14884316,
-     "date": "2025-11-08T15:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Scotland",
-     "opponentCode": "SCO",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 25,
-     "them": 17,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
     {
      "id": 14884324,
      "date": "2025-11-15T15:10:00.000Z",
@@ -157,9 +143,7 @@
      "result": "W",
      "tries": null,
      "cards": null
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16716848,
      "date": "2026-08-25T17:00:00.000Z",
@@ -168,10 +152,14 @@
      "opponentCode": null,
      "tracked": false,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null
-    },
+     "us": 41,
+     "them": 35,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16651327,
      "date": "2026-08-29T15:00:00.000Z",
@@ -251,17 +239,17 @@
      "venue": "Scottish Gas Murrayfield, Edinburgh"
     },
     {
-     "venue": "Principality Stadium, Cardiff",
-     "id": "espn-604001",
-     "date": "2026-11-14T14:10Z",
-     "league": "Nations Championship",
+     "id": 16098045,
+     "date": "2026-11-14T18:00:00.000Z",
+     "league": "Nations Championship, Group Stage",
      "opponent": "Wales",
      "opponentCode": "WAL",
      "tracked": true,
      "homeAway": "A",
      "us": null,
      "them": null,
-     "result": null
+     "result": null,
+     "venue": "Principality Stadium, Cardiff"
     },
     {
      "venue": "Allianz Stadium, London",
