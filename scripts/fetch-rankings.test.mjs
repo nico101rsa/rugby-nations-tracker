@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseRankings, buildRankingsJson, withHistory } from "./fetch-rankings.mjs";
+import { parseRankings, buildRankingsJson, withHistory, parseAsOfDate, isRegression } from "./fetch-rankings.mjs";
 
 // Trimmed real wikitext from Template:World_Rugby_Rankings (13 Jul 2026).
 const WIKITEXT = `{{sticky header}}
@@ -76,4 +76,22 @@ test("withHistory: new asOf archives the previous snapshot", () => {
   assert.equal(out.history.length, 1);
   assert.deepEqual(out.history[0], { asOf: "13 July 2026", rankings: prev.rankings });
   assert.equal(out.rankings.RSA.rank, 2);
+});
+
+test("parseAsOfDate: template caption dates, garbage to null", () => {
+  assert.equal(parseAsOfDate("24 August 2026"), Date.UTC(2026, 7, 24));
+  assert.equal(parseAsOfDate("1 January 2003"), Date.UTC(2003, 0, 1));
+  assert.equal(parseAsOfDate("Smarch 2026"), null);
+  assert.equal(parseAsOfDate(null), null);
+});
+
+test("isRegression: a stale template must not clobber a fresher published table", () => {
+  // 24 Aug 2026: the template still said "as of 20 July" two days after NZ
+  // took No. 1 — a hand-corrected rankings.json has to survive the nightly.
+  assert.equal(isRegression("24 August 2026", "20 July 2026"), true);
+  assert.equal(isRegression("20 July 2026", "24 August 2026"), false);
+  assert.equal(isRegression("24 August 2026", "24 August 2026"), false);
+  // an unparseable side proves nothing, so it never blocks the write
+  assert.equal(isRegression(null, "24 August 2026"), false);
+  assert.equal(isRegression("24 August 2026", "garbled"), false);
 });

@@ -71,11 +71,17 @@ const weeksBetween = (fromIso, tillIso, now) => {
 };
 
 // Per-team #1 record from the spell list. `now` injectable for tests.
+// `latestYear` is the most recent year the team held #1 (an open spell counts
+// up to `now`) — check-rankings.mjs compares it against the year the
+// "best and worst" section credits, since that section updated overnight on
+// 22 Aug 2026 while this timeline and the live table both lagged the result.
 export function leaderStats(spells, now = Date.now()) {
   const out = {};
   for (const s of spells) {
     const weeks = weeksBetween(s.from, s.till, now);
-    const t = (out[s.code] ??= { totalWeeks: 0, longestWeeks: 0, longestFrom: null, longestTill: null, spells: 0, currentSince: null });
+    const t = (out[s.code] ??= { totalWeeks: 0, longestWeeks: 0, longestFrom: null, longestTill: null, spells: 0, currentSince: null, latestYear: 0 });
+    const till = s.till ?? new Date(now).toISOString();
+    t.latestYear = Math.max(t.latestYear, Number(till.slice(0, 4)));
     t.totalWeeks += weeks;
     if (weeks > t.longestWeeks) {
       t.longestWeeks = weeks;

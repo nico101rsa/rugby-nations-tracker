@@ -68,6 +68,29 @@ export function withHistory(prev, next) {
   return { ...next, history };
 }
 
+// "24 August 2026" -> epoch ms, or null when the caption didn't parse.
+const MONTHS = ["january", "february", "march", "april", "may", "june", "july",
+  "august", "september", "october", "november", "december"];
+export function parseAsOfDate(asOf) {
+  const m = String(asOf ?? "").match(/^(\d{1,2}) (\w+) (\d{4})$/);
+  if (!m) return null;
+  const month = MONTHS.indexOf(m[2].toLowerCase());
+  if (month === -1) return null;
+  return Date.UTC(Number(m[3]), month, Number(m[1]));
+}
+
+// A refetch may only move the table forward. Wikipedia's template lagged 5
+// weeks behind reality on 24 Aug 2026 (NZ had taken No. 1 off SA two days
+// earlier); a hand-corrected rankings.json would have been silently reverted
+// by that night's cron. An OLDER "as of" than the published file means the
+// template (or a vandalism revert) is behind whatever we already have — keep
+// the published file and let check-rankings.mjs shout instead.
+export function isRegression(prevAsOf, nextAsOf) {
+  const prev = parseAsOfDate(prevAsOf);
+  const next = parseAsOfDate(nextAsOf);
+  return prev !== null && next !== null && next < prev;
+}
+
 const WIKI_URL =
   "https://en.wikipedia.org/w/api.php?action=parse&page=Template:World_Rugby_Rankings&format=json&prop=wikitext";
 
@@ -80,6 +103,13 @@ async function main() {
   const wikitext = (await res.json()).parse.wikitext["*"];
   const fresh = buildRankingsJson(parseRankings(wikitext), new Date().toISOString());
   const prev = await readFile("rankings.json", "utf8").then(JSON.parse).catch(() => null);
+  if (isRegression(prev?.asOf, fresh.asOf)) {
+    console.log(
+      `template says "as of ${fresh.asOf}" but rankings.json is already at "${prev.asOf}" — ` +
+      `stale fetch, keeping the published table.`,
+    );
+    return;
+  }
   const out = withHistory(prev, fresh);
   await writeFile("rankings.json", JSON.stringify(out, null, 1) + "\n");
   console.log(
