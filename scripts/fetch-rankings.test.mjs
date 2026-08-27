@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseRankings, buildRankingsJson, withHistory, parseAsOfDate, isRegression } from "./fetch-rankings.mjs";
+import { parseRankings, buildRankingsJson, withHistory, parseAsOfDate, isRegression, isFutureDated } from "./fetch-rankings.mjs";
 
 // Trimmed real wikitext from Template:World_Rugby_Rankings (13 Jul 2026).
 const WIKITEXT = `{{sticky header}}
@@ -94,4 +94,18 @@ test("isRegression: a stale template must not clobber a fresher published table"
   // an unparseable side proves nothing, so it never blocks the write
   assert.equal(isRegression(null, "24 August 2026"), false);
   assert.equal(isRegression("24 August 2026", "garbled"), false);
+});
+
+test("isFutureDated: a future caption is a typo, not a release", () => {
+  // 27 Aug 2026: the template's update finally landed captioned
+  // "as of 24 September 2026" — a month typo the forward-only rule accepted.
+  const now = Date.UTC(2026, 7, 27);
+  assert.equal(isFutureDated("24 September 2026", now), true);
+  assert.equal(isFutureDated("24 August 2026", now), false);
+  // two days of slack: a Sunday-UTC cron may legitimately see Monday's date
+  assert.equal(isFutureDated("28 August 2026", now), false);
+  assert.equal(isFutureDated("30 August 2026", now), true);
+  // unparseable proves nothing, so it never blocks the write
+  assert.equal(isFutureDated("garbled", now), false);
+  assert.equal(isFutureDated(null, now), false);
 });
