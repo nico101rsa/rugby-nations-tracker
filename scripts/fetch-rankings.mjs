@@ -91,6 +91,19 @@ export function isRegression(prevAsOf, nextAsOf) {
   return prev !== null && next !== null && next < prev;
 }
 
+// A release can't be dated in the future. On 27 Aug 2026 the template's
+// long-awaited update arrived captioned "as of 24 September 2026" — an
+// editor's month typo — and the forward-only rule above happily accepted it.
+// Once stored, a future date latches: the typo's correction back to August
+// reads as a regression and is refused, and checkTableFreshness goes blind
+// for a month (no result can postdate a future table). Two days of slack
+// cover a cron seeing Monday's release date from Sunday UTC.
+const FUTURE_SLACK_MS = 2 * 86400000;
+export function isFutureDated(asOf, now = Date.now()) {
+  const t = parseAsOfDate(asOf);
+  return t !== null && t > now + FUTURE_SLACK_MS;
+}
+
 const WIKI_URL =
   "https://en.wikipedia.org/w/api.php?action=parse&page=Template:World_Rugby_Rankings&format=json&prop=wikitext";
 
@@ -107,6 +120,13 @@ async function main() {
     console.log(
       `template says "as of ${fresh.asOf}" but rankings.json is already at "${prev.asOf}" — ` +
       `stale fetch, keeping the published table.`,
+    );
+    return;
+  }
+  if (isFutureDated(fresh.asOf)) {
+    console.log(
+      `template says "as of ${fresh.asOf}", which is in the future — likely a caption typo, ` +
+      `keeping the published table${prev?.asOf ? ` ("as of ${prev.asOf}")` : ""}.`,
     );
     return;
   }
