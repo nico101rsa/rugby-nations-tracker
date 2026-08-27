@@ -123,6 +123,37 @@
      "events": 0
     }
    ]
+  },
+  {
+   "at": "2026-08-27T20:00:13.710Z",
+   "healthy": false,
+   "summary": "NZL/next 503, RSA/last 503",
+   "rows": [
+    {
+     "code": "NZL",
+     "half": "last",
+     "status": 200,
+     "events": 0
+    },
+    {
+     "code": "NZL",
+     "half": "next",
+     "status": 503,
+     "events": 0
+    },
+    {
+     "code": "RSA",
+     "half": "last",
+     "status": 503,
+     "events": 0
+    },
+    {
+     "code": "RSA",
+     "half": "next",
+     "status": 200,
+     "events": 0
+    }
+   ]
   }
  ]
 }
