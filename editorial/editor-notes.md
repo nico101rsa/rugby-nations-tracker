@@ -3,6 +3,7 @@
 Injected into the writer prompt daily; curated by the post-run review.
 Notes age out after 14 days unless re-earned. Prune freely.
 
+- Maintain consistent Sentence case for kickers across all editions (e.g., use 'Injury blow' rather than 'INJURY BLOW'). _(added 2026-08-28)_
 - Ensure headings always contain a specific person or team name to ground the news immediately. _(added 2026-08-26)_
 - Avoid using filler phrases like 'in a new assessment of' or 'in a bid to' to save word count for additional context. _(added 2026-08-26)_
 - Prioritize concrete match results and scores over strategic 'forward-looking' quotes or institutional statements from chairmen/CEOs. _(added 2026-08-25)_
@@ -10,4 +11,3 @@ Notes age out after 14 days unless re-earned. Prune freely.
 - Ensure that headings in the 'storyline' ladder editions follow the same standard as news editions: specific, action-oriented, and naming key individuals. _(added 2026-08-23)_
 - Avoid using phrases like 'the rugby community is mourning' or 'has been the most significant story' in favor of direct reporting of the facts. _(added 2026-08-23)_
 - Ensure every heading explicitly names a subject (person or team) and describes a specific, completed action rather than a state of being. _(added 2026-08-23)_
-- When a report covers a 'long-running' issue (e.g., legal battles), prioritize a concrete status update (e.g., 'Court dismisses X') over general summary prose. _(added 2026-08-23)_
