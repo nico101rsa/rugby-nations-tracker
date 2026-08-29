@@ -8,6 +8,14 @@ on:
     # Match-Saturday extras: kickoffs run 05:10–19:10 UTC (FT ≈ 07:00–21:00),
     # so these land fresh post-match news ~1–2h after each cluster of games.
     - cron: "0 8,12,17,22 * * 6"
+  # Editing this file runs the digests once — a smoke test for the edit, and a
+  # no-tooling manual lever for when GitHub's scheduler drops the 20:00 fire
+  # (as on 2026-08-29, when the morning edition simply never ran). The cron
+  # Worker now backstops those drops, but it dispatches THIS workflow, so a
+  # push trigger that needs nothing but a commit stays worth having.
+  push:
+    branches: [main]
+    paths: [".github/workflows/generate-digests.yml"]
   workflow_dispatch:
 
 # Own group. Sharing "refresh-data" with the match refresh meant every
