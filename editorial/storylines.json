@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-29T13:28:50.831Z",
+  "updatedAt": "2026-08-29T17:00:27.177Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 179,
+  "count": 184,
   "storylines": [
     {
       "id": "the-high-court-ruling-1u6p953",
@@ -450,8 +450,8 @@
       ],
       "firstSeen": "2026-08-08",
       "lastSeen": "2026-08-15",
-      "uses": 1,
-      "lastUsed": "2026-08-16"
+      "uses": 2,
+      "lastUsed": "2026-08-30"
     },
     {
       "id": "codie-taylor-s-injury-6dtlmt",
@@ -2561,6 +2561,11 @@
       "resolution": "until a first-choice fly-half is established for the 2027 World Cup cycle",
       "sources": [
         {
+          "title": "Les Kiss reaps rewards of derring-do approach to Australia’s team selection",
+          "link": "https://www.theguardian.com/sport/2026/aug/15/les-kiss-australia-team-selection-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Carter Gordon returns for Wallabies in ‘balanced selection’ for second Japan Test",
           "link": "https://www.theguardian.com/sport/2026/aug/13/wallabies-team-selection-carter-gordon-australia-vs-japan-rugby-union-test",
           "feedName": "Guardian Rugby Union"
@@ -2569,15 +2574,10 @@
           "title": "Wallabies search for pieces to fit playmaker puzzle as Kiss swings changes | Jack Snape",
           "link": "https://www.theguardian.com/sport/2026/aug/14/wallabies-australia-japan-carter-gordon-rugby-union-test-nations-championship-preview",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Carter Gordon impresses on return as Wallabies surge clear of Japan for dominant win",
-          "link": "https://www.theguardian.com/sport/2026/aug/15/wallabies-australia-japan-nations-championship-rugby-union-match-report",
-          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-23",
+      "lastSeen": "2026-08-30",
       "uses": 1,
       "lastUsed": "2026-08-23"
     },
@@ -3650,30 +3650,30 @@
     },
     {
       "id": "sacha-feinberg-mngomezulu-s-1qkxmcq",
-      "subject": "Sacha Feinberg-Mngomezulu's development as a Springbok fly-half under pressure",
+      "subject": "Sacha Feinberg-Mngomezulu's performance and position as Springbok starting fly-half",
       "teams": [
         467
       ],
       "resolution": "until Sacha Feinberg-Mngomezulu establishes himself as the primary starter for Rassie Erasmus",
       "sources": [
         {
+          "title": "Kiwi journo: Sacha not been set up to succeed",
+          "link": "https://www.sarugbymag.co.za/kiwi-journo-sacha-not-set-succeed/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Boks drop Feinberg-Mngomezulu to bench for All Blacks rematch",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cg7k90y8j9no?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "Joel Stransky 'a little concerned' with Rassie Erasmus' Handre Pollard selection as 'message' sent for All Blacks rematch",
           "link": "https://www.planetrugby.com/news/joel-stransky-a-little-concerned-with-rassie-erasmus-handre-pollard-selection-as-message-sent-for-all-blacks-rematch",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "All Blacks brace for Bok-lash as Erasmus adds late fly-half plot twist",
-          "link": "https://www.theguardian.com/sport/2026/aug/28/south-africa-new-zealand-sacha-feinberg-mngomezulu-rassie-erasmus",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Springboks team: Sacha Feinberg-Mngomezulu dropped as Pieter-Steph du Toit hits milestone while Rassie Erasmus undecided over Siya Kolisi",
-          "link": "https://www.planetrugby.com/news/springboks-team-sacha-feinberg-mngomezulu-dropped-as-pieter-steph-du-toit-hits-milestone-while-rassie-erasmus-undecided-over-siya-kolisi",
           "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-26",
-      "lastSeen": "2026-08-29",
+      "lastSeen": "2026-08-30",
       "uses": 0
     },
     {
@@ -4465,7 +4465,8 @@
       ],
       "firstSeen": "2026-08-29",
       "lastSeen": "2026-08-29",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-30"
     },
     {
       "id": "currie-cup-semi-final-15555pa",
@@ -4534,6 +4535,131 @@
       ],
       "firstSeen": "2026-08-29",
       "lastSeen": "2026-08-29",
+      "uses": 0
+    },
+    {
+      "id": "handr-pollard-s-injury-83ci1s",
+      "subject": "Handré Pollard's injury status and potential return to the Springboks squad",
+      "teams": [
+        467
+      ],
+      "resolution": "until South Africa confirms his recovery and availability for future matches",
+      "sources": [
+        {
+          "title": "Pollard in doubt for All Blacks duel",
+          "link": "https://www.sarugbymag.co.za/pollard-doubt-blacks-duel/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Springboks blow: Handre Pollard ruled out of second All Blacks Test – report",
+          "link": "https://www.planetrugby.com/news/springboks-team-v-all-blacks-handre-pollard-in-doubt-for-cape-town-test",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Stick on tearful Handré, 'not nice' KLA situation",
+          "link": "https://www.sarugbymag.co.za/stick-tearful-handre-not-nice-kla-situation/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-constant-springbok-2bzw1p",
+      "subject": "Rassie Erasmus' constant Springbok player rotations and squad selection policy",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Springboks coaching staff establishes a settled first-choice matchday 23",
+      "sources": [
+        {
+          "title": "Nick Mallett gives blunt verdict on Rassie Erasmus' selection changes and reveals what he expects from Springboks in All Blacks rematch",
+          "link": "https://www.planetrugby.com/news/nick-mallett-gives-blunt-verdict-on-rassie-erasmus-selection-changes-and-reveals-what-he-expects-from-springboks-in-all-blacks-rematch",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Kolisi backs ‘amazing’ Hanekom to boss Kiwis",
+          "link": "https://www.sarugbymag.co.za/kolisi-backs-amazing-hanekom-boss-kiwis/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Watch: Bok blazer cheapened – Jake",
+          "link": "https://www.sarugbymag.co.za/watch-bok-blazer-cheapened-jake/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 0
+    },
+    {
+      "id": "eddie-hearn-s-1m-1pquiq7",
+      "subject": "Eddie Hearn's £1m-a-season salary demand for Henry Pollock",
+      "teams": [
+        386
+      ],
+      "resolution": "until it is confirmed whether Pollock signs a contract reflecting this valuation or remains within current salary cap limits",
+      "sources": [
+        {
+          "title": "England greats predict what will happen when Eddie Hearn ‘soon realises rugby is not like Riyadh’ following his million-pound Henry Pollock demand",
+          "link": "https://www.planetrugby.com/news/england-greats-predict-what-will-happen-when-eddie-hearn-soon-realises-rugby-is-not-like-riyadh-following-his-million-pound-henry-pollock-demand",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 0
+    },
+    {
+      "id": "the-legal-action-regarding-hrvb7g",
+      "subject": "The legal action regarding potential ticket scams for the Springboks v All Blacks Test in Cape Town",
+      "teams": [
+        465,
+        467
+      ],
+      "resolution": "until the outcome of the SA Rugby legal proceedings is announced",
+      "sources": [
+        {
+          "title": "Scammed Bok fans left ticketless",
+          "link": "https://www.sarugbymag.co.za/scammed-bok-fans-left-ticketless/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 0
+    },
+    {
+      "id": "the-multi-million-pound-wf6x1d",
+      "subject": "The multi-million-pound concussion legal battle against rugby governing bodies",
+      "teams": [
+        386,
+        388,
+        391,
+        465,
+        467
+      ],
+      "resolution": "until a final court verdict or settlement is reached in the ongoing brain injury claims",
+      "sources": [
+        {
+          "title": "High court allows rugby brain injury case to go on",
+          "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Rugby brain injury case brought back from brink of collapse after high court ruling",
+          "link": "https://www.theguardian.com/sport/2026/aug/21/rugby-brain-injury-case-able-to-continue-after-high-court-ruling",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
       "uses": 0
     }
   ]
