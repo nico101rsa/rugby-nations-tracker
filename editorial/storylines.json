@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-29T17:00:27.177Z",
+  "updatedAt": "2026-08-29T19:33:41.050Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 184,
+  "count": 189,
   "storylines": [
     {
       "id": "the-high-court-ruling-1u6p953",
@@ -1741,7 +1741,7 @@
     },
     {
       "id": "legal-case-involving-brain-133wkth",
-      "subject": "Legal case involving brain injuries among former rugby players",
+      "subject": "The multi-million-pound brain injury legal case involving former players",
       "teams": [
         386,
         388,
@@ -1751,23 +1751,23 @@
       "resolution": "until a judicial decision is reached regarding the strikeout applications or a settlement is announced",
       "sources": [
         {
+          "title": "High court allows rugby brain injury case to go on",
+          "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Rugby brain injury case brought back from brink of collapse after high court ruling",
+          "link": "https://www.theguardian.com/sport/2026/aug/21/rugby-brain-injury-case-able-to-continue-after-high-court-ruling",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Rugby’s landmark concussion case enters crucial week: the key questions answered",
           "link": "https://www.theguardian.com/sport/2026/jul/22/rugbys-landmark-concussion-case-enters-crucial-week-the-key-questions-answered",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Rugby players seek new lawyers for brain injury cases against governing bodies",
-          "link": "https://www.theguardian.com/sport/2026/jul/22/players-brain-injury-cases-rugby-league-rugby-union",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Rugby brain injury case reaches crisis point as judge retires to consider 95% strikeouts",
-          "link": "https://www.theguardian.com/sport/2026/jul/23/rugby-brain-injury-case-reaches-crisis-point-as-judge-retires-to-consider-95-strikeouts",
           "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-08-16",
-      "lastSeen": "2026-08-16",
+      "lastSeen": "2026-08-30",
       "uses": 2,
       "lastUsed": "2026-08-20"
     },
@@ -2022,8 +2022,8 @@
       ],
       "firstSeen": "2026-08-18",
       "lastSeen": "2026-08-18",
-      "uses": 1,
-      "lastUsed": "2026-08-20"
+      "uses": 2,
+      "lastUsed": "2026-08-30"
     },
     {
       "id": "rassie-erasmus-s-choice-eefj0z",
@@ -2271,7 +2271,7 @@
         }
       ],
       "firstSeen": "2026-08-19",
-      "lastSeen": "2026-08-19",
+      "lastSeen": "2026-08-30",
       "uses": 0
     },
     {
@@ -4056,6 +4056,11 @@
       "resolution": "until South Africa provides an injury update or match-day squad for the third Test",
       "sources": [
         {
+          "title": "Stick on tearful Handré, 'not nice' KLA situation",
+          "link": "https://www.sarugbymag.co.za/stick-tearful-handre-not-nice-kla-situation/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
           "title": "Springboks team changes: Rassie Erasmus loses Handre Pollard but gains Cheslin Kolbe for second All Blacks Test",
           "link": "https://www.planetrugby.com/news/springboks-team-v-all-blacks-rassie-welcomes-back-kolbe-but-loses-pollard-for-test-ii",
           "feedName": "Planet Rugby"
@@ -4064,15 +4069,10 @@
           "title": "Pollard in doubt for All Blacks duel",
           "link": "https://www.sarugbymag.co.za/pollard-doubt-blacks-duel/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Springboks blow: Handre Pollard ruled out of second All Blacks Test – report",
-          "link": "https://www.planetrugby.com/news/springboks-team-v-all-blacks-handre-pollard-in-doubt-for-cape-town-test",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-29",
-      "lastSeen": "2026-08-29",
+      "lastSeen": "2026-08-30",
       "uses": 0
     },
     {
@@ -4141,7 +4141,7 @@
         }
       ],
       "firstSeen": "2026-08-29",
-      "lastSeen": "2026-08-29",
+      "lastSeen": "2026-08-30",
       "uses": 0
     },
     {
@@ -4656,6 +4656,113 @@
           "title": "Rugby brain injury case brought back from brink of collapse after high court ruling",
           "link": "https://www.theguardian.com/sport/2026/aug/21/rugby-brain-injury-case-able-to-continue-after-high-court-ruling",
           "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 1,
+      "lastUsed": "2026-08-30"
+    },
+    {
+      "id": "the-legal-dispute-over-xm8q47",
+      "subject": "The legal dispute over fraudulent Springboks vs All Blacks tickets",
+      "teams": [
+        467,
+        465
+      ],
+      "resolution": "until SA Rugby concludes its legal action against the implicated travel agencies",
+      "sources": [
+        {
+          "title": "Scammed Bok fans left ticketless",
+          "link": "https://www.sarugbymag.co.za/scammed-bok-fans-left-ticketless/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "SA Rugby take legal action over scam accusations after supporters left 'ticketless'",
+          "link": "https://www.planetrugby.com/news/sa-rugby-take-legal-action-over-scam-accusations-after-supporters-left-ticketless",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 0
+    },
+    {
+      "id": "henry-pollock-s-potential-11s2rx1",
+      "subject": "Henry Pollock's potential million-pound contract negotiations",
+      "teams": [
+        386
+      ],
+      "resolution": "until Pollock signs a new deal or a contract value is officially confirmed",
+      "sources": [
+        {
+          "title": "England greats predict what will happen when Eddie Hearn ‘soon realises rugby is not like Riyadh’ following his million-pound Henry Pollock demand",
+          "link": "https://www.planetrugby.com/news/england-greats-predict-what-will-happen-when-eddie-hearn-soon-realises-rugby-is-not-like-riyadh-following-his-million-pound-henry-pollock-demand",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 0
+    },
+    {
+      "id": "the-future-of-the-nld8za",
+      "subject": "The future of the four professional teams in Welsh rugby",
+      "teams": [
+        391
+      ],
+      "resolution": "until the WRU establishes a long-term revenue strategy to sustain the professional setup",
+      "sources": [
+        {
+          "title": "WRU condemns abuse and doubles down on three-team plan",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq891l3g3keo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 0
+    },
+    {
+      "id": "jack-crowley-s-return-1lwpaem",
+      "subject": "Jack Crowley's return to play from his injury",
+      "teams": [
+        388
+      ],
+      "resolution": "until Crowley makes his expected return to the Munster or Ireland squad in 2027",
+      "sources": [
+        {
+          "title": "Jack Crowley ruled out until New Year as Munster and Ireland sweat over star man",
+          "link": "https://www.planetrugby.com/news/jack-crowley-ruled-out-until-new-year-as-munster-and-ireland-sweat-over-star-man",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Ireland fly-half Crowley ruled out until new year",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5y4m5jk26go?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 0
+    },
+    {
+      "id": "andrea-zambonin-s-recovery-1hge8wf",
+      "subject": "Andrea Zambonin's recovery from shoulder surgery",
+      "teams": [
+        389
+      ],
+      "resolution": "until he is officially cleared to return to the Exeter Chiefs lineup",
+      "sources": [
+        {
+          "title": "Exeter lock Zambonin to miss start of new season",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cpd7w9l9n2eo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-30",
