@@ -1,14 +1,19 @@
 {
   "date": "2026-08-29",
   "counts": {
-    "editions": 12,
+    "editions": 11,
     "quiet": 5,
     "storyline": 2,
     "dataEdition": 3,
-    "failed": 0,
+    "failed": 1,
     "noLead": 4
   },
-  "failed": [],
+  "failed": [
+    {
+      "team": "South Africa",
+      "reason": "gemini(gemini-3.1-flash-lite) 500: {\n  \"error\": {\n    \"code\": 500,\n    \"message\": \"Internal error encountered.\",\n    \"status\": \"INTERNAL\"\n  }\n}\n"
+    }
+  ],
   "teams": [
     {
       "team": "Fiji",
@@ -16,9 +21,9 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "lastMeeting",
-      "heading": "Fiji target redemption after losing last away meeting against France",
-      "kicker": "Fixture history",
-      "body": "Fiji lost 34-21 away to France in an international friendly in November 2025, the last meeting between the two sides. The Flying Fijians currently sit bottom of the Nations Championship log after three matches. They have scored 49 points in their last three tournament fixtures. In those same three games, Fiji have conceded 145 points. Their last outing ended in a 17-33 defeat against Scotland in Round Three.",
+      "heading": "Fiji seek to end losing streak before facing tough France test",
+      "kicker": "Form tracker",
+      "body": "Fiji face a steep challenge in their upcoming Nations Championship fixture against France. The Flying Fijians currently sit bottom of the 12-team table after losing their first three matches of the tournament. The side scored 49 points during those three opening fixtures. The defence conceded 145 points across the same period, which concluded with a 17-33 defeat to Scotland in round three. In their last meeting with France, Fiji suffered a 34-21 away defeat in November 2025.",
       "source": null,
       "lead": null,
       "candidates": [
@@ -31,7 +36,7 @@
           ]
         },
         {
-          "title": "Saimoni Vunilagi dead at 26: Fiji rugby ace dies of suspected heatstroke after training session with club ‘devastated’",
+          "title": "Fiji rugby player dies in Japan of suspected heatstroke as high of 35C hit",
           "score": 1.7,
           "corroboration": 1,
           "outlets": [
@@ -39,15 +44,7 @@
           ]
         },
         {
-          "title": "Fiji rugby player dies in Japan of suspected heatstroke as high of 35C hit",
-          "score": 1.6,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Fiji must revamp its school rugby system, former Fiji U20 captain Durutalo says",
+          "title": "Saimoni Vunilagi dead at 26: Fiji rugby ace dies of suspected heatstroke after training session with club ‘devastated’",
           "score": 1.5,
           "corroboration": 1,
           "outlets": [
@@ -61,6 +58,14 @@
           "outlets": [
             "search"
           ]
+        },
+        {
+          "title": "Second Fiji front-rower suspended for red card at Women's Rugby World Cup",
+          "score": 1.3,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
         }
       ]
     },
@@ -70,18 +75,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Ben Spencer undergoes shoulder surgery, putting his November Test availability in doubt",
+      "heading": "Ben Spencer undergoes shoulder surgery to disrupt Steve Borthwick’s autumn plans",
       "kicker": "Scrum-half setback",
-      "body": "Bath have confirmed that scrum-half Ben Spencer is a doubt for England's November Tests after undergoing shoulder surgery. The 34-year-old had the operation to resolve a long-standing issue following the summer tour. While his club expect him back later this autumn, the recovery timeline severely threatens his chances of facing Australia. With Spencer sidelined, Steve Borthwick faces a key selection dilemma, likely leaning on Alex Mitchell and Jack van Poortvliet as his primary options.",
+      "body": "Bath scrum-half Ben Spencer is facing a race against time for England's November internationals after undergoing shoulder surgery to address a long-standing issue. His club confirmed the 34-year-old will miss the opening domestic rounds but \"will return later in the autumn.\" This timeline leaves Steve Borthwick with a key selection puzzle ahead of Tests against Australia, Japan, and New Zealand. With Spencer sidelined, Alex Mitchell and Jack van Poortvliet are positioned to spearhead Borthwick’s scrum-half options.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 3,
-        "why": "The Bath scrum-half's post-tour shoulder surgery presents Steve Borthwick with a key selection puzzle ahead of the November internationals."
+        "why": "The injury to Ben Spencer disrupts Steve Borthwick's scrum-half depth and creates a major selection talking point ahead of the autumn campaign."
       },
       "candidates": [
         {
           "title": "England greats predict what will happen when Eddie Hearn ‘soon realises rugby is not like Riyadh’ following his million-pound Henry Pollock demand",
-          "score": 54.8,
+          "score": 53.8,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
@@ -90,7 +95,7 @@
         },
         {
           "title": "Argentina 24-31 England: Nations Championship rugby – as it happened",
-          "score": 18.8,
+          "score": 18.9,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -99,7 +104,7 @@
         },
         {
           "title": "Ben Spencer out? Ranking eight England scrum-half options as Steve Borthwick faces 'big question' in key area",
-          "score": 16.3,
+          "score": 15.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -107,15 +112,15 @@
         },
         {
           "title": "England greats call for ‘more referees should take a harder line’ after seeing Matthew Carley’s ‘blind to him’ performance in Greatest Rivalry",
-          "score": 10.1,
+          "score": 9.2,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "England rugby star Janse Van Rensburg knocked out and driven off pitch after horror injury against Argentina",
-          "score": 1.9,
+          "title": "Start of England's community rugby season postponed",
+          "score": 1.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -129,15 +134,15 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "scoring",
-      "heading": "France sit third in the tournament standings after beating Japan 42-15",
-      "kicker": "Form guide",
-      "body": "France currently occupy third place in the tournament table following their 42-15 victory over Japan. Across their last 11 matches, Les Bleus have scored 426 points. They have conceded 291 points over the same period, averaging 38.7 points scored and 26.5 points conceded per game. Their biggest win in this 11-game window came in the Six Nations in February 2026, when they beat Wales 54-12 away.",
+      "heading": "Fabien Galthié's France average 38 points per game during scoring run",
+      "kicker": "Scoring stats",
+      "body": "France have scored 426 points over their last 11 fixtures, averaging 38.7 points per game. Fabien Galthié's side conceded 26.5 on average during the same window, which includes a clinical 54-12 victory over Wales away in the Six Nations in February. Les Bleus currently sit third in the Nations Championship standings following their recent win over Japan. Preparation now turns towards the autumn schedule as the squad looks to maintain this offensive productivity.",
       "source": null,
       "lead": null,
       "candidates": [
         {
           "title": "Rugby Transfers: PREM outfit add Test ace to ranks as latest France star tipped for Toulouse exit",
-          "score": 6.9,
+          "score": 6.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -152,7 +157,7 @@
           ]
         },
         {
-          "title": "France vs. Ireland rugby score, live updates, Six Nations 2026",
+          "title": "France Rugby vs. All Blacks: 5 Things To Know Before July 4",
           "score": 1.8,
           "corroboration": 1,
           "outlets": [
@@ -160,16 +165,16 @@
           ]
         },
         {
-          "title": "France Rugby vs. All Blacks: 5 Things To Know Before July 4",
-          "score": 1.7,
+          "title": "Rugby Transfers: France Superstar Thomas Ramos Linked With Shock Toulouse Exit, Newcastle Red Bulls Continue Recruitment Drive And Brumbies Bolster Ranks",
+          "score": 1.6,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "France XV v England XV free on Rugby Pass TV",
-          "score": 1.6,
+          "title": "England women ramp up preparations for Rugby League World Cup with win against France in Toulouse",
+          "score": 0.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -183,18 +188,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Jack Crowley ruled out of Ireland's November matches with vascular injury",
-      "kicker": "Fly-half setback",
-      "body": "Ireland have suffered a major setback with news that fly-half Jack Crowley will remain sidelined until the new year. The 26-year-old Munster playmaker, who has won 35 caps, has been out since April with a lower limb vascular injury. Having already missed the July matches against Australia, Japan and New Zealand, Crowley is now ruled out of November's fixtures against Argentina, Fiji and South Africa. Munster head coach Clayton McMillan confirmed that \"ensuring he gets back to 100% is the priority.\"",
+      "heading": "Jack Crowley ruled out until new year with lower limb vascular injury",
+      "kicker": "Injury blow",
+      "body": "Ireland’s fly-half options are depleted ahead of the November tests following confirmation that Jack Crowley remains sidelined until the new year. Munster head coach Clayton McMillan confirmed the 26-year-old is still recovering from a vascular injury suffered in April, which also saw him miss July's Nations Championship fixtures against Australia, Japan and New Zealand. Crowley has earned 35 caps for Ireland, and McMillan stressed that \"ensuring he gets back to 100% is the priority\" before the playmaker returns to action.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "Jack Crowley's extended injury absence ruling him out of the November internationals is the most significant news for the Irish national team."
+        "why": "The confirmed absence of Ireland's primary fly-half for the November internationals is the most significant tactical blow to the squad reported today."
       },
       "candidates": [
         {
           "title": "Ireland fly-half Crowley ruled out until new year",
-          "score": 61.5,
+          "score": 60.5,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
@@ -203,7 +208,7 @@
         },
         {
           "title": "Seven uncapped players in Ireland's WXV squad",
-          "score": 3.3,
+          "score": 3.2,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -241,12 +246,20 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "form",
-      "heading": "Italy slump to fourth consecutive defeat after heavy Australia loss",
-      "kicker": "Form tracker",
-      "body": "Italy enter the international break struggling for momentum following a difficult run of results. The Azzurri have suffered four straight defeats in their current run. In their last five matches, Italy have recorded only one victory. They have also suffered four defeats during that same period. Their most recent game ended in a 57-10 defeat against Australia away in July 2026 during the Nations Championship group stage.",
+      "heading": "Italy sit 11th in standings following four consecutive international match defeats",
+      "kicker": "Form guide",
+      "body": "Italy have managed only one win in their last five matches. The side is currently on a run of four straight defeats, including a 10-57 loss away to Australia during the Nations Championship in July. They sit 11th in the 12-team standings after three rounds of the competition. Having failed to secure a victory in the tournament so far, the Azzurri carry a points difference of -94 into the next round of fixtures.",
       "source": null,
       "lead": null,
       "candidates": [
+        {
+          "title": "Benetton Loses Tommaso Menoncello As Italy's URC Clubs Reload For 2026-27",
+          "score": 1.6,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
         {
           "title": "World Rugby stamp down on ref-bashing as Italy boss slapped first ban after Shape of the Game agreement",
           "score": 1.5,
@@ -256,24 +269,8 @@
           ]
         },
         {
-          "title": "Benetton Loses Tommaso Menoncello As Italy's URC Clubs Reload For 2026-27",
-          "score": 1.5,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Italy prop given two-match ban for red card from bench",
-          "score": 1.5,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
           "title": "Italy vs. Scotland rugby kickoff time, lineups",
-          "score": 1.4,
+          "score": 1.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -281,7 +278,15 @@
         },
         {
           "title": "Italy Women - Italy Women News, Scores, Stats, Rumors & More - ESPN",
-          "score": 1.3,
+          "score": 1.4,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Ireland vs. Italy rugby live updates & news & Six Nations 2026 fixtures",
+          "score": 0.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -294,39 +299,36 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "The High Court litigation regarding rugby union's brain injury liability",
-        "resolution": "until a final judgment is delivered or a settlement is reached between the players and governing bodies",
-        "recheckHits": 4
+        "subject": "The search for a new Scotland Women head coach following Sione Fukofuka's resignation",
+        "resolution": "until Scotland Rugby appoints a permanent successor to Sione Fukofuka",
+        "recheckHits": 1
       },
       "dataAngle": null,
-      "heading": "Scottish Rugby braces for trial after High Court allows brain injury litigation",
-      "kicker": "Court battle",
-      "body": "Scottish Rugby is bracing for a landmark legal battle after the High Court ruled on Monday that the major brain injury lawsuit against the sport's governing bodies can proceed to trial. Hundreds of former players are suing over alleged negligence regarding concussion and long-term brain injuries. While the defendants had hoped to halt the litigation, the judge's decision to greenlight the trial leaves the future liability of the game in the balance, with no settlement or final judgment yet in sight.",
-      "source": "Guardian Rugby Union",
-      "lead": {
-        "candidate": 1,
-        "why": "The High Court's ruling to proceed with the landmark brain injury lawsuit represents a massive, unresolved legal threat to Scottish Rugby."
-      },
+      "heading": "Scotland expressed surprise as Sione Fukofuka joins Australia days after resigning",
+      "kicker": "Coaching drama",
+      "body": "Scottish Rugby officials were reportedly caught off guard after former women’s head coach Sione Fukofuka was unveiled by Australia. The coach resigned his position earlier this month, citing \"family stress\" as the primary reason for his departure. However, his swift appointment by the Wallaroos has sparked frustration within the governing body. The search for a permanent successor remains open as Scotland prepares for upcoming WXV fixtures against Canada, New Zealand and Australia.",
+      "source": "BBC Rugby Union",
+      "lead": null,
       "candidates": [
         {
-          "title": "What to look forward to on the Scottish rugby calendar this autumn and beyond",
-          "score": 11.4,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
           "title": "Top 10 centres in rugby: All Blacks hero stretches ahead of Springboks star while Scotland 'powerhouse' not far behind",
-          "score": 11.3,
+          "score": 10.9,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
+          "title": "What to look forward to on the Scottish rugby calendar this autumn and beyond",
+          "score": 10.2,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
           "title": "Scotland Women take rugby into community with school and club visit",
-          "score": 9.8,
+          "score": 8.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -342,7 +344,7 @@
         },
         {
           "title": "Former Scotland rugby captain's retirement takes off in style as he becomes a Jet2 pilot",
-          "score": 1.8,
+          "score": 1.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -355,20 +357,23 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "The legal battle regarding rugby-related brain injuries",
-        "resolution": "until the ongoing High Court case reaches a verdict or settlement",
-        "recheckHits": 0
+        "subject": "The outcome of the Welsh Rugby Union’s proposal to reduce its professional regional structure to three teams",
+        "resolution": "until the WRU reaches a final, binding agreement on the future funding model for professional teams beyond 2028",
+        "recheckHits": 1
       },
       "dataAngle": null,
-      "heading": "Wales brain injury litigation sees no fresh developments after court ruling",
-      "kicker": "Legal battle",
-      "body": "The landmark legal battle regarding rugby-related brain injuries remains unresolved, with no fresh developments in the case of former Wales players. Following Thursday's critical High Court ruling that allowed the group litigation to proceed, the legal action—once on the brink of collapse—awaits its next steps. The parties now face a lengthy wait for further hearings as the case slowly progresses towards an eventual trial or settlement.",
-      "source": "Planet Rugby",
-      "lead": null,
+      "heading": "WRU chief Abi Tierney rejects resignation calls as three-team plan sparks backlash",
+      "kicker": "Boardroom crisis",
+      "body": "Welsh Rugby Union chief executive Abi Tierney has dismissed demands for her and the board to step down following criticism from former internationals Tom Shanklin and Jonathan Davies. Tierney told ITV Wales that resigning is not the \"right thing\" as the governing body pushes to reduce Wales' professional regions to three by 2028. She warned that the union cannot sustain four competitive sides and must act to avoid a \"cataclysmic collapse\" of the game. \"We're going to have to make some hard decisions,\" Tierney added.",
+      "source": "BBC Rugby Union",
+      "lead": {
+        "candidate": 1,
+        "why": "It provides a direct update to the ongoing WRU governance crisis, featuring the CEO's refusal to resign despite pressure from high-profile legends."
+      },
       "candidates": [
         {
           "title": "The new lives and careers of Wales' golden generation",
-          "score": 14.2,
+          "score": 12.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -376,7 +381,7 @@
         },
         {
           "title": "Abi Tierney rejects calls to step down as Wales legend tells board to go",
-          "score": 13.7,
+          "score": 12.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -384,7 +389,7 @@
         },
         {
           "title": "Entire stadium falls silent for Wales legend as club make incredible gesture",
-          "score": 11.5,
+          "score": 10.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -392,18 +397,18 @@
         },
         {
           "title": "Sir Billy Boston dead at 92: Wales rugby legend passes away just weeks after death of beloved wife",
-          "score": 3.7,
+          "score": 3.6,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "Wales pushing the pain barrier in bid to improve",
-          "score": 3.3,
+          "title": "Wales rugby fixtures: Who the men’s and women’s teams are playing 2026-27",
+          "score": 1.4,
           "corroboration": 1,
           "outlets": [
-            "bbc"
+            "search"
           ]
         }
       ]
@@ -414,18 +419,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Felipe Contepomi names unchanged Argentina starting side for Australia Test",
+      "heading": "Felipe Contepomi names unchanged Argentina XV to face rotated Wallabies pack",
       "kicker": "Selection call",
-      "body": "Head coach Felipe Contepomi has named an unchanged starting XV for Saturday's Test against Australia in Jujuy, rewarding the side that pushed South Africa close in their 17-10 defeat. Senior flanker Pablo Matera captains in the absence of Julián Montoya, who remains unavailable alongside Mateo Carreras, Santiago Chocobares and Marcos Kremer. The only alterations come on the bench, where Contepomi has reverted to a 5-3 split by naming prop Rodrigo Martinez and playmaker Nicolas Roger.",
+      "body": "Felipe Contepomi has rewarded the side that pushed South Africa close, naming an unchanged starting XV for Saturday’s opening Test against Australia in Jujuy. While the run-on group remains intact under captain Pablo Matera, the bench shifts to a five-three split with Rodrigo Martinez and Nicolas Roger promoted to the matchday squad. This selection continuity contrasts with a heavily rotated Wallabies side that has rested regular captain Harry Wilson, as Contepomi looks to build on the defensive grit shown against the Springboks.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 3,
-        "why": "Contepomi's decision to name an unchanged starting XV to face Australia is the day's most significant Argentina team news."
+        "why": "Contepomi's decision to name an unchanged starting XV after the narrow loss to South Africa is the most significant development for Argentina fans ahead of the Wallabies series."
       },
       "candidates": [
         {
           "title": "Wallabies rotate forwards for Argentina Test as Suaalii settles for place on bench",
-          "score": 29.8,
+          "score": 28.8,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -433,7 +438,7 @@
         },
         {
           "title": "Wallabies team: Les Kiss names new captain for Argentina examination as Joseph-Aukuso Suaalii handed fresh role",
-          "score": 28.7,
+          "score": 27.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -441,7 +446,15 @@
         },
         {
           "title": "Argentina team v Australia: Felipe Contepomi rewards Springboks performance as unchanged XV named",
-          "score": 18.2,
+          "score": 16.5,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Wallabies: Tom Hooper reveals the 'blessing in disguise' ahead of Los Pumas Test return after 'massive workload'",
+          "score": 16,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -449,18 +462,10 @@
         },
         {
           "title": "Contepomi backs Bok battlers for Wallabies clash",
-          "score": 17.3,
+          "score": 15.8,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
-          ]
-        },
-        {
-          "title": "Wallabies: Tom Hooper reveals the 'blessing in disguise' ahead of Los Pumas Test return after 'massive workload'",
-          "score": 16.2,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
           ]
         }
       ]
@@ -471,18 +476,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Les Kiss rests skipper Harry Wilson as Wallabies reshape for Argentina",
-      "kicker": "Squad rotation",
-      "body": "Wallabies coach Les Kiss has completely rotated his forward pack for Saturday's Test against Argentina in Salvador de Jujuy, resting regular captain Harry Wilson. Allan Alaalatoa takes over the captaincy, while Rob Valetini shifts to No. 8. Star recruit Joseph-Aukuso Suaalii returns from a minor hamstring strain but must settle for a place on the bench as Kiss seeks to build squad depth. \"At the same time, we've selected a team that has lots of experience and proven combinations,\" Kiss said.",
-      "source": "Guardian Rugby Union",
+      "heading": "Les Kiss rests Harry Wilson and names Allan Alaalatoa captain against Argentina",
+      "kicker": "Selection call",
+      "body": "Coach Les Kiss has rotated his entire forward pack for Saturday's Test against Argentina in Jujuy, omitting captain Harry Wilson from the matchday 23 entirely. Allan Alaalatoa resumes the captaincy while Rob Valetini shifts to No. 8 to cover Wilson’s absence. Kiss stated the reshaped pack was \"worthwhile exploring\" as he seeks to develop squad depth. Joseph-Aukuso Suaalii returns to the bench after recovering from a minor hamstring strain, while the back three remains unchanged for a fourth consecutive match.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 2,
-        "why": "It covers a major team announcement with sweeping forward changes and a high-profile bench role for Suaalii."
+        "candidate": 3,
+        "why": "The announcement of a heavily rotated Test side and a change in captaincy is the most significant news for fans ahead of the weekend."
       },
       "candidates": [
         {
           "title": "Leicester sign Australian fly-half Bowen",
-          "score": 41.9,
+          "score": 40.1,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -490,7 +495,7 @@
         },
         {
           "title": "Wallabies rotate forwards for Argentina Test as Suaalii settles for place on bench",
-          "score": 37.3,
+          "score": 36,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -498,7 +503,7 @@
         },
         {
           "title": "Wallabies team: Les Kiss names new captain for Argentina examination as Joseph-Aukuso Suaalii handed fresh role",
-          "score": 35.9,
+          "score": 34.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -506,7 +511,7 @@
         },
         {
           "title": "Wallabies: Tom Hooper reveals the 'blessing in disguise' ahead of Los Pumas Test return after 'massive workload'",
-          "score": 29.5,
+          "score": 29.1,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -514,7 +519,7 @@
         },
         {
           "title": "Ospreys sign former Australia wing Koroibete",
-          "score": 28.2,
+          "score": 27.3,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -528,18 +533,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Timothy Lafaele and Japan internationals force league U-turn on eligibility rules",
-      "kicker": "Eligibility rules",
-      "body": "Japan Rugby League One has settled a Tokyo District Court dispute by rolling back controversial restrictions on foreign-born players. The initial plan split domestic players into two categories, limiting matchday spots for naturalised citizens who lacked six years of Japanese schooling. Under the revised terms, players holding Japanese citizenship before May 2025 remain in the primary domestic category. Additionally, players with 30 or more caps for the Brave Blossoms will also receive reclassification to protect their livelihoods.",
+      "heading": "Japan Rugby League One settles legal dispute with revised player eligibility",
+      "kicker": "League rule change",
+      "body": "Japan Rugby League One has amended its proposed player registration categories following a legal challenge from 25 international players. The league will introduce new \"special measures\" allowing players with 30 or more caps for Japan to be reclassified from the restricted Category A-2 to A-1. The JRLO acknowledged that initial communication regarding the changes was insufficient. These revisions, which apply to all players, mark a significant shift after ongoing negotiations at the Tokyo District Courts were settled.",
       "source": "Rugby Asia 247",
       "lead": {
         "candidate": 1,
-        "why": "Japan Rugby League One has backed down on controversial eligibility restrictions after players took legal action."
+        "why": "Japan Rugby League One has settled a significant legal challenge regarding player eligibility rules with a major policy revision."
       },
       "candidates": [
         {
           "title": "Japan Rugby League One Amends Proposed Player Categories – Outlines Updated Eligibility for 2026-2027 Season",
-          "score": 39.3,
+          "score": 37.8,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -556,7 +561,7 @@
         },
         {
           "title": "Canada Men's Rugby XV Squad Announced for 2026 Japan Tour",
-          "score": 16.1,
+          "score": 15.9,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -564,7 +569,7 @@
         },
         {
           "title": "Japanese rugby U-turns on limits on naturalised players",
-          "score": 15,
+          "score": 13.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -572,7 +577,7 @@
         },
         {
           "title": "Japanese rugby officials roll back restrictions on some foreign-born players",
-          "score": 13.9,
+          "score": 12.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -586,13 +591,13 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Dave Rennie complains to World Rugby regarding Springboks scrum before second Test",
-      "kicker": "Scrum grievance",
-      "body": "New Zealand coach Dave Rennie has approached World Rugby regarding the officiating of the Springboks' scrum ahead of Saturday's second Test in Cape Town. Despite a victory at Ellis Park last weekend, the All Blacks’ front row of Ethan de Groot, Codie Taylor, and Tyrel Lomax was frequently under pressure during the opening half. Rennie is confident the dialogue will ensure a fairer contest at the set-piece, stating, “we think scrum-wise we will be a lot better.” The tourists also aim to sharpen their discipline following early penalties.",
-      "source": "Planet Rugby",
+      "heading": "New Zealand prepares for Springboks shift as Sacha replaces injured Handré",
+      "kicker": "Selection twist",
+      "body": "The All Blacks head into today’s Test anticipating a tactical shift after South Africa confirmed Sacha Feinberg-Mngomezulu will replace the injured Handré Pollard at fly-half. While Pollard was expected to anchor a narrow, set-piece-focused gameplan, the introduction of Feinberg-Mngomezulu brings a more expansive skill set to the contest. Dave Rennie has prioritised improvements in the contact area and scrum discipline following a week of communication with World Rugby, noting that the team must lift their level to counter an inevitable home response.",
+      "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 4,
-        "why": "Dave Rennie's formal complaint to World Rugby about scrum officiating is the most significant tactical and New Zealand-centric storyline ahead of today's Test."
+        "why": "The last-minute change to the Springboks fly-half selection directly impacts New Zealand’s strategy for the upcoming Test."
       },
       "candidates": [
         {
@@ -606,8 +611,16 @@
           ]
         },
         {
+          "title": "All Blacks GOAT backs Sacha to step up",
+          "score": 52.6,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ]
+        },
+        {
           "title": "Nigel Owens explains 'tricky' grey area as All Blacks star escapes punishment for off-the-ball hit on Springboks powerhouse",
-          "score": 46.1,
+          "score": 43.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -615,7 +628,7 @@
         },
         {
           "title": "All Blacks brace for Bok-lash as Erasmus adds late fly-half plot twist",
-          "score": 42.5,
+          "score": 40.7,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -623,77 +636,10 @@
         },
         {
           "title": "All Blacks complain to World Rugby over Springboks scrum as Dave Rennie expects it to be 'a lot better'",
-          "score": 30.9,
+          "score": 28.9,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
-          ]
-        },
-        {
-          "title": "Mo’unga gets Rennie's seal of approval",
-          "score": 29.2,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
-          ]
-        }
-      ]
-    },
-    {
-      "team": "South Africa",
-      "quiet": false,
-      "rung": "news",
-      "storyline": null,
-      "dataAngle": null,
-      "heading": "Rassie Erasmus starts Sacha Feinberg-Mngomezulu as Handré Pollard misses New Zealand Test",
-      "kicker": "Selection call",
-      "body": "Sacha Feinberg-Mngomezulu returns to the starting XV for Saturday’s second Test in Cape Town after Handré Pollard was ruled out with a training-ground niggle. Pollard failed a fitness test on Friday, forcing Rassie Erasmus to pivot from a planned conservative approach. Despite the fly-half’s struggles in the 33-16 loss at Ellis Park, Rassie is backing the youngster’s adventurous skill set. Pollard has often delivered \"under extreme pressure\", but the Boks must now rely on Feinberg-Mngomezulu to reclaim the world No. 1 ranking.",
-      "source": "Guardian Rugby Union",
-      "lead": {
-        "candidate": 2,
-        "why": "It covers a significant injury to the first-choice fly-half and a tactical selection shift for a major rivalry Test."
-      },
-      "candidates": [
-        {
-          "title": "All Blacks great Ma’a Nonu performs solo haka against New Zealand in South Africa tour match",
-          "score": 35.7,
-          "corroboration": 3,
-          "outlets": [
-            "bbc",
-            "guardian",
-            "search"
-          ]
-        },
-        {
-          "title": "All Blacks brace for Bok-lash as Erasmus adds late fly-half plot twist",
-          "score": 34,
-          "corroboration": 1,
-          "outlets": [
-            "guardian"
-          ]
-        },
-        {
-          "title": "Aaron Smith debunks Springboks myth as 'speed' not the key to beating Rassie Erasmus' side",
-          "score": 30.6,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "Smit: Boks haven’t become a s**t team",
-          "score": 29.7,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
-          ]
-        },
-        {
-          "title": "Boks eye return to No 1",
-          "score": 29.5,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
           ]
         }
       ]
