@@ -22,12 +22,28 @@
 
 const REPO = "nico101rsa/rugby-nations-tracker";
 const WORKFLOW = "refresh-data.yml";
+const DIGEST_WORKFLOW = "generate-digests.yml";
 // Must match the string silent-failures.mjs looks for in run titles.
 const WORKER_SOURCE = "cloudflare-worker";
 
-async function dispatch(env) {
+// generate-digests.yml has the same scheduler-drop exposure as the refresh —
+// GitHub dropped its 20:00 UTC fire outright on 2026-08-28 (and ran it 2.5h
+// and 7.9h late the two days before), so the 2026-08-29 morning edition never
+// existed and the News tab sat on yesterday's digests. Mirror its two crons
+// here (daily 20:00 UTC; Sat 08/12/17/22 UTC) off the quarter-hour tick this
+// Worker already has — no extra Cloudflare cron triggers, which are capped at
+// 5 per account. Only the :00 tick has minute < 15, so each slot dispatches
+// exactly once. A double fire next to GitHub's own cron is harmless: the
+// workflow's `digests` concurrency group serialises them.
+function digestDue(now) {
+  if (now.getUTCMinutes() >= 15) return false;
+  const h = now.getUTCHours();
+  return h === 20 || (now.getUTCDay() === 6 && [8, 12, 17, 22].includes(h));
+}
+
+async function dispatch(env, workflow = WORKFLOW, inputs = { source: WORKER_SOURCE }) {
   const res = await fetch(
-    `https://api.github.com/repos/${REPO}/actions/workflows/${WORKFLOW}/dispatches`,
+    `https://api.github.com/repos/${REPO}/actions/workflows/${workflow}/dispatches`,
     {
       method: "POST",
       headers: {
@@ -38,13 +54,14 @@ async function dispatch(env) {
         "user-agent": "rugby-tracker-cron-worker",
         "x-github-api-version": "2022-11-28",
       },
-      // `source` lands in the run's title via refresh-data.yml's run-name, and
-      // is the ONLY thing distinguishing a Worker fire from the Mac pinger's:
-      // both dispatch the same workflow and both authenticate as nico101rsa.
-      // Without it the liveness check reports this Worker healthy on pinger
-      // traffic alone — a placebo, when the whole point is the months the Mac
-      // is asleep.
-      body: JSON.stringify({ ref: "main", inputs: { source: WORKER_SOURCE } }),
+      // For refresh-data.yml, `source` lands in the run's title via its
+      // run-name, and is the ONLY thing distinguishing a Worker fire from the
+      // Mac pinger's: both dispatch the same workflow and both authenticate as
+      // nico101rsa. Without it the liveness check reports this Worker healthy
+      // on pinger traffic alone — a placebo, when the whole point is the
+      // months the Mac is asleep. generate-digests.yml declares no inputs, and
+      // GitHub 422s a dispatch carrying unexpected ones, so it passes null.
+      body: JSON.stringify(inputs ? { ref: "main", inputs } : { ref: "main" }),
     },
   );
 
@@ -57,19 +74,23 @@ async function dispatch(env) {
 
 export default {
   async scheduled(event, env, ctx) {
-    ctx.waitUntil(
-      dispatch(env).then((r) => {
-        if (r.ok) {
-          console.log(`dispatched ${WORKFLOW} (cron ${event.cron})`);
-        } else {
-          // Worker logs are not somewhere Nico looks, so this is not the
-          // alerting path. The durable evidence that the Worker is alive is
-          // that `workflow_dispatch`-triggered refresh runs keep appearing in
-          // the Actions history — which the weekly health report counts.
-          console.error(`dispatch failed ${r.status}: ${r.body}`);
-        }
-      }),
-    );
+    const log = (workflow) => (r) => {
+      if (r.ok) {
+        console.log(`dispatched ${workflow} (cron ${event.cron})`);
+      } else {
+        // Worker logs are not somewhere Nico looks, so this is not the
+        // alerting path. The durable evidence that the Worker is alive is
+        // that `workflow_dispatch`-triggered refresh runs keep appearing in
+        // the Actions history — which the weekly health report counts.
+        console.error(`${workflow} dispatch failed ${r.status}: ${r.body}`);
+      }
+    };
+    ctx.waitUntil(dispatch(env).then(log(WORKFLOW)));
+    // Digests ride the quarter-hour cron only. At Sat 08:00 both crons fire a
+    // separate event each; gating on the expression keeps that to one dispatch.
+    if (event.cron === "*/15 * * * *" && digestDue(new Date(event.scheduledTime))) {
+      ctx.waitUntil(dispatch(env, DIGEST_WORKFLOW, null).then(log(DIGEST_WORKFLOW)));
+    }
   },
 
   // A plain GET is a manual smoke test: visit the workers.dev URL and it
