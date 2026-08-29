@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-29T22:10:04.266Z",
+  "updatedAt": "2026-08-29T23:42:50.538Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 196,
+  "count": 199,
   "storylines": [
     {
       "id": "the-high-court-ruling-1u6p953",
@@ -3772,12 +3772,13 @@
     },
     {
       "id": "the-legal-battle-regarding-16q3ars",
-      "subject": "The legal battle regarding rugby-related brain injuries",
+      "subject": "The legal dispute over concussion-related brain injuries in rugby",
       "teams": [
         386,
         388,
         391,
-        467
+        467,
+        390
       ],
       "resolution": "until the ongoing High Court case reaches a verdict or settlement",
       "sources": [
@@ -4054,12 +4055,12 @@
         }
       ],
       "firstSeen": "2026-08-29",
-      "lastSeen": "2026-08-29",
+      "lastSeen": "2026-08-30",
       "uses": 0
     },
     {
       "id": "ben-spencer-s-fitness-10ek08k",
-      "subject": "Ben Spencer's fitness and return from surgery",
+      "subject": "Ben Spencer's return to fitness following surgery",
       "teams": [
         386
       ],
@@ -4306,6 +4307,11 @@
       "resolution": "until World Rugby intervenes or the scrum issues are settled in the final Test",
       "sources": [
         {
+          "title": "Fuming Rassie Erasmus slams Dave Rennie's 'nonsense' after All Blacks accusations as he insists Springboks 'won't stay quiet'",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-slams-dave-rennies-nonsense-after-all-blacks-accusations-as-he-insists-springboks-wont-stay-quiet",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Rassie: We not f**king walking around!",
           "link": "https://www.sarugbymag.co.za/rassie-not-fing-walking-around/",
           "feedName": "SA Rugby Magazine"
@@ -4314,11 +4320,6 @@
           "title": "Kiwis chat to World Rugby about Bok walkabouts",
           "link": "https://www.sarugbymag.co.za/kiwis-chat-world-rugby-bok-walkabouts/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "All Blacks complain to World Rugby over Springboks scrum as Dave Rennie expects it to be 'a lot better'",
-          "link": "https://www.planetrugby.com/news/all-blacks-complain-to-world-rugby-over-springboks-scrum-as-dave-rennie-expects-it-to-be-a-lot-better",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-29",
@@ -4408,7 +4409,7 @@
       ],
       "firstSeen": "2026-08-29",
       "lastSeen": "2026-08-30",
-      "uses": 1,
+      "uses": 2,
       "lastUsed": "2026-08-30"
     },
     {
@@ -4669,7 +4670,8 @@
       ],
       "firstSeen": "2026-08-30",
       "lastSeen": "2026-08-30",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-30"
     },
     {
       "id": "jack-crowley-s-return-1lwpaem",
@@ -4710,7 +4712,7 @@
       ],
       "firstSeen": "2026-08-30",
       "lastSeen": "2026-08-30",
-      "uses": 1,
+      "uses": 2,
       "lastUsed": "2026-08-30"
     },
     {
@@ -4900,6 +4902,71 @@
         467
       ],
       "resolution": "until the legal dispute regarding the missing test tickets is resolved",
+      "sources": [
+        {
+          "title": "Scammed Bok fans left ticketless",
+          "link": "https://www.sarugbymag.co.za/scammed-bok-fans-left-ticketless/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "SA Rugby take legal action over scam accusations after supporters left 'ticketless'",
+          "link": "https://www.planetrugby.com/news/sa-rugby-take-legal-action-over-scam-accusations-after-supporters-left-ticketless",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 0
+    },
+    {
+      "id": "the-rfu-s-660m-rj30hy",
+      "subject": "The RFU's £660m Twickenham redevelopment and concert scheme",
+      "teams": [
+        386
+      ],
+      "resolution": "until the RFU receives local council approval for the project",
+      "sources": [
+        {
+          "title": "Twickenham £660m makeover plan hit as locals push back against concert scheme",
+          "link": "https://www.theguardian.com/sport/2026/aug/27/twickenham-660m-makeover-plan-hit-locals-push-back-against-concert-scheme-rugby-union-england",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 0
+    },
+    {
+      "id": "eddie-hearn-s-contract-1nke2n7",
+      "subject": "Eddie Hearn's contract offer to Henry Pollock",
+      "teams": [
+        386
+      ],
+      "resolution": "until Henry Pollock signs a new contract and the salary cap implications are resolved",
+      "sources": [
+        {
+          "title": "England greats predict what will happen when Eddie Hearn ‘soon realises rugby is not like Riyadh’ following his million-pound Henry Pollock demand",
+          "link": "https://www.planetrugby.com/news/england-greats-predict-what-will-happen-when-eddie-hearn-soon-realises-rugby-is-not-like-riyadh-following-his-million-pound-henry-pollock-demand",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-30",
+      "lastSeen": "2026-08-30",
+      "uses": 0
+    },
+    {
+      "id": "the-investigation-into-allegedly-1gqcu4n",
+      "subject": "The investigation into allegedly fraudulent ticket sales for the Springboks v All Blacks Test",
+      "teams": [
+        465,
+        467
+      ],
+      "resolution": "until SA Rugby concludes its legal action against the travel agencies",
       "sources": [
         {
           "title": "Scammed Bok fans left ticketless",
