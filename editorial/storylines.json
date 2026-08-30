@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-30T20:00:31.770Z",
+  "updatedAt": "2026-08-30T22:12:53.693Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 195,
+  "count": 200,
   "storylines": [
     {
       "id": "the-high-court-ruling-1u6p953",
@@ -822,12 +822,17 @@
     },
     {
       "id": "the-wru-proposal-to-1vw49ip",
-      "subject": "The WRU proposal to cut the Scarlets or Ospreys to three professional teams",
+      "subject": "The Welsh Rugby Union's proposal to cut the number of professional teams to three",
       "teams": [
         391
       ],
       "resolution": "until the Welsh Rugby Union officially confirms which regional team will be disbanded or merged",
       "sources": [
+        {
+          "title": "WRU condemns abuse and doubles down on three-team plan",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq891l3g3keo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
         {
           "title": "Scarlets vow to remain at heart of west Wales",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyeq2n79n9o?at_medium=RSS&at_campaign=rss",
@@ -837,15 +842,10 @@
           "title": "WRU confirms Scarlets or Ospreys will be cut",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c171w048jdgo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Scarlets chief Daniels dismisses Ospreys merger",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c39ep099pw0o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-13",
-      "lastSeen": "2026-08-13",
+      "lastSeen": "2026-08-31",
       "uses": 1,
       "lastUsed": "2026-08-14"
     },
@@ -1794,7 +1794,8 @@
       ],
       "firstSeen": "2026-08-18",
       "lastSeen": "2026-08-31",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-08-31"
     },
     {
       "id": "the-vacancy-for-the-ipogxw",
@@ -2340,7 +2341,7 @@
         }
       ],
       "firstSeen": "2026-08-21",
-      "lastSeen": "2026-08-21",
+      "lastSeen": "2026-08-31",
       "uses": 0
     },
     {
@@ -3808,7 +3809,7 @@
     },
     {
       "id": "handr-pollard-s-injury-1itxalf",
-      "subject": "Handré Pollard's injury and his availability for the third Test",
+      "subject": "Handré Pollard's injury recovery and availability for the third Test in Soweto",
       "teams": [
         467
       ],
@@ -3831,7 +3832,7 @@
         }
       ],
       "firstSeen": "2026-08-29",
-      "lastSeen": "2026-08-30",
+      "lastSeen": "2026-08-31",
       "uses": 0
     },
     {
@@ -4204,35 +4205,6 @@
       "firstSeen": "2026-08-29",
       "lastSeen": "2026-08-29",
       "uses": 0
-    },
-    {
-      "id": "the-ongoing-legal-concussion-10ko8x1",
-      "subject": "The ongoing concussion legal battle involving hundreds of players against rugby governing bodies",
-      "teams": [
-        386,
-        391,
-        465,
-        467,
-        388,
-        390
-      ],
-      "resolution": "until a court ruling or settlement concludes the concussion brain injury legal battle",
-      "sources": [
-        {
-          "title": "High court allows rugby brain injury case to go on",
-          "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Rugby brain injury case brought back from brink of collapse after high court ruling",
-          "link": "https://www.theguardian.com/sport/2026/aug/21/rugby-brain-injury-case-able-to-continue-after-high-court-ruling",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-29",
-      "lastSeen": "2026-08-30",
-      "uses": 2,
-      "lastUsed": "2026-08-30"
     },
     {
       "id": "currie-cup-semi-final-15555pa",
@@ -4807,7 +4779,7 @@
     },
     {
       "id": "cheslin-kolbe-s-potential-1aa6am5",
-      "subject": "Cheslin Kolbe's potential disciplinary action for alleged punching",
+      "subject": "The potential citing of Cheslin Kolbe for an alleged punching incident",
       "teams": [
         467
       ],
@@ -4868,6 +4840,153 @@
           "title": "Rugby brain injury case brought back from brink of collapse after high court ruling",
           "link": "https://www.theguardian.com/sport/2026/aug/21/rugby-brain-injury-case-able-to-continue-after-high-court-ruling",
           "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-31",
+      "lastSeen": "2026-08-31",
+      "uses": 1,
+      "lastUsed": "2026-08-31"
+    },
+    {
+      "id": "world-rugby-s-response-n8sszc",
+      "subject": "World Rugby's response to complaints regarding South Africa's scrum tactics",
+      "teams": [
+        467,
+        465
+      ],
+      "resolution": "until World Rugby or match officials issue a clarification on the legality of the Springboks' scrum positioning",
+      "sources": [
+        {
+          "title": "All Blacks complain to World Rugby over Springboks scrum as Dave Rennie expects it to be 'a lot better'",
+          "link": "https://www.planetrugby.com/news/all-blacks-complain-to-world-rugby-over-springboks-scrum-as-dave-rennie-expects-it-to-be-a-lot-better",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Fuming Rassie Erasmus slams Dave Rennie's 'nonsense' after All Blacks accusations as he insists Springboks 'won't stay quiet'",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-slams-dave-rennies-nonsense-after-all-blacks-accusations-as-he-insists-springboks-wont-stay-quiet",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Rassie: We not f**king walking around!",
+          "link": "https://www.sarugbymag.co.za/rassie-not-fing-walking-around/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-08-31",
+      "lastSeen": "2026-08-31",
+      "uses": 0
+    },
+    {
+      "id": "les-kiss-s-experimentation-79hrj1",
+      "subject": "Les Kiss's experimentation with the Wallabies squad and the return of Harry Wilson",
+      "teams": [
+        461,
+        460
+      ],
+      "resolution": "until Les Kiss announces his starting XV for the series finale against Argentina",
+      "sources": [
+        {
+          "title": "Wallabies rotate forwards for Argentina Test as Suaalii settles for place on bench",
+          "link": "https://www.theguardian.com/sport/2026/aug/28/wallabies-team-selection-australia-argentina-rugby-union-test",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Wallabies ‘raise competitive dial’ to future-proof team for 2027 Rugby World Cup | Jack Snape",
+          "link": "https://www.theguardian.com/sport/2026/aug/29/wallabies-argentina-team-lineup-2027-rugby-world-cup",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Les Kiss reaps rewards of derring-do approach to Australia’s team selection",
+          "link": "https://www.theguardian.com/sport/2026/aug/15/les-kiss-australia-team-selection-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-31",
+      "lastSeen": "2026-08-31",
+      "uses": 0
+    },
+    {
+      "id": "the-high-court-legal-2bbyjw",
+      "subject": "The High Court legal battle regarding former players' brain injuries",
+      "teams": [
+        386,
+        391
+      ],
+      "resolution": "until a final judgment or settlement is reached in the concussion litigation",
+      "sources": [
+        {
+          "title": "High court allows rugby brain injury case to go on",
+          "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Rugby brain injury case brought back from brink of collapse after high court ruling",
+          "link": "https://www.theguardian.com/sport/2026/aug/21/rugby-brain-injury-case-able-to-continue-after-high-court-ruling",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-31",
+      "lastSeen": "2026-08-31",
+      "uses": 0
+    },
+    {
+      "id": "andrea-zambonin-s-return-10oju1k",
+      "subject": "Andrea Zambonin's return to the Italy squad following shoulder surgery",
+      "teams": [
+        389
+      ],
+      "resolution": "until Zambonin is declared fit to return to competitive play",
+      "sources": [
+        {
+          "title": "Exeter lock Zambonin to miss start of new season",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cpd7w9l9n2eo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-31",
+      "lastSeen": "2026-08-31",
+      "uses": 0
+    },
+    {
+      "id": "the-capping-of-ireland-1ia8c0f",
+      "subject": "The capping of Ireland's seven new WXV squad members",
+      "teams": [
+        388
+      ],
+      "resolution": "until all seven uncapped players either make their debut or the WXV tournament concludes",
+      "sources": [
+        {
+          "title": "Seven uncapped players in Ireland's WXV squad",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c2097q21pe7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-08-31",
+      "lastSeen": "2026-08-31",
+      "uses": 0
+    },
+    {
+      "id": "henry-pollock-s-pursuit-1kwtgxn",
+      "subject": "Henry Pollock's pursuit of a £1m-a-season valuation following his England hat-trick",
+      "teams": [
+        386
+      ],
+      "resolution": "until Pollock signs a new professional contract under the current salary cap regulations",
+      "sources": [
+        {
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Pollock scores hat-trick as 11-try England thrash Fiji",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/videos/cz0jv2y07m1o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Rugby Union Weekly: Pollock hat-trick helps England end losing run",
+          "link": "https://www.bbc.co.uk/sounds/play/p0ny8qgp?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-31",

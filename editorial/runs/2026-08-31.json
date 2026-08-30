@@ -2,11 +2,11 @@
   "date": "2026-08-31",
   "counts": {
     "editions": 12,
-    "quiet": 4,
+    "quiet": 5,
     "storyline": 3,
-    "dataEdition": 1,
+    "dataEdition": 2,
     "failed": 0,
-    "noLead": 1
+    "noLead": 3
   },
   "failed": [],
   "teams": [
@@ -16,14 +16,14 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "form",
-      "heading": "Fiji slide to three straight defeats after dropping home match against Scotland",
+      "heading": "Fiji slide to three consecutive defeats following home loss against Scotland",
       "kicker": "FORM TRACKER",
-      "body": "Fiji sit at the bottom of the Nations Championship table after suffering three straight defeats in their recent run of form. Across their last five fixtures, the Flying Fijians have secured one victory and suffered four defeats. This sequence includes a 17-33 loss to Scotland on home soil during the July group-stage matches. The team remains without a win in the competition ahead of their next test against France.",
+      "body": "The Flying Fijians are enduring a difficult run of form, having slipped to three straight defeats in international play. In their last five matches, the team has recorded only one victory. Across those same five fixtures, they have suffered four defeats. This challenging run was compounded in July 2026 during the Nations Championship group stage, where Fiji suffered a 33-17 defeat against Scotland on home soil.",
       "source": null,
       "lead": null,
       "candidates": [
         {
-          "title": "Fiji vs England live: Nations Championship latest rugby updates",
+          "title": "Fiji rugby player dies in Japan of suspected heatstroke as high of 35C hit",
           "score": 1.9,
           "corroboration": 1,
           "outlets": [
@@ -31,7 +31,7 @@
           ]
         },
         {
-          "title": "Fiji rugby fixtures and 2026 schedule in the Nations Championship",
+          "title": "Saimoni Vunilagi dead at 26: Fiji rugby ace dies of suspected heatstroke after training session with club ‘devastated’",
           "score": 1.8,
           "corroboration": 1,
           "outlets": [
@@ -39,15 +39,7 @@
           ]
         },
         {
-          "title": "Fiji rugby player dies in Japan of suspected heatstroke as high of 35C hit",
-          "score": 1.6,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Saimoni Vunilagi dead at 26: Fiji rugby ace dies of suspected heatstroke after training session with club ‘devastated’",
+          "title": "Fiji must revamp its school rugby system, former Fiji U20 captain Durutalo says",
           "score": 1.5,
           "corroboration": 1,
           "outlets": [
@@ -61,47 +53,67 @@
           "outlets": [
             "search"
           ]
+        },
+        {
+          "title": "Fiji formally joins landmark Pacific Rugby League Partnership",
+          "score": 1.3,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
         }
       ]
     },
     {
       "team": "England",
-      "quiet": false,
-      "rung": "news",
-      "storyline": null,
+      "quiet": true,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "Henry Pollock's Northampton contract negotiations and Sevens future",
+        "resolution": "until Henry Pollock signs a contract extension or announces a move to another club or the Sevens circuit",
+        "recheckHits": 6
+      },
       "dataAngle": null,
-      "heading": "Dan Cole warns Eddie Hearn over Henry Pollock contract demands",
-      "kicker": "CONTRACT NEWS",
-      "body": "England centurion Dan Cole has warned promoter Eddie Hearn that he must lower his standards after demanding a million-pound playing contract for rising back-rower Henry Pollock. Hearn, who recently took on the Northampton Saints prospect as a client, wants his club to fork out megabucks to retain him. However, speaking on their podcast, Cole told co-host Ben Youngs that the boxing promoter will quickly realise rugby is not like Riyadh, as the sport's salary cap offers little room for Saudi-style millions.",
+      "heading": "Eddie Hearn's million-pound demand stalls Henry Pollock's Northampton contract negotiations",
+      "kicker": "Contract talks",
+      "body": "Northampton Saints are yet to reach an agreement with Henry Pollock following sports promoter Eddie Hearn’s demand earlier this month that the England flanker be handed a one-million-pound contract. Hearn’s ultimatum has stalled negotiations, with pundits recently dismissing the seven-figure sum as unrealistic for Premiership Rugby. Pollock, who impressed for England in July's victory against Argentina, is also weighing a separate offer to join the international sevens circuit. No deal has been finalised as the deadlock enters September.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 1,
-        "why": "The debate surrounding Eddie Hearn's ambitious contract demands for Henry Pollock has drawn a sharp reality check from England centurion Dan Cole."
+        "why": "Updates the unresolved contract standoff between Henry Pollock and Northampton Saints following Eddie Hearn's million-pound demands."
       },
       "candidates": [
         {
-          "title": "England greats predict what will happen when Eddie Hearn ‘soon realises rugby is not like Riyadh’ following his million-pound Henry Pollock demand",
-          "score": 48.6,
+          "title": "Argentina 24-31 England: Nations Championship rugby – as it happened",
+          "score": 18.8,
           "corroboration": 2,
           "outlets": [
-            "planetrugby",
+            "bbc",
             "search"
           ]
         },
         {
           "title": "England rugby star now a commercial pilot after false accusations ruined career",
-          "score": 12.9,
+          "score": 11.9,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "England greats call for ‘more referees should take a harder line’ after seeing Matthew Carley’s ‘blind to him’ performance in Greatest Rivalry",
-          "score": 4.8,
+          "title": "England greats predict what will happen when Eddie Hearn soon realises rugby is not like Riyadh following his million-pound Henry Pollock demand",
+          "score": 4.2,
           "corroboration": 1,
           "outlets": [
-            "planetrugby"
+            "search"
+          ]
+        },
+        {
+          "title": "England rugby star Janse Van Rensburg knocked out and driven off pitch after horror injury against Argentina",
+          "score": 1.7,
+          "corroboration": 1,
+          "outlets": [
+            "search"
           ]
         },
         {
@@ -110,14 +122,6 @@
           "corroboration": 1,
           "outlets": [
             "guardian"
-          ]
-        },
-        {
-          "title": "'Chaos' & 'comedy refereering' as England beat Argentina",
-          "score": 1.4,
-          "corroboration": 1,
-          "outlets": [
-            "bbc"
           ]
         }
       ]
@@ -128,33 +132,25 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "François Cros reportedly set for move from Toulouse to Lyon side",
-      "kicker": "Transfer news",
-      "body": "Toulouse back-rower François Cros is being linked with a departure from the club according to reports from Midi Olympique. While Montpellier reportedly showed interest in the France international, it appears Lyon has secured the forward's signature on a three-year deal. Cros has spent his entire professional career with Les Rouge et Noir to date, making this potential move a significant shift in the Top 14 landscape as the domestic season approaches.",
-      "source": "Planet Rugby",
+      "heading": "France star Thomas Ramos linked with shock Toulouse exit to Racing 92",
+      "kicker": "Transfer rumour",
+      "body": "According to reports in L'Equipe, France star Thomas Ramos is being linked with a sensational switch from Toulouse to Top 14 rivals Racing 92 after the 2027 Rugby World Cup. The full-back has made 200 appearances for Toulouse, securing four league titles and two Champions Cups. The prospective move to Paris could see Ramos deployed at fly-half, a position he has occupied for Les Bleus but only started twice for his club last season.",
+      "source": null,
       "lead": {
-        "candidate": 2,
-        "why": "The report linking a key international player to a major club transfer is the most significant news for the France squad."
+        "candidate": 4,
+        "why": "French media reports have linked France full-back Thomas Ramos with a shock transfer from Toulouse to Top 14 rivals Racing 92."
       },
       "candidates": [
         {
           "title": "A French mum, 'no good player' dad and Welsh tears",
-          "score": 24.4,
+          "score": 23.2,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ]
         },
         {
-          "title": "Rugby Transfers: PREM outfit add Test ace to ranks as latest France star tipped for Toulouse exit",
-          "score": 3.6,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "France Rugby Fixtures And 2026 Schedule In The Nations Championship",
+          "title": "France vs. Ireland rugby score, live updates, Six Nations 2026",
           "score": 1.8,
           "corroboration": 1,
           "outlets": [
@@ -162,7 +158,7 @@
           ]
         },
         {
-          "title": "France vs. Ireland rugby score, live updates, Six Nations 2026",
+          "title": "France Rugby Fixtures And 2026 Schedule In The Nations Championship",
           "score": 1.7,
           "corroboration": 1,
           "outlets": [
@@ -170,8 +166,16 @@
           ]
         },
         {
-          "title": "France XV v England XV free on Rugby Pass TV",
-          "score": 1.6,
+          "title": "Rugby Transfers: France Superstar Thomas Ramos Linked With Shock Toulouse Exit, Newcastle Red Bulls Continue Recruitment Drive And Brumbies Bolster Ranks",
+          "score": 1.5,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Australia Rugby vs. France Rugby Lineups And Kickoff Time",
+          "score": 0.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -181,31 +185,23 @@
     },
     {
       "team": "Ireland",
-      "quiet": false,
-      "rung": "news",
-      "storyline": null,
-      "dataAngle": null,
-      "heading": "Jack Crowley ruled out as Ireland face significant fly-half selection challenge",
-      "kicker": "Injury update",
-      "body": "Ireland have been dealt a major blow with confirmation that fly-half Jack Crowley will not return to action until the new year. Sidelined since April due to a lower limb vascular injury, the 26-year-old will miss the upcoming November block of fixtures. Munster head coach Clayton McMillan stated that \"ensuring he gets back to 100% is the priority.\" Crowley’s continued absence, compounded by a knee injury to new signing Will Harrison, leaves a notable gap at 10 for the autumn tests.",
-      "source": "BBC Rugby Union",
-      "lead": {
-        "candidate": 1,
-        "why": "The sustained absence of a key playmaker like Jack Crowley is the most significant news impacting Ireland's upcoming November campaign."
+      "quiet": true,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "The outcome of the rugby brain injury concussion legal battle",
+        "resolution": "until the high court legal case is concluded",
+        "recheckHits": 3
       },
+      "dataAngle": null,
+      "heading": "High Court ruling keeps IRFU in legal battle over player brain injuries",
+      "kicker": "LEGAL UPDATE",
+      "body": "A landmark High Court ruling has allowed the rugby brain injury litigation to proceed, keeping the IRFU under intense legal scrutiny. The case, which was reportedly brought back from the brink of collapse, remains unresolved as the court’s decision leaves the ultimate outcome in the balance. Former players are seeking damages for concussion-related brain injuries, ensuring that the governing bodies face a prolonged legal battle before any final verdict is reached.",
+      "source": "BBC Rugby Union",
+      "lead": null,
       "candidates": [
         {
-          "title": "Ireland fly-half Crowley ruled out until new year",
-          "score": 55.8,
-          "corroboration": 2,
-          "outlets": [
-            "planetrugby",
-            "bbc"
-          ]
-        },
-        {
           "title": "Andy Farrell’s son is targeting Ireland call-up",
-          "score": 3.4,
+          "score": 3.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -234,27 +230,28 @@
           "outlets": [
             "search"
           ]
+        },
+        {
+          "title": "Ireland Rugby team to wear Chicago-inspired jersey in landmark US game",
+          "score": 1.6,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
         }
       ]
     },
     {
       "team": "Italy",
       "quiet": true,
-      "rung": "storyline",
-      "storyline": {
-        "subject": "Andrea Zambonin's recovery from shoulder surgery",
-        "resolution": "until he is officially cleared to return to the Exeter Chiefs lineup",
-        "recheckHits": 3
-      },
-      "dataAngle": null,
-      "heading": "Benetton confirms Tommaso Menoncello departure as clubs reload for season",
-      "kicker": "Transfer news",
-      "body": "Benetton Rugby has confirmed the departure of centre Tommaso Menoncello ahead of the 2026-27 campaign. The move is part of a broader summer transition for Italy’s flagship club, which has prioritised recruiting international talent from Australia, South Africa, and Argentina to bolster its spine. While Benetton seeks immediate URC playoff contention, the loss of young prospects like Menoncello highlights the ongoing challenge of balancing short-term competitive goals with the long-term development of the domestic pipeline for future national squad selection.",
-      "source": "BBC Rugby Union",
-      "lead": {
-        "candidate": 3,
-        "why": "The departure of a marquee player like Tommaso Menoncello from Benetton represents a significant shift for Italy's primary professional pipeline."
-      },
+      "rung": "data",
+      "storyline": null,
+      "dataAngle": "scoring",
+      "heading": "Italy concede 318 points over their last 11 international matches",
+      "kicker": "Form guide",
+      "body": "Across their last 11 games, Italy have conceded 318 points, averaging 28.9 points conceded per game in that period. Over that same 11-match window, the team scored 190 points, recording an average of 17.3 points per game across those fixtures. The biggest win in that 11-game stretch was a 34-19 home victory against Chile in a November 2025 International Friendly.",
+      "source": null,
+      "lead": null,
       "candidates": [
         {
           "title": "World Rugby stamp down on ref-bashing as Italy boss slapped first ban after Shape of the Game agreement",
@@ -265,7 +262,7 @@
           ]
         },
         {
-          "title": "Italy prop Riccioni gets 2-week ban for sideline red card in Nations Championship rugby test",
+          "title": "Italy vs. South Africa Rugby Kickoff Time, Lineups",
           "score": 1.5,
           "corroboration": 1,
           "outlets": [
@@ -281,16 +278,16 @@
           ]
         },
         {
-          "title": "Italy vs. South Africa Rugby Kickoff Time, Lineups",
-          "score": 1.4,
+          "title": "Ireland vs. Italy rugby live updates & news & Six Nations 2026 fixtures",
+          "score": 0.6,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "Italy Women - Italy Women News, Scores, Stats, Rumors & More - ESPN",
-          "score": 1.3,
+          "title": "Japan vs. Italy Rugby: 5 Things To Know Before July 4",
+          "score": 0.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -303,23 +300,23 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "The legal dispute over concussion-related brain injuries in rugby",
-        "resolution": "until the ongoing High Court case reaches a verdict or settlement",
-        "recheckHits": 0
+        "subject": "The ongoing concussion legal battle involving hundreds of players against rugby governing bodies",
+        "resolution": "until a court ruling or settlement concludes the concussion brain injury legal battle",
+        "recheckHits": 1
       },
       "dataAngle": null,
-      "heading": "High Court legal challenge over rugby brain injuries remains unresolved today",
-      "kicker": "Concussion litigation",
-      "body": "The high-profile legal dispute concerning concussion-related brain injuries in rugby continues to progress through the courts. While the High Court recently ruled to allow the case to proceed, avoiding a potential collapse, there has been no new movement or verdict reported as of today. The ongoing proceedings have prompted wider industry discussions, including calls from figures like Steve Hansen to refine tackle techniques and player safety protocols in response to the legal and medical scrutiny.",
-      "source": "Planet Rugby",
+      "heading": "Scotland watches closely as High Court leaves rugby concussion lawsuit in balance",
+      "kicker": "Legal battle",
+      "body": "The landmark concussion legal battle brought by hundreds of former players against rugby governing bodies remains unresolved. Following a High Court ruling that initially kept the brain injury case alive, the litigation has been left hanging in the balance. Scottish rugby administrators face a protracted wait alongside fellow governing bodies, as the eventual outcome of this massive legal struggle promises to fundamentally reshape safety protocols and financial liabilities across the global game.",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 3,
-        "why": "The ongoing legal dispute surrounding rugby-related concussion remains the most significant unresolved storyline impacting the sport's landscape."
+        "candidate": 1,
+        "why": "The ongoing High Court brain injury litigation remains the most significant unresolved story impacting the sport's administrative and financial future."
       },
       "candidates": [
         {
           "title": "What to look forward to on the Scottish rugby calendar this autumn and beyond",
-          "score": 5.1,
+          "score": 4.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -327,7 +324,7 @@
         },
         {
           "title": "Scotland Women take rugby into community with school and club visit",
-          "score": 4.9,
+          "score": 4.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -335,15 +332,7 @@
         },
         {
           "title": "Scotland players used to overcoming adversity as prop says shock coach change hasn't derailed WXV preparations",
-          "score": 4.5,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Scotland vs. England rugby Six Nations 2026 lineups kickoff time",
-          "score": 1.8,
+          "score": 4.2,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -351,7 +340,15 @@
         },
         {
           "title": "Former Scotland rugby captain's retirement takes off in style as he becomes a Jet2 pilot",
-          "score": 1.5,
+          "score": 1.7,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Scotland rugby Autumn Tests: dates, venues, tickets and 'finals weekend' details for Nations Championship",
+          "score": 1.1,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -361,34 +358,46 @@
     },
     {
       "team": "Wales",
-      "quiet": true,
-      "rung": "storyline",
-      "storyline": {
-        "subject": "The Welsh Rugby Union’s strategy for professional team sustainability",
-        "resolution": "until the WRU clarifies how it will fund its professional teams beyond 2028",
-        "recheckHits": 9
-      },
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
       "dataAngle": null,
-      "heading": "Welsh Rugby Union faces continued uncertainty over future professional team strategy",
-      "kicker": "Professional structure",
-      "body": "The future of Welsh professional rugby remains subject to ongoing debate following reports of a radical strategy to reduce the number of professional teams to 3. While the union has acknowledged the significant anger surrounding the proposal, no final decision has been confirmed to resolve the long-term uncertainty beyond 2028. Recent coverage highlights that the four-region model is currently considered unsustainable, leaving stakeholders awaiting further clarity on how the WRU will restructure its professional commitments to ensure financial viability.",
-      "source": "BBC Rugby Union",
+      "heading": "Abi Tierney rejects resignation calls as Wales legend demands board's exit",
+      "kicker": "Boardroom crisis",
+      "body": "Welsh Rugby Union chief executive Abi Tierney has dismissed calls for her resignation despite mounting pressure on the governing body’s leadership. The stance comes as a prominent Wales legend publicly urged the board to step down following a series of disappointing performances on and off the field. The administrative turmoil coincides with a difficult period for the men's national side; following their 0-43 loss to South Africa, Wales sit ninth in the standings with just one victory from three matches played this season.",
+      "source": null,
       "lead": {
-        "candidate": 1,
-        "why": "It addresses the ongoing, unresolved uncertainty regarding the WRU's professional structure which remains the primary strategic challenge for Welsh rugby."
+        "candidate": 3,
+        "why": "It addresses the escalating governance crisis at the WRU following a run of poor international results."
       },
       "candidates": [
         {
+          "title": "Wales legends' sons turn out for Ospreys as Dragons bag bragging rights",
+          "score": 23.1,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
           "title": "A French mum, 'no good player' dad and Welsh tears",
-          "score": 13.4,
+          "score": 12.8,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ]
         },
         {
+          "title": "Abi Tierney rejects calls to step down as Wales legend tells board to go",
+          "score": 5.5,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
           "title": "The new lives and careers of Wales' golden generation",
-          "score": 5.8,
+          "score": 5.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -396,26 +405,10 @@
         },
         {
           "title": "Sir Billy Boston dead at 92: Wales rugby legend passes away just weeks after death of beloved wife",
-          "score": 2.5,
+          "score": 2.3,
           "corroboration": 1,
           "outlets": [
             "search"
-          ]
-        },
-        {
-          "title": "Prince William Supports Wales at Rugby World Cup Day in France After Kate Middleton Attended Another Game",
-          "score": 1.5,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Inside the Wales camp pushing pain barriers to win",
-          "score": 1.4,
-          "corroboration": 1,
-          "outlets": [
-            "bbc"
           ]
         }
       ]
@@ -426,18 +419,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Argentina falls to Australia as Los Pumas face mounting pressure",
-      "kicker": "Home defeat",
-      "body": "Los Pumas endured a frustrating 27-21 defeat to Australia in San Salvador de Jujuy, marking a concerning slide for the side. It is now only 1 victory in 5 matches for Argentina, with that dismal run occurring entirely on home soil. While Boris Wenger, Geronimo Prisciantelli and Joaquin Moro crossed for tries, Australia’s pack controlled the breakdown and lineout defensively. Coach Les Kiss admitted his side was not perfect, yet Argentina’s inability to capitalise at home continues to dominate the discourse.",
-      "source": "Guardian Rugby Union",
+      "heading": "Gerónimo Prisciantelli and Joaquín Moro scores fail to mask Argentina slump",
+      "kicker": "HOME SLUMP",
+      "body": "Saturday’s 21-27 defeat in San Salvador de Jujuy highlighted a troubling trend, as the side has now managed only one win in their last five home matches. While tries from Gerónimo Prisciantelli, Joaquín Moro, and Boris Wenger kept Los Pumas within striking distance, three Australian scores inside the first 20 minutes proved decisive. Santiago Carreras added six points through conversions, yet the performance was undermined by a clinical Wallabies attack that dominated most facets of play at Estadio 23 de Agosto.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "The loss to Australia has sparked significant scrutiny regarding Argentina’s home-field struggles and overall performance."
+        "candidate": 3,
+        "why": "It focuses on the concerning statistic of Argentina winning just once in their last five home tests following the defeat to Australia."
       },
       "candidates": [
         {
           "title": "Wallabies’ problems were on show in win over Argentina, but Kiss found awkward answers",
-          "score": 57.6,
+          "score": 56.7,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -446,7 +439,7 @@
         },
         {
           "title": "Wallabies: Les Kiss admits to 'clunky bits' in win over Argentina and the ‘smart’ team changes he is eyeing for next weekend's rematch",
-          "score": 39.5,
+          "score": 38.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -454,7 +447,7 @@
         },
         {
           "title": "Argentina v Wallabies: Five takeaways as 'warrior' and 'brilliant double-act' help continue 'purple patch' under Les Kiss",
-          "score": 28.8,
+          "score": 27.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -462,7 +455,7 @@
         },
         {
           "title": "Argentina v Australia: men’s rugby union international – live",
-          "score": 27.2,
+          "score": 26.3,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -470,7 +463,7 @@
         },
         {
           "title": "Wallabies rotate forwards for Argentina Test as Suaalii settles for place on bench",
-          "score": 23.6,
+          "score": 23.4,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -484,18 +477,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Les Kiss plans smart changes after identifying clunky bits against Argentina",
-      "kicker": "Selection news",
-      "body": "Les Kiss has confirmed he will make tactical adjustments for the upcoming series finale in Mendoza following his side's 27-21 victory over Argentina. While Australia secured a fourth consecutive win, the coach admitted there were \"clunky bits\" in the performance, particularly regarding ruck speed and defensive pressure. Kiss noted that the team needs to be more compact to break down opposition lines, stating, \"We're going to have to be better in that area next week.\"",
+      "heading": "Les Kiss flags smart changes for Mendoza after identifying clunky bits",
+      "kicker": "Coach’s verdict",
+      "body": "Australia secured a fourth consecutive Test victory with Saturday's 27-21 win over Argentina, though coach Les Kiss remains unsatisfied with the \"clunky bits\" of the performance. While the Wallabies’ clinical finishing in the opposition 22 yielded four tries, Kiss highlighted issues with ruck speed and defensive spacing in San Salvador de Jujuy. Changes are expected for the series finale in Mendoza as Kiss continues to explore squad depth. \"We're going to have to be better in that area next week,\" Kiss admitted.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 1,
-        "why": "It addresses the immediate tactical concerns of the head coach following the most recent match."
+        "why": "It reports on the head coach's immediate reaction to the weekend's victory and his intentions for squad selection in the upcoming rematch."
       },
       "candidates": [
         {
           "title": "Wallabies: Les Kiss admits to 'clunky bits' in win over Argentina and the ‘smart’ team changes he is eyeing for next weekend's rematch",
-          "score": 49.4,
+          "score": 47.9,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -503,7 +496,7 @@
         },
         {
           "title": "The ‘super important’ All Blacks and Wallabies factor that convinced Joe Schmidt working with Ulster was his best next move",
-          "score": 34,
+          "score": 32.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -511,7 +504,7 @@
         },
         {
           "title": "Wallabies’ problems were on show in win over Argentina, but Kiss found awkward answers",
-          "score": 32,
+          "score": 30.9,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -519,18 +512,18 @@
         },
         {
           "title": "Leicester sign Australian fly-half Bowen",
-          "score": 31.2,
+          "score": 30.8,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ]
         },
         {
-          "title": "'Small steps' for Schmidt at Ulster - Best",
-          "score": 29.6,
+          "title": "Wallabies rotate forwards for Argentina Test as Suaalii settles for place on bench",
+          "score": 29.2,
           "corroboration": 1,
           "outlets": [
-            "bbc"
+            "guardian"
           ]
         }
       ]
@@ -541,35 +534,26 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Japan League One revises registration rules after settling player court challenge",
-      "kicker": "Selection news",
-      "body": "Japan Rugby League One has officially amended its controversial player registration system following a settlement with players who filed a legal challenge against the initial proposals. Under the revised framework, naturalised players holding citizenship since May 2025 or earlier will maintain their status alongside native-born players. Additionally, the league introduced \"special measures\" that grant Category A-1 status to any player with 30 or more caps for the Brave Blossoms, directly addressing concerns raised by a group of 25 prominent players.",
+      "heading": "Timothy Lafaele and naturalised Brave Blossoms stars settle domestic eligibility dispute",
+      "kicker": "LEGAL SETTLEMENT",
+      "body": "Japan Rugby League One has reached a settlement with a group of 24 foreign-born players, including Brave Blossoms stalwarts Timothy Lafaele and Jiwon Gu, over proposed eligibility restrictions. The league previously planned to limit matchday squads for the 2026-27 season based on local schooling history. Under the revised rules, naturalised citizens holding Japanese citizenship by May 2025 retain their domestic status. Crucially, any player with 30 or more Japan caps will now be reclassified to Category A-1, ensuring their professional futures remain secure.",
       "source": "Rugby Asia 247",
       "lead": {
         "candidate": 1,
-        "why": "This is the most significant structural change currently impacting the domestic game and player registration."
+        "why": "Significant resolution to a high-profile legal challenge involving core national team players regarding their domestic careers."
       },
       "candidates": [
         {
           "title": "Japan Rugby League One Amends Proposed Player Categories – Outlines Updated Eligibility for 2026-2027 Season",
-          "score": 30.2,
+          "score": 29.9,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
           ]
         },
         {
-          "title": "Australia 56-17 Japan: rugby union international – as it happened",
-          "score": 19.3,
-          "corroboration": 2,
-          "outlets": [
-            "guardian",
-            "search"
-          ]
-        },
-        {
           "title": "Japanese rugby U-turns on limits on naturalised players",
-          "score": 6.6,
+          "score": 6.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -577,7 +561,7 @@
         },
         {
           "title": "Japanese rugby officials roll back restrictions on some foreign-born players",
-          "score": 6.5,
+          "score": 6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -590,6 +574,14 @@
           "outlets": [
             "rugbyasia247"
           ]
+        },
+        {
+          "title": "Japan vs. Italy Rugby: 5 Things To Know Before July 4",
+          "score": 1.6,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
         }
       ]
     },
@@ -599,18 +591,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "New Zealand fall to South Africa as Springboks level the series",
-      "kicker": "Series setback",
-      "body": "The All Blacks saw their series lead vanish in Cape Town, falling 33-26 to a clinical South African side. Despite outscoring the hosts four tries to three through Roigard, McKenzie, Carter, and Savea, New Zealand struggled to contain the Boks’ physical pressure and tactical efficiency. Rassie Erasmus’ late front-row reshuffle proved decisive, with the world champions dominating key collisions. The two nations now head to Johannesburg for the third Test with the series deadlocked at 1-1.",
-      "source": "BBC Rugby Union",
+      "heading": "Dave Rennie's scrum complaints labelled 'nonsense' by fuming Springboks coach Rassie Erasmus",
+      "kicker": "COACHING ROW",
+      "body": "Dave Rennie’s decision to query the legality of the Springboks' scrum with World Rugby has sparked a sharp rebuttal from Rassie Erasmus. Following Saturday’s 33-26 defeat in Cape Town, Erasmus dismissed claims of the hosts \"walking around\" at the set-piece as \"nonsense\", suggesting the All Blacks were \"under pressure\". While the visitors outscored South Africa four tries to three, pundit Nick Mallett claimed on a podcast that New Zealand were lucky to avoid several scrum penalties from referee Angus Gardner.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "The series-leveling defeat in Cape Town is the most significant development in the current Rugby Championship/tour cycle."
+        "candidate": 4,
+        "why": "The confrontational exchange between Rennie and Erasmus regarding scrum legality is the most significant storyline following the Cape Town test."
       },
       "candidates": [
         {
           "title": "South Africa hold off All Blacks fightback to level series",
-          "score": 82.4,
+          "score": 81.8,
           "corroboration": 3,
           "outlets": [
             "planetrugby",
@@ -620,7 +612,7 @@
         },
         {
           "title": "Mallett: All Blacks 'lucky' at scrum time",
-          "score": 52.2,
+          "score": 50.6,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -628,27 +620,26 @@
         },
         {
           "title": "How New Zealand’s media reacted to All Blacks' loss to Springboks as 'Lex Luther mastermind Rassie Erasmus' credited for world champions' turnaround",
-          "score": 52,
+          "score": 50.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
-          ]
-        },
-        {
-          "title": "All Blacks great Ma’a Nonu performs solo haka against New Zealand in South Africa tour match",
-          "score": 41.5,
-          "corroboration": 2,
-          "outlets": [
-            "guardian",
-            "bbc"
           ]
         },
         {
           "title": "Fuming Rassie Erasmus slams Dave Rennie's 'nonsense' after All Blacks accusations as he insists Springboks 'won't stay quiet'",
-          "score": 40.2,
+          "score": 39.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
+          ]
+        },
+        {
+          "title": "Rassie throws All Blacks front-row curveball",
+          "score": 37.4,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
           ]
         }
       ]
@@ -659,53 +650,54 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "South Africa hold off All Blacks fightback to level the series",
-      "kicker": "Series levelled",
-      "body": "South Africa drew level in the four-Test series after edging New Zealand 33-26 in Cape Town on Saturday. Rassie Erasmus masterminded the victory by switching his front row shortly before kick-off, a move that helped the world champions control the collision zones. Cheslin Kolbe starred with 18 points, while a crucial late turnover from replacement Cameron Hanekom secured the result. Following the win, Erasmus hit back at claims regarding his side's scrummaging, stating: “Don't come with that nonsense saying we're walking around.”",
-      "source": "BBC Rugby Union",
+      "heading": "Rassie Erasmus labels Dave Rennie’s scrum allegations \"nonsense\" following Springbok series-levelling win",
+      "kicker": "Coaching friction",
+      "body": "South Africa reclaimed the world No. 1 ranking after Saturday’s 33-26 victory over New Zealand, though the result was overshadowed by a row over scrummaging. Rassie Erasmus bristled at claims from All Blacks coach Dave Rennie that the Boks were \"walking around\" the set piece, retorting, \"I don’t come with that nonsense.\" Despite Erasmus swapping his entire starting front row an hour before kick-off, 18 points from Cheslin Kolbe and a late Cameron Hanekom turnover secured the vital win.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "The series-levelling victory in Cape Town is the primary news story following the second Test."
+        "candidate": 4,
+        "why": "The post-match friction between Rassie Erasmus and Dave Rennie over scrummaging tactics is the most significant storyline following the series-levelling win."
       },
       "candidates": [
         {
           "title": "South Africa hold off All Blacks fightback to level series",
-          "score": 79.6,
-          "corroboration": 2,
-          "outlets": [
-            "planetrugby",
-            "bbc"
-          ]
-        },
-        {
-          "title": "South Africa hold off All Blacks fightback to level series",
-          "score": 77.4,
+          "score": 102.2,
           "corroboration": 3,
           "outlets": [
-            "guardian",
+            "planetrugby",
             "bbc",
             "search"
           ]
         },
         {
+          "title": "South Africa v New Zealand: rugby union second Test – live",
+          "score": 77.4,
+          "corroboration": 2,
+          "outlets": [
+            "guardian",
+            "search"
+          ]
+        },
+        {
+          "title": "Boks bounce back in Cape Town",
+          "score": 58.4,
+          "corroboration": 2,
+          "outlets": [
+            "sarugbymag",
+            "search"
+          ]
+        },
+        {
+          "title": "Rassie rant: Ex-All Black claims Erasmus ‘does these things that are probably not acceptable’ but admits ‘he's looking after his players and they’d die for him’",
+          "score": 53.1,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
           "title": "How New Zealand’s media reacted to All Blacks' loss to Springboks as 'Lex Luther mastermind Rassie Erasmus' credited for world champions' turnaround",
-          "score": 41.6,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "Fuming Rassie Erasmus slams Dave Rennie's 'nonsense' after All Blacks accusations as he insists Springboks 'won't stay quiet'",
-          "score": 40.2,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "Springboks v All Blacks: The truth about the Cape Town scrum as Dave Rennie's 'walking around' charge runs into Ox Nché's hips",
-          "score": 39.3,
+          "score": 40.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
