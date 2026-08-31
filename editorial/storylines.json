@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-08-31T20:00:30.115Z",
+  "updatedAt": "2026-08-31T23:29:01.509Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 201,
+  "count": 204,
   "storylines": [
     {
       "id": "the-high-court-ruling-1u6p953",
@@ -938,38 +938,6 @@
       "firstSeen": "2026-08-14",
       "lastSeen": "2026-08-16",
       "uses": 0
-    },
-    {
-      "id": "the-landmark-brain-injury-c6j46a",
-      "subject": "The landmark brain injury legal case against rugby's governing bodies",
-      "teams": [
-        386,
-        388,
-        390,
-        391
-      ],
-      "resolution": "until the High Court rules on the applications to strike out the majority of the claimants in the case",
-      "sources": [
-        {
-          "title": "Rugby brain injury case reaches crisis point as judge retires to consider 95% strikeouts",
-          "link": "https://www.theguardian.com/sport/2026/jul/23/rugby-brain-injury-case-reaches-crisis-point-as-judge-retires-to-consider-95-strikeouts",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Dismissed solicitor is still acting for footballers in brain injury court case",
-          "link": "https://www.theguardian.com/sport/2026/jul/24/discarded-solicitor-still-acting-for-footballers-over-brin-injuries",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Rugby’s landmark concussion case enters crucial week: the key questions answered",
-          "link": "https://www.theguardian.com/sport/2026/jul/22/rugbys-landmark-concussion-case-enters-crucial-week-the-key-questions-answered",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-14",
-      "lastSeen": "2026-08-14",
-      "uses": 2,
-      "lastUsed": "2026-08-22"
     },
     {
       "id": "damian-mckenzie-and-will-t8x919",
@@ -4173,7 +4141,7 @@
         }
       ],
       "firstSeen": "2026-08-29",
-      "lastSeen": "2026-08-29",
+      "lastSeen": "2026-09-01",
       "uses": 0
     },
     {
@@ -4265,13 +4233,18 @@
       "resolution": "until the outcome of the SA Rugby legal proceedings is announced",
       "sources": [
         {
+          "title": "SA Rugby take legal action over scam accusations after supporters left 'ticketless'",
+          "link": "https://www.planetrugby.com/news/sa-rugby-take-legal-action-over-scam-accusations-after-supporters-left-ticketless",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Scammed Bok fans left ticketless",
           "link": "https://www.sarugbymag.co.za/scammed-bok-fans-left-ticketless/",
           "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-08-30",
-      "lastSeen": "2026-08-30",
+      "lastSeen": "2026-09-01",
       "uses": 0
     },
     {
@@ -4282,7 +4255,8 @@
         388,
         391,
         465,
-        467
+        467,
+        390
       ],
       "resolution": "until a final court verdict or settlement is reached in the ongoing brain injury claims",
       "sources": [
@@ -4298,7 +4272,7 @@
         }
       ],
       "firstSeen": "2026-08-30",
-      "lastSeen": "2026-08-30",
+      "lastSeen": "2026-09-01",
       "uses": 1,
       "lastUsed": "2026-08-30"
     },
@@ -4847,7 +4821,7 @@
       ],
       "firstSeen": "2026-08-31",
       "lastSeen": "2026-08-31",
-      "uses": 1,
+      "uses": 2,
       "lastUsed": "2026-09-01"
     },
     {
@@ -4894,7 +4868,8 @@
       ],
       "firstSeen": "2026-08-31",
       "lastSeen": "2026-08-31",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-01"
     },
     {
       "id": "sacha-feinberg-mngomezulu-s-1j181am",
@@ -4947,7 +4922,8 @@
       ],
       "firstSeen": "2026-09-01",
       "lastSeen": "2026-09-01",
-      "uses": 0
+      "uses": 2,
+      "lastUsed": "2026-09-01"
     },
     {
       "id": "jack-crowley-s-rehabilitation-d4tb4i",
@@ -5007,6 +4983,109 @@
           "title": "Singleton nearing end of rehab but leaves Gloucester",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cg598qd3z9po?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-01",
+      "lastSeen": "2026-09-01",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-and-dave-pp5p5l",
+      "subject": "Rassie Erasmus and Dave Rennie's public spat over scrum tactics",
+      "teams": [
+        465,
+        467
+      ],
+      "resolution": "until the two coaches cease public accusations or the series concludes",
+      "sources": [
+        {
+          "title": "Fuming Rassie Erasmus slams Dave Rennie's 'nonsense' after All Blacks accusations as he insists Springboks 'won't stay quiet'",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-slams-dave-rennies-nonsense-after-all-blacks-accusations-as-he-insists-springboks-wont-stay-quiet",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Rassie: We not f**king walking around!",
+          "link": "https://www.sarugbymag.co.za/rassie-not-fing-walking-around/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Rennie renews Bok scrum gripe",
+          "link": "https://www.sarugbymag.co.za/rennie-renews-bok-scrum-gripe/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-01",
+      "lastSeen": "2026-09-01",
+      "uses": 0
+    },
+    {
+      "id": "the-ongoing-rotation-of-1l6uo1v",
+      "subject": "The ongoing rotation of the Springboks' front row and backline selections",
+      "teams": [
+        467
+      ],
+      "resolution": "until Rassie Erasmus stops implementing last-minute changes to his match-day squads",
+      "sources": [
+        {
+          "title": "Springboks coach explains last-minute changes for All Blacks rematch as update issued on withdrawn duo",
+          "link": "https://www.planetrugby.com/news/springboks-coach-explains-last-minute-changes-for-all-blacks-rematch-as-update-issued-on-withdrawn-duo",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Rassie throws All Blacks front-row curveball",
+          "link": "https://www.sarugbymag.co.za/rassie-throws-all-blacks-front-row-curveball/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Springboks team: Rassie Erasmus makes THREE last minute changes for All Blacks showdown",
+          "link": "https://www.planetrugby.com/news/springboks-team-rassie-erasmus-makes-three-last-minute-changes-for-all-blacks-showdown",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-01",
+      "lastSeen": "2026-09-01",
+      "uses": 0
+    },
+    {
+      "id": "australia-s-fly-half-cqt6gt",
+      "subject": "Australia's fly-half options and Les Kiss's rotation strategy",
+      "teams": [
+        461
+      ],
+      "resolution": "until Les Kiss establishes a consistent starting playmaker ahead of next year's World Cup",
+      "sources": [
+        {
+          "title": "Carter Gordon returns for Wallabies in ‘balanced selection’ for second Japan Test",
+          "link": "https://www.theguardian.com/sport/2026/aug/13/wallabies-team-selection-carter-gordon-australia-vs-japan-rugby-union-test",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Wallabies search for pieces to fit playmaker puzzle as Kiss swings changes | Jack Snape",
+          "link": "https://www.theguardian.com/sport/2026/aug/14/wallabies-australia-japan-carter-gordon-rugby-union-test-nations-championship-preview",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Wallabies: Les Kiss admits to 'clunky bits' in win over Argentina and the ‘smart’ team changes he is eyeing for next weekend's rematch",
+          "link": "https://www.planetrugby.com/news/wallabies-les-kiss-admits-to-clunky-bits-in-win-over-argentina-and-the-smart-team-changes-he-is-eyeing-for-next-weekends-rematch",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-01",
+      "lastSeen": "2026-09-01",
+      "uses": 0
+    },
+    {
+      "id": "cheslin-kolbe-s-potential-1qf04sc",
+      "subject": "Cheslin Kolbe's potential disciplinary action following 'punching' accusations",
+      "teams": [
+        467
+      ],
+      "resolution": "until World Rugby or the relevant tournament body confirms whether to punish the player",
+      "sources": [
+        {
+          "title": "Fans call on Cheslin Kolbe to face punishment following 'punching' incident in Cape Town",
+          "link": "https://www.planetrugby.com/news/fans-call-on-cheslin-kolbe-to-face-punishment-following-punching-incident-in-cape-town",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-09-01",
