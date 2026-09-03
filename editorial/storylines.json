@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-02T22:07:25.420Z",
+  "updatedAt": "2026-09-03T20:01:26.375Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
   "count": 208,
   "storylines": [
@@ -135,6 +135,11 @@
       "resolution": "until Henry Pollock signs a new deal with Northampton or moves to a new club",
       "sources": [
         {
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "'We've got to find a happy medium' - Dowson confident on Pollock deal",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ym0x04n55o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -143,15 +148,10 @@
           "title": "Northampton seek ‘happy medium’ after Hearn claims Pollock worth £1m a year",
           "link": "https://www.theguardian.com/sport/2026/sep/02/northampton-seek-happy-medium-after-hearn-claims-pollock-worth-1m-a-year",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Pollock to demand £1m a year at Northampton - Hearn",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c05q1g9v2evo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-04",
-      "lastSeen": "2026-09-03",
+      "lastSeen": "2026-09-04",
       "uses": 1,
       "lastUsed": "2026-08-09"
     },
@@ -428,29 +428,6 @@
       "lastUsed": "2026-08-25"
     },
     {
-      "id": "scott-robertson-s-potential-4f1yu4",
-      "subject": "Scott Robertson's potential career move from rugby union to rugby league",
-      "teams": [
-        465
-      ],
-      "resolution": "until Robertson confirms his next coaching appointment or a formal rejection of the code-switch",
-      "sources": [
-        {
-          "title": "Scott Robertson has 'a very big call to make' as ex-All Blacks boss weighs up sensational code switch",
-          "link": "https://www.planetrugby.com/news/scott-robertson-has-a-very-big-call-to-make-as-ex-all-blacks-boss-weighs-up-sensational-code-switch",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Razor gets shock job offer",
-          "link": "https://www.sarugbymag.co.za/razor-gets-shock-job-offer/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-08-11",
-      "lastSeen": "2026-08-13",
-      "uses": 0
-    },
-    {
       "id": "the-wru-proposal-to-1vw49ip",
       "subject": "The Welsh Rugby Union's proposal to cut the number of professional teams to three",
       "teams": [
@@ -505,80 +482,6 @@
       ],
       "firstSeen": "2026-08-13",
       "lastSeen": "2026-08-18",
-      "uses": 0
-    },
-    {
-      "id": "bath-rugby-s-search-1sks15k",
-      "subject": "Bath Rugby's search for a temporary home venue for the 2026-27 season run-in",
-      "teams": [
-        386
-      ],
-      "resolution": "until the club officially confirms where they will play their home fixtures during stadium construction",
-      "sources": [
-        {
-          "title": "Bath Rugby confirm stadium development roadmap as PREM fixtures set to go 'on the road'",
-          "link": "https://www.planetrugby.com/news/bath-rugby-confirm-stadium-development-roadmap-as-prem-fixtures-set-to-go-on-the-road",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Bath to go on the road for Prem season run-in",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c8jnk9e8d23o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Bath in 'serious discussions' to play in Reading",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cx2jrge11rwo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-13",
-      "lastSeen": "2026-08-13",
-      "uses": 0
-    },
-    {
-      "id": "damian-mckenzie-s-ankle-1kxvr36",
-      "subject": "Damian McKenzie's ankle injury and availability for the All Blacks tour",
-      "teams": [
-        465
-      ],
-      "resolution": "until the New Zealand medical team provides a definitive update on his fitness for the first Test",
-      "sources": [
-        {
-          "title": "All Blacks: Dave Rennie issues Damian McKenzie injury update and provides 'which direction' verdict on Billy Proctor's replacement",
-          "link": "https://www.planetrugby.com/news/all-blacks-dave-rennie-issues-damian-mckenzie-injury-update-and-provides-which-direction-verdict-on-billy-proctors-replacement",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-08-13",
-      "lastSeen": "2026-08-13",
-      "uses": 0
-    },
-    {
-      "id": "rassie-erasmus-s-fly-uxwgij",
-      "subject": "Rassie Erasmus's fly-half selection for the first Test against New Zealand",
-      "teams": [
-        467
-      ],
-      "resolution": "until the Springboks announce their starting XV for the Johannesburg Test",
-      "sources": [
-        {
-          "title": "Rassie Erasmus: Springboks saw the 'old Eben Etzebeth' but Sacha Feinberg-Mngomezulu 'inaccurate'",
-          "link": "https://www.planetrugby.com/news/rassie-erasmus-springboks-saw-the-old-eben-etzebeth-but-sacha-feinberg-mngomezulu-inaccurate",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Springboks: Nick Mallett reveals the 'safer bet' for fly-half spot and who is 'in the pound seats' if Siya Kolisi is injured",
-          "link": "https://www.planetrugby.com/news/springboks-nick-mallett-reveals-the-safer-bet-for-fly-half-spot-and-who-is-in-the-pound-seats-if-siya-kolisi-is-injured",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Bosch relishing ‘opportunity of a lifetime’",
-          "link": "https://www.sarugbymag.co.za/bosch-relishing-opportunity-of-a-lifetime/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-08-13",
-      "lastSeen": "2026-08-13",
       "uses": 0
     },
     {
@@ -2151,23 +2054,23 @@
       "resolution": "until he either cements his place in the position or is rotated out by Rassie Erasmus",
       "sources": [
         {
-          "title": "Kiwi journo: Sacha not been set up to succeed",
-          "link": "https://www.sarugbymag.co.za/kiwi-journo-sacha-not-set-succeed/",
-          "feedName": "SA Rugby Magazine"
+          "title": "All Blacks brace for Bok-lash as Erasmus adds late fly-half plot twist",
+          "link": "https://www.theguardian.com/sport/2026/aug/28/south-africa-new-zealand-sacha-feinberg-mngomezulu-rassie-erasmus",
+          "feedName": "Guardian Rugby Union"
         },
         {
-          "title": "Joel Stransky 'a little concerned' with Rassie Erasmus' Handre Pollard selection as 'message' sent for All Blacks rematch",
-          "link": "https://www.planetrugby.com/news/joel-stransky-a-little-concerned-with-rassie-erasmus-handre-pollard-selection-as-message-sent-for-all-blacks-rematch",
+          "title": "Nick Mallett's verdict on Sacha Feinberg-Mngomezulu's performance as legend makes 'it's coming back' prediction on Springboks' strength",
+          "link": "https://www.planetrugby.com/news/nick-malletts-verdict-on-sacha-feinberg-mngomezulu-in-springboks-v-all-blacks-test-ii",
           "feedName": "Planet Rugby"
         },
         {
-          "title": "Boks drop Feinberg-Mngomezulu to bench for All Blacks rematch",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cg7k90y8j9no?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
+          "title": "Mallett: 'Focused' Sacha stuck to the plan",
+          "link": "https://www.sarugbymag.co.za/mallett-focused-sacha-stuck-plan/",
+          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-29",
+      "lastSeen": "2026-09-04",
       "uses": 0
     },
     {
@@ -3270,7 +3173,7 @@
         }
       ],
       "firstSeen": "2026-08-29",
-      "lastSeen": "2026-09-03",
+      "lastSeen": "2026-09-04",
       "uses": 1,
       "lastUsed": "2026-09-01"
     },
@@ -3663,30 +3566,30 @@
     },
     {
       "id": "les-kiss-experimentation-with-79788q",
-      "subject": "Les Kiss' experimentation with Wallabies squad depth for the 2027 World Cup",
+      "subject": "Les Kiss’ strategy of rotating the Wallabies squad to build depth for the 2027 World Cup",
       "teams": [
         461
       ],
       "resolution": "until Les Kiss establishes a consistent starting XV following his period of heavy rotation",
       "sources": [
         {
-          "title": "Wallabies team: Les Kiss names new captain for Argentina examination as Joseph-Aukuso Suaalii handed fresh role",
-          "link": "https://www.planetrugby.com/news/wallabies-team-les-kiss-names-new-captain-for-argentina-examination-as-joseph-aukuso-suaalii-handed-fresh-role",
+          "title": "Comment: Les Kiss has plenty to think about as Wallabies 'morphing into something unfamiliar for Australians'",
+          "link": "https://www.planetrugby.com/news/comment-les-kiss-has-plenty-to-think-about-as-wallabies-morphing-into-something-unfamiliar-for-australians",
           "feedName": "Planet Rugby"
         },
         {
-          "title": "Wallabies rotate forwards for Argentina Test as Suaalii settles for place on bench",
-          "link": "https://www.theguardian.com/sport/2026/aug/28/wallabies-team-selection-australia-argentina-rugby-union-test",
+          "title": "Wallabies ‘raise competitive dial’ to future-proof team for 2027 Rugby World Cup | Jack Snape",
+          "link": "https://www.theguardian.com/sport/2026/aug/29/wallabies-argentina-team-lineup-2027-rugby-world-cup",
           "feedName": "Guardian Rugby Union"
         },
         {
-          "title": "Alaalatoa leads Wallabies against Los Pumas",
-          "link": "https://www.sarugbymag.co.za/alaalatoa-leads-wallabies-los-pumas/",
-          "feedName": "SA Rugby Magazine"
+          "title": "Les Kiss reaps rewards of derring-do approach to Australia’s team selection",
+          "link": "https://www.theguardian.com/sport/2026/aug/15/les-kiss-australia-team-selection-rugby-union",
+          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-08-29",
-      "lastSeen": "2026-08-29",
+      "lastSeen": "2026-09-04",
       "uses": 0
     },
     {
@@ -4391,8 +4294,8 @@
       ],
       "firstSeen": "2026-08-31",
       "lastSeen": "2026-09-03",
-      "uses": 1,
-      "lastUsed": "2026-08-31"
+      "uses": 2,
+      "lastUsed": "2026-09-04"
     },
     {
       "id": "world-rugby-s-response-n8sszc",
@@ -4897,25 +4800,6 @@
       "uses": 0
     },
     {
-      "id": "andrea-zambonin-s-shoulder-1gzyll8",
-      "subject": "Andrea Zambonin's shoulder injury recovery timeline",
-      "teams": [
-        389
-      ],
-      "resolution": "until Zambonin is cleared to return to play by Exeter Chiefs medical staff",
-      "sources": [
-        {
-          "title": "Exeter lock Zambonin to miss start of new season",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cpd7w9l9n2eo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-02",
-      "lastSeen": "2026-09-02",
-      "uses": 2,
-      "lastUsed": "2026-09-03"
-    },
-    {
       "id": "bordeaux-b-gles-reported-1oazk4p",
       "subject": "Bordeaux Bègles' reported pursuit of a Springbok prop",
       "teams": [
@@ -5029,7 +4913,7 @@
     },
     {
       "id": "james-o-connor-s-xr8650",
-      "subject": "James O'Connor's bid for 2027 Rugby World Cup selection",
+      "subject": "James O’Connor’s bid for selection in the Wallabies’ 2027 World Cup squad",
       "teams": [
         461
       ],
@@ -5042,7 +4926,7 @@
         }
       ],
       "firstSeen": "2026-09-03",
-      "lastSeen": "2026-09-03",
+      "lastSeen": "2026-09-04",
       "uses": 0
     },
     {
@@ -5136,6 +5020,139 @@
       ],
       "firstSeen": "2026-09-03",
       "lastSeen": "2026-09-03",
+      "uses": 0
+    },
+    {
+      "id": "the-scrum-legality-dispute-1cgbksb",
+      "subject": "The scrum legality dispute between Rassie Erasmus and Dave Rennie during the Greatest Rivalry series",
+      "teams": [
+        465,
+        467
+      ],
+      "resolution": "until the completion of the South Africa vs New Zealand series or a formal ruling from World Rugby on the specific tactics",
+      "sources": [
+        {
+          "title": "Keo &#038; Zels: How Rassie put Rennie in his place",
+          "link": "https://www.sarugbymag.co.za/keo-zels-rassie-put-rennie-place/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Nick Mallett '100%' with Rassie Erasmus as referee slammed for having 'preconceived notions' on Springboks scrum",
+          "link": "https://www.planetrugby.com/news/nick-mallett-and-victor-matfield-on-rassie-erasmus-scrum-complaint-springboks",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Shimmy: They want to depower Bok scrum",
+          "link": "https://www.sarugbymag.co.za/shimmy-want-depower-bok-scrum/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-04",
+      "lastSeen": "2026-09-04",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-use-of-1blcolf",
+      "subject": "Rassie Erasmus' use of late, unforced changes to the Springboks' matchday squad",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Springboks play a Test match without making changes to their announced 23-man squad after the official deadline",
+      "sources": [
+        {
+          "title": "All Blacks brace for Bok-lash as Erasmus adds late fly-half plot twist",
+          "link": "https://www.theguardian.com/sport/2026/aug/28/south-africa-new-zealand-sacha-feinberg-mngomezulu-rassie-erasmus",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "'It was classic Rassie' – Ex-Springboks boss weighs in on Erasmus' controversial late changes",
+          "link": "https://www.planetrugby.com/news/springboks-mallett-reacts-to-rassies-late-changes-for-all-blacks",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Rassie Erasmus hints that Springboks could repeat controversial selection ploy",
+          "link": "https://www.planetrugby.com/news/springboks-v-all-blacks-why-rassie-could-repeat-controversial-changes",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-04",
+      "lastSeen": "2026-09-04",
+      "uses": 0
+    },
+    {
+      "id": "maro-itoje-s-return-100t788",
+      "subject": "Maro Itoje’s return to elite rugby following his international sabbatical",
+      "teams": [
+        386
+      ],
+      "resolution": "until Maro Itoje makes his first appearance for England in the 2026/27 season",
+      "sources": [
+        {
+          "title": "'I don't regret it at all' – Maro Itoje opens up on extended break as England captain hopes to 'come back better'",
+          "link": "https://www.planetrugby.com/news/i-dont-regret-it-at-all-maro-itoje-opens-up-on-extended-break-as-england-captain-hopes-to-come-back-better",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Summer off England duty took me by surprise - Itoje",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c20l1g8eqj4o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Maro Itoje ready to ‘come back better’ for England after taking mini sabbatical",
+          "link": "https://www.theguardian.com/sport/2026/sep/02/maro-itoje-england-nations-championship-saracens-prem-mini-sabbatical-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-04",
+      "lastSeen": "2026-09-04",
+      "uses": 0
+    },
+    {
+      "id": "the-search-for-a-13bspmr",
+      "subject": "The search for a permanent Springbok Women head coach following Swys de Bruin’s resignation",
+      "teams": [
+        467
+      ],
+      "resolution": "until SA Rugby appoints a permanent successor to Swys de Bruin",
+      "sources": [
+        {
+          "title": "Swys quits Springbok Women",
+          "link": "https://www.sarugbymag.co.za/swys-quits-springbok-women/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Springboks Women team named for Black Ferns showdown as SA Rugby confirms Swys de Bruin decision",
+          "link": "https://www.planetrugby.com/news/springboks-women-team-named-for-black-ferns-showdown-as-sa-rugby-confirms-swys-de-bruin-decision",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Springboks Women's boss resigns on the eve of Blacks Ferns clash amid SA Rugby dispute – report",
+          "link": "https://www.planetrugby.com/news/swys-de-bruin-resigns-from-springboks-women-job-report",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-04",
+      "lastSeen": "2026-09-04",
+      "uses": 0
+    },
+    {
+      "id": "the-legal-battle-between-qa2os2",
+      "subject": "The legal battle between former players and rugby governing bodies over brain injuries",
+      "teams": [
+        386,
+        388,
+        391
+      ],
+      "resolution": "until a final judgment is issued by the High Court or a settlement is reached",
+      "sources": [
+        {
+          "title": "High court allows rugby brain injury case to go on",
+          "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-04",
+      "lastSeen": "2026-09-04",
       "uses": 0
     }
   ]
