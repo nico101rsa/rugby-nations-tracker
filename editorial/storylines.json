@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-04T20:01:07.549Z",
+  "updatedAt": "2026-09-04T21:55:43.248Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 207,
+  "count": 209,
   "storylines": [
     {
       "id": "richie-mo-unga-s-xkvba1",
@@ -116,6 +116,11 @@
       "resolution": "until Henry Pollock signs a new deal with Northampton or moves to a new club",
       "sources": [
         {
+          "title": "Northampton Saints boss makes 'happy medium' admission as Henry Pollock future update issued",
+          "link": "https://www.planetrugby.com/news/northampton-saints-boss-makes-happy-medium-admission-as-henry-pollock-future-update-issued",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -124,11 +129,6 @@
           "title": "'We've got to find a happy medium' - Dowson confident on Pollock deal",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ym0x04n55o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Northampton seek ‘happy medium’ after Hearn claims Pollock worth £1m a year",
-          "link": "https://www.theguardian.com/sport/2026/sep/02/northampton-seek-happy-medium-after-hearn-claims-pollock-worth-1m-a-year",
-          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-08-04",
@@ -1138,25 +1138,6 @@
       "lastSeen": "2026-08-31",
       "uses": 1,
       "lastUsed": "2026-08-31"
-    },
-    {
-      "id": "the-vacancy-for-the-ipogxw",
-      "subject": "The vacancy for the Scotland Women's head coach position",
-      "teams": [
-        390
-      ],
-      "resolution": "until Scottish Rugby appoints a permanent successor to Sione Fukofuka",
-      "sources": [
-        {
-          "title": "'Family stress' forces Scotland boss Fukofuka to step down",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq89el4pz7do?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-18",
-      "lastSeen": "2026-08-18",
-      "uses": 2,
-      "lastUsed": "2026-08-30"
     },
     {
       "id": "rassie-erasmus-s-choice-eefj0z",
@@ -4278,11 +4259,17 @@
     },
     {
       "id": "the-high-court-class-ltg84z",
-      "subject": "The High Court class-action concussion lawsuit against rugby's governing bodies",
+      "subject": "The ongoing legal concussion class action lawsuit against rugby's governing bodies",
       "teams": [
         386,
         388,
-        391
+        391,
+        387,
+        389,
+        390,
+        461,
+        465,
+        467
       ],
       "resolution": "until the High Court delivers a final judgment or the parties announce a legal settlement",
       "sources": [
@@ -4303,7 +4290,7 @@
         }
       ],
       "firstSeen": "2026-09-01",
-      "lastSeen": "2026-09-03",
+      "lastSeen": "2026-09-05",
       "uses": 2,
       "lastUsed": "2026-09-01"
     },
@@ -4842,7 +4829,7 @@
     },
     {
       "id": "maro-itoje-s-return-1e31ykc",
-      "subject": "Maro Itoje's return to England's international lineup",
+      "subject": "Maro Itoje's return to England international duty after his extended sabbatical",
       "teams": [
         386
       ],
@@ -4865,7 +4852,7 @@
         }
       ],
       "firstSeen": "2026-09-03",
-      "lastSeen": "2026-09-04",
+      "lastSeen": "2026-09-05",
       "uses": 0
     },
     {
@@ -4955,12 +4942,17 @@
     },
     {
       "id": "the-search-for-a-13bspmr",
-      "subject": "The search for a permanent Springbok Women head coach following Swys de Bruin’s resignation",
+      "subject": "The permanent head coach appointment for the Springbok Women's team following Swys de Bruin's resignation",
       "teams": [
         467
       ],
       "resolution": "until SA Rugby appoints a permanent successor to Swys de Bruin",
       "sources": [
+        {
+          "title": "Springboks Women's boss resigns on the eve of Blacks Ferns clash amid SA Rugby dispute – report",
+          "link": "https://www.planetrugby.com/news/swys-de-bruin-resigns-from-springboks-women-job-report",
+          "feedName": "Planet Rugby"
+        },
         {
           "title": "Bok Women move on without Swys",
           "link": "https://www.sarugbymag.co.za/bok-women-move-on-without-swys/",
@@ -4970,11 +4962,6 @@
           "title": "Swys quits Springbok Women",
           "link": "https://www.sarugbymag.co.za/swys-quits-springbok-women/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Springboks Women team named for Black Ferns showdown as SA Rugby confirms Swys de Bruin decision",
-          "link": "https://www.planetrugby.com/news/springboks-women-team-named-for-black-ferns-showdown-as-sa-rugby-confirms-swys-de-bruin-decision",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-09-04",
@@ -5090,6 +5077,66 @@
           "title": "Have Wales got their midfield partnership right?",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cly98eny8j0o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-05",
+      "lastSeen": "2026-09-05",
+      "uses": 1,
+      "lastUsed": "2026-09-05"
+    },
+    {
+      "id": "wales-ongoing-midfield-partnership-ismcye",
+      "subject": "Wales' ongoing midfield partnership selection in the centre",
+      "teams": [
+        391
+      ],
+      "resolution": "until a settled, first-choice midfield pairing is established by the coaching staff",
+      "sources": [
+        {
+          "title": "Have Wales got their midfield partnership right?",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cly98eny8j0o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-05",
+      "lastSeen": "2026-09-05",
+      "uses": 0
+    },
+    {
+      "id": "jack-singleton-s-search-1i56if7",
+      "subject": "Jack Singleton's search for a new club to resume his rugby career",
+      "teams": [
+        386
+      ],
+      "resolution": "until Jack Singleton signs a contract with a new team",
+      "sources": [
+        {
+          "title": "Singleton nearing end of rehab but leaves Gloucester",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cg598qd3z9po?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Singleton hopes for rugby union return after heart attack",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c99dpk9mnlgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-05",
+      "lastSeen": "2026-09-05",
+      "uses": 0
+    },
+    {
+      "id": "the-implementation-and-player-17xvhx1",
+      "subject": "The implementation and player/fan acceptance of the Japan Rugby League One's new player eligibility categories",
+      "teams": [
+        463
+      ],
+      "resolution": "until the 2026-2027 season begins and the new category system is fully operational",
+      "sources": [
+        {
+          "title": "Japan Rugby League One Amends Proposed Player Categories – Outlines Updated Eligibility for 2026-2027 Season",
+          "link": "https://www.rugbyasia247.com/japan-rugby-league-one-amends-proposed-player-categories-outlines-updated-eligibility-for-2026-2027-season/",
+          "feedName": "Rugby Asia 247"
         }
       ],
       "firstSeen": "2026-09-05",
