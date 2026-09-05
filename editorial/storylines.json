@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-05T14:14:55.589Z",
+  "updatedAt": "2026-09-05T17:00:48.130Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 204,
+  "count": 207,
   "storylines": [
     {
       "id": "richie-mo-unga-s-f3kutm",
@@ -87,6 +87,11 @@
       "resolution": "until Henry Pollock signs a new deal with Northampton or moves to a new club",
       "sources": [
         {
+          "title": "'We've got to find a happy medium' - Dowson confident on Pollock deal",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ym0x04n55o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "Northampton seek ‘happy medium’ after Hearn claims Pollock worth £1m a year",
           "link": "https://www.theguardian.com/sport/2026/sep/02/northampton-seek-happy-medium-after-hearn-claims-pollock-worth-1m-a-year",
           "feedName": "Guardian Rugby Union"
@@ -95,15 +100,10 @@
           "title": "Northampton Saints boss makes 'happy medium' admission as Henry Pollock future update issued",
           "link": "https://www.planetrugby.com/news/northampton-saints-boss-makes-happy-medium-admission-as-henry-pollock-future-update-issued",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-04",
-      "lastSeen": "2026-09-05",
+      "lastSeen": "2026-09-06",
       "uses": 1,
       "lastUsed": "2026-08-09"
     },
@@ -3279,7 +3279,7 @@
     },
     {
       "id": "japan-rugby-league-one-12hhlr2",
-      "subject": "Japan Rugby League One's player eligibility and classification reforms",
+      "subject": "The Japan Rugby League One (JRLO) player eligibility and category reforms",
       "teams": [
         463
       ],
@@ -3292,7 +3292,7 @@
         }
       ],
       "firstSeen": "2026-08-29",
-      "lastSeen": "2026-09-05",
+      "lastSeen": "2026-09-06",
       "uses": 0
     },
     {
@@ -4279,13 +4279,18 @@
       "resolution": "until Singleton signs with a new club or returns to active competition",
       "sources": [
         {
+          "title": "Singleton hopes for rugby union return after heart attack",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c99dpk9mnlgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "Singleton nearing end of rehab but leaves Gloucester",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cg598qd3z9po?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-02",
-      "lastSeen": "2026-09-02",
+      "lastSeen": "2026-09-06",
       "uses": 0
     },
     {
@@ -4350,7 +4355,7 @@
         }
       ],
       "firstSeen": "2026-09-03",
-      "lastSeen": "2026-09-05",
+      "lastSeen": "2026-09-06",
       "uses": 0
     },
     {
@@ -4927,7 +4932,8 @@
       ],
       "firstSeen": "2026-09-06",
       "lastSeen": "2026-09-06",
-      "uses": 0
+      "uses": 2,
+      "lastUsed": "2026-09-06"
     },
     {
       "id": "potential-lucrative-transfers-of-1gzlk6u",
@@ -4978,6 +4984,86 @@
           "title": "Japan Rugby League One Amends Proposed Player Categories – Outlines Updated Eligibility for 2026-2027 Season",
           "link": "https://www.rugbyasia247.com/japan-rugby-league-one-amends-proposed-player-categories-outlines-updated-eligibility-for-2026-2027-season/",
           "feedName": "Rugby Asia 247"
+        }
+      ],
+      "firstSeen": "2026-09-06",
+      "lastSeen": "2026-09-06",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-s-coaching-156ty8r",
+      "subject": "Rassie Erasmus's coaching methods and conduct during the All Blacks series",
+      "teams": [
+        465,
+        467
+      ],
+      "resolution": "until World Rugby issues a definitive ruling or policy change regarding his coaching behavior",
+      "sources": [
+        {
+          "title": "Mallett: All Blacks are cheating",
+          "link": "https://www.sarugbymag.co.za/mallett-blacks-cheating/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Rassie Erasmus accused of having God complex as Kiwi pundit claims Springboks boss' 'shenanigans' are 'against the spirit of the game'",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-accused-of-having-god-complex-as-kiwi-pundit-claims-springboks-boss-shenanigans-are-against-the-spirit-of-the-game",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "All Blacks legend: Why Dave Rennie is right and Rassie Erasmus wrong after Springboks boss' X-rated rant",
+          "link": "https://www.planetrugby.com/news/all-blacks-legend-why-dave-rennie-is-right-and-rassie-erasmus-wrong-on-scrum-debate",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-06",
+      "lastSeen": "2026-09-06",
+      "uses": 0
+    },
+    {
+      "id": "taulupe-faletau-s-fitness-buhm15",
+      "subject": "Taulupe Faletau's fitness and return for Cardiff and Wales",
+      "teams": [
+        391
+      ],
+      "resolution": "until he completes his return from injury and plays for his club or country",
+      "sources": [
+        {
+          "title": "Cardiff hopeful of Faletau return for start of URC",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cy0zydyrqnro?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-06",
+      "lastSeen": "2026-09-06",
+      "uses": 0
+    },
+    {
+      "id": "the-ongoing-multi-million-1wdrqnc",
+      "subject": "The ongoing multi-million-pound concussion legal battle",
+      "teams": [
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        460,
+        461,
+        463,
+        465,
+        467
+      ],
+      "resolution": "until the high court case reaches a final verdict or settlement",
+      "sources": [
+        {
+          "title": "High court allows rugby brain injury case to go on",
+          "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "100 ultramarathons in 100 days: former rugby pro hit by brain injury nears end of feat",
+          "link": "https://www.theguardian.com/lifeandstyle/2026/aug/31/100-ultramarathons-100-days-rugby-brain-injury-david-jacko-jackson",
+          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-09-06",
