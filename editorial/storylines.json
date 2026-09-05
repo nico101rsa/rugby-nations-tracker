@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-05T12:00:52.168Z",
+  "updatedAt": "2026-09-05T14:14:55.589Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 200,
+  "count": 204,
   "storylines": [
     {
       "id": "richie-mo-unga-s-f3kutm",
@@ -160,7 +160,7 @@
         }
       ],
       "firstSeen": "2026-08-05",
-      "lastSeen": "2026-09-05",
+      "lastSeen": "2026-09-06",
       "uses": 1,
       "lastUsed": "2026-08-09"
     },
@@ -324,8 +324,8 @@
       ],
       "firstSeen": "2026-08-13",
       "lastSeen": "2026-08-31",
-      "uses": 1,
-      "lastUsed": "2026-08-14"
+      "uses": 2,
+      "lastUsed": "2026-09-06"
     },
     {
       "id": "siya-kolisi-s-fitness-kox3ow",
@@ -1706,7 +1706,7 @@
     },
     {
       "id": "rugby-s-greatest-rivalry-1y6e30l",
-      "subject": "The outcome of the Rugby's Greatest Rivalry series between South Africa and New Zealand",
+      "subject": "The outcome of the third Rugby's Greatest Rivalry Test between South Africa and New Zealand",
       "teams": [
         467,
         465
@@ -1714,23 +1714,23 @@
       "resolution": "until the series between the Springboks and All Blacks is completed",
       "sources": [
         {
-          "title": "POLL: Who will win the Calabash clash?",
-          "link": "https://www.sarugbymag.co.za/poll-will-win-calabash-clash/",
+          "title": "Schalla: Bok attack lacks fluency",
+          "link": "https://www.sarugbymag.co.za/schalla-bok-attack-lacks-fluency/",
           "feedName": "SA Rugby Magazine"
         },
         {
-          "title": "Why Rugby's Greatest Rivalry ends in USA",
-          "link": "https://www.sarugbymag.co.za/why-rugbys-greatest-rivalry-ends-in-usa/",
-          "feedName": "SA Rugby Magazine"
+          "title": "Flyover ditched for third Springboks v All Blacks Test after viral Cape Town stunt",
+          "link": "https://www.planetrugby.com/news/airlink-ditches-flyover-for-third-springboks-v-all-blacks-test-after-viral-cape-town-stunt",
+          "feedName": "Planet Rugby"
         },
         {
-          "title": "World Rugby rankings: Historic first awaits All Blacks who target Springboks' top spot",
-          "link": "https://www.planetrugby.com/news/world-rugby-rankings-springboks-and-all-blacks-fight-for-top-spot",
+          "title": "All Blacks legend: Why Dave Rennie is right and Rassie Erasmus wrong after Springboks boss' X-rated rant",
+          "link": "https://www.planetrugby.com/news/all-blacks-legend-why-dave-rennie-is-right-and-rassie-erasmus-wrong-on-scrum-debate",
           "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-22",
-      "lastSeen": "2026-09-05",
+      "lastSeen": "2026-09-06",
       "uses": 0
     },
     {
@@ -4383,7 +4383,7 @@
     },
     {
       "id": "stella-orrin-s-pursuit-1aln72i",
-      "subject": "Stella Orrin's pursuit of a first senior cap for Wales",
+      "subject": "Stella Orrin's pursuit of a Wales senior international debut",
       "teams": [
         391
       ],
@@ -4396,7 +4396,7 @@
         }
       ],
       "firstSeen": "2026-09-03",
-      "lastSeen": "2026-09-03",
+      "lastSeen": "2026-09-06",
       "uses": 1,
       "lastUsed": "2026-09-03"
     },
@@ -4621,7 +4621,7 @@
         }
       ],
       "firstSeen": "2026-09-04",
-      "lastSeen": "2026-09-05",
+      "lastSeen": "2026-09-06",
       "uses": 0
     },
     {
@@ -4903,6 +4903,85 @@
       ],
       "firstSeen": "2026-09-05",
       "lastSeen": "2026-09-05",
+      "uses": 0
+    },
+    {
+      "id": "the-legal-battle-regarding-bgp1is",
+      "subject": "The legal battle regarding concussion in professional rugby",
+      "teams": [
+        386,
+        388,
+        390,
+        391,
+        461,
+        465,
+        467
+      ],
+      "resolution": "until the High Court reaches a final verdict on the concussion injury cases",
+      "sources": [
+        {
+          "title": "High court allows rugby brain injury case to go on",
+          "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-06",
+      "lastSeen": "2026-09-06",
+      "uses": 0
+    },
+    {
+      "id": "potential-lucrative-transfers-of-1gzlk6u",
+      "subject": "Potential lucrative transfers of Springbok players to English clubs",
+      "teams": [
+        386,
+        467
+      ],
+      "resolution": "until the players confirm their future clubs or sign renewals with their current teams",
+      "sources": [
+        {
+          "title": "Bok champs on Prem clubs' shopping list",
+          "link": "https://www.sarugbymag.co.za/bok-champs-prem-clubs-shopping-list/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-06",
+      "lastSeen": "2026-09-06",
+      "uses": 0
+    },
+    {
+      "id": "beno-obano-s-move-1gxrwxi",
+      "subject": "Beno Obano's move to Pau and exit from the England setup",
+      "teams": [
+        386
+      ],
+      "resolution": "until Beno Obano joins Pau and his future eligibility for England is clarified",
+      "sources": [
+        {
+          "title": "Obano to put England career on hold with Pau move",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c8047p5em5lo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-06",
+      "lastSeen": "2026-09-06",
+      "uses": 0
+    },
+    {
+      "id": "the-impact-of-the-pucahr",
+      "subject": "The impact of the Japan Rugby League One's proposed player category changes",
+      "teams": [
+        463
+      ],
+      "resolution": "until the league reaches an agreement with players and fans regarding the 2026-2027 eligibility rules",
+      "sources": [
+        {
+          "title": "Japan Rugby League One Amends Proposed Player Categories – Outlines Updated Eligibility for 2026-2027 Season",
+          "link": "https://www.rugbyasia247.com/japan-rugby-league-one-amends-proposed-player-categories-outlines-updated-eligibility-for-2026-2027-season/",
+          "feedName": "Rugby Asia 247"
+        }
+      ],
+      "firstSeen": "2026-09-06",
+      "lastSeen": "2026-09-06",
       "uses": 0
     }
   ]
