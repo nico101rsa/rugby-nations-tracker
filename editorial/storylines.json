@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-05T08:00:45.793Z",
+  "updatedAt": "2026-09-05T11:29:04.458Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 199,
+  "count": 200,
   "storylines": [
     {
       "id": "richie-mo-unga-s-f3kutm",
@@ -87,6 +87,11 @@
       "resolution": "until Henry Pollock signs a new deal with Northampton or moves to a new club",
       "sources": [
         {
+          "title": "Northampton seek ‘happy medium’ after Hearn claims Pollock worth £1m a year",
+          "link": "https://www.theguardian.com/sport/2026/sep/02/northampton-seek-happy-medium-after-hearn-claims-pollock-worth-1m-a-year",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Northampton Saints boss makes 'happy medium' admission as Henry Pollock future update issued",
           "link": "https://www.planetrugby.com/news/northampton-saints-boss-makes-happy-medium-admission-as-henry-pollock-future-update-issued",
           "feedName": "Planet Rugby"
@@ -94,11 +99,6 @@
         {
           "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "'We've got to find a happy medium' - Dowson confident on Pollock deal",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ym0x04n55o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
@@ -1706,7 +1706,7 @@
     },
     {
       "id": "rugby-s-greatest-rivalry-1y6e30l",
-      "subject": "Rugby’s Greatest Rivalry series result between South Africa and New Zealand",
+      "subject": "The outcome of the Rugby's Greatest Rivalry series between South Africa and New Zealand",
       "teams": [
         467,
         465
@@ -1714,23 +1714,23 @@
       "resolution": "until the series between the Springboks and All Blacks is completed",
       "sources": [
         {
-          "title": "Why Rassie won’t meet with ref",
-          "link": "https://www.sarugbymag.co.za/rassie-wont-meet-ref/",
+          "title": "POLL: Who will win the Calabash clash?",
+          "link": "https://www.sarugbymag.co.za/poll-will-win-calabash-clash/",
           "feedName": "SA Rugby Magazine"
         },
         {
-          "title": "All Blacks team v Springboks: Five takeaways as tour 'accelerates' for duo but Dave Rennie ignores Richie Mo'unga 'temptation'",
-          "link": "https://www.planetrugby.com/news/all-blacks-team-v-springboks-five-takeaways-as-tour-accelerates-for-duo-but-dave-rennie-ignores-richie-mounga-temptation",
-          "feedName": "Planet Rugby"
+          "title": "Why Rugby's Greatest Rivalry ends in USA",
+          "link": "https://www.sarugbymag.co.za/why-rugbys-greatest-rivalry-ends-in-usa/",
+          "feedName": "SA Rugby Magazine"
         },
         {
-          "title": "Rugby's Greatest Rivalry: World Rugby confirm referee changes for Springboks v All Blacks Tests",
-          "link": "https://www.planetrugby.com/news/rugbys-greatest-rivalry-world-rugby-confirm-referee-changes-for-springboks-v-all-blacks-tests",
+          "title": "World Rugby rankings: Historic first awaits All Blacks who target Springboks' top spot",
+          "link": "https://www.planetrugby.com/news/world-rugby-rankings-springboks-and-all-blacks-fight-for-top-spot",
           "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-29",
+      "lastSeen": "2026-09-05",
       "uses": 0
     },
     {
@@ -3292,7 +3292,7 @@
         }
       ],
       "firstSeen": "2026-08-29",
-      "lastSeen": "2026-09-04",
+      "lastSeen": "2026-09-05",
       "uses": 0
     },
     {
@@ -4605,6 +4605,11 @@
       "resolution": "until SA Rugby appoints a permanent successor to Swys de Bruin",
       "sources": [
         {
+          "title": "Swys quits Springbok Women",
+          "link": "https://www.sarugbymag.co.za/swys-quits-springbok-women/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
           "title": "Springboks Women team named for Black Ferns showdown as SA Rugby confirms Swys de Bruin decision",
           "link": "https://www.planetrugby.com/news/springboks-women-team-named-for-black-ferns-showdown-as-sa-rugby-confirms-swys-de-bruin-decision",
           "feedName": "Planet Rugby"
@@ -4613,11 +4618,6 @@
           "title": "Springboks Women's boss resigns on the eve of Blacks Ferns clash amid SA Rugby dispute – report",
           "link": "https://www.planetrugby.com/news/swys-de-bruin-resigns-from-springboks-women-job-report",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Bok Women move on without Swys",
-          "link": "https://www.sarugbymag.co.za/bok-women-move-on-without-swys/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-09-04",
@@ -4819,7 +4819,8 @@
       ],
       "firstSeen": "2026-09-05",
       "lastSeen": "2026-09-05",
-      "uses": 0
+      "uses": 2,
+      "lastUsed": "2026-09-05"
     },
     {
       "id": "potential-world-rugby-rule-1eg51r1",
@@ -4862,6 +4863,34 @@
         {
           "title": "Bok champs on Prem clubs' shopping list",
           "link": "https://www.sarugbymag.co.za/bok-champs-prem-clubs-shopping-list/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-05",
+      "lastSeen": "2026-09-05",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-s-leadership-16u1qra",
+      "subject": "Rassie Erasmus's leadership style and ongoing 'gamesmanship' controversy",
+      "teams": [
+        467
+      ],
+      "resolution": "until World Rugby issues a definitive ruling or Rassie Erasmus changes his approach to pre-match media and selection tactics",
+      "sources": [
+        {
+          "title": "John Smit’s ‘boggles my mind’ reaction to Greatest Rivalry scrum spat and his ‘gut instinct’ prediction about the ‘Test that decides the series’",
+          "link": "https://www.planetrugby.com/news/john-smits-boggles-my-mind-reaction-to-greatest-rivalry-scrum-spat-and-his-gut-instinct-prediction-about-the-test-that-decides-the-series",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Kieran Read: 'People would say Rassie Erasmus has always lost his head'",
+          "link": "https://www.planetrugby.com/news/kieran-read-people-would-say-rassie-erasmus-has-always-lost-his-head",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Reado: Rassie is the absolute king",
+          "link": "https://www.sarugbymag.co.za/ex-blacks-captain-rassie-absolute-king/",
           "feedName": "SA Rugby Magazine"
         }
       ],
