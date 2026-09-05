@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-05T21:46:29.515Z",
+  "updatedAt": "2026-09-05T22:00:37.616Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 219,
+  "count": 220,
   "storylines": [
     {
       "id": "richie-mo-unga-s-f3kutm",
@@ -2512,7 +2512,8 @@
       ],
       "firstSeen": "2026-08-26",
       "lastSeen": "2026-09-06",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-06"
     },
     {
       "id": "siya-kolisi-s-fitness-1tx83bm",
@@ -3698,7 +3699,7 @@
     },
     {
       "id": "the-rfu-s-660m-rj30hy",
-      "subject": "The RFU's £660m Twickenham redevelopment and concert scheme",
+      "subject": "The RFU's Twickenham redevelopment and concert capacity plans",
       "teams": [
         386
       ],
@@ -3711,7 +3712,7 @@
         }
       ],
       "firstSeen": "2026-08-30",
-      "lastSeen": "2026-08-30",
+      "lastSeen": "2026-09-06",
       "uses": 0
     },
     {
@@ -4407,8 +4408,8 @@
       ],
       "firstSeen": "2026-09-03",
       "lastSeen": "2026-09-06",
-      "uses": 1,
-      "lastUsed": "2026-09-03"
+      "uses": 2,
+      "lastUsed": "2026-09-06"
     },
     {
       "id": "james-o-connor-s-xr8650",
@@ -4917,31 +4918,6 @@
       "uses": 0
     },
     {
-      "id": "the-legal-battle-regarding-bgp1is",
-      "subject": "The legal battle regarding concussion in professional rugby",
-      "teams": [
-        386,
-        388,
-        390,
-        391,
-        461,
-        465,
-        467
-      ],
-      "resolution": "until the High Court reaches a final verdict on the concussion injury cases",
-      "sources": [
-        {
-          "title": "High court allows rugby brain injury case to go on",
-          "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-06",
-      "lastSeen": "2026-09-06",
-      "uses": 2,
-      "lastUsed": "2026-09-06"
-    },
-    {
       "id": "potential-lucrative-transfers-of-1gzlk6u",
       "subject": "Potential lucrative transfers of Springbok players to English clubs",
       "teams": [
@@ -5074,7 +5050,7 @@
     },
     {
       "id": "springbok-women-s-head-1k8mcth",
-      "subject": "The search for a permanent Springbok Women head coach",
+      "subject": "Search for a permanent head coach for the Springbok Women",
       "teams": [
         467
       ],
@@ -5282,12 +5258,23 @@
     },
     {
       "id": "ardie-savea-and-quinn-147tfpy",
-      "subject": "Ardie Savea and Quinn Tupaea's injuries and availability for the fourth Test",
+      "subject": "Injuries to Cheslin Kolbe, Ardie Savea and Quinn Tupaea ahead of the fourth Test",
       "teams": [
-        465
+        465,
+        467
       ],
       "resolution": "until New Zealand confirms the availability of Ardie Savea and Quinn Tupaea for the Baltimore Test",
       "sources": [
+        {
+          "title": "Boks, All Blacks suffer big injury blows",
+          "link": "https://www.sarugbymag.co.za/boks-blacks-suffer-big-injury-blows/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Rassie Erasmus confirms Cheslin Kolbe injury and the Springboks who won't feature in the fourth All Blacks Test",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-issues-springboks-squad-update-and-confirms-cheslin-kolbe-injury",
+          "feedName": "Planet Rugby"
+        },
         {
           "title": "Ardie Savea OUT of Springboks-All Blacks Test in Baltimore as Dave Rennie offers update on captain",
           "link": "https://www.planetrugby.com/news/ardie-savea-out-of-springboks-all-blacks-test-in-baltimore-as-dave-rennie-offers-update-on-captain",
@@ -5310,6 +5297,47 @@
           "title": "Former Bristol lock Vui 'devastated' by doping ban",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq616nejy6po?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-06",
+      "lastSeen": "2026-09-06",
+      "uses": 0
+    },
+    {
+      "id": "jack-crowley-s-recovery-tr4kht",
+      "subject": "Jack Crowley's recovery and return for Ireland",
+      "teams": [
+        388
+      ],
+      "resolution": "until he makes his return to the pitch in the new year",
+      "sources": [
+        {
+          "title": "Ireland fly-half Crowley ruled out until new year",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5y4m5jk26go?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-06",
+      "lastSeen": "2026-09-06",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-s-influence-16sl7eo",
+      "subject": "Rassie Erasmus's influence on Springbok tactics and future coaching staff appointments",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Springboks announce any formal changes to their coaching setup",
+      "sources": [
+        {
+          "title": "Breytie: Rassie will get Jacques back soon",
+          "link": "https://www.sarugbymag.co.za/breytie-rassie-will-get-jacques-back-soon/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Rassie Erasmus won't throw old Springboks 'away' with Siya Kolisi's successor primed for hybrid role",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-reveals-hybrid-plans-for-springboks-rookie-with-a-bright-future",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-09-06",
