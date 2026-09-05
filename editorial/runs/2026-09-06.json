@@ -2,11 +2,11 @@
   "date": "2026-09-06",
   "counts": {
     "editions": 12,
-    "quiet": 4,
-    "storyline": 3,
+    "quiet": 5,
+    "storyline": 4,
     "dataEdition": 1,
     "failed": 0,
-    "noLead": 2
+    "noLead": 3
   },
   "failed": [],
   "teams": [
@@ -16,15 +16,15 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "scoring",
-      "heading": "Fiji ship 326 points across their last 11 international matches",
-      "kicker": "Defensive struggles",
-      "body": "Fiji have conceded 326 points across their last 11 matches, shipping an average of 29.6 points per game. Over that same 11-match span, the team scored 315 points to average 28.6 points per fixture. This run of form did include the biggest win of the window, a 63-10 home victory against Canada in September 2025 during the Pacific Nations Cup knockout stage.",
+      "heading": "Fiji concede 326 points across their last 11 international fixtures",
+      "kicker": "Performance metrics",
+      "body": "Fiji have conceded 326 points across their last 11 games. This has resulted in an average of 29.6 points conceded per match in that same window. Offensively, the team have scored 315 points in those 11 fixtures. They maintained an average of 28.6 points scored per game across that identical period. The biggest win in this 11-game window occurred when Fiji beat Canada 63-10 at home in September 2025 during the Pacific Nations Cup knockout stage.",
       "source": null,
       "lead": null,
       "candidates": [
         {
           "title": "Fiji names powerful 2026 World Cup squad packed with NRL stars",
-          "score": 7.7,
+          "score": 7.2,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -32,15 +32,15 @@
         },
         {
           "title": "5 Super League stars named in extended 40-man Fiji squad for Rugby League World Cup",
-          "score": 5.7,
+          "score": 5.3,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "Fiji formally joins landmark Pacific Rugby League Partnership",
-          "score": 1.6,
+          "title": "Fiji vs England live: Nations Championship latest rugby updates",
+          "score": 1.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -55,7 +55,7 @@
           ]
         },
         {
-          "title": "Fiji to play home matches in Nations Championship in Britain",
+          "title": "Fiji formally joins landmark Pacific Rugby League Partnership",
           "score": 1.3,
           "corroboration": 1,
           "outlets": [
@@ -66,39 +66,26 @@
     },
     {
       "team": "England",
-      "quiet": false,
-      "rung": "news",
-      "storyline": null,
+      "quiet": true,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "Maro Itoje's return to England international duty after his extended sabbatical",
+        "resolution": "until Maro Itoje features in his next international match for England",
+        "recheckHits": 0
+      },
       "dataAngle": null,
-      "heading": "Maro Itoje discusses mental recovery after missing England’s summer Test series",
-      "kicker": "Itoje's Sabbatical",
-      "body": "England captain Maro Itoje has opened up about his summer absence, admitting he was initially taken aback when Steve Borthwick suggested a break from international duty. After a heavy year personally and professionally, the 31-year-old opted out of the July matches against South Africa, Fiji, and Argentina to prioritise recovery. While he found it \"very weird\" to watch from afar, Itoje feels the period away was a \"wise and prudent decision\" to ensure he returns better for the season ahead.",
-      "source": "BBC Rugby Union",
+      "heading": "Beno Obano will pause England career following move to French side Pau",
+      "kicker": "Eligibility exit",
+      "body": "Beno Obano is set to become the latest England international to sacrifice his Test career by moving to the Top 14. The 31-year-old loose-head prop has agreed to join Pau from Bath at the end of the upcoming season. While Obano remains available for selection this year, head coach Steve Borthwick historically overlooks players moving abroad, as seen with Tom Willis. Obano won his fifth cap against South Africa in July before sustaining a hamstring injury.",
+      "source": "Planet Rugby",
       "lead": {
         "candidate": 1,
-        "why": "The England captain's candid reflections on his mandated summer break dominated coverage across both broadsheet and broadcast media."
+        "why": "Beno Obano's confirmed move to Pau triggers England's overseas eligibility restrictions and complicates Steve Borthwick's front-row depth."
       },
       "candidates": [
         {
-          "title": "Summer off England duty took me by surprise - Itoje",
-          "score": 56.1,
-          "corroboration": 2,
-          "outlets": [
-            "bbc",
-            "search"
-          ]
-        },
-        {
-          "title": "Maro Itoje ready to ‘come back better’ for England after taking mini sabbatical",
-          "score": 22.9,
-          "corroboration": 1,
-          "outlets": [
-            "guardian"
-          ]
-        },
-        {
           "title": "Obano to put England career on hold with Pau move",
-          "score": 21,
+          "score": 20.6,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -106,18 +93,34 @@
         },
         {
           "title": "Tom Curry rejects England's World Cup talk and the impact player tag: 'You're just good at rugby'",
-          "score": 14.8,
+          "score": 14.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "'I don't regret it at all' – Maro Itoje opens up on extended break as England captain hopes to 'come back better'",
-          "score": 8.9,
+          "title": "England star 'almost a new recruit' as PREM side set to welcome back 'keen as mustard' forward",
+          "score": 8.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
+          ]
+        },
+        {
+          "title": "'Chaos' & 'comedy refereering' as England beat Argentina",
+          "score": 1.4,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
+          ]
+        },
+        {
+          "title": "Pollock scores hat-trick as 11-try England thrash Fiji",
+          "score": 0.8,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
           ]
         }
       ]
@@ -127,31 +130,20 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "The ongoing multi-million-pound concussion legal battle",
-        "resolution": "until the high court case reaches a final verdict or settlement",
+        "subject": "The ongoing legal concussion class action lawsuit",
+        "resolution": "until a verdict is reached in the High Court concussion legal battle",
         "recheckHits": 2
       },
       "dataAngle": null,
-      "heading": "Thomas Ramos linked with sensational move from Toulouse to Racing 92",
-      "kicker": "Transfer Rumour",
-      "body": "France international Thomas Ramos is reportedly set to depart Toulouse following the 2027 Rugby World Cup. According to reports in L’Equipe, the full-back is being targeted by Top 14 rivals Racing 92 in a move that could see the 29-year-old transition into a fly-half role. Ramos has enjoyed a decorated tenure in the Pink City, securing four league titles and two Investec Champions Cups over the past five years while establishing himself as an ever-present for Les Rouge et Noir.",
+      "heading": "Concussion lawsuit faces potential dismissal following lawyer’s sudden legal team departure",
+      "kicker": "Legal uncertainty",
+      "body": "The high-profile concussion class action lawsuit remains in a state of flux following reports that the lead lawyer has been forced out of the proceedings. The ongoing litigation, which seeks to hold rugby authorities accountable for brain injuries, is now facing the risk of dismissal according to recent reports. Claimants are currently navigating a change in legal counsel, and the court’s decision on the viability of the case under new representation remains the pivotal hurdle for the battle to continue.",
       "source": "BBC Rugby Union",
-      "lead": {
-        "candidate": 1,
-        "why": "The report provides fresh, specific transfer news regarding a high-profile player that defines today's coverage."
-      },
+      "lead": null,
       "candidates": [
         {
-          "title": "Rugby Transfers: France Superstar Thomas Ramos Linked With Shock Toulouse Exit, Newcastle Red Bulls Continue Recruitment Drive And Brumbies Bolster Ranks",
-          "score": 1.6,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Antoine Dupont leads France to rugby gold",
-          "score": 1.5,
+          "title": "France Rugby vs. Fiji Kickoff Time, Lineups",
+          "score": 1.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -166,7 +158,7 @@
           ]
         },
         {
-          "title": "Son of ‘Irish rugby’s anti-hero’ picked by France for Six Nations decider",
+          "title": "Antoine Dupont leads France to rugby gold",
           "score": 1.4,
           "corroboration": 1,
           "outlets": [
@@ -189,18 +181,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Ryan Caldwell details his arduous journey from injury to personal peace",
-      "kicker": "Player wellbeing",
-      "body": "Former Ireland international Ryan Caldwell has shared a harrowing account of his transition from professional rugby to a life of recovery. The former second-row, who represented Ulster, Bath and Exeter, discusses his struggles with addiction, depression, and the impact of the injuries that cut his career short. Currently living in Belfast, the 41-year-old now works as a meditation and breathwork teacher, a path he details in his forthcoming book, which charts his experience of being broken and successfully rebuilt.",
+      "heading": "Former Ireland Lock Ryan Caldwell Discusses His Path to Recovery Today",
+      "kicker": "Personal Journey",
+      "body": "Former Ireland international Ryan Caldwell has opened up about his harrowing journey from a career defined by injuries and depression to his current life as a meditation teacher. The 41-year-old former Ulster, Bath, and Exeter enforcer details his struggles with addiction and incarceration in a new autobiography, reflecting on the concussion-related issues that ended his playing days. Caldwell, who now teaches breathwork, describes finding peace after years of personal turmoil, marking a significant and poignant shift from his professional rugby era.",
       "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The former Ireland international's candid story of recovery and his upcoming memoir is the most prominent topic in the rugby press today."
+        "why": "The candid and deeply personal story of former Ireland international Ryan Caldwell's life-changing recovery has received significant national press coverage."
       },
       "candidates": [
         {
           "title": "‘I had no love for myself … now I have peace’: former Ireland rugby player Ryan Caldwell’s journey back from the edge",
-          "score": 35.4,
+          "score": 35.3,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -209,7 +201,7 @@
         },
         {
           "title": "PREM boss addresses ex-Ireland star's future: 'That's not what we brought him in for'",
-          "score": 11.3,
+          "score": 11,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -217,7 +209,7 @@
         },
         {
           "title": "Former Ireland rugby player Ryan Caldwell’s fall from grace throws up a harrowing tale of injury, drugs, prison and recovery",
-          "score": 9.8,
+          "score": 9.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -225,7 +217,7 @@
         },
         {
           "title": "New Ireland rugby jersey puts the rival shirts 'Under Pressure'",
-          "score": 5.9,
+          "score": 5.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -233,7 +225,7 @@
         },
         {
           "title": "What do you think of the new Ireland rugby jerseys?",
-          "score": 4,
+          "score": 4.1,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -247,18 +239,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Gonzalo Quesada Banned Under World Rugby’s New Match Official Abuse Process",
-      "kicker": "Disciplinary Sanction",
-      "body": "Italy head coach Gonzalo Quesada has been issued a two-Test suspension, becoming the first coach sanctioned under World Rugby’s new Match Official Abuse Sanctioning Process. The ban follows comments made by the Argentine regarding referee Luc Ramos after the loss to the All Blacks. Consequently, Quesada is prohibited from all match-day proceedings—including stadium attendance—for the upcoming fixtures against Australia and the November Test against South Africa. He retains the right to appeal the governing body’s decision.",
+      "heading": "Gonzalo Quesada banned following World Rugby’s new match official abuse process",
+      "kicker": "Coaching suspension",
+      "body": "Italy head coach Gonzalo Quesada has become the first coach suspended under World Rugby's recently implemented Match Official Abuse Sanctioning Process. The governing body handed the Argentine a two-Test ban following his criticism of referee Luc Ramos after the July defeat to the All Blacks. Under the new framework, which targets comments that undermine public confidence in officials, Quesada is prohibited from all match-day proceedings, including stadium attendance, for upcoming fixtures. He retains the right to appeal the decision.",
       "source": null,
       "lead": {
         "candidate": 2,
-        "why": "It reports on a significant disciplinary development regarding head coach Gonzalo Quesada that impacts upcoming match-day operations."
+        "why": "It is the most significant disciplinary news concerning Italy's head coach and his availability for upcoming fixtures."
       },
       "candidates": [
         {
           "title": "Premier League, Italian GP, WSL and US Open tennis – follow with us",
-          "score": 25.8,
+          "score": 25.2,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -303,31 +295,20 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "The ongoing multi-million-pound concussion legal battle",
-        "resolution": "until the high court case reaches a final verdict or settlement",
+        "subject": "The ongoing legal concussion class action lawsuit",
+        "resolution": "until a verdict is reached in the High Court concussion legal battle",
         "recheckHits": 1
       },
       "dataAngle": null,
-      "heading": "Edinburgh and Glasgow bolster squads with Scottish Rugby pathway graduates",
-      "kicker": "Pathways integration",
-      "body": "As professional clubs finalise preparations for the 2026/27 season, several Scottish Rugby pathway products are set for senior opportunities. Edinburgh includes tighthead Jamie Stewart and back-rower James Dalrymple in their current programme, with a host of 2024 U20s World Rugby Trophy winners also featuring. Meanwhile, Glasgow Warriors have secured professional deals for emerging talents including centre Kerr Yule. These inclusions highlight a concerted effort to integrate homegrown prospects into the professional setup as both sides launch their campaigns.",
+      "heading": "High Court concussion class action faces uncertainty over claimant legal representation",
+      "kicker": "Legal proceedings",
+      "body": "The high-profile concussion class action lawsuit against rugby authorities faces potential dismissal following recent shifts in the claimants' legal team. The litigation, which centres on long-term brain injury claims, remains ongoing in the High Court. While the case continues to be a focal point for the sport’s governing bodies, the recent change in representation has introduced new uncertainty regarding the future of the proceedings. No further updates on the timeline for a potential verdict were available in today’s reports.",
       "source": "BBC Rugby Union",
-      "lead": {
-        "candidate": 1,
-        "why": "The focus shifts to the emerging talent as professional clubs integrate pathway graduates ahead of the new season."
-      },
+      "lead": null,
       "candidates": [
         {
           "title": "Scottish Rugby pathway players in Edinburgh and Glasgow action this weekend",
           "score": 11.7,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Scotland vs. England rugby Six Nations 2026 lineups kickoff time",
-          "score": 1.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -351,7 +332,15 @@
         },
         {
           "title": "Where to watch Scotland vs. Australia rugby live stream, start time, lineups for Wallabies international match",
-          "score": 1.4,
+          "score": 1.5,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Scotland ‘surprised’ as coach Sione Fukofuka unveiled by Australia days after leaving for personal reasons",
+          "score": 1.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -364,20 +353,31 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "Taulupe Faletau's fitness and return for Cardiff and Wales",
-        "resolution": "until he completes his return from injury and plays for his club or country",
-        "recheckHits": 4
+        "subject": "The ongoing legal concussion class action lawsuit",
+        "resolution": "until a verdict is reached in the High Court concussion legal battle",
+        "recheckHits": 1
       },
       "dataAngle": null,
-      "heading": "Taulupe Faletau remains on road to recovery following recent injury setback",
-      "kicker": "Injury Update",
-      "body": "Taulupe Faletau’s return to action remains the primary focus for Cardiff as the club navigates his latest injury recovery. The back-row forward, who sustained an injury during the defeat by the Sharks, has been working through protocols to regain full fitness. While Cardiff remains hopeful of his availability for the upcoming United Rugby Championship campaign, his return to the Wales squad remains dependent on his ability to regain consistent match form at club level.",
+      "heading": "Tom Rogers eyes international return after high-profile Ospreys summer move",
+      "kicker": "Selection Ambition",
+      "body": "Tom Rogers has set his sights on forcing his way back into the Wales fold following his off-season switch to the Ospreys. The back, who became the first player from the British Isles to score a Test hat-trick against New Zealand, has not featured for his country since that record-breaking performance. Seeking to prove his credentials as a full-back, Rogers admits he is desperate to recapture his form and earn a recall under Steve Tandy, acknowledging he must now produce consistent performances at regional level.",
       "source": "BBC Rugby Union",
-      "lead": null,
+      "lead": {
+        "candidate": 1,
+        "why": "The piece provides a specific, player-focused update on squad aspirations following a high-profile club move."
+      },
       "candidates": [
         {
           "title": "Tom Rogers: Why I left Scarlets for Ospreys and my route back into Wales team",
-          "score": 7.1,
+          "score": 6.8,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Major contender emerges for big WRU job years after almost becoming Wales coach",
+          "score": 2.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -385,7 +385,7 @@
         },
         {
           "title": "Wales rugby fixtures: Who the men’s and women’s teams are playing 2026-27",
-          "score": 1.7,
+          "score": 1.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -393,7 +393,7 @@
         },
         {
           "title": "Troubled Wales rugby team names Steve Tandy new coach",
-          "score": 1.4,
+          "score": 1.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -401,15 +401,7 @@
         },
         {
           "title": "Prince William Supports Wales at Rugby World Cup Day in France After Kate Middleton Attended Another Game",
-          "score": 1.3,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "When did Wales last win a rugby union Test? Full results for Warren Gatland's side",
-          "score": 1.3,
+          "score": 1.2,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -423,18 +415,27 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Australia recall Suaalii and Donaldson for second Test against Argentina",
-      "kicker": "Selection Change",
-      "body": "Australia have made nine alterations to their starting XV for the Mendoza rematch, with coach Les Kiss recalling Joseph-Aukuso Suaalii and Ben Donaldson to the run-on side. Donaldson earns his first start at flyhalf since 2024, while Harry Wilson returns to captain the tourists from number eight. Los Pumas enter the fixture following a narrow 27-21 defeat in San Salvador de Jujuy, looking to level the series in what would prevent Australia from securing their first-ever clean sweep on Argentine soil.",
-      "source": "Planet Rugby",
+      "heading": "Argentina responds in Mendoza as Pablo Matera crosses for first try",
+      "kicker": "Match Report",
+      "body": "Los Pumas have hit back in the second Test in Mendoza, with Pablo Matera crossing the line to register Argentina’s first points. Following a formidable scrum five-out, the home side hammered the line through a series of short, sharp carries, allowing Matera to burst through under the poles. Despite a challenging start and a yellow card for Molina in the red zone, Argentina’s pack has displayed renewed intent in the opening half to contest the Wallabies' defensive set.",
+      "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The Wallabies have announced nine changes for the second Test against Argentina, signalling a significant tactical shift."
+        "why": "The match report from the second Test in Mendoza provides the most immediate and critical update for Argentina fans."
       },
       "candidates": [
         {
+          "title": "Argentina v Australia: men’s rugby union second Test – live",
+          "score": 81.3,
+          "corroboration": 2,
+          "outlets": [
+            "guardian",
+            "search"
+          ]
+        },
+        {
           "title": "Wallabies team: Les Kiss makes several changes for Argentina rematch as Joseph-Aukuso Suaalii returns and full-back hits milestone",
-          "score": 29.1,
+          "score": 28.7,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -442,15 +443,7 @@
         },
         {
           "title": "How to watch Argentina vs Australia 2nd test online from anywhere: free rugby live streams and team news",
-          "score": 22.1,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Argentina v Wallabies Second Test Preview",
-          "score": 17.8,
+          "score": 21.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -458,7 +451,7 @@
         },
         {
           "title": "Wallabies’ search for No 10 continues as Les Kiss tinkers again for second Argentina Test | Jack Snape",
-          "score": 11.9,
+          "score": 11.7,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -466,7 +459,7 @@
         },
         {
           "title": "Rugby Tours 2026 – Argentina vs Australia Game 2 – ARN Guide",
-          "score": 9.2,
+          "score": 8.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -480,26 +473,26 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Les Kiss shuffles Wallabies lineup as Tom Wright hits 50th cap",
-      "kicker": "Selection Change",
-      "body": "Australia have made 9 changes to their starting side for the second Test against Argentina in Mendoza. Captain Harry Wilson returns to lead the team from number eight, while flyhalf Ben Donaldson makes his first start in two years. The rotation also sees Joseph-Aukuso Suaalii and Len Ikitau reunite in the midfield. Head coach Les Kiss explained, “We’ve brought in some fresh bodies alongside some existing combinations as we continue to look to build Test experience across the group.”",
+      "heading": "Les Kiss shuffles Wallabies lineup as Tom Wright earns 50th cap",
+      "kicker": "Team Rotation",
+      "body": "Les Kiss has made nine alterations to his starting XV for the rematch against Argentina, prioritising fresh bodies following a physical opening Test. The headline selection sees full-back Tom Wright reach his 50th appearance for Australia, while Joseph-Aukuso Suaalii and Len Ikitau reunite in the midfield. Ben Donaldson returns to the flyhalf role for the first time since 2024. “We’ve brought in some fresh bodies alongside some existing combinations as we continue to look to build Test experience,” said Kiss.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 1,
-        "why": "The team announcement featuring nine changes and Tom Wright's 50th cap is the primary story driving today's coverage."
+        "why": "It is the primary team news story detailing Les Kiss's nine-man squad rotation and Tom Wright's milestone."
       },
       "candidates": [
         {
           "title": "Wallabies team: Les Kiss makes several changes for Argentina rematch as Joseph-Aukuso Suaalii returns and full-back hits milestone",
-          "score": 36.4,
+          "score": 35.9,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "LIVE: Wallabies out to continue winning streak against Argentina",
-          "score": 21.7,
+          "title": "LIVE: Wallabies strike first in abrasive early exchanges against Argentina",
+          "score": 22.1,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -507,7 +500,7 @@
         },
         {
           "title": "Wallabies’ search for No 10 continues as Les Kiss tinkers again for second Argentina Test | Jack Snape",
-          "score": 21.6,
+          "score": 21.2,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -515,7 +508,7 @@
         },
         {
           "title": "Wallabies skipper's delicate balance in backrow hotseat",
-          "score": 16.6,
+          "score": 15.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -523,7 +516,7 @@
         },
         {
           "title": "‘We got humbled’: Wallabies searching for Argentina first as refreshed Wilson backs rotation plans",
-          "score": 16.1,
+          "score": 15.2,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -537,18 +530,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Japan Brave Blossoms host Canada to mark JRFU’s 100th anniversary match",
+      "heading": "Japan Brave Blossoms faced Canada in the JRFU 100th anniversary match",
       "kicker": "Centenary Test",
-      "body": "Japan host Canada at Denka Big Swan Stadium in Niigata City this weekend, celebrating the JRFU’s centenary. Eddie Jones has made five changes to the starting XV that faced Australia, handing a debut to Inoke Burua. Japan will look to break a four-match losing streak against a Canada side currently ranked 24th in the world. Japan have historically dominated this fixture, having not lost to the Canadians in their past 10 meetings, with their last encounter resulting in a 57-15 victory.",
+      "body": "Japan hosted Canada at Denka Big Swan Stadium in Niigata City on Saturday. The fixture served as a celebration of the JRFU’s 100th anniversary. Head coach Eddie Jones selected a side featuring five changes from the previous Test against Australia, with Jack Cornelsen and Harry Hockings starting in the locks. This marked the first international test match held in Niigata in 18 years, providing a milestone event for the national team during the Lipovitan D Challenge Cup.",
       "source": "Rugby Asia 247",
       "lead": {
         "candidate": 1,
-        "why": "The Brave Blossoms are in action this weekend, marking a significant centenary anniversary match against Canada."
+        "why": "The national men's team match is the primary event involving the senior side reported in today's pack."
       },
       "candidates": [
         {
           "title": "Brave Blossoms vs Canada – Lipovitan D Challenge Cup 2026 Match Preview",
-          "score": 34.4,
+          "score": 33.9,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -556,7 +549,7 @@
         },
         {
           "title": "Japan Sakura Fifteen vs Fijiana 2026 Preview",
-          "score": 29.9,
+          "score": 29.7,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -564,7 +557,7 @@
         },
         {
           "title": "Japan Women and Hong Kong China Men Retain Top Spot in ARESS 2026 Leg 1",
-          "score": 4.9,
+          "score": 4.8,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -594,18 +587,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Ardie Savea ruled out of fourth Test following shoulder injury",
+      "heading": "Ardie Savea ruled out of fourth Test with shoulder injury",
       "kicker": "Injury blow",
-      "body": "The All Blacks must look to salvage a 2-2 series draw without captain Ardie Savea, who has been ruled out of next Saturday’s final Test in Baltimore. Savea sustained a shoulder injury in the 30th minute of Saturday’s 29-24 defeat in Johannesburg. Addressing the setback post-match, head coach Dave Rennie confirmed the skipper will not travel with the squad, though he praised the contribution of replacement Wallace Sititi, insisting the team will not use the captain's absence as an excuse.",
+      "body": "All Blacks captain Ardie Savea will miss the final Test of the Rugby’s Greatest Rivalry series in Baltimore after sustaining a shoulder injury in Saturday’s defeat at FNB Stadium. Head coach Dave Rennie confirmed the blow, stating, “He certainly won’t be travelling to the States.” While Rennie expressed frustration over the 29-24 result, he maintained that the gap between the two sides remains small, adding, “I’m really proud of the effort, our boys worked bloody hard tonight.”",
       "source": "SA Rugby Magazine",
       "lead": {
         "candidate": 2,
-        "why": "The report confirms the loss of captain Ardie Savea for the remainder of the series following his shoulder injury on Saturday."
+        "why": "The captain's injury is the most significant news impacting the team for the next fixture."
       },
       "candidates": [
         {
           "title": "All Blacks 'don’t play hide and seek'",
-          "score": 65.7,
+          "score": 65.1,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
@@ -614,7 +607,15 @@
         },
         {
           "title": "Boks, All Blacks suffer big injury blows",
-          "score": 53.5,
+          "score": 52.2,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ]
+        },
+        {
+          "title": "Rennie: The gap between us not big at all",
+          "score": 40.8,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -622,7 +623,7 @@
         },
         {
           "title": "All Blacks great backs huge Dave Rennie call as world's best player set to be 'confronted' by Kiwi powerhouse",
-          "score": 39.8,
+          "score": 39.1,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -630,15 +631,7 @@
         },
         {
           "title": "Plum: All Blacks could be 20 points up by half-time",
-          "score": 36.5,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
-          ]
-        },
-        {
-          "title": "Boks edge All Blacks in Calabash thriller",
-          "score": 32.7,
+          "score": 36,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -652,18 +645,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "South Africa overcome All Blacks at FNB Stadium to lead 2-1",
-      "kicker": "Series Lead",
-      "body": "The Springboks secured a 29-24 victory over New Zealand on Saturday, moving into a 2-1 series lead with one Test remaining. After trailing in the second half, the world champions relied on their set-piece dominance and a decisive late surge to overcome the visitors in Soweto. However, the win came at a cost, with head coach Rassie Erasmus confirming that Cheslin Kolbe sustained a broken jaw during the match, ruling him out of the final fixture in Baltimore.",
-      "source": "Planet Rugby",
+      "heading": "Rassie Erasmus confirms Cheslin Kolbe ruled out following broken jaw injury",
+      "kicker": "Injury Blow",
+      "body": "The Springboks will be without Cheslin Kolbe for the final Test in Baltimore after head coach Rassie Erasmus confirmed the fullback suffered a broken jaw during Saturday’s 29-24 victory in Soweto. Kolbe was forced off in the ninth minute of the series-defining match. Erasmus also noted that Ben-Jason Dixon remains sidelined with concussion symptoms. Despite the injury setbacks, the victory leaves the world champions with a 2-1 series lead as they prepare for the finale against the All Blacks.",
+      "source": "SA Rugby Magazine",
       "lead": {
-        "candidate": 1,
-        "why": "The Springboks' series-defining victory at FNB Stadium is the most significant development in the Rugby's Greatest Rivalry tour."
+        "candidate": 4,
+        "why": "The injury status of a key player like Cheslin Kolbe is the most significant tactical takeaway following yesterday's result."
       },
       "candidates": [
         {
           "title": "Springboks v All Blacks, LIVE BLOG: Coverage of the Rugby's Greatest Rivalry Test in Soweto",
-          "score": 114.3,
+          "score": 113.1,
           "corroboration": 3,
           "outlets": [
             "planetrugby",
@@ -673,7 +666,7 @@
         },
         {
           "title": "South Africa v New Zealand: rugby union third Test – live",
-          "score": 91.9,
+          "score": 90.6,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -681,8 +674,16 @@
           ]
         },
         {
+          "title": "Springboks v All Blacks: Five takeaways as bomb squad 'grunt' proves decisive in 'feast of rich entertainment'",
+          "score": 53,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
           "title": "Boks, All Blacks suffer big injury blows",
-          "score": 53.5,
+          "score": 52.2,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -690,20 +691,12 @@
         },
         {
           "title": "South Africa finish strongly to take 2-1 series lead against All Blacks",
-          "score": 52.3,
+          "score": 51.7,
           "corroboration": 3,
           "outlets": [
             "bbc",
             "guardian",
             "search"
-          ]
-        },
-        {
-          "title": "Kolisi urges Boks to channel spirit of Soweto to beat All Blacks",
-          "score": 40.6,
-          "corroboration": 1,
-          "outlets": [
-            "bbc"
           ]
         }
       ]
