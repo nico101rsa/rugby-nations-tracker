@@ -1,14 +1,19 @@
 {
   "date": "2026-09-08",
   "counts": {
-    "editions": 12,
-    "quiet": 3,
+    "editions": 11,
+    "quiet": 2,
     "storyline": 2,
-    "dataEdition": 1,
-    "failed": 0,
-    "noLead": 2
+    "dataEdition": 0,
+    "failed": 1,
+    "noLead": 0
   },
-  "failed": [],
+  "failed": [
+    {
+      "team": "Japan",
+      "reason": "fact-check failed after 3 revisions: The draft contradicts the trusted app data which states the next fixture is Wales v Japan, Round 4, and ignores the pack report that the next match is against the United States on Sept. 12."
+    }
+  ],
   "teams": [
     {
       "team": "Fiji",
@@ -16,18 +21,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Fijian rugby player Saimoni Vunilagi dies aged 26 after suspected heatstroke",
-      "kicker": "Tragic loss",
-      "body": "The Fijian rugby community is mourning the tragic death of Saimoni Vunilagi, who has died aged 26 after suffering suspected heatstroke in Japan. The second-division club Kyushu KV confirmed the player was hospitalised in Fukuoka City after developing severe symptoms following team practice. Despite the medical team's best efforts, Vunilagi passed away, leaving his club 'devastated' during a period of extreme summer temperatures. Kyushu KV expressed deep condolences to his family and loved ones.",
+      "heading": "Fijian rugby player Saimoni Vunilagi dies after suspected training heatstroke",
+      "kicker": "Tragedy",
+      "body": "The Fijian rugby community is mourning the tragic passing of 26-year-old player Saimoni Vunilagi, who died in a Fukuoka City hospital following a training session. His Japanese second-division club, Kyushu KV, confirmed that Vunilagi developed symptoms of severe heatstroke after training on Monday 3 August and succumbed on Friday. Kyushu KV released a statement saying, 'The players, staff, and all team associates are devastated by this sudden news.' No further details have been disclosed amid soaring summer temperatures in Japan.",
       "source": null,
       "lead": {
-        "candidate": 4,
-        "why": "The tragic passing of 26-year-old Fijian player Saimoni Vunilagi following a training session in Japan is a deeply felt loss for the rugby community."
+        "candidate": 5,
+        "why": "The sudden and tragic death of 26-year-old Fijian player Saimoni Vunilagi has devastated his club and shocked the wider rugby community."
       },
       "candidates": [
         {
           "title": "Fiji spearheads push to 'make rugby league great again' in the Pacific",
-          "score": 25.8,
+          "score": 24.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -35,15 +40,23 @@
         },
         {
           "title": "Fiji names powerful 2026 World Cup squad packed with NRL stars",
-          "score": 3.2,
+          "score": 3,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "5 Super League stars named in extended 40-man Fiji squad for Rugby League World Cup",
-          "score": 2.4,
+          "title": "Fiji vs England live: Nations Championship latest rugby updates",
+          "score": 1.8,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "How Fiji’s historic Rugby World Cup victory left Australia facing the prospect of early elimination",
+          "score": 1.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -52,14 +65,6 @@
         {
           "title": "Saimoni Vunilagi dead at 26: Fiji rugby ace dies of suspected heatstroke after training session with club ‘devastated’",
           "score": 1.5,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Fiji formally joins landmark Pacific Rugby League Partnership",
-          "score": 1.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -73,18 +78,27 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Courtney Lawes urges England to scrap overseas rule during international comeback bid",
-      "kicker": "Selection policy",
-      "body": "Courtney Lawes has targeted an England return with Sale Sharks but is already demanding the RFU scrap its overseas selection ban. The 37-year-old forward, who has 105 caps, was left out of Steve Borthwick's 36-man training squad alongside Joe Marchant to prove his form in the Premiership first. Lawes insisted England must select top talent like Jack Willis, arguing: \"I just reckon you make your best players available and by any means necessary.\"",
+      "heading": "Maro Itoje returns to England training squad ahead of Nations Championship",
+      "kicker": "LEADERSHIP RETURN",
+      "body": "Maro Itoje has rejoined England for a three-day alignment camp at Pennyhill Park after missing July’s fixtures to recover from a taxing season. The 102-cap Saracens lock is expected to reclaim the captaincy from Jamie George, who remains in the 36-man group despite a groin injury. While Steve Borthwick has integrated uncapped talent like Charlie Bracken—a late replacement for the ill Archie McParland—he has omitted Courtney Lawes and Joe Marchant, requiring the pair to prove their form in the Premiership first.",
       "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 2,
-        "why": "Courtney Lawes has reignited the debate over England's overseas selection policy while launching his own international comeback bid."
+        "candidate": 1,
+        "why": "Itoje is the team's most high-profile player and his return to the squad and leadership role is the primary focus of national coverage."
       },
       "candidates": [
         {
+          "title": "Itoje returns to England squad for training camp",
+          "score": 78,
+          "corroboration": 2,
+          "outlets": [
+            "bbc",
+            "search"
+          ]
+        },
+        {
           "title": "England forced into late change as uncapped back drafted into extended 36-man squad",
-          "score": 70.8,
+          "score": 69.2,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
@@ -93,7 +107,7 @@
         },
         {
           "title": "Allow overseas stars to play for England - Lawes",
-          "score": 51.2,
+          "score": 50.2,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -101,28 +115,19 @@
           ]
         },
         {
-          "title": "Sale’s Courtney Lawes ‘not worried about legacy’ in drive to make England return",
-          "score": 50.5,
-          "corroboration": 2,
-          "outlets": [
-            "guardian",
-            "search"
-          ]
-        },
-        {
-          "title": "Itoje returns to England squad for training camp",
-          "score": 38.9,
-          "corroboration": 1,
-          "outlets": [
-            "bbc"
-          ]
-        },
-        {
           "title": "England squad: Five takeaways as Steve Borthwick's World Cup 'bigger plan' emerges while returning Maro Itoje rejoins 'entirely different' side",
-          "score": 33,
+          "score": 31.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
+          ]
+        },
+        {
+          "title": "England v Australia significant opportunity for six-caps Burns",
+          "score": 30.6,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
           ]
         }
       ]
@@ -133,25 +138,25 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Vibrant Top 14 depth primes robust France to challenge dominant Springboks",
-      "kicker": "Domestic power",
-      "body": "As South Africa and New Zealand clash on the global stage, analysis highlights France as the northern hemisphere's sole force equipped to match the Springboks' long-term supremacy. Unlike England's heavily managed structures, the French game is propelled by the sheer, unmanufactured passion of the Top 14. A dramatic opening weekend saw Bayonne edge Toulon 27-26 and La Rochelle snatch a thrilling 30-27 victory over champions Toulouse. This ferocious domestic environment ensures Fabien Galthié's squad retains a self-sustaining depth that rivals the very best in the world.",
+      "heading": "Antoine Hastoy secures 30-27 La Rochelle win over champions Toulouse after hooter",
+      "kicker": "TOP 14 RETURN",
+      "body": "Les Bleus fly-half Antoine Hastoy underscored France’s domestic depth by kicking a last-minute penalty to earn La Rochelle a 30-27 victory over Toulouse. The Sunday night clash headlined a high-scoring opening weekend for the Top 14, which also saw Bordeaux rout Racing 92 64-5. While the Nations Championship table shows France in third place following their win over Japan, pundits argue the sheer intensity of the French league—highlighted by Charles Ollivon’s return for Toulon—keeps the national side uniquely prepared to rival the world-leading Springboks.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 1,
-        "why": "The analysis highlights France's vibrant domestic league as the foundation allowing them to rival South Africa's global dominance."
+        "why": "The restart of the Top 14 season and La Rochelle's victory over the champions is the dominant current story affecting French international stars."
       },
       "candidates": [
         {
           "title": "Why All Blacks and France are built to stay with the Springboks, whilst England trail behind",
-          "score": 27.5,
+          "score": 26,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "France Rugby vs. Fiji Kickoff Time, Lineups",
+          "title": "France vs. Ireland rugby score, live updates, Six Nations 2026",
           "score": 1.7,
           "corroboration": 1,
           "outlets": [
@@ -159,16 +164,16 @@
           ]
         },
         {
-          "title": "France vs. Ireland rugby score, live updates, Six Nations 2026",
-          "score": 1.5,
+          "title": "All Blacks edge depleted France in breathless Nations Championship opener",
+          "score": 1.6,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "Son of ‘Irish rugby’s anti-hero’ picked by France for Six Nations decider",
-          "score": 1.3,
+          "title": "Six Nations: France, England end tournament with a bang, but questions remain",
+          "score": 1.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -190,18 +195,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Former Ireland lock Ryan Caldwell reveals his battle with addiction in memoir",
-      "kicker": "Life after rugby",
-      "body": "Former Ireland lock Ryan Caldwell has opened up about his harrowing post-career journey in his upcoming autobiography, White Lines: a Rugby Life Broken and Rebuilt. The former Ulster, Bath and Exeter second-row detailed how a final severe concussion ended his playing career and triggered a deep spiral of suicidal depression, drug addiction and imprisonment. Now working as a meditation and breathwork teacher in Belfast, the retired forward credits his recovery to a therapeutic journey into the Amazon jungle.",
-      "source": null,
+      "heading": "Van der Flier rejects claims Ireland are treading water after defeat",
+      "kicker": "Form scrutiny",
+      "body": "Josh van der Flier has dismissed suggestions that Andy Farrell’s squad are \"treading water\" following their 21-40 loss to New Zealand in Round 3. Speaking at a jersey launch, the back-rower claimed he had not seen much of the negative talk surrounding Ireland’s current form or their world ranking. Despite a sobering performance in Auckland, Van der Flier described watching recent southern hemisphere Tests as a \"neutral\" experience, prioritising recovery before the November meeting with Argentina.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 2,
-        "why": "Former Ireland lock Ryan Caldwell has detailed his harrowing post-career struggles with addiction and depression ahead of his autobiography's release."
+        "candidate": 1,
+        "why": "It addresses the player's direct response to growing media criticism regarding Ireland's form and world ranking following the loss to New Zealand."
       },
       "candidates": [
         {
           "title": "The dismissive Ireland talk that Josh van der Flier ‘hasn’t seen much of’ and his ‘neutral’ Greatest Rivalry verdict",
-          "score": 37.4,
+          "score": 35.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -209,7 +214,7 @@
         },
         {
           "title": "‘I had no love for myself … now I have peace’: former Ireland rugby player Ryan Caldwell’s journey back from the edge",
-          "score": 33.6,
+          "score": 33.4,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -217,16 +222,8 @@
           ]
         },
         {
-          "title": "Former Ireland rugby player Ryan Caldwell’s fall from grace throws up a harrowing tale of injury, drugs, prison and recovery",
-          "score": 4.2,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "New Ireland rugby jersey puts the rival shirts 'Under Pressure'",
-          "score": 2.4,
+          "title": "Ex-Ireland rugby ace Brian Smith, 59, remembered as ‘Great bloke, father and coach’ after tragic death",
+          "score": 1.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -239,6 +236,14 @@
           "outlets": [
             "search"
           ]
+        },
+        {
+          "title": "Ireland vs. Italy rugby live updates & scores | Six Nations 2026 fixtures",
+          "score": 1.7,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
         }
       ]
     },
@@ -247,20 +252,31 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "Andrea Zambonin’s recovery from shoulder surgery",
-        "resolution": "until Andrea Zambonin returns to full fitness for Exeter Chiefs",
-        "recheckHits": 3
+        "subject": "The trial of the smaller ball in women's international rugby",
+        "resolution": "until the September and October WXV Global Series conclude and a decision is made on its permanent use",
+        "recheckHits": 4
       },
       "dataAngle": null,
-      "heading": "Italy lock Andrea Zambonin misses Exeter season start following shoulder surgery",
-      "kicker": "Injury blow",
-      "body": "Today's press offers no fresh updates on Andrea Zambonin's recovery following his recent shoulder surgery. The lock is set to miss the start of Exeter Chiefs' season, a setback first reported on Sunday. Italy face a difficult test against South Africa next, and coaching staff will be anxious for news on the forward's rehabilitation timeline. For now, his return date remains unconfirmed, leaving the national side's second-row depth uncertain.",
+      "heading": "Women’s rugby players criticise smaller ball trial ahead of WXV series",
+      "kicker": "EQUIPMENT TRIAL",
+      "body": "The trial of a smaller ball in women’s international rugby has encountered significant resistance from players as the WXV Global Series approaches. Athletes have criticised the change, with some describing the equipment pilot as the \"worst decision ever\" for the professional game. Concerns persist that the smaller ball makes technical execution more difficult for specialists. The trial will continue through the October WXV fixtures before World Rugby determines whether to adopt the smaller ball size permanently for all women's Test matches.",
       "source": "BBC Rugby Union",
-      "lead": null,
+      "lead": {
+        "candidate": 1,
+        "why": "No fresh men's news in today's pack, so the edition returns to the ongoing equipment trial in the women's international game."
+      },
       "candidates": [
         {
-          "title": "Italy Women - Italy Women News, Scores, Stats, Rumors & More - ESPN",
-          "score": 1.6,
+          "title": "Italy vs. Australia: How to watch, kick off time, latest news",
+          "score": 1.7,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "World Rugby ban Italy coach Gonzalo Quesada for referee comments",
+          "score": 1.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -268,7 +284,7 @@
         },
         {
           "title": "World Rugby stamp down on ref-bashing as Italy boss slapped first ban after Shape of the Game agreement",
-          "score": 1.4,
+          "score": 1.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -295,18 +311,25 @@
     {
       "team": "Scotland",
       "quiet": true,
-      "rung": "data",
-      "storyline": null,
-      "dataAngle": "lastMeeting",
-      "heading": "Scotland chase New Zealand response after suffering 25-17 home defeat in 2025",
-      "kicker": "Fixture history",
-      "body": "Scotland sit fifth in the tournament standings after three matches. Gregor Townsend's side have won two matches in the current campaign, alongside one defeat. Across those three fixtures, they have accumulated 108 points. The team have conceded 97 points in that same period. They maintain a tournament point difference of plus-11. Scotland enter the break following a 33-17 victory over Fiji in Round 3. However, they must now prepare for New Zealand, who won the last meeting between the sides 25-17 in November 2025.",
-      "source": null,
-      "lead": null,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "The trial of the smaller ball in women's international rugby",
+        "resolution": "until the September and October WXV Global Series conclude and a decision is made on its permanent use",
+        "recheckHits": 5
+      },
+      "dataAngle": null,
+      "heading": "Scotland Women must adapt to technical changes following ball trial expansion",
+      "kicker": "Ball trial",
+      "body": "World Rugby’s decision to expand the trial of a smaller ball into the WXV Global Series has sparked significant backlash across the game. While intended to improve handling, England head coach John Mitchell weighed in on the controversial initiative, while some players claimed the change makes it \"harder to do my job\" on the field. For Scotland, the shift introduces a major technical adjustment ahead of the September tournament, forcing players to recalibrate their skills during a critical international window.",
+      "source": "BBC Rugby Union",
+      "lead": {
+        "candidate": 6,
+        "why": "The edition returns to the ongoing ball trial storyline as directed, following the assessment that no other Scottish news today cleared the editorial bar."
+      },
       "candidates": [
         {
           "title": "Scotland next-gen shine",
-          "score": 21.8,
+          "score": 20.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -314,7 +337,7 @@
         },
         {
           "title": "Scotland discuss World Cup friendly double-header with potential last-16 opponents",
-          "score": 20.9,
+          "score": 19.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -322,7 +345,15 @@
         },
         {
           "title": "Scottish Rugby pathway players in Edinburgh and Glasgow action this weekend",
-          "score": 4,
+          "score": 3.7,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Scotland vs. England rugby Six Nations 2026 lineups kickoff time",
+          "score": 1.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -330,15 +361,7 @@
         },
         {
           "title": "Scotland rugby stars Darcy Graham and Finn Russell involved in nasty clash of heads during 6 Nations",
-          "score": 1.5,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Where to watch Scotland vs. Australia rugby live stream, start time, lineups for Wallabies international match",
-          "score": 1.4,
+          "score": 1.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -352,26 +375,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Wales lock Ben Carter recovers from ankle injury before domestic opener",
-      "kicker": "Injury boost",
-      "body": "Wales lock Ben Carter has been cleared to return for the Dragons after recovering from the ankle injury he sustained in international training. The 25-year-old was forced out of July's Nations Championship Test against South Africa but has avoided surgery. Having started Wales' six previous games before his setback, his recovery provides a timely boost. Dragons defence coach Dale MacLeod confirmed: \"He is fit and ready to go for collisions and game time.\"",
+      "heading": "Ben Carter recovers from ankle injury to boost Wales’ pack options.",
+      "kicker": "CARTER FITNESS",
+      "body": "Wales lock Ben Carter has been cleared to return for the Dragons’ domestic opener after recovering from an ankle injury. The 25-year-old sustained the blow during training prior to July’s 43-0 loss against South Africa, forcing him to miss the final Nations Championship round on crutches. Dragons defence coach Dale MacLeod confirmed the co-captain is in the \"best nick\" after avoiding surgery. Carter’s availability provides a significant physical boost for head coach Steve Tandy ahead of November’s Nations Championship fixtures.",
       "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 3,
-        "why": "Wales lock Ben Carter has been cleared of his ankle injury to return to action with the Dragons."
+        "candidate": 2,
+        "why": "Ben Carter's return from a Nations Championship injury provides a vital physical boost for the Wales pack ahead of the autumn."
       },
       "candidates": [
         {
-          "title": "Wales drop to lowest-ever position in the World Rugby rankings",
-          "score": 25,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
           "title": "New boss, team axed and Tandy's moment of truth - the seismic rugby headlines this season",
-          "score": 24.4,
+          "score": 23.2,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -379,23 +394,31 @@
         },
         {
           "title": "Wales lock Carter cleared for Dragons after injury",
-          "score": 23.6,
+          "score": 22.4,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ]
         },
         {
-          "title": "Former Wales rugby coach now unrecognisable after incredible body transformation",
-          "score": 12.1,
+          "title": "Welsh rugby could still end up with two, three or four clubs and a completely new team",
+          "score": 10.7,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "Welsh rugby could still end up with two, three or four clubs and a completely new team",
-          "score": 11,
+          "title": "'In my blood': the Wales stars giving back to clubs",
+          "score": 8.6,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Wales rugby fixtures: Who the men’s and women’s teams are playing 2026-27",
+          "score": 1.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -409,18 +432,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Argentina fight back to secure dramatic 28-28 draw against Australia in Mendoza",
-      "kicker": "Dramatic draw",
-      "body": "Argentina drew 28-28 with Australia in Mendoza in Saturday's second Test. Los Pumas fell 14-0 behind after Franco Molina's yellow card, but rallied with first-half tries from Pablo Matera and Ignacio Mendy. Ignacio Ruiz and Matera crossed in the second half to lead 28-21, but a Wallabies penalty try levelled the match. Despite two late yellow cards, including one for Lucio Cinti, which left Argentina defending with 13 men, the hosts held on to secure a share of the spoils.",
+      "heading": "Argentina and Australia battle to draw in tense Mendoza Test match",
+      "kicker": "Series deadlock",
+      "body": "Los Pumas secured a 28-28 stalemate against Australia in Mendoza, as the series concluded with the visitors claiming a historic victory. Trailing 14-0 early, Argentina clawed back through Pablo Matera’s brace and tries from Ignacio Mendy and Ignacio Ruiz. Despite playing the final stages with 13 men due to two yellow cards, the hosts denied Australia a series sweep. Wallabies captain Harry Wilson admitted the squad was hurting, as a late penalty try ultimately settled the hard-fought, error-riddled affair.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 1,
-        "why": "Argentina recovered from a 14-0 deficit and survived two late yellow cards to secure a dramatic 28-28 draw against Australia in Mendoza."
+        "why": "The draw in Mendoza marked a defining, albeit tense, conclusion to the two-Test series against Australia."
       },
       "candidates": [
         {
           "title": "Argentina v Australia: Five takeaways as Les Kiss 'identity' continues to emerge in Test defined by 'small moments'",
-          "score": 33.8,
+          "score": 33.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -428,7 +451,7 @@
         },
         {
           "title": "Wallabies’ key weakness lets Argentina off the hook, but Les Kiss won’t ‘catastrophise it’ | Jack Snape",
-          "score": 22.4,
+          "score": 21.8,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -436,7 +459,7 @@
         },
         {
           "title": "Argentina v Australia: men’s rugby union second Test – live",
-          "score": 20.5,
+          "score": 20,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -444,18 +467,18 @@
         },
         {
           "title": "Plucky Pumas set up title clash with champs",
-          "score": 19.8,
+          "score": 18.9,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
           ]
         },
         {
-          "title": "Trial opens in Paris over murder of Argentina rugby star Federico Aramburu",
-          "score": 17.5,
+          "title": "Wallabies fight out draw with Argentina to clinch series as Les Kiss remains unbeaten",
+          "score": 16.6,
           "corroboration": 1,
           "outlets": [
-            "search"
+            "guardian"
           ]
         }
       ]
@@ -466,18 +489,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Playmaker Carter Gordon fractures leg to hand Australia major injury blow",
+      "heading": "Carter Gordon sustains leg fracture, ruling playmaker out for two months",
       "kicker": "Injury blow",
-      "body": "The Wallabies are bracing for a two-month spell without first-choice fly-half Carter Gordon after scans confirmed the 25-year-old playmaker suffered a leg fracture during the 28-28 draw against Argentina in Mendoza. The injury rules Gordon out of this month's Test against South Africa and the upcoming Bledisloe Cup series. However, coach Les Kiss hopes the luckless playmaker can recover in time for November's clash with England at Twickenham. Ben Donaldson and Tom Lynagh are now poised to compete for the vacant No. 10 jersey.",
+      "body": "The Wallabies are expected to be without first-choice flyhalf Carter Gordon for approximately two months after scans confirmed a leg fracture sustained during Saturday's 28-28 draw with Argentina. The 25-year-old playmaker, who suffered the injury after attacking the line in Mendoza, will miss the upcoming Perth Test against the Springboks as well as the Bledisloe Cup series. Ben Donaldson and the returning Tom Lynagh are set to compete for the vacant No 10 jersey in the coming weeks.",
       "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 2,
-        "why": "The leg fracture suffered by first-choice fly-half Carter Gordon is a major blow that disrupts Australia's playmaking plans for key upcoming Tests."
+        "why": "The injury to the first-choice flyhalf is the most significant news regarding player availability for the upcoming Test."
       },
       "candidates": [
         {
           "title": "Wallabies suffer blow for Bok clash",
-          "score": 47.5,
+          "score": 46.1,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -485,7 +508,7 @@
         },
         {
           "title": "Wallabies’ Carter Gordon set for stint on sidelines after breaking leg in latest injury blow",
-          "score": 45.4,
+          "score": 44.1,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -493,7 +516,7 @@
         },
         {
           "title": "Wallabies bank on Bok fatigue",
-          "score": 25.9,
+          "score": 24.5,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -501,7 +524,7 @@
         },
         {
           "title": "Wallabies’ key weakness lets Argentina off the hook, but Les Kiss won’t ‘catastrophise it’ | Jack Snape",
-          "score": 22.4,
+          "score": 21.8,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -509,71 +532,10 @@
         },
         {
           "title": "Wallabies: Les Kiss gives update on Carter Gordon ahead of Springboks Test",
-          "score": 19.9,
+          "score": 19.2,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
-          ]
-        }
-      ]
-    },
-    {
-      "team": "Japan",
-      "quiet": true,
-      "rung": "storyline",
-      "storyline": {
-        "subject": "The Japan Rugby League One (JRLO) player eligibility and category reforms",
-        "resolution": "until the 2026-2027 season rules are officially finalized and accepted by the clubs",
-        "recheckHits": 3
-      },
-      "dataAngle": null,
-      "heading": "Japan Rugby League One backtracks on proposed limits for naturalised players",
-      "kicker": "Eligibility rules",
-      "body": "There has been no further update in today's Japanese press regarding the proposed Japan Rugby League One player eligibility reforms. The situation remains unresolved since late last month, when officials rolled back proposed restrictions on naturalised and foreign-born players on 28 August. While the U-turn followed backlash from players and clubs, the official regulations for the 2026-2027 season have yet to be finalised and formally accepted, keeping the league's long-term category structures in limbo.",
-      "source": "Rugby Asia 247",
-      "lead": {
-        "candidate": 1,
-        "why": "The league eligibility and player category reforms remain open and unresolved without any new updates in today's press."
-      },
-      "candidates": [
-        {
-          "title": "The Australians Are Coming – Several Aussie Teams have Announced Japan Tours Late in 2026",
-          "score": 14.7,
-          "corroboration": 1,
-          "outlets": [
-            "rugbyasia247"
-          ]
-        },
-        {
-          "title": "Japan Sakura Fifteen vs Fijiana 2026 Preview",
-          "score": 13.8,
-          "corroboration": 1,
-          "outlets": [
-            "rugbyasia247"
-          ]
-        },
-        {
-          "title": "Brave Blossoms vs Canada – Lipovitan D Challenge Cup 2026 Match Preview",
-          "score": 8.7,
-          "corroboration": 1,
-          "outlets": [
-            "rugbyasia247"
-          ]
-        },
-        {
-          "title": "Japan Women and Hong Kong China Men Retain Top Spot in ARESS 2026 Leg 1",
-          "score": 3.3,
-          "corroboration": 1,
-          "outlets": [
-            "rugbyasia247"
-          ]
-        },
-        {
-          "title": "Rugby: Harada bags brace as Japan overpower Canada 57-12",
-          "score": 3.3,
-          "corroboration": 1,
-          "outlets": [
-            "search"
           ]
         }
       ]
@@ -584,18 +546,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Dave Rennie loses Ardie Savea to shoulder injury amongst nine squad departures",
-      "kicker": "Injury blow",
-      "body": "The All Blacks have confirmed captain Ardie Savea will return to New Zealand after suffering a dislocated shoulder. He is one of nine players leaving the touring group, alongside injured pair Quinn Tupaea and Luke Jacobson. Senior assistant coach Neil Barnes called for a \"humble pie\" review following the recent physical toll, as Dave Rennie names a 36-man squad to travel to Baltimore. Despite 12 linebreaks in their last outing, the camp is focused on correcting a dominant opposition set-piece that Mike Blair noted has stifled recent momentum.",
+      "heading": "Neil Barnes demands set-piece improvement before final Springboks test match",
+      "kicker": "Set-piece focus",
+      "body": "Senior assistant coach Neil Barnes has challenged his squad to rectify their scrummaging woes ahead of the final test in Baltimore. Following last weekend’s defeat in Soweto, Barnes acknowledged that the Springboks currently maintain a \"pretty damn dominant\" set-piece, which has yielded a consistent flow of penalties for the world champions. While admitting the team is currently \"on the wrong side of the scoreboard,\" Barnes emphasised that the All Blacks must remain solution-based to alter the officials' perception and regain parity.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 3,
-        "why": "The loss of the captain and nine total squad departures due to injury and rotation is the day's most significant personnel story."
+        "candidate": 1,
+        "why": "It addresses the critical technical and disciplinary concerns raised by coaching staff following the most recent series loss."
       },
       "candidates": [
         {
           "title": "All Blacks coach identifies the key area his side must improve in against 'dominant' Springboks",
-          "score": 47.5,
+          "score": 46,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -603,7 +565,7 @@
         },
         {
           "title": "How New Zealand’s media reacted to All Blacks' defeat to Springboks as departure of 'inspirational captain' and scrum woes identified as key reasons for loss",
-          "score": 40,
+          "score": 39,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -611,7 +573,7 @@
         },
         {
           "title": "All Blacks: Nine players to return to New Zealand ahead of final Greatest Rivalry series clash",
-          "score": 37.8,
+          "score": 37,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -619,7 +581,7 @@
         },
         {
           "title": "Rennie names his 36 US soldiers",
-          "score": 37.6,
+          "score": 36.8,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -627,7 +589,7 @@
         },
         {
           "title": "All Blacks coach tired of the same story",
-          "score": 34.7,
+          "score": 33.3,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -641,18 +603,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "South Africa secure 2-1 series lead after defeating the All Blacks",
-      "kicker": "Series lead",
-      "body": "The Springboks head to Baltimore for the final Test of the 'Greatest Rivalry' series with a series advantage after their 29-24 victory in Soweto. Second-half tries from Jesse Kriel and Malcolm Marx proved pivotal as the world champions overcame a resilient New Zealand side. Rassie Erasmus has urged his team to maintain their attacking intent for the decider, noting, “I think the important thing is we just have to score more points than them.”",
-      "source": "Guardian Rugby Union",
+      "heading": "South Africa overcome All Blacks to take 2-1 Test series lead",
+      "kicker": "Series decider",
+      "body": "South Africa secured a 29-24 victory over New Zealand in Soweto on Saturday, moving 2-1 ahead in the ‘Greatest Rivalry’ series. Tries from Kurt-Lee Arendse, Jesse Kriel, and Malcolm Marx, alongside a penalty try, powered a dominant final quarter after the hosts trailed at the break. Rassie Erasmus has since dismissed any defensive-first approach for the Baltimore finale, telling the media: “I think the important thing is we just have to score more points than them.”",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 1,
-        "why": "The series-defining third Test result is the dominant story across all rugby outlets today."
+        "candidate": 3,
+        "why": "It reports the primary outcome of the most recent high-stakes match in the series."
       },
       "candidates": [
         {
           "title": "South Africa v New Zealand: rugby union third Test – live",
-          "score": 72.1,
+          "score": 71.6,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -661,7 +623,7 @@
         },
         {
           "title": "Springboks v All Blacks, LIVE BLOG: Coverage of the Rugby's Greatest Rivalry Test in Soweto",
-          "score": 71.8,
+          "score": 71.4,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
@@ -670,7 +632,7 @@
         },
         {
           "title": "South Africa finish strongly to take 2-1 series lead against All Blacks",
-          "score": 43.1,
+          "score": 42.9,
           "corroboration": 3,
           "outlets": [
             "bbc",
@@ -680,7 +642,7 @@
         },
         {
           "title": "Rassie: Boks just need to outscore All Blacks",
-          "score": 42,
+          "score": 40.1,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -688,7 +650,7 @@
         },
         {
           "title": "Keo and Zels: Rassie's Boks back where they belong",
-          "score": 38.8,
+          "score": 37.1,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
