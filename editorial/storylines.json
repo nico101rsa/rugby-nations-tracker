@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-08T20:00:36.445Z",
+  "updatedAt": "2026-09-08T22:08:47.548Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 220,
+  "count": 223,
   "storylines": [
     {
       "id": "wales-professional-regional-structure-1maifzp",
@@ -4878,6 +4878,11 @@
       "resolution": "until Kolbe is cleared for return to play",
       "sources": [
         {
+          "title": "Kolbe shares injury update",
+          "link": "https://www.sarugbymag.co.za/kolbe-shares-injury-update/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
           "title": "Watch: Kolbe reveals extent of broken jaw",
           "link": "https://www.sarugbymag.co.za/watch-kolbe-reveals-extent-of-broken-jaw/",
           "feedName": "SA Rugby Magazine"
@@ -4886,11 +4891,6 @@
           "title": "Rassie Erasmus confirms Cheslin Kolbe injury and the Springboks who won't feature in the fourth All Blacks Test",
           "link": "https://www.planetrugby.com/news/rassie-erasmus-issues-springboks-squad-update-and-confirms-cheslin-kolbe-injury",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Watch: How Cheslin broke his jaw",
-          "link": "https://www.sarugbymag.co.za/watch-how-cheslin-broke-his-jaw/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-09-07",
@@ -4930,7 +4930,7 @@
         }
       ],
       "firstSeen": "2026-09-07",
-      "lastSeen": "2026-09-08",
+      "lastSeen": "2026-09-09",
       "uses": 0
     },
     {
@@ -5035,12 +5035,17 @@
     },
     {
       "id": "carter-gordon-s-leg-1mvznnt",
-      "subject": "Carter Gordon's leg injury recovery",
+      "subject": "Carter Gordon's leg injury and recovery timeline",
       "teams": [
         461
       ],
       "resolution": "until he is cleared to return to the Wallabies squad",
       "sources": [
+        {
+          "title": "Wallabies’ search for No 10 continues as Les Kiss tinkers again for second Argentina Test",
+          "link": "https://www.theguardian.com/sport/2026/sep/04/wallabies-vs-argentina-second-test-mendoza-ben-donaldson-flyhalf",
+          "feedName": "Guardian Rugby Union"
+        },
         {
           "title": "Wallabies’ Carter Gordon set for stint on sidelines after breaking leg in latest injury blow",
           "link": "https://www.theguardian.com/sport/2026/sep/07/wallabies-carter-gordon-broken-leg-injury-blow-bledisloe-cup",
@@ -5053,7 +5058,7 @@
         }
       ],
       "firstSeen": "2026-09-08",
-      "lastSeen": "2026-09-08",
+      "lastSeen": "2026-09-09",
       "uses": 0
     },
     {
@@ -5139,6 +5144,11 @@
       "resolution": "until Les Kiss settles on a starting No 10 for the upcoming Test against South Africa",
       "sources": [
         {
+          "title": "Comment: Les Kiss must recall one of two experienced playmakers 'sooner rather than later' if Wallabies want to shine at 2027 World Cup",
+          "link": "https://www.planetrugby.com/news/comment-les-kiss-must-recall-one-of-two-experienced-playmakers-sooner-rather-than-later-if-wallabies-want-to-shine-at-2027-world-cup",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Wallabies’ Carter Gordon set for stint on sidelines after breaking leg in latest injury blow",
           "link": "https://www.theguardian.com/sport/2026/sep/07/wallabies-carter-gordon-broken-leg-injury-blow-bledisloe-cup",
           "feedName": "Guardian Rugby Union"
@@ -5147,11 +5157,6 @@
           "title": "Wallabies’ search for No 10 continues as Les Kiss tinkers again for second Argentina Test",
           "link": "https://www.theguardian.com/sport/2026/sep/04/wallabies-vs-argentina-second-test-mendoza-ben-donaldson-flyhalf",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Wallabies suffer blow for Bok clash",
-          "link": "https://www.sarugbymag.co.za/wallabies-suffer-blow-bok-clash/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-09-09",
@@ -5246,6 +5251,85 @@
         {
           "title": "Anscombe's Scarlets debut delayed by paperwork",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckgv5dy7erdo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-09",
+      "lastSeen": "2026-09-09",
+      "uses": 0
+    },
+    {
+      "id": "handr-pollard-and-franco-1a0ulk0",
+      "subject": "Handré Pollard and Franco Mostert's return to play",
+      "teams": [
+        467
+      ],
+      "resolution": "until both players make their return to the Springbok match-day squad",
+      "sources": [
+        {
+          "title": "Pollard, Mostert return match revealed",
+          "link": "https://www.sarugbymag.co.za/pollard-mostert-return-match-revealed/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-09",
+      "lastSeen": "2026-09-09",
+      "uses": 0
+    },
+    {
+      "id": "the-wxv-global-trial-tlsu5v",
+      "subject": "The WXV global trial of a smaller ball in women's rugby",
+      "teams": [
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        460,
+        461,
+        463,
+        465,
+        467
+      ],
+      "resolution": "until World Rugby concludes the trial period or decides on the permanent implementation of the ball size",
+      "sources": [
+        {
+          "title": "Smaller ball for women makes it 'harder to do my job'",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyz72pp22yo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "The Breakdown | How the smaller ball trial in WXV has brought ‘mixed bag of emotions’",
+          "link": "https://www.theguardian.com/sport/2026/sep/08/how-the-smaller-ball-trial-in-wxv-has-brought-mixed-bag-of-emotions",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-09",
+      "lastSeen": "2026-09-09",
+      "uses": 0
+    },
+    {
+      "id": "the-future-of-england-1klwvbz",
+      "subject": "The future of England's 'English-based players only' selection policy",
+      "teams": [
+        386
+      ],
+      "resolution": "until the RFU or Steve Borthwick makes a definitive decision to maintain or change the rule regarding overseas players",
+      "sources": [
+        {
+          "title": "Obano to put England career on hold with Pau move",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c8047p5em5lo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Allow overseas stars to play for England - Lawes",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5y5kd13y99o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "England should pick English-based players - Baxter",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c986wxkxe68o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
