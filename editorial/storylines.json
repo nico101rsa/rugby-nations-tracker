@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-10T20:01:41.889Z",
+  "updatedAt": "2026-09-10T22:03:12.438Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 221,
+  "count": 225,
   "storylines": [
     {
       "id": "wales-professional-regional-structure-1maifzp",
@@ -2597,6 +2597,11 @@
       "resolution": "until South Africa confirms his recovery and availability for future matches",
       "sources": [
         {
+          "title": "Rassie Erasmus explains Sacha Feinberg-Mngomezulu selection and reveals when Handre Pollard will return",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-explains-sacha-feinberg-mngomezulu-selection-and-reveals-when-handre-pollard-will-return",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Stick on tearful Handré, 'not nice' KLA situation",
           "link": "https://www.sarugbymag.co.za/stick-tearful-handre-not-nice-kla-situation/",
           "feedName": "SA Rugby Magazine"
@@ -2605,15 +2610,10 @@
           "title": "Springboks team changes: Rassie Erasmus loses Handre Pollard but gains Cheslin Kolbe for second All Blacks Test",
           "link": "https://www.planetrugby.com/news/springboks-team-v-all-blacks-rassie-welcomes-back-kolbe-but-loses-pollard-for-test-ii",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Pollard in doubt for All Blacks duel",
-          "link": "https://www.sarugbymag.co.za/pollard-doubt-blacks-duel/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-08-30",
-      "lastSeen": "2026-09-01",
+      "lastSeen": "2026-09-11",
       "uses": 0
     },
     {
@@ -3165,8 +3165,8 @@
       ],
       "firstSeen": "2026-08-31",
       "lastSeen": "2026-08-31",
-      "uses": 1,
-      "lastUsed": "2026-09-04"
+      "uses": 2,
+      "lastUsed": "2026-09-11"
     },
     {
       "id": "the-capping-of-ireland-1ia8c0f",
@@ -4079,7 +4079,7 @@
         }
       ],
       "firstSeen": "2026-09-05",
-      "lastSeen": "2026-09-05",
+      "lastSeen": "2026-09-11",
       "uses": 0
     },
     {
@@ -5292,6 +5292,101 @@
         {
           "title": "Singleton hopes for rugby union return after heart attack",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c99dpk9mnlgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-11",
+      "lastSeen": "2026-09-11",
+      "uses": 0
+    },
+    {
+      "id": "wallabies-search-for-a-9zvz6l",
+      "subject": "Wallabies' search for a veteran playmaker",
+      "teams": [
+        461
+      ],
+      "resolution": "until the coaching staff recalls an experienced player to the starting XV",
+      "sources": [
+        {
+          "title": "Comment: Les Kiss must recall one of two experienced playmakers 'sooner rather than later' if Wallabies want to shine at 2027 World Cup",
+          "link": "https://www.planetrugby.com/news/comment-les-kiss-must-recall-one-of-two-experienced-playmakers-sooner-rather-than-later-if-wallabies-want-to-shine-at-2027-world-cup",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Wallabies’ Carter Gordon set for stint on sidelines after breaking leg in latest injury blow",
+          "link": "https://www.theguardian.com/sport/2026/sep/07/wallabies-carter-gordon-broken-leg-injury-blow-bledisloe-cup",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Wallabies’ search for No 10 continues as Les Kiss tinkers again for second Argentina Test",
+          "link": "https://www.theguardian.com/sport/2026/sep/04/wallabies-vs-argentina-second-test-mendoza-ben-donaldson-flyhalf",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-11",
+      "lastSeen": "2026-09-11",
+      "uses": 0
+    },
+    {
+      "id": "the-wxv-smaller-ball-1onchsx",
+      "subject": "The WXV smaller ball trial controversy",
+      "teams": [
+        386,
+        390,
+        461
+      ],
+      "resolution": "until the trial period ends and World Rugby determines whether to implement the change permanently",
+      "sources": [
+        {
+          "title": "The Breakdown | How the smaller ball trial in WXV has brought ‘mixed bag of emotions’",
+          "link": "https://www.theguardian.com/sport/2026/sep/08/how-the-smaller-ball-trial-in-wxv-has-brought-mixed-bag-of-emotions",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Smaller ball for women makes it 'harder to do my job'",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyz72pp22yo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-11",
+      "lastSeen": "2026-09-11",
+      "uses": 0
+    },
+    {
+      "id": "potential-six-nations-match-7jvptg",
+      "subject": "Potential Six Nations match in the United States",
+      "teams": [
+        388,
+        389
+      ],
+      "resolution": "until World Rugby and the Six Nations unions confirm if a fixture will be moved",
+      "sources": [
+        {
+          "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "World Rugby float plans for Six Nations match in US but England unlikely to participate",
+          "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-11",
+      "lastSeen": "2026-09-11",
+      "uses": 0
+    },
+    {
+      "id": "wales-pathways-support-and-w5tok1",
+      "subject": "Wales' pathways support and internal restructuring",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union implements or rejects reforms to school and college pathways",
+      "sources": [
+        {
+          "title": "WRU support for students almost non-existent, says Williams",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c7834894j59o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
