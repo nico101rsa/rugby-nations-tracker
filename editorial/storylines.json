@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-10T22:03:12.438Z",
+  "updatedAt": "2026-09-11T22:05:16.268Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 225,
+  "count": 223,
   "storylines": [
     {
       "id": "wales-professional-regional-structure-1maifzp",
@@ -40,6 +40,11 @@
       "resolution": "until Henry Pollock signs a new deal with Northampton or moves to a new club",
       "sources": [
         {
+          "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
+          "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -48,15 +53,10 @@
           "title": "'We've got to find a happy medium' - Dowson confident on Pollock deal",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ym0x04n55o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Northampton seek ‘happy medium’ after Hearn claims Pollock worth £1m a year",
-          "link": "https://www.theguardian.com/sport/2026/sep/02/northampton-seek-happy-medium-after-hearn-claims-pollock-worth-1m-a-year",
-          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-08-04",
-      "lastSeen": "2026-09-11",
+      "lastSeen": "2026-09-12",
       "uses": 1,
       "lastUsed": "2026-08-09"
     },
@@ -237,23 +237,23 @@
       "resolution": "until Dave Rennie names his starting lineup for the first Test against the Springboks",
       "sources": [
         {
-          "title": "Love opens up on All Blacks self-doubt",
-          "link": "https://www.sarugbymag.co.za/love-opens-blacks-self-doubt/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Stephen Donald names his choice for Springboks' fly-half spot and makes blunt call on Damian McKenzie's All Blacks hopes",
-          "link": "https://www.planetrugby.com/news/stephen-donald-names-his-choice-for-springboks-fly-half-spot-and-makes-blunt-call-on-damian-mckenzies-all-blacks-hopes",
+          "title": "Stephen Donald believes Richie Mo'unga 'complicating' All Blacks fly-half battle after giving 'flying pass' verdict on Ruben Love",
+          "link": "https://www.planetrugby.com/news/stephen-donald-believes-richie-mounga-complicating-all-blacks-fly-half-battle-after-giving-flying-pass-verdict-on-ruben-love",
           "feedName": "Planet Rugby"
         },
         {
-          "title": "'I can't see Richie Mo'unga replacing him' – Sir Steve Hansen's verdict on All Blacks' playmakers",
-          "link": "https://www.planetrugby.com/news/sir-steve-hansens-verdict-on-all-blacks-playmakers",
+          "title": "All Blacks team: Richie Mo'unga makes stunning Test return as Dave Rennie wields the axe with new captain confirmed",
+          "link": "https://www.planetrugby.com/news/all-blacks-team-richie-mounga-makes-stunning-test-return-as-dave-rennie-wields-the-axe-with-new-captain-confirmed",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "All Blacks team: Winners and losers as 'door opens' for Richie Mo'unga to usurp Ruben Love while Dave Rennie rewards 'tremendous' talent",
+          "link": "https://www.planetrugby.com/news/all-blacks-team-v-springboks-test-iv-winners-and-losers-as-richie-mounga-returns",
           "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-15",
-      "lastSeen": "2026-08-21",
+      "lastSeen": "2026-09-12",
       "uses": 0
     },
     {
@@ -477,34 +477,6 @@
       "lastUsed": "2026-08-23"
     },
     {
-      "id": "siya-kolisi-s-fitness-con13d",
-      "subject": "Siya Kolisi’s fitness and potential return to the Springbok squad",
-      "teams": [
-        467
-      ],
-      "resolution": "until Siya Kolisi is passed fit to return to the Springboks' matchday 23",
-      "sources": [
-        {
-          "title": "Boks shed light on Siya, Ox injuries",
-          "link": "https://www.sarugbymag.co.za/boks-shed-light-siya-ox-injuries/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Springboks: Fresh update issued on Siya Kolisi and Ox Nche ahead of All Blacks opener",
-          "link": "https://www.planetrugby.com/news/springboks-fresh-update-issued-on-siya-kolisi-and-ox-nche-ahead-of-all-blacks-opener",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Springboks team: Siya Kolisi to miss All Blacks opener while Rassie Erasmus makes key fly-half call",
-          "link": "https://www.planetrugby.com/news/springboks-team-siya-kolisi-to-miss-all-blacks-opener-as-rassie-erasmus-names-new-captain-and-makes-key-fly-half-call",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-08-21",
-      "lastSeen": "2026-08-21",
-      "uses": 0
-    },
-    {
       "id": "manie-libbok-and-handr-r1aa9n",
       "subject": "Manie Libbok and Handré Pollard's battle for the Springbok starting fly-half jersey",
       "teams": [
@@ -530,91 +502,6 @@
       ],
       "firstSeen": "2026-08-21",
       "lastSeen": "2026-08-27",
-      "uses": 0
-    },
-    {
-      "id": "the-ongoing-dispute-over-dubyxm",
-      "subject": "The ongoing dispute over Springbok 'delaying tactics' and its impact on officiating",
-      "teams": [
-        467,
-        465
-      ],
-      "resolution": "until World Rugby issues a formal directive on time-management or the Springboks are penalized in-game for the tactics described by Dave Rennie",
-      "sources": [
-        {
-          "title": "Kiwis wary of rugby’s ‘council inspectors’",
-          "link": "https://www.sarugbymag.co.za/kiwis-wary-of-rugbys-council-inspectors/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Springboks haven't got any 'negative feedback' from World Rugby as Rassie Erasmus and Jaco Peyper hit back at accusations",
-          "link": "https://www.planetrugby.com/news/rassie-erasmus-obvious-ploy-to-combat-all-blacks-narrative",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Dave Rennie reacts to Springboks' response to 'time wasting' claim ahead of Rugby's Greatest Rivalry series",
-          "link": "https://www.planetrugby.com/news/dave-rennie-reacts-to-springboks-response-to-time-wasting-claim-ahead-of-rugbys-greatest-rivalry-series",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-08-21",
-      "lastSeen": "2026-08-21",
-      "uses": 0
-    },
-    {
-      "id": "joseph-aukuso-suaalii-s-3dczwp",
-      "subject": "Joseph-Aukuso Suaalii's optimal positional fit for the Wallabies",
-      "teams": [
-        461
-      ],
-      "resolution": "until the Wallabies coaching staff assigns Suaalii a fixed specialist role in the Australian backline",
-      "sources": [
-        {
-          "title": "Ikitau, Suaalii return for Wallabies",
-          "link": "https://www.sarugbymag.co.za/ikitau-suaalii-return-wallabies/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Wallabies welcome back star centres",
-          "link": "https://www.sarugbymag.co.za/wallabies-welcome-back-star-duo/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Joseph-Aukuso Suaalii's search for 'freedom' as ex-Wallabies suggest positional change",
-          "link": "https://www.planetrugby.com/news/joseph-aukuso-suaaliis-search-for-freedom-as-ex-wallabies-suggest-positional-change",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-08-21",
-      "lastSeen": "2026-08-21",
-      "uses": 0
-    },
-    {
-      "id": "the-survival-of-the-1m75fjj",
-      "subject": "The survival of the four professional Welsh regions under the WRU’s proposed funding plan",
-      "teams": [
-        391
-      ],
-      "resolution": "until the WRU provides final confirmation on whether it will fund three or four professional teams beyond 2028",
-      "sources": [
-        {
-          "title": "WRU condemns abuse and doubles down on three-team plan",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq891l3g3keo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Ospreys say WRU plan to cut team is wrong",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c1w12eqdy0lo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Wales sports minister meets WRU after fans' fears",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cm2gd4ken4jo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-21",
-      "lastSeen": "2026-08-21",
       "uses": 0
     },
     {
@@ -3534,36 +3421,6 @@
       "uses": 0
     },
     {
-      "id": "les-kiss-s-evolving-v4srzo",
-      "subject": "Les Kiss's evolving Wallabies team selection for the Argentina rematch",
-      "teams": [
-        461,
-        460
-      ],
-      "resolution": "until the Wallabies announce their team for the upcoming series finale",
-      "sources": [
-        {
-          "title": "Wallabies: Les Kiss admits to 'clunky bits' in win over Argentina and the ‘smart’ team changes he is eyeing for next weekend's rematch",
-          "link": "https://www.planetrugby.com/news/wallabies-les-kiss-admits-to-clunky-bits-in-win-over-argentina-and-the-smart-team-changes-he-is-eyeing-for-next-weekends-rematch",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Wallabies rotate forwards for Argentina Test as Suaalii settles for place on bench",
-          "link": "https://www.theguardian.com/sport/2026/aug/28/wallabies-team-selection-australia-argentina-rugby-union-test",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Comment: Les Kiss has plenty to think about as Wallabies 'morphing into something unfamiliar for Australians'",
-          "link": "https://www.planetrugby.com/news/comment-les-kiss-has-plenty-to-think-about-as-wallabies-morphing-into-something-unfamiliar-for-australians",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-09-02",
-      "lastSeen": "2026-09-02",
-      "uses": 2,
-      "lastUsed": "2026-09-11"
-    },
-    {
       "id": "jack-singleton-s-return-19r2p7y",
       "subject": "Jack Singleton's return to professional rugby following cardiac incident",
       "teams": [
@@ -3583,7 +3440,7 @@
         }
       ],
       "firstSeen": "2026-09-02",
-      "lastSeen": "2026-09-06",
+      "lastSeen": "2026-09-12",
       "uses": 0
     },
     {
@@ -4344,6 +4201,11 @@
       "resolution": "until SA Rugby appoints a permanent successor to Swys de Bruin",
       "sources": [
         {
+          "title": "SA Rugby salutes Swys",
+          "link": "https://www.sarugbymag.co.za/sa-rugby-salutes-swys/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
           "title": "Swys quits Springbok Women",
           "link": "https://www.sarugbymag.co.za/swys-quits-springbok-women/",
           "feedName": "SA Rugby Magazine"
@@ -4352,15 +4214,10 @@
           "title": "Springboks Women team named for Black Ferns showdown as SA Rugby confirms Swys de Bruin decision",
           "link": "https://www.planetrugby.com/news/springboks-women-team-named-for-black-ferns-showdown-as-sa-rugby-confirms-swys-de-bruin-decision",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Springboks Women's boss resigns on the eve of Blacks Ferns clash amid SA Rugby dispute – report",
-          "link": "https://www.planetrugby.com/news/swys-de-bruin-resigns-from-springboks-women-job-report",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-09-06",
-      "lastSeen": "2026-09-06",
+      "lastSeen": "2026-09-12",
       "uses": 0
     },
     {
@@ -4861,7 +4718,7 @@
         }
       ],
       "firstSeen": "2026-09-08",
-      "lastSeen": "2026-09-09",
+      "lastSeen": "2026-09-12",
       "uses": 0
     },
     {
@@ -5157,6 +5014,11 @@
       "resolution": "until his return to professional rugby is confirmed",
       "sources": [
         {
+          "title": "'You've got to give Ox Nche his flowers' – All Blacks star hails impact of Springboks 'freak'",
+          "link": "https://www.planetrugby.com/news/youve-got-to-give-ox-nche-his-flowers-all-blacks-star-hails-impact-of-springboks-freak",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Superbug 'ate away' All Black's spinal disc",
           "link": "https://www.sarugbymag.co.za/superbug-ate-away-all-blacks-spinal-disc/",
           "feedName": "SA Rugby Magazine"
@@ -5168,7 +5030,7 @@
         }
       ],
       "firstSeen": "2026-09-10",
-      "lastSeen": "2026-09-11",
+      "lastSeen": "2026-09-12",
       "uses": 0
     },
     {
@@ -5279,7 +5141,8 @@
       ],
       "firstSeen": "2026-09-11",
       "lastSeen": "2026-09-11",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-12"
     },
     {
       "id": "jack-singleton-s-search-1u7gjci",
@@ -5354,13 +5217,18 @@
     },
     {
       "id": "potential-six-nations-match-7jvptg",
-      "subject": "Potential Six Nations match in the United States",
+      "subject": "Proposals to stage a Six Nations match in the United States",
       "teams": [
         388,
         389
       ],
       "resolution": "until World Rugby and the Six Nations unions confirm if a fixture will be moved",
       "sources": [
+        {
+          "title": "No plans for Ireland Six Nations game in US - IRFU",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cddvmqvqzq7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
         {
           "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
@@ -5373,8 +5241,9 @@
         }
       ],
       "firstSeen": "2026-09-11",
-      "lastSeen": "2026-09-11",
-      "uses": 0
+      "lastSeen": "2026-09-12",
+      "uses": 1,
+      "lastUsed": "2026-09-12"
     },
     {
       "id": "wales-pathways-support-and-w5tok1",
@@ -5392,6 +5261,92 @@
       ],
       "firstSeen": "2026-09-11",
       "lastSeen": "2026-09-11",
+      "uses": 0
+    },
+    {
+      "id": "steve-borthwick-s-england-1l1f8u7",
+      "subject": "Steve Borthwick's England contract extension",
+      "teams": [
+        386
+      ],
+      "resolution": "until the RFU officially confirms the signing of Borthwick's contract extension past the 2027 World Cup",
+      "sources": [
+        {
+          "title": "England set to make Steve Borthwick contract decision in bid to avoid Rugby World Cup 'uncertainty'",
+          "link": "https://www.planetrugby.com/news/england-set-to-make-steve-borthwick-contract-decision-in-bid-to-avoid-rugby-world-cup-uncertainty",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "England to extend head coach Borthwick's contract",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ydlq5n0zwo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
+          "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "england-s-international-eligibility-dnegfr",
+      "subject": "England's international eligibility rules for overseas-based players",
+      "teams": [
+        386
+      ],
+      "resolution": "until the RFU announces a formal change or a definitive reaffirmation of its current 'home-based' selection policy",
+      "sources": [
+        {
+          "title": "No easy ride for England's prodigal sons",
+          "link": "https://www.sarugbymag.co.za/no-easy-ride-englands-prodigal-sons/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Allow overseas stars to play for England - Lawes",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5y5kd13y99o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "England should pick English-based players - Baxter",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c986wxkxe68o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "world-rugby-s-trial-14vzts6",
+      "subject": "World Rugby's trial of the size 4.5 ball in women's rugby",
+      "teams": [
+        386,
+        388,
+        390,
+        391,
+        461,
+        463,
+        465,
+        467
+      ],
+      "resolution": "until World Rugby releases the findings of the WXV trial and decides whether to adopt the smaller ball size permanently",
+      "sources": [
+        {
+          "title": "Smaller ball for women makes it 'harder to do my job'",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyz72pp22yo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "The Breakdown | How the smaller ball trial in WXV has brought ‘mixed bag of emotions’",
+          "link": "https://www.theguardian.com/sport/2026/sep/08/how-the-smaller-ball-trial-in-wxv-has-brought-mixed-bag-of-emotions",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
       "uses": 0
     }
   ]
