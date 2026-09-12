@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-12T20:01:05.573Z",
+  "updatedAt": "2026-09-12T21:48:10.798Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 224,
+  "count": 228,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -2123,8 +2123,8 @@
       ],
       "firstSeen": "2026-08-29",
       "lastSeen": "2026-09-08",
-      "uses": 1,
-      "lastUsed": "2026-09-08"
+      "uses": 2,
+      "lastUsed": "2026-09-13"
     },
     {
       "id": "handr-pollard-s-injury-83ci1s",
@@ -3066,7 +3066,7 @@
         }
       ],
       "firstSeen": "2026-09-02",
-      "lastSeen": "2026-09-12",
+      "lastSeen": "2026-09-13",
       "uses": 0
     },
     {
@@ -4793,7 +4793,7 @@
     },
     {
       "id": "the-wxv-smaller-ball-1onchsx",
-      "subject": "Trial of the smaller ball in the women's WXV tournament",
+      "subject": "The trial of the smaller ball in women's international rugby",
       "teams": [
         386,
         390,
@@ -4989,6 +4989,11 @@
       "resolution": "until the RFU confirms the formal completion of the contract extension process",
       "sources": [
         {
+          "title": "Ex-England star accuses RFU boss of having 'blinkers on' following Steve Borthwick backing",
+          "link": "https://www.planetrugby.com/news/ex-england-star-accuses-rfu-boss-of-having-blinkers-on-following-steve-borthwick-backing",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "England to extend head coach Borthwick's contract",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ydlq5n0zwo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -4997,11 +5002,6 @@
           "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
           "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Borthwick's holding pattern extended - with minimal confidence vote",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cy8z5gkenl2o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-12",
@@ -5136,7 +5136,7 @@
     },
     {
       "id": "wallabies-fly-half-position-l2gw5t",
-      "subject": "Wallabies fly-half position for the 2027 Rugby World Cup",
+      "subject": "Australia's search for a permanent fly-half for the 2027 Rugby World Cup",
       "teams": [
         461
       ],
@@ -5357,6 +5357,95 @@
         {
           "title": "Watch: All Blacks bruiser making NFL switch?",
           "link": "https://www.sarugbymag.co.za/watch-blacks-bruiser-making-nfl-switch/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "henry-pollock-s-potential-twupfk",
+      "subject": "Henry Pollock's potential record-breaking £1m salary deal",
+      "teams": [
+        386
+      ],
+      "resolution": "until Pollock signs a new contract or clarifies his future salary expectations",
+      "sources": [
+        {
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
+          "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "the-future-of-six-jjerk",
+      "subject": "The future of Six Nations matches being staged in the United States",
+      "teams": [
+        388,
+        389,
+        386
+      ],
+      "resolution": "until a specific match is officially scheduled for a US venue or the idea is formally abandoned by the Six Nations unions",
+      "sources": [
+        {
+          "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "World Rugby float plans for Six Nations match in US but England unlikely to participate",
+          "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "No plans for Ireland Six Nations game in US - IRFU",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cddvmqvqzq7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "ben-donnell-s-eligibility-u2xmwk",
+      "subject": "Ben Donnell's eligibility and pursuit of an Ireland international call-up",
+      "teams": [
+        388
+      ],
+      "resolution": "until Donnell is named in an Ireland squad or indicates he is no longer pursuing international honours",
+      "sources": [
+        {
+          "title": "Donnell eyes Irish call-up after Ulster move",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c8e3xjnj46do?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "the-fitness-of-sharks-1rxf4u9",
+      "subject": "The fitness of Sharks' key backline players following pre-season injuries",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Sharks confirm the availability of their injured players for the start of the URC season",
+      "sources": [
+        {
+          "title": "Injury mars Sharks win",
+          "link": "https://www.sarugbymag.co.za/injury-mars-sharks-win/",
           "feedName": "SA Rugby Magazine"
         }
       ],
