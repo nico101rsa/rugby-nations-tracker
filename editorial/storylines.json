@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-12T11:47:57.059Z",
+  "updatedAt": "2026-09-12T12:04:18.198Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 214,
+  "count": 215,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -2806,13 +2806,18 @@
       "resolution": "until Singleton signs a contract with a new professional club",
       "sources": [
         {
+          "title": "Singleton hopes for rugby union return after heart attack",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c99dpk9mnlgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "Singleton nearing end of rehab but leaves Gloucester",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cg598qd3z9po?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-01",
-      "lastSeen": "2026-09-01",
+      "lastSeen": "2026-09-12",
       "uses": 0
     },
     {
@@ -3045,8 +3050,7 @@
       "id": "jack-singleton-s-return-19r2p7y",
       "subject": "Jack Singleton's return to professional rugby following cardiac incident",
       "teams": [
-        386,
-        467
+        386
       ],
       "resolution": "until Singleton signs with a new club or returns to active competition",
       "sources": [
@@ -5037,7 +5041,7 @@
       "teams": [
         386
       ],
-      "resolution": "until the RFU provides further clarity on his tenure beyond the announced contract extension",
+      "resolution": "until the RFU confirms the formal completion of the contract extension process",
       "sources": [
         {
           "title": "England set to make Steve Borthwick contract decision in bid to avoid Rugby World Cup 'uncertainty'",
@@ -5060,15 +5064,66 @@
       "uses": 0
     },
     {
-      "id": "the-trial-of-a-14cx4nq",
-      "subject": "The trial of a smaller ball in women's international rugby",
+      "id": "dave-rennie-s-attempts-14ruhm4",
+      "subject": "Dave Rennie's attempts to fix the All Blacks' scrum and set-piece",
       "teams": [
-        386,
-        388,
-        390,
-        391
+        465
       ],
-      "resolution": "until World Rugby concludes the trial period in October and decides on permanent implementation",
+      "resolution": "until the All Blacks demonstrate consistent set-piece parity in future Test matches",
+      "sources": [
+        {
+          "title": "John Smit claims All Blacks had 'defeatist attitude' in the set-piece as Dave Rennie 'chose the wrong way' in the scrum",
+          "link": "https://www.planetrugby.com/news/john-smit-claims-all-blacks-had-defeatist-attitude-in-the-set-piece-as-dave-rennie-chose-the-wrong-way-in-the-scrum",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Springboks are 'bossing' the scrum as ex-hooker claims All Blacks coaching 'is not good enough",
+          "link": "https://www.planetrugby.com/news/springboks-are-bossing-the-scrum-as-ex-hooker-claims-all-blacks-coaching-is-not-good-enough",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Sir Steve Hansen: Springboks have exposed two All Blacks' weaknesses that Dave Rennie has to fix before the World Cup",
+          "link": "https://www.planetrugby.com/news/sir-steve-hansen-springboks-have-exposed-two-all-blacks-weaknesses-that-dave-rennie-has-to-fix-before-the-world-cup",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "george-furbank-s-return-1cc2dfx",
+      "subject": "George Furbank's return to England fitness and selection",
+      "teams": [
+        386
+      ],
+      "resolution": "until Furbank completes a full training cycle and is named in a matchday squad",
+      "sources": [
+        {
+          "title": "George Furbank 'in a good spot' for England return as full-back outlines 'positive' Steve Borthwick conversations",
+          "link": "https://www.planetrugby.com/news/george-furbank-in-a-good-spot-for-england-return-as-full-back-outlines-positive-steve-borthwick-conversations",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "George Furbank on his latest injury woe: ‘I was hoping I would get to the hospital, just fart and leave’",
+          "link": "https://www.theguardian.com/sport/2026/sep/11/george-furbank-injury-woe-rugby-union-england",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "the-trial-of-the-18bb2ku",
+      "subject": "The trial of the smaller ball in women's international rugby",
+      "teams": [
+        388,
+        391,
+        386,
+        461
+      ],
+      "resolution": "until World Rugby concludes the trial period and decides whether to adopt the ball permanently",
       "sources": [
         {
           "title": "Smaller ball for women makes it 'harder to do my job'",
@@ -5086,45 +5141,16 @@
       "uses": 0
     },
     {
-      "id": "wales-pathways-and-support-yw8s8d",
-      "subject": "Wales' pathways and support for young players",
+      "id": "ben-carter-s-return-p58h6e",
+      "subject": "Ben Carter's return to competitive rugby after ankle injury",
       "teams": [
         391
       ],
-      "resolution": "until the Welsh Rugby Union announces structural changes or addressed the criticism regarding support for students",
+      "resolution": "until Carter makes his first match appearance for the Dragons in the URC",
       "sources": [
         {
-          "title": "WRU support for students almost non-existent, says Williams",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c7834894j59o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-12",
-      "lastSeen": "2026-09-12",
-      "uses": 0
-    },
-    {
-      "id": "world-rugby-s-plans-17g12is",
-      "subject": "World Rugby's plans for a potential Six Nations match in the United States",
-      "teams": [
-        388,
-        389
-      ],
-      "resolution": "until a formal agreement is reached or the project is officially abandoned",
-      "sources": [
-        {
-          "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "World Rugby float plans for Six Nations match in US but England unlikely to participate",
-          "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "No plans for Ireland Six Nations game in US - IRFU",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cddvmqvqzq7o?at_medium=RSS&at_campaign=rss",
+          "title": "Wales lock Carter cleared for season start",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/crl6kye2d4wo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],

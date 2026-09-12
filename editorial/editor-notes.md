@@ -3,8 +3,8 @@
 Injected into the writer prompt daily; curated by the post-run review.
 Notes age out after 14 days unless re-earned. Prune freely.
 
-- Prioritize active verbs in headlines; avoid over-reliance on direct quotes (e.g., 'Ben Youngs accuses...' is stronger than using 'blinkers on' as the main anchor). _(added 2026-09-12)_
-- Ensure the first sentence of the body serves as a direct expansion of the headline to maximize information density within the 55-90 word limit. _(added 2026-09-12)_
+- Ensure total factual consistency across team briefings regarding shared match venues or tournament-wide strategic announcements (e.g., US-based Six Nations fixtures). _(added 2026-09-12)_
+- Maintain strict paragraph length adherence; some paragraphs in the ladder editions approach the upper word limit, risking brevity. _(added 2026-09-12)_
 - Do not invent or assume coaching identities or player statistics; the New Zealand edition incorrectly named Dave Rennie as coach and fabricated Test start records for Ruben Love. _(added 2026-09-12)_
 - Ensure internal consistency across the suite; the Italy edition contradicted the Ireland edition regarding the Italian union's official stance on US-based fixtures. _(added 2026-09-12)_
 - When assigned a STORYLINE edition, you must lead with the specific subject thread provided (e.g., ball size, selection plys) rather than reverting to the general shortlist. _(added 2026-09-12)_
