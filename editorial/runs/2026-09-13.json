@@ -2,9 +2,9 @@
   "date": "2026-09-13",
   "counts": {
     "editions": 12,
-    "quiet": 5,
-    "storyline": 2,
-    "dataEdition": 3,
+    "quiet": 6,
+    "storyline": 4,
+    "dataEdition": 2,
     "failed": 0,
     "noLead": 4
   },
@@ -16,15 +16,15 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "scoring",
-      "heading": "Fiji score 331 points and concede 341 across their last 11 matches",
-      "kicker": "By the numbers",
-      "body": "Fiji have scored 331 points and conceded 341 across their last 11 games. This overall run averages out to 30.1 points scored and 31 points conceded per match. Within this same 11-game window, the team's biggest victory was recorded in the Pacific Nations Cup knockout stage in September 2025. In that particular home fixture, Fiji defeated Canada 63-10.",
+      "heading": "Fiji concede 341 points across their last 11 international matches",
+      "kicker": "Squad metrics",
+      "body": "Fiji have conceded 341 points across their last 11 matches, shipping an average of 31 points per game. During this same 11-match window, the Flying Fijians scored 331 points, averaging 30.1 points per fixture. The team's biggest win in this period came at home in September 2025, when they beat Canada 63-10 during the knockout stage of the Pacific Nations Cup.",
       "source": null,
       "lead": null,
       "candidates": [
         {
           "title": "Defending champion Fiji beats Canada to advance to rugby's Pacific Nations Cup final against Japan",
-          "score": 21,
+          "score": 20.2,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -32,15 +32,7 @@
         },
         {
           "title": "Canadian men lose to Fiji while women beat Scotland in rugby Tests",
-          "score": 20.9,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Mason Flesch has two tries as Canada falls to Fiji 45-29 at Pacific Nations Cup",
-          "score": 9.1,
+          "score": 19.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -61,6 +53,14 @@
           "outlets": [
             "search"
           ]
+        },
+        {
+          "title": "South Africa beats Fiji to win rugby sevens world series. New Zealand wins women's title",
+          "score": 1.2,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
         }
       ]
     },
@@ -70,18 +70,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "England Women Crush Australia With Resurgent Seven-Try Second-Half Performance Display",
+      "heading": "England respond to half-time deficit by crushing Australia in Salford",
       "kicker": "WXV Global Series",
-      "body": "England launched their WXV Global Series campaign with a resounding 48-15 victory over Australia in Salford. Despite trailing 10-5 at half-time—a rarity for the side—John Mitchell’s squad produced a clinical second-half display, crossing for seven tries to extend their winning streak to 39 matches. Mitchell dismissed early concerns, noting, \"It is an absolute joke if you are worried about being down 10-5,\" instead praising the group’s ability to solve problems after a competitive opening period of pre-season rugby.",
+      "body": "England secured a emphatic 48-15 victory over Australia in their WXV Global Series opener, recovering from an uncharacteristic 10-5 half-time deficit to extend their winning streak to 39 matches. Head coach John Mitchell praised the side's resilience, stating, \"It is an absolute joke if you are worried about being down 10-5. More important is how we worked our way back into it.\" The win, featuring eight tries, provides momentum ahead of next weekend's clash against Canada at Sandy Park.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The Red Roses' dominant second-half display in the WXV Global Series opener is the most significant sporting outcome for England this weekend."
+        "why": "England's commanding victory in their WXV Global Series opener against Australia is the most significant recent on-pitch result."
       },
       "candidates": [
         {
           "title": "England's second-half response crushes Australia",
-          "score": 113.8,
+          "score": 112.7,
           "corroboration": 3,
           "outlets": [
             "bbc",
@@ -91,7 +91,7 @@
         },
         {
           "title": "World Rugby float plans for Six Nations match in US but England unlikely to participate",
-          "score": 39.6,
+          "score": 39.4,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -100,26 +100,26 @@
         },
         {
           "title": "Ex-England star accuses RFU boss of having 'blinkers on' following Steve Borthwick backing",
-          "score": 31.3,
+          "score": 31,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "England and Canada roar into a WXV rugby rematch after big opening wins",
-          "score": 25.1,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
           "title": "Aitchison to steer England in WXV opener",
-          "score": 24.9,
+          "score": 24.6,
           "corroboration": 1,
           "outlets": [
             "bbc"
+          ]
+        },
+        {
+          "title": "England and Canada roar into a WXV rugby rematch after big opening wins",
+          "score": 24.1,
+          "corroboration": 1,
+          "outlets": [
+            "search"
           ]
         }
       ]
@@ -127,18 +127,22 @@
     {
       "team": "France",
       "quiet": true,
-      "rung": "data",
-      "storyline": null,
-      "dataAngle": "lastMeeting",
-      "heading": "France prepares for Fiji following their recent victory over Japan",
-      "kicker": "Match preview",
-      "body": "France returns to action in Round 4 looking to build on their 42-15 victory against Japan. The side currently sits third in the log with two wins from three matches. Looking ahead to the next fixture, the two nations last met in November 2025. In that encounter, France secured a 34-21 win at home. With 116 points scored and 75 conceded across the opening rounds, the team holds a points difference of +41 as they prepare for the challenge.",
-      "source": null,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "The future of Six Nations matches being staged in the United States",
+        "resolution": "until a specific match is officially scheduled for a US venue or the idea is formally abandoned by the Six Nations unions",
+        "recheckHits": 2
+      },
+      "dataAngle": null,
+      "heading": "World Rugby continues talks over staging Six Nations match in USA",
+      "kicker": "International Expansion",
+      "body": "Discussions persist regarding the potential to host a Six Nations match in the United States as part of a wider effort to grow the sport globally. While World Rugby has opened formal talks, the prospect remains a significant challenge. Reporting from earlier this week suggests that such a move faces hurdles, with skepticism from some involved unions regarding the feasibility of relocating traditional tournament fixtures. No official schedule changes have been confirmed as stakeholders continue to evaluate the commercial and logistical implications.",
+      "source": "BBC Rugby Union",
       "lead": null,
       "candidates": [
         {
           "title": "France Women’s Rugby Team: Key Players & Black Ferns Rivalry",
-          "score": 9.7,
+          "score": 9.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -147,14 +151,6 @@
         {
           "title": "France Vs. South Africa Springboks Score, Live Updates, Rugby Today",
           "score": 1.6,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "France vs. Ireland rugby score, live updates, Six Nations 2026",
-          "score": 1.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -175,6 +171,14 @@
           "outlets": [
             "search"
           ]
+        },
+        {
+          "title": "Jordan scores pivotal second try as New Zealand overcome France",
+          "score": 0.3,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
+          ]
         }
       ]
     },
@@ -184,18 +188,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "IRFU Confirms There Are No Plans For Six Nations US Games",
-      "kicker": "Six Nations",
-      "body": "The IRFU has officially dismissed suggestions that Ireland could play a Six Nations fixture in the United States. Following comments from World Rugby chief executive Alan Gilpin regarding the potential for matches to be hosted stateside to drive growth, the union clarified that there are \"currently no plans or discussions\" regarding such a move. The IRFU stated that the competition holds a unique place for supporters, and the chance to play at home remains central to the tournament's enduring appeal.",
+      "heading": "The IRFU rules out moving Ireland Six Nations games to America",
+      "kicker": "Tournament planning",
+      "body": "The IRFU has dismissed suggestions that it is considering relocating any Six Nations matches to the United States. Following comments from World Rugby chief executive Alan Gilpin, who suggested that an Ireland-Italy fixture could resonate with North American audiences, the Union issued a firm statement on Friday. The governing body confirmed there are \"currently no plans or discussions\" to move home games, maintaining that the opportunity for supporters to watch their teams on home soil remains central to the competition's appeal.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The IRFU's definitive statement regarding the speculation over moving Six Nations fixtures to the US settles a major talking point."
+        "why": "The IRFU issued a formal, definitive response to speculation regarding moving Six Nations fixtures to the United States."
       },
       "candidates": [
         {
           "title": "No plans for Ireland Six Nations game in US - IRFU",
-          "score": 37,
+          "score": 36.5,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -203,7 +207,7 @@
         },
         {
           "title": "Donnell eyes Irish call-up after Ulster move",
-          "score": 23.7,
+          "score": 22.8,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -211,7 +215,7 @@
         },
         {
           "title": "The 'proud' feeling that helped Tommy O'Brien cope with Ireland setback and the target now set for 'pinnacle of my career'",
-          "score": 15,
+          "score": 14.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -219,7 +223,7 @@
         },
         {
           "title": "Ireland's Reilly hoping to put injury woes behind her",
-          "score": 14.6,
+          "score": 14.1,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -227,7 +231,7 @@
         },
         {
           "title": "Ireland joining elite only a matter of time - Wafer",
-          "score": 13.1,
+          "score": 12.8,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -245,9 +249,9 @@
         "recheckHits": 5
       },
       "dataAngle": null,
-      "heading": "Six Nations USA venue proposal remains a long-term strategic uncertainty",
+      "heading": "World Rugby continues talks over staging Six Nations match in USA",
       "kicker": "Tournament expansion",
-      "body": "The proposal to stage a Six Nations match in the United States remains an open question, with recent reports highlighting significant scepticism regarding its feasibility. While World Rugby continues to promote the concept as a method for international growth, analysts suggest the logistics for such a fixture remain a 'long shot.' As of this weekend, no formal agreement has been reached between the unions, and industry coverage indicates that major participants, particularly England, are unlikely to support the transition.",
+      "body": "The proposal to host a Six Nations fixture in the United States remains an open topic. While World Rugby is actively pursuing the move as a means to grow the global game, recent coverage suggests that a deal is far from certain. Commentators have noted that securing the necessary union cooperation remains a significant hurdle, with many viewing the prospect as a long shot. No specific fixture or venue has been confirmed, and discussions between the governing body and stakeholders continue.",
       "source": "BBC Rugby Union",
       "lead": null,
       "candidates": [
@@ -299,18 +303,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Scotland overpowered by ruthless Canada in challenging WXV tournament series opener",
-      "kicker": "WXV campaign",
-      "body": "Scotland suffered a heavy 64-26 defeat to Canada in their WXV Series opener at Hive Stadium. Despite tries from Evie Gallagher, Shona Campbell, Lana Skeldon, and Rhona Lloyd, the visitors’ attacking pace proved too difficult to contain as Canada crossed for 10 tries. Interim head coach Dave Butcher faces a significant challenge to bolster the team's defensive physicality ahead of the upcoming fixtures against New Zealand and Australia, as the squad looks to move past a difficult start to the tournament.",
+      "heading": "Ruthless Canada hand Scotland heavy defeat in WXV series opening match",
+      "kicker": "WXV opener",
+      "body": "Scotland began their WXV campaign with a difficult 64-26 loss to a clinical Canada side in Edinburgh. Despite a spirited showing that saw Evie Gallagher and Shona Campbell cross for tries, the visitors ran in 10 scores to overpower the hosts. While interim head coach Dave Butcher had sought a seamless transition into the tournament, the scoreboard reflects the significant challenge Canada posed, leaving Scotland to regroup ahead of their next fixture against New Zealand at Hive Stadium.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The opening match result serves as the most significant development in the current Scottish rugby landscape."
+        "why": "The result is the primary news story involving the national team following their heavy defeat to Canada."
       },
       "candidates": [
         {
           "title": "Ruthless Canada outclass Scotland in WXV opener",
-          "score": 31,
+          "score": 30.2,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -318,7 +322,7 @@
         },
         {
           "title": "Scotland Women overpowered by Canada as new coach identifies area for growth",
-          "score": 25.7,
+          "score": 24.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -326,7 +330,7 @@
         },
         {
           "title": "Clarke & Gallagher start for Scotland against Canada",
-          "score": 14.7,
+          "score": 14.6,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -334,7 +338,7 @@
         },
         {
           "title": "Scotland coaching transition has been seamless - Nelson",
-          "score": 12.1,
+          "score": 11.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -342,7 +346,7 @@
         },
         {
           "title": "Match Report: Scotland Women 26-64 Canada",
-          "score": 10.7,
+          "score": 10.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -352,31 +356,42 @@
     },
     {
       "team": "Wales",
-      "quiet": false,
-      "rung": "news",
-      "storyline": null,
+      "quiet": true,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "The future of Six Nations matches being staged in the United States",
+        "resolution": "until a specific match is officially scheduled for a US venue or the idea is formally abandoned by the Six Nations unions",
+        "recheckHits": 3
+      },
       "dataAngle": null,
-      "heading": "BBC Wales confirms live coverage for upcoming WXV Global Series fixtures",
-      "kicker": "WXV Broadcast News",
-      "body": "Welsh rugby fans will have free-to-air access to the upcoming WXV Global Series, with BBC Wales confirmed as the host broadcaster. Wales begin their campaign against South Africa before hosting the USA in Cardiff, with both matches available on BBC One Wales, iPlayer, and BBC Radio. Tomos Grace, Chief Commercial Officer at the Welsh Rugby Union, hailed the partnership, noting that women's rugby remains \"the fastest growing part of the game\" and is essential to the future of the sport in Wales.",
-      "source": null,
+      "heading": "Wales women to feature on BBC as WXV broadcasting plans confirmed",
+      "kicker": "Broadcast update",
+      "body": "The Vodafone Wales WXV Series will be broadcast on BBC One Wales and iPlayer, the WRU has confirmed. Wales begin their home campaign against South Africa before hosting the USA, with the partnership aiming to extend the reach of the women’s game. WRU Chief Commercial Officer Tomos Grace noted that women’s rugby is the \"fastest growing part of the game,\" and this deal ensures top-quality international fixtures remain free-to-air for audiences across the nation throughout the autumn.",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 3,
-        "why": "The WXV Global Series broadcast announcement provides immediate, actionable scheduling information for Welsh rugby fans."
+        "candidate": 1,
+        "why": "The broadcast arrangements for the upcoming WXV Global Series confirm significant Welsh involvement this autumn."
       },
       "candidates": [
         {
-          "title": "Wales lock Carter cleared for Dragons after injury",
-          "score": 42,
-          "corroboration": 2,
+          "title": "Wales rugby matches to be shown on BBC as England games relegated to iPlayer",
+          "score": 11.2,
+          "corroboration": 1,
           "outlets": [
-            "bbc",
             "search"
           ]
         },
         {
-          "title": "Wales rugby matches to be shown on BBC as England games relegated to iPlayer",
-          "score": 11.5,
+          "title": "Oldest rugby player in Wales picked for team at the age of 73",
+          "score": 9,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Welsh youngster stepping out of shadows in bid to make big break with Wales",
+          "score": 6.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -384,15 +399,7 @@
         },
         {
           "title": "Watch the WXV Global Series 2026 on BBC Wales and BBC ALBA",
-          "score": 6.7,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "New WRU boss identifies Welsh rugby's big problem and has plan to win World Cup",
-          "score": 4.8,
+          "score": 6.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -414,21 +421,12 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "ranking",
-      "heading": "Argentina maintain pursuit of previous No. 3 world ranking peak heights",
-      "kicker": "Historical context",
-      "body": "While looking ahead to the upcoming challenges, Los Pumas continue to measure their modern progress against their most successful era in the international game. Argentina’s best world ranking ever reached remains the No. 3 spot, a position they previously held during the 2007–08 window. As the side navigates the current international calendar, they remain focused on climbing back toward those historical heights from their current standing in the world game.",
+      "heading": "Argentina reflecting on their highest ever world ranking of No. 3",
+      "kicker": "Team History",
+      "body": "As the current squad looks to improve their standing in the Nations Championship, the team maintains a proud history on the international stage. Argentina reached their best world ranking of No. 3 during the 2007–08 window. Currently, Los Pumas hold an eighth-place position on the log after 3 fixtures, having secured 1 win to date. The side will look to build on their efforts as they continue the season’s competition.",
       "source": null,
       "lead": null,
       "candidates": [
-        {
-          "title": "Argentina 28-28 Australia: rugby union second Test – as it happened",
-          "score": 19,
-          "corroboration": 2,
-          "outlets": [
-            "guardian",
-            "search"
-          ]
-        },
         {
           "title": "Wallabies’ key weakness lets Argentina off the hook, but Les Kiss won’t ‘catastrophise it’ | Jack Snape",
           "score": 2.1,
@@ -438,27 +436,35 @@
           ]
         },
         {
-          "title": "Wallabies fight out draw with Argentina to clinch series as Les Kiss remains unbeaten",
+          "title": "Argentina vs. South Africa - Kick-off time, team news, how to watch the Springboks",
           "score": 1.9,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "How to watch Argentina vs. South Africa in the 2024 Rugby Championship online for free",
+          "score": 1.8,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
+          "title": "Wallabies fight out draw with Argentina to clinch series as Les Kiss remains unbeaten",
+          "score": 1.8,
           "corroboration": 1,
           "outlets": [
             "guardian"
           ]
         },
         {
-          "title": "Argentina vs. South Africa - Kick-off time, team news, how to watch the Springboks",
-          "score": 1.8,
+          "title": "Argentina too strong as they halt Wales' mini-revival",
+          "score": 1.3,
           "corroboration": 1,
           "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Trial opens in Paris over murder of Argentina rugby star Federico Aramburu",
-          "score": 1.8,
-          "corroboration": 1,
-          "outlets": [
-            "search"
+            "bbc"
           ]
         }
       ]
@@ -469,18 +475,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Wallaroos fall to dominant second-half performance from world champions England",
-      "kicker": "WXV Global Series",
-      "body": "The Wallaroos led 10-5 at half-time in their WXV Global Series opener at Salford, but ultimately succumbed to a clinical second-half display from England. Despite tries from Faliki Pohiva and Asoiva Karpani, John Mitchell’s side pulled away to secure a 48-15 victory. England’s head coach described the fixture as a good pre-season test, noting his side had to solve problems during an error-strewn opening half before dominating the final 40 minutes to extend their winning streak to 39 matches.",
-      "source": "BBC Rugby Union",
+      "heading": "Joseph-Aukuso Suaalii maintains open mindset regarding his long-term Wallabies position",
+      "kicker": "Selection conundrum",
+      "body": "Joseph-Aukuso Suaalii has rejected calls to specialise in a single role, confirming he is maintaining an \"open mindset\" to his positioning within the Wallabies backline. While the 23-year-old has primarily featured at centre, he insists he is comfortable covering fullback, wing, or the midfield. With head coach Les Kiss facing significant pressure to finalise his squad structure ahead of the 2027 home World Cup, Suaalii’s versatility remains a key talking point for supporters and selectors alike.",
+      "source": "Guardian Rugby Union",
       "lead": {
-        "candidate": 1,
-        "why": "The opening of the WXV Global Series saw the Wallaroos face the world champion Red Roses, providing a significant match result for Australian rugby fans."
+        "candidate": 3,
+        "why": "The ongoing uncertainty surrounding Suaalii's best position is a central topic for Wallabies fans as the 2027 World Cup approaches."
       },
       "candidates": [
         {
           "title": "England's second-half response crushes Australia",
-          "score": 49.7,
+          "score": 49.1,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -489,7 +495,7 @@
         },
         {
           "title": "Wallabies legend puts career on pause for new Brumbies position",
-          "score": 30.5,
+          "score": 30.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -497,7 +503,7 @@
         },
         {
           "title": "Suaalii keeps ‘open mindset’ to Wallabies position amid rising expectations for Rugby World Cup",
-          "score": 30.2,
+          "score": 30,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -505,7 +511,7 @@
         },
         {
           "title": "Schmidt has an amazing eye for detail - Dermody",
-          "score": 9.5,
+          "score": 9.2,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -513,7 +519,7 @@
         },
         {
           "title": "Wallabies’ Carter Gordon set for stint on sidelines after breaking leg in latest injury blow",
-          "score": 4.3,
+          "score": 4.2,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -526,23 +532,23 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "The impact of the Japan Rugby League One's proposed player category changes",
-        "resolution": "until the league reaches an agreement with players and fans regarding the 2026-2027 eligibility rules",
-        "recheckHits": 2
+        "subject": "The implementation and player/fan acceptance of the Japan Rugby League One's new player eligibility categories",
+        "resolution": "until the 2026-2027 season begins and the new category system is fully operational",
+        "recheckHits": 1
       },
       "dataAngle": null,
-      "heading": "Japan advances to Pacific Nations Cup final after defeating USA side",
-      "kicker": "Tournament progress",
-      "body": "Following the conclusion of Saturday's Pacific Nations Cup semifinal at Hanazono Rugby Stadium, Japan has secured their place in the tournament final. The Brave Blossoms overcame the USA to progress, setting up a decisive encounter against defending champions Fiji, who advanced to the final by beating Canada. Head coach Eddie Jones is targeting cup glory on home soil, seeking to claim the title for the first time since 2019 after finishing behind Fiji for two consecutive years.",
+      "heading": "Naturalised League One players urge fairness regarding new nationality eligibility rules",
+      "kicker": "Eligibility dispute",
+      "body": "The implementation of Japan Rugby League One’s new player eligibility categories remains a point of tension as the 2026-2027 season approaches. Recent reports indicate that naturalised players are actively lobbying for greater fairness within the system. While the league recently outlined updated criteria, the policy remains a contested issue among the playing cohort. Whether these concerns will lead to further amendments before the competition kicks off in December is currently unclear, as the league has provided no further official updates.",
       "source": "Rugby Asia 247",
       "lead": {
-        "candidate": 2,
-        "why": "The Pacific Nations Cup semifinal results dictate Japan's next stage in the competition."
+        "candidate": 1,
+        "why": "The edition addresses the ongoing player eligibility debate in League One, which remains the primary unresolved storyline."
       },
       "candidates": [
         {
           "title": "Asahi Pacific Nations Cup 2026 Preview – Japan vs USA",
-          "score": 16.8,
+          "score": 16.7,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -550,7 +556,7 @@
         },
         {
           "title": "Defending champion Fiji beats Canada to advance to rugby's Pacific Nations Cup final against Japan",
-          "score": 7.4,
+          "score": 7.1,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -558,7 +564,7 @@
         },
         {
           "title": "NTT Japan Rugby League One Division One 2026-2027 Fixtures Released",
-          "score": 7,
+          "score": 6.9,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -588,18 +594,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Dave Rennie names Richie Mo’unga for decisive Baltimore Test match start",
-      "kicker": "Team news",
-      "body": "Dave Rennie has reshuffled his side for the series finale in Baltimore, with Richie Mo’unga returning to the starting XV at fly-half to inject attacking impetus. The tourists, currently trailing 2-1 in the series, have also recalled Josh Moorby on the wing and Anton Lienert-Brown at outside centre. Springbok assistant Mzwandile Stick acknowledged the threat, noting that the All Blacks are expected to be “even more bold” in their attempt to level the series at two-all.",
-      "source": "SA Rugby Magazine",
+      "heading": "New Zealand fall to South Africa in final Test in Baltimore",
+      "kicker": "Series conclusion",
+      "body": "The All Blacks have finished their series against South Africa following a 43-28 defeat in the fourth and final Test in Baltimore. Despite a late rally featuring tries from Luke Hanekom and Beauden Barrett, the visitors were unable to overcome a physical Springbok side that controlled the forward exchanges. The result marks the end of the four-match tour, with New Zealand now turning their attention toward the remainder of the international calendar as they regroup after a testing series.",
+      "source": "Guardian Rugby Union",
       "lead": {
-        "candidate": 4,
-        "why": "The focus is on the All Blacks' tactical shift and personnel changes for the final Test of the series."
+        "candidate": 3,
+        "why": "This is the primary outcome of the final Test, which concludes the current headline series."
       },
       "candidates": [
         {
           "title": "Robbie Fleck 'all for' Dave Rennie and Rassie Erasmus 'war of words' which was 'definitely not personal'",
-          "score": 48.7,
+          "score": 47.7,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -607,36 +613,36 @@
         },
         {
           "title": "Nick Mallett's verdict on Springboks and All Blacks' contrasting styles and its impact on them in Greatest Rivalry series",
-          "score": 38,
+          "score": 37.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "Kriel and Marx tries help South Africa power past All Blacks to take series lead",
-          "score": 35.9,
-          "corroboration": 3,
+          "title": "South Africa v New Zealand: fourth and final rugby union Test – live",
+          "score": 32.9,
+          "corroboration": 2,
           "outlets": [
-            "bbc",
             "guardian",
             "search"
           ]
         },
         {
-          "title": "Stokke expects even bolder All Blacks in Baltimore",
-          "score": 31.8,
-          "corroboration": 1,
+          "title": "LIVE: Springboks vs All Blacks",
+          "score": 32.4,
+          "corroboration": 2,
           "outlets": [
-            "sarugbymag"
+            "sarugbymag",
+            "search"
           ]
         },
         {
-          "title": "Nick Mallett explains why Springboks win in Baltimore is important to avoid All Blacks 'bragging rights' in Greatest Rivalry series",
-          "score": 29.9,
+          "title": "Stokke expects even bolder All Blacks in Baltimore",
+          "score": 31.4,
           "corroboration": 1,
           "outlets": [
-            "planetrugby"
+            "sarugbymag"
           ]
         }
       ]
@@ -647,37 +653,45 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Rassie Erasmus targets series victory as Springboks face All Blacks finale",
-      "kicker": "Series finale",
-      "body": "The Springboks head into the series finale against New Zealand in Baltimore holding a 2-1 lead after back-to-back victories in Cape Town and Soweto. Rassie Erasmus has made two changes to his side, with Damian Willemse returning at full-back to replace the injured Cheslin Kolbe and Morne van den Berg earning a start at scrum-half. While the test is a commercial venture aimed at financial stability, the squad remains focused on sealing a series win against their fiercest rivals.",
-      "source": "Planet Rugby",
+      "heading": "South Africa defeat New Zealand 43-28 to secure series triumph",
+      "kicker": "Series victory",
+      "body": "South Africa finished their four-Test tour on a high note, beating New Zealand 43-28 at M&T Bank Stadium in Baltimore on Saturday. The result marks a successful conclusion to the series for Rassie Erasmus’ side, who entered the fixture holding a 2-1 lead. Siya Kolisi praised the support following the win, stating, \"I want to thank every single South Africa here and back at home. We are so grateful. We do it for you each and every time.\"",
+      "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The Baltimore Test marks a historic first, serving as the high-stakes finale to the closely contested rivalry series."
+        "why": "It reports on the final result of the high-profile four-Test series against New Zealand."
       },
       "candidates": [
         {
-          "title": "Springboks v All Blacks: How to watch Rugby's Greatest Rivalry series finale and everything you need to know about the Baltimore showdown",
-          "score": 71.7,
+          "title": "South Africa v New Zealand: fourth and final rugby union Test – live",
+          "score": 93.9,
           "corroboration": 2,
           "outlets": [
-            "planetrugby",
+            "guardian",
             "search"
           ]
         },
         {
-          "title": "Kriel and Marx tries help South Africa power past All Blacks to take series lead",
-          "score": 65.2,
-          "corroboration": 3,
+          "title": "LIVE: Springboks vs All Blacks",
+          "score": 92.6,
+          "corroboration": 2,
           "outlets": [
-            "bbc",
+            "sarugbymag",
+            "search"
+          ]
+        },
+        {
+          "title": "Springboks v All Blacks a US World Cup preview in Baltimore as thrilling series goes down to the wire",
+          "score": 75.3,
+          "corroboration": 2,
+          "outlets": [
             "guardian",
             "search"
           ]
         },
         {
           "title": "Springboks v All Blacks: Huge payday awaits SA Rugby and NZ Rugby for taking RGR Test to Baltimore",
-          "score": 51.3,
+          "score": 50.2,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -685,15 +699,7 @@
         },
         {
           "title": "Five things Donald Trump can learn from Rassie Erasmus as US President says he's a great leader while Springboks boss demonstrates it",
-          "score": 44.3,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "Robbie Fleck 'all for' Dave Rennie and Rassie Erasmus 'war of words' which was 'definitely not personal'",
-          "score": 39,
+          "score": 43.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
