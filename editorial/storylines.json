@@ -1,36 +1,8 @@
 {
-  "updatedAt": "2026-09-11T22:05:16.268Z",
+  "updatedAt": "2026-09-12T08:01:17.600Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 223,
+  "count": 211,
   "storylines": [
-    {
-      "id": "wales-professional-regional-structure-1maifzp",
-      "subject": "Wales' professional regional structure and the planned cut to three teams",
-      "teams": [
-        391
-      ],
-      "resolution": "until the WRU confirms whether the Ospreys or Scarlets will be cut",
-      "sources": [
-        {
-          "title": "Wales sports minister meets WRU after fans' fears",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cm2gd4ken4jo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "WRU condemns abuse and doubles down on three-team plan",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq891l3g3keo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "WRU confirm roadmap to axing one region as Ospreys or Scarlets face cut",
-          "link": "https://www.planetrugby.com/news/wru-confirm-roadmap-to-axing-one-region-as-ospreys-or-scarlets-face-cut",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-08-02",
-      "lastSeen": "2026-08-22",
-      "uses": 0
-    },
     {
       "id": "henry-pollock-s-contract-1t0lhun",
       "subject": "Henry Pollock’s contract negotiations with Northampton Saints amid reported £1m salary demands",
@@ -116,31 +88,6 @@
       "firstSeen": "2026-08-09",
       "lastSeen": "2026-09-11",
       "uses": 0
-    },
-    {
-      "id": "tom-s-albornoz-s-b3xk44",
-      "subject": "Tomás Albornoz's four-match suspension and Argentina's fly-half options for the South Africa Tests",
-      "teams": [
-        460,
-        467
-      ],
-      "resolution": "until Albornoz completes his ban and is eligible for selection again",
-      "sources": [
-        {
-          "title": "'Chaos' & 'comedy refereering' as England beat Argentina",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/videos/cpq8zr5prxvo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Argentina’s Albornoz given four-match ban for intimidating referee after England defeat",
-          "link": "https://www.theguardian.com/sport/2026/aug/05/tomas-albornoz-four-match-ban-intimidating-referee-argentina-england-rugby-union",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-10",
-      "lastSeen": "2026-08-22",
-      "uses": 2,
-      "lastUsed": "2026-08-25"
     },
     {
       "id": "the-wru-proposal-to-1vw49ip",
@@ -237,6 +184,11 @@
       "resolution": "until Dave Rennie names his starting lineup for the first Test against the Springboks",
       "sources": [
         {
+          "title": "Codie leads, Richie at 10 for All Blacks",
+          "link": "https://www.sarugbymag.co.za/codie-leads-richie-10-blacks/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
           "title": "Stephen Donald believes Richie Mo'unga 'complicating' All Blacks fly-half battle after giving 'flying pass' verdict on Ruben Love",
           "link": "https://www.planetrugby.com/news/stephen-donald-believes-richie-mounga-complicating-all-blacks-fly-half-battle-after-giving-flying-pass-verdict-on-ruben-love",
           "feedName": "Planet Rugby"
@@ -244,11 +196,6 @@
         {
           "title": "All Blacks team: Richie Mo'unga makes stunning Test return as Dave Rennie wields the axe with new captain confirmed",
           "link": "https://www.planetrugby.com/news/all-blacks-team-richie-mounga-makes-stunning-test-return-as-dave-rennie-wields-the-axe-with-new-captain-confirmed",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "All Blacks team: Winners and losers as 'door opens' for Richie Mo'unga to usurp Ruben Love while Dave Rennie rewards 'tremendous' talent",
-          "link": "https://www.planetrugby.com/news/all-blacks-team-v-springboks-test-iv-winners-and-losers-as-richie-mounga-returns",
           "feedName": "Planet Rugby"
         }
       ],
@@ -284,34 +231,6 @@
       "lastSeen": "2026-08-27",
       "uses": 1,
       "lastUsed": "2026-08-29"
-    },
-    {
-      "id": "wales-regional-restructuring-plan-si5h92",
-      "subject": "The WRU's controversial proposal to reduce Wales' professional teams from four to three",
-      "teams": [
-        391
-      ],
-      "resolution": "until the WRU confirms a final decision on the three-team model or reaches an agreement with the regions",
-      "sources": [
-        {
-          "title": "WRU condemns abuse and doubles down on three-team plan",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq891l3g3keo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Wales sports minister meets WRU after fans' fears",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cm2gd4ken4jo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Davies calls for WRU board to step down",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c330yrpdlz0o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-16",
-      "lastSeen": "2026-08-22",
-      "uses": 0
     },
     {
       "id": "les-kiss-s-search-1vx618n",
@@ -448,35 +367,6 @@
       "uses": 0
     },
     {
-      "id": "joseph-aukuso-suaalii-s-1og8pda",
-      "subject": "Joseph-Aukuso Suaalii's positional role in the Wallabies' backline for the Argentina tour",
-      "teams": [
-        461
-      ],
-      "resolution": "until the Wallabies confirm Suaalii's starting position for the first Test in Argentina",
-      "sources": [
-        {
-          "title": "Ikitau, Suaalii return for Wallabies",
-          "link": "https://www.sarugbymag.co.za/ikitau-suaalii-return-wallabies/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Joseph-Aukuso Suaalii's search for 'freedom' as ex-Wallabies suggest positional change",
-          "link": "https://www.planetrugby.com/news/joseph-aukuso-suaaliis-search-for-freedom-as-ex-wallabies-suggest-positional-change",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Wallabies squad: Les Kiss handed major boost as star backline duo named for Argentina tour",
-          "link": "https://www.planetrugby.com/news/wallabies-squad-les-kiss-handed-major-boost-as-star-backline-duo-named-for-argentina-tour",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-08-20",
-      "lastSeen": "2026-08-22",
-      "uses": 1,
-      "lastUsed": "2026-08-23"
-    },
-    {
       "id": "manie-libbok-and-handr-r1aa9n",
       "subject": "Manie Libbok and Handré Pollard's battle for the Springbok starting fly-half jersey",
       "teams": [
@@ -563,93 +453,6 @@
       "lastUsed": "2026-08-23"
     },
     {
-      "id": "michael-cheika-s-return-1q448cc",
-      "subject": "Michael Cheika's return to professional rugby union in Australia for 2027",
-      "teams": [
-        461
-      ],
-      "resolution": "until Michael Cheika's specific role or club for 2027 is confirmed",
-      "sources": [
-        {
-          "title": "Cheika returns to rugby union",
-          "link": "https://www.sarugbymag.co.za/cheika-returns-to-rugby-union/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Michael Cheika's Australian Rugby return confirmed: 'Always occupied a special place for me'",
-          "link": "https://www.planetrugby.com/news/michael-cheikas-first-words-as-nsw-waratahs-return-confirmed-always-occupied-a-special-place-for-me",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
-      "uses": 0
-    },
-    {
-      "id": "steve-borthwick-s-england-1v7g5xy",
-      "subject": "Steve Borthwick’s England squad transition following the removal of veteran central contracts",
-      "teams": [
-        386
-      ],
-      "resolution": "until the squad for the next international window is announced",
-      "sources": [
-        {
-          "title": "Five players get first England deals in Borthwick shake-up",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwy427n1dnvo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Lawrence and Daly lose England central contracts as Borthwick looks to World Cup",
-          "link": "https://www.theguardian.com/sport/2026/aug/12/ollie-lawrence-elliot-daly-lose-england-central-contracts-rugby-union-world-cup",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
-      "uses": 0
-    },
-    {
-      "id": "bath-rugby-s-potential-1slxlt6",
-      "subject": "Bath Rugby's potential move to play home fixtures at Reading's stadium",
-      "teams": [
-        386
-      ],
-      "resolution": "until Bath Rugby announces its home ground for the 2026-27 season",
-      "sources": [
-        {
-          "title": "Bath in 'serious discussions' to play in Reading",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cx2jrge11rwo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
-      "uses": 0
-    },
-    {
-      "id": "siya-kolisi-s-return-1hfyxfj",
-      "subject": "Siya Kolisi’s return to the Springbok lineup during the New Zealand series",
-      "teams": [
-        467
-      ],
-      "resolution": "until Kolisi is named in a matchday squad for the remainder of the All Blacks tour",
-      "sources": [
-        {
-          "title": "Springboks team: Siya Kolisi to miss All Blacks opener while Rassie Erasmus makes key fly-half call",
-          "link": "https://www.planetrugby.com/news/springboks-team-siya-kolisi-to-miss-all-blacks-opener-as-rassie-erasmus-names-new-captain-and-makes-key-fly-half-call",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Rassie explains Siya's omission",
-          "link": "https://www.sarugbymag.co.za/rassie-explains-siyas-omission/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
-      "uses": 0
-    },
-    {
       "id": "iain-henderson-s-recovery-nrtuyy",
       "subject": "Iain Henderson’s recovery from hip surgery and return to the Ireland squad",
       "teams": [
@@ -667,102 +470,6 @@
       "lastSeen": "2026-08-24",
       "uses": 2,
       "lastUsed": "2026-08-23"
-    },
-    {
-      "id": "the-high-court-concussion-1cseaex",
-      "subject": "The High Court concussion litigation involving the RFU and WRU",
-      "teams": [
-        386,
-        391
-      ],
-      "resolution": "until the High Court delivers a final ruling or a legal settlement is reached",
-      "sources": [
-        {
-          "title": "Rugby brain injury case able to continue after high court ruling",
-          "link": "https://www.theguardian.com/sport/2026/aug/21/rugby-brain-injury-case-able-to-continue-after-high-court-ruling",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "High court allows rugby brain injury case to go on",
-          "link": "https://www.bbc.co.uk/sport/articles/c70g2n4w49lo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
-      "uses": 0
-    },
-    {
-      "id": "the-positional-debate-over-1cywtxc",
-      "subject": "The positional debate over whether Joseph-Aukuso Suaalii should play wing or centre for Australia",
-      "teams": [
-        461
-      ],
-      "resolution": "until the Wallabies coaching staff confirms Suaalii's long-term specialist position",
-      "sources": [
-        {
-          "title": "Joseph-Aukuso Suaalii's search for 'freedom' as ex-Wallabies suggest positional change",
-          "link": "https://www.planetrugby.com/news/joseph-aukuso-suaaliis-search-for-freedom-as-ex-wallabies-suggest-positional-change",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
-      "uses": 0
-    },
-    {
-      "id": "lisa-neumann-s-search-1tcov8t",
-      "subject": "Lisa Neumann's search for a new club following her departure from Harlequins",
-      "teams": [
-        391
-      ],
-      "resolution": "until Lisa Neumann signs a professional contract with a new team",
-      "sources": [
-        {
-          "title": "Neumann uncertain over future after Quins exit",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c20eygrlklzo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
-      "uses": 0
-    },
-    {
-      "id": "the-red-roses-adaptation-x8ktj8",
-      "subject": "The Red Roses' adaptation to using smaller rugby balls ahead of the WXV Global Series",
-      "teams": [
-        386
-      ],
-      "resolution": "until the conclusion of the WXV tournament confirms the impact of the trial",
-      "sources": [
-        {
-          "title": "Smaller balls, national anthem test & tough travel schedule - England gear up for WXV",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c235249ynjlo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
-      "uses": 0
-    },
-    {
-      "id": "cornish-pirates-pursuit-of-1gl58gf",
-      "subject": "Cornish Pirates' pursuit of Premiership promotion eligibility after Nick Knowles' investment",
-      "teams": [
-        386
-      ],
-      "resolution": "until the RFU or Premiership Rugby issues a ruling on the club's top-flight status",
-      "sources": [
-        {
-          "title": "Knowles has top-flight ambition for Cornish Pirates",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cdew0k8n3g3o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
-      "uses": 0
     },
     {
       "id": "sacha-feinberg-mngomezulu-s-175kmta",
@@ -793,34 +500,6 @@
       "uses": 0
     },
     {
-      "id": "england-s-ongoing-search-1xfmoj3",
-      "subject": "England's ongoing search for a consistent matchday 23 under Steve Borthwick",
-      "teams": [
-        386
-      ],
-      "resolution": "until the squad shows stable performance and contract structure ahead of the 2027 World Cup",
-      "sources": [
-        {
-          "title": "Ranking seven England World Cup bolters to watch in the PREM including latest 'rising star' and 'next cab off the rank'",
-          "link": "https://www.planetrugby.com/news/ranking-seven-england-world-cup-bolters-to-watch-in-the-prem-including-latest-rising-star-and-next-cab-off-the-rank",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Five players get first England deals in Borthwick shake-up",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwy427n1dnvo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Lawrence and Daly lose England central contracts as Borthwick looks to World Cup",
-          "link": "https://www.theguardian.com/sport/2026/aug/12/ollie-lawrence-elliot-daly-lose-england-central-contracts-rugby-union-world-cup",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
-      "uses": 0
-    },
-    {
       "id": "wallabies-playmaker-puzzle-and-da5nay",
       "subject": "Les Kiss' development of the Wallabies' fly-half and tactical options",
       "teams": [
@@ -846,34 +525,6 @@
       ],
       "firstSeen": "2026-08-22",
       "lastSeen": "2026-08-29",
-      "uses": 0
-    },
-    {
-      "id": "alun-wyn-jones-s-vkq2ln",
-      "subject": "Alun Wyn Jones's new board role at Ospreys",
-      "teams": [
-        391
-      ],
-      "resolution": "until he officially begins his tenure as a director",
-      "sources": [
-        {
-          "title": "Wales great Jones returns to Ospreys as a director",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cp870222y26o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Wales legend Alun Wyn Jones joins Ospreys board amid URC club's fight for survival",
-          "link": "https://www.planetrugby.com/news/wales-legend-alun-wyn-jones-joins-ospreys-board-amid-urc-clubs-fight-for-survival",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Wales great Jones set to join Ospreys board",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwy44131ydno?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-22",
-      "lastSeen": "2026-08-22",
       "uses": 0
     },
     {
@@ -3026,36 +2677,6 @@
       "uses": 0
     },
     {
-      "id": "les-kiss-s-experimentation-79hrj1",
-      "subject": "Les Kiss's experimentation with the Wallabies squad and the return of Harry Wilson",
-      "teams": [
-        461,
-        460
-      ],
-      "resolution": "until Les Kiss announces his starting XV for the series finale against Argentina",
-      "sources": [
-        {
-          "title": "Wallabies rotate forwards for Argentina Test as Suaalii settles for place on bench",
-          "link": "https://www.theguardian.com/sport/2026/aug/28/wallabies-team-selection-australia-argentina-rugby-union-test",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Wallabies ‘raise competitive dial’ to future-proof team for 2027 Rugby World Cup | Jack Snape",
-          "link": "https://www.theguardian.com/sport/2026/aug/29/wallabies-argentina-team-lineup-2027-rugby-world-cup",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Les Kiss reaps rewards of derring-do approach to Australia’s team selection",
-          "link": "https://www.theguardian.com/sport/2026/aug/15/les-kiss-australia-team-selection-rugby-union",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-31",
-      "lastSeen": "2026-08-31",
-      "uses": 2,
-      "lastUsed": "2026-09-11"
-    },
-    {
       "id": "the-capping-of-ireland-1ia8c0f",
       "subject": "The capping of Ireland's seven new WXV squad members",
       "teams": [
@@ -3761,6 +3382,11 @@
       "resolution": "until SA Rugby appoints a permanent successor to Swys de Bruin",
       "sources": [
         {
+          "title": "SA Rugby salutes Swys",
+          "link": "https://www.sarugbymag.co.za/sa-rugby-salutes-swys/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
           "title": "Springboks Women's caretaker coach wants players to 'stay in the moment' after shock Swys de Bruin resignation in build-up to Black Ferns clash",
           "link": "https://www.planetrugby.com/news/springboks-womens-caretaker-coach-wants-players-to-stay-in-the-moment-after-shock-swys-de-bruin-resignation-in-build-up-to-black-ferns-clash",
           "feedName": "Planet Rugby"
@@ -3769,15 +3395,10 @@
           "title": "Swys on his shock exit: It's not about money",
           "link": "https://www.sarugbymag.co.za/swys-shock-exit-not-money/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Swys quits Springbok Women",
-          "link": "https://www.sarugbymag.co.za/swys-quits-springbok-women/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-09-04",
-      "lastSeen": "2026-09-07",
+      "lastSeen": "2026-09-12",
       "uses": 0
     },
     {
@@ -5114,7 +4735,7 @@
         }
       ],
       "firstSeen": "2026-09-11",
-      "lastSeen": "2026-09-11",
+      "lastSeen": "2026-09-12",
       "uses": 0
     },
     {
@@ -5217,10 +4838,14 @@
     },
     {
       "id": "potential-six-nations-match-7jvptg",
-      "subject": "Proposals to stage a Six Nations match in the United States",
+      "subject": "Proposals to host a Six Nations fixture in the United States",
       "teams": [
         388,
-        389
+        389,
+        386,
+        387,
+        390,
+        391
       ],
       "resolution": "until World Rugby and the Six Nations unions confirm if a fixture will be moved",
       "sources": [
@@ -5242,7 +4867,7 @@
       ],
       "firstSeen": "2026-09-11",
       "lastSeen": "2026-09-12",
-      "uses": 1,
+      "uses": 2,
       "lastUsed": "2026-09-12"
     },
     {
@@ -5343,6 +4968,94 @@
           "title": "The Breakdown | How the smaller ball trial in WXV has brought ‘mixed bag of emotions’",
           "link": "https://www.theguardian.com/sport/2026/sep/08/how-the-smaller-ball-trial-in-wxv-has-brought-mixed-bag-of-emotions",
           "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 2,
+      "lastUsed": "2026-09-12"
+    },
+    {
+      "id": "the-potential-england-recall-dhaf0g",
+      "subject": "The potential England recall for Courtney Lawes and Joe Marchant",
+      "teams": [
+        386
+      ],
+      "resolution": "until Steve Borthwick names his squad for the 2026 autumn Nations Championship fixtures",
+      "sources": [
+        {
+          "title": "No easy ride for England's prodigal sons",
+          "link": "https://www.sarugbymag.co.za/no-easy-ride-englands-prodigal-sons/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Allow overseas stars to play for England - Lawes",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5y5kd13y99o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Sale’s Courtney Lawes ‘not worried about legacy’ in drive to make England return",
+          "link": "https://www.theguardian.com/sport/2026/sep/07/sales-courtney-lawes-not-worried-about-legacy-in-drive-to-make-england-return",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "australia-s-fly-half-6ymjdp",
+      "subject": "Australia's fly-half selection following Carter Gordon's broken leg",
+      "teams": [
+        461
+      ],
+      "resolution": "until Les Kiss confirms a starting fly-half for the upcoming Bledisloe Cup series",
+      "sources": [
+        {
+          "title": "Wallabies’ Carter Gordon set for stint on sidelines after breaking leg in latest injury blow",
+          "link": "https://www.theguardian.com/sport/2026/sep/07/wallabies-carter-gordon-broken-leg-injury-blow-bledisloe-cup",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Wallabies’ search for No 10 continues as Les Kiss tinkers again for second Argentina Test",
+          "link": "https://www.theguardian.com/sport/2026/sep/04/wallabies-vs-argentina-second-test-mendoza-ben-donaldson-flyhalf",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "joseph-aukuso-suaalii-s-x8qsrx",
+      "subject": "Joseph-Aukuso Suaalii's long-term position in the Wallabies backline",
+      "teams": [
+        461
+      ],
+      "resolution": "until Suaalii is selected in the same starting position for three consecutive Test matches",
+      "sources": [
+        {
+          "title": "Suaalii keeps ‘open mindset’ to Wallabies position amid rising expectations for Rugby World Cup",
+          "link": "https://www.theguardian.com/sport/2026/sep/10/joseph-aukuso-suaalii-australia-wallabies-2027-rugby-world-cup-position",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "meg-jones-campaign-for-1fn4wuf",
+      "subject": "Meg Jones' campaign for a formal Red Roses fertility and egg-freezing policy",
+      "teams": [
+        386
+      ],
+      "resolution": "until the RFU implements a formal fertility support policy for England players",
+      "sources": [
+        {
+          "title": "England captain Jones calls for fertility support",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ce9er3xdgvdo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-12",
