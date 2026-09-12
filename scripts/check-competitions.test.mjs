@@ -171,3 +171,24 @@ test("a seed applies only while the registry entry is still SEEDED", () => {
   assert.equal(applicableSeeds({ competitions: [liveEntry] }).length, 0);
   assert.equal(applicableSeeds({ competitions: [] }).length, 0);
 });
+
+// --- declared structures ----------------------------------------------------
+
+test("a declared knockout is not reported as drifting from its fixtures", () => {
+  // The classifier cannot produce "knockout", so recomputing would always
+  // disagree. Fixture-count arithmetic has nothing to say about it either.
+  const pnc = comp({
+    key: "pnc-2026", name: "Pacific Nations Cup", structure: "knockout", fixtureCount: 4,
+    teams: ["CAN", "FIJ", "JPN", "USA"], groups: null, headline: false,
+    startDate: "2026-09-11", endDate: "2026-09-19", defaultFrom: "2026-09-11", defaultUntil: "2026-10-03",
+  });
+  assert.equal(expectedFixtures(pnc), null);
+  const fixtures = { fixtures: [
+    fixture("rnc-2026", "ENG", "RSA"),
+    fixture("pnc-2026", "FIJ", "CAN", "2026-09-11T08:00:00Z"),
+    fixture("pnc-2026", "JPN", "USA", "2026-09-12T10:05:00Z"),
+    fixture("pnc-2026", "JPN", "FIJ", "2026-09-19T10:05:00Z"),
+    fixture("pnc-2026", "USA", "CAN", "2026-09-19T07:00:00Z"),
+  ] };
+  assert.deepEqual(checkIntegrity(reg([comp(), pnc]), fixtures, "2026-09-12"), []);
+});

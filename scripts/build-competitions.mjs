@@ -31,11 +31,38 @@ import { SEEDS, seededCompetition } from "./seed-competitions.mjs";
 // The competitions the app tracks as competitions. "International Test Match"
 // (league 289234) is deliberately absent — it is a bucket of one-off tests
 // with no table, and build-fixtures.mjs already folds it into `kind: "test"`.
+//
+// Three optional flags, all introduced for the Pacific Nations Cup
+// (2026-09-12: Japan v USA, the PNC semi-final, was invisible in the app
+// because nothing here or in fetch-espn-fixtures.mjs knew the league):
+//
+//   structure   The format is DECLARED rather than classified. A knockout
+//               bracket is none of the three shapes the classifier knows
+//               (semis + final + 3rd-place is a 4-cycle, which would read as
+//               a two-team "conference"), so the meta states it and the
+//               integrity check skips the graph comparison for it.
+//   headline    false = a SIDE competition that runs inside a bigger one's
+//               window. It is offered in the dropdown for its own span plus
+//               the tail, but never becomes the app's default and never
+//               enters the handover chain — the PNC sits inside the Nations
+//               Championship's July–November span, and threading it into the
+//               chain would hand the Six Nations 2027 its defaultFrom in
+//               October 2026.
+//   seasonFromFixtures
+//               ESPN numbers this league's seasons by the FOLLOWING year (the
+//               September 2025 tournament is "IRB Pacific Nations Cup 2026",
+//               and the 2026 edition sits under season 2027), so the key and
+//               label come from the year of the first fixture instead. The
+//               ESPN season number is still what the fetch is keyed on.
 export const REGISTERED = [
   { prefix: "rnc", short: "RNC", name: "Nations Championship", espnLeagueId: 17567 },
   { prefix: "6n", short: "6N", name: "Six Nations", espnLeagueId: 180659 },
   { prefix: "trc", short: "TRC", name: "The Rugby Championship", espnLeagueId: 244293 },
   { prefix: "rwc", short: "RWC", name: "Rugby World Cup", espnLeagueId: 164205 },
+  {
+    prefix: "pnc", short: "PNC", name: "Pacific Nations Cup", espnLeagueId: 256449,
+    structure: "knockout", headline: false, seasonFromFixtures: true,
+  },
 ];
 
 // ESPN team id -> our 3-letter code. ESPN's own abbreviations disagree with
@@ -193,12 +220,21 @@ function earliestByTeam(matches) {
 // (#206) can notice the day their fixtures land.
 export const TAIL_DAYS = 14;
 
+// A side competition (`headline: false`, see REGISTERED) is offered for its
+// own span plus the tail — the app's dropdown expires entries on
+// `defaultUntil`, so it still needs one — but it is left OUT of the chain:
+// it neither inherits the previous comp's tail nor hands its own to the next.
 export function chainDefaults(comps) {
   const dated = comps
     .filter((c) => c.startDate && c.endDate)
     .sort((a, b) => a.startDate.localeCompare(b.startDate));
   let prevUntil = null;
   for (const c of dated) {
+    if (c.headline === false) {
+      c.defaultFrom = c.startDate;
+      c.defaultUntil = addDays(c.endDate, TAIL_DAYS);
+      continue;
+    }
     c.defaultFrom = prevUntil ?? c.startDate;
     c.defaultUntil = addDays(c.endDate, TAIL_DAYS);
     prevUntil = c.defaultUntil;
@@ -208,8 +244,13 @@ export function chainDefaults(comps) {
 
 // Which competition the app should show on a given day. Returns null when the
 // date falls outside every window (before the first comp, or after the last).
+// Side competitions never win this — their window exists for dropdown expiry.
 export function defaultCompetition(comps, today = iso(Date.now())) {
-  return comps.find((c) => c.defaultFrom && c.defaultFrom <= today && today < c.defaultUntil) ?? null;
+  return (
+    comps.find(
+      (c) => c.headline !== false && c.defaultFrom && c.defaultFrom <= today && today < c.defaultUntil,
+    ) ?? null
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -244,15 +285,25 @@ export function entryFor(meta, season, events, today) {
   }
 
   const dates = matches.map((m) => m.date).filter(Boolean).sort();
-  const { structure, groups } = matches.length ? classify(matches) : { structure: "UNKNOWN", groups: null };
-  const yy = String(season).slice(2);
+  // A declared format (REGISTERED `structure`) is taken as stated; everything
+  // else is classified from the fixture graph.
+  const { structure, groups } = !matches.length
+    ? { structure: "UNKNOWN", groups: null }
+    : meta.structure
+      ? { structure: meta.structure, groups: null }
+      : classify(matches);
+  // The published season is the fixtures' year when the meta says ESPN's own
+  // numbering can't be trusted for it (see REGISTERED); `season` stays the
+  // vendor's number until fixtures exist to read the year from.
+  const published = meta.seasonFromFixtures && dates[0] ? Number(dates[0].slice(0, 4)) : season;
+  const yy = String(published).slice(2);
 
   const entry = {
-    key: `${meta.prefix}-${season}`,
+    key: `${meta.prefix}-${published}`,
     label: `${meta.short} '${yy}`,
     name: meta.name,
     espnLeagueId: meta.espnLeagueId,
-    season,
+    season: published,
     startDate: dates[0] ?? null,
     endDate: dates.at(-1) ?? null,
     structure: matches.length ? structure : null,
@@ -261,6 +312,7 @@ export function entryFor(meta, season, events, today) {
     fixtureCount: matches.length,
     status: "announced",
   };
+  if (meta.headline === false) entry.headline = false;
   entry.status = statusFor(entry, today);
   if (entry.structure === "conference" && entry.groups) nameConferences(entry.groups);
   return entry;
@@ -356,8 +408,17 @@ export async function buildRegistry(seasons, today = iso(Date.now())) {
     if (seed && c.fixtureCount === 0) out[i] = seededCompetition(seed);
   }
 
-  out.sort((a, b) => (a.startDate ?? "9999").localeCompare(b.startDate ?? "9999") || a.key.localeCompare(b.key));
-  return chainDefaults(out);
+  // Two vendor seasons can publish under one key once the year is read from
+  // the fixtures (an empty season shell beside the real one). Keep the entry
+  // with the most fixtures, so an "announced" shell never shadows a live comp.
+  const byKey = new Map();
+  for (const c of out) {
+    const have = byKey.get(c.key);
+    if (!have || c.fixtureCount > have.fixtureCount) byKey.set(c.key, c);
+  }
+  const unique = [...byKey.values()];
+  unique.sort((a, b) => (a.startDate ?? "9999").localeCompare(b.startDate ?? "9999") || a.key.localeCompare(b.key));
+  return chainDefaults(unique);
 }
 
 async function main() {

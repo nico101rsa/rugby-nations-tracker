@@ -285,3 +285,73 @@ test("pool groups carry no invented letters", () => {
   assert.equal(e.groups.length, 3);
   assert.deepEqual(new Set(e.groups.map((g) => g.name)), new Set([null]));
 });
+
+// --- side competitions (the Pacific Nations Cup) ----------------------------
+// Japan v USA, the 2026 PNC semi-final, never reached the app: nothing knew
+// the league. The PNC runs INSIDE the Nations Championship's window, is a
+// knockout (none of the classifier's shapes), and ESPN numbers its seasons by
+// the following year. Each of those needed a flag on the registry meta.
+
+const PNC = {
+  prefix: "pnc", short: "PNC", name: "Pacific Nations Cup", espnLeagueId: 256449,
+  structure: "knockout", headline: false, seasonFromFixtures: true,
+};
+
+test("a declared structure is published as stated, not classified", () => {
+  // Semis + final + 3rd place form a 4-cycle, which the graph would call a
+  // two-team-a-side "conference". The meta says knockout, so it is knockout.
+  const events = [
+    espnEvent("2026-09-11", 14, 25), // FIJ v CAN
+    espnEvent("2026-09-12", 23, 11), // JPN v USA
+    espnEvent("2026-09-19", 23, 14), // final
+    espnEvent("2026-09-19", 11, 25), // 3rd place
+  ];
+  const e = entryFor(PNC, 2027, events, "2026-09-12");
+  assert.equal(e.structure, "knockout");
+  assert.equal(e.groups, null);
+  assert.deepEqual(e.teams, ["CAN", "FIJ", "JPN", "USA"]);
+  assert.equal(e.headline, false);
+});
+
+test("seasonFromFixtures keys the entry by the fixtures' year, not ESPN's season number", () => {
+  const events = [espnEvent("2026-09-12", 23, 11), espnEvent("2026-09-19", 23, 14)];
+  const e = entryFor(PNC, 2027, events, "2026-09-12");
+  assert.equal(e.key, "pnc-2026");
+  assert.equal(e.label, "PNC '26");
+  assert.equal(e.season, 2026);
+  // With nothing published there is no year to read; the vendor's number stands.
+  assert.equal(entryFor(PNC, 2027, [], "2026-09-12").key, "pnc-2027");
+});
+
+test("the four headline competitions are untouched by the new flags", () => {
+  const e = entryFor(META, 2027, [espnEvent("2027-10-01", 6, 289268)], "2026-07-25");
+  assert.equal(e.key, "rwc-2027");
+  assert.equal("headline" in e, false);
+});
+
+test("a side competition gets its own window but stays out of the chain", () => {
+  const comps = chainDefaults([
+    { key: "rnc-2026", startDate: "2026-07-04", endDate: "2026-11-21" },
+    { key: "pnc-2026", startDate: "2026-09-11", endDate: "2026-09-19", headline: false },
+    { key: "6n-2027", startDate: "2027-01-31", endDate: "2027-03-17" },
+  ]);
+  const [rnc, pnc, six] = comps;
+  // Offered for its own span plus the tail — that is what the dropdown expires on.
+  assert.equal(pnc.defaultFrom, "2026-09-11");
+  assert.equal(pnc.defaultUntil, "2026-10-03");
+  // The chain runs past it as if it were not there: RNC hands to the Six
+  // Nations on 5 Dec, not the PNC to the Six Nations on 3 Oct.
+  assert.equal(rnc.defaultUntil, "2026-12-05");
+  assert.equal(six.defaultFrom, "2026-12-05");
+});
+
+test("a side competition never becomes the app's default, even mid-tournament", () => {
+  const comps = chainDefaults([
+    { key: "rnc-2026", startDate: "2026-07-04", endDate: "2026-11-21" },
+    { key: "pnc-2026", startDate: "2026-09-11", endDate: "2026-09-19", headline: false },
+  ]);
+  assert.equal(defaultCompetition(comps, "2026-09-12").key, "rnc-2026");
+  assert.equal(defaultCompetition(comps, "2026-09-25").key, "rnc-2026"); // inside the PNC tail
+  // Even with nothing else on, a side comp is not promoted.
+  assert.equal(defaultCompetition([comps[1]], "2026-09-12"), null);
+});
