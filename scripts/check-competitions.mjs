@@ -138,6 +138,9 @@ export function checkIntegrity(registry, fixturesFile, today = iso(Date.now())) 
   // shipped. This is what catches a seed whose fixtures were mistyped.
   for (const c of comps) {
     if (!c.structure || c.structure === "UNKNOWN") continue;
+    // A declared format the classifier cannot produce (a knockout bracket is
+    // none of its three shapes) has nothing to recompute against.
+    if (c.structure === "knockout") continue;
     const own = fixtures.filter((f) => f.comp?.key === c.key);
     if (own.length !== c.fixtureCount) continue; // count mismatch already reported
     const recomputed = classify(own.map((f) => ({ teams: [f.home.code, f.away.code], date: f.date })));
