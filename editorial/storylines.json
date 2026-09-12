@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-12T18:53:04.750Z",
+  "updatedAt": "2026-09-12T20:01:05.573Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 222,
+  "count": 224,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -2817,7 +2817,7 @@
         }
       ],
       "firstSeen": "2026-09-01",
-      "lastSeen": "2026-09-12",
+      "lastSeen": "2026-09-13",
       "uses": 0
     },
     {
@@ -4241,7 +4241,7 @@
     },
     {
       "id": "benhard-janse-van-rensburg-ihvmlh",
-      "subject": "Benhard Janse van Rensburg's potential Springbok eligibility",
+      "subject": "Benhard Janse van Rensburg's potential eligibility for South Africa",
       "teams": [
         467
       ],
@@ -4259,7 +4259,7 @@
         }
       ],
       "firstSeen": "2026-09-07",
-      "lastSeen": "2026-09-07",
+      "lastSeen": "2026-09-13",
       "uses": 0
     },
     {
@@ -4746,37 +4746,6 @@
       "uses": 0
     },
     {
-      "id": "the-trial-and-reception-iz0pj9",
-      "subject": "The trial and reception of the size 4.5 ball in the women's WXV Global Series",
-      "teams": [
-        386,
-        388,
-        390,
-        391,
-        461,
-        463,
-        465,
-        467
-      ],
-      "resolution": "until World Rugby issues a definitive ruling on ball size following the WXV trial",
-      "sources": [
-        {
-          "title": "The Breakdown | How the smaller ball trial in WXV has brought ‘mixed bag of emotions’",
-          "link": "https://www.theguardian.com/sport/2026/sep/08/how-the-smaller-ball-trial-in-wxv-has-brought-mixed-bag-of-emotions",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Smaller ball for women makes it 'harder to do my job'",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyz72pp22yo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-11",
-      "lastSeen": "2026-09-13",
-      "uses": 2,
-      "lastUsed": "2026-09-13"
-    },
-    {
       "id": "jack-singleton-s-search-1u7gjci",
       "subject": "Jack Singleton's search for a new club and return to professional rugby following a heart attack",
       "teams": [
@@ -4824,11 +4793,12 @@
     },
     {
       "id": "the-wxv-smaller-ball-1onchsx",
-      "subject": "The WXV smaller ball trial controversy",
+      "subject": "Trial of the smaller ball in the women's WXV tournament",
       "teams": [
         386,
         390,
-        461
+        461,
+        388
       ],
       "resolution": "until the trial period ends and World Rugby determines whether to implement the change permanently",
       "sources": [
@@ -4844,7 +4814,7 @@
         }
       ],
       "firstSeen": "2026-09-11",
-      "lastSeen": "2026-09-11",
+      "lastSeen": "2026-09-13",
       "uses": 2,
       "lastUsed": "2026-09-13"
     },
@@ -5019,18 +4989,18 @@
       "resolution": "until the RFU confirms the formal completion of the contract extension process",
       "sources": [
         {
-          "title": "Borthwick's holding pattern extended - with minimal confidence vote",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cy8z5gkenl2o?at_medium=RSS&at_campaign=rss",
+          "title": "England to extend head coach Borthwick's contract",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ydlq5n0zwo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         },
         {
-          "title": "Ex-England star accuses RFU boss of having 'blinkers on' following Steve Borthwick backing",
-          "link": "https://www.planetrugby.com/news/ex-england-star-accuses-rfu-boss-of-having-blinkers-on-following-steve-borthwick-backing",
-          "feedName": "Planet Rugby"
+          "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
+          "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
+          "feedName": "Guardian Rugby Union"
         },
         {
-          "title": "Progress or standing still - where are England under Borthwick?",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/crr8r25yv7vo?at_medium=RSS&at_campaign=rss",
+          "title": "Borthwick's holding pattern extended - with minimal confidence vote",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cy8z5gkenl2o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
@@ -5114,7 +5084,7 @@
       ],
       "firstSeen": "2026-09-12",
       "lastSeen": "2026-09-13",
-      "uses": 1,
+      "uses": 2,
       "lastUsed": "2026-09-13"
     },
     {
@@ -5323,6 +5293,70 @@
         {
           "title": "Ackers sweats on playmaker's fitness",
           "link": "https://www.sarugbymag.co.za/ackers-sweats-playmaker-fitness/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "henry-pollock-s-potential-11pb3gh",
+      "subject": "Henry Pollock's potential £400,000 contract move to Northampton",
+      "teams": [
+        386
+      ],
+      "resolution": "until Northampton or Pollock officially confirm the deal",
+      "sources": [
+        {
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
+          "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "australia-s-search-for-2saxfp",
+      "subject": "Australia's search for a permanent World Cup fly-half",
+      "teams": [
+        461
+      ],
+      "resolution": "until Les Kiss settles on a first-choice number 10 for the World Cup squad",
+      "sources": [
+        {
+          "title": "Suaalii keeps ‘open mindset’ to Wallabies position amid rising expectations for Rugby World Cup",
+          "link": "https://www.theguardian.com/sport/2026/sep/10/joseph-aukuso-suaalii-australia-wallabies-2027-rugby-world-cup-position",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Wallabies’ search for No 10 continues as Les Kiss tinkers again for second Argentina Test",
+          "link": "https://www.theguardian.com/sport/2026/sep/04/wallabies-vs-argentina-second-test-mendoza-ben-donaldson-flyhalf",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "the-potential-transition-of-g9wq9s",
+      "subject": "The potential transition of All Blacks players to NFL",
+      "teams": [
+        465
+      ],
+      "resolution": "until Asafo Aumua or other players make a concrete decision to sign with an NFL team",
+      "sources": [
+        {
+          "title": "Watch: All Blacks bruiser making NFL switch?",
+          "link": "https://www.sarugbymag.co.za/watch-blacks-bruiser-making-nfl-switch/",
           "feedName": "SA Rugby Magazine"
         }
       ],
