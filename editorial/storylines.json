@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-12T08:01:17.600Z",
+  "updatedAt": "2026-09-12T11:47:57.059Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 211,
+  "count": 214,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -3045,7 +3045,8 @@
       "id": "jack-singleton-s-return-19r2p7y",
       "subject": "Jack Singleton's return to professional rugby following cardiac incident",
       "teams": [
-        386
+        386,
+        467
       ],
       "resolution": "until Singleton signs with a new club or returns to active competition",
       "sources": [
@@ -4834,40 +4835,7 @@
       ],
       "firstSeen": "2026-09-11",
       "lastSeen": "2026-09-11",
-      "uses": 0
-    },
-    {
-      "id": "potential-six-nations-match-7jvptg",
-      "subject": "Proposals to host a Six Nations fixture in the United States",
-      "teams": [
-        388,
-        389,
-        386,
-        387,
-        390,
-        391
-      ],
-      "resolution": "until World Rugby and the Six Nations unions confirm if a fixture will be moved",
-      "sources": [
-        {
-          "title": "No plans for Ireland Six Nations game in US - IRFU",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cddvmqvqzq7o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "World Rugby float plans for Six Nations match in US but England unlikely to participate",
-          "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-11",
-      "lastSeen": "2026-09-12",
-      "uses": 2,
+      "uses": 1,
       "lastUsed": "2026-09-12"
     },
     {
@@ -4886,7 +4854,8 @@
       ],
       "firstSeen": "2026-09-11",
       "lastSeen": "2026-09-11",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-12"
     },
     {
       "id": "steve-borthwick-s-england-1l1f8u7",
@@ -4984,6 +4953,11 @@
       "resolution": "until Steve Borthwick names his squad for the 2026 autumn Nations Championship fixtures",
       "sources": [
         {
+          "title": "England coaches tell Lawes and Marchant they need to prove themselves in Prem",
+          "link": "https://www.theguardian.com/sport/2026/sep/08/england-coaches-tell-lawes-and-marchant-they-need-to-prove-themselves-in-prem",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "No easy ride for England's prodigal sons",
           "link": "https://www.sarugbymag.co.za/no-easy-ride-englands-prodigal-sons/",
           "feedName": "SA Rugby Magazine"
@@ -4992,11 +4966,6 @@
           "title": "Allow overseas stars to play for England - Lawes",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5y5kd13y99o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Sale’s Courtney Lawes ‘not worried about legacy’ in drive to make England return",
-          "link": "https://www.theguardian.com/sport/2026/sep/07/sales-courtney-lawes-not-worried-about-legacy-in-drive-to-make-england-return",
-          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-09-12",
@@ -5055,6 +5024,107 @@
         {
           "title": "England captain Jones calls for fertility support",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ce9er3xdgvdo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "steve-borthwick-s-long-1vao821",
+      "subject": "Steve Borthwick's long-term future as England head coach",
+      "teams": [
+        386
+      ],
+      "resolution": "until the RFU provides further clarity on his tenure beyond the announced contract extension",
+      "sources": [
+        {
+          "title": "England set to make Steve Borthwick contract decision in bid to avoid Rugby World Cup 'uncertainty'",
+          "link": "https://www.planetrugby.com/news/england-set-to-make-steve-borthwick-contract-decision-in-bid-to-avoid-rugby-world-cup-uncertainty",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "England to extend head coach Borthwick's contract",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ydlq5n0zwo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
+          "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "the-trial-of-a-14cx4nq",
+      "subject": "The trial of a smaller ball in women's international rugby",
+      "teams": [
+        386,
+        388,
+        390,
+        391
+      ],
+      "resolution": "until World Rugby concludes the trial period in October and decides on permanent implementation",
+      "sources": [
+        {
+          "title": "Smaller ball for women makes it 'harder to do my job'",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyz72pp22yo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "The Breakdown | How the smaller ball trial in WXV has brought ‘mixed bag of emotions’",
+          "link": "https://www.theguardian.com/sport/2026/sep/08/how-the-smaller-ball-trial-in-wxv-has-brought-mixed-bag-of-emotions",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "wales-pathways-and-support-yw8s8d",
+      "subject": "Wales' pathways and support for young players",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union announces structural changes or addressed the criticism regarding support for students",
+      "sources": [
+        {
+          "title": "WRU support for students almost non-existent, says Williams",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c7834894j59o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-12",
+      "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "world-rugby-s-plans-17g12is",
+      "subject": "World Rugby's plans for a potential Six Nations match in the United States",
+      "teams": [
+        388,
+        389
+      ],
+      "resolution": "until a formal agreement is reached or the project is officially abandoned",
+      "sources": [
+        {
+          "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "World Rugby float plans for Six Nations match in US but England unlikely to participate",
+          "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "No plans for Ireland Six Nations game in US - IRFU",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cddvmqvqzq7o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],

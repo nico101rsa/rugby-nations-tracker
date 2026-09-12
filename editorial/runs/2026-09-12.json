@@ -2,29 +2,40 @@
   "date": "2026-09-12",
   "counts": {
     "editions": 12,
-    "quiet": 6,
+    "quiet": 5,
     "storyline": 4,
-    "dataEdition": 2,
+    "dataEdition": 1,
     "failed": 0,
-    "noLead": 4
+    "noLead": 3
   },
   "failed": [],
   "teams": [
     {
       "team": "Fiji",
-      "quiet": true,
-      "rung": "data",
+      "quiet": false,
+      "rung": "news",
       "storyline": null,
-      "dataAngle": "ranking",
-      "heading": "Fiji search for first Nations Championship win after three opening defeats",
-      "kicker": "CAMPAIGN OUTLOOK",
-      "body": "Fiji are searching for their first win of the campaign as they prepare for their next match against France. In their first three matches of the tournament, the team suffered three defeats. They have scored 49 points across those three opening fixtures. However, they have conceded 145 points over the same three-match period. Their most recent outing ended in a 17-33 loss to Scotland. Historically, the highest world ranking the side has ever reached is No. 7, achieved in 2023.",
+      "dataAngle": null,
+      "heading": "Fiji defeat Canada in Osaka to reach Pacific Nations Cup final",
+      "kicker": "Pacific Nations Cup",
+      "body": "The defending champions booked their place in the Pacific Nations Cup final after defeating Canada in Osaka. Ahead of the clash, Canada head coach Stephen Meehan noted that many of Fiji's premier stars were missing due to professional club commitments. However, the Flying Fijians' trademark physical, free-spirited style proved too much for the Canadians. Fiji now progress to the final in Tokyo next weekend, where they will face either Japan or the United States.",
       "source": null,
-      "lead": null,
+      "lead": {
+        "candidate": 1,
+        "why": "Fiji's semi-final victory over Canada to reach the Pacific Nations Cup final is the most significant men's international story of the day."
+      },
       "candidates": [
         {
+          "title": "Defending champion Fiji beats Canada to advance to rugby's Pacific Nations Cup final",
+          "score": 24.9,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
           "title": "How Fiji jersey inspired Maria's breakout season",
-          "score": 16.4,
+          "score": 15,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -32,7 +43,7 @@
         },
         {
           "title": "Langford-based Canadian rugby team up for the test against Fiji",
-          "score": 4.3,
+          "score": 4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -40,7 +51,7 @@
         },
         {
           "title": "Fiji spearheads push to 'make rugby league great again' in the Pacific",
-          "score": 3,
+          "score": 2.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -48,15 +59,7 @@
         },
         {
           "title": "Saimoni Vunilagi dead at 26: Fiji rugby ace dies of suspected heatstroke after training session with club ‘devastated’",
-          "score": 1.9,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Fiji formally joins landmark Pacific Rugby League Partnership",
-          "score": 1.6,
+          "score": 1.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -70,27 +73,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Ben Youngs claims RFU bosses have 'blinkers on' over Steve Borthwick",
-      "kicker": "Coaching Debate",
-      "body": "Former England scrum-half Ben Youngs has criticised the Rugby Football Union's decision to award head coach Steve Borthwick a contract extension. Speaking on the For The Love Of Rugby podcast, Youngs claimed performance director Conor O'Shea has 'blinkers on' after the RFU extended Borthwick's terms until the end of the 2028 Six Nations. Despite a historically poor 2026 Six Nations campaign, the governing body chose to avoid World Cup uncertainty, but Youngs warned that O'Shea and chief executive Bill Sweeney will be 'all accountable' if the move fails.",
+      "heading": "Ben Youngs accuses RFU of having 'blinkers on' over Steve Borthwick backing",
+      "kicker": "Contract debate",
+      "body": "Former England scrum-half Ben Youngs has criticised Rugby Football Union bosses Conor O'Shea and Bill Sweeney, claiming they have \"blinkers on\" by extending Steve Borthwick's contract. The head coach is set to sign a deal running until the end of the 2028 Six Nations to avoid World Cup campaign uncertainty. Youngs questioned the decision following England's recent struggles, pointing to Borthwick's win rate of just 59.6% since taking over. O'Shea defended the move, explaining, \"You don't want them looking for a job going into [a World Cup].\"",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 2,
-        "why": "Ben Youngs' outspoken criticism of the RFU's decision to extend Steve Borthwick's contract provides a highly engaging player-led talking point."
+        "candidate": 1,
+        "why": "Former England star Ben Youngs has openly criticised the RFU's decision to extend Steve Borthwick's contract despite a poor run of results."
       },
       "candidates": [
         {
-          "title": "World Rugby float plans for Six Nations match in US but England unlikely to participate",
-          "score": 41.4,
-          "corroboration": 2,
-          "outlets": [
-            "guardian",
-            "search"
-          ]
-        },
-        {
           "title": "Ex-England star accuses RFU boss of having 'blinkers on' following Steve Borthwick backing",
-          "score": 34.3,
+          "score": 33.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -98,7 +92,7 @@
         },
         {
           "title": "Borthwick's holding pattern extended - with minimal confidence vote",
-          "score": 29.7,
+          "score": 29.2,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -106,7 +100,7 @@
         },
         {
           "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
-          "score": 29.2,
+          "score": 28.8,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -114,10 +108,18 @@
         },
         {
           "title": "England set to make Steve Borthwick contract decision in bid to avoid Rugby World Cup 'uncertainty'",
-          "score": 29.1,
+          "score": 28.7,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
+          ]
+        },
+        {
+          "title": "England to extend head coach Borthwick's contract",
+          "score": 28.5,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
           ]
         }
       ]
@@ -125,16 +127,20 @@
     {
       "team": "France",
       "quiet": true,
-      "rung": "data",
-      "storyline": null,
-      "dataAngle": "form",
-      "heading": "France secure consecutive victories after defeating Japan in the Nations Championship",
-      "kicker": "Form guide",
-      "body": "France have established a run of two straight wins following their most recent match, where they beat Japan 42-15 away in the Nations Championship group stage. In their last five games, the side has registered three wins alongside two losses. This sequence includes a 42-26 victory over Australia, which immediately followed a narrow opening-round defeat against New Zealand in the tournament.",
-      "source": null,
+      "rung": "storyline",
+      "storyline": {
+        "subject": "Proposals to host a Six Nations fixture in the United States",
+        "resolution": "until World Rugby and the Six Nations unions confirm if a fixture will be moved",
+        "recheckHits": 3
+      },
+      "dataAngle": null,
+      "heading": "World Rugby urges France to support staging Six Nations matches in America",
+      "kicker": "Fixture proposal",
+      "body": "World Rugby is intensifying calls for Six Nations unions to relocate flagship games to the United States to help expand the sport's global footprint. The governing body's proposal arrives as the IRFU recently clarified they have no plans for Ireland to play Championship fixtures in the US, while England also remains an unlikely participant. Despite the ongoing push from World Rugby, there has been no confirmation from the FFR regarding France's willingness to forfeit a home gate for an American venue.",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 4,
-        "why": "We lead with France's match statistics and current form as there is no fresh news reported in today's press."
+        "candidate": 1,
+        "why": "The ongoing proposal to move Championship fixtures to the United States remains the focal point of international discussion during a quiet period for the men's squad."
       },
       "candidates": [
         {
@@ -146,8 +152,16 @@
           ]
         },
         {
+          "title": "France Rugby vs. All Blacks: 5 Things To Know Before July 4",
+          "score": 1.7,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
           "title": "France Vs. South Africa Springboks Score, Live Updates, Rugby Today",
-          "score": 1.6,
+          "score": 1.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -155,26 +169,18 @@
         },
         {
           "title": "Antoine Dupont leads France to rugby gold",
-          "score": 1.4,
+          "score": 1.3,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "Watch Japan vs. France Rugby Live: Les Bleus Visit Brave Blossoms In Round 3",
-          "score": 1.4,
+          "title": "Black Ferns v France: WXV Global Series 2026 Preview",
+          "score": 1,
           "corroboration": 1,
           "outlets": [
             "search"
-          ]
-        },
-        {
-          "title": "Jordan scores pivotal second try as New Zealand overcome France",
-          "score": 0.3,
-          "corroboration": 1,
-          "outlets": [
-            "bbc"
           ]
         }
       ]
@@ -185,18 +191,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Ireland dismisses proposal to play Six Nations matches in United States",
-      "kicker": "Six Nations",
-      "body": "The IRFU has swiftly dismissed suggestions of moving Six Nations fixtures to the United States, stating there are \"currently no plans or discussions\" regarding such a move. World Rugby chief executive Alan Gilpin had floated the concept of hosting matches like Ireland against Italy in cities like Boston or New York to engage expatriate fanbases. However, the Irish union emphasised that playing on home soil remains central to the tournament's appeal, while the Italian Rugby Federation similarly distanced itself from taking matches across the Atlantic.",
+      "heading": "IRFU dismisses World Rugby suggestion to move Ireland Six Nations fixtures stateside",
+      "kicker": "Fixture planning",
+      "body": "The IRFU has rejected suggestions of moving Six Nations fixtures to the United States, insisting there are \"currently no plans or discussions\" regarding the proposal. The statement follows World Rugby chief executive Alan Gilpin's suggestion that an Ireland versus Italy clash would resonate with American fans. While acknowledging the US as a growth market, the union prioritised the tournament's traditional appeal for home supporters. The Italian Rugby Federation also distanced itself from the idea, despite having previously faced Ireland in Chicago back in 2018.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The IRFU has officially rejected proposals to move future Six Nations fixtures to the United States."
+        "why": "The IRFU's formal rejection of moving Six Nations fixtures to the United States addresses a major tournament-level story that topped the daily news cycle."
       },
       "candidates": [
         {
           "title": "No plans for Ireland Six Nations game in US - IRFU",
-          "score": 42.7,
+          "score": 41,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -204,31 +210,31 @@
         },
         {
           "title": "Ireland's Reilly hoping to put injury woes behind her",
-          "score": 19.5,
+          "score": 18,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ]
         },
         {
-          "title": "Ireland issue Six Nations statement and World Cup-winning coach makes shock switch",
-          "score": 17.6,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
           "title": "The 'proud' feeling that helped Tommy O'Brien cope with Ireland setback and the target now set for 'pinnacle of my career'",
-          "score": 17.4,
+          "score": 16.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
+          "title": "Ireland issue Six Nations statement and World Cup-winning coach makes shock switch",
+          "score": 16.1,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
           "title": "Ireland joining elite only a matter of time - Wafer",
-          "score": 16.3,
+          "score": 15.3,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -241,23 +247,31 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "Proposals to stage a Six Nations match in the United States",
+        "subject": "Proposals to host a Six Nations fixture in the United States",
         "resolution": "until World Rugby and the Six Nations unions confirm if a fixture will be moved",
-        "recheckHits": 3
+        "recheckHits": 2
       },
       "dataAngle": null,
-      "heading": "Italy await decision on playing proposed Six Nations match in America",
+      "heading": "World Rugby proposal could see Azzurri play Six Nations match in USA",
       "kicker": "FIXTURE PROPOSAL",
-      "body": "World Rugby's proposal to stage a Six Nations match in the United States remains unresolved, with no official decision yet made on which teams will travel. While the Irish Rugby Football Union ruled out relocating any of Ireland's home fixtures and England are highly unlikely to participate, Italy remain a potential option for the American showcase. Supporters must wait for formal confirmation from tournament organisers to see if the Azzurri will be chosen to grow the game overseas.",
+      "body": "World Rugby is currently floating proposals to host a flagship Six Nations match in the United States to grow the sport's global reach. While governing bodies seek to tap into the American market, the prospect of the national side playing a fixture across the Atlantic remains unconfirmed. The IRFU has already stated they have no plans to move Irish home games, while England is reportedly unlikely to participate. Any such move would require the Italian union to agree to relocate a scheduled championship match.",
       "source": "BBC Rugby Union",
       "lead": null,
       "candidates": [
         {
           "title": "Premier League, Italian GP, WSL and US Open tennis – follow with us",
-          "score": 2,
+          "score": 1.9,
           "corroboration": 1,
           "outlets": [
             "guardian"
+          ]
+        },
+        {
+          "title": "World Rugby ban Italy coach Gonzalo Quesada for referee comments",
+          "score": 1.5,
+          "corroboration": 1,
+          "outlets": [
+            "search"
           ]
         },
         {
@@ -270,7 +284,7 @@
         },
         {
           "title": "Live: Ireland vs. Italy rugby score, updates & Six Nations 2026 fixtures",
-          "score": 0.7,
+          "score": 0.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -291,52 +305,52 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "World Rugby's trial of the size 4.5 ball in women's rugby",
-        "resolution": "until World Rugby releases the findings of the WXV trial and decides whether to adopt the smaller ball size permanently",
-        "recheckHits": 5
+        "subject": "The WXV smaller ball trial controversy",
+        "resolution": "until the trial period ends and World Rugby determines whether to implement the change permanently",
+        "recheckHits": 3
       },
       "dataAngle": null,
-      "heading": "Scotland prepare to play with size 4.5 ball in WXV trial",
+      "heading": "John Mitchell reveals stance on controversial WXV smaller ball trial impacting Scotland",
       "kicker": "Ball trial",
-      "body": "World Rugby’s trial of the smaller size 4.5 ball in women's rugby continues through the WXV tournament, where Scotland will test the new equipment. The initiative has generated mixed reactions across the sport. While some players and coaches have noted key differences in handling and kicking, others have expressed concerns, suggesting the change makes their role on the pitch more difficult. The trial remains open as the governing body gathers performance data and player feedback to determine whether to adopt the smaller ball permanently.",
-      "source": "BBC Rugby Union",
+      "body": "World Rugby’s trial of a smaller ball continues to cause debate as Scotland prepare for Saturday’s opener against Canada. Designed to improve handling and kicking, the move has been met with a “mixed bag of emotions” by players, with some suggesting the change makes technical skills more difficult. While England coach Mitchell has now weighed in on the controversy, the trial remains open until the governing body determines if the change becomes permanent following the conclusion of the current WXV tournament window.",
+      "source": "Guardian Rugby Union",
       "lead": null,
       "candidates": [
         {
-          "title": "Scotland coaching transition has been seamless - Nelson",
-          "score": 17.3,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
           "title": "Clarke & Gallagher start for Scotland against Canada",
-          "score": 17,
+          "score": 16.2,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ]
         },
         {
+          "title": "Scotland coaching transition has been seamless - Nelson",
+          "score": 15.7,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
+        {
           "title": "Finn Russell discusses his Scotland future and if he'll play beyond 2027 Rugby World Cup",
-          "score": 16.3,
+          "score": 14.4,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "Scotland international now available to Wales as he lands new club deal",
-          "score": 14.1,
+          "title": "'Hurt my soul': Rachel Malcolm opens up on Scotland’s identity loss",
+          "score": 8.9,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "‘Hurt my soul’: Rachel Malcolm opens up on Scotland’s identity loss",
-          "score": 10.2,
+          "title": "How deep is the well in women’s club rugby in Scotland?",
+          "score": 3.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -349,36 +363,23 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "World Rugby's trial of the size 4.5 ball in women's rugby",
-        "resolution": "until World Rugby releases the findings of the WXV trial and decides whether to adopt the smaller ball size permanently",
-        "recheckHits": 4
+        "subject": "Wales' pathways support and internal restructuring",
+        "resolution": "until the Welsh Rugby Union implements or rejects reforms to school and college pathways",
+        "recheckHits": 0
       },
       "dataAngle": null,
-      "heading": "Wales's Jones outlines key differences in WXV women's smaller ball trial",
-      "kicker": "Ball trial",
-      "body": "The trial of a size 4.5 ball for the women's WXV tournament has brought a mixed bag of emotions. Wales's Jones has revealed key differences when playing with the smaller ball, while other critics argue that women do not need the change. Opposing views suggest the adjustment actually makes it harder for players to do their jobs. The debate remains open as World Rugby evaluates the trial before making a permanent decision on adoption.",
+      "heading": "Rhys Long returns to WRU with plan to overhaul talent pathway",
+      "kicker": "Pathway reform",
+      "body": "Reported this week, new Welsh Rugby Union technical director Rhys Long has returned from the English FA to restructure the nation’s talent development. Reporting to elite performance director Dave Reddin, Long aims to replace short-term rebuilding with a pathway focused on the next 15 years. Following Wales’ fall to ninth in the Nations Championship log, Long remains confident in the country’s raw potential. He told WalesOnline: “I wouldn’t have taken this job if I didn’t think we could put in place the talent development system that I know we’re capable of.”",
       "source": "BBC Rugby Union",
-      "lead": null,
+      "lead": {
+        "candidate": 3,
+        "why": "It directly addresses the assigned storyline regarding pathway restructuring and technical oversight through a major new appointment."
+      },
       "candidates": [
         {
           "title": "Wales rugby matches to be shown on BBC as England games relegated to iPlayer",
-          "score": 16.6,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Oldest rugby player in Wales picked for team at the age of 73",
-          "score": 13.4,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Welsh youngster stepping out of shadows in bid to make big break with Wales",
-          "score": 9.8,
+          "score": 15,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -386,10 +387,18 @@
         },
         {
           "title": "The Bluebird hoping to fly high in Welsh rugby",
-          "score": 9,
+          "score": 8.7,
           "corroboration": 1,
           "outlets": [
             "bbc"
+          ]
+        },
+        {
+          "title": "New WRU boss identifies Welsh rugby's big problem and has plan to win World Cup",
+          "score": 5.9,
+          "corroboration": 1,
+          "outlets": [
+            "search"
           ]
         },
         {
@@ -399,31 +408,32 @@
           "outlets": [
             "bbc"
           ]
+        },
+        {
+          "title": "Wales rugby fixtures: Who the men’s and women’s teams are playing 2026-27",
+          "score": 1.6,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
         }
       ]
     },
     {
       "team": "Argentina",
       "quiet": true,
-      "rung": "storyline",
-      "storyline": {
-        "subject": "Les Kiss's experimentation with the Wallabies squad and the return of Harry Wilson",
-        "resolution": "until Les Kiss announces his starting XV for the series finale against Argentina",
-        "recheckHits": 0
-      },
-      "dataAngle": null,
-      "heading": "Argentina secure dramatic Mendoza draw against Harry Wilson's experimenting Wallabies",
-      "kicker": "Series conclusion",
-      "body": "The storyline surrounding Les Kiss’s squad experimentation resolved last Saturday as Argentina fought back to secure a 28-28 draw in Mendoza. Returning Wallabies captain Harry Wilson crossed for an early try as the visitors built an initial 14-0 lead, but Los Pumas rallied with scores from Pablo Matera and Ignacio Ruiz. Despite playing the final ten minutes with 13 players due to yellow cards, Argentina held on to deny Australia a series sweep, though the visitors still claimed a historic trophy.",
-      "source": "Guardian Rugby Union",
-      "lead": {
-        "candidate": 1,
-        "why": "It resolves the open storyline regarding Les Kiss's squad experimentation and Harry Wilson's return following the conclusion of the Wallabies tour."
-      },
+      "rung": "data",
+      "storyline": null,
+      "dataAngle": "form",
+      "heading": "Argentina halt three-match losing streak with Mendoza draw against Australia",
+      "kicker": "FORM GUIDE",
+      "body": "Argentina secured a 28-28 draw against Australia in Mendoza this month to end a difficult run of results, though the visitors clinched the series. In their last five games, the side has won one, lost three, and drawn one, with the sequence recorded as draw, loss, loss, loss, and win. This latest result followed three consecutive defeats for the national team. Within the Nations Championship standings, the side currently sits eighth after recording one win and two losses.",
+      "source": null,
+      "lead": null,
       "candidates": [
         {
           "title": "Argentina 28-28 Australia: rugby union second Test – as it happened",
-          "score": 19.1,
+          "score": 19,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -432,7 +442,7 @@
         },
         {
           "title": "Wallabies’ key weakness lets Argentina off the hook, but Les Kiss won’t ‘catastrophise it’ | Jack Snape",
-          "score": 4.1,
+          "score": 4,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -447,16 +457,16 @@
           ]
         },
         {
-          "title": "Former far-right group member admits killing Argentina rugby star",
-          "score": 1.7,
+          "title": "Trial opens in Paris over murder of Argentina rugby star Federico Aramburu",
+          "score": 2.1,
           "corroboration": 1,
           "outlets": [
             "search"
           ]
         },
         {
-          "title": "How to watch Argentina vs. South Africa in the 2024 Rugby Championship online for free",
-          "score": 1.7,
+          "title": "Former far-right group member admits killing Argentina rugby star",
+          "score": 1.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -470,18 +480,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Wallabies legend James Slipper pauses playing career for Brumbies coaching role",
-      "kicker": "Off-field role",
-      "body": "Australia's most experienced Test prop, James Slipper, has temporarily paused his playing career to join the Brumbies' backroom staff as their new scrum coach. The 154-cap veteran, who recently signed a one-year contract extension, will remain sidelined as a player during the Super Rugby AUS campaign to focus on developing the club’s next generation of forwards. Slipper steps into the role after regular Brumbies scrum coach John Ulugia departed to join the Wallabies' national coaching set-up.",
+      "heading": "James Slipper pauses playing career to join Brumbies as scrum coach",
+      "kicker": "Selection call",
+      "body": "Veteran Wallabies prop James Slipper has been appointed as the Brumbies’ new scrum coach on a temporary basis. The 154-Test veteran, who recently extended his playing contract by one year, will focus on developing the club’s forwards during the Super Rugby AUS campaign. Slipper, the most experienced international prop in history, stated he is keen to pass on lessons from his extensive career. He joins head coach Stephen Larkham’s staff as the Brumbies prepare for their opening match against the Waratahs.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 1,
-        "why": "James Slipper's sudden transition into a coaching role with the Brumbies, putting his playing career on hold, is the most significant and surprising development today."
+        "why": "The transition of the most experienced prop in international history into a coaching role is a significant development for the Brumbies and the national setup."
       },
       "candidates": [
         {
           "title": "Wallabies legend puts career on pause for new Brumbies position",
-          "score": 33.2,
+          "score": 32.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -489,7 +499,7 @@
         },
         {
           "title": "Suaalii keeps ‘open mindset’ to Wallabies position amid rising expectations for Rugby World Cup",
-          "score": 32.7,
+          "score": 31.9,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -497,26 +507,26 @@
         },
         {
           "title": "Schmidt has an amazing eye for detail - Dermody",
-          "score": 12,
+          "score": 11.2,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ]
         },
         {
-          "title": "England Cup stars back from injury for Australia clash",
-          "score": 4.7,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
           "title": "Wallabies’ Carter Gordon set for stint on sidelines after breaking leg in latest injury blow",
-          "score": 4.6,
+          "score": 4.5,
           "corroboration": 1,
           "outlets": [
             "guardian"
+          ]
+        },
+        {
+          "title": "England Cup stars back from injury for Australia clash",
+          "score": 4.3,
+          "corroboration": 1,
+          "outlets": [
+            "search"
           ]
         }
       ]
@@ -527,18 +537,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Eddie Jones targets Pacific Nations Cup glory as Japan face USA",
-      "kicker": "PNC semifinal",
-      "body": "Japan face the USA Eagles in Saturday's Pacific Nations Cup semifinal at Osaka's Hanazono Rugby Stadium, with head coach Eddie Jones targeting a return to regional dominance. The Brave Blossoms are clear favourites on paper, sitting 12th in the world rankings to their opponents' 14th. History also heavily favours the hosts, who have triumphed in nine of their last ten meetings against the Americans, including a 47-21 victory when they last clashed in 2025.",
+      "heading": "Eddie Jones targets cup glory as Japan hosts USA in Osaka",
+      "kicker": "Pacific Nations Cup",
+      "body": "Japan begins its Asahi Super Dry Pacific Nations Cup campaign today with a semi-final clash against the USA at Hanazono Rugby Stadium. Seeking to improve on consecutive runner-up finishes behind Fiji, the Brave Blossoms enter as favourites given their 12th-place world ranking compared to the USA’s 14th. While the historic head-to-head record remains tight, Japan has won 9 of the last 10 encounters. Head coach Eddie Jones is aiming to secure the title for the first time since 2019.",
       "source": "Rugby Asia 247",
       "lead": {
         "candidate": 2,
-        "why": "Japan face the USA today in the semifinal of the Pacific Nations Cup in Osaka."
+        "why": "Japan opens its Asahi Super Dry Pacific Nations Cup campaign today against the USA."
       },
       "candidates": [
         {
           "title": "NTT Japan Rugby League One Division One 2026-2027 Fixtures Released",
-          "score": 29.2,
+          "score": 28.8,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -546,7 +556,7 @@
         },
         {
           "title": "Asahi Pacific Nations Cup 2026 Preview – Japan vs USA",
-          "score": 18.3,
+          "score": 17.8,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -584,29 +594,21 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Richie Mo'unga returns to start as Dave Rennie reshuffles All Blacks",
+      "heading": "Dave Rennie names Richie Mo’unga for decisive Baltimore series finale",
       "kicker": "Selection call",
-      "body": "Fly-half Richie Mo'unga has been recalled to start Saturday's final Test against South Africa in Baltimore as coach Dave Rennie rings the changes. Desperate to level the series at 2-2, Rennie has also brought winger Josh Moorby and experienced centre Anton Lienert-Brown into a reshuffled backline. Ruben Love makes way after starting the first six Tests under Rennie. Springboks assistant Mzwandile Stick admitted his side are preparing for an 'even more bold' All Blacks attack now that their world-class playmaker has returned to direct the wider channels.",
+      "body": "Coach Dave Rennie has reshuffled his side for the fourth Test in Baltimore, headlined by the return of Richie Mo’unga at flyhalf. The All Blacks are looking to level the series after conceding back-to-back defeats in South Africa. Springbok assistant coach Mzwandile Stick acknowledged the selection, noting that the tourists will likely be \"even more bold\" in their attacking intent. With Anton Lienert-Brown also joining the midfield, New Zealand aim to recapture the momentum that saw them score 13 tries across the series.",
       "source": "SA Rugby Magazine",
       "lead": {
-        "candidate": 2,
-        "why": "It highlights Richie Mo'unga's highly anticipated return to the starting fly-half role and Dave Rennie's backline reshuffle for the series finale."
+        "candidate": 3,
+        "why": "It addresses the specific team news and tactical adjustments for the upcoming fourth Test in Baltimore."
       },
       "candidates": [
         {
           "title": "Nick Mallett's verdict on Springboks and All Blacks' contrasting styles and its impact on them in Greatest Rivalry series",
-          "score": 44.2,
+          "score": 42.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
-          ]
-        },
-        {
-          "title": "Stokke expects even bolder All Blacks in Baltimore",
-          "score": 37.5,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
           ]
         },
         {
@@ -620,19 +622,27 @@
           ]
         },
         {
-          "title": "Nick Mallett explains why Springboks win in Baltimore is important to avoid All Blacks 'bragging rights' in Greatest Rivalry series",
-          "score": 34.6,
+          "title": "Stokke expects even bolder All Blacks in Baltimore",
+          "score": 35.8,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ]
+        },
+        {
+          "title": "Schalk Burger: All Blacks can't play around a failing scrum",
+          "score": 33.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "Stephen Donald believes Richie Mo'unga 'complicating' All Blacks fly-half battle after giving 'flying pass' verdict on Ruben Love",
-          "score": 29,
+          "title": "Inside Boks, All Blacks' America gamble",
+          "score": 33.4,
           "corroboration": 1,
           "outlets": [
-            "planetrugby"
+            "sarugbymag"
           ]
         }
       ]
@@ -643,13 +653,13 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Rassie Erasmus recalls Damian Willemse as Cheslin Kolbe misses Baltimore decider",
-      "kicker": "Selection call",
-      "body": "The Springboks aim to clinch the inaugural Greatest Rivalry trophy in Baltimore on Saturday as Rassie Erasmus maintains selection continuity for the tour finale. Damian Willemse returns at full-back to replace Cheslin Kolbe, who is unavailable after suffering a broken jaw in Soweto. It is one of only two changes to the starting XV, with Morne van den Berg promoted at scrum-half. Lock Eben Etzebeth earns a record-extending 146th cap, while the Siya Kolisi-led loose trio sets a national record with their 19th start together.",
-      "source": "Planet Rugby",
+      "heading": "Rassie Erasmus keeps faith as Springboks chase series victory in Baltimore",
+      "kicker": "Series decider",
+      "body": "South Africa head into the fourth Test against the All Blacks with a 2-1 series lead, looking to secure an outright win in Rugby’s Greatest Rivalry. Despite the high stakes, Rassie Erasmus has made minimal changes, drafting in Damian Willemse at full-back for the injured Cheslin Kolbe and Morne van den Berg at scrum-half. Former coach Nick Mallett noted that keeping the core together shows the team is determined to finish the series on a high.",
+      "source": "Guardian Rugby Union",
       "lead": {
-        "candidate": 4,
-        "why": "It details the specific squad changes and significant player milestones for today's series finale in Baltimore."
+        "candidate": 1,
+        "why": "The series-leading victory in the third Test remains the dominant narrative as the squad prepares for the final fixture."
       },
       "candidates": [
         {
@@ -663,8 +673,16 @@
           ]
         },
         {
+          "title": "Five things Donald Trump can learn from Rassie Erasmus as US President says he's a great leader while Springboks boss demonstrates it",
+          "score": 50.7,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
           "title": "Nick Mallett's verdict on Springboks and All Blacks' contrasting styles and its impact on them in Greatest Rivalry series",
-          "score": 44.2,
+          "score": 42.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -672,7 +690,7 @@
         },
         {
           "title": "Nick Mallett explains why Springboks win in Baltimore is important to avoid All Blacks 'bragging rights' in Greatest Rivalry series",
-          "score": 43.3,
+          "score": 41.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -680,18 +698,10 @@
         },
         {
           "title": "Springboks v All Blacks prediction: Bomb Squad to fire Rassie Erasmus' men to an emphatic victory in Rugby's Greatest Rivalry decider",
-          "score": 41.1,
+          "score": 39.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
-          ]
-        },
-        {
-          "title": "How much Boks will bank from Baltimore",
-          "score": 41.1,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
           ]
         }
       ]
