@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-12T12:04:18.198Z",
+  "updatedAt": "2026-09-12T14:38:29.583Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 215,
+  "count": 219,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -3740,7 +3740,8 @@
       ],
       "firstSeen": "2026-09-06",
       "lastSeen": "2026-09-06",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-13"
     },
     {
       "id": "rassie-erasmus-s-coaching-156ty8r",
@@ -4767,8 +4768,8 @@
       ],
       "firstSeen": "2026-09-11",
       "lastSeen": "2026-09-11",
-      "uses": 1,
-      "lastUsed": "2026-09-12"
+      "uses": 2,
+      "lastUsed": "2026-09-13"
     },
     {
       "id": "jack-singleton-s-search-1u7gjci",
@@ -5044,23 +5045,23 @@
       "resolution": "until the RFU confirms the formal completion of the contract extension process",
       "sources": [
         {
-          "title": "England set to make Steve Borthwick contract decision in bid to avoid Rugby World Cup 'uncertainty'",
-          "link": "https://www.planetrugby.com/news/england-set-to-make-steve-borthwick-contract-decision-in-bid-to-avoid-rugby-world-cup-uncertainty",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "England to extend head coach Borthwick's contract",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ydlq5n0zwo?at_medium=RSS&at_campaign=rss",
+          "title": "Borthwick's holding pattern extended - with minimal confidence vote",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cy8z5gkenl2o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         },
         {
-          "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
-          "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
-          "feedName": "Guardian Rugby Union"
+          "title": "Ex-England star accuses RFU boss of having 'blinkers on' following Steve Borthwick backing",
+          "link": "https://www.planetrugby.com/news/ex-england-star-accuses-rfu-boss-of-having-blinkers-on-following-steve-borthwick-backing",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Progress or standing still - where are England under Borthwick?",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/crr8r25yv7vo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-12",
-      "lastSeen": "2026-09-12",
+      "lastSeen": "2026-09-13",
       "uses": 0
     },
     {
@@ -5072,6 +5073,11 @@
       "resolution": "until the All Blacks demonstrate consistent set-piece parity in future Test matches",
       "sources": [
         {
+          "title": "Springboks coach's 'improvement' warning to the All Blacks after South African scrum demolition",
+          "link": "https://www.planetrugby.com/news/deon-davids-warns-that-springboks-set-piece-will-improve",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "John Smit claims All Blacks had 'defeatist attitude' in the set-piece as Dave Rennie 'chose the wrong way' in the scrum",
           "link": "https://www.planetrugby.com/news/john-smit-claims-all-blacks-had-defeatist-attitude-in-the-set-piece-as-dave-rennie-chose-the-wrong-way-in-the-scrum",
           "feedName": "Planet Rugby"
@@ -5080,15 +5086,10 @@
           "title": "Springboks are 'bossing' the scrum as ex-hooker claims All Blacks coaching 'is not good enough",
           "link": "https://www.planetrugby.com/news/springboks-are-bossing-the-scrum-as-ex-hooker-claims-all-blacks-coaching-is-not-good-enough",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Sir Steve Hansen: Springboks have exposed two All Blacks' weaknesses that Dave Rennie has to fix before the World Cup",
-          "link": "https://www.planetrugby.com/news/sir-steve-hansen-springboks-have-exposed-two-all-blacks-weaknesses-that-dave-rennie-has-to-fix-before-the-world-cup",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-09-12",
-      "lastSeen": "2026-09-12",
+      "lastSeen": "2026-09-13",
       "uses": 0
     },
     {
@@ -5138,7 +5139,8 @@
       ],
       "firstSeen": "2026-09-12",
       "lastSeen": "2026-09-12",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-13"
     },
     {
       "id": "ben-carter-s-return-p58h6e",
@@ -5156,6 +5158,118 @@
       ],
       "firstSeen": "2026-09-12",
       "lastSeen": "2026-09-12",
+      "uses": 0
+    },
+    {
+      "id": "england-s-policy-on-meq7xe",
+      "subject": "England's policy on selecting overseas-based players",
+      "teams": [
+        386
+      ],
+      "resolution": "until the RFU either amends the rules to allow selection of overseas-based players or reaffirms the current policy",
+      "sources": [
+        {
+          "title": "Allow overseas stars to play for England - Lawes",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5y5kd13y99o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "England should pick English-based players - Baxter",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c986wxkxe68o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "England coaches tell Lawes and Marchant they need to prove themselves in Prem",
+          "link": "https://www.theguardian.com/sport/2026/sep/08/england-coaches-tell-lawes-and-marchant-they-need-to-prove-themselves-in-prem",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "wallabies-fly-half-position-l2gw5t",
+      "subject": "Wallabies fly-half position for the 2027 Rugby World Cup",
+      "teams": [
+        461
+      ],
+      "resolution": "until Les Kiss establishes a definitive first-choice fly-half",
+      "sources": [
+        {
+          "title": "Wallabies’ Carter Gordon set for stint on sidelines after breaking leg in latest injury blow",
+          "link": "https://www.theguardian.com/sport/2026/sep/07/wallabies-carter-gordon-broken-leg-injury-blow-bledisloe-cup",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Wallabies’ search for No 10 continues as Les Kiss tinkers again for second Argentina Test",
+          "link": "https://www.theguardian.com/sport/2026/sep/04/wallabies-vs-argentina-second-test-mendoza-ben-donaldson-flyhalf",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Suaalii keeps ‘open mindset’ to Wallabies position amid rising expectations for Rugby World Cup",
+          "link": "https://www.theguardian.com/sport/2026/sep/10/joseph-aukuso-suaalii-australia-wallabies-2027-rugby-world-cup-position",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "richie-mo-unga-s-mf27yh",
+      "subject": "Richie Mo'unga's role in the All Blacks fly-half pecking order",
+      "teams": [
+        465
+      ],
+      "resolution": "until the All Blacks confirm whether Mo'unga or Ruben Love is the permanent starter at fly-half",
+      "sources": [
+        {
+          "title": "Stephen Donald believes Richie Mo'unga 'complicating' All Blacks fly-half battle after giving 'flying pass' verdict on Ruben Love",
+          "link": "https://www.planetrugby.com/news/stephen-donald-believes-richie-mounga-complicating-all-blacks-fly-half-battle-after-giving-flying-pass-verdict-on-ruben-love",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "All Blacks team: Richie Mo'unga makes stunning Test return as Dave Rennie wields the axe with new captain confirmed",
+          "link": "https://www.planetrugby.com/news/all-blacks-team-richie-mounga-makes-stunning-test-return-as-dave-rennie-wields-the-axe-with-new-captain-confirmed",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Dave Rennie explains Richie Mo'unga selection and reveals Beauden Barrett plan: 'We are keen to give him that opportunity'",
+          "link": "https://www.planetrugby.com/news/all-blacks-dave-rennie-explains-richie-mounga-selection-and-reveals-beauden-barrett-plan",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-impact-on-xf7a20",
+      "subject": "Rassie Erasmus' impact on the Springboks bench and 'Bomb Squad' strategy",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Springboks coaching staff defines and stabilizes the roles of the replacement players",
+      "sources": [
+        {
+          "title": "Shimmy: South Africa's reserve scrum is the only one that can compete with Springboks' first-choice pack",
+          "link": "https://www.planetrugby.com/news/shimmy-south-africas-reserve-scrum-is-the-only-one-that-can-compete-with-springboks-first-choice-pack",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Jake: Who’s coaching the Bomb Squad?",
+          "link": "https://www.sarugbymag.co.za/jake-whos-coaching-bomb-squad/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Springboks v All Blacks prediction: Bomb Squad to fire Rassie Erasmus' men to an emphatic victory in Rugby's Greatest Rivalry decider",
+          "link": "https://www.planetrugby.com/news/springboks-v-all-blacks-prediction-bomb-squad-to-fire-rassies-men-to-victory-in-rgr-decider",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
       "uses": 0
     }
   ]
