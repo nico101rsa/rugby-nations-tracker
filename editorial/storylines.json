@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-12T17:01:40.558Z",
+  "updatedAt": "2026-09-12T18:53:04.750Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
   "count": 222,
   "storylines": [
@@ -156,6 +156,11 @@
       "resolution": "until Henry Pollock signs a new contract at Northampton or announces a move to another club or code",
       "sources": [
         {
+          "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
+          "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "'We've got to find a happy medium' - Dowson confident on Pollock deal",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ym0x04n55o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -164,15 +169,10 @@
           "title": "Northampton seek ‘happy medium’ after Hearn claims Pollock worth £1m a year",
           "link": "https://www.theguardian.com/sport/2026/sep/02/northampton-seek-happy-medium-after-hearn-claims-pollock-worth-1m-a-year",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-14",
-      "lastSeen": "2026-09-04",
+      "lastSeen": "2026-09-13",
       "uses": 0
     },
     {
@@ -4346,7 +4346,7 @@
         }
       ],
       "firstSeen": "2026-09-08",
-      "lastSeen": "2026-09-12",
+      "lastSeen": "2026-09-13",
       "uses": 0
     },
     {
@@ -4752,7 +4752,11 @@
         386,
         388,
         390,
-        391
+        391,
+        461,
+        463,
+        465,
+        467
       ],
       "resolution": "until World Rugby issues a definitive ruling on ball size following the WXV trial",
       "sources": [
@@ -4768,7 +4772,7 @@
         }
       ],
       "firstSeen": "2026-09-11",
-      "lastSeen": "2026-09-11",
+      "lastSeen": "2026-09-13",
       "uses": 2,
       "lastUsed": "2026-09-13"
     },
@@ -4865,7 +4869,7 @@
     },
     {
       "id": "steve-borthwick-s-england-1l1f8u7",
-      "subject": "Steve Borthwick's England contract extension",
+      "subject": "Steve Borthwick's contract extension with England",
       "teams": [
         386
       ],
@@ -4888,7 +4892,7 @@
         }
       ],
       "firstSeen": "2026-09-12",
-      "lastSeen": "2026-09-12",
+      "lastSeen": "2026-09-13",
       "uses": 0
     },
     {
@@ -4918,37 +4922,6 @@
       "firstSeen": "2026-09-12",
       "lastSeen": "2026-09-12",
       "uses": 0
-    },
-    {
-      "id": "world-rugby-s-trial-14vzts6",
-      "subject": "World Rugby's trial of the size 4.5 ball in women's rugby",
-      "teams": [
-        386,
-        388,
-        390,
-        391,
-        461,
-        463,
-        465,
-        467
-      ],
-      "resolution": "until World Rugby releases the findings of the WXV trial and decides whether to adopt the smaller ball size permanently",
-      "sources": [
-        {
-          "title": "Smaller ball for women makes it 'harder to do my job'",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyz72pp22yo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "The Breakdown | How the smaller ball trial in WXV has brought ‘mixed bag of emotions’",
-          "link": "https://www.theguardian.com/sport/2026/sep/08/how-the-smaller-ball-trial-in-wxv-has-brought-mixed-bag-of-emotions",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-12",
-      "lastSeen": "2026-09-12",
-      "uses": 2,
-      "lastUsed": "2026-09-12"
     },
     {
       "id": "the-potential-england-recall-dhaf0g",
@@ -5276,39 +5249,6 @@
       "uses": 0
     },
     {
-      "id": "the-future-of-the-1kkc3pj",
-      "subject": "The future of the Six Nations championship fixture in the United States",
-      "teams": [
-        387,
-        388,
-        389,
-        390,
-        391,
-        386
-      ],
-      "resolution": "until the tournament organizers confirm whether they will host a future match on American soil",
-      "sources": [
-        {
-          "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "World Rugby float plans for Six Nations match in US but England unlikely to participate",
-          "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "No plans for Ireland Six Nations game in US - IRFU",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cddvmqvqzq7o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-13",
-      "lastSeen": "2026-09-13",
-      "uses": 0
-    },
-    {
       "id": "george-furbank-s-recovery-rt2m14",
       "subject": "George Furbank's recovery from injury and return to the England setup",
       "teams": [
@@ -5344,6 +5284,42 @@
           "link": "https://www.sarugbymag.co.za/injury-mars-sharks-win/",
           "feedName": "SA Rugby Magazine"
         },
+        {
+          "title": "Ackers sweats on playmaker's fitness",
+          "link": "https://www.sarugbymag.co.za/ackers-sweats-playmaker-fitness/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "sharks-playmaker-s-fitness-1ca5e7j",
+      "subject": "Sharks playmaker's fitness following pre-season injury",
+      "teams": [
+        467
+      ],
+      "resolution": "until the team confirms the extent of the injury and his availability for the URC season opener",
+      "sources": [
+        {
+          "title": "Injury mars Sharks win",
+          "link": "https://www.sarugbymag.co.za/injury-mars-sharks-win/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-13",
+      "lastSeen": "2026-09-13",
+      "uses": 0
+    },
+    {
+      "id": "bulls-key-back-s-1sjwjjc",
+      "subject": "Bulls key back's fitness and potential selection",
+      "teams": [
+        467
+      ],
+      "resolution": "until Johan Ackermann confirms his selection status for the URC season opener",
+      "sources": [
         {
           "title": "Ackers sweats on playmaker's fitness",
           "link": "https://www.sarugbymag.co.za/ackers-sweats-playmaker-fitness/",
