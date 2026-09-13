@@ -18,7 +18,7 @@ test("the window opens 15 min before kickoff and closes 150 min after", () => {
   assert.equal(inBurstWindow([series()], KO + 151 * 60000), false);
 });
 
-test("only test, series and tour games open the window", () => {
+test("test, series, tour and ESPN-scored competition games open the window; NC rounds do not", () => {
   // Nations Championship rounds are the nations.json burst's job — bursting
   // here for them would rebuild from ESPN while api-sports is already polling.
   const round = series({ comp: { key: "rnc-2026", label: "RNC '26", kind: "competition" } });
@@ -26,6 +26,10 @@ test("only test, series and tour games open the window", () => {
   for (const kind of ["test", "series", "tour"]) {
     assert.equal(inBurstWindow([series({ comp: { kind } })], KO), true, kind);
   }
+  // The Pacific Nations Cup has no other live source (2026-09-12: the final
+  // would have sat on its kickoff time all afternoon).
+  const pnc = series({ comp: { key: "pnc-2026", label: "PNC '26", kind: "competition" } });
+  assert.equal(inBurstWindow([pnc], KO), true);
 });
 
 test("a malformed row cannot crash the check", () => {

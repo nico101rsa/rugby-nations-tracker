@@ -3,7 +3,8 @@
 // The refresh job runs every 15 min; build-fixtures is a full keyless-ESPN
 // walk (~10s + a few hundred fetches), so it only runs when it can change
 // something the app shows:
-//   - a test/series/tour game is in its LIVE window (kickoff-15min .. +6h):
+//   - a test/series/tour game — or an ESPN-scored competition game, see
+//     espn-scored.mjs — is in its LIVE window (kickoff-15min .. +6h):
 //     live status + running score need refreshing every tick;
 //   - a test/series game from the last 48h still has no final: the fill
 //     pass should catch it up (a probe/vendor may have lagged).
@@ -11,15 +12,17 @@
 // (tour-results.json changing) is handled by the workflow's git diff, not
 // here — tour scores come from api-sports, not ESPN.
 import { readFile } from "node:fs/promises";
+import { liveTracked } from "./espn-scored.mjs";
 
-const LIVE_KINDS = new Set(["test", "series", "tour"]);
 const PRE_MS = 15 * 60000;
 const LIVE_MS = 6 * 3600 * 1000;
 const CATCHUP_MS = 48 * 3600 * 1000;
 
 export function refreshDue(fixtures, nowMs = Date.now()) {
   return (fixtures ?? []).some((f) => {
-    if (!LIVE_KINDS.has(f.comp?.kind)) return false;
+    // Tests, series, tours and every ESPN-scored competition (the Pacific
+    // Nations Cup; never the Nations Championship, which nations.json covers).
+    if (!liveTracked(f.comp)) return false;
     const t = new Date(f.date).getTime();
     if (t - PRE_MS <= nowMs && nowMs - t < LIVE_MS) return true; // live window
     const unscored = f.homeScore == null || f.awayScore == null;

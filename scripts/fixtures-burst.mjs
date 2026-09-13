@@ -19,12 +19,12 @@
 import { execSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { pushWithRetries } from "./git-push-retry.mjs";
+import { liveTracked } from "./espn-scored.mjs";
 
 const PRE_MS = 15 * 60000;             // start 15 min before kickoff
 const POST_MS = 150 * 60000;           // play + HT + the FT settle, as refresh.mjs uses
 const POLL_MS = 3 * 60000;
 const BURST_MAX_MS = 2 * 60 * 60000;   // one landed fire covers a full match, well under the 6h job cap
-const LIVE_KINDS = new Set(["test", "series", "tour"]);
 const MAX_CONSECUTIVE_FAILURES = 5;    // ~15 min of nothing working — stop pretending
 
 // Is a test/series/tour game actually in play right now?
@@ -36,7 +36,9 @@ const MAX_CONSECUTIVE_FAILURES = 5;    // ~15 min of nothing working — stop pr
 // cap rebuilding a finished game.
 export function inBurstWindow(fixtures, nowMs = Date.now()) {
   return (fixtures ?? []).some((f) => {
-    if (!LIVE_KINDS.has(f?.comp?.kind)) return false;
+    // Tests, series, tours and ESPN-scored competitions (see espn-scored.mjs).
+    // Nations Championship rounds stay with the nations.json burst.
+    if (!liveTracked(f?.comp)) return false;
     const ko = new Date(f.date).getTime();
     return Number.isFinite(ko) && nowMs >= ko - PRE_MS && nowMs <= ko + POST_MS;
   });

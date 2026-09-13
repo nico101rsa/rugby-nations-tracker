@@ -20,7 +20,14 @@ test("due while a recent final is missing; settles once scored or after 48h", ()
   assert.ok(!refreshDue([fx("test", "2026-08-01T14:00:00Z")], NOW)); // beyond catch-up
 });
 
-test("competition games never make a tick due", () => {
-  assert.ok(!refreshDue([fx("competition", "2026-08-11T17:30:00Z")], NOW));
+test("Nations Championship games never make a tick due — nations.json covers them", () => {
+  assert.ok(!refreshDue([{ ...fx("competition", "2026-08-11T17:30:00Z"), comp: { kind: "competition", key: "rnc-2026" } }], NOW));
   assert.ok(!refreshDue(undefined, NOW));
+});
+
+test("an ESPN-scored competition game (the Pacific Nations Cup) does — live window and missing final", () => {
+  const pnc = (iso, scores) => ({ ...fx("competition", iso, scores), comp: { kind: "competition", key: "pnc-2026" } });
+  assert.ok(refreshDue([pnc("2026-08-11T17:30:00Z")], NOW)); // in play
+  assert.ok(refreshDue([pnc("2026-08-10T14:00:00Z")], NOW)); // yesterday, unscored — the Japan v USA case
+  assert.ok(!refreshDue([pnc("2026-08-10T14:00:00Z", { h: 57, a: 12 })], NOW));
 });

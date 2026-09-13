@@ -286,3 +286,54 @@ test("buildFixtures: a live scores-map entry attaches status.live + running scor
   assert.equal(out[0].homeScore, 7);
   assert.deepEqual(out[0].status, { short: "1st Half", live: true });
 });
+
+// --- side-competition results (Pacific Nations Cup, 2026-09-13) -------------
+
+test("a played registered-competition game persists only when its comp key is in resultKeys", () => {
+  const NOW_MS = Date.parse("2026-09-13T00:00:00Z");
+  const league = (id, iso, key) => ({
+    ...ev(id, iso, 23, 14),
+    comp: { key, label: key.toUpperCase(), kind: "competition" },
+    registered: true,
+  });
+  const events = [
+    league(1, "2026-09-12T10:05:00Z", "pnc-2026"), // played semi
+    league(2, "2026-09-19T10:05:00Z", "pnc-2026"), // final, future
+    league(3, "2026-07-18T08:40:00Z", "rnc-2026"), // played NC game — nations.json owns it
+  ];
+  const kept = buildFixtures(events, NAMES, {}, { now: NOW_MS, resultKeys: new Set(["pnc-2026"]) });
+  assert.deepEqual(kept.map((e) => e.id).sort(), ["espn-1", "espn-2"]);
+  // Without the key the old rule holds: played competition games drop.
+  const dropped = buildFixtures(events, NAMES, {}, { now: NOW_MS });
+  assert.deepEqual(dropped.map((e) => e.id), ["espn-2"]);
+  // And the persisted semi picks up its final like a test does.
+  const scored = buildFixtures(events, NAMES, {}, {
+    now: NOW_MS, resultKeys: new Set(["pnc-2026"]), scores: { "espn-1": { home: 57, away: 12 } },
+  });
+  assert.equal(scored.find((e) => e.id === "espn-1").homeScore, 57);
+  assert.equal(scored.find((e) => e.id === "espn-1").status, undefined); // final, not live
+});
+
+test("fetchLiveStates reads the site-API shape too: inline status, score as a string", async () => {
+  const { fetchLiveStates } = await import("./build-fixtures.mjs");
+  const site = (id, state, home, away, detail) => ({
+    event: {
+      id,
+      competitions: [{
+        status: { type: { state, shortDetail: detail } },
+        competitors: [
+          { homeAway: "home", score: home },
+          { homeAway: "away", score: away },
+        ],
+      }],
+    },
+  });
+  const fetchJson = async () => { throw new Error("no $ref should be fetched for inline shapes"); };
+  const out = await fetchLiveStates(
+    [site("1", "post", "57", "12", "Full Time"), site("2", "in", "7", "3", "1st Half"), site("3", "pre", "", "", "")],
+    fetchJson,
+  );
+  assert.deepEqual(out["espn-1"], { home: 57, away: 12, live: false, short: "FT" });
+  assert.deepEqual(out["espn-2"], { home: 7, away: 3, live: true, short: "1st Half" });
+  assert.equal(out["espn-3"], undefined);
+});
