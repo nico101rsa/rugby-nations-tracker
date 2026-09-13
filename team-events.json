@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-12T13:58:21.219Z",
+ "updatedAt": "2026-09-13T05:31:57.473Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -18,20 +18,6 @@
  "teams": {
   "NZL": {
    "last": [
-    {
-     "id": 16098042,
-     "date": "2026-07-04T07:10:00.000Z",
-     "league": "Nations Championship, Group Stage",
-     "opponent": "France",
-     "opponentCode": "FRA",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 34,
-     "them": 32,
-     "result": "W",
-     "tries": 5,
-     "cards": 1
-    },
     {
      "id": 16098054,
      "date": "2026-07-11T05:10:00.000Z",
@@ -157,9 +143,7 @@
      "result": "L",
      "tries": null,
      "cards": null
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16651328,
      "date": "2026-09-12T21:00:00.000Z",
@@ -168,11 +152,14 @@
      "opponentCode": "RSA",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "M&T Bank Stadium, Baltimore"
-    },
+     "us": 28,
+     "them": 43,
+     "result": "L",
+     "tries": 4,
+     "cards": 0
+    }
+   ],
+   "next": [
     {
      "venue": "Eden Park, Auckland",
      "id": "espn-603463",
@@ -245,6 +232,18 @@
      "opponent": "Chile",
      "opponentCode": null,
      "tracked": false,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248078,
+     "date": "2027-10-09T06:10:00.000Z",
+     "league": "World Cup, Pool A",
+     "opponent": "Australia",
+     "opponentCode": "AUS",
+     "tracked": true,
      "homeAway": "H",
      "us": null,
      "them": null,
@@ -581,6 +580,18 @@
     }
    ],
    "next": [
+    {
+     "id": 17085293,
+     "date": "2026-09-19T07:05:00.000Z",
+     "league": "Pacific Nations Cup, Knockout Stage",
+     "opponent": "Fiji",
+     "opponentCode": "FIJ",
+     "tracked": true,
+     "homeAway": "A",
+     "us": null,
+     "them": null,
+     "result": null
+    },
     {
      "venue": "Prince Chichibu Memorial Stadium, Tokyo",
      "id": "espn-604593",
@@ -1446,6 +1457,18 @@
    ],
    "next": [
     {
+     "id": 17085293,
+     "date": "2026-09-19T07:05:00.000Z",
+     "league": "Pacific Nations Cup, Knockout Stage",
+     "opponent": "Japan",
+     "opponentCode": "JPN",
+     "tracked": true,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
      "venue": "Prince Chichibu Memorial Stadium, Tokyo",
      "id": "espn-604593",
      "date": "2026-10-24T05:50Z",
@@ -1502,18 +1525,6 @@
      "date": "2027-10-04T03:15:00.000Z",
      "league": "World Cup, Pool C",
      "opponent": "Spain",
-     "opponentCode": null,
-     "tracked": false,
-     "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null
-    },
-    {
-     "id": 16248067,
-     "date": "2027-10-10T01:45:00.000Z",
-     "league": "World Cup, Pool C",
-     "opponent": "Canada",
      "opponentCode": null,
      "tracked": false,
      "homeAway": "H",
@@ -1711,20 +1722,6 @@
   "RSA": {
    "last": [
     {
-     "id": 14884334,
-     "date": "2025-11-22T17:40:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Ireland",
-     "opponentCode": "IRE",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 24,
-     "them": 13,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14884338,
      "date": "2025-11-29T15:10:00.000Z",
      "league": "International Friendlies",
@@ -1849,9 +1846,7 @@
      "result": "W",
      "tries": null,
      "cards": null
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16651328,
      "date": "2026-09-12T21:00:00.000Z",
@@ -1860,11 +1855,14 @@
      "opponentCode": "NZL",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "M&T Bank Stadium, Baltimore"
-    },
+     "us": 43,
+     "them": 28,
+     "result": "W",
+     "tries": 6,
+     "cards": 0
+    }
+   ],
+   "next": [
     {
      "venue": "Optus Stadium, Perth",
      "id": "espn-603462",
@@ -1924,6 +1922,18 @@
      "opponent": "Italy",
      "opponentCode": "ITA",
      "tracked": true,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248080,
+     "date": "2027-10-10T06:45:00.000Z",
+     "league": "World Cup, Pool B",
+     "opponent": "Georgia",
+     "opponentCode": null,
+     "tracked": false,
      "homeAway": "H",
      "us": null,
      "them": null,

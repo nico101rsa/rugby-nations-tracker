@@ -1,8 +1,32 @@
 {
- "updatedAt": "2026-09-12T05:16:32.079Z",
+ "updatedAt": "2026-09-13T05:31:59.847Z",
  "source": "espn",
  "current": "rnc-2026",
  "competitions": [
+  {
+   "key": "pnc-2025",
+   "label": "PNC '25",
+   "name": "Pacific Nations Cup",
+   "espnLeagueId": 256449,
+   "season": 2025,
+   "startDate": "2025-08-23",
+   "endDate": "2025-09-21",
+   "structure": "knockout",
+   "groups": null,
+   "teams": [
+    "CAN",
+    "FIJ",
+    "JPN",
+    "SAM",
+    "TGA",
+    "USA"
+   ],
+   "fixtureCount": 11,
+   "status": "complete",
+   "headline": false,
+   "defaultFrom": "2025-08-23",
+   "defaultUntil": "2025-10-05"
+  },
   {
    "key": "6n-2026",
    "label": "6N '26",
@@ -77,6 +101,28 @@
    "status": "live",
    "defaultFrom": "2026-03-28",
    "defaultUntil": "2026-12-05"
+  },
+  {
+   "key": "pnc-2026",
+   "label": "PNC '26",
+   "name": "Pacific Nations Cup",
+   "espnLeagueId": 256449,
+   "season": 2026,
+   "startDate": "2026-09-12",
+   "endDate": "2026-09-19",
+   "structure": "knockout",
+   "groups": null,
+   "teams": [
+    "CAN",
+    "FIJ",
+    "JPN",
+    "USA"
+   ],
+   "fixtureCount": 4,
+   "status": "live",
+   "headline": false,
+   "defaultFrom": "2026-09-12",
+   "defaultUntil": "2026-10-03"
   },
   {
    "key": "6n-2027",
