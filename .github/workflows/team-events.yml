@@ -79,4 +79,13 @@ jobs:
           git add team-events.json team-events-archive.json fixtures.json competitions.json
           git diff --cached --quiet && echo "No team-events changes" && exit 0
           git commit -m "Team events refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
-          git push || (git pull --rebase --autostash && git push)
+          # The live fixtures burst commits fixtures.json every few minutes on a
+          # match day, so this push routinely loses the race. A plain rebase then
+          # CONFLICTS on fixtures.json (both sides rewrite the whole file) and the
+          # run dies with the refresh unpushed — Saturday 5 Sep and 12 Sep 2026
+          # both went that way. Every file in this commit was regenerated seconds
+          # ago by this job, so on a conflict the job's copy wins (-X theirs is
+          # the commit being replayed, i.e. ours). At worst the burst's copy of
+          # fixtures.json is a few minutes fresher, and it republishes within
+          # three minutes anyway.
+          git push || (git pull --rebase --autostash -X theirs && git push)
