@@ -23,6 +23,7 @@
 
 import { readFile } from "node:fs/promises";
 import { sliceRange } from "./build-competitions.mjs";
+import { scoredByEspn } from "./espn-scored.mjs";
 
 const SITE = "https://site.api.espn.com/apis/site/v2/sports/rugby";
 const compact = (isoDate) => isoDate.replaceAll("-", "");
@@ -53,21 +54,42 @@ export function ingestable(registry) {
   return (registry?.competitions ?? []).filter((c) => c.fixtureCount > 0 && c.startDate && c.endDate);
 }
 
+// Does this competition's PLAYED games stay in fixtures.json?
+//
+// Yes while the competition is still offered in the app (its registry window
+// has not expired) and ESPN is its score source. The Results tab draws played
+// tour/test/series games from fixtures.json because nations.json never carries
+// them; a side competition like the Pacific Nations Cup is in exactly that
+// position, so its results have to travel the same way or the app shows the
+// final as a fixture with a kickoff time and never as a score (Japan v USA,
+// 2026-09-12). Nations Championship games are excluded: nations.json is their
+// record and a copy here would double up on Results. Expired competitions are
+// excluded so the file does not accumulate every Six Nations ever played —
+// the app's own expiry rule (defaultUntil = last fixture + 14 days) decides
+// when a competition, and with it its results, leaves the app.
+export function keepsResults(comp, today) {
+  if (!scoredByEspn({ key: comp?.key, kind: "competition" })) return false;
+  return !(comp?.defaultUntil && comp.defaultUntil <= today);
+}
+
 // All matches in every registered competition, as buildFixtures tuples.
 // Deduped by event id across competitions and slices.
 //
-// `since` keeps this to FUTURE fixtures, matching what fetchEspnEvents already
-// does and what fixtures.json documents itself to be. Without it the league
-// scoreboard also returns every completed match in the window — 33 of them
-// today — which the app filters out client-side anyway (`upcomingFixtures`),
-// so they would only triple the payload every user downloads. The one real
-// behaviour change here is untracked-vs-untracked matches in registered
-// competitions, not a change of what the file covers in time.
+// `since` keeps this to FUTURE fixtures for competitions whose results live
+// elsewhere or whose window has closed (see keepsResults), matching what
+// fetchEspnEvents does and what fixtures.json documents itself to be: without
+// it the league scoreboard also returns every completed match in the window
+// (33 of them on 2026-07-25), which the app filters out client-side anyway
+// (`upcomingFixtures`), so they would only triple the payload every user
+// downloads. A competition that keepsResults keeps its played games so the
+// Results tab can show them with the score build-fixtures fills in.
 export async function fetchLeagueFixtures(registry, fetchJson = getJson, since = Date.now()) {
   const byId = new Map();
   const names = new Map(); // espn team id -> display name
+  const today = new Date(since).toISOString().slice(0, 10);
   for (const comp of ingestable(registry)) {
     const win = windowFor(comp);
+    const keepPast = keepsResults(comp, today);
     for (const slice of sliceRange(win.from, win.to)) {
       const board = await fetchJson(
         `${SITE}/${comp.espnLeagueId}/scoreboard?dates=${compact(slice.from)}-${compact(slice.to)}`,
@@ -76,7 +98,7 @@ export async function fetchLeagueFixtures(registry, fetchJson = getJson, since =
       // stub body on several of these endpoints.
       for (const event of Array.isArray(board?.events) ? board.events : []) {
         if (event?.id == null || byId.has(String(event.id))) continue;
-        if (new Date(event.date).getTime() < since) continue;
+        if (!keepPast && new Date(event.date).getTime() < since) continue;
         for (const c of event.competitions?.[0]?.competitors ?? []) {
           const id = String(c.team?.id ?? "");
           if (id && c.team?.displayName) names.set(id, c.team.displayName);

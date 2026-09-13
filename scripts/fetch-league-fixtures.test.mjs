@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { fetchLeagueFixtures, ingestable, windowFor, PAD_DAYS } from "./fetch-league-fixtures.mjs";
+import { fetchLeagueFixtures, ingestable, windowFor, keepsResults, PAD_DAYS } from "./fetch-league-fixtures.mjs";
 
 const REGISTRY = {
   competitions: [
@@ -90,14 +90,48 @@ test("a stub 200 body yields no events rather than throwing", async () => {
   assert.deepEqual(events, []);
 });
 
-test("past fixtures are excluded — the file stays a FUTURE fixtures list", async () => {
-  const fetchJson = async () => ({
-    events: [
-      siteEvent(1, "2027-10-01", [6, "Australia"], [289268, "Hong Kong"]),
-      siteEvent(2, "2026-02-05", [1, "England"], [4, "Wales"]), // already played
-    ],
+// --- played games: kept only where fixtures.json IS the record ---------------
+
+test("keepsResults: ESPN-scored and still offered; never the NC, never an expired comp", () => {
+  const today = "2026-09-13";
+  assert.equal(keepsResults({ key: "pnc-2026", defaultUntil: "2026-10-03" }, today), true);
+  assert.equal(keepsResults({ key: "rwc-2027", defaultUntil: "2027-10-31" }, today), true);
+  assert.equal(keepsResults({ key: "rwc-2027" }, today), true); // no window yet — not expired
+  assert.equal(keepsResults({ key: "rnc-2026", defaultUntil: "2026-12-05" }, today), false); // nations.json owns it
+  assert.equal(keepsResults({ key: "6n-2026", defaultUntil: "2026-03-28" }, today), false); // expired
+  assert.equal(keepsResults({ key: "pnc-2026", defaultUntil: "2026-09-13" }, today), false); // expires today
+});
+
+test("past fixtures are dropped for a comp whose window has closed or whose results live elsewhere", async () => {
+  const registry = { competitions: [
+    { key: "6n-2026", label: "6N '26", name: "Six Nations", espnLeagueId: 180659,
+      startDate: "2026-02-05", endDate: "2026-03-14", defaultUntil: "2026-03-28", fixtureCount: 15, status: "complete" },
+    { key: "rnc-2026", label: "RNC '26", name: "Nations Championship", espnLeagueId: 17567,
+      startDate: "2026-07-04", endDate: "2026-11-21", defaultUntil: "2026-12-05", fixtureCount: 36, status: "live" },
+  ] };
+  const fetchJson = async (url) => ({
+    events: url.includes("/180659/")
+      ? [siteEvent(2, "2026-02-05", [1, "England"], [4, "Wales"])] // played, expired comp
+      : [siteEvent(3, "2026-07-04", [8, "New Zealand"], [9, "France"]), siteEvent(4, "2026-11-07", [4, "Wales"], [23, "Japan"])],
   });
   const since = new Date("2026-07-25T00:00:00Z").getTime();
-  const { events } = await fetchLeagueFixtures(REGISTRY, fetchJson, since);
-  assert.deepEqual(events.map((e) => e.event.id), ["1"]);
+  const { events } = await fetchLeagueFixtures(registry, fetchJson, since);
+  assert.deepEqual(events.map((e) => e.event.id), ["4"]); // only the future NC game
+});
+
+test("past fixtures are KEPT for an offered, ESPN-scored competition — the PNC semi-finals", async () => {
+  const registry = { competitions: [
+    { key: "pnc-2026", label: "PNC '26", name: "Pacific Nations Cup", espnLeagueId: 256449,
+      startDate: "2026-09-12", endDate: "2026-09-19", defaultUntil: "2026-10-03", fixtureCount: 4, status: "live",
+      structure: "knockout", headline: false },
+  ] };
+  const fetchJson = async () => ({
+    events: [
+      siteEvent(1, "2026-09-12", [23, "Japan"], [11, "United States of America"]), // played
+      siteEvent(2, "2026-09-19", [23, "Japan"], [14, "Fiji"]),                     // final, future
+    ],
+  });
+  const since = new Date("2026-09-13T00:00:00Z").getTime();
+  const { events } = await fetchLeagueFixtures(registry, fetchJson, since);
+  assert.deepEqual(events.map((e) => e.event.id).sort(), ["1", "2"]);
 });

@@ -13,7 +13,8 @@
 
 import { readFile, writeFile } from "node:fs/promises";
 import { fetchEspnEvents, ESPN_TEAM_IDS } from "./fetch-espn-fixtures.mjs";
-import { fetchLeagueFixtures, loadRegistry } from "./fetch-league-fixtures.mjs";
+import { fetchLeagueFixtures, loadRegistry, keepsResults } from "./fetch-league-fixtures.mjs";
+import { scoredByEspn } from "./espn-scored.mjs";
 import { seededFixtures } from "./seed-competitions.mjs";
 import { tourFixtures, loadProbeResults } from "./seed-tour.mjs";
 import { venueLabel } from "./venues.mjs";
@@ -106,8 +107,12 @@ export function roundLookup(nations) {
 // score is kept too — the next build's fill pass needs to see it; the 24h
 // `now` grace bounds how long a scoreless one can linger if a vendor never
 // scores it, because upstream stops carrying it. Played competition games
-// still drop (the registered-league fetch is future-only upstream anyway).
-export function buildFixtures(events, names, nations, { now = 0, scores = {} } = {}) {
+// drop UNLESS their comp key is in `resultKeys` — the registered competitions
+// whose results the app takes from this file (see keepsResults in
+// fetch-league-fixtures: ESPN-scored and still offered). The Pacific Nations
+// Cup is the first; the Nations Championship is never one, nations.json is
+// its record.
+export function buildFixtures(events, names, nations, { now = 0, scores = {}, resultKeys = new Set() } = {}) {
   const findRound = roundLookup(nations);
   const out = [];
   for (const { event, leagueName, comp: registryComp, registered } of events) {
@@ -168,7 +173,8 @@ export function buildFixtures(events, names, nations, { now = 0, scores = {} } =
   // games persist and pick up their score; everything else played drops.
   const kept = out.filter((e) => {
     const played = new Date(e.date).getTime() < now;
-    if (played && e.comp.kind !== "series" && e.comp.kind !== "test") return false;
+    const persists = e.comp.kind === "series" || e.comp.kind === "test" || resultKeys.has(e.comp.key);
+    if (played && !persists) return false;
     const s = scores[e.id];
     if (s) {
       e.homeScore = s.home;
@@ -190,12 +196,15 @@ export function buildFixtures(events, names, nations, { now = 0, scores = {} } =
 // only after each test is actually played). Returns the buildFixtures
 // `scores` map keyed by our fixture id, oriented home/away as ESPN lists
 // them (the same orientation buildFixtures publishes).
-// Live/final state for test & series games, from the same keyless core API:
-// the competition status (a $ref, occasionally inline) says pre/in/post, and
-// the competitor score $refs carry the RUNNING score mid-game as well as the
-// final. Returns the buildFixtures `scores` map ({home, away, live, short}),
-// skipping pre-kickoff games entirely. Costs ~3 small fetches per candidate
-// game, and candidates only exist on international match days.
+// Live/final state for every ESPN-scored game (see espn-scored.mjs). Two
+// event shapes arrive here: the per-team core API nests the status and each
+// competitor's score behind a $ref (three small fetches per game), while the
+// league-wide site-API scoreboard — the only path a registered competition's
+// games come through — carries the status inline and the score as a plain
+// string on the competitor. Both say pre/in/post, and both carry the RUNNING
+// score mid-game as well as the final. Returns the buildFixtures `scores`
+// map ({home, away, live, short}), skipping pre-kickoff games entirely.
+// Candidates only exist on international match days.
 export async function fetchLiveStates(rawEvents, fetchJson = defaultGetJson) {
   const states = {};
   for (const { event } of rawEvents) {
@@ -207,9 +216,16 @@ export async function fetchLiveStates(rawEvents, fetchJson = defaultGetJson) {
     if (state !== "in" && state !== "post") continue;
     const bySide = {};
     for (const c of comp0.competitors ?? []) {
-      if (!c.score?.$ref) continue;
-      const s = await fetchJson(c.score.$ref).catch(() => null);
-      if (s?.value != null) bySide[c.homeAway] = s.value;
+      let value = null;
+      if (c.score?.$ref) {
+        const s = await fetchJson(c.score.$ref).catch(() => null);
+        value = s?.value;
+      } else if (c.score != null && typeof c.score === "object") {
+        value = c.score.value;
+      } else if (c.score != null && c.score !== "") {
+        value = Number(c.score);
+      }
+      if (value != null && Number.isFinite(Number(value))) bySide[c.homeAway] = Number(value);
     }
     if (bySide.home == null || bySide.away == null) continue;
     states[`espn-${event.id}`] = {
@@ -271,21 +287,28 @@ async function main() {
   for (const [id, name] of league.names) if (!names.has(id)) names.set(id, name);
   const nations = JSON.parse(await readFile("public/nations.json", "utf8"));
   const merged = mergeSources(events, league.events);
-  let fixtures = buildFixtures(merged, names, nations, { now });
+  // Registered competitions whose played games persist with their score
+  // (ESPN-scored and still offered — the PNC now, the World Cup in 2027).
+  const today = new Date(now).toISOString().slice(0, 10);
+  const resultKeys = new Set(
+    (registry?.competitions ?? []).filter((c) => keepsResults(c, today)).map((c) => c.key),
+  );
+  let fixtures = buildFixtures(merged, names, nations, { now, resultKeys });
 
-  // Two-pass score/live fill for test & series games: the first pass tells
-  // us which entries are past kickoff, then fetchLiveStates reads each one's
-  // pre/in/post status and running-or-final score off the raw events, and
-  // the (cheap, pure) build reruns with the map. Candidates use the REAL
-  // clock, not the grace-shifted `now` — judging playedness by the grace
-  // meant a Saturday final sat scoreless until Sunday's build (JPN v AUS,
-  // 2026-08-09). A game keeps refreshing for 6h after kickoff so live
+  // Two-pass score/live fill for every ESPN-scored game (tests, series, and
+  // registered competitions other than the Nations Championship): the first
+  // pass tells us which entries are past kickoff, then fetchLiveStates reads
+  // each one's pre/in/post status and running-or-final score off the raw
+  // events, and the (cheap, pure) build reruns with the map. Candidates use
+  // the REAL clock, not the grace-shifted `now` — judging playedness by the
+  // grace meant a Saturday final sat scoreless until Sunday's build (JPN v
+  // AUS, 2026-08-09). A game keeps refreshing for 6h after kickoff so live
   // scores update tick-to-tick and the FT flip lands; after that only a
   // still-missing final warrants a fetch.
   const nowMs = Date.now();
   const LIVE_WINDOW_MS = 6 * 3600 * 1000;
   const candidates = fixtures.filter((f) => {
-    if (f.comp.kind !== "series" && f.comp.kind !== "test") return false;
+    if (!scoredByEspn(f.comp)) return false;
     const t = new Date(f.date).getTime();
     if (t > nowMs) return false;
     return f.homeScore == null || nowMs - t < LIVE_WINDOW_MS;
@@ -295,8 +318,8 @@ async function main() {
     const raw = candidates.map((f) => byId.get(f.id)).filter(Boolean);
     const scores = await fetchLiveStates(raw);
     const liveN = Object.values(scores).filter((s) => s.live).length;
-    console.log(`scores: filled ${Object.keys(scores).length}/${candidates.length} test/series games (${liveN} live)`);
-    fixtures = buildFixtures(merged, names, nations, { now, scores });
+    console.log(`scores: filled ${Object.keys(scores).length}/${candidates.length} ESPN-scored games (${liveN} live)`);
+    fixtures = buildFixtures(merged, names, nations, { now, scores, resultKeys });
   }
 
   // Seeded fixtures for competitions the vendor still has nothing for. They
