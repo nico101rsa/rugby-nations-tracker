@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-14T20:01:29.077Z",
+  "updatedAt": "2026-09-14T22:50:30.996Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 224,
+  "count": 225,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -3365,25 +3365,6 @@
       "uses": 0
     },
     {
-      "id": "the-impact-of-the-pucahr",
-      "subject": "The impact of the Japan Rugby League One's proposed player category changes",
-      "teams": [
-        463
-      ],
-      "resolution": "until the league reaches an agreement with players and fans regarding the 2026-2027 eligibility rules",
-      "sources": [
-        {
-          "title": "Japan Rugby League One Amends Proposed Player Categories – Outlines Updated Eligibility for 2026-2027 Season",
-          "link": "https://www.rugbyasia247.com/japan-rugby-league-one-amends-proposed-player-categories-outlines-updated-eligibility-for-2026-2027-season/",
-          "feedName": "Rugby Asia 247"
-        }
-      ],
-      "firstSeen": "2026-09-06",
-      "lastSeen": "2026-09-06",
-      "uses": 2,
-      "lastUsed": "2026-09-13"
-    },
-    {
       "id": "rassie-erasmus-s-coaching-156ty8r",
       "subject": "Rassie Erasmus's coaching methods and conduct during the All Blacks series",
       "teams": [
@@ -3944,7 +3925,7 @@
         }
       ],
       "firstSeen": "2026-09-08",
-      "lastSeen": "2026-09-14",
+      "lastSeen": "2026-09-15",
       "uses": 0
     },
     {
@@ -4194,7 +4175,8 @@
       ],
       "firstSeen": "2026-09-09",
       "lastSeen": "2026-09-09",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-15"
     },
     {
       "id": "handr-pollard-and-franco-1a0ulk0",
@@ -5165,7 +5147,7 @@
         }
       ],
       "firstSeen": "2026-09-14",
-      "lastSeen": "2026-09-14",
+      "lastSeen": "2026-09-15",
       "uses": 0
     },
     {
@@ -5229,7 +5211,7 @@
     },
     {
       "id": "potential-six-nations-match-1tdlbsp",
-      "subject": "Potential Six Nations match staged in the United States",
+      "subject": "The potential staging of a Six Nations match in the United States",
       "teams": [
         388,
         389,
@@ -5237,6 +5219,11 @@
       ],
       "resolution": "until World Rugby and the Six Nations unions confirm whether a game will be moved to the US",
       "sources": [
+        {
+          "title": "No plans for Ireland Six Nations game in US - IRFU",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cddvmqvqzq7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
         {
           "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
@@ -5246,16 +5233,12 @@
           "title": "World Rugby floats plans for Six Nations match in US but England unlikely to participate",
           "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Rugby Union Weekly: Brilliant Boks and Six Nations Stateside?",
-          "link": "https://www.bbc.co.uk/sounds/play/p0p9m1hc?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-15",
       "lastSeen": "2026-09-15",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-15"
     },
     {
       "id": "courtney-lawes-bid-for-c73oie",
@@ -5334,6 +5317,48 @@
           "title": "Mallett names the next Marx",
           "link": "https://www.sarugbymag.co.za/mallett-names-next-marx/",
           "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-15",
+      "lastSeen": "2026-09-15",
+      "uses": 0
+    },
+    {
+      "id": "carter-gordon-s-injury-tv1c53",
+      "subject": "Carter Gordon's injury recovery and return to Wallabies selection",
+      "teams": [
+        461
+      ],
+      "resolution": "until Carter Gordon is cleared to return to professional rugby",
+      "sources": [
+        {
+          "title": "Wallabies’ Carter Gordon set for stint on sidelines after breaking leg in latest injury blow",
+          "link": "https://www.theguardian.com/sport/2026/sep/07/wallabies-carter-gordon-broken-leg-injury-blow-bledisloe-cup",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-15",
+      "lastSeen": "2026-09-15",
+      "uses": 0
+    },
+    {
+      "id": "the-trial-of-a-14cx4nq",
+      "subject": "The trial of a smaller ball in women’s international rugby",
+      "teams": [
+        386,
+        390
+      ],
+      "resolution": "until World Rugby decides whether to adopt the smaller ball permanently or end the trial",
+      "sources": [
+        {
+          "title": "Smaller ball for women makes it 'harder to do my job'",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyz72pp22yo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "The Breakdown | How the smaller ball trial in WXV has brought ‘mixed bag of emotions’",
+          "link": "https://www.theguardian.com/sport/2026/sep/08/how-the-smaller-ball-trial-in-wxv-has-brought-mixed-bag-of-emotions",
+          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-09-15",
