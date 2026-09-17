@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-17T20:00:56.047Z",
+  "updatedAt": "2026-09-17T22:31:18.528Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 213,
+  "count": 218,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -12,6 +12,11 @@
       "resolution": "until Henry Pollock signs a new deal with Northampton or moves to a new club",
       "sources": [
         {
+          "title": "Loose Pass: No thanks to Six Nations in the USA and why Henry Pollock deal underlines salary cap benefits",
+          "link": "https://www.planetrugby.com/news/loose-pass-no-thanks-to-six-nations-in-the-usa-and-why-henry-pollock-deal-underlines-salary-cap-benefits",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -20,11 +25,6 @@
           "title": "Pollock denies signing Northampton deal and is ‘open to every opportunity’",
           "link": "https://www.theguardian.com/sport/2026/sep/14/henry-pollock-northampton-new-contract-negotiations-move-abroad-rugby-union",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Pollock still 'open to new opportunities' as Northampton talks continue",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ck1e54qzjqljo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-04",
@@ -3868,7 +3868,7 @@
         }
       ],
       "firstSeen": "2026-09-12",
-      "lastSeen": "2026-09-13",
+      "lastSeen": "2026-09-18",
       "uses": 0
     },
     {
@@ -3965,7 +3965,7 @@
         }
       ],
       "firstSeen": "2026-09-12",
-      "lastSeen": "2026-09-12",
+      "lastSeen": "2026-09-18",
       "uses": 0
     },
     {
@@ -5072,6 +5072,131 @@
           "title": "Bulls line up Kwagga",
           "link": "https://www.sarugbymag.co.za/bulls-line-up-kwagga/",
           "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-18",
+      "lastSeen": "2026-09-18",
+      "uses": 0
+    },
+    {
+      "id": "potential-six-nations-match-7jvptg",
+      "subject": "Potential Six Nations match in the United States",
+      "teams": [
+        388,
+        389,
+        390,
+        391,
+        386,
+        387
+      ],
+      "resolution": "until a formal decision is reached by the Six Nations unions and World Rugby regarding hosting a match in the US",
+      "sources": [
+        {
+          "title": "No plans for Ireland Six Nations game in US - IRFU",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cddvmqvqzq7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Loose Pass: No thanks to Six Nations in the USA and why Henry Pollock deal underlines salary cap benefits",
+          "link": "https://www.planetrugby.com/news/loose-pass-no-thanks-to-six-nations-in-the-usa-and-why-henry-pollock-deal-underlines-salary-cap-benefits",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-18",
+      "lastSeen": "2026-09-18",
+      "uses": 0
+    },
+    {
+      "id": "haashim-pead-s-transfer-1hq8r6l",
+      "subject": "Haashim Pead's transfer status and Stormers' interest",
+      "teams": [
+        467
+      ],
+      "resolution": "until Haashim Pead either signs with the Stormers or confirms his future elsewhere",
+      "sources": [
+        {
+          "title": "Stormers' Pead deal hits the rocks",
+          "link": "https://www.sarugbymag.co.za/stormers-pead-deal-hits-rocks/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "'Complete hogwash' – Stormers boss rubbishes Siya Kolisi transfer figure and admits 'smoke' around ex-Junior Springbok superstar swoop",
+          "link": "https://www.planetrugby.com/news/stormers-john-dobson-addresses-siya-kolisi-transfer-and-haashim-pead-approach",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Dobbo clears up Haashim ‘smoke’",
+          "link": "https://www.sarugbymag.co.za/dobbo-clears-haashim-smoke/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-18",
+      "lastSeen": "2026-09-18",
+      "uses": 0
+    },
+    {
+      "id": "eligibility-and-availability-of-vuomir",
+      "subject": "Eligibility and availability of South African Springboks for URC clubs",
+      "teams": [
+        467
+      ],
+      "resolution": "until all Springbok players are fully integrated into their respective URC squads following the international season",
+      "sources": [
+        {
+          "title": "JP maps out Sharks’ Bok plan",
+          "link": "https://www.sarugbymag.co.za/jp-maps-out-sharks-bok-plan/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "‘We’re going to have to be brave with Sacha’",
+          "link": "https://www.sarugbymag.co.za/going-brave-sacha/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Bok boost for Stormers’ Connacht clash?",
+          "link": "https://www.sarugbymag.co.za/bok-boost-stormers-connacht-clash/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-18",
+      "lastSeen": "2026-09-18",
+      "uses": 0
+    },
+    {
+      "id": "future-of-the-bulls-o02h9t",
+      "subject": "Future of the Bulls' interest in signing Kwagga Smith",
+      "teams": [
+        467
+      ],
+      "resolution": "until Kwagga Smith makes a decision on a potential move to the Bulls",
+      "sources": [
+        {
+          "title": "Bulls line up Kwagga",
+          "link": "https://www.sarugbymag.co.za/bulls-line-up-kwagga/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-18",
+      "lastSeen": "2026-09-18",
+      "uses": 0
+    },
+    {
+      "id": "potential-inclusion-of-irish-7bsg3a",
+      "subject": "Potential inclusion of Irish women's teams in the PWR (Premiership Women's Rugby)",
+      "teams": [
+        388
+      ],
+      "resolution": "until the IRFU confirms whether Irish sides will join the English domestic structure",
+      "sources": [
+        {
+          "title": "IRFU await news of 'massive opportunity' to join PWR",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6dx0z98d289o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-18",
