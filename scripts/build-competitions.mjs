@@ -357,6 +357,25 @@ async function seasonWindow(leagueId, season) {
 
 const compact = (isoDate) => isoDate.replaceAll("-", "");
 
+// 18 Sep 2026: ESPN stopped accepting date RANGES on the scoreboard endpoint.
+// Every `dates=YYYYMMDD-YYYYMMDD` now answers HTTP 400 (checked from 2 days up
+// to 366; Team events and the app's archive both failed on it from 15 Sep). A
+// single day still works, and so does a whole calendar year — `dates=2026`
+// returned all 36 events for league 17567. So a window is served by one request
+// per calendar year it touches, filtered client-side to the window. That is
+// fewer requests than the old 366-day slices, and sliceRange/MAX_RANGE_DAYS
+// below are kept only because other code and tests still import them.
+export function yearsBetween(from, to) {
+  const out = [];
+  for (let y = Number(from.slice(0, 4)); y <= Number(to.slice(0, 4)); y++) out.push(String(y));
+  return out;
+}
+
+export function inWindow(event, win) {
+  const day = String(event?.date ?? "").slice(0, 10);
+  return day >= win.from && day <= win.to;
+}
+
 // The scoreboard accepts at most a 366-day range and answers HTTP 400 — not a
 // truncated list — for anything longer (verified 2026-07-25: 20260101-20270101
 // is 200, one day more is 400). The padded season windows exceed that, so the
@@ -377,14 +396,12 @@ export function sliceRange(from, to, span = MAX_RANGE_DAYS) {
 
 async function fetchEvents(leagueId, win) {
   const byId = new Map();
-  for (const slice of sliceRange(win.from, win.to)) {
-    const board = await getJson(
-      `${SITE}/${leagueId}/scoreboard?dates=${compact(slice.from)}-${compact(slice.to)}`,
-    );
+  for (const year of yearsBetween(win.from, win.to)) {
+    const board = await getJson(`${SITE}/${leagueId}/scoreboard?dates=${year}`);
     // Guard the vendor's habit of answering with a stub body on HTTP 200: a
     // missing `events` array is not the same as an empty one.
     for (const e of Array.isArray(board?.events) ? board.events : []) {
-      if (e?.id != null) byId.set(String(e.id), e);
+      if (e?.id != null && inWindow(e, win)) byId.set(String(e.id), e);
     }
   }
   return [...byId.values()];

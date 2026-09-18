@@ -7,6 +7,8 @@ import {
   statusFor,
   entryFor,
   sliceRange,
+  yearsBetween,
+  inWindow,
   TAIL_DAYS,
   MAX_RANGE_DAYS,
 } from "./build-competitions.mjs";
@@ -162,6 +164,21 @@ test("the handover happens exactly 14 days after the last fixture", () => {
   ]);
   assert.equal(defaultCompetition(comps, "2026-12-04").key, "rnc-2026"); // day 13
   assert.equal(defaultCompetition(comps, "2026-12-05").key, "6n-2027"); // day 14
+});
+
+// --- per-year fetching (ESPN dropped day ranges, 18 Sep 2026) --------------
+
+test("yearsBetween lists every calendar year a window touches", () => {
+  assert.deepEqual(yearsBetween("2026-07-04", "2026-11-21"), ["2026"]);
+  assert.deepEqual(yearsBetween("2025-10-03", "2027-04-01"), ["2025", "2026", "2027"]);
+});
+
+test("inWindow keeps only events dated inside the window", () => {
+  const win = { from: "2026-07-04", to: "2026-11-21" };
+  assert.equal(inWindow({ date: "2026-08-15T05:05Z" }, win), true);
+  assert.equal(inWindow({ date: "2026-07-04T23:00Z" }, win), true);
+  assert.equal(inWindow({ date: "2026-11-22T00:00Z" }, win), false);
+  assert.equal(inWindow({}, win), false);
 });
 
 // --- the 366-day scoreboard cap -------------------------------------------

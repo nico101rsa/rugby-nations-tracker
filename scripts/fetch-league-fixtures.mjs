@@ -22,12 +22,10 @@
 // no longer match the registry the app filters by.
 
 import { readFile } from "node:fs/promises";
-import { sliceRange } from "./build-competitions.mjs";
+import { inWindow, yearsBetween } from "./build-competitions.mjs";
 import { scoredByEspn } from "./espn-scored.mjs";
 
 const SITE = "https://site.api.espn.com/apis/site/v2/sports/rugby";
-const compact = (isoDate) => isoDate.replaceAll("-", "");
-
 async function getJson(url) {
   const res = await fetch(url);
   if (res.status === 404) return null;
@@ -90,14 +88,15 @@ export async function fetchLeagueFixtures(registry, fetchJson = getJson, since =
   for (const comp of ingestable(registry)) {
     const win = windowFor(comp);
     const keepPast = keepsResults(comp, today);
-    for (const slice of sliceRange(win.from, win.to)) {
-      const board = await fetchJson(
-        `${SITE}/${comp.espnLeagueId}/scoreboard?dates=${compact(slice.from)}-${compact(slice.to)}`,
-      );
+    // One request per calendar year the window touches — ESPN no longer accepts
+    // day ranges (see yearsBetween in build-competitions.mjs, 18 Sep 2026).
+    for (const year of yearsBetween(win.from, win.to)) {
+      const board = await fetchJson(`${SITE}/${comp.espnLeagueId}/scoreboard?dates=${year}`);
       // A missing `events` array is not an empty one — ESPN answers 200 with a
       // stub body on several of these endpoints.
       for (const event of Array.isArray(board?.events) ? board.events : []) {
         if (event?.id == null || byId.has(String(event.id))) continue;
+        if (!inWindow(event, win)) continue;
         if (!keepPast && new Date(event.date).getTime() < since) continue;
         for (const c of event.competitions?.[0]?.competitors ?? []) {
           const id = String(c.team?.id ?? "");
