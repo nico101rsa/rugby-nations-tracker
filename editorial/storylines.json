@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-19T22:04:30.043Z",
+  "updatedAt": "2026-09-19T23:47:08.663Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 215,
+  "count": 218,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -41,6 +41,11 @@
       "resolution": "until Northampton Saints confirm whether they have reached a new salary agreement with Henry Pollock",
       "sources": [
         {
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "Pollock denies signing Northampton deal and is ‘open to every opportunity’",
           "link": "https://www.theguardian.com/sport/2026/sep/14/henry-pollock-northampton-new-contract-negotiations-move-abroad-rugby-union",
           "feedName": "Guardian Rugby Union"
@@ -48,11 +53,6 @@
         {
           "title": "'He's an idiot, but he's our idiot' - Saints fans on Pollock contract stand-off",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6d08yve0n8no?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Pollock still 'open to new opportunities' as Northampton talks continue",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ck1e54qzjqljo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
@@ -4117,7 +4117,7 @@
         }
       ],
       "firstSeen": "2026-09-14",
-      "lastSeen": "2026-09-16",
+      "lastSeen": "2026-09-20",
       "uses": 0
     },
     {
@@ -4705,7 +4705,8 @@
       ],
       "firstSeen": "2026-09-19",
       "lastSeen": "2026-09-20",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-20"
     },
     {
       "id": "introduction-of-a-smaller-yro7vb",
@@ -4745,6 +4746,11 @@
       ],
       "resolution": "until Leinster confirms their coaching structure beyond current speculation",
       "sources": [
+        {
+          "title": "Why Jacques Nienaber believes club rugby is 'years ahead of international rugby’ and his World Cup prediction on Andy Farrell’s Ireland",
+          "link": "https://www.planetrugby.com/news/why-jacques-nienaber-believes-club-rugby-is-years-ahead-of-international-rugby-and-his-world-cup-prediction-on-andy-farrells-ireland",
+          "feedName": "Planet Rugby"
+        },
         {
           "title": "Nienaber coy on next move",
           "link": "https://www.sarugbymag.co.za/nienaber-coy-next-move/",
@@ -5087,6 +5093,86 @@
           "title": "Sky closes in on broadcast rights for first women’s British & Irish Lions tour",
           "link": "https://www.theguardian.com/sport/2026/sep/16/womens-rugby-union-sky-broadcast-rights-first-british-irish-lions-tour",
           "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-20",
+      "lastSeen": "2026-09-20",
+      "uses": 1,
+      "lastUsed": "2026-09-20"
+    },
+    {
+      "id": "fin-smith-s-audition-1h8h6op",
+      "subject": "Fin Smith's audition for the England fly-half role",
+      "teams": [
+        386
+      ],
+      "resolution": "until England's performance in the autumn internationals confirms his status as a permanent starter",
+      "sources": [
+        {
+          "title": "Fin Smith sets England autumn ultimatum to hit form",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cqjdv900rmego?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-20",
+      "lastSeen": "2026-09-20",
+      "uses": 0
+    },
+    {
+      "id": "world-rugby-s-proposal-18oji7w",
+      "subject": "World Rugby's proposal for a Six Nations match in the USA",
+      "teams": [
+        386,
+        388,
+        389,
+        391,
+        387,
+        390
+      ],
+      "resolution": "until a host nation formally agrees to move a Six Nations match to the USA",
+      "sources": [
+        {
+          "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "World Rugby floats plans for Six Nations match in US but England unlikely to participate",
+          "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "England legend's 'greater good' message over World Rugby's ambition to stage a Six Nations match in USA",
+          "link": "https://www.planetrugby.com/news/england-legends-greater-good-message-over-world-rugbys-ambition-to-stage-a-six-nations-match-in-usa",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-20",
+      "lastSeen": "2026-09-20",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-s-squad-a2wj0v",
+      "subject": "Rassie Erasmus's squad selection for the 2027 Rugby World Cup",
+      "teams": [
+        467
+      ],
+      "resolution": "until the final 2027 Rugby World Cup squad is announced",
+      "sources": [
+        {
+          "title": "Jake: Bok veterans have silenced haters",
+          "link": "https://www.sarugbymag.co.za/jake-bok-veterans-silenced-haters/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Jake White: Springboks don't need to change anything, the chasing pack has to catch up",
+          "link": "https://www.planetrugby.com/news/jake-white-rassie-erasmus-springboks-dont-need-to-change-anything",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "‘We’re going to have to be brave with Sacha’",
+          "link": "https://www.sarugbymag.co.za/going-brave-sacha/",
+          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-09-20",
