@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-19T19:04:47.969Z",
+  "updatedAt": "2026-09-19T20:00:42.718Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
   "count": 214,
   "storylines": [
@@ -2866,6 +2866,11 @@
       "resolution": "until Steve Borthwick makes a final selection for the autumn internationals",
       "sources": [
         {
+          "title": "England coaches tell Lawes and Marchant they need to prove themselves in Prem",
+          "link": "https://www.theguardian.com/sport/2026/sep/08/england-coaches-tell-lawes-and-marchant-they-need-to-prove-themselves-in-prem",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Sale’s Courtney Lawes ‘not worried about legacy’ in drive to make England return",
           "link": "https://www.theguardian.com/sport/2026/sep/07/sales-courtney-lawes-not-worried-about-legacy-in-drive-to-make-england-return",
           "feedName": "Guardian Rugby Union"
@@ -2874,15 +2879,10 @@
           "title": "Marchant set on England comeback after Sale arrival",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6m2rjg47z45o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "‘You can’t be shy’: Joe Marchant on French lessons, England ambitions and his new famous father-in-law",
-          "link": "https://www.theguardian.com/sport/2026/sep/17/joe-marchant-england-ambition-sale-stade-francais-rugby-union",
-          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-09-08",
-      "lastSeen": "2026-09-19",
+      "lastSeen": "2026-09-20",
       "uses": 0
     },
     {
@@ -3460,6 +3460,11 @@
       "resolution": "until Steve Borthwick names his squad for the 2026 autumn Nations Championship fixtures",
       "sources": [
         {
+          "title": "England coaches tell Lawes and Marchant they need to prove themselves in Prem",
+          "link": "https://www.theguardian.com/sport/2026/sep/08/england-coaches-tell-lawes-and-marchant-they-need-to-prove-themselves-in-prem",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Marchant set on England comeback after Sale arrival",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6m2rjg47z45o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -3467,11 +3472,6 @@
         {
           "title": "‘You can’t be shy’: Joe Marchant on French lessons, England ambitions and his new famous father-in-law",
           "link": "https://www.theguardian.com/sport/2026/sep/17/joe-marchant-england-ambition-sale-stade-francais-rugby-union",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Sale’s Courtney Lawes ‘not worried about legacy’ in drive to make England return",
-          "link": "https://www.theguardian.com/sport/2026/sep/07/sales-courtney-lawes-not-worried-about-legacy-in-drive-to-make-england-return",
           "feedName": "Guardian Rugby Union"
         }
       ],
@@ -4550,40 +4550,6 @@
       "uses": 0
     },
     {
-      "id": "potential-six-nations-match-wgsap9",
-      "subject": "England's potential switch of a Six Nations match to the USA",
-      "teams": [
-        386,
-        387,
-        388,
-        389,
-        390,
-        391
-      ],
-      "resolution": "until the Six Nations or World Rugby officially confirms or rejects an American fixture",
-      "sources": [
-        {
-          "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "World Rugby floats plans for Six Nations match in US but England unlikely to participate",
-          "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "England legend's 'greater good' message over World Rugby's ambition to stage a Six Nations match in USA",
-          "link": "https://www.planetrugby.com/news/england-legends-greater-good-message-over-world-rugbys-ambition-to-stage-a-six-nations-match-in-usa",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-09-18",
-      "lastSeen": "2026-09-20",
-      "uses": 2,
-      "lastUsed": "2026-09-19"
-    },
-    {
       "id": "bulls-recruitment-interest-in-1pst7wr",
       "subject": "Bulls recruitment interest in Kwagga Smith and Malcolm Marx",
       "teams": [
@@ -4691,7 +4657,8 @@
       ],
       "firstSeen": "2026-09-18",
       "lastSeen": "2026-09-20",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-20"
     },
     {
       "id": "wallabies-selection-for-the-18e84ek",
@@ -5071,6 +5038,39 @@
           "title": "Cash: Hash can become a Springbok with us",
           "link": "https://www.sarugbymag.co.za/cash-hash-can-become-springbok-us/",
           "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-20",
+      "lastSeen": "2026-09-20",
+      "uses": 0
+    },
+    {
+      "id": "the-future-of-the-aluq05",
+      "subject": "The future of the Six Nations match in the United States",
+      "teams": [
+        386,
+        388,
+        389,
+        390,
+        391,
+        387
+      ],
+      "resolution": "until World Rugby and the Six Nations unions confirm a specific date and venue for a US-based match",
+      "sources": [
+        {
+          "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "World Rugby floats plans for Six Nations match in US but England unlikely to participate",
+          "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "England legend's 'greater good' message over World Rugby's ambition to stage a Six Nations match in USA",
+          "link": "https://www.planetrugby.com/news/england-legends-greater-good-message-over-world-rugbys-ambition-to-stage-a-six-nations-match-in-usa",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-09-20",
