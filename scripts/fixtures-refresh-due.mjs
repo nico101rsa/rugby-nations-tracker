@@ -25,7 +25,11 @@ export function refreshDue(fixtures, nowMs = Date.now()) {
     if (!liveTracked(f.comp)) return false;
     const t = new Date(f.date).getTime();
     if (t - PRE_MS <= nowMs && nowMs - t < LIVE_MS) return true; // live window
-    const unscored = f.homeScore == null || f.awayScore == null;
+    // A bare 0-0 is ESPN's no-data placeholder (see isPlaceholderFinal in
+    // build-fixtures), so it counts as a missing final: the rebuild it
+    // triggers is how a hand-entered or late-published score replaces it.
+    const unscored = f.homeScore == null || f.awayScore == null
+      || (f.homeScore === 0 && f.awayScore === 0 && !f.status?.live);
     return unscored && nowMs - t >= LIVE_MS && nowMs - t < CATCHUP_MS; // missing final
   });
 }

@@ -190,6 +190,27 @@ export function buildFixtures(events, names, nations, { now = 0, scores = {}, re
   return kept.sort((a, b) => new Date(a.date) - new Date(b.date) || (a.id < b.id ? -1 : 1));
 }
 
+// ESPN's "we have no score" shape: state "post" with 0 on both sides. Nothing
+// in the fill pass, the refresh-due check or the app treats that as a final.
+export function isPlaceholderFinal(state, bySide) {
+  return state === "post" && bySide.home === 0 && bySide.away === 0;
+}
+
+// HAND-ENTERED FINALS for ESPN-scored games ESPN never scored, keyed by our
+// fixture id and oriented as fixtures.json lists home/away. The same fallback
+// of record seed-tour.mjs keeps for the tour games: a human entry wins over
+// whatever ESPN reports, so a placeholder can never re-clobber it. Add a row
+// when a final is confirmed missing (world.rugby / the union's own report);
+// rows fall out of the file naturally once the game leaves the window.
+export const HAND_FINALS = {
+  // Pacific Nations Cup 2026, Prince Chichibu, Tokyo, 19 Sep 2026.
+  "espn-604238": { home: 16, away: 19 }, // 3rd place: USA 16-19 Canada
+  "espn-604239": { home: 20, away: 15 }, // final:     Japan 20-15 Fiji
+};
+
+// The fill pass's `scores` map with the hand finals laid over it.
+export const withHandFinals = (scores = {}, hand = HAND_FINALS) => ({ ...scores, ...hand });
+
 // Finals for already-played series games, from ESPN's keyless core API: each
 // competitor's `score` is a $ref on the raw event, so this costs 2 small
 // fetches per PLAYED series game (max 8 for a 4-test series — cheap, and
@@ -228,6 +249,11 @@ export async function fetchLiveStates(rawEvents, fetchJson = defaultGetJson) {
       if (value != null && Number.isFinite(Number(value))) bySide[c.homeAway] = Number(value);
     }
     if (bySide.home == null || bySide.away == null) continue;
+    // ESPN flips a game it has no data for to "post" on the clock alone, with
+    // "0" on both sides — the PNC 2026 final and 3rd-place game (19 Sep) sat
+    // in the app as "FT 0-0" all night. A bare 0-0 at full time is that
+    // placeholder, not a result; a 0-0 in play is just the opening minutes.
+    if (isPlaceholderFinal(state, bySide)) continue;
     states[`espn-${event.id}`] = {
       home: bySide.home,
       away: bySide.away,
@@ -293,7 +319,7 @@ async function main() {
   const resultKeys = new Set(
     (registry?.competitions ?? []).filter((c) => keepsResults(c, today)).map((c) => c.key),
   );
-  let fixtures = buildFixtures(merged, names, nations, { now, resultKeys });
+  let fixtures = buildFixtures(merged, names, nations, { now, scores: withHandFinals(), resultKeys });
 
   // Two-pass score/live fill for every ESPN-scored game (tests, series, and
   // registered competitions other than the Nations Championship): the first
@@ -316,7 +342,7 @@ async function main() {
   if (candidates.length) {
     const byId = new Map(merged.map((e) => [`espn-${e.event?.id}`, e]));
     const raw = candidates.map((f) => byId.get(f.id)).filter(Boolean);
-    const scores = await fetchLiveStates(raw);
+    const scores = withHandFinals(await fetchLiveStates(raw));
     const liveN = Object.values(scores).filter((s) => s.live).length;
     console.log(`scores: filled ${Object.keys(scores).length}/${candidates.length} ESPN-scored games (${liveN} live)`);
     fixtures = buildFixtures(merged, names, nations, { now, scores, resultKeys });

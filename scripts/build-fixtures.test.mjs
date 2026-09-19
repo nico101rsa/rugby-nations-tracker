@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildFixtures, compFor, roundLookup, mergeSources, fetchSeriesScores } from "./build-fixtures.mjs";
+import { buildFixtures, compFor, roundLookup, mergeSources, fetchSeriesScores, fetchLiveStates, isPlaceholderFinal, withHandFinals, HAND_FINALS } from "./build-fixtures.mjs";
 
 const ref = (id) => ({ $ref: `http://sports.core.api.espn.com/v2/sports/rugby/leagues/1/seasons/2026/teams/${id}?lang=en` });
 const ev = (id, iso, homeId, awayId, extra = {}) => ({
@@ -336,4 +336,40 @@ test("fetchLiveStates reads the site-API shape too: inline status, score as a st
   assert.deepEqual(out["espn-1"], { home: 57, away: 12, live: false, short: "FT" });
   assert.deepEqual(out["espn-2"], { home: 7, away: 3, live: true, short: "1st Half" });
   assert.equal(out["espn-3"], undefined);
+});
+
+// --- ESPN's 0-0 placeholder (PNC 2026 final, 2026-09-19) --------------------
+
+test("fetchLiveStates: a 0-0 at full time is ESPN's no-data placeholder, not a final; 0-0 in play is kept", async () => {
+  const site = (id, state) => ({
+    event: {
+      id,
+      competitions: [{
+        status: { type: { state, shortDetail: state === "in" ? "1st Half" : "FT" } },
+        competitors: [
+          { homeAway: "home", score: "0" },
+          { homeAway: "away", score: "0" },
+        ],
+      }],
+    },
+  });
+  const out = await fetchLiveStates([site("604239", "post"), site("7", "in")], async () => null);
+  assert.equal(out["espn-604239"], undefined, "post + 0-0 is skipped");
+  assert.deepEqual(out["espn-7"], { home: 0, away: 0, live: true, short: "1st Half" });
+  assert.ok(isPlaceholderFinal("post", { home: 0, away: 0 }));
+  assert.ok(!isPlaceholderFinal("post", { home: 20, away: 15 }));
+  assert.ok(!isPlaceholderFinal("in", { home: 0, away: 0 }));
+});
+
+test("hand finals lay over the fetched map and win, and carry the PNC 2026 finals", () => {
+  const merged = withHandFinals({ "espn-1": { home: 3, away: 9 }, "espn-604239": { home: 0, away: 0 } });
+  assert.deepEqual(merged["espn-1"], { home: 3, away: 9 });
+  assert.deepEqual(merged["espn-604239"], { home: 20, away: 15 }, "the hand entry beats a fetched placeholder");
+  assert.deepEqual(HAND_FINALS["espn-604238"], { home: 16, away: 19 });
+  // And a seeded build writes them as bare finals (no status = FT in the app).
+  const events = [ev(604239, "2026-09-19T10:05:00Z", 4, 55)];
+  const out = buildFixtures(events, NAMES, {}, { scores: withHandFinals() });
+  assert.equal(out[0].homeScore, 20);
+  assert.equal(out[0].awayScore, 15);
+  assert.equal(out[0].status, undefined);
 });
