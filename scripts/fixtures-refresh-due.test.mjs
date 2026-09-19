@@ -31,3 +31,10 @@ test("an ESPN-scored competition game (the Pacific Nations Cup) does — live wi
   assert.ok(refreshDue([pnc("2026-08-10T14:00:00Z")], NOW)); // yesterday, unscored — the Japan v USA case
   assert.ok(!refreshDue([pnc("2026-08-10T14:00:00Z", { h: 57, a: 12 })], NOW));
 });
+
+test("a bare 0-0 is ESPN's placeholder, so it is a missing final; a live 0-0 is just kickoff", () => {
+  const pnc = (iso, extra) => ({ ...fx("competition", iso), comp: { kind: "competition", key: "pnc-2026" }, ...extra });
+  assert.ok(refreshDue([pnc("2026-08-10T14:00:00Z", { homeScore: 0, awayScore: 0 })], NOW));
+  assert.ok(!refreshDue([pnc("2026-08-01T14:00:00Z", { homeScore: 0, awayScore: 0 })], NOW)); // beyond catch-up
+  assert.ok(refreshDue([pnc("2026-08-11T17:50:00Z", { homeScore: 0, awayScore: 0, status: { short: "1H", live: true } })], NOW)); // live window anyway
+});
