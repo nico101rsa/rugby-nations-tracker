@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-19T12:01:08.259Z",
+  "updatedAt": "2026-09-19T12:20:13.022Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
   "count": 214,
   "storylines": [
@@ -12,11 +12,6 @@
       "resolution": "until Henry Pollock signs a new deal with Northampton or moves to a new club",
       "sources": [
         {
-          "title": "Pollock still 'open to new opportunities' as Northampton talks continue",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ck1e54qzjqljo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
           "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -25,6 +20,11 @@
           "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
           "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
           "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "'He's an idiot, but he's our idiot' - Saints fans on Pollock contract stand-off",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6d08yve0n8no?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-04",
@@ -41,23 +41,23 @@
       "resolution": "until Northampton Saints confirm whether they have reached a new salary agreement with Henry Pollock",
       "sources": [
         {
-          "title": "'We've got to find a happy medium' - Dowson confident on Pollock deal",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ym0x04n55o?at_medium=RSS&at_campaign=rss",
+          "title": "'He's an idiot, but he's our idiot' - Saints fans on Pollock contract stand-off",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6d08yve0n8no?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         },
         {
-          "title": "Northampton seek ‘happy medium’ after Hearn claims Pollock worth £1m a year",
-          "link": "https://www.theguardian.com/sport/2026/sep/02/northampton-seek-happy-medium-after-hearn-claims-pollock-worth-1m-a-year",
-          "feedName": "Guardian Rugby Union"
+          "title": "Pollock still 'open to new opportunities' as Northampton talks continue",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ck1e54qzjqljo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         },
         {
-          "title": "Northampton Saints boss makes 'happy medium' admission as Henry Pollock future update issued",
-          "link": "https://www.planetrugby.com/news/northampton-saints-boss-makes-happy-medium-admission-as-henry-pollock-future-update-issued",
-          "feedName": "Planet Rugby"
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-05",
-      "lastSeen": "2026-09-06",
+      "lastSeen": "2026-09-19",
       "uses": 1,
       "lastUsed": "2026-08-09"
     },
@@ -4117,7 +4117,7 @@
         }
       ],
       "firstSeen": "2026-09-14",
-      "lastSeen": "2026-09-19",
+      "lastSeen": "2026-09-16",
       "uses": 0
     },
     {
@@ -4518,10 +4518,18 @@
       "teams": [
         388,
         389,
-        386
+        386,
+        390,
+        391,
+        387
       ],
       "resolution": "until the Six Nations organizers officially approve or reject the plan for a match in the USA",
       "sources": [
+        {
+          "title": "England legend's 'greater good' message over World Rugby's ambition to stage a Six Nations match in USA",
+          "link": "https://www.planetrugby.com/news/england-legends-greater-good-message-over-world-rugbys-ambition-to-stage-a-six-nations-match-in-usa",
+          "feedName": "Planet Rugby"
+        },
         {
           "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
@@ -4531,15 +4539,10 @@
           "title": "World Rugby floats plans for Six Nations match in US but England unlikely to participate",
           "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Rugby Union Weekly: Brilliant Boks and Six Nations Stateside?",
-          "link": "https://www.bbc.co.uk/sounds/play/p0p9m1hc?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-17",
-      "lastSeen": "2026-09-17",
+      "lastSeen": "2026-09-19",
       "uses": 1,
       "lastUsed": "2026-09-19"
     },
@@ -4634,7 +4637,7 @@
     },
     {
       "id": "potential-six-nations-match-7jvptg",
-      "subject": "The potential staging of a Six Nations match in the United States",
+      "subject": "Potential Six Nations match in the United States",
       "teams": [
         388,
         389,
@@ -4646,11 +4649,6 @@
       "resolution": "until a formal decision is reached by the Six Nations unions and World Rugby regarding hosting a match in the US",
       "sources": [
         {
-          "title": "Switch Six Nations fixture to USA to grow game – World Rugby",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5ymg0pm1yno?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
           "title": "World Rugby floats plans for Six Nations match in US but England unlikely to participate",
           "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
           "feedName": "Guardian Rugby Union"
@@ -4659,6 +4657,11 @@
           "title": "England legend's 'greater good' message over World Rugby's ambition to stage a Six Nations match in USA",
           "link": "https://www.planetrugby.com/news/england-legends-greater-good-message-over-world-rugbys-ambition-to-stage-a-six-nations-match-in-usa",
           "feedName": "Planet Rugby"
+        },
+        {
+          "title": "No plans for Ireland Six Nations game in US - IRFU",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cddvmqvqzq7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-18",
@@ -4812,7 +4815,10 @@
         388,
         390,
         391,
-        386
+        386,
+        461,
+        463,
+        467
       ],
       "resolution": "until World Rugby confirms whether the smaller ball trial will be adopted permanently or scrapped",
       "sources": [
@@ -5068,22 +5074,21 @@
       "uses": 0
     },
     {
-      "id": "the-implementation-and-reception-t63x2o",
-      "subject": "The implementation and reception of the smaller ball trial in women's rugby",
+      "id": "england-rugby-s-interest-xctllh",
+      "subject": "England Rugby's interest in implementing fertility support for players",
       "teams": [
-        388,
-        467
+        386
       ],
-      "resolution": "until World Rugby confirms whether the smaller ball will be permanently adopted or discontinued",
+      "resolution": "until the RFU reaches a decision on providing formal fertility treatment and egg-freezing support",
       "sources": [
         {
-          "title": "Moloney-MacDonald says smaller ball 'challenging'",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmn0jez14dd9o?at_medium=RSS&at_campaign=rss",
+          "title": "England captain Jones calls for fertility support",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ce9er3xdgvdo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         },
         {
-          "title": "The Breakdown | How the smaller ball trial in WXV has brought ‘mixed bag of emotions’",
-          "link": "https://www.theguardian.com/sport/2026/sep/08/how-the-smaller-ball-trial-in-wxv-has-brought-mixed-bag-of-emotions",
+          "title": "The Breakdown | Meg Jones leads the call to provide fertility support for rugby players",
+          "link": "https://www.theguardian.com/sport/2026/sep/15/meg-jones-leads-call-fertility-support-for-rugby-players-breakdown",
           "feedName": "Guardian Rugby Union"
         }
       ],
