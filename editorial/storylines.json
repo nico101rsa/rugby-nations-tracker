@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-20T20:00:43.820Z",
+  "updatedAt": "2026-09-20T22:01:24.491Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 202,
+  "count": 204,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -2441,6 +2441,11 @@
       "resolution": "until Steve Borthwick makes a final selection for the autumn internationals",
       "sources": [
         {
+          "title": "Marchant set on England comeback after Sale arrival",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6m2rjg47z45o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "‘You can’t be shy’: Joe Marchant on French lessons, England ambitions and his new famous father-in-law",
           "link": "https://www.theguardian.com/sport/2026/sep/17/joe-marchant-england-ambition-sale-stade-francais-rugby-union",
           "feedName": "Guardian Rugby Union"
@@ -2448,11 +2453,6 @@
         {
           "title": "England coaches tell Lawes and Marchant they need to prove themselves in Prem",
           "link": "https://www.theguardian.com/sport/2026/sep/08/england-coaches-tell-lawes-and-marchant-they-need-to-prove-themselves-in-prem",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Sale’s Courtney Lawes ‘not worried about legacy’ in drive to make England return",
-          "link": "https://www.theguardian.com/sport/2026/sep/07/sales-courtney-lawes-not-worried-about-legacy-in-drive-to-make-england-return",
           "feedName": "Guardian Rugby Union"
         }
       ],
@@ -3143,7 +3143,7 @@
         }
       ],
       "firstSeen": "2026-09-12",
-      "lastSeen": "2026-09-16",
+      "lastSeen": "2026-09-21",
       "uses": 0
     },
     {
@@ -4285,7 +4285,7 @@
     },
     {
       "id": "introduction-of-a-smaller-yro7vb",
-      "subject": "Introduction of a smaller ball in women's rugby",
+      "subject": "The debate over the use of a smaller ball in women's rugby",
       "teams": [
         388,
         390,
@@ -4293,7 +4293,8 @@
         386,
         461,
         463,
-        467
+        467,
+        389
       ],
       "resolution": "until World Rugby confirms whether the smaller ball trial will be adopted permanently or scrapped",
       "sources": [
@@ -4309,7 +4310,7 @@
         }
       ],
       "firstSeen": "2026-09-19",
-      "lastSeen": "2026-09-19",
+      "lastSeen": "2026-09-21",
       "uses": 1,
       "lastUsed": "2026-09-19"
     },
@@ -4724,7 +4725,7 @@
       ],
       "firstSeen": "2026-09-20",
       "lastSeen": "2026-09-20",
-      "uses": 1,
+      "uses": 2,
       "lastUsed": "2026-09-21"
     },
     {
@@ -4760,7 +4761,9 @@
       "subject": "Shaun Edwards' potential return to international coaching",
       "teams": [
         386,
-        391
+        391,
+        388,
+        390
       ],
       "resolution": "until Shaun Edwards accepts a coaching role with a Six Nations team",
       "sources": [
@@ -4776,7 +4779,7 @@
     },
     {
       "id": "world-rugby-s-plans-1rki5mh",
-      "subject": "World Rugby’s plans for a Six Nations match in the United States",
+      "subject": "Proposal for a Six Nations match to be hosted in the United States",
       "teams": [
         386,
         387,
@@ -4791,6 +4794,42 @@
           "title": "World Rugby floats plans for Six Nations match in US but England unlikely to participate",
           "link": "https://www.theguardian.com/sport/2026/sep/10/england-snub-world-rugbys-us-six-nations-plan-to-protect-10m-twickenham-paydays",
           "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-21",
+      "lastSeen": "2026-09-21",
+      "uses": 0
+    },
+    {
+      "id": "leo-cullen-s-upcoming-1gle451",
+      "subject": "Leo Cullen's upcoming departure from Leinster",
+      "teams": [
+        388
+      ],
+      "resolution": "until the 2026/27 season concludes and Leo Cullen steps down",
+      "sources": [
+        {
+          "title": "Leo Cullen takes ‘badmouth’ swing at David Nucifora and the ‘stroke of genius’ that hugely shaped his Leinster tenure",
+          "link": "https://www.planetrugby.com/news/leo-cullen-takes-badmouth-swing-at-david-nucifora-and-the-stroke-of-genius-that-hugely-shaped-his-leinster-tenure",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-21",
+      "lastSeen": "2026-09-21",
+      "uses": 0
+    },
+    {
+      "id": "the-potential-formation-of-1aullrf",
+      "subject": "The potential formation of a British and Irish women's league involving Irish clubs",
+      "teams": [
+        388
+      ],
+      "resolution": "until the IRFU confirms whether Irish sides will join the Premier Women's Rugby (PWR) competition",
+      "sources": [
+        {
+          "title": "IRFU await news of 'massive opportunity' to join PWR",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6dx0z98d289o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-21",
