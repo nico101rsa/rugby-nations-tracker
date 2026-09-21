@@ -13,6 +13,11 @@ follow-on steps — a failing workflow, a second push to get a job green.
 
 **Report after, not before.** Say what shipped and anything that surprised you.
 
+**Give Nico every time in Sydney time.** Crons, run timestamps and check-ins
+are UTC under the hood; convert before reporting (AEST is UTC+10, AEDT is
+UTC+11 from the first Sunday in October to the first Sunday in April) and
+label it "Sydney time". A bare UTC time in a report is a bug.
+
 ### Still worth stopping for
 
 - Something genuinely destructive or irreversible — force-pushing over other
