@@ -91,7 +91,10 @@ ${blocks}
 ## Rules
 
 Less is more. The reader is on their phone; the roundup must scan in five
-seconds. Two or three lines is normal. Four is the maximum. Zero is fine.
+seconds. At most FOUR lines are published, best first. Offer up to six
+candidates in order of importance — only the top four that pass checking
+appear, so a fifth and sixth are the spares that fill a gap, never padding
+the reader sees. Zero is fine on a dead day.
 
 - **Only news a fan of ANOTHER team would text a mate about**: a result or
   trophy, a selection bombshell, a serious injury to a key player, a coach
@@ -277,6 +280,15 @@ ${pairs}
   checked in code before you see it, and every line here already passed;
   never flag a line for a missing or a present label;
 - style, word choice, or a line you would merely have written differently.
+
+One more rule: **the briefing is the authority.** You are checking
+line-against-briefing, not briefing-against-reality. If the briefing names a
+coach, a score or a date, the line may repeat it, whatever you believe to be
+true — the briefing already passed its own fact-check against the day's
+press, and your knowledge is older than the press. Never reject a line on
+outside knowledge: on 2026-09-22 a line was wrongly removed because the
+checker "knew" Les Kiss was not the Wallabies coach; the briefing said he
+was, and it was right.
 
 ## Output — strict JSON, nothing else
 {"issues": [{"team": "<nation>", "problem": "<what is wrong>", "severity": "material" | "minor"}]}
