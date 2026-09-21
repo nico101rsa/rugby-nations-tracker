@@ -29,9 +29,12 @@
 import { bannedCopyIn, words } from "./copy-rules.mjs";
 
 export const WORLD_KICKER = "Around the world";
-export const WORLD_MAX_ITEMS = 8;
+// Four, not eight. The first live edition (2026-09-21) ran six 20-word
+// sentences as one 130-word paragraph — a wall on a phone. Nico's brief:
+// less is more. Top story is the heading, the rest a two-or-three-line body.
+export const WORLD_MAX_ITEMS = 4;
 const ITEM_MIN_WORDS = 4;
-const ITEM_MAX_WORDS = 35;
+const ITEM_MAX_WORDS = 16; // the prompt asks for ≤12; this is the hard gate
 
 // The editions the roundup may draw on: today's, story-rung only. `teams` is
 // the generator's id → { name } map; `generated` its id → digest map.
@@ -62,34 +65,32 @@ ${blocks}
 
 ## Rules
 
-- **Selective.** Include a nation ONLY if its story would interest a fan of a
-  DIFFERENT team: a result or trophy, a selection bombshell, a serious injury
-  to a key player, a coach hired, sacked, banned or publicly under pressure, a
-  governance shake-up, a big-name signing or retirement. Leave out anything
-  routine or parochial — a coach's mild quote, a pundit's opinion, a debate
-  piece, incremental rotation, generic "building for the weekend" copy.
-  Typically three to seven nations clear the bar; on a dead day fewer do, and
-  an empty list is an honest answer. Never pad.
-- **One line per nation, at most 25 words.** A complete sentence that names
-  the people involved and states what happened. Do NOT start with the
-  nation's name — it is printed as a label in front of your line.
+Less is more. The reader is on their phone; the roundup must scan in five
+seconds. Two or three lines is normal. Four is the maximum. Zero is fine.
+
+- **Only news a fan of ANOTHER team would text a mate about**: a result or
+  trophy, a selection bombshell, a serious injury to a key player, a coach
+  hired, sacked or banned, a big-name signing or retirement. NEVER a pundit's
+  or ex-player's opinion, a coach's mild quote, a debate piece, rotation
+  news, or "building for the weekend" copy — if the story is somebody
+  saying something rather than something happening, leave it out.
+- **Headline register, at most 12 words.** Write it like a back-page
+  headline, not a sentence from the body: subject, verb, what happened.
+  Name the nation or its team in the line ("Japan beat Fiji…", "Wallabies
+  recall Petaia…", "England's 39-match run ends…"). No subordinate clauses,
+  no venue unless the venue is the story, no more than one number (a
+  scoreline counts as one). Present tense, no full stop needed.
 - **Compress, never add.** Every fact, name and number must come from that
-  nation's briefing above. No outside knowledge, no inference about what a
-  story "means", no numbers the briefing does not contain. Names and
-  diacritics verbatim. If a briefing quotes someone, paraphrase — no
-  quotation marks in the roundup.
-- **One story, once.** Two briefings often cover the same match or incident
-  from each side (a final, a press-room row). Write it ONCE, under the nation
-  it belongs to most — the winner of a match, the side the incident concerns —
-  and leave the other nation out unless it has a separate story of its own.
-- **Most important first.** Order the list by how much the wider rugby world
-  would care.
-- British English (en-GB). No kickoff times, dates or timezones. Dry sports
-  desk register — no hype.
+  nation's briefing above. No outside knowledge, no numbers the briefing
+  does not contain. Names and diacritics verbatim. No quotation marks.
+- **One story, once.** Two briefings often cover the same match from each
+  side. Write it ONCE, under the winner or the side the incident concerns.
+- **Most important first.** The first line becomes the section heading.
+- British English (en-GB). No kickoff times, dates or timezones. No hype.
 
 ## Output — strict JSON, nothing else
 
-{"highlights": [{"team": "<nation exactly as headed above>", "text": "<one sentence, ≤25 words>"}]}`;
+{"highlights": [{"team": "<nation exactly as headed above>", "text": "<headline, ≤12 words>"}]}`;
 }
 
 const terminal = (s) => (/[.!?…”"']$/.test(s) ? s : `${s}.`);
@@ -108,9 +109,9 @@ export function parseWorldHighlights(raw, candidates) {
     if (!c || seen.has(c.teamId)) continue;
     let text = typeof item.text === "string" ? item.text.replace(/\s+/g, " ").trim() : "";
     if (!text) continue;
-    // Strip a leading "England —" / "England:" the prompt asked it not to write;
-    // the app body prints the label itself.
-    text = text.replace(new RegExp(`^${c.team}\\s*[—–:-]\\s*`, "i"), "");
+    // A label the model wrote itself ("England — …", "England: …") is
+    // redundant with the one labelled() adds; strip it.
+    text = text.replace(new RegExp(`^${c.team}\\s*[—–:]\\s*`, "i"), "");
     const n = words(text);
     if (n < ITEM_MIN_WORDS || n > ITEM_MAX_WORDS) continue;
     if (bannedCopyIn(text)) continue;
@@ -127,29 +128,32 @@ export function parseWorldHighlights(raw, candidates) {
 
 // The per-team section: everyone's highlights except this team's own, or null
 // when nothing is left (the reader's own story is already the edition).
+//
+// Shape follows the app's own story card: the biggest story elsewhere IS the
+// heading (the bold line a scanning thumb stops on), and the remaining one to
+// three headlines make the body. The first live edition put a list-of-names
+// heading over a six-sentence paragraph and read as a wall; this is the
+// opposite of that.
 export function worldSection(highlights, teamId) {
   const others = (highlights ?? []).filter((h) => h.teamId !== Number(teamId));
   if (!others.length) return null;
-  const names = others.map((h) => h.team);
-  const named = names.length <= 3 ? names : names.slice(0, 3);
-  const rest = names.length - named.length;
-  const list = named.length === 1 ? named[0] : `${named.slice(0, -1).join(", ")} and ${named[named.length - 1]}`;
-  const heading = rest ? `Headlines from ${named.join(", ")} and ${rest} more` : `Headlines from ${list}`;
+  const [top, ...rest] = others.map(labelled);
   return {
     kicker: WORLD_KICKER,
-    heading,
-    body: others.map((h) => labelled(h)).join(" "),
+    heading: top.replace(/\.$/, ""),
+    body: rest.join(" "),
   };
 }
 
-// "Japan — Japan secured the title" is what the first live run printed
-// (2026-09-21): the prompt asks for lines that do not open with the nation,
-// and the model wrote them anyway for half the list. A line that already
-// names its nation up front needs no label; one that opens on a person
-// ("Defence coach Shaun Edwards…") still gets one.
+// The prompt asks every line to name its nation or team. When the model
+// forgets ("Defence coach Shaun Edwards confirms a 2027 return"), the reader
+// must still be told whose story it is, so the nation is prefixed. A line
+// that already carries the name — "Japan", "England's", "New Zealand's" —
+// is left alone: the first live run printed "Japan — Japan secured…" for
+// half its list, which is exactly the doubling this avoids.
 function labelled(h) {
-  const opensWithTeam = new RegExp(`^${h.team.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:['’]s)?\\b`, "i");
-  return opensWithTeam.test(h.text) ? h.text : `${h.team} — ${h.text}`;
+  const namesTeam = new RegExp(`\\b${h.team.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:['’]s)?\\b`, "i");
+  return namesTeam.test(h.text) ? h.text : `${h.team}: ${h.text}`;
 }
 
 // Append the roundup to each of today's editions. Only TODAY's — a team whose

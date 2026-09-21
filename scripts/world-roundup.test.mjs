@@ -64,61 +64,65 @@ test("parseWorldHighlights strips a leading team label, dedupes, and enforces co
     { team: "England", text: "A second England line that must be dropped as a duplicate." },
     { team: "France", text: "Kickoff moved to 20:45 CET for Dupont's return." },
     { team: "South Africa", text: "Too short." },
-    { team: "Japan", text: Array(40).fill("word").join(" ") },
+    { team: "Japan", text: Array(20).fill("word").join(" ") },
   ] }, candidates);
   assert.deepEqual(out.map((h) => h.team), ["England"]);
   assert.equal(out[0].text, "Shaun Edwards says he would welcome a call from Steve Borthwick.");
 });
 
-test("parseWorldHighlights caps the list and tolerates junk", () => {
+test("parseWorldHighlights caps the list at four and tolerates junk", () => {
   const many = { highlights: Array(20).fill(0).map((_, i) => ({ team: candidates[i % 4].team, text: `Line number one for a nation ${i}.` })) };
   // Numbers are checked against the source, so use a digit-free line.
   many.highlights = many.highlights.map((h) => ({ ...h, text: "A perfectly ordinary highlight line for this nation." }));
-  assert.ok(parseWorldHighlights(many, candidates).length <= WORLD_MAX_ITEMS);
+  assert.equal(WORLD_MAX_ITEMS, 4);
+  assert.equal(parseWorldHighlights(many, candidates).length, 4);
   assert.deepEqual(parseWorldHighlights(null, candidates), []);
   assert.deepEqual(parseWorldHighlights({ highlights: [null, 4, "x", {}] }, candidates), []);
 });
 
 const highlights = [
-  { teamId: 463, team: "Japan", text: "Eddie Jones' side beat Fiji to lift the Pacific Nations Cup." },
-  { teamId: 386, team: "England", text: "Shaun Edwards says he would welcome a call from Steve Borthwick." },
+  { teamId: 463, team: "Japan", text: "Japan beat Fiji 20-15 to win the Pacific Nations Cup." },
+  { teamId: 386, team: "England", text: "England's 39-match winning run ends in a draw with Canada." },
   { teamId: 467, team: "South Africa", text: "Rassie Erasmus sends Du Toit and De Allende home early." },
+  { teamId: 390, team: "Scotland", text: "Shaun Edwards confirms a 2027 Six Nations return." },
 ];
 
-test("worldSection excludes the reader's own team and labels each line", () => {
+test("worldSection makes the top story the heading and the rest the body, minus the reader's own", () => {
   const s = worldSection(highlights, 467);
   assert.equal(s.kicker, WORLD_KICKER);
-  assert.equal(s.heading, "Headlines from Japan and England");
-  assert.equal(s.body, "Japan — Eddie Jones' side beat Fiji to lift the Pacific Nations Cup. England — Shaun Edwards says he would welcome a call from Steve Borthwick.");
-  assert.ok(!s.body.includes("South Africa"));
+  // No trailing full stop on a heading.
+  assert.equal(s.heading, "Japan beat Fiji 20-15 to win the Pacific Nations Cup");
+  assert.equal(
+    s.body,
+    "England's 39-match winning run ends in a draw with Canada. " +
+      "Scotland: Shaun Edwards confirms a 2027 Six Nations return.",
+  );
+  assert.ok(!s.body.includes("South Africa") && !s.heading.includes("South Africa"));
   // String ids (Object.entries) resolve the same way.
   assert.equal(worldSection(highlights, "467").body, s.body);
 });
 
-test("worldSection drops the label when the line already opens with the nation", () => {
+test("worldSection prefixes the nation only when the line does not name it", () => {
   const s = worldSection([
-    { teamId: 463, team: "Japan", text: "Japan secured the Pacific Nations Cup title by beating Fiji." },
-    { teamId: 386, team: "England", text: "England's winning run ended in a draw with Canada." },
-    { teamId: 465, team: "New Zealand", text: "New Zealand’s scrum is under scrutiny after the series." },
-    { teamId: 390, team: "Scotland", text: "Defence coach Shaun Edwards confirmed a 2027 return." },
-    // "Japanese" is not "Japan" — the label stays.
-    { teamId: 28, team: "Fiji", text: "Fijian fatigue told late in Tokyo." },
+    { teamId: 463, team: "Japan", text: "Eddie Jones guides Japan to the Pacific Nations Cup." },
+    { teamId: 465, team: "New Zealand", text: "New Zealand’s scrum under scrutiny after the series." },
+    { teamId: 390, team: "Scotland", text: "Shaun Edwards confirms a 2027 Six Nations return." },
+    // "Fijian" is not "Fiji" — the reader is told whose story it is.
+    { teamId: 28, team: "Fiji", text: "Fijian fatigue tells late in Tokyo." },
   ], 467);
+  assert.equal(s.heading, "Eddie Jones guides Japan to the Pacific Nations Cup");
   assert.equal(
     s.body,
-    "Japan secured the Pacific Nations Cup title by beating Fiji. " +
-      "England's winning run ended in a draw with Canada. " +
-      "New Zealand’s scrum is under scrutiny after the series. " +
-      "Scotland — Defence coach Shaun Edwards confirmed a 2027 return. " +
-      "Fiji — Fijian fatigue told late in Tokyo.",
+    "New Zealand’s scrum under scrutiny after the series. " +
+      "Scotland: Shaun Edwards confirms a 2027 Six Nations return. " +
+      "Fiji: Fijian fatigue tells late in Tokyo.",
   );
 });
 
-test("worldSection heading names up to three nations then counts the rest", () => {
-  const five = [...highlights, { teamId: 387, team: "France", text: "Line one for France." }, { teamId: 391, team: "Wales", text: "Line one for Wales." }];
-  assert.equal(worldSection(five, 460).heading, "Headlines from Japan, England, South Africa and 2 more");
-  assert.equal(worldSection(five, 391).heading, "Headlines from Japan, England, South Africa and 1 more");
-  assert.equal(worldSection(highlights.slice(0, 1), 386).heading, "Headlines from Japan");
+test("worldSection with one story left is heading only", () => {
+  const s = worldSection(highlights.slice(0, 2), 386);
+  assert.equal(s.heading, "Japan beat Fiji 20-15 to win the Pacific Nations Cup");
+  assert.equal(s.body, "");
 });
 
 test("worldSection is null when nothing is left for this reader", () => {
@@ -142,7 +146,7 @@ test("attachWorldSections replaces an existing roundup rather than stacking", ()
   const once = attachWorldSections(generated, highlights);
   const twice = attachWorldSections(once, highlights.slice(0, 2));
   assert.equal(twice[467].sections.length, 2);
-  assert.equal(twice[467].sections[1].heading, "Headlines from Japan and England");
+  assert.equal(twice[467].sections[1].body, "England's 39-match winning run ends in a draw with Canada.");
 });
 
 test("worldRoundup runs the injected model and returns parsed highlights", async () => {
