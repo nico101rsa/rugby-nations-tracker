@@ -698,4 +698,20 @@ test("buildReviewPrompt reviews the Around the world roundup only when there is 
   assert.match(withWorld, /"world_notes"/);
   // The men's-by-default labelling rule is a review criterion for editions too.
   assert.match(withWorld, /Labelling.*MEN'S international rugby/s);
+  // Removed lines are shown with their reason, and alone are enough to review.
+  const dropped = [{ team: "France", text: "France recover to beat the Wallaroos.", problem: "women's side not labelled" }];
+  const onlyDropped = buildReviewPrompt(editions, "2026-09-21", [], dropped);
+  assert.match(onlyDropped, /Around the world — the roundup/);
+  assert.match(onlyDropped, /nothing — every line was removed/);
+  assert.match(onlyDropped, /France: "France recover to beat the Wallaroos\." — women's side not labelled/);
+  assert.match(onlyDropped, /"world_notes"/);
+});
+
+test("buildRunReport records removed roundup lines with their reason", () => {
+  const teams = { 467: { name: "South Africa" } };
+  const generated = { 467: { sections: [{ kicker: "K", heading: "H", body: "B" }] } };
+  const dropped = [{ team: "England", text: "England's run ends.", problem: "women's side not labelled", extra: "ignored" }];
+  const report = buildRunReport("2026-09-21", teams, generated, { 467: {} }, [], [], dropped);
+  assert.deepEqual(report.worldDropped, [{ team: "England", text: "England's run ends.", problem: "women's side not labelled" }]);
+  assert.deepEqual(buildRunReport("2026-09-21", teams, generated, { 467: {} }).worldDropped, []);
 });

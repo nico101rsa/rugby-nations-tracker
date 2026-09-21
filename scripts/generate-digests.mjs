@@ -378,7 +378,7 @@ export function stripLeads(digests = {}) {
 
 // A per-run record of what retrieval offered and what the writer did with it.
 // Pure so it can be tested; the caller writes it.
-export function buildRunReport(dateISO, teams, generated, retrieval, failed = [], world = []) {
+export function buildRunReport(dateISO, teams, generated, retrieval, failed = [], world = [], worldDropped = []) {
   const rows = Object.entries(generated).map(([id, digest]) => {
     const { shortlist = [], quiet = false, ladder = null } = retrieval[id] ?? {};
     return {
@@ -417,16 +417,19 @@ export function buildRunReport(dateISO, teams, generated, retrieval, failed = []
     // bar and the line each got. Empty means the roundup call failed or nothing
     // was notable — the run log says which.
     world: world.map((h) => ({ team: h.team, text: h.text })),
+    // Lines the code gate or the checker removed, with the reason — the only
+    // record of WHY a nation is missing from the roundup.
+    worldDropped: worldDropped.map((d) => ({ team: d.team, text: d.text, problem: d.problem })),
   };
 }
 
-async function writeRunReport(now, generated, retrieval, failed, world = []) {
+async function writeRunReport(now, generated, retrieval, failed, world = [], worldDropped = []) {
   try {
     const dateISO = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
     const { mkdir } = await import("node:fs/promises");
     const dir = join(ROOT, "editorial", "runs");
     await mkdir(dir, { recursive: true });
-    await writeFile(join(dir, `${dateISO}.json`), JSON.stringify(buildRunReport(dateISO, TEAMS, generated, retrieval, failed, world), null, 2));
+    await writeFile(join(dir, `${dateISO}.json`), JSON.stringify(buildRunReport(dateISO, TEAMS, generated, retrieval, failed, world, worldDropped), null, 2));
   } catch (e) {
     // Diagnostics must never cost an edition.
     console.warn(`run report not written: ${e.message}`);
@@ -1334,7 +1337,8 @@ const NOTES_FILE = join(ROOT, "editorial", "editor-notes.md");
 const REVIEWS_DIR = join(ROOT, "editorial", "reviews");
 const MAX_NOTES = 8;
 
-export function buildReviewPrompt(editions, dateISO, world = []) {
+export function buildReviewPrompt(editions, dateISO, world = [], worldDropped = []) {
+  const hasWorld = world.length > 0 || worldDropped.length > 0;
   const blocks = editions.map(({ team, digest, shortlist = [], quiet = false, ladder = null }) => {
     const candidates = shortlist.length
       ? shortlist.map((s, n) => `  ${n + 1}. [score ${s.score}${s.corroboration > 1 ? `, ${s.corroboration} outlets` : ""}] ${s.title}`).join("\n")
@@ -1426,7 +1430,7 @@ not injected into any prompt.
    its heading and first sentence. "England draw with Canada to end their
    39-game run" for a Red Roses match is a facts defect, not a style one.
 
-${world.length ? `## Around the world — the roundup closing every edition
+${hasWorld ? `## Around the world — the roundup closing every edition
 
 Every edition also ends with this roundup (each reader sees it minus their own
 nation). Its brief: at most four back-page headlines of ≤12 words, each cut
@@ -1435,7 +1439,13 @@ fan of ANOTHER team would text a mate about (results, trophies, selection
 bombshells, key injuries, coaches hired/sacked/banned); opinion pieces never;
 the same men's-by-default labelling rule as the editions.
 
-${world.map((h) => `- ${h.team}: ${h.text}`).join("\n")}
+Published:
+${world.length ? world.map((h) => `- ${h.team}: ${h.text}`).join("\n") : "- (nothing — every line was removed or the writer offered none)"}
+${worldDropped.length ? `
+Removed before publication by the code gate or the roundup fact-checker, with
+the reason (these did NOT reach readers — judge the writer's selection and
+labelling on them, not the published roundup's facts):
+${worldDropped.map((d) => `- ${d.team}: "${d.text}" — ${d.problem}`).join("\n")}` : ""}
 
 Judge it on facts (does each line say only what its briefing says, and is a
 women's/U20 story labelled as such?), selection (did the right stories make
@@ -1445,9 +1455,9 @@ the cut, is an opinion piece in it, is a big result missing?) and register
 
 ` : ""}## Output — strict JSON, nothing else
 {
-  "report": "<markdown, max 300 words: today's grade (A-F), the 2-3 most important observations with one example each. Say how many editions were retrieval-starved vs badly-chosen.${world.length ? " End with one short paragraph headed 'Around the world' grading the roundup." : ""}>",
+  "report": "<markdown, max 300 words: today's grade (A-F), the 2-3 most important observations with one example each. Say how many editions were retrieval-starved vs badly-chosen.${hasWorld ? " End with one short paragraph headed 'Around the world' grading the roundup." : ""}>",
   "prompt_notes": ["<up to 2 short imperative notes for the WRITER prompt, addressing CHOICE or CRAFT defects seen in MULTIPLE editions. Empty array if today's weakness was retrieval.>"],
-  "source_notes": ["<up to 2 notes about RETRIEVAL for human readers — which teams the press ignored, which outlets are missing, whether the ranking mis-ordered. Empty array if retrieval was fine.>"]${world.length ? `,
+  "source_notes": ["<up to 2 notes about RETRIEVAL for human readers — which teams the press ignored, which outlets are missing, whether the ranking mis-ordered. Empty array if retrieval was fine.>"]${hasWorld ? `,
   "world_notes": ["<up to 2 short imperative notes for the ROUNDUP prompt — selection, labelling or register defects in today's roundup. Empty array if it was fine.>"]` : ""}
 }
 Only propose a prompt note for a defect visible in MULTIPLE editions; one-off
@@ -1516,15 +1526,16 @@ async function loadWorldNotes() {
   }
 }
 
-async function reviewRun(apiKey, editions, dateISO, world = []) {
-  const raw = extractJson(await geminiCall(apiKey, buildReviewPrompt(editions, dateISO, world)));
+async function reviewRun(apiKey, editions, dateISO, world = [], worldDropped = []) {
+  const hasWorld = world.length > 0 || worldDropped.length > 0;
+  const raw = extractJson(await geminiCall(apiKey, buildReviewPrompt(editions, dateISO, world, worldDropped)));
   if (!raw || typeof raw.report !== "string") throw new Error("review returned no usable JSON");
   const clean = (list) => (Array.isArray(list) ? list : []).filter((n) => typeof n === "string" && n.trim()).slice(0, 2);
   const notes = clean(raw.prompt_notes);
   // Retrieval findings are for humans, never for the writer prompt — the writer
   // cannot fix a famine, it can only paper over one.
   const sourceNotes = clean(raw.source_notes);
-  const worldNotes = world.length ? clean(raw.world_notes) : [];
+  const worldNotes = hasWorld ? clean(raw.world_notes) : [];
 
   const { mkdir } = await import("node:fs/promises");
   await mkdir(REVIEWS_DIR, { recursive: true });
@@ -1550,7 +1561,7 @@ async function reviewRun(apiKey, editions, dateISO, world = []) {
   // Roundup notes: same expiry and dedupe, own file, own cap. Only touched
   // when a roundup was actually reviewed — a day without one must not age
   // the notes out early.
-  if (world.length) {
+  if (hasWorld) {
     let prior = [];
     try {
       prior = (await readFile(WORLD_NOTES_FILE, "utf8")).split("\n").filter((l) => l.startsWith("- "));
@@ -1727,17 +1738,20 @@ export async function main({ dryRun = false } = {}) {
   // never costs an edition — the story still ships, only the roundup is
   // missing, and the run log says so.
   let world = [];
+  let worldDropped = [];
   try {
     const candidates = roundupCandidates(TEAMS, generated);
     const roundup = await worldRoundup(callModel, extractJson, candidates, sydneyDateParts(now).DATE_ISO, {
       notes: await loadWorldNotes(),
     });
     world = roundup.highlights;
+    worldDropped = roundup.dropped;
     console.log(
       `around the world: ${world.length} of ${candidates.length} nations cleared the bar` +
         (world.length ? ` (${world.map((h) => h.team).join(", ")})` : "") +
         (roundup.checked ? ", fact-checked" : ", UNCHECKED") +
-        (roundup.dropped.length ? `; dropped by checker: ${roundup.dropped.map((d) => `${d.team} — ${d.problem}`).join(" | ")}` : ""),
+        (roundup.revised ? " after 1 revision" : "") +
+        (worldDropped.length ? `; dropped: ${worldDropped.map((d) => `${d.team} "${d.text}" — ${d.problem}`).join(" | ")}` : ""),
     );
   } catch (e) {
     console.warn(`around the world roundup failed (editions unaffected): ${e.message.slice(0, 200)}`);
@@ -1746,7 +1760,7 @@ export async function main({ dryRun = false } = {}) {
   // Re-read before writing: the refresh cron may have republished nations.json
   // during the ~minutes this run spent on 12 API calls.
   const fresh = JSON.parse(await readFile(OUT, "utf8"));
-  fresh.digests = mergeDigests(fresh.digests, attachWorldSections(generated, world));
+  fresh.digests = mergeDigests(fresh.digests, attachWorldSections(generated, world, TEAMS));
   if (!PUBLISH_TEAMSHEETS) fresh.digests = stripTeamsheets(fresh.digests);
   fresh.digests = stripLeads(fresh.digests);
   fresh.counts = { ...(fresh.counts || {}), digests: Object.keys(fresh.digests).length };
@@ -1762,7 +1776,7 @@ export async function main({ dryRun = false } = {}) {
   // and it is the only record of WHY an edition reads the way it does — the
   // daily email reports from it, and it is the first thing to look at when a
   // team goes bland.
-  await writeRunReport(now, generated, retrieval, failed, world);
+  await writeRunReport(now, generated, retrieval, failed, world, worldDropped);
 
   // What the run actually cost in model calls, per model (map #198). Printed
   // every run so the answer is never a guess again — and so a shift in which
@@ -1829,7 +1843,7 @@ export async function main({ dryRun = false } = {}) {
         digest,
         ...(retrieval[id] ?? {}),
       }));
-      const { notes, sourceNotes, worldNotes, expired } = await reviewRun(geminiKey, editions, dateISO, world);
+      const { notes, sourceNotes, worldNotes, expired } = await reviewRun(geminiKey, editions, dateISO, world, worldDropped);
       console.log(
         `review written (editorial/reviews/${dateISO}.md)` +
           `${notes.length ? `; new prompt notes: ${notes.join(" | ")}` : "; no new prompt notes"}` +

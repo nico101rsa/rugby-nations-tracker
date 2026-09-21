@@ -53,6 +53,16 @@ export function roundupCandidates(teams, generated) {
 // say what it is. Shared by the code guard below and the checker prompt.
 export const NON_MENS = /\b(women'?s?|Red Roses|Black Ferns|Wallaroos|WXV|U-?20s?|under[- ]?20s?|sevens|7s|academy|schools?)\b/i;
 
+// What counts as the LABEL on a roundup line: a generic qualifier, or the
+// subject nation's own women's-side name. "Wallaroos" in a France line names
+// the opponent, not the side the story is about, so it is not France's label
+// — the 20:23 run on 2026-09-21 let exactly that through to the checker.
+const GENERIC_LABEL = /\b(women'?s?|U-?20s?|under[- ]?20s?|sevens|7s|academy|schools?)\b/i;
+const WOMENS_SIDE = { England: /\bRed Roses\b/i, "New Zealand": /\bBlack Ferns\b/i, Australia: /\bWallaroos\b/i };
+export function labelledNonMens(text, team) {
+  return GENERIC_LABEL.test(text) || Boolean(WOMENS_SIDE[team]?.test(text));
+}
+
 // `notes` are the standing roundup notes the nightly review keeps
 // (editorial/world-notes.md) — the same self-tuning loop the writer has.
 export function buildWorldPrompt(candidates, dateISO, notes = "") {
@@ -113,35 +123,50 @@ const terminal = (s) => (/[.!?…”"']$/.test(s) ? s : `${s}.`);
 // repaired: a missing nation in the roundup costs nothing, a wrong one
 // misinforms twelve tabs at once.
 export function parseWorldHighlights(raw, candidates) {
+  return parseWorldHighlightsDetailed(raw, candidates).kept;
+}
+
+// Same gate, but it also says WHY each line failed — the revision feedback
+// and the run report both need the reason, not just the absence.
+export function parseWorldHighlightsDetailed(raw, candidates) {
   const list = Array.isArray(raw?.highlights) ? raw.highlights : [];
   const byName = new Map(candidates.map((c) => [c.team.toLowerCase(), c]));
   const seen = new Set();
-  const out = [];
+  const kept = [];
+  const rejected = [];
   for (const item of list) {
     if (!item || typeof item !== "object") continue;
-    const c = byName.get(String(item.team ?? "").trim().toLowerCase());
-    if (!c || seen.has(c.teamId)) continue;
+    const teamRaw = String(item.team ?? "").trim();
+    const c = byName.get(teamRaw.toLowerCase());
     let text = typeof item.text === "string" ? item.text.replace(/\s+/g, " ").trim() : "";
-    if (!text) continue;
+    const reject = (problem) => rejected.push({ team: c?.team ?? teamRaw, text, problem });
+    if (!c) { reject("not one of today's briefings"); continue; }
+    if (seen.has(c.teamId)) { reject("second line for the same nation"); continue; }
+    if (!text) { reject("empty line"); continue; }
     // A label the model wrote itself ("England — …", "England: …") is
     // redundant with the one labelled() adds; strip it.
     text = text.replace(new RegExp(`^${c.team}\\s*[—–:]\\s*`, "i"), "");
     const n = words(text);
-    if (n < ITEM_MIN_WORDS || n > ITEM_MAX_WORDS) continue;
-    if (bannedCopyIn(text)) continue;
+    if (n < ITEM_MIN_WORDS || n > ITEM_MAX_WORDS) { reject(`${n} words (want 4-${ITEM_MAX_WORDS}, aim for 12)`); continue; }
+    const banned = bannedCopyIn(text);
+    if (banned) { reject(`contains ${banned}`); continue; }
     // Numbers are the cheapest fabrication to catch: a score, a cap count or a
     // points total that the source edition never printed is invented.
     const source = `${c.heading} ${c.body}`;
     const sourceNums = new Set(source.match(/\d+/g) ?? []);
-    if ((text.match(/\d+/g) ?? []).some((num) => !sourceNums.has(num))) continue;
+    const badNum = (text.match(/\d+/g) ?? []).find((num) => !sourceNums.has(num));
+    if (badNum) { reject(`the number ${badNum} is not in the ${c.team} briefing`); continue; }
     // A briefing that says it is about the women's side / U20s / sevens must
     // not be shortened into a line that reads as the men's team.
-    if (NON_MENS.test(source) && !NON_MENS.test(text)) continue;
+    if (NON_MENS.test(source) && !labelledNonMens(text, c.team)) {
+      reject(`the ${c.team} briefing is about the women's / age-grade side and the line does not say so`);
+      continue;
+    }
+    if (kept.length >= WORLD_MAX_ITEMS) { reject(`over the ${WORLD_MAX_ITEMS}-line cap`); continue; }
     seen.add(c.teamId);
-    out.push({ teamId: c.teamId, team: c.team, text: terminal(text) });
-    if (out.length >= WORLD_MAX_ITEMS) break;
+    kept.push({ teamId: c.teamId, team: c.team, text: terminal(text) });
   }
-  return out;
+  return { kept, rejected };
 }
 
 // The per-team section: everyone's highlights except this team's own, or null
@@ -152,8 +177,12 @@ export function parseWorldHighlights(raw, candidates) {
 // three headlines make the body. The first live edition put a list-of-names
 // heading over a six-sentence paragraph and read as a wall; this is the
 // opposite of that.
-export function worldSection(highlights, teamId) {
-  const others = (highlights ?? []).filter((h) => h.teamId !== Number(teamId));
+// `teamName`, when given, also drops a line that NAMES the reader's team —
+// "Japan beat Fiji 20-15" is Japan's line, but on the Fiji tab it sits under
+// Fiji's own account of the same match.
+export function worldSection(highlights, teamId, teamName = "") {
+  const namesReader = teamName ? new RegExp(`\\b${teamName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i") : null;
+  const others = (highlights ?? []).filter((h) => h.teamId !== Number(teamId) && !(namesReader && namesReader.test(h.text)));
   if (!others.length) return null;
   const [top, ...rest] = others.map(labelled);
   return {
@@ -176,10 +205,10 @@ function labelled(h) {
 
 // Append the roundup to each of today's editions. Only TODAY's — a team whose
 // edition failed keeps yesterday's, and yesterday's roundup belongs with it.
-export function attachWorldSections(generated, highlights) {
+export function attachWorldSections(generated, highlights, teams = {}) {
   return Object.fromEntries(
     Object.entries(generated).map(([id, digest]) => {
-      const section = digest?.sections ? worldSection(highlights, id) : null;
+      const section = digest?.sections ? worldSection(highlights, id, teams[id]?.name ?? "") : null;
       if (!section) return [id, digest];
       // Idempotent: a re-run over a digest that already carries one replaces it.
       const own = digest.sections.filter((s) => s?.kicker !== WORLD_KICKER);
@@ -240,19 +269,50 @@ export function applyWorldCheck(highlights, raw) {
   return { kept, dropped };
 }
 
-// The roundup: one writing call, one checking call. `callModel(prompt) →
-// text`; `extractJson(text) → object`. Throws when the WRITER answers nothing
-// usable (the caller treats that as "no roundup today"); a checker that
-// answers nothing usable is logged and the roundup ships unchecked, since
-// every line was cut from copy that already passed its own fact-check.
+// The roundup: write, gate, check — and ONE revision when anything failed,
+// carrying every reason back to the writer (the same bounded loop the
+// editions get). Without it the 20:23 run on 2026-09-21 published a
+// one-line roundup: the checker removed three of four lines for a missing
+// "women" label the writer could have added in a second pass. Whatever still
+// fails after the revision is dropped, never rewritten by hand.
+//
+// `callModel(prompt) → text`; `extractJson(text) → object`. Throws when the
+// WRITER answers nothing usable (the caller treats that as "no roundup
+// today"); a checker that answers nothing usable is logged and the roundup
+// ships unchecked, since every line was cut from copy that already passed
+// its own fact-check.
 export async function worldRoundup(callModel, extractJson, candidates, dateISO, { notes = "" } = {}) {
-  if (candidates.length < 2) return { highlights: [], dropped: [], checked: false };
-  const raw = extractJson(await callModel(buildWorldPrompt(candidates, dateISO, notes)));
-  if (!raw || !Array.isArray(raw.highlights)) throw new Error("roundup returned no usable JSON");
-  const highlights = parseWorldHighlights(raw, candidates);
-  if (!highlights.length) return { highlights, dropped: [], checked: false };
-  const verdict = extractJson(await callModel(buildWorldCheckPrompt(highlights, candidates, dateISO)));
-  if (!verdict || !Array.isArray(verdict.issues)) return { highlights, dropped: [], checked: false };
-  const { kept, dropped } = applyWorldCheck(highlights, verdict);
-  return { highlights: kept, dropped, checked: true };
+  if (candidates.length < 2) return { highlights: [], dropped: [], checked: false, revised: false };
+  const prompt = buildWorldPrompt(candidates, dateISO, notes);
+
+  // One pass: write (with optional feedback), gate in code, fact-check.
+  const pass = async (feedback) => {
+    const raw = extractJson(await callModel(feedback ? `${prompt}\n\n${feedback}` : prompt));
+    if (!raw || !Array.isArray(raw.highlights)) throw new Error("roundup returned no usable JSON");
+    const { kept, rejected } = parseWorldHighlightsDetailed(raw, candidates);
+    if (!kept.length) return { kept, dropped: rejected, checked: false };
+    const verdict = extractJson(await callModel(buildWorldCheckPrompt(kept, candidates, dateISO)));
+    if (!verdict || !Array.isArray(verdict.issues)) return { kept, dropped: rejected, checked: false };
+    const checked = applyWorldCheck(kept, verdict);
+    return { kept: checked.kept, dropped: [...rejected, ...checked.dropped], checked: true };
+  };
+
+  let result = await pass();
+  let revised = false;
+  if (result.dropped.length) {
+    const feedback = `## Your previous draft — these lines failed and were removed. Fix ALL of them.
+${result.dropped.map((d) => `- ${d.team}: "${d.text}" — ${d.problem}`).join("\n")}
+Rewrite the full roundup. Keep every line that was not listed above as it
+was. For a listed line, either fix the exact problem (add the missing
+"women" / "U20" label, remove the number the briefing does not contain, cut
+the claim) or leave that nation out. Output the complete JSON again.`;
+    try {
+      result = await pass(feedback);
+      revised = true;
+    } catch {
+      // The revision answered nothing usable — the first pass's survivors
+      // still ship, and the run log says what was dropped.
+    }
+  }
+  return { highlights: result.kept, dropped: result.dropped, checked: result.checked, revised };
 }

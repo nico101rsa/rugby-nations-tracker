@@ -11,6 +11,8 @@ import {
   worldRoundup,
   buildWorldCheckPrompt,
   applyWorldCheck,
+  parseWorldHighlightsDetailed,
+  labelledNonMens,
   NON_MENS,
 } from "./world-roundup.mjs";
 import { extractJson } from "./generate-digests.mjs";
@@ -56,6 +58,22 @@ test("parseWorldHighlights drops a line that loses the women's / age-grade label
   ] }, cands);
   assert.deepEqual(out.map((h) => h.team), ["France", "Japan"]);
   assert.ok(NON_MENS.test("the Red Roses") && NON_MENS.test("Wallaroos") && !NON_MENS.test("the Wallabies"));
+  // The label must be about the SUBJECT nation: "Wallaroos" labels an
+  // Australia line, not a France line about beating them.
+  assert.equal(labelledNonMens("France recover to beat the Wallaroos.", "France"), false);
+  assert.equal(labelledNonMens("Wallaroos collapse from 19-0 up in Aix.", "Australia"), true);
+  assert.equal(labelledNonMens("Red Roses' 39-match run ends.", "England"), true);
+  assert.equal(labelledNonMens("France women recover to beat Australia.", "France"), true);
+  const { rejected } = parseWorldHighlightsDetailed({ highlights: [
+    { team: "England", text: "England's 39-match winning run ends in a draw with Canada." },
+    { team: "Wales", text: "A line for a nation not in today's set." },
+    { team: "Japan", text: "Japan beat Fiji 27-24 for the title." },
+  ] }, cands);
+  assert.deepEqual(rejected.map((r) => [r.team, r.problem]), [
+    ["England", "the England briefing is about the women's / age-grade side and the line does not say so"],
+    ["Wales", "not one of today's briefings"],
+    ["Japan", "the number 27 is not in the Japan briefing"],
+  ]);
 });
 
 test("buildWorldCheckPrompt pairs every line with its source briefing", () => {
@@ -177,6 +195,18 @@ test("worldSection is null when nothing is left for this reader", () => {
   assert.equal(worldSection([], 463), null);
 });
 
+test("worldSection also drops a line that names the reader's team", () => {
+  // Japan's cup-final line on the Fiji tab sits under Fiji's own account of it.
+  const s = worldSection(highlights, 28, "Fiji");
+  assert.equal(s.heading, "England's 39-match winning run ends in a draw with Canada");
+  assert.ok(!s.body.includes("Japan beat Fiji"));
+  // Without the name, only the id filter applies.
+  assert.match(worldSection(highlights, 28).heading, /Japan beat Fiji/);
+  // attachWorldSections passes the name through from the teams map.
+  const out = attachWorldSections({ 28: { sections: [{ kicker: "K", heading: "H", body: "B" }] } }, highlights, { 28: { name: "Fiji" } });
+  assert.ok(!out[28].sections[1].heading.includes("Fiji"));
+});
+
 test("attachWorldSections appends after the story, only where there is something to say", () => {
   const out = attachWorldSections(generated, highlights.slice(0, 1));
   assert.equal(out[467].sections.length, 2);
@@ -196,22 +226,62 @@ test("attachWorldSections replaces an existing roundup rather than stacking", ()
   assert.equal(twice[467].sections[1].body, "England's 39-match winning run ends in a draw with Canada.");
 });
 
-test("worldRoundup writes, then fact-checks, and drops what the checker flags", async () => {
+test("worldRoundup writes, fact-checks, and ships without a revision when everything passes", async () => {
   const prompts = [];
   const call = async (p) => {
     prompts.push(p);
     if (prompts.length === 1) {
-      return 'Sure:\n```json\n{"highlights":[{"team":"Japan","text":"Eddie Jones guides Japan past Fiji to the Pacific Nations Cup."},{"team":"England","text":"Shaun Edwards says he would welcome a call from Borthwick."}]}\n```';
+      return 'Sure:\n```json\n{"highlights":[{"team":"Japan","text":"Eddie Jones guides Japan past Fiji to the Pacific Nations Cup."}]}\n```';
     }
-    return '{"issues":[{"team":"England","problem":"Edwards did not say that","severity":"material"}]}';
+    return '{"issues":[]}';
   };
   const out = await worldRoundup(call, extractJson, candidates, "2026-09-21", { notes: "- Keep it short." });
   assert.equal(prompts.length, 2);
   assert.match(prompts[0], /Keep it short/);
   assert.match(prompts[1], /Roundup line: Eddie Jones guides Japan/);
   assert.deepEqual(out.highlights.map((h) => h.teamId), [463]);
+  assert.deepEqual(out, { ...out, checked: true, revised: false, dropped: [] });
+});
+
+test("worldRoundup revises once with every reason, then drops what still fails", async () => {
+  const prompts = [];
+  const call = async (p) => {
+    prompts.push(p);
+    switch (prompts.length) {
+      case 1: // first draft: a bad number (code gate) and a claim the checker will reject
+        return '{"highlights":[{"team":"Japan","text":"Japan beat Fiji 31-24 to lift the Pacific Nations Cup."},{"team":"England","text":"Shaun Edwards says he would welcome a call from Borthwick."},{"team":"France","text":"Galthié secures protected status for Dupont."}]}';
+      case 2: // check of the first draft's survivors (England, France)
+        return '{"issues":[{"team":"England","problem":"Edwards did not say that","severity":"material"}]}';
+      case 3: // revision: Japan fixed, England still wrong, France kept
+        assert.match(p, /these lines failed and were removed/);
+        assert.match(p, /Japan: "Japan beat Fiji 31-24 to lift the Pacific Nations Cup\." — the number 31 is not in the Japan briefing/);
+        assert.match(p, /England: "Shaun Edwards says he would welcome a call from Borthwick\." — Edwards did not say that/);
+        return '{"highlights":[{"team":"Japan","text":"Japan beat Fiji 27-24 to lift the Pacific Nations Cup."},{"team":"England","text":"Shaun Edwards says he would welcome a call from Borthwick."},{"team":"France","text":"Galthié secures protected status for Dupont."}]}';
+      default: // check of the revision
+        return '{"issues":[{"team":"England","problem":"still not in the briefing","severity":"material"}]}';
+    }
+  };
+  const out = await worldRoundup(call, extractJson, candidates, "2026-09-21");
+  assert.equal(prompts.length, 4);
+  assert.deepEqual(out.highlights.map((h) => h.team), ["Japan", "France"]);
+  assert.equal(out.revised, true);
   assert.equal(out.checked, true);
-  assert.equal(out.dropped[0].team, "England");
+  assert.deepEqual(out.dropped.map((d) => d.team), ["England"]);
+});
+
+test("worldRoundup keeps the first pass when the revision answers nothing usable", async () => {
+  let n = 0;
+  const call = async () => {
+    n++;
+    if (n === 1) return '{"highlights":[{"team":"Japan","text":"Japan beat Fiji 27-24 to lift the Pacific Nations Cup."},{"team":"France","text":"Galthié secures protected status for Dupont."}]}';
+    if (n === 2) return '{"issues":[{"team":"Japan","problem":"wrong score","severity":"material"}]}';
+    return "sorry";
+  };
+  const out = await worldRoundup(call, extractJson, candidates, "2026-09-21");
+  assert.equal(n, 3);
+  assert.deepEqual(out.highlights.map((h) => h.team), ["France"]);
+  assert.equal(out.revised, false);
+  assert.equal(out.dropped[0].team, "Japan");
 });
 
 test("worldRoundup ships unchecked when the checker answers nothing usable", async () => {
@@ -228,4 +298,9 @@ test("worldRoundup throws on an unusable writer answer and skips the call with o
   const out = await worldRoundup(async () => { called++; return "{}"; }, extractJson, candidates.slice(0, 1), "2026-09-21");
   assert.deepEqual(out.highlights, []);
   assert.equal(called, 0);
+});
+
+test("attachWorldSections passes no name when no teams map is given", () => {
+  const out = attachWorldSections(generated, highlights);
+  assert.equal(out[467].sections[1].heading, "Japan beat Fiji 20-15 to win the Pacific Nations Cup");
 });
