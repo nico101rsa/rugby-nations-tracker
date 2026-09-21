@@ -43,9 +43,9 @@ jobs:
         run: node --test scripts/*.test.mjs
 
       # Also writes the "Around the world" roundup that closes every edition:
-      # write, fact-check and at most one revision over the twelve
-      # fact-checked stories (scripts/world-roundup.mjs), never over the raw
-      # source pack — two to four extra model calls per run.
+      # write, fact-check, at most one revision, then the top four survivors
+      # (scripts/world-roundup.mjs) — cut from the twelve fact-checked
+      # stories, never from the raw source pack; two to four extra calls.
       - name: Generate 12 team editions (Gemini Flash + fact-check; Claude fallback)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
