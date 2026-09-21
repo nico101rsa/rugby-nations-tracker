@@ -16,6 +16,12 @@ import {
   pickStoryline, markUsed, renderStorylineEdition, recheckQuery,
 } from "./storylines.mjs";
 import { buildDataEdition, renderDataEdition } from "./data-edition.mjs";
+import { BANNED_COPY, words } from "./copy-rules.mjs";
+import { roundupCandidates, worldRoundup, attachWorldSections } from "./world-roundup.mjs";
+
+// Re-exported: the rules moved to copy-rules.mjs so the roundup can share them,
+// but the tests and compare script still read them from here.
+export { BANNED_COPY };
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public", "nations.json");
@@ -63,12 +69,17 @@ export const TEAMS = {
   28: { name: "Fiji", masthead: "Flying Fijians Watch", code: "FIJ" },
 };
 
-// The edition is ONE section. Its `kicker` is a short topical label the writer
-// chooses ("Coaching scrutiny", "Injury blow", "Team news") — the app renders
-// it verbatim above the heading. It was a fixed enum when editions had four
-// fixed sections; pinning it to a literal after the single-story switch made
-// 9/12 teams fail validation on 2026-07-20 (the model naturally labels the
-// story it wrote), so the contract is now shape-only.
+// The WRITER produces ONE section. Its `kicker` is a short topical label the
+// writer chooses ("Coaching scrutiny", "Injury blow", "Team news") — the app
+// renders it verbatim above the heading. A second section, the "Around the
+// world" roundup of the other nations' stories, is appended in code at the
+// write boundary (world-roundup.mjs) — it never passes through this gate, and
+// the review and run report only ever see the writer's story.
+//
+// The kicker was a fixed enum when editions had four fixed sections; pinning
+// it to a literal after the single-story switch made 9/12 teams fail
+// validation on 2026-07-20 (the model naturally labels the story it wrote),
+// so the contract is now shape-only.
 export const SECTION_COUNT = 1;
 const KICKER_MAX = 30;
 
@@ -263,17 +274,6 @@ export function extractJson(text) {
   }
 }
 
-const words = (s) => String(s).trim().split(/\s+/).filter(Boolean).length;
-
-// Copy defects a cheaper model is prone to: leaked citation markup, and clock
-// times/timezones in the copy (the app renders kickoff lines itself). Scores
-// like "45-21" have no colon, so they pass.
-export const BANNED_COPY = [
-  [/<\/?cite/i, "citation markup"],
-  [/\b\d{1,2}:\d{2}\b/, "clock time"],
-  [/\b(AEST|AEDT|SAST|GMT|BST|UTC|CET|CEST)\b/, "timezone"],
-];
-
 // Shape gate before anything reaches the app: exactly today's date, the
 // expected kickers in order, sane word counts. Returns a *clean* object (unknown keys
 // dropped) so the published JSON is exactly the shape digestFor() expects.
@@ -371,7 +371,7 @@ export function stripLeads(digests = {}) {
 
 // A per-run record of what retrieval offered and what the writer did with it.
 // Pure so it can be tested; the caller writes it.
-export function buildRunReport(dateISO, teams, generated, retrieval, failed = []) {
+export function buildRunReport(dateISO, teams, generated, retrieval, failed = [], world = []) {
   const rows = Object.entries(generated).map(([id, digest]) => {
     const { shortlist = [], quiet = false, ladder = null } = retrieval[id] ?? {};
     return {
@@ -402,19 +402,24 @@ export function buildRunReport(dateISO, teams, generated, retrieval, failed = []
       dataEdition: rows.filter((r) => r.rung === "data").length,
       failed: failed.length,
       noLead: rows.filter((r) => !r.lead).length,
+      world: world.length,
     },
     failed,
     teams: rows,
+    // The "Around the world" roundup as published: which nations cleared the
+    // bar and the line each got. Empty means the roundup call failed or nothing
+    // was notable — the run log says which.
+    world: world.map((h) => ({ team: h.team, text: h.text })),
   };
 }
 
-async function writeRunReport(now, generated, retrieval, failed) {
+async function writeRunReport(now, generated, retrieval, failed, world = []) {
   try {
     const dateISO = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
     const { mkdir } = await import("node:fs/promises");
     const dir = join(ROOT, "editorial", "runs");
     await mkdir(dir, { recursive: true });
-    await writeFile(join(dir, `${dateISO}.json`), JSON.stringify(buildRunReport(dateISO, TEAMS, generated, retrieval, failed), null, 2));
+    await writeFile(join(dir, `${dateISO}.json`), JSON.stringify(buildRunReport(dateISO, TEAMS, generated, retrieval, failed, world), null, 2));
   } catch (e) {
     // Diagnostics must never cost an edition.
     console.warn(`run report not written: ${e.message}`);
@@ -535,6 +540,19 @@ async function generateOne(client, data, teamId, now) {
     throw new Error(`invalid edition (stop=${resp.stop_reason}): ${errors.join("; ")} | tail: …${tail}`);
   }
   return digest;
+}
+
+// Plain text call on the Anthropic fallback path — no web search, no tool
+// loop. Used for the "Around the world" roundup, whose only input is the
+// day's editions.
+async function anthropicText(client, prompt) {
+  const resp = await client.messages.create({
+    model: MODEL,
+    max_tokens: 4000,
+    messages: [{ role: "user", content: prompt }],
+  });
+  if (resp.stop_reason === "refusal") throw new Error("refusal");
+  return resp.content.filter((b) => b.type === "text").map((b) => b.text).join("\n");
 }
 
 // ---- source pack (free news retrieval) ---------------------------------------
@@ -1572,6 +1590,9 @@ export async function main({ dryRun = false } = {}) {
   // set; Claude Haiku as the fallback path; skip cleanly when neither key is.
   const geminiKey = process.env.GEMINI_API_KEY;
   let generateFor;
+  // Plain prompt → text, whichever provider is serving. The roundup needs
+  // nothing more than that.
+  let callModel;
   let ladderCtx = null;
   if (geminiKey) {
     console.log(`provider: gemini (${GEMINI_MODEL}, RSS source pack + fact-check pass)`);
@@ -1599,11 +1620,13 @@ export async function main({ dryRun = false } = {}) {
     };
     console.log(`storyline backlog: ${ladderCtx.backlog.length} open`);
     generateFor = (teamId) => generateOneGemini(geminiKey, data, teamId, now, editorNotes, checkerNotes, pool, ladderCtx);
+    callModel = (prompt) => geminiCall(geminiKey, prompt);
   } else if (process.env.ANTHROPIC_API_KEY) {
     console.log(`provider: anthropic (${MODEL})`);
     const { default: Anthropic } = await import("@anthropic-ai/sdk");
     const client = new Anthropic();
     generateFor = async (teamId) => ({ digest: await generateOne(client, data, teamId, now), note: "" });
+    callModel = (prompt) => anthropicText(client, prompt);
   } else {
     console.log("GEMINI_API_KEY / ANTHROPIC_API_KEY not set — skipping digest generation");
     return { skipped: "no-key" };
@@ -1630,10 +1653,26 @@ export async function main({ dryRun = false } = {}) {
     return { failed };
   }
 
+  // "Around the world": one call over today's fact-checked editions, appended
+  // to each of them as a second section (world-roundup.mjs). A failure here
+  // never costs an edition — the story still ships, only the roundup is
+  // missing, and the run log says so.
+  let world = [];
+  try {
+    const candidates = roundupCandidates(TEAMS, generated);
+    world = await worldRoundup(callModel, extractJson, candidates, sydneyDateParts(now).DATE_ISO);
+    console.log(
+      `around the world: ${world.length} of ${candidates.length} nations cleared the bar` +
+        (world.length ? ` (${world.map((h) => h.team).join(", ")})` : ""),
+    );
+  } catch (e) {
+    console.warn(`around the world roundup failed (editions unaffected): ${e.message.slice(0, 200)}`);
+  }
+
   // Re-read before writing: the refresh cron may have republished nations.json
   // during the ~minutes this run spent on 12 API calls.
   const fresh = JSON.parse(await readFile(OUT, "utf8"));
-  fresh.digests = mergeDigests(fresh.digests, generated);
+  fresh.digests = mergeDigests(fresh.digests, attachWorldSections(generated, world));
   if (!PUBLISH_TEAMSHEETS) fresh.digests = stripTeamsheets(fresh.digests);
   fresh.digests = stripLeads(fresh.digests);
   fresh.counts = { ...(fresh.counts || {}), digests: Object.keys(fresh.digests).length };
@@ -1649,7 +1688,7 @@ export async function main({ dryRun = false } = {}) {
   // and it is the only record of WHY an edition reads the way it does — the
   // daily email reports from it, and it is the first thing to look at when a
   // team goes bland.
-  await writeRunReport(now, generated, retrieval, failed);
+  await writeRunReport(now, generated, retrieval, failed, world);
 
   // What the run actually cost in model calls, per model (map #198). Printed
   // every run so the answer is never a guess again — and so a shift in which
