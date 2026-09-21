@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-21T12:44:01.341Z",
+  "updatedAt": "2026-09-21T20:00:45.826Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 200,
+  "count": 202,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -12,6 +12,11 @@
       "resolution": "until Henry Pollock signs a new deal with Northampton or moves to a new club",
       "sources": [
         {
+          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
           "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
           "feedName": "Guardian Rugby Union"
@@ -20,15 +25,10 @@
           "title": "'He's an idiot, but he's our idiot' - Saints fans on Pollock contract stand-off",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6d08yve0n8no?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Pollock still 'open to new opportunities' as Northampton talks continue",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ck1e54qzjqljo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-04",
-      "lastSeen": "2026-09-21",
+      "lastSeen": "2026-09-22",
       "uses": 1,
       "lastUsed": "2026-08-09"
     },
@@ -2164,20 +2164,30 @@
     },
     {
       "id": "wales-search-for-a-1wn3dlb",
-      "subject": "Wales' search for a new head coach",
+      "subject": "Wales' permanent head coach appointment",
       "teams": [
         391
       ],
       "resolution": "until the WRU appoints a permanent head coach",
       "sources": [
         {
-          "title": "WRU posts pitch safety advice over hot, dry summer",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c14dl5k562ko?at_medium=RSS&at_campaign=rss",
+          "title": "Inspired Wales seal stunning win over South Africa",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cme3rg39xe7do?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Wales deliver performance of serious promise",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c862e4g7346lo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Argentina too strong as they halt Wales' mini-revival",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/videos/cz75x538ewlo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-07",
-      "lastSeen": "2026-09-07",
+      "lastSeen": "2026-09-22",
       "uses": 0
     },
     {
@@ -2743,7 +2753,7 @@
         }
       ],
       "firstSeen": "2026-09-12",
-      "lastSeen": "2026-09-21",
+      "lastSeen": "2026-09-22",
       "uses": 0
     },
     {
@@ -4254,7 +4264,8 @@
         388,
         390,
         391,
-        465
+        465,
+        387
       ],
       "resolution": "until a broadcaster is officially confirmed for the inaugural tour of New Zealand",
       "sources": [
@@ -4265,7 +4276,7 @@
         }
       ],
       "firstSeen": "2026-09-19",
-      "lastSeen": "2026-09-19",
+      "lastSeen": "2026-09-22",
       "uses": 1,
       "lastUsed": "2026-09-20"
     },
@@ -4500,8 +4511,8 @@
       ],
       "firstSeen": "2026-09-21",
       "lastSeen": "2026-09-21",
-      "uses": 1,
-      "lastUsed": "2026-09-21"
+      "uses": 2,
+      "lastUsed": "2026-09-22"
     },
     {
       "id": "world-rugby-s-plans-1rki5mh",
@@ -4523,7 +4534,7 @@
         }
       ],
       "firstSeen": "2026-09-21",
-      "lastSeen": "2026-09-21",
+      "lastSeen": "2026-09-22",
       "uses": 1,
       "lastUsed": "2026-09-21"
     },
@@ -4630,7 +4641,7 @@
         }
       ],
       "firstSeen": "2026-09-21",
-      "lastSeen": "2026-09-21",
+      "lastSeen": "2026-09-22",
       "uses": 0
     },
     {
@@ -4681,7 +4692,7 @@
         }
       ],
       "firstSeen": "2026-09-21",
-      "lastSeen": "2026-09-21",
+      "lastSeen": "2026-09-22",
       "uses": 0
     },
     {
@@ -4717,7 +4728,58 @@
         }
       ],
       "firstSeen": "2026-09-21",
-      "lastSeen": "2026-09-21",
+      "lastSeen": "2026-09-22",
+      "uses": 0
+    },
+    {
+      "id": "shaun-edwards-long-term-1ggdc8b",
+      "subject": "Shaun Edwards' long-term international coaching future",
+      "teams": [
+        386
+      ],
+      "resolution": "until Edwards confirms a permanent coaching role with an international team after his current consultancy ends",
+      "sources": [
+        {
+          "title": "Shaun Edwards breaks silence on possible England coaching role and when he expects to make his return",
+          "link": "https://www.planetrugby.com/news/shaun-edwards-breaks-silence-on-possible-england-coaching-role-and-when-he-expects-to-make-his-return",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Shaun Edwards finally lands England coaching role after joining Red Roses",
+          "link": "https://www.theguardian.com/sport/2026/sep/21/shaun-edwards-england-coaching-role-red-roses-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Shaun Edwards' England future CONFIRMED as 'exceptional' coach reveals next role",
+          "link": "https://www.planetrugby.com/news/shaun-edwards-england-future-confirmed-as-exceptional-coach-reveals-next-steps",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-22",
+      "lastSeen": "2026-09-22",
+      "uses": 0
+    },
+    {
+      "id": "joe-marchant-s-england-vkc2fl",
+      "subject": "Joe Marchant's England Test selection status",
+      "teams": [
+        386
+      ],
+      "resolution": "until Steve Borthwick selects or excludes Marchant from the next England Test squad",
+      "sources": [
+        {
+          "title": "Marchant set on England comeback after Sale arrival",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6m2rjg47z45o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "‘You can’t be shy’: Joe Marchant on French lessons, England ambitions and his new famous father-in-law",
+          "link": "https://www.theguardian.com/sport/2026/sep/17/joe-marchant-england-ambition-sale-stade-francais-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-22",
+      "lastSeen": "2026-09-22",
       "uses": 0
     }
   ]
