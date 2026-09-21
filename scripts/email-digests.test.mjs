@@ -155,6 +155,22 @@ test("buildEmailHtml: shows the Around the world roundup once, escaped", () => {
   assert.equal((html.match(/Around the world/g) || []).length, 1);
 });
 
+test("buildEmailHtml: shows roundup lines removed before publication, with the reason", () => {
+  const html = buildEmailHtml({
+    date: "2026-09-21",
+    counts: { editions: 12, world: 1 },
+    teams: [],
+    world: [{ team: "Japan", text: "Japan beat Fiji 20-15 to claim Pacific Nations Cup." }],
+    worldDropped: [{ team: "England", text: "England's 39-match run ends.", problem: "the England briefing is about the women's side & the line does not say so" }],
+  });
+  assert.match(html, /Around the world · 1 nation\s*</);
+  assert.match(html, /Removed before publication:<br>England: “England's 39-match run ends\.” — the England briefing is about the women's side &amp; the line/);
+  // Removed lines alone still produce the block.
+  const onlyRemoved = buildEmailHtml({ date: "2026-09-21", counts: {}, teams: [], world: [], worldDropped: [{ team: "A", text: "t", problem: "p" }] });
+  assert.match(onlyRemoved, /Around the world · 0 nations\s*</);
+  assert.doesNotMatch(onlyRemoved, /<ul/);
+});
+
 test("buildEmailHtml: no roundup block when the run had none", () => {
   const html = buildEmailHtml({ date: "2026-09-21", counts: { editions: 12 }, teams: [], world: [] });
   assert.doesNotMatch(html, /Around the world/);
