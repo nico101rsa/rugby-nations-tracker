@@ -95,6 +95,25 @@ test("worldSection excludes the reader's own team and labels each line", () => {
   assert.equal(worldSection(highlights, "467").body, s.body);
 });
 
+test("worldSection drops the label when the line already opens with the nation", () => {
+  const s = worldSection([
+    { teamId: 463, team: "Japan", text: "Japan secured the Pacific Nations Cup title by beating Fiji." },
+    { teamId: 386, team: "England", text: "England's winning run ended in a draw with Canada." },
+    { teamId: 465, team: "New Zealand", text: "New Zealand’s scrum is under scrutiny after the series." },
+    { teamId: 390, team: "Scotland", text: "Defence coach Shaun Edwards confirmed a 2027 return." },
+    // "Japanese" is not "Japan" — the label stays.
+    { teamId: 28, team: "Fiji", text: "Fijian fatigue told late in Tokyo." },
+  ], 467);
+  assert.equal(
+    s.body,
+    "Japan secured the Pacific Nations Cup title by beating Fiji. " +
+      "England's winning run ended in a draw with Canada. " +
+      "New Zealand’s scrum is under scrutiny after the series. " +
+      "Scotland — Defence coach Shaun Edwards confirmed a 2027 return. " +
+      "Fiji — Fijian fatigue told late in Tokyo.",
+  );
+});
+
 test("worldSection heading names up to three nations then counts the rest", () => {
   const five = [...highlights, { teamId: 387, team: "France", text: "Line one for France." }, { teamId: 391, team: "Wales", text: "Line one for Wales." }];
   assert.equal(worldSection(five, 460).heading, "Headlines from Japan, England, South Africa and 2 more");
