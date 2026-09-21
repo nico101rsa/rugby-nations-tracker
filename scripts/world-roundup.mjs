@@ -49,10 +49,19 @@ export function roundupCandidates(teams, generated) {
     }));
 }
 
-export function buildWorldPrompt(candidates, dateISO) {
+// Men's senior internationals are the app's default, so any other story must
+// say what it is. Shared by the code guard below and the checker prompt.
+export const NON_MENS = /\b(women'?s?|Red Roses|Black Ferns|Wallaroos|WXV|U-?20s?|under[- ]?20s?|sevens|7s|academy|schools?)\b/i;
+
+// `notes` are the standing roundup notes the nightly review keeps
+// (editorial/world-notes.md) — the same self-tuning loop the writer has.
+export function buildWorldPrompt(candidates, dateISO, notes = "") {
   const blocks = candidates
     .map((c) => `### ${c.team}\n${c.heading}\n${c.body}`)
     .join("\n\n");
+  const notesBlock = notes
+    ? `\n\n## Standing notes (from previous days' reviews — follow them)\n${notes}`
+    : "";
   return `You are the wire editor for Rugby Nations Tracker, an iOS app covering men's
 international rugby. Each of the ${candidates.length} nations below has a daily
 briefing, already written and fact-checked (${dateISO}). You write the
@@ -83,6 +92,11 @@ seconds. Two or three lines is normal. Four is the maximum. Zero is fine.
 - **Compress, never add.** Every fact, name and number must come from that
   nation's briefing above. No outside knowledge, no numbers the briefing
   does not contain. Names and diacritics verbatim. No quotation marks.
+- **Men's senior internationals are the default.** If a story is about
+  women's rugby, an age-grade side, sevens or a club, the line must say so
+  ("England women's 39-match run ends…", "Red Roses…", "France U20…"). A
+  reader who sees "England drew with Canada" assumes the men. Never
+  drop the label to save words.
 - **One story, once.** Two briefings often cover the same match from each
   side. Write it ONCE, under the winner or the side the incident concerns.
 - **Most important first.** The first line becomes the section heading.
@@ -90,7 +104,7 @@ seconds. Two or three lines is normal. Four is the maximum. Zero is fine.
 
 ## Output — strict JSON, nothing else
 
-{"highlights": [{"team": "<nation exactly as headed above>", "text": "<headline, ≤12 words>"}]}`;
+{"highlights": [{"team": "<nation exactly as headed above>", "text": "<headline, ≤12 words>"}]}${notesBlock}`;
 }
 
 const terminal = (s) => (/[.!?…”"']$/.test(s) ? s : `${s}.`);
@@ -117,8 +131,12 @@ export function parseWorldHighlights(raw, candidates) {
     if (bannedCopyIn(text)) continue;
     // Numbers are the cheapest fabrication to catch: a score, a cap count or a
     // points total that the source edition never printed is invented.
-    const sourceNums = new Set(`${c.heading} ${c.body}`.match(/\d+/g) ?? []);
+    const source = `${c.heading} ${c.body}`;
+    const sourceNums = new Set(source.match(/\d+/g) ?? []);
     if ((text.match(/\d+/g) ?? []).some((num) => !sourceNums.has(num))) continue;
+    // A briefing that says it is about the women's side / U20s / sevens must
+    // not be shortened into a line that reads as the men's team.
+    if (NON_MENS.test(source) && !NON_MENS.test(text)) continue;
     seen.add(c.teamId);
     out.push({ teamId: c.teamId, team: c.team, text: terminal(text) });
     if (out.length >= WORLD_MAX_ITEMS) break;
@@ -170,11 +188,71 @@ export function attachWorldSections(generated, highlights) {
   );
 }
 
-// The one model call. `callModel(prompt) → text`; `extractJson(text) → object`.
-// Throws on an unusable answer; the caller treats that as "no roundup today".
-export async function worldRoundup(callModel, extractJson, candidates, dateISO) {
-  if (candidates.length < 2) return [];
-  const raw = extractJson(await callModel(buildWorldPrompt(candidates, dateISO)));
+// Fact-check of the roundup, in a fresh context, against the editions it was
+// cut from. Same posture as the edition checker: only a material error costs
+// a line, and the remedy is to DROP the line, never rewrite it — a missing
+// nation costs nothing, a wrong one misinforms every tab.
+export function buildWorldCheckPrompt(highlights, candidates, dateISO) {
+  const byId = new Map(candidates.map((c) => [c.teamId, c]));
+  const pairs = highlights.map((h) => {
+    const c = byId.get(h.teamId);
+    return `### ${h.team}\nRoundup line: ${h.text}\nSource briefing: ${c?.heading ?? ""} — ${c?.body ?? ""}`;
+  }).join("\n\n");
+  return `You are the fact-checker for the "Around the world" roundup in Rugby Nations
+Tracker, an iOS app covering MEN'S international rugby (${dateISO}). Each
+roundup line below was cut from that nation's daily briefing, which is its
+ONLY permitted source. Check each line against its briefing.
+
+${pairs}
+
+## Material errors — flag these
+- a fact, name, score or number in the line that the briefing does not
+  contain, or that the briefing contradicts;
+- the line attributed to the wrong nation or side;
+- the briefing is about women's rugby, an age-grade side, sevens or a club
+  and the line does not say so — the app is men's internationals by default,
+  so "England drew with Canada" for a Red Roses match misinforms the reader;
+- a rumour or expectation in the briefing stated as settled fact in the line.
+
+## Not errors — never flag these
+- compression, paraphrase, present tense, a dropped venue or detail;
+- a line that names the team by nickname (Wallabies, Boks, All Blacks);
+- style, word choice, or a line you would merely have written differently.
+
+## Output — strict JSON, nothing else
+{"issues": [{"team": "<nation>", "problem": "<what is wrong>", "severity": "material" | "minor"}]}
+Empty issues array if every line is clean. When unsure, severity is "minor".`;
+}
+
+// Drop every highlight the checker flagged as material. Minor issues are
+// dropped on the floor, as they are for editions.
+export function applyWorldCheck(highlights, raw) {
+  const issues = (Array.isArray(raw?.issues) ? raw.issues : [])
+    .filter((i) => i && typeof i === "object" && i.severity === "material" && typeof i.team === "string");
+  const bad = new Map(issues.map((i) => [i.team.trim().toLowerCase(), String(i.problem ?? "").slice(0, 200)]));
+  const kept = [];
+  const dropped = [];
+  for (const h of highlights) {
+    const problem = bad.get(h.team.toLowerCase());
+    if (problem == null) kept.push(h);
+    else dropped.push({ team: h.team, text: h.text, problem });
+  }
+  return { kept, dropped };
+}
+
+// The roundup: one writing call, one checking call. `callModel(prompt) →
+// text`; `extractJson(text) → object`. Throws when the WRITER answers nothing
+// usable (the caller treats that as "no roundup today"); a checker that
+// answers nothing usable is logged and the roundup ships unchecked, since
+// every line was cut from copy that already passed its own fact-check.
+export async function worldRoundup(callModel, extractJson, candidates, dateISO, { notes = "" } = {}) {
+  if (candidates.length < 2) return { highlights: [], dropped: [], checked: false };
+  const raw = extractJson(await callModel(buildWorldPrompt(candidates, dateISO, notes)));
   if (!raw || !Array.isArray(raw.highlights)) throw new Error("roundup returned no usable JSON");
-  return parseWorldHighlights(raw, candidates);
+  const highlights = parseWorldHighlights(raw, candidates);
+  if (!highlights.length) return { highlights, dropped: [], checked: false };
+  const verdict = extractJson(await callModel(buildWorldCheckPrompt(highlights, candidates, dateISO)));
+  if (!verdict || !Array.isArray(verdict.issues)) return { highlights, dropped: [], checked: false };
+  const { kept, dropped } = applyWorldCheck(highlights, verdict);
+  return { highlights: kept, dropped, checked: true };
 }

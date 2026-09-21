@@ -113,6 +113,13 @@ once a day. Today is {DAY_NAME} {DATE_LONG}.
 3. **Lead with the day's actual story.** Check what outlets covering this team
    led with today — if they led with a player's return, so do you, not the
    routine rotation count.
+4. **Men's senior internationals are the default.** The app is men's
+   international rugby; a reader assumes every story is about the men's XV.
+   If the story you lead with is about the women's side, an age-grade team
+   (U20), sevens or a club, the heading AND the first sentence must say so
+   ("England women end 39-match run…", "the Red Roses", "France U20"). An
+   unlabelled women's or U20 story misinforms the reader and fails
+   fact-check. Prefer a men's story when one of comparable weight exists.
 
 ## Format — ONE section: heading + one paragraph
 
@@ -1090,6 +1097,11 @@ misinformed for you to flag it. Material errors:
   pack (an accurate paraphrase WITHOUT quote marks is fine and never an issue);
 - a rumour or expectation asserted as settled fact;
 - stale news presented as this week's development;
+- a story about women's rugby, an age-grade side (U20), sevens or a club
+  whose heading or first sentence does not say so — the app is men's
+  internationals by default, so "England drew with Canada" for a Red Roses
+  match misinforms the reader (check the pack: if the sources say Red
+  Roses, women, WXV, Black Ferns, Wallaroos or U20, the draft must too);
 - a \`teamsheet\` entry (name or jersey number) that does not match an explicit
   numbered lineup printed in the pack, or a teamsheet included when the pack
   prints no numbered lineup at all (each wrong name/number is one issue).
@@ -1322,7 +1334,7 @@ const NOTES_FILE = join(ROOT, "editorial", "editor-notes.md");
 const REVIEWS_DIR = join(ROOT, "editorial", "reviews");
 const MAX_NOTES = 8;
 
-export function buildReviewPrompt(editions, dateISO) {
+export function buildReviewPrompt(editions, dateISO, world = []) {
   const blocks = editions.map(({ team, digest, shortlist = [], quiet = false, ladder = null }) => {
     const candidates = shortlist.length
       ? shortlist.map((s, n) => `  ${n + 1}. [score ${s.score}${s.corroboration > 1 ? `, ${s.corroboration} outlets` : ""}] ${s.title}`).join("\n")
@@ -1409,12 +1421,34 @@ not injected into any prompt.
 3. **Quality**: flat or repetitive headings, filler, manufactured hype, name
    echoes. A heading must name someone and say what happened.
 4. **Sources**: invented colour presented as reported fact, missing attribution.
+5. **Labelling**: the app is MEN'S international rugby by default. Any edition
+   about the women's side, an age-grade team, sevens or a club must say so in
+   its heading and first sentence. "England draw with Canada to end their
+   39-game run" for a Red Roses match is a facts defect, not a style one.
 
-## Output — strict JSON, nothing else
+${world.length ? `## Around the world — the roundup closing every edition
+
+Every edition also ends with this roundup (each reader sees it minus their own
+nation). Its brief: at most four back-page headlines of ≤12 words, each cut
+from that nation's briefing above and adding nothing to it; only stories a
+fan of ANOTHER team would text a mate about (results, trophies, selection
+bombshells, key injuries, coaches hired/sacked/banned); opinion pieces never;
+the same men's-by-default labelling rule as the editions.
+
+${world.map((h) => `- ${h.team}: ${h.text}`).join("\n")}
+
+Judge it on facts (does each line say only what its briefing says, and is a
+women's/U20 story labelled as such?), selection (did the right stories make
+the cut, is an opinion piece in it, is a big result missing?) and register
+(headline, not sentence; ≤12 words; no hype). Notes for the roundup go in
+\`world_notes\`, never in \`prompt_notes\`.
+
+` : ""}## Output — strict JSON, nothing else
 {
-  "report": "<markdown, max 300 words: today's grade (A-F), the 2-3 most important observations with one example each. Say how many editions were retrieval-starved vs badly-chosen.>",
+  "report": "<markdown, max 300 words: today's grade (A-F), the 2-3 most important observations with one example each. Say how many editions were retrieval-starved vs badly-chosen.${world.length ? " End with one short paragraph headed 'Around the world' grading the roundup." : ""}>",
   "prompt_notes": ["<up to 2 short imperative notes for the WRITER prompt, addressing CHOICE or CRAFT defects seen in MULTIPLE editions. Empty array if today's weakness was retrieval.>"],
-  "source_notes": ["<up to 2 notes about RETRIEVAL for human readers — which teams the press ignored, which outlets are missing, whether the ranking mis-ordered. Empty array if retrieval was fine.>"]
+  "source_notes": ["<up to 2 notes about RETRIEVAL for human readers — which teams the press ignored, which outlets are missing, whether the ranking mis-ordered. Empty array if retrieval was fine.>"]${world.length ? `,
+  "world_notes": ["<up to 2 short imperative notes for the ROUNDUP prompt — selection, labelling or register defects in today's roundup. Empty array if it was fine.>"]` : ""}
 }
 Only propose a prompt note for a defect visible in MULTIPLE editions; one-off
 slips don't earn a standing rule. Notes must work WITHIN the format contract —
@@ -1468,14 +1502,29 @@ export function dedupeNotes(lines) {
   return kept.map((k) => k.line);
 }
 
-async function reviewRun(apiKey, editions, dateISO) {
-  const raw = extractJson(await geminiCall(apiKey, buildReviewPrompt(editions, dateISO)));
+// Standing notes for the ROUNDUP prompt, kept by the same review. Separate
+// file from the writer's notes because the two prompts have different jobs:
+// a note about headline length is noise to the edition writer, and vice versa.
+const WORLD_NOTES_FILE = join(ROOT, "editorial", "world-notes.md");
+const MAX_WORLD_NOTES = 4;
+
+async function loadWorldNotes() {
+  try {
+    return (await readFile(WORLD_NOTES_FILE, "utf8")).split("\n").filter((l) => l.startsWith("- ")).join("\n");
+  } catch {
+    return "";
+  }
+}
+
+async function reviewRun(apiKey, editions, dateISO, world = []) {
+  const raw = extractJson(await geminiCall(apiKey, buildReviewPrompt(editions, dateISO, world)));
   if (!raw || typeof raw.report !== "string") throw new Error("review returned no usable JSON");
   const clean = (list) => (Array.isArray(list) ? list : []).filter((n) => typeof n === "string" && n.trim()).slice(0, 2);
   const notes = clean(raw.prompt_notes);
   // Retrieval findings are for humans, never for the writer prompt — the writer
   // cannot fix a famine, it can only paper over one.
   const sourceNotes = clean(raw.source_notes);
+  const worldNotes = world.length ? clean(raw.world_notes) : [];
 
   const { mkdir } = await import("node:fs/promises");
   await mkdir(REVIEWS_DIR, { recursive: true });
@@ -1497,7 +1546,27 @@ async function reviewRun(apiKey, editions, dateISO) {
     NOTES_FILE,
     `# Standing editor notes\n\nInjected into the writer prompt daily; curated by the post-run review.\nNotes age out after ${NOTE_TTL_DAYS} days unless re-earned. Prune freely.\n\n${merged.join("\n")}\n`,
   );
-  return { notes, sourceNotes, expired };
+
+  // Roundup notes: same expiry and dedupe, own file, own cap. Only touched
+  // when a roundup was actually reviewed — a day without one must not age
+  // the notes out early.
+  if (world.length) {
+    let prior = [];
+    try {
+      prior = (await readFile(WORLD_NOTES_FILE, "utf8")).split("\n").filter((l) => l.startsWith("- "));
+    } catch {
+      // first run
+    }
+    const mergedWorld = dedupeNotes([
+      ...worldNotes.map((n) => `- ${n.trim()} _(added ${dateISO})_`),
+      ...expireNotes(prior, dateISO),
+    ]).slice(0, MAX_WORLD_NOTES);
+    await writeFile(
+      WORLD_NOTES_FILE,
+      `# Standing roundup notes\n\nInjected into the "Around the world" prompt daily; curated by the post-run review.\nNotes age out after ${NOTE_TTL_DAYS} days unless re-earned. Prune freely.\n\n${mergedWorld.join("\n")}\n`,
+    );
+  }
+  return { notes, sourceNotes, worldNotes, expired };
 }
 
 const CHECKER_NOTES_FILE = join(ROOT, "editorial", "checker-notes.md");
@@ -1660,10 +1729,15 @@ export async function main({ dryRun = false } = {}) {
   let world = [];
   try {
     const candidates = roundupCandidates(TEAMS, generated);
-    world = await worldRoundup(callModel, extractJson, candidates, sydneyDateParts(now).DATE_ISO);
+    const roundup = await worldRoundup(callModel, extractJson, candidates, sydneyDateParts(now).DATE_ISO, {
+      notes: await loadWorldNotes(),
+    });
+    world = roundup.highlights;
     console.log(
       `around the world: ${world.length} of ${candidates.length} nations cleared the bar` +
-        (world.length ? ` (${world.map((h) => h.team).join(", ")})` : ""),
+        (world.length ? ` (${world.map((h) => h.team).join(", ")})` : "") +
+        (roundup.checked ? ", fact-checked" : ", UNCHECKED") +
+        (roundup.dropped.length ? `; dropped by checker: ${roundup.dropped.map((d) => `${d.team} — ${d.problem}`).join(" | ")}` : ""),
     );
   } catch (e) {
     console.warn(`around the world roundup failed (editions unaffected): ${e.message.slice(0, 200)}`);
@@ -1755,11 +1829,12 @@ export async function main({ dryRun = false } = {}) {
         digest,
         ...(retrieval[id] ?? {}),
       }));
-      const { notes, sourceNotes, expired } = await reviewRun(geminiKey, editions, dateISO);
+      const { notes, sourceNotes, worldNotes, expired } = await reviewRun(geminiKey, editions, dateISO, world);
       console.log(
         `review written (editorial/reviews/${dateISO}.md)` +
           `${notes.length ? `; new prompt notes: ${notes.join(" | ")}` : "; no new prompt notes"}` +
           `${sourceNotes.length ? `; retrieval notes: ${sourceNotes.join(" | ")}` : ""}` +
+          `${worldNotes.length ? `; roundup notes: ${worldNotes.join(" | ")}` : ""}` +
           `${expired ? `; ${expired} note(s) aged out` : ""}`,
       );
     } catch (e) {
