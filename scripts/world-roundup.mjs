@@ -138,8 +138,18 @@ export function worldSection(highlights, teamId) {
   return {
     kicker: WORLD_KICKER,
     heading,
-    body: others.map((h) => `${h.team} — ${h.text}`).join(" "),
+    body: others.map((h) => labelled(h)).join(" "),
   };
+}
+
+// "Japan — Japan secured the title" is what the first live run printed
+// (2026-09-21): the prompt asks for lines that do not open with the nation,
+// and the model wrote them anyway for half the list. A line that already
+// names its nation up front needs no label; one that opens on a person
+// ("Defence coach Shaun Edwards…") still gets one.
+function labelled(h) {
+  const opensWithTeam = new RegExp(`^${h.team.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:['’]s)?\\b`, "i");
+  return opensWithTeam.test(h.text) ? h.text : `${h.team} — ${h.text}`;
 }
 
 // Append the roundup to each of today's editions. Only TODAY's — a team whose
