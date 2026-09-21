@@ -666,3 +666,22 @@ test("buildRunReport: survives a team with no retrieval entry", () => {
   assert.equal(report.teams[0].quiet, false);
   assert.deepEqual(report.teams[0].candidates, []);
 });
+
+test("buildRunReport: records the Around the world roundup as published", () => {
+  const teams = { 467: { name: "South Africa" }, 463: { name: "Japan" } };
+  const generated = {
+    467: { sections: [{ kicker: "Selection", heading: "Erasmus releases Du Toit", body: "…" }] },
+    463: { sections: [{ kicker: "Cup final", heading: "Japan lift the Pacific Nations Cup", body: "…" }] },
+  };
+  const retrieval = { 467: { shortlist: [] }, 463: { shortlist: [] } };
+  const world = [{ teamId: 463, team: "Japan", text: "Eddie Jones' side beat Fiji to the title." }];
+  const report = buildRunReport("2026-09-21", teams, generated, retrieval, [], world);
+  assert.equal(report.counts.world, 1);
+  assert.deepEqual(report.world, [{ team: "Japan", text: "Eddie Jones' side beat Fiji to the title." }]);
+  // The roundup is a separate record; the per-team rows still describe the story only.
+  assert.equal(report.teams.find((t) => t.team === "South Africa").heading, "Erasmus releases Du Toit");
+  // Older callers that pass no roundup get an empty, not a crash.
+  const legacy = buildRunReport("2026-09-21", teams, generated, retrieval);
+  assert.equal(legacy.counts.world, 0);
+  assert.deepEqual(legacy.world, []);
+});

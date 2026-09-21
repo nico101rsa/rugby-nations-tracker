@@ -138,3 +138,25 @@ test("redact: never prints a full address in a log line", () => {
   assert.equal(redact(""), "(unset)");
   assert.equal(redact(undefined), "(unset)");
 });
+
+test("buildEmailHtml: shows the Around the world roundup once, escaped", () => {
+  const html = buildEmailHtml({
+    date: "2026-09-21",
+    counts: { editions: 12, world: 2 },
+    teams: [{ team: "Japan", kicker: "Cup final", heading: "H", body: "B" }],
+    world: [
+      { team: "Japan", text: "Eddie Jones' side beat Fiji to lift the Pacific Nations Cup." },
+      { team: "Italy", text: "World Rugby bans Gonzalo Quesada over <referee> comments." },
+    ],
+  });
+  assert.match(html, /Around the world · 2 nations/);
+  assert.match(html, /<strong>Japan<\/strong> — Eddie Jones' side beat Fiji/);
+  assert.match(html, /&lt;referee&gt; comments/);
+  assert.equal((html.match(/Around the world/g) || []).length, 1);
+});
+
+test("buildEmailHtml: no roundup block when the run had none", () => {
+  const html = buildEmailHtml({ date: "2026-09-21", counts: { editions: 12 }, teams: [], world: [] });
+  assert.doesNotMatch(html, /Around the world/);
+  assert.doesNotMatch(buildEmailHtml({ date: "2026-09-21", counts: {}, teams: [] }), /Around the world/);
+});
