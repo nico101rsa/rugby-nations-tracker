@@ -15,6 +15,7 @@ import {
   labelledNonMens,
   NON_MENS,
   PARSE_CAP,
+  mentionsTeam,
 } from "./world-roundup.mjs";
 import { extractJson } from "./generate-digests.mjs";
 
@@ -202,16 +203,39 @@ test("worldSection is null when nothing is left for this reader", () => {
   assert.equal(worldSection([], 463), null);
 });
 
-test("worldSection also drops a line that names the reader's team", () => {
+test("worldSection drops a line that is the reader's own story from the other side", () => {
   // Japan's cup-final line on the Fiji tab sits under Fiji's own account of it.
-  const s = worldSection(highlights, 28, "Fiji");
+  const fijiStory = "Fiji surrender Pacific Nations Cup title to Japan after late try";
+  const s = worldSection(highlights, 28, "Fiji", fijiStory);
   assert.equal(s.heading, "England's 39-match winning run ends in a draw with Canada");
   assert.ok(!s.body.includes("Japan beat Fiji"));
-  // Without the name, only the id filter applies.
+  // A line that names the reader but is NOT their story stays: the Boks tab
+  // keeps "Wallabies recall Petaia for Springboks Test" when the Boks edition
+  // was about something else.
+  const petaia = [{ teamId: 461, team: "Australia", text: "Wallabies recall Jordan Petaia for Springboks Test." }];
+  assert.equal(worldSection(petaia, 467, "South Africa", "Rassie Erasmus releases Du Toit and De Allende early").heading,
+    "Wallabies recall Jordan Petaia for Springboks Test");
+  assert.equal(worldSection(petaia, 467, "South Africa", "Springboks name side to face the Wallabies in Perth"), null);
+  // Without the name and story, only the id filter applies.
   assert.match(worldSection(highlights, 28).heading, /Japan beat Fiji/);
-  // attachWorldSections passes the name through from the teams map.
-  const out = attachWorldSections({ 28: { sections: [{ kicker: "K", heading: "H", body: "B" }] } }, highlights, { 28: { name: "Fiji" } });
+  // attachWorldSections passes the name and the reader's own story through.
+  const out = attachWorldSections({ 28: { sections: [{ kicker: "K", heading: fijiStory, body: "B" }] } }, highlights, { 28: { name: "Fiji" } });
   assert.ok(!out[28].sections[1].heading.includes("Fiji"));
+});
+
+test("mentionsTeam knows the sides' nicknames, so labels are not doubled", () => {
+  assert.equal(mentionsTeam("Wallabies recall Jordan Petaia.", "Australia"), true);
+  assert.equal(mentionsTeam("All Blacks captain Ardie Savea sidelined.", "New Zealand"), true);
+  assert.equal(mentionsTeam("Springboks release Du Toit early.", "South Africa"), true);
+  assert.equal(mentionsTeam("Boks' bench built for the final quarter.", "South Africa"), true);
+  assert.equal(mentionsTeam("Shaun Edwards confirms a return.", "Scotland"), false);
+  assert.equal(mentionsTeam("anything", ""), false);
+  const s = worldSection([
+    { teamId: 463, team: "Japan", text: "Japan beat Fiji 20-15 to win the Pacific Nations Cup." },
+    { teamId: 461, team: "Australia", text: "Wallabies recall Jordan Petaia for upcoming Springboks Test." },
+    { teamId: 465, team: "New Zealand", text: "All Blacks captain Ardie Savea faces six-month injury layoff." },
+  ], 386, "England", "Canada hold England women to a draw");
+  assert.equal(s.body, "Wallabies recall Jordan Petaia for upcoming Springboks Test. All Blacks captain Ardie Savea faces six-month injury layoff.");
 });
 
 test("attachWorldSections appends after the story, only where there is something to say", () => {

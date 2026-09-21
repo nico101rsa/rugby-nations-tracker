@@ -1447,10 +1447,12 @@ the reason (these did NOT reach readers — judge the writer's selection and
 labelling on them, not the published roundup's facts):
 ${worldDropped.map((d) => `- ${d.team}: "${d.text}" — ${d.problem}`).join("\n")}` : ""}
 
-Judge it on facts (does each line say only what its briefing says, and is a
-women's/U20 story labelled as such?), selection (did the right stories make
-the cut, is an opinion piece in it, is a big result missing?) and register
-(headline, not sentence; ≤12 words; no hype). Notes for the roundup go in
+Judge it on facts (does each line say only what its briefing says?),
+selection (did the right stories make the cut, is an opinion piece in it, is
+a big result missing?) and register (headline, not sentence; ≤12 words; no
+hype). Labelling is checked in code before publication: a women's/U20 line
+always carries its label, and a MEN'S line carries none by design — never
+fault a men's line for not saying "men's". Notes for the roundup go in
 \`world_notes\`, never in \`prompt_notes\`.
 
 ` : ""}## Output — strict JSON, nothing else
