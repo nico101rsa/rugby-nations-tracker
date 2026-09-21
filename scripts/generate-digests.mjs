@@ -1751,6 +1751,7 @@ export async function main({ dryRun = false } = {}) {
         (world.length ? ` (${world.map((h) => h.team).join(", ")})` : "") +
         (roundup.checked ? ", fact-checked" : ", UNCHECKED") +
         (roundup.revised ? " after 1 revision" : "") +
+        (roundup.unused?.length ? `; ${roundup.unused.length} more passed but sat below the cut` : "") +
         (worldDropped.length ? `; dropped: ${worldDropped.map((d) => `${d.team} "${d.text}" — ${d.problem}`).join(" | ")}` : ""),
     );
   } catch (e) {

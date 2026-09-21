@@ -14,6 +14,7 @@ import {
   parseWorldHighlightsDetailed,
   labelledNonMens,
   NON_MENS,
+  PARSE_CAP,
 } from "./world-roundup.mjs";
 import { extractJson } from "./generate-digests.mjs";
 
@@ -80,7 +81,9 @@ test("buildWorldCheckPrompt pairs every line with its source briefing", () => {
   const hl = [{ teamId: 463, team: "Japan", text: "Japan beat Fiji 27-24 to lift the Pacific Nations Cup." }];
   const p = buildWorldCheckPrompt(hl, candidates, "2026-09-21");
   assert.match(p, /### Japan\nRoundup line: Japan beat Fiji 27-24[\s\S]*Source briefing: Eddie Jones guides Japan/);
-  assert.match(p, /women's rugby/);
+  // Labels are the code gate's job; the checker is told to leave them alone.
+  assert.match(p, /never flag a line for a missing or a present label/);
+  assert.doesNotMatch(p, /Material errors[\s\S]*and the line does not say so/);
   assert.ok(p.includes('{"issues": ['));
 });
 
@@ -141,6 +144,10 @@ test("parseWorldHighlights caps the list at four and tolerates junk", () => {
   many.highlights = many.highlights.map((h) => ({ ...h, text: "A perfectly ordinary highlight line for this nation." }));
   assert.equal(WORLD_MAX_ITEMS, 4);
   assert.equal(parseWorldHighlights(many, candidates).length, 4);
+  // The detailed gate keeps more than the publish cap (one per nation here),
+  // so the checker sees every candidate line and the cap is applied after.
+  assert.equal(PARSE_CAP, 10);
+  assert.equal(parseWorldHighlightsDetailed(many, candidates).kept.length, 4);
   assert.deepEqual(parseWorldHighlights(null, candidates), []);
   assert.deepEqual(parseWorldHighlights({ highlights: [null, 4, "x", {}] }, candidates), []);
 });
@@ -240,7 +247,39 @@ test("worldRoundup writes, fact-checks, and ships without a revision when everyt
   assert.match(prompts[0], /Keep it short/);
   assert.match(prompts[1], /Roundup line: Eddie Jones guides Japan/);
   assert.deepEqual(out.highlights.map((h) => h.teamId), [463]);
-  assert.deepEqual(out, { ...out, checked: true, revised: false, dropped: [] });
+  assert.deepEqual(out, { ...out, checked: true, revised: false, dropped: [], unused: [] });
+});
+
+test("worldRoundup checks every gated line, publishes the top four survivors, and does not revise when four survive", async () => {
+  // Six nations' worth of candidates so six lines can pass the gate.
+  const six = [
+    ...candidates,
+    { teamId: 391, team: "Wales", heading: "Wales cut regions to three", body: "The WRU confirmed the plan." },
+    { teamId: 461, team: "Australia", heading: "Wallabies recall Petaia", body: "Les Kiss named him for the Boks Test." },
+  ];
+  const prompts = [];
+  const call = async (p) => {
+    prompts.push(p);
+    if (prompts.length === 1) {
+      return JSON.stringify({ highlights: [
+        { team: "Japan", text: "Eddie Jones guides Japan past Fiji to the Pacific Nations Cup." },
+        { team: "England", text: "Shaun Edwards says he would welcome a call from Borthwick." },
+        { team: "France", text: "Galthié secures protected status for Dupont." },
+        { team: "South Africa", text: "Erasmus sends Du Toit and De Allende home before Sunday's Test." },
+        { team: "Wales", text: "The WRU confirms Wales will cut regions to three." },
+        { team: "Australia", text: "Wallabies recall Petaia for the Boks Test." },
+      ] });
+    }
+    // The checker sees all six and removes one from the top four.
+    assert.match(p, /### Australia\nRoundup line: Wallabies recall Petaia/);
+    return '{"issues":[{"team":"England","problem":"not in the briefing","severity":"material"}]}';
+  };
+  const out = await worldRoundup(call, extractJson, six, "2026-09-21");
+  assert.equal(prompts.length, 2, "no revision: four good lines survived");
+  assert.deepEqual(out.highlights.map((h) => h.team), ["Japan", "France", "South Africa", "Wales"]);
+  assert.deepEqual(out.unused.map((h) => h.team), ["Australia"]);
+  assert.deepEqual(out.dropped.map((d) => d.team), ["England"]);
+  assert.equal(out.revised, false);
 });
 
 test("worldRoundup revises once with every reason, then drops what still fails", async () => {
