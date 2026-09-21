@@ -183,12 +183,36 @@ export function parseWorldHighlightsDetailed(raw, candidates) {
 // three headlines make the body. The first live edition put a list-of-names
 // heading over a six-sentence paragraph and read as a wall; this is the
 // opposite of that.
-// `teamName`, when given, also drops a line that NAMES the reader's team —
-// "Japan beat Fiji 20-15" is Japan's line, but on the Fiji tab it sits under
-// Fiji's own account of the same match.
-export function worldSection(highlights, teamId, teamName = "") {
-  const namesReader = teamName ? new RegExp(`\\b${teamName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "i") : null;
-  const others = (highlights ?? []).filter((h) => h.teamId !== Number(teamId) && !(namesReader && namesReader.test(h.text)));
+// How a nation is named in copy: the country, or the side's nickname. Used
+// both to decide whether a line already says whose story it is (no prefix
+// needed for "Wallabies recall Petaia…") and to spot a line about the reader.
+const NICKNAMES = {
+  "South Africa": ["Springboks", "Boks"],
+  Australia: ["Wallabies"],
+  "New Zealand": ["All Blacks"],
+  Argentina: ["Pumas"],
+  Italy: ["Azzurri"],
+  France: ["Les Bleus", "Bleus"],
+  Japan: ["Brave Blossoms"],
+  Fiji: ["Flying Fijians"],
+  England: ["Red Roses"],
+};
+const esc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+export function mentionsTeam(text, team) {
+  if (!team) return false;
+  const names = [team, ...(NICKNAMES[team] ?? [])].map(esc).join("|");
+  return new RegExp(`\\b(?:${names})(?:['’]s)?\\b`, "i").test(text);
+}
+
+// `teamName` and `ownStory` (the reader's own edition text), when given, also
+// drop a line that is the reader's own story told from the other side: the
+// line names the reader AND the reader's edition names that nation. "Japan
+// beat Fiji 20-15" sits under Fiji's own account of the final, so it goes;
+// "Wallabies recall Petaia for Springboks Test" on the Boks tab stays, since
+// the Boks edition that day was about Du Toit going home, not the Wallabies.
+export function worldSection(highlights, teamId, teamName = "", ownStory = "") {
+  const others = (highlights ?? []).filter((h) =>
+    h.teamId !== Number(teamId) && !(mentionsTeam(h.text, teamName) && mentionsTeam(ownStory, h.team)));
   if (!others.length) return null;
   const [top, ...rest] = others.map(labelled);
   return {
@@ -205,8 +229,7 @@ export function worldSection(highlights, teamId, teamName = "") {
 // is left alone: the first live run printed "Japan — Japan secured…" for
 // half its list, which is exactly the doubling this avoids.
 function labelled(h) {
-  const namesTeam = new RegExp(`\\b${h.team.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}(?:['’]s)?\\b`, "i");
-  return namesTeam.test(h.text) ? h.text : `${h.team}: ${h.text}`;
+  return mentionsTeam(h.text, h.team) ? h.text : `${h.team}: ${h.text}`;
 }
 
 // Append the roundup to each of today's editions. Only TODAY's — a team whose
@@ -214,11 +237,12 @@ function labelled(h) {
 export function attachWorldSections(generated, highlights, teams = {}) {
   return Object.fromEntries(
     Object.entries(generated).map(([id, digest]) => {
-      const section = digest?.sections ? worldSection(highlights, id, teams[id]?.name ?? "") : null;
+      const own = digest?.sections?.[0] ? `${digest.sections[0].heading ?? ""} ${digest.sections[0].body ?? ""}` : "";
+      const section = digest?.sections ? worldSection(highlights, id, teams[id]?.name ?? "", own) : null;
       if (!section) return [id, digest];
       // Idempotent: a re-run over a digest that already carries one replaces it.
-      const own = digest.sections.filter((s) => s?.kicker !== WORLD_KICKER);
-      return [id, { ...digest, sections: [...own, section] }];
+      const story = digest.sections.filter((s) => s?.kicker !== WORLD_KICKER);
+      return [id, { ...digest, sections: [...story, section] }];
     }),
   );
 }
