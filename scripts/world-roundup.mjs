@@ -33,6 +33,12 @@ export const WORLD_KICKER = "Around the world";
 // sentences as one 130-word paragraph — a wall on a phone. Nico's brief:
 // less is more. Top story is the heading, the rest a two-or-three-line body.
 export const WORLD_MAX_ITEMS = 4;
+// The gate and the checker see up to this many lines; the publish cap is
+// applied AFTER checking, so a good line further down fills a gap left by a
+// bad one above it. The 22:26 run on 2026-09-21 wrote ten lines, the gate kept
+// the first four, the checker removed three, and six perfectly good lines
+// were never looked at.
+export const PARSE_CAP = 10;
 const ITEM_MIN_WORDS = 4;
 const ITEM_MAX_WORDS = 16; // the prompt asks for ≤12; this is the hard gate
 
@@ -123,7 +129,7 @@ const terminal = (s) => (/[.!?…”"']$/.test(s) ? s : `${s}.`);
 // repaired: a missing nation in the roundup costs nothing, a wrong one
 // misinforms twelve tabs at once.
 export function parseWorldHighlights(raw, candidates) {
-  return parseWorldHighlightsDetailed(raw, candidates).kept;
+  return parseWorldHighlightsDetailed(raw, candidates).kept.slice(0, WORLD_MAX_ITEMS);
 }
 
 // Same gate, but it also says WHY each line failed — the revision feedback
@@ -162,7 +168,7 @@ export function parseWorldHighlightsDetailed(raw, candidates) {
       reject(`the ${c.team} briefing is about the women's / age-grade side and the line does not say so`);
       continue;
     }
-    if (kept.length >= WORLD_MAX_ITEMS) { reject(`over the ${WORLD_MAX_ITEMS}-line cap`); continue; }
+    if (kept.length >= PARSE_CAP) { reject(`over the ${PARSE_CAP}-line parse cap`); continue; }
     seen.add(c.teamId);
     kept.push({ teamId: c.teamId, team: c.team, text: terminal(text) });
   }
@@ -238,14 +244,14 @@ ${pairs}
 - a fact, name, score or number in the line that the briefing does not
   contain, or that the briefing contradicts;
 - the line attributed to the wrong nation or side;
-- the briefing is about women's rugby, an age-grade side, sevens or a club
-  and the line does not say so — the app is men's internationals by default,
-  so "England drew with Canada" for a Red Roses match misinforms the reader;
 - a rumour or expectation in the briefing stated as settled fact in the line.
 
 ## Not errors — never flag these
 - compression, paraphrase, present tense, a dropped venue or detail;
 - a line that names the team by nickname (Wallabies, Boks, All Blacks);
+- whether the line carries a "women's" / "U20" / "sevens" label — that is
+  checked in code before you see it, and every line here already passed;
+  never flag a line for a missing or a present label;
 - style, word choice, or a line you would merely have written differently.
 
 ## Output — strict JSON, nothing else
@@ -269,12 +275,14 @@ export function applyWorldCheck(highlights, raw) {
   return { kept, dropped };
 }
 
-// The roundup: write, gate, check — and ONE revision when anything failed,
+// The roundup: write, gate, check, then publish the top four survivors —
+// and ONE revision when something failed AND fewer than four survived,
 // carrying every reason back to the writer (the same bounded loop the
 // editions get). Without it the 20:23 run on 2026-09-21 published a
 // one-line roundup: the checker removed three of four lines for a missing
 // "women" label the writer could have added in a second pass. Whatever still
-// fails after the revision is dropped, never rewritten by hand.
+// fails after the revision is dropped, never rewritten by hand. Survivors
+// below the cut are not failures; they are reported as `unused`.
 //
 // `callModel(prompt) → text`; `extractJson(text) → object`. Throws when the
 // WRITER answers nothing usable (the caller treats that as "no roundup
@@ -282,7 +290,7 @@ export function applyWorldCheck(highlights, raw) {
 // ships unchecked, since every line was cut from copy that already passed
 // its own fact-check.
 export async function worldRoundup(callModel, extractJson, candidates, dateISO, { notes = "" } = {}) {
-  if (candidates.length < 2) return { highlights: [], dropped: [], checked: false, revised: false };
+  if (candidates.length < 2) return { highlights: [], dropped: [], unused: [], checked: false, revised: false };
   const prompt = buildWorldPrompt(candidates, dateISO, notes);
 
   // One pass: write (with optional feedback), gate in code, fact-check.
@@ -299,7 +307,7 @@ export async function worldRoundup(callModel, extractJson, candidates, dateISO, 
 
   let result = await pass();
   let revised = false;
-  if (result.dropped.length) {
+  if (result.dropped.length && result.kept.length < WORLD_MAX_ITEMS) {
     const feedback = `## Your previous draft — these lines failed and were removed. Fix ALL of them.
 ${result.dropped.map((d) => `- ${d.team}: "${d.text}" — ${d.problem}`).join("\n")}
 Rewrite the full roundup. Keep every line that was not listed above as it
@@ -314,5 +322,11 @@ the claim) or leave that nation out. Output the complete JSON again.`;
       // still ship, and the run log says what was dropped.
     }
   }
-  return { highlights: result.kept, dropped: result.dropped, checked: result.checked, revised };
+  return {
+    highlights: result.kept.slice(0, WORLD_MAX_ITEMS),
+    unused: result.kept.slice(WORLD_MAX_ITEMS),
+    dropped: result.dropped,
+    checked: result.checked,
+    revised,
+  };
 }
