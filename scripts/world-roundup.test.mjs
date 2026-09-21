@@ -43,6 +43,7 @@ test("buildWorldPrompt carries every candidate edition, the JSON contract and th
   assert.ok(!p.includes("Argentina"));
   assert.ok(!p.includes("Standing notes"));
   assert.match(p, /Men's senior internationals are the default/);
+  assert.match(p, /Offer up to six\s+candidates/);
   const withNotes = buildWorldPrompt(candidates, "2026-09-21", "- Never lead with an opinion piece.");
   assert.match(withNotes, /Standing notes[\s\S]*Never lead with an opinion piece/);
 });
@@ -84,6 +85,9 @@ test("buildWorldCheckPrompt pairs every line with its source briefing", () => {
   assert.match(p, /### Japan\nRoundup line: Japan beat Fiji 27-24[\s\S]*Source briefing: Eddie Jones guides Japan/);
   // Labels are the code gate's job; the checker is told to leave them alone.
   assert.match(p, /never flag a line for a missing or a present label/);
+  // And it checks line-against-briefing, never briefing-against-reality.
+  assert.match(p, /the briefing is the authority/);
+  assert.match(p, /Never reject a line on\s+outside knowledge/);
   assert.doesNotMatch(p, /Material errors[\s\S]*and the line does not say so/);
   assert.ok(p.includes('{"issues": ['));
 });
