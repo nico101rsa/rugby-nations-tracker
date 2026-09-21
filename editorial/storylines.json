@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-20T22:01:24.491Z",
+  "updatedAt": "2026-09-21T08:43:02.404Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 204,
+  "count": 197,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -41,6 +41,11 @@
       "resolution": "until Northampton Saints confirm whether they have reached a new salary agreement with Henry Pollock",
       "sources": [
         {
+          "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
+          "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -49,15 +54,10 @@
           "title": "Pollock denies signing Northampton deal and is ‘open to every opportunity’",
           "link": "https://www.theguardian.com/sport/2026/sep/14/henry-pollock-northampton-new-contract-negotiations-move-abroad-rugby-union",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "'He's an idiot, but he's our idiot' - Saints fans on Pollock contract stand-off",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6d08yve0n8no?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-08-05",
-      "lastSeen": "2026-09-20",
+      "lastSeen": "2026-09-21",
       "uses": 1,
       "lastUsed": "2026-08-09"
     },
@@ -88,35 +88,6 @@
       "firstSeen": "2026-08-09",
       "lastSeen": "2026-09-11",
       "uses": 0
-    },
-    {
-      "id": "the-wru-proposal-to-1vw49ip",
-      "subject": "The Welsh Rugby Union's proposal to cut the number of professional teams to three",
-      "teams": [
-        391
-      ],
-      "resolution": "until the Welsh Rugby Union officially confirms which regional team will be disbanded or merged",
-      "sources": [
-        {
-          "title": "WRU condemns abuse and doubles down on three-team plan",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq891l3g3keo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Scarlets vow to remain at heart of west Wales",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwyeq2n79n9o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "WRU confirms Scarlets or Ospreys will be cut",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c171w048jdgo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-13",
-      "lastSeen": "2026-08-31",
-      "uses": 2,
-      "lastUsed": "2026-09-06"
     },
     {
       "id": "les-kiss-ongoing-search-1qwu6af",
@@ -231,83 +202,6 @@
       "lastSeen": "2026-09-13",
       "uses": 1,
       "lastUsed": "2026-08-25"
-    },
-    {
-      "id": "henry-pollock-s-northampton-b2z2fo",
-      "subject": "Henry Pollock's Northampton contract negotiations and Sevens future",
-      "teams": [
-        386
-      ],
-      "resolution": "until Henry Pollock signs a contract extension or announces a move to another club or the Sevens circuit",
-      "sources": [
-        {
-          "title": "England greats predict what will happen when Eddie Hearn ‘soon realises rugby is not like Riyadh’ following his million-pound Henry Pollock demand",
-          "link": "https://www.planetrugby.com/news/england-greats-predict-what-will-happen-when-eddie-hearn-soon-realises-rugby-is-not-like-riyadh-following-his-million-pound-henry-pollock-demand",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Pollock offered sevens opportunity",
-          "link": "https://www.sarugbymag.co.za/pollock-offered-sevens-opportunity/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Pollock to demand £1m a year at Northampton - Hearn",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c05q1g9v2evo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-18",
-      "lastSeen": "2026-08-31",
-      "uses": 1,
-      "lastUsed": "2026-08-31"
-    },
-    {
-      "id": "lisa-neumann-s-playing-1s5sx6t",
-      "subject": "Lisa Neumann's playing future following her exit from Harlequins",
-      "teams": [
-        391
-      ],
-      "resolution": "until Neumann signs with a new club or announces her retirement",
-      "sources": [
-        {
-          "title": "Neumann uncertain over future after Quins exit",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c20eygrlklzo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-19",
-      "lastSeen": "2026-08-31",
-      "uses": 1,
-      "lastUsed": "2026-08-30"
-    },
-    {
-      "id": "ollie-lawrence-and-elliot-hypy86",
-      "subject": "Ollie Lawrence and Elliot Daly’s international futures following their loss of central contracts",
-      "teams": [
-        386
-      ],
-      "resolution": "until Steve Borthwick announces his next squad for a major tournament or Test window",
-      "sources": [
-        {
-          "title": "Five players get first England deals in Borthwick shake-up",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwy427n1dnvo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Lawrence and Daly lose England central contracts as Borthwick looks to World Cup",
-          "link": "https://www.theguardian.com/sport/2026/aug/12/ollie-lawrence-elliot-daly-lose-england-central-contracts-rugby-union-world-cup",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Progress or standing still - where are England under Borthwick?",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/crr8r25yv7vo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-21",
-      "lastSeen": "2026-08-31",
-      "uses": 1,
-      "lastUsed": "2026-09-01"
     },
     {
       "id": "sacha-feinberg-mngomezulu-s-175kmta",
@@ -475,34 +369,6 @@
       "lastSeen": "2026-09-05",
       "uses": 1,
       "lastUsed": "2026-09-01"
-    },
-    {
-      "id": "handr-pollard-s-injury-1itxalf",
-      "subject": "Handré Pollard's injury recovery and availability for the third Test in Soweto",
-      "teams": [
-        467
-      ],
-      "resolution": "until South Africa provides an injury update or match-day squad for the third Test",
-      "sources": [
-        {
-          "title": "Springboks blow: Handre Pollard ruled out of second All Blacks Test – report",
-          "link": "https://www.planetrugby.com/news/springboks-team-v-all-blacks-handre-pollard-in-doubt-for-cape-town-test",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Stick on tearful Handré, 'not nice' KLA situation",
-          "link": "https://www.sarugbymag.co.za/stick-tearful-handre-not-nice-kla-situation/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Springboks team changes: Rassie Erasmus loses Handre Pollard but gains Cheslin Kolbe for second All Blacks Test",
-          "link": "https://www.planetrugby.com/news/springboks-team-v-all-blacks-rassie-welcomes-back-kolbe-but-loses-pollard-for-test-ii",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-08-29",
-      "lastSeen": "2026-08-31",
-      "uses": 0
     },
     {
       "id": "jack-crowley-s-long-42fklq",
@@ -794,124 +660,6 @@
       "firstSeen": "2026-08-31",
       "lastSeen": "2026-09-01",
       "uses": 0
-    },
-    {
-      "id": "cheslin-kolbe-s-potential-1aa6am5",
-      "subject": "The potential citing of Cheslin Kolbe for an alleged punching incident",
-      "teams": [
-        467
-      ],
-      "resolution": "until World Rugby or the series organizers confirm if he will face a citing or sanction",
-      "sources": [
-        {
-          "title": "Fans call on Cheslin Kolbe to face punishment following 'punching' incident in Cape Town",
-          "link": "https://www.planetrugby.com/news/fans-call-on-cheslin-kolbe-to-face-punishment-following-punching-incident-in-cape-town",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-08-31",
-      "lastSeen": "2026-08-31",
-      "uses": 0
-    },
-    {
-      "id": "scam-accusations-against-travel-4bznux",
-      "subject": "Scam accusations against travel agencies regarding Springboks v All Blacks tickets",
-      "teams": [
-        467,
-        465
-      ],
-      "resolution": "until SA Rugby's legal action against the involved travel agencies is resolved",
-      "sources": [
-        {
-          "title": "Scammed Bok fans left ticketless",
-          "link": "https://www.sarugbymag.co.za/scammed-bok-fans-left-ticketless/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "SA Rugby take legal action over scam accusations after supporters left 'ticketless'",
-          "link": "https://www.planetrugby.com/news/sa-rugby-take-legal-action-over-scam-accusations-after-supporters-left-ticketless",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-08-31",
-      "lastSeen": "2026-08-31",
-      "uses": 0
-    },
-    {
-      "id": "world-rugby-s-response-n8sszc",
-      "subject": "World Rugby's response to complaints regarding South Africa's scrum tactics",
-      "teams": [
-        467,
-        465
-      ],
-      "resolution": "until World Rugby or match officials issue a clarification on the legality of the Springboks' scrum positioning",
-      "sources": [
-        {
-          "title": "All Blacks complain to World Rugby over Springboks scrum as Dave Rennie expects it to be 'a lot better'",
-          "link": "https://www.planetrugby.com/news/all-blacks-complain-to-world-rugby-over-springboks-scrum-as-dave-rennie-expects-it-to-be-a-lot-better",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Fuming Rassie Erasmus slams Dave Rennie's 'nonsense' after All Blacks accusations as he insists Springboks 'won't stay quiet'",
-          "link": "https://www.planetrugby.com/news/rassie-erasmus-slams-dave-rennies-nonsense-after-all-blacks-accusations-as-he-insists-springboks-wont-stay-quiet",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Rassie: We not f**king walking around!",
-          "link": "https://www.sarugbymag.co.za/rassie-not-fing-walking-around/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-08-31",
-      "lastSeen": "2026-08-31",
-      "uses": 0
-    },
-    {
-      "id": "the-capping-of-ireland-1ia8c0f",
-      "subject": "The capping of Ireland's seven new WXV squad members",
-      "teams": [
-        388
-      ],
-      "resolution": "until all seven uncapped players either make their debut or the WXV tournament concludes",
-      "sources": [
-        {
-          "title": "Seven uncapped players in Ireland's WXV squad",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c2097q21pe7o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-31",
-      "lastSeen": "2026-08-31",
-      "uses": 0
-    },
-    {
-      "id": "henry-pollock-s-pursuit-1kwtgxn",
-      "subject": "Henry Pollock's pursuit of a £1m-a-season valuation following his England hat-trick",
-      "teams": [
-        386
-      ],
-      "resolution": "until Pollock signs a new professional contract under the current salary cap regulations",
-      "sources": [
-        {
-          "title": "Why £1m-a-season deal will be hard for Pollock and Hearn to find",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ckg4y9ylr77o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Pollock scores hat-trick as 11-try England thrash Fiji",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/videos/cz0jv2y07m1o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Rugby Union Weekly: Pollock hat-trick helps England end losing run",
-          "link": "https://www.bbc.co.uk/sounds/play/p0ny8qgp?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-08-31",
-      "lastSeen": "2026-08-31",
-      "uses": 1,
-      "lastUsed": "2026-09-01"
     },
     {
       "id": "sacha-feinberg-mngomezulu-s-1j181am",
@@ -3051,7 +2799,7 @@
         }
       ],
       "firstSeen": "2026-09-12",
-      "lastSeen": "2026-09-20",
+      "lastSeen": "2026-09-21",
       "uses": 0
     },
     {
@@ -4763,7 +4511,8 @@
         386,
         391,
         388,
-        390
+        390,
+        387
       ],
       "resolution": "until Shaun Edwards accepts a coaching role with a Six Nations team",
       "sources": [
@@ -4775,7 +4524,8 @@
       ],
       "firstSeen": "2026-09-21",
       "lastSeen": "2026-09-21",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-21"
     },
     {
       "id": "world-rugby-s-plans-1rki5mh",
@@ -4830,6 +4580,71 @@
           "title": "IRFU await news of 'massive opportunity' to join PWR",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6dx0z98d289o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-21",
+      "lastSeen": "2026-09-21",
+      "uses": 0
+    },
+    {
+      "id": "jacques-nienaber-s-potential-1j549m5",
+      "subject": "Jacques Nienaber's potential move to the Argentina head coach position",
+      "teams": [
+        388,
+        460
+      ],
+      "resolution": "until the Argentine Rugby Union confirms their permanent head coach appointment",
+      "sources": [
+        {
+          "title": "Jacques Nienaber shares update on his Leinster future, gives Greatest Rivalry verdict and names his ‘Alex Ferguson of rugby’",
+          "link": "https://www.planetrugby.com/news/jacques-nienaber-shares-update-on-his-leinster-future-gives-greatest-rivalry-verdict-and-names-his-alex-ferguson-of-rugby",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Nienaber coy on next move",
+          "link": "https://www.sarugbymag.co.za/nienaber-coy-next-move/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-21",
+      "lastSeen": "2026-09-21",
+      "uses": 0
+    },
+    {
+      "id": "the-identity-of-the-nqagoo",
+      "subject": "The identity of the Springboks' opponent for their final 2027 World Cup warm-up",
+      "teams": [
+        467
+      ],
+      "resolution": "until SA Rugby officially reveals the confirmed opponent",
+      "sources": [
+        {
+          "title": "Springboks confirm top 10-ranked nation for final 2027 World Cup warm-up match: 'They force to be reckoned with'",
+          "link": "https://www.planetrugby.com/news/springboks-confirm-final-2027-rugby-world-cup-warm-up-match",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Boks' final World Cup warm-up locked in",
+          "link": "https://www.sarugbymag.co.za/boks-final-world-cup-warmup-locked/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-21",
+      "lastSeen": "2026-09-21",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-search-for-3zz949",
+      "subject": "Rassie Erasmus' search for a successor to the Springboks' standout player",
+      "teams": [
+        467
+      ],
+      "resolution": "until Erasmus identifies and tests a consistent replacement for the position highlighted by Nick Mallett",
+      "sources": [
+        {
+          "title": "Nick Mallett picks his RGR Player of the Series who is the one Springbok Rassie Erasmus needs a replacement for",
+          "link": "https://www.planetrugby.com/news/nick-mallett-picks-his-rgr-player-of-the-series-who-is-the-one-springbok-rassie-erasmus-needs-a-replacement-for",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-09-21",
