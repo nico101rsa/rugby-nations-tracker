@@ -98,7 +98,10 @@ jobs:
           # storylines.json is authored HERE (the quiet-day backlog) and carries
           # the use counts. Omitting it from this snapshot would silently revert
           # the day's backlog update on any push race.
-          cp editorial/editor-notes.md editorial/checker-notes.md editorial/storylines.json /tmp/editorial-ours/ 2>/dev/null || true
+          # world-notes.md is the roundup's standing notes, written by the same
+          # review — leaving it out of the snapshot would revert the day's
+          # roundup notes on any push race.
+          cp editorial/editor-notes.md editorial/checker-notes.md editorial/world-notes.md editorial/storylines.json /tmp/editorial-ours/ 2>/dev/null || true
           git fetch origin main
           git reset --hard origin/main
           node -e '

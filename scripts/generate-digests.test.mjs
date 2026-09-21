@@ -685,3 +685,17 @@ test("buildRunReport: records the Around the world roundup as published", () => 
   assert.equal(legacy.counts.world, 0);
   assert.deepEqual(legacy.world, []);
 });
+
+test("buildReviewPrompt reviews the Around the world roundup only when there is one", () => {
+  const editions = [{ team: "Japan", digest: { sections: [{ kicker: "Cup final", heading: "H", body: "B" }] }, shortlist: [] }];
+  const without = buildReviewPrompt(editions, "2026-09-21");
+  assert.doesNotMatch(without, /Around the world — the roundup/);
+  assert.doesNotMatch(without, /world_notes/);
+  const world = [{ team: "England", text: "England's 39-match run ends in a draw with Canada." }];
+  const withWorld = buildReviewPrompt(editions, "2026-09-21", world);
+  assert.match(withWorld, /Around the world — the roundup/);
+  assert.match(withWorld, /- England: England's 39-match run ends/);
+  assert.match(withWorld, /"world_notes"/);
+  // The men's-by-default labelling rule is a review criterion for editions too.
+  assert.match(withWorld, /Labelling.*MEN'S international rugby/s);
+});

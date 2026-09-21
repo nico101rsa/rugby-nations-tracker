@@ -9,6 +9,9 @@ import {
   worldSection,
   attachWorldSections,
   worldRoundup,
+  buildWorldCheckPrompt,
+  applyWorldCheck,
+  NON_MENS,
 } from "./world-roundup.mjs";
 import { extractJson } from "./generate-digests.mjs";
 
@@ -29,11 +32,55 @@ test("roundupCandidates takes today's story editions and skips data editions", (
   assert.equal(candidates[2].heading, "Eddie Jones guides Japan to Pacific Nations Cup triumph over Fiji");
 });
 
-test("buildWorldPrompt carries every candidate edition and the JSON contract", () => {
+test("buildWorldPrompt carries every candidate edition, the JSON contract and the standing notes", () => {
   const p = buildWorldPrompt(candidates, "2026-09-21");
   for (const c of candidates) assert.ok(p.includes(`### ${c.team}\n${c.heading}\n${c.body}`));
   assert.ok(p.includes('{"highlights": ['));
   assert.ok(!p.includes("Argentina"));
+  assert.ok(!p.includes("Standing notes"));
+  assert.match(p, /Men's senior internationals are the default/);
+  const withNotes = buildWorldPrompt(candidates, "2026-09-21", "- Never lead with an opinion piece.");
+  assert.match(withNotes, /Standing notes[\s\S]*Never lead with an opinion piece/);
+});
+
+test("parseWorldHighlights drops a line that loses the women's / age-grade label", () => {
+  const cands = [
+    { teamId: 386, team: "England", heading: "England women end 39-match run in draw with Canada", body: "The Red Roses drew 26-26 at Sandy Park." },
+    { teamId: 387, team: "France", heading: "France U20 beat Italy", body: "A 40-10 win in Treviso." },
+    { teamId: 463, team: "Japan", heading: "Japan lift the Pacific Nations Cup", body: "Japan beat Fiji 20-15." },
+  ];
+  const out = parseWorldHighlights({ highlights: [
+    { team: "England", text: "England's 39-match winning run ends in a draw with Canada." },
+    { team: "France", text: "France U20 beat Italy 40-10 in Treviso." },
+    { team: "Japan", text: "Japan beat Fiji 20-15 to lift the Pacific Nations Cup." },
+  ] }, cands);
+  assert.deepEqual(out.map((h) => h.team), ["France", "Japan"]);
+  assert.ok(NON_MENS.test("the Red Roses") && NON_MENS.test("Wallaroos") && !NON_MENS.test("the Wallabies"));
+});
+
+test("buildWorldCheckPrompt pairs every line with its source briefing", () => {
+  const hl = [{ teamId: 463, team: "Japan", text: "Japan beat Fiji 27-24 to lift the Pacific Nations Cup." }];
+  const p = buildWorldCheckPrompt(hl, candidates, "2026-09-21");
+  assert.match(p, /### Japan\nRoundup line: Japan beat Fiji 27-24[\s\S]*Source briefing: Eddie Jones guides Japan/);
+  assert.match(p, /women's rugby/);
+  assert.ok(p.includes('{"issues": ['));
+});
+
+test("applyWorldCheck drops only material issues, matched by nation", () => {
+  const hl = [
+    { teamId: 463, team: "Japan", text: "A." },
+    { teamId: 386, team: "England", text: "B." },
+    { teamId: 387, team: "France", text: "C." },
+  ];
+  const { kept, dropped } = applyWorldCheck(hl, { issues: [
+    { team: "england", problem: "Red Roses match not labelled", severity: "material" },
+    { team: "France", problem: "could be closer to source", severity: "minor" },
+    { team: "Wales", problem: "not in the list", severity: "material" },
+    null,
+  ] });
+  assert.deepEqual(kept.map((h) => h.team), ["Japan", "France"]);
+  assert.deepEqual(dropped, [{ team: "England", text: "B.", problem: "Red Roses match not labelled" }]);
+  assert.equal(applyWorldCheck(hl, null).kept.length, 3);
 });
 
 test("parseWorldHighlights keeps well-formed lines and drops unknown teams", () => {
@@ -149,17 +196,36 @@ test("attachWorldSections replaces an existing roundup rather than stacking", ()
   assert.equal(twice[467].sections[1].body, "England's 39-match winning run ends in a draw with Canada.");
 });
 
-test("worldRoundup runs the injected model and returns parsed highlights", async () => {
+test("worldRoundup writes, then fact-checks, and drops what the checker flags", async () => {
   const prompts = [];
-  const call = async (p) => { prompts.push(p); return 'Sure:\n```json\n{"highlights":[{"team":"Japan","text":"Eddie Jones guides Japan past Fiji to the Pacific Nations Cup."}]}\n```'; };
-  const out = await worldRoundup(call, extractJson, candidates, "2026-09-21");
-  assert.equal(prompts.length, 1);
-  assert.deepEqual(out.map((h) => h.teamId), [463]);
+  const call = async (p) => {
+    prompts.push(p);
+    if (prompts.length === 1) {
+      return 'Sure:\n```json\n{"highlights":[{"team":"Japan","text":"Eddie Jones guides Japan past Fiji to the Pacific Nations Cup."},{"team":"England","text":"Shaun Edwards says he would welcome a call from Borthwick."}]}\n```';
+    }
+    return '{"issues":[{"team":"England","problem":"Edwards did not say that","severity":"material"}]}';
+  };
+  const out = await worldRoundup(call, extractJson, candidates, "2026-09-21", { notes: "- Keep it short." });
+  assert.equal(prompts.length, 2);
+  assert.match(prompts[0], /Keep it short/);
+  assert.match(prompts[1], /Roundup line: Eddie Jones guides Japan/);
+  assert.deepEqual(out.highlights.map((h) => h.teamId), [463]);
+  assert.equal(out.checked, true);
+  assert.equal(out.dropped[0].team, "England");
 });
 
-test("worldRoundup throws on an unusable answer and skips the call with one edition", async () => {
+test("worldRoundup ships unchecked when the checker answers nothing usable", async () => {
+  let n = 0;
+  const call = async () => (++n === 1 ? '{"highlights":[{"team":"Japan","text":"Japan lift the Pacific Nations Cup in Tokyo."}]}' : "sorry");
+  const out = await worldRoundup(call, extractJson, candidates, "2026-09-21");
+  assert.equal(out.highlights.length, 1);
+  assert.equal(out.checked, false);
+});
+
+test("worldRoundup throws on an unusable writer answer and skips the call with one edition", async () => {
   await assert.rejects(() => worldRoundup(async () => "no json here", extractJson, candidates, "2026-09-21"), /no usable JSON/);
   let called = 0;
-  assert.deepEqual(await worldRoundup(async () => { called++; return "{}"; }, extractJson, candidates.slice(0, 1), "2026-09-21"), []);
+  const out = await worldRoundup(async () => { called++; return "{}"; }, extractJson, candidates.slice(0, 1), "2026-09-21");
+  assert.deepEqual(out.highlights, []);
   assert.equal(called, 0);
 });
