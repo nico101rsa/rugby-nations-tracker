@@ -960,6 +960,37 @@
      "events": 0
     }
    ]
+  },
+  {
+   "at": "2026-09-23T14:27:49.075Z",
+   "healthy": false,
+   "summary": "RSA/last 503",
+   "rows": [
+    {
+     "code": "NZL",
+     "half": "last",
+     "status": 200,
+     "events": 0
+    },
+    {
+     "code": "NZL",
+     "half": "next",
+     "status": 200,
+     "events": 0
+    },
+    {
+     "code": "RSA",
+     "half": "last",
+     "status": 503,
+     "events": 0
+    },
+    {
+     "code": "RSA",
+     "half": "next",
+     "status": 200,
+     "events": 0
+    }
+   ]
   }
  ]
 }
