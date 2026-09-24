@@ -2,27 +2,38 @@
   "date": "2026-09-25",
   "counts": {
     "editions": 12,
-    "quiet": 3,
-    "storyline": 2,
+    "quiet": 2,
+    "storyline": 1,
     "dataEdition": 1,
     "failed": 0,
-    "noLead": 1,
+    "noLead": 0,
     "world": 4
   },
   "failed": [],
   "teams": [
     {
       "team": "Fiji",
-      "quiet": true,
-      "rung": "data",
+      "quiet": false,
+      "rung": "news",
       "storyline": null,
-      "dataAngle": "form",
-      "heading": "Fiji drop to 12th in standings after suffering defeat against Scotland",
-      "kicker": "Form slump",
-      "body": "In their last five games, Fiji have won one match. They have lost four of those five matches. Their most recent fixture ended in a 20-15 home defeat against Japan in September 2026 during the knockout stage of the Pacific Nations Cup. In the current tournament, the team sit 12th in the standings after three matches. The side has suffered three losses from those three games, most recently falling 17-33 to Scotland.",
+      "dataAngle": null,
+      "heading": "Fiji Rugby pursues vital development fees from major overseas professional clubs",
+      "kicker": "Financial development",
+      "body": "Fiji Rugby is actively seeking development fees from overseas clubs to bolster its financial sustainability. Officials are prioritising these payments to better support local talent pathways as more players head abroad at a younger age. The initiative aims to ensure the union is adequately compensated when players nurtured within the Fijian system transition to professional environments internationally. This strategy is seen as a necessary step to protect the players and ensure the long-term health of the national programme.",
       "source": null,
-      "lead": null,
+      "lead": {
+        "candidate": 1,
+        "why": "This is a significant ongoing administrative development regarding the financial future and sustainability of Fiji Rugby."
+      },
       "candidates": [
+        {
+          "title": "'Protect the players': Fiji Rugby pursues development fees from overseas clubs",
+          "score": 26.2,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ]
+        },
         {
           "title": "Asahi Super Dry Pacific Nations Cup 2026 Final Preview – Japan vs Fiji",
           "score": 15.1,
@@ -41,8 +52,8 @@
           ]
         },
         {
-          "title": "Fiji spearheads push to 'make rugby league great again' in the Pacific",
-          "score": 1.4,
+          "title": "Fiji 7s teams bring smiles to blind school",
+          "score": 1.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -51,14 +62,6 @@
         {
           "title": "Second Fiji front-rower suspended for red card at Women's Rugby World Cup",
           "score": 1.3,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Durutalo tasked with strengthening Fiji’s rugby pathways",
-          "score": 1,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -72,18 +75,27 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Premiership agrees refereeing revamp to boost Steve Borthwick's World Cup plans",
-      "kicker": "Refereeing revamp",
-      "body": "Steve Borthwick has secured a significant structural boost ahead of next year's World Cup in Australia. Premiership Rugby has agreed to a refereeing revamp for the upcoming domestic season to better align club officiating with the international game. Following a meeting between Borthwick and directors of rugby, the RFU's refereeing team will adjust interpretations around the offside line, the scrum's brake-foot law, and the breakdown, targeting areas of previous inconsistency.",
+      "heading": "England men's rugby hopes boosted by new Prem refereeing law interpretations",
+      "kicker": "Domestic reform",
+      "body": "Steve Borthwick has secured a tactical shift for the upcoming season, with Prem Rugby agreeing to new refereeing interpretations designed to align domestic club matches more closely with the international game. Targeted areas include the scrum’s brake-foot law and the offside line, as well as greater officiating consistency at the breakdown. Borthwick, aiming to challenge South Africa’s international dominance, hopes these changes will better prepare his squad for the intensity and breakdown contests expected at next year's World Cup.",
       "source": "Guardian Rugby Union",
       "lead": {
-        "candidate": 2,
-        "why": "The Premiership's refereeing overhaul directly aligns club officiating with the international game, handing Steve Borthwick a major World Cup preparation boost."
+        "candidate": 3,
+        "why": "This represents a significant, long-term structural change to English domestic rugby specifically designed to aid the men's national team."
       },
       "candidates": [
         {
+          "title": "Why England are yet to reap rewards of £264m deal with Rugby World Cup only a year away | Gerard Meagher",
+          "score": 72.3,
+          "corroboration": 2,
+          "outlets": [
+            "guardian",
+            "search"
+          ]
+        },
+        {
           "title": "England’s historic winning streak ends after Red Roses draw with Canada",
-          "score": 69.4,
+          "score": 69.3,
           "corroboration": 3,
           "outlets": [
             "bbc",
@@ -93,7 +105,7 @@
         },
         {
           "title": "Prem agrees to revamp refereeing in boost for England’s Rugby World Cup hopes",
-          "score": 63,
+          "score": 62.2,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -111,15 +123,7 @@
         },
         {
           "title": "England star likens PREM teammate with 'out and out raw pace' to Cheslin Kolbe as new Harlequins captain named",
-          "score": 38.7,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "'Exceptional' Immanuel Feyi-Waboso tipped to be a World Cup 'force' for England as Rob Baxter airs hope for 'consistent run of games' after injury issues",
-          "score": 37.2,
+          "score": 37.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -132,23 +136,23 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "World Rugby's plan to host a Six Nations match in the US",
-        "resolution": "until World Rugby formally confirms or abandons plans for a Six Nations fixture to be played in the United States",
-        "recheckHits": 4
+        "subject": "The broadcast rights agreement for the 2027 Women's British & Irish Lions tour",
+        "resolution": "until a broadcaster is officially confirmed for the inaugural tour of New Zealand",
+        "recheckHits": 2
       },
       "dataAngle": null,
-      "heading": "French Rugby Federation faces scrutiny over secret player workload management agreement",
-      "kicker": "Selection policy",
-      "body": "Debate continues to swirl around the disclosure of a secret agreement between the FFR and LNR regarding the management of 33 elite players. While intended to regulate playing time ahead of next year's World Cup, the late revelation of the list has caused consternation among fans and clubs alike. Concerns persist regarding how this rotation policy, which mandates specific rest periods and limits to annual Test appearances, will influence team selections during the upcoming Six Nations tournament.",
+      "heading": "France World Cup squad workload agreement triggers fierce debate nationwide",
+      "kicker": "Selection call",
+      "body": "The French federation and league governing body LNR faced intense scrutiny this week after a secret player workload agreement for next September's World Cup leaked to the media. The leaked plan outlines usage for 33 premium players, including mandatory rest periods and a nine-Test limit per season. The revelations sparked immediate consternation among Toulouse supporters concerned over their title tilt, alongside fan perplexity regarding the omissions of key personnel like Maxime Lucu and Greg Alldritt from the initial projections.",
       "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 2,
-        "why": "The report on the secret player agreement remains the most significant and debated topic in French rugby today."
+        "why": "Leads with the leaked Rugby World Cup player workload agreement causing a stir across French rugby."
       },
       "candidates": [
         {
           "title": "Notshe brings French lessons to Lions",
-          "score": 17.4,
+          "score": 16.4,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -156,7 +160,7 @@
         },
         {
           "title": "Loose Pass: Rugby World Cup plan causes uproar and the 'mystery men' catching the eye while savouring a sixth-tier game in France",
-          "score": 10.5,
+          "score": 10.2,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -164,7 +168,7 @@
         },
         {
           "title": "‘In almost every French game, there’s theatre’: Dean Richards on bringing joie de vivre back to English rugby",
-          "score": 6.8,
+          "score": 6.7,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -172,7 +176,7 @@
         },
         {
           "title": "Wallaroos give up big lead as France make miracle comeback in match delayed by burning bus",
-          "score": 5.5,
+          "score": 5.4,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -180,7 +184,7 @@
         },
         {
           "title": "Wallabies: Taniela Tupou's 'dead right' verdict on the Springboks and his honest admission about his 'first few months in France' with Racing",
-          "score": 4.8,
+          "score": 4.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -194,18 +198,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Ireland U20 Star Noah Byrne Departs Leinster For Australian Rules Move",
-      "kicker": "Player Departure",
-      "body": "Emerging full-back Noah Byrne has opted to leave Irish rugby, rejecting a professional academy contract with Leinster to pursue a career with the Brisbane Lions in the AFL. The 20-year-old, who started every match for Ireland during this year’s Under-20 Six Nations campaign, was considered one of the most promising back-three prospects in the country. Leinster academy manager Peter Smyth confirmed the move, noting that while the decision is a blow, the province’s door remains open to the talented dual-athlete.",
+      "heading": "Ireland Under-20 Star Noah Byrne Rejects Leinster Pro Deal",
+      "kicker": "Transfer blow",
+      "body": "Ireland Under-20s full-back Noah Byrne has dealt Leinster and Irish rugby a major blow by rejecting a full academy contract to complete a move to AFL side Brisbane Lions. Byrne started every match of this year's Six Nations campaign and was heavily praised within the Leinster academy, but has opted to pursue an Australian rules career after previously playing minor football for Dublin.",
       "source": null,
       "lead": {
         "candidate": 2,
-        "why": "The departure of a highly-rated Ireland U20 talent to the AFL represents a significant and widely reported development for the national development pathway."
+        "why": "Noah Byrne rejecting a Leinster deal for the AFL is the major player movement story of the day."
       },
       "candidates": [
         {
           "title": "How Irish provinces are shaping up for new season",
-          "score": 33.2,
+          "score": 31.8,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -213,7 +217,7 @@
         },
         {
           "title": "‘Huge loss for Irish sport yet again’ – Ireland Under-20 star rejects Leinster pro deal to complete shock AFL move",
-          "score": 21.5,
+          "score": 20.2,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -221,7 +225,7 @@
         },
         {
           "title": "Simon Zebo picks out 'team to beat' in URC as Ireland great names other sides 'in the mix' for glory",
-          "score": 21,
+          "score": 19.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -229,15 +233,15 @@
         },
         {
           "title": "Harlequins v Bath: Injury-hit Londoners without key England stars as British and Irish Lions ace returns for visitors",
-          "score": 15.9,
+          "score": 15,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ]
         },
         {
-          "title": "I’ve just one Ireland international cap but am still holding out hope I can break into Andy Farrell’s World Cup squad",
-          "score": 11.8,
+          "title": "Young Ireland U20s rugby star set for intriguing move to the AFL",
+          "score": 11.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -248,60 +252,24 @@
     {
       "team": "Italy",
       "quiet": true,
-      "rung": "storyline",
-      "storyline": {
-        "subject": "World Rugby's plan to host a Six Nations match in the US",
-        "resolution": "until World Rugby formally confirms or abandons plans for a Six Nations fixture to be played in the United States",
-        "recheckHits": 5
-      },
-      "dataAngle": null,
-      "heading": "Italy Men’s Team Prepare To Face South Africa In Turin Stadium",
-      "kicker": "Tournament Venue",
-      "body": "Top-level international rugby returns to the Allianz Stadium this November as Italy prepare to host reigning world champions South Africa. This match serves as the Azzurri's first home fixture in the newly established Nations Championship. The event was officially presented at the stadium on Sunday, 20 September, highlighting the venue's role as a recurring host for high-profile tests. Gonzalo Quesada’s side will look to build on this momentum, having already contested away matches in Japan, New Zealand and Australia.",
-      "source": "Guardian Rugby Union",
+      "rung": "data",
+      "storyline": null,
+      "dataAngle": "scoring",
+      "heading": "Italy women secure convincing victory over Japan in WXV opener",
+      "kicker": "WXV Global",
+      "body": "The Italy women's rugby team opened their WXV Global Series 2026 campaign with a resounding 55-21 victory against Japan at Stadio Omero Tognon. Captain Vittoria Ostuni Minuzzi earned her 50th cap and scored during the match, while Emma Stevanin, Aura Muzzo, Alessandra Frangipani, Alyssa D'Inca, Vittoria Vecchini and Giordana Duca also crossed for the Azzurre. Japan head coach Toshizumi Kitagawa said post-game, \"We had some positives like our attack in the opposition 22m, but we struggled to get into that area during the game.\"",
+      "source": null,
       "lead": {
-        "candidate": 2,
-        "why": "The return of top-level international rugby to Turin for the upcoming Nations Championship fixture is the key development in the men's senior schedule."
+        "candidate": 1,
+        "why": "The Italy women's team opened their WXV Global Series 2026 campaign with a resounding victory over Japan."
       },
       "candidates": [
         {
           "title": "Sakura XV Lose Heavily to Italy In WXV Global Series 2026 Opener",
-          "score": 6.1,
+          "score": 6,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
-          ]
-        },
-        {
-          "title": "Italy-South Africa: top-level rugby returns to the Allianz Stadium",
-          "score": 4.7,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Bok Women bring extra help as they eye redemption against Italy",
-          "score": 1.9,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Live: Ireland vs. Italy rugby score, updates & Six Nations 2026 fixtures",
-          "score": 0.6,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Japan vs. Italy Rugby: 5 Things To Know Before July 4",
-          "score": 0.6,
-          "corroboration": 1,
-          "outlets": [
-            "search"
           ]
         }
       ]
@@ -312,54 +280,37 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Scotland winger Darcy Graham ruled out of upcoming November international series",
+      "heading": "Darcy Graham ruled out of Scotland autumn Tests with bicep injury",
       "kicker": "Injury blow",
-      "body": "Scotland and Edinburgh winger Darcy Graham will miss the upcoming Nations Championship matches against New Zealand, Australia, and Japan after suffering a ruptured bicep. Edinburgh head coach Sean Everitt confirmed the injury, sustained in a recent friendly, will sideline the 29-year-old for at least 12 weeks. Everitt noted the disappointment of the news, stating, \"That's not good news for us and not good news for him, especially with the autumn series coming up.\" Graham is currently Scotland's leading try-scorer.",
+      "body": "Scotland and Edinburgh have suffered a major setback after winger Darcy Graham was ruled out for a minimum of 12 weeks with a ruptured bicep. Edinburgh head coach Sean Everitt revealed that the 29-year-old sustained the injury during a friendly against Harlequins, meaning he will miss November's home Tests against New Zealand, Australia and Japan. \"That's not good news for us and not good news for him, especially with the autumn series coming up,\" Everitt said.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 1,
-        "why": "The news of Darcy Graham's long-term injury significantly impacts Scotland's upcoming autumn international squad."
+        "why": "Darcy Graham being ruled out of the autumn Tests is the major injury blow dominating coverage."
       },
       "candidates": [
         {
           "title": "Scotland and Edinburgh suffer massive blow as Darcy Graham ruled out until the New Year",
-          "score": 91.4,
-          "corroboration": 2,
+          "score": 49.6,
+          "corroboration": 1,
           "outlets": [
-            "planetrugby",
-            "search"
+            "planetrugby"
           ]
         },
         {
           "title": "Injury rules Graham out of Scotland's autumn Tests",
-          "score": 29.6,
+          "score": 28.2,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ]
         },
         {
-          "title": "Darcy Graham out until Christmas and will miss Scotland’s Nations Championship campaign",
-          "score": 17.9,
+          "title": "New Zealand cruise to victory over Scotland in WXV",
+          "score": 1.4,
           "corroboration": 1,
           "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Varsity sell-out underlines potential of Scotland’s university rugby scene",
-          "score": 14.1,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Scotland vs. Argentina Rugby Kickoff Time, Lineups",
-          "score": 1.9,
-          "corroboration": 1,
-          "outlets": [
-            "search"
+            "bbc"
           ]
         }
       ]
@@ -370,18 +321,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Wales Women's Seren Lockwood ruled out for upcoming USA Test fixture",
+      "heading": "Wales Women Lose Scrum-Half Seren Lockwood For USA Test After HIA",
       "kicker": "Injury blow",
-      "body": "Scrum-half Seren Lockwood has been ruled out of the Wales Women's second WXV Global Series match against the USA this Saturday. Lockwood sustained a head injury during the first half of the side's victory over South Africa and is currently following World Rugby’s return-to-play protocols. Head coach Sean Lynn confirmed that while her absence is a loss, it provides an opportunity for Lleucu George to return at fly-half, with Keira Bevan shifting to her usual position at nine.",
+      "body": "Scrum-half Seren Lockwood has been ruled out of Wales Women's second WXV Global Series fixture against the USA after failing a head injury assessment. Lockwood was forced off during the first half of the eight-try victory over South Africa and is currently following World Rugby's return to play protocols. Her absence paves the way for Lleucu George to return at 10, with Keira Bevan reverting to her usual position of nine at Cardiff Arms Park. Head coach Sean Lynn noted that whilst it is sad to see an individual come off, the HIA process is important for player welfare.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 3,
-        "why": "This is the most time-sensitive update regarding a player injury for an upcoming Wales international fixture."
+        "why": "Seren Lockwood ruled out of the USA Test due to concussion protocols."
       },
       "candidates": [
         {
           "title": "The Wales captains looking to conquer England",
-          "score": 55.6,
+          "score": 55.1,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -390,7 +341,7 @@
         },
         {
           "title": "Ex-Welsh first minister Jones joins Scarlets board",
-          "score": 30.5,
+          "score": 28.7,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -398,7 +349,7 @@
         },
         {
           "title": "Wales suffer scrum-half Lockwood blow for USA Test",
-          "score": 25.9,
+          "score": 25,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -406,7 +357,7 @@
         },
         {
           "title": "What are Welsh sides' chances for new URC season?",
-          "score": 25.1,
+          "score": 23.8,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -414,7 +365,7 @@
         },
         {
           "title": "Wales' first-choice XV named exactly one year out from the Rugby World Cup",
-          "score": 13.8,
+          "score": 13,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -428,25 +379,33 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "The Pumas hammer the Iberians in commanding Tbilisi display",
-      "kicker": "Tbilisi win",
-      "body": "The Pumas recorded an emphatic 64-21 victory over Spain's Iberians in Tbilisi after leading 40-14 at half-time. Left wing Tino Swanepoel delivered a standout performance by crossing five times as the side ran in 10 tries during the fixture. Clinton Swart added a try alongside five conversions, while further tries came from Wian van Niekerk, Gustav du Rand, Alfondso Isaacs and André Fouché to seal the win.",
-      "source": "SA Rugby Magazine",
+      "heading": "Santiago Carreras Returns To Bath Following Summer International Campaign",
+      "kicker": "Club return",
+      "body": "Bath boss Johann van Graan has credited Santiago Carreras' character as the Argentina full-back returns to club duty for the opening round of the Premiership season. Van Graan described his Argentine star as jovial and highlighted a training session where he was the best player on the planet. Carreras previously featured for Los Pumas over the summer following the conclusion of his domestic campaign.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "The Pumas dominated the Iberians with a 10-try haul in Tbilisi."
+        "candidate": 2,
+        "why": "Johann van Graan's verdict on Santiago Carreras returning to Bath after the summer."
       },
       "candidates": [
         {
           "title": "Cheetahs, Pumas power to Tbilisi wins",
-          "score": 35.5,
+          "score": 33.6,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
           ]
         },
         {
-          "title": "How to watch Argentina vs. South Africa in the 2024 Rugby Championship online for free",
+          "title": "Johann van Graan's verdict on 'best player on the planet' as 'jovial' Argentina star returns for Bath",
+          "score": 28.9,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Argentina rugby fixtures and 2026 schedule in the Nations Championship",
           "score": 1.7,
           "corroboration": 1,
           "outlets": [
@@ -454,7 +413,7 @@
           ]
         },
         {
-          "title": "Argentina rugby fixtures and 2026 schedule in the Nations Championship",
+          "title": "How to watch Argentina vs Australia 2nd test online from anywhere: free rugby live streams and team news",
           "score": 1.4,
           "corroboration": 1,
           "outlets": [
@@ -462,16 +421,8 @@
           ]
         },
         {
-          "title": "How to watch Argentina vs Australia 2nd test online from anywhere: free rugby live streams and team news",
-          "score": 1.2,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Argentina rugby fans display Falklands banner in defeat by South Africa",
-          "score": 1.1,
+          "title": "Argentina vs. Wales Rugby Lineups, Kickoff Times",
+          "score": 1.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -485,18 +436,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Les Kiss shifts Joseph-Aukuso Suaalii to wing for Springboks Test",
+      "heading": "Les Kiss prepares to shift Joseph-Aukuso Suaalii to the wing",
       "kicker": "Selection call",
-      "body": "Wallabies coach Les Kiss is set to move outside centre Joseph-Aukuso Suaalii to the wing for Sunday's Test against the Springboks in Perth. The switch would mark the first time since the 23-year-old crossed to rugby union that he starts a Test anywhere other than outside centre, with Hunter Paisami expected to start at inside centre and Len Ikitau returning to No 13. Kiss's decision is understood to leverage Suaalii's aerial ability against South Africa's contested kicking game, adding height to the Wallabies' back three.",
+      "body": "Wallabies coach Les Kiss is reportedly set to move outside centre Joseph-Aukuso Suaalii to the wing for Sunday’s Test against the Springboks in Perth. The switch would mark the first time the 23-year-old has started a Test anywhere other than outside centre since switching to rugby union in late 2024. Suaalii’s aerial ability is expected to be a key factor behind the decision as Australia prepare to combat South Africa’s contested kicking game, with Hunter Paisami likely to start at inside centre and Len Ikitau returning to No 13.",
       "source": "SA Rugby Magazine",
       "lead": {
         "candidate": 1,
-        "why": "Reports of Les Kiss shifting Joseph-Aukuso Suaalii to the wing for Sunday's Test against the Springboks lead the morning coverage."
+        "why": "Les Kiss is reportedly planning to shift Joseph-Aukuso Suaalii to the wing for Sunday's Test."
       },
       "candidates": [
         {
           "title": "Potential new role for Wallabies star",
-          "score": 28.2,
+          "score": 27.6,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -504,7 +455,7 @@
         },
         {
           "title": "Opinion: Rassie Erasmus has 'left door open' for Wallabies upset and why 'genie is officially out of the bottle' for New Zealand Rugby",
-          "score": 26,
+          "score": 25.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -512,7 +463,7 @@
         },
         {
           "title": "Springboks team: Rassie Erasmus rotates for Wallabies showdown with new captain named in Siya Kolisi's absence",
-          "score": 24.6,
+          "score": 24.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -529,7 +480,7 @@
         },
         {
           "title": "Wallabies plot Bok disruption",
-          "score": 22.6,
+          "score": 21.3,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -543,18 +494,27 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Japan Brave Blossoms Win Asahi Super Dry Pacific Nations Cup 2026",
+      "heading": "Japan men claim Pacific Nations Cup title after defeating Fiji in final",
       "kicker": "Pacific triumph",
-      "body": "The Brave Blossoms secured their first Pacific Nations Cup title since 2019 by defeating holders Fiji 20-15 in a fiercely physical Test match at Prince Chichibu Memorial Stadium. Captain Naoto Saito described the victory as a great breakthrough to create history for a young team entering the World Rugby top 10 rankings. Mamoru Harada and Ben Gunter scored tries to overturn a half-time deficit in a hard-fought contest.",
+      "body": "The Brave Blossoms secured their first Pacific Nations Cup title since 2019 by defeating holders Fiji 20-15 in a physical Test match at Prince Chichibu Memorial Stadium. Captain Naoto Saito described the victory as a great breakthrough to create history for Japan, noting that it gives the young team great confidence after falling short in the previous two finals. The win lifts Japan into the World Rugby top 10 rankings as they sit ninth.",
       "source": "Rugby Asia 247",
       "lead": {
         "candidate": 1,
-        "why": "Japan won the Pacific Nations Cup by defeating Fiji at Prince Chichibu Memorial Stadium."
+        "why": "Japan won the Pacific Nations Cup by defeating Fiji in the final."
       },
       "candidates": [
         {
           "title": "Japan Brave Blossoms Win Asahi Super Dry Pacific Nations Cup 2026",
-          "score": 46.3,
+          "score": 46.2,
+          "corroboration": 2,
+          "outlets": [
+            "rugbyasia247",
+            "search"
+          ]
+        },
+        {
+          "title": "WXV Global Series 2026 Preview – Italy vs Japan",
+          "score": 15.2,
           "corroboration": 2,
           "outlets": [
             "rugbyasia247",
@@ -563,7 +523,7 @@
         },
         {
           "title": "Japanese rugby officials roll back restrictions on some foreign-born players",
-          "score": 1.8,
+          "score": 1.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -571,14 +531,6 @@
         },
         {
           "title": "RUGBY/ Backlash forces Japan rugby to relent on foreign-born players",
-          "score": 1.5,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ]
-        },
-        {
-          "title": "Japan suspends Australian rugby coach Jones for verbally abusing officials",
           "score": 1.4,
           "corroboration": 1,
           "outlets": [
@@ -586,7 +538,7 @@
           ]
         },
         {
-          "title": "Indescribable Excitement: A Field Report on Watching the Japan vs. Fiji Rugby Match Live",
+          "title": "Japan vs. Italy Rugby: 5 Things To Know Before July 4",
           "score": 1.3,
           "corroboration": 1,
           "outlets": [
@@ -601,18 +553,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Scott Barrett set for long-awaited return via Taranaki NPC clash",
-      "kicker": "Injury return",
-      "body": "Former New Zealand captain Scott Barrett is back to full fitness and will make his long-awaited return to action this weekend in a National Provincial Championship match for Taranaki against Hawke's Bay. Sidelined for the entire season with a bulging disc that required surgery, Barrett admitted the injury depowered his left side and prevented him from running. The 32-year-old lock, who last played for the team against Wales at the end of 2025, will pack down in the second-row alongside fellow All Black Josh Lord at McLean Park.",
+      "heading": "Scott Barrett Set For Long-Awaited Return To Action With Taranaki",
+      "kicker": "Team news",
+      "body": "Former All Blacks captain Scott Barrett is back to full fitness and will return to action this weekend in a National Provincial Championship match for Taranaki against Hawke's Bay in Napier. Barrett has been sidelined for the entire season due to a bulging disc in his back that required surgery, causing him to miss the Rugby's Greatest Rivalry series. Reflecting on his rehabilitation from an injury that depowered his left side, Barrett stated that it is nice to be in a position to pull on the jersey again.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 5,
-        "why": "Scott Barrett is returning from a long-term back injury to play for Taranaki this weekend."
+        "why": "Scott Barrett is returning from a long-term back injury for Taranaki this weekend."
       },
       "candidates": [
         {
           "title": "Lions target All Blacks standard",
-          "score": 30.9,
+          "score": 30.2,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -620,7 +572,7 @@
         },
         {
           "title": "Sarah Hirini re-signs with New Zealand Rugby to the end of 2028",
-          "score": 20.4,
+          "score": 18.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -628,7 +580,7 @@
         },
         {
           "title": "Super Rugby future safe for now as New Zealand Rugby eyes cost-cutting measures to save $53 million",
-          "score": 19.5,
+          "score": 18.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -636,7 +588,7 @@
         },
         {
           "title": "Opinion: Rassie Erasmus has 'left door open' for Wallabies upset and why 'genie is officially out of the bottle' for New Zealand Rugby",
-          "score": 17.9,
+          "score": 17.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -644,7 +596,7 @@
         },
         {
           "title": "All Blacks: Scott Barrett set to make long-awaited return to action",
-          "score": 17.7,
+          "score": 17,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -658,26 +610,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Andre Esterhuizen captains changed men's team for Australia Test",
-      "kicker": "Captaincy call",
-      "body": "Rassie Erasmus has named Andre Esterhuizen as captain of a heavily rotated Springboks men's side for Sunday's clash against the Wallabies in Perth. The head coach has made 13 changes to his starting XV following the victory over New Zealand, retaining only Eben Etzebeth and Ethan Hooker from the run-on team. Erasmus praised the new skipper by saying, “He captained the Hollywoodbets Sharks, and he has brought so much to our squad off and on the field.”",
+      "heading": "Andre Esterhuizen captains heavily changed South Africa side against Australia",
+      "kicker": "Team news",
+      "body": "Rassie Erasmus has made 13 changes to his starting XV for Sunday's Test against the Wallabies in Perth, naming Andre Esterhuizen as the team's new captain in Siya Kolisi's absence. Eben Etzebeth and Ethan Hooker are the only starters retained from the victory over New Zealand. Erasmus explained that the wholesale changes reward squad depth and build leadership, with Jasper Wiese in line to earn his 50th Test cap from the replacements bench.",
       "source": "Planet Rugby",
       "lead": {
         "candidate": 4,
-        "why": "Rassie Erasmus has named Andre Esterhuizen as captain and made 13 changes to the starting XV to face Australia."
+        "why": "Rassie Erasmus names Andre Esterhuizen captain and makes 13 changes for the Wallabies Test."
       },
       "candidates": [
         {
           "title": "Rassie Erasmus addresses Cameron Hanekom's absence as Springboks have 'security if it doesn't go well'",
-          "score": 33.5,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ]
-        },
-        {
-          "title": "Springboks: Nick Mallett reveals the two key 'lessons' which Sacha Feinberg-Mngomezulu 'has to learn'",
-          "score": 32.9,
+          "score": 32.1,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -685,7 +629,15 @@
         },
         {
           "title": "Opinion: Rassie Erasmus has 'left door open' for Wallabies upset and why 'genie is officially out of the bottle' for New Zealand Rugby",
-          "score": 32.5,
+          "score": 32,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ]
+        },
+        {
+          "title": "Springboks: Nick Mallett reveals the two key 'lessons' which Sacha Feinberg-Mngomezulu 'has to learn'",
+          "score": 31.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -693,7 +645,7 @@
         },
         {
           "title": "Springboks team: Rassie Erasmus rotates for Wallabies showdown with new captain named in Siya Kolisi's absence",
-          "score": 30.8,
+          "score": 30.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -701,7 +653,7 @@
         },
         {
           "title": "Springboks legend backs ‘go-to guy’ for landmark Test and young prop delivers verdict on new captain",
-          "score": 30.7,
+          "score": 29.1,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -713,19 +665,19 @@
   "world": [
     {
       "team": "Japan",
-      "text": "Japan beat Fiji 20-15 to win Pacific Nations Cup."
-    },
-    {
-      "team": "Scotland",
-      "text": "Scotland winger Darcy Graham ruled out for 12 weeks."
+      "text": "Japan men claim Pacific Nations Cup title defeating Fiji."
     },
     {
       "team": "Ireland",
-      "text": "Ireland U20 star Noah Byrne departs Leinster for AFL."
+      "text": "Ireland U20 full-back Noah Byrne rejects Leinster deal."
+    },
+    {
+      "team": "Scotland",
+      "text": "Darcy Graham ruled out of autumn Tests with bicep injury."
     },
     {
       "team": "Wales",
-      "text": "Wales women's Seren Lockwood ruled out of USA Test."
+      "text": "Wales women lose scrum-half Seren Lockwood for USA Test."
     }
   ],
   "worldDropped": []
