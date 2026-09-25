@@ -135,8 +135,47 @@ export function clusterStories(items) {
       corroboration: outlets.size,
       outlets: [...outlets],
       items: c.items,
+      // When the STORY broke: the earliest first-sighting across the cluster.
+      // A second outlet picking it up today does not make a three-day-old
+      // story new.
+      firstSeenAt: firstSeenAt(c.items),
     };
   });
+}
+
+// The earliest moment any item in a cluster was first sighted, as epoch ms,
+// or null when none carries a usable stamp. Pool items carry `firstSeen`
+// (the hourly harvest's own clock); widener hits carry only the outlet's
+// pubDate, which stands in for it.
+export function firstSeenAt(items) {
+  let earliest = null;
+  for (const i of items ?? []) {
+    const t = Date.parse(i?.firstSeen || i?.date || "");
+    if (!Number.isNaN(t) && (earliest === null || t < earliest)) earliest = t;
+  }
+  return earliest;
+}
+
+// A story is FRESH when it broke inside this window before the run — i.e.
+// since the previous daily edition. Fresh candidates rank above everything
+// older, whatever the scores say (see buildShortlist); older ones stay on the
+// list as background only.
+//
+// Why a hard partition and not more recency weight: the score already decays
+// with age, and it was not enough. Planet Rugby's Springbok team announcement
+// sat at feed position 0 on 22 Sep 2026, which is worth 25 points on its
+// own; three days later it still out-scored every fresh story and led the
+// edition for the third day running. Position rewards where an outlet placed
+// a story on the day it broke — it must not keep paying out all week.
+export const FRESH_HOURS = 24;
+
+export function isFresh(story, now, windowHours = FRESH_HOURS) {
+  const at = story?.firstSeenAt ?? firstSeenAt(story?.items) ?? (() => {
+    const t = Date.parse(story?.date || "");
+    return Number.isNaN(t) ? null : t;
+  })();
+  if (at === null) return false;
+  return now.getTime() - at <= windowHours * 3_600_000;
 }
 
 // Age in hours, or null when the feed gave us no usable pubDate.
@@ -249,17 +288,24 @@ export function buildShortlist(items, teamId, now, size = SHORTLIST_SIZE) {
     const matchReport = isMatchReport(s.title);
     const subject = subjectWeight(s.title, aliases);
     const score = scoreStory(s, now) * (matchReport ? 0.45 : 1) * subject;
-    return { ...s, score: Math.round(score * 10) / 10, matchReport, subject };
+    const seenHours = s.firstSeenAt === null ? null : (now.getTime() - s.firstSeenAt) / 3_600_000;
+    return { ...s, score: Math.round(score * 10) / 10, matchReport, subject, fresh: isFresh(s, now), seenHours };
   });
-  scored.sort((a, b) => b.score - a.score || a.position - b.position);
+  // Fresh first, then by score. An older story can still make the list — as
+  // background, printed as such — but it never outranks something that broke
+  // since the last edition.
+  scored.sort((a, b) => Number(b.fresh) - Number(a.fresh) || b.score - a.score || a.position - b.position);
   return scored.slice(0, size);
 }
 
 // A day is Quiet when nothing on the shortlist clears the floor. Note this is a
 // property of the COVERAGE, never of the team's camp — the writer may say "no
 // coverage today", never "the camp is clean".
+// Quiet is judged on the STRONGEST candidate, not the first: the list is
+// ordered fresh-first, so the top entry may be a small new item sitting above
+// a big older one, and the calibration above was done on peak score.
 export function isQuiet(shortlist) {
-  return !shortlist.length || shortlist[0].score < QUIET_THRESHOLD;
+  return !shortlist.length || Math.max(...shortlist.map((s) => s.score)) < QUIET_THRESHOLD;
 }
 
 // Render the shortlist for the writer prompt. Each candidate is numbered so the
@@ -271,7 +317,18 @@ export function renderShortlist(shortlist) {
     .map((s, n) => {
       const bits = [`${s.corroboration} outlet${s.corroboration === 1 ? "" : "s"} (${s.outlets.join(", ")})`];
       if (s.matchReport) bits.push("match report — demoted");
-      return `${n + 1}. [score ${s.score} · ${bits.join(" · ")}] ${s.title}\n   ${s.feedName} — ${s.link}`;
+      // Freshness is printed, not just ranked: the writer picks by reading,
+      // and "background" beside a candidate is what stops it leading.
+      const tag = s.fresh === undefined ? "" : s.fresh ? "NEW · " : `BACKGROUND${ageLabel(s)} · `;
+      return `${n + 1}. [${tag}score ${s.score} · ${bits.join(" · ")}] ${s.title}\n   ${s.feedName} — ${s.link}`;
     })
     .join("\n");
+}
+
+// "(first seen 3 days ago)" for a background candidate, or "" when unknown.
+function ageLabel(story) {
+  const hours = story?.seenHours;
+  if (hours == null || Number.isNaN(hours)) return "";
+  const days = Math.round(hours / 24);
+  return ` (first seen ${days <= 1 ? "yesterday" : `${days} days ago`})`;
 }

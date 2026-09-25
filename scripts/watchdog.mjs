@@ -13,7 +13,8 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { readFile } from "node:fs/promises";
 import { sendEmail } from "./notify.mjs";
-import { teamsheetGaps, PUBLISH_TEAMSHEETS } from "./generate-digests.mjs";
+import { teamsheetGaps, PUBLISH_TEAMSHEETS, readRecentRunReports } from "./generate-digests.mjs";
+import { sameStory, shortDate } from "./novelty.mjs";
 
 const execFileAsync = promisify(execFile);
 
@@ -99,6 +100,76 @@ export function coverageReport(nations, now = new Date()) {
   return { gaps: enriched, text };
 }
 
+// ---- editorial checks: repeated leads, the model ladder --------------------------
+//
+// The watchdog asked one question — did the jobs RUN? — and the digests
+// answered yes every day from 23 to 25 September 2026 while the Springbok
+// tab showed the same story under three different dates. A healthy job
+// writing a stale edition is a failure the run log alone will never raise.
+
+// How many consecutive editions a team has led with one story, judged on the
+// run reports (oldest → newest, one per day). A team's latest lead that reads
+// as the same story as the day before counts 2; the day before that, 3.
+// Alerts at `minDays`. Uses the generator's own similarity (novelty.mjs), so
+// what the gate calls a repeat, the watchdog calls a repeat.
+export function repeatLeadReport(reports, { minDays = 2 } = {}) {
+  const ordered = (reports ?? []).filter((r) => r && Array.isArray(r.teams));
+  if (ordered.length < 2) return null;
+  const latest = ordered[ordered.length - 1];
+  const repeats = [];
+  for (const row of latest.teams) {
+    if (!row?.heading) continue;
+    let days = 1;
+    let since = latest.date;
+    let current = row;
+    for (let i = ordered.length - 2; i >= 0; i--) {
+      const prev = ordered[i].teams.find((t) => t?.team === row.team);
+      if (!prev?.heading) break;
+      const reason = sameStory(
+        { heading: current.heading, body: current.body, link: current.leadLink },
+        { heading: prev.heading, body: prev.body, link: prev.leadLink },
+      );
+      if (!reason) break;
+      days++;
+      since = ordered[i].date;
+      current = prev;
+    }
+    if (days >= minDays) repeats.push({ team: row.team, days, since, heading: row.heading, flagged: Boolean(row.repeatLead) });
+  }
+  if (!repeats.length) return null;
+  repeats.sort((a, b) => b.days - a.days || a.team.localeCompare(b.team));
+  const text = [
+    `Rugby Tracker — the daily briefing is repeating itself (run report ${latest.date}):`,
+    "",
+    ...repeats.map((r) =>
+      `• ${r.team} — same lead story for ${r.days} days (since ${shortDate(r.since)}): "${r.heading}"` +
+        (r.flagged ? " — the novelty gate flagged it and published anyway" : " — the novelty gate did NOT flag it"),
+    ),
+    "",
+    "The generator's novelty gate should have revised these. Check the latest",
+    "generate-digests run log for the per-team novelty= lines, and the team's",
+    "candidates in editorial/runs/<date>.json for whether anything fresh was on offer.",
+  ].join("\n");
+  return { repeats, text };
+}
+
+// The run completed on the LAST rung of the Gemini ladder: every model above
+// it shed the traffic, so there is no spare left and a bad afternoon on this
+// one takes the whole digest down. The generator prints a ::warning:: for
+// this, in an Actions log nobody opens; this is the alert.
+export function ladderReport(latest) {
+  const model = latest?.model;
+  if (!model?.onLastRung) return null;
+  const text = [
+    `Rugby Tracker — the digest run on ${latest.date} completed on the LAST rung of the model ladder (${model.servedBy}).`,
+    "",
+    `Every model above it answered 429/503 (${model.rejections ?? "?"} rejections across ${model.calls ?? "?"} served calls).`,
+    "If this persists, the ladder needs another rung — the Claude fallback in",
+    "generate-digests.mjs is wired but costs money; that is Nico's call.",
+  ].join("\n");
+  return { model: model.servedBy, text };
+}
+
 // ---- GitHub-issue alerting ---------------------------------------------------
 //
 // Email is dead: Gmail SMTP app-passwords are rejected (535 BadCredentials) from
@@ -119,10 +190,13 @@ export const ALERT_TITLE = "⚠️ Rugby Tracker ops alert";
 // So every alert is assigned to, and mentions, the owner.
 const ALERT_OWNER = process.env.ALERT_OWNER || "nico101rsa";
 
-export function alertSignature(misses = [], coverage = null) {
+export function alertSignature(misses = [], coverage = null, repeats = null, ladder = null) {
   const jobs = misses.map((m) => m.workflow).sort().join(",");
   const squads = coverage ? coverage.gaps.map((g) => g.team).sort().join(",") : "";
-  return `jobs=[${jobs}] squads=[${squads}]`;
+  // Team + day count, so a repeat that runs a day longer re-notifies.
+  const leads = repeats ? repeats.repeats.map((r) => `${r.team}:${r.days}`).sort().join(",") : "";
+  const rung = ladder ? ladder.model : "";
+  return `jobs=[${jobs}] squads=[${squads}] leads=[${leads}] rung=[${rung}]`;
 }
 
 export function decideIssueAction(existing, signature, healthy) {
@@ -165,7 +239,7 @@ export async function syncAlertIssue(report, signature, healthy) {
     console.log(`Alert issue #${n} updated.`);
   } else if (action === "close") {
     const n = String(existing.number);
-    await gh(["issue", "comment", n, "--body", "✅ Recovered — all watched jobs are current and every imminent team has a published squad."]);
+    await gh(["issue", "comment", n, "--body", "✅ Recovered — all watched jobs are current, no briefing is repeating its lead, the model ladder has spare, and every imminent team has a published squad."]);
     await gh(["issue", "close", n]);
     console.log(`Alert issue #${n} closed (recovered).`);
   }
@@ -208,18 +282,31 @@ async function main() {
     console.error(`Coverage check skipped: ${err.message}`);
   }
 
-  const healthy = misses.length === 0 && !coverage;
+  // Editorial checks run off the committed run reports (editorial/runs/).
+  let repeats = null;
+  let ladder = null;
+  try {
+    const recent = await readRecentRunReports(7); // newest first
+    repeats = repeatLeadReport([...recent].reverse());
+    ladder = ladderReport(recent[0]);
+  } catch (err) {
+    console.error(`Editorial checks skipped: ${err.message}`);
+  }
+
+  const healthy = misses.length === 0 && !coverage && !repeats && !ladder;
   const report = healthy
-    ? "All watched jobs are current and every imminent team has a published squad."
+    ? "All watched jobs are current, no briefing is repeating its lead, the model ladder has spare, and every imminent team has a published squad."
     : [
         misses.length ? formatReport(misses, now) : null,
+        repeats ? repeats.text : null,
+        ladder ? ladder.text : null,
         coverage ? coverage.text : null,
       ].filter(Boolean).join("\n\n———\n\n");
   console.log(report);
 
   // Primary channel: a GitHub issue (the email path 535s from Actions). Closes
   // itself on recovery, stays silent while the state is unchanged.
-  const signature = healthy ? "" : alertSignature(misses, coverage);
+  const signature = healthy ? "" : alertSignature(misses, coverage, repeats, ladder);
   try {
     await syncAlertIssue(report, signature, healthy);
   } catch (err) {
@@ -233,6 +320,8 @@ async function main() {
   // watchdog or mask the gaps — the issue and the log above are the record.
   const subjectBits = [];
   if (misses.length) subjectBits.push(`${misses.length} job(s) overdue`);
+  if (repeats) subjectBits.push(`${repeats.repeats.length} briefing(s) repeating`);
+  if (ladder) subjectBits.push("model ladder on last rung");
   if (coverage) subjectBits.push(`${coverage.gaps.length} squad gap(s)`);
   try {
     await sendEmail({ subject: `⚠️ Rugby Tracker: ${subjectBits.join(", ")}`, text: report });

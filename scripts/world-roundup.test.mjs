@@ -371,3 +371,41 @@ test("attachWorldSections passes no name when no teams map is given", () => {
   const out = attachWorldSections(generated, highlights);
   assert.equal(out[467].sections[1].heading, "Japan beat Fiji 20-15 to win the Pacific Nations Cup");
 });
+
+// The roundup repeated "Japan … Pacific Nations Cup … Fiji" from 22 to 25
+// September 2026 because Japan's own edition repeated, and every day's
+// roundup is cut from that day's editions. Two defences: an edition the
+// novelty gate flagged as a repeat is not a candidate at all, and the writer
+// is shown what recent roundups already said.
+test("roundupCandidates leaves out the editions flagged as repeat leads", () => {
+  const generated = {
+    463: { sections: [{ heading: "Japan men claim Pacific Nations Cup title", body: "…" }] },
+    386: { sections: [{ heading: "Borthwick recalls Itoje", body: "…" }] },
+  };
+  const teams = { 463: { name: "Japan" }, 386: { name: "England" } };
+  assert.deepEqual(roundupCandidates(teams, generated, { skip: new Set([463]) }).map((c) => c.team), ["England"]);
+  assert.deepEqual(roundupCandidates(teams, generated).map((c) => c.team).sort(), ["England", "Japan"]);
+});
+
+test("buildWorldPrompt tells the writer what recent roundups already said", () => {
+  const previous = [{ date: "2026-09-24", team: "Japan", text: "Japan men win Pacific Nations Cup after beating Fiji." }];
+  const prompt = buildWorldPrompt(candidates, "2026-09-25", "", previous);
+  assert.match(prompt, /Already in the roundup on previous days/);
+  assert.match(prompt, /Japan \(Thu 24 Sep\): Japan men win Pacific Nations Cup/);
+  assert.doesNotMatch(buildWorldPrompt(candidates, "2026-09-25"), /Already in the roundup/);
+});
+
+test("worldRoundup marks a line that repeats a recent roundup line, and still ships it", async () => {
+  const previous = [{ date: "2026-09-24", team: "Japan", text: "Japan men win Pacific Nations Cup after beating Fiji." }];
+  let n = 0;
+  const call = async () => (++n === 1
+    ? JSON.stringify({ highlights: [
+        { team: "Japan", text: "Japan men claim Pacific Nations Cup title defeating Fiji." },
+        { team: "England", text: "Shaun Edwards would welcome a Borthwick call." },
+      ] })
+    : '{"issues":[]}');
+  const out = await worldRoundup(call, extractJson, candidates, "2026-09-25", { previous });
+  assert.equal(out.highlights.length, 2);
+  assert.deepEqual(out.highlights[0].repeat, { date: "2026-09-24", text: "Japan men win Pacific Nations Cup after beating Fiji." });
+  assert.equal(out.highlights[1].repeat, undefined);
+});
