@@ -46,6 +46,10 @@ jobs:
       # write, fact-check, at most one revision, then the top four survivors
       # (scripts/world-roundup.mjs) — cut from the twelve fact-checked
       # stories, never from the raw source pack; two to four extra calls.
+      # Per-team lines end with novelty=new / revised / REPEAT_LEAD / n/a — the
+      # novelty gate's verdict (scripts/novelty.mjs). REPEAT_LEAD means the
+      # edition went out repeating a recent lead after one failed revision;
+      # the run report and the watchdog carry the same flag.
       - name: Generate 12 team editions (Gemini Flash + fact-check; Claude fallback)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
