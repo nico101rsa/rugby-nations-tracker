@@ -18,6 +18,13 @@ import {
 import { buildDataEdition, renderDataEdition } from "./data-edition.mjs";
 import { BANNED_COPY, words } from "./copy-rules.mjs";
 import { roundupCandidates, worldRoundup, attachWorldSections } from "./world-roundup.mjs";
+import {
+  previousLeadsFor,
+  findRepeat,
+  renderAlreadyReported,
+  buildNoveltyFeedback,
+  previousWorldLines,
+} from "./novelty.mjs";
 
 // Re-exported: the rules moved to copy-rules.mjs so the roundup can share them,
 // but the tests and compare script still read them from here.
@@ -378,9 +385,10 @@ export function stripLeads(digests = {}) {
 
 // A per-run record of what retrieval offered and what the writer did with it.
 // Pure so it can be tested; the caller writes it.
-export function buildRunReport(dateISO, teams, generated, retrieval, failed = [], world = [], worldDropped = []) {
+export function buildRunReport(dateISO, teams, generated, retrieval, failed = [], world = [], worldDropped = [], extra = {}) {
   const rows = Object.entries(generated).map(([id, digest]) => {
-    const { shortlist = [], quiet = false, ladder = null } = retrieval[id] ?? {};
+    const { shortlist = [], quiet = false, ladder = null, repeatLead = null, noveltyRevised = false } = retrieval[id] ?? {};
+    const led = digest.lead ? shortlist[digest.lead.candidate - 1] : null;
     return {
       team: teams[id]?.name ?? id,
       quiet,
@@ -397,7 +405,19 @@ export function buildRunReport(dateISO, teams, generated, retrieval, failed = []
       body: digest.sections?.[0]?.body ?? "",
       source: digest.source?.name ?? null,
       lead: digest.lead ?? null,
-      candidates: shortlist.map((s) => ({ title: s.title, score: s.score, corroboration: s.corroboration, outlets: s.outlets })),
+      // The article the writer led from. Tomorrow's novelty gate reads it:
+      // the same link leading two days running is a repeat whatever the
+      // heading says (novelty.mjs).
+      leadLink: led?.link ?? null,
+      // The novelty gate's verdict. `repeatLead` is set when the edition went
+      // out REPEATING a recent lead (the one revision did not shift it);
+      // `noveltyRevised` when the revision produced the new lead that shipped.
+      repeatLead,
+      noveltyRevised,
+      candidates: shortlist.map((s) => ({
+        title: s.title, link: s.link ?? null, score: s.score, corroboration: s.corroboration, outlets: s.outlets,
+        ...(s.fresh === undefined ? {} : { fresh: s.fresh }),
+      })),
     };
   });
   return {
@@ -409,27 +429,33 @@ export function buildRunReport(dateISO, teams, generated, retrieval, failed = []
       dataEdition: rows.filter((r) => r.rung === "data").length,
       failed: failed.length,
       noLead: rows.filter((r) => !r.lead).length,
+      repeatLead: rows.filter((r) => r.repeatLead).length,
       world: world.length,
     },
     failed,
     teams: rows,
     // The "Around the world" roundup as published: which nations cleared the
     // bar and the line each got. Empty means the roundup call failed or nothing
-    // was notable — the run log says which.
-    world: world.map((h) => ({ team: h.team, text: h.text })),
+    // was notable — the run log says which. `repeat` marks a line that still
+    // reads as one a recent roundup carried (novelty.mjs).
+    world: world.map((h) => ({ team: h.team, text: h.text, ...(h.repeat ? { repeat: h.repeat } : {}) })),
+    // Which model served the run and whether that was the LAST rung of the
+    // ladder (geminiUsage). The watchdog reads this: a run completing on the
+    // last rung has no spare left, and a warning in an Actions log nobody
+    // opens is not an alert.
+    ...(extra.model ? { model: extra.model } : {}),
     // Lines the code gate or the checker removed, with the reason — the only
     // record of WHY a nation is missing from the roundup.
     worldDropped: worldDropped.map((d) => ({ team: d.team, text: d.text, problem: d.problem })),
   };
 }
 
-async function writeRunReport(now, generated, retrieval, failed, world = [], worldDropped = []) {
+async function writeRunReport(now, generated, retrieval, failed, world = [], worldDropped = [], extra = {}) {
   try {
     const dateISO = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
     const { mkdir } = await import("node:fs/promises");
-    const dir = join(ROOT, "editorial", "runs");
-    await mkdir(dir, { recursive: true });
-    await writeFile(join(dir, `${dateISO}.json`), JSON.stringify(buildRunReport(dateISO, TEAMS, generated, retrieval, failed, world, worldDropped), null, 2));
+    await mkdir(RUNS_DIR, { recursive: true });
+    await writeFile(join(RUNS_DIR, `${dateISO}.json`), JSON.stringify(buildRunReport(dateISO, TEAMS, generated, retrieval, failed, world, worldDropped, extra), null, 2));
   } catch (e) {
     // Diagnostics must never cost an edition.
     console.warn(`run report not written: ${e.message}`);
@@ -444,6 +470,30 @@ export async function readJsonOrNull(path) {
   } catch {
     return null;
   }
+}
+
+const RUNS_DIR = join(ROOT, "editorial", "runs");
+
+// The most recent run reports, newest first — what the novelty gate and the
+// roundup read to know what was already reported. Today's own report counts
+// when it exists (a second Saturday run must not re-tell the morning's
+// story). Absent or unreadable reports are skipped: this is telemetry, and
+// a day with none simply means the gate has less to compare against.
+export async function readRecentRunReports(max = 3, dir = RUNS_DIR) {
+  let names = [];
+  try {
+    const { readdir } = await import("node:fs/promises");
+    names = (await readdir(dir)).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort().reverse();
+  } catch {
+    return [];
+  }
+  const out = [];
+  for (const name of names) {
+    if (out.length >= max) break;
+    const report = await readJsonOrNull(join(dir, name));
+    if (report && typeof report === "object") out.push(report);
+  }
+  return out;
 }
 
 // The hourly harvest's pool. Absent or unreadable is survivable — the widener
@@ -517,9 +567,10 @@ const MAX_SEARCHES = 4;
 // 10/12 teams before the JSON). Actual JSON output is <1k tokens.
 const MAX_TOKENS = 12000;
 
-async function generateOne(client, data, teamId, now) {
+async function generateOne(client, data, teamId, now, recentRuns = []) {
   const params = buildParams(data, teamId, now);
-  const prompt = fillTemplate(TEMPLATE, params);
+  const reported = renderAlreadyReported(previousLeadsFor(data, recentRuns, teamId, params.TEAM_NAME));
+  const prompt = `${fillTemplate(TEMPLATE, params)}${reported ? `\n\n${reported}` : ""}`;
   const request = (messages) =>
     client.messages.create({
       model: MODEL,
@@ -1209,14 +1260,19 @@ export function parseVerdict(raw) {
   return { verdict: issues.length ? "fail" : "pass", issues };
 }
 
-export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, checkerNotes = "", pool = [], ladderCtx = null) {
+export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, checkerNotes = "", pool = [], ladderCtx = null, recentRuns = []) {
   const params = buildParams(data, teamId, now);
   const { pack, shortlist, quiet, ladder, articleCount, poolCount, widenedCount } =
     await buildSourcePack(teamId, params.TEAM_NAME, now, pool, ladderCtx ? () => resolveLadder(ladderCtx, teamId, params, now) : null);
   const notesBlock = editorNotes
     ? `\n\n## Standing editor notes (distilled from previous editions' reviews — follow them)\n${editorNotes}`
     : "";
-  const prompt = `${fillTemplate(TEMPLATE, params)}${notesBlock}\n\n${pack}`;
+  // What this tab's reader has already been shown: the published edition
+  // plus the recent run reports' leads (novelty.mjs). Goes into the prompt as
+  // a rule, and is what the novelty gate below holds the draft to.
+  const previous = previousLeadsFor(data, recentRuns, teamId, params.TEAM_NAME);
+  const reportedBlock = renderAlreadyReported(previous);
+  const prompt = `${fillTemplate(TEMPLATE, params)}${notesBlock}${reportedBlock ? `\n\n${reportedBlock}` : ""}\n\n${pack}`;
 
   const draft = async (feedback) => {
     const text = await geminiCall(apiKey, feedback ? `${prompt}\n\n${feedback}` : prompt);
@@ -1267,6 +1323,52 @@ JSON again.`;
     const remaining = check.issues.map((i) => i.problem).join("; ");
     throw new Error(`fact-check failed after ${revisions} revisions: ${remaining}`);
   }
+
+  // Novelty gate. The prompt has already said "not these again"; this is the
+  // deterministic check that the writer listened, because on 23-25 Sep 2026
+  // it did not — three Springbok editions, one story. Same story as a recent
+  // lead → ONE revision asking for a different lead (fact-checked like any
+  // draft). Still the same after that → publish anyway, flagged REPEAT_LEAD:
+  // a repeat beats a blank tab, and the flag is what makes it visible in the
+  // log, the run report, the daily email and the watchdog.
+  //
+  // Ladder editions are exempt: a storyline or data edition is written to a
+  // brief the code chose, and "pick a different lead" means nothing there.
+  const asStory = (d) => ({
+    heading: d.sections?.[0]?.heading ?? "",
+    body: d.sections?.[0]?.body ?? "",
+    link: d.lead ? shortlist[d.lead.candidate - 1]?.link ?? null : null,
+  });
+  let repeat = null;
+  let noveltyRevised = false;
+  let noveltyNote = "";
+  if (!ladder && previous.length) {
+    repeat = findRepeat(asStory(digest), previous);
+    if (repeat) {
+      try {
+        const alt = await draft(buildNoveltyFeedback(repeat));
+        const altCheck = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, alt, pack, checkerNotes))));
+        if (altCheck.verdict === "pass") {
+          digest = alt;
+          noveltyRevised = true;
+          repeat = findRepeat(asStory(alt), previous);
+        } else {
+          noveltyNote = "; novelty revision failed fact-check, kept the first draft";
+        }
+      } catch (e) {
+        noveltyNote = `; novelty revision unusable (${e.message.slice(0, 80)}), kept the first draft`;
+      }
+    }
+  }
+  const novelty = !previous.length
+    ? "novelty=n/a (no previous edition)"
+    : ladder
+      ? "novelty=n/a (ladder edition)"
+      : repeat
+        ? `novelty=REPEAT_LEAD (${repeat.reason} vs ${repeat.entry.date ?? "previous"})`
+        : noveltyRevised
+          ? "novelty=revised (first draft repeated a recent lead)"
+          : "novelty=new";
 
   // Teamsheet: only ESPN's official XV, and only when teamsheets are published.
   //
@@ -1322,7 +1424,9 @@ JSON again.`;
     shortlist,
     quiet,
     ladder,
-    note: `${shortlist.length} candidates (${poolCount} pooled, ${widenedCount} searched), ${articleCount} articles${lead}${quiet ? ", QUIET" : ""}${rungNote}, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}${sheetNote}`,
+    repeatLead: repeat ? { date: repeat.entry.date ?? null, heading: repeat.entry.heading, reason: repeat.reason } : null,
+    noveltyRevised,
+    note: `${shortlist.length} candidates (${poolCount} pooled, ${widenedCount} searched), ${articleCount} articles${lead}${quiet ? ", QUIET" : ""}${rungNote}, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}, ${novelty}${noveltyNote}${sheetNote}`,
   };
 }
 
@@ -1583,11 +1687,34 @@ async function reviewRun(apiKey, editions, dateISO, world = [], worldDropped = [
 }
 
 const CHECKER_NOTES_FILE = join(ROOT, "editorial", "checker-notes.md");
-const MAX_CHECKER_NOTES = 6;
+const MAX_CHECKER_NOTES = 4;
 
-async function loadCheckerNotes() {
+// A calibration note may narrow WHAT the checker flags; it may never tell the
+// checker to pass a draft because of how many times it has been submitted,
+// or "regardless" of anything. By 2026-09-25 the file held six variants of
+// "always pass the draft on the third submission" — the tuner had, in
+// effect, switched the checker off for every third draft, and a checker
+// that passes whatever comes third cannot catch a repeated or wrong story.
+export const FORBIDDEN_CHECKER_NOTE =
+  /\b(first|second|third|final|last|any|every|mandatory)\s+(submission|attempt|draft|revision|pass)\b|\balways pass\b|\bpass (the|a|any) draft\b|\bregardless\b|\bwhatever\b/i;
+
+export function isForbiddenCheckerNote(line) {
+  return FORBIDDEN_CHECKER_NOTE.test(String(line || ""));
+}
+
+// The notes that are allowed to reach the checker: not forbidden, not
+// expired (same 14-day TTL as the writer's notes — a calibration for a
+// defect long since fixed keeps steering the checker otherwise), not a
+// re-worded twin of another. Applied at READ time as well as at write time,
+// so a hand-edit is never needed to get a bad note out of the prompt.
+export function curateCheckerNotes(lines, dateISO) {
+  return dedupeNotes(expireNotes(lines.filter((l) => !isForbiddenCheckerNote(l)), dateISO)).slice(0, MAX_CHECKER_NOTES);
+}
+
+async function loadCheckerNotes(dateISO) {
   try {
-    return (await readFile(CHECKER_NOTES_FILE, "utf8")).split("\n").filter((l) => l.startsWith("- ")).join("\n");
+    const lines = (await readFile(CHECKER_NOTES_FILE, "utf8")).split("\n").filter((l) => l.startsWith("- "));
+    return curateCheckerNotes(lines, dateISO).join("\n");
   } catch {
     return "";
   }
@@ -1625,6 +1752,12 @@ imperative notes for the CHECKER prompt that would prevent them, e.g.
 no pack article mentions points." Never propose weakening the invented-fact,
 wrong-number or fake-quote rules.
 
+A note must name the specific claim TYPE the checker is over-flagging. It
+must NEVER tell the checker to pass a draft because of how many times it has
+been submitted (no "on the third submission", no "final attempt"), nor to
+pass "regardless" of anything — such a note switches the checker off, and
+it will be discarded unread.
+
 ## Output — strict JSON, nothing else
 {"assessment": "<max 120 words: which failures were legitimate vs over-strict>",
  "checker_notes": ["<up to 2 notes, or empty array>"]}`;
@@ -1634,18 +1767,24 @@ async function checkerTuneRun(apiKey, failures, publishedCount, dateISO) {
   const existing = await loadCheckerNotes();
   const raw = extractJson(await geminiCall(apiKey, buildCheckerTunePrompt(failures, publishedCount, existing)));
   if (!raw || typeof raw.assessment !== "string") throw new Error("checker tuner returned no usable JSON");
-  const notes = (Array.isArray(raw.checker_notes) ? raw.checker_notes : [])
+  const proposed = (Array.isArray(raw.checker_notes) ? raw.checker_notes : [])
     .filter((n) => typeof n === "string" && n.trim())
     .slice(0, 2);
+  const rejected = proposed.filter((n) => isForbiddenCheckerNote(n));
+  const notes = proposed.filter((n) => !isForbiddenCheckerNote(n));
+  if (rejected.length) console.warn(`checker tuner: discarded ${rejected.length} forbidden note(s): ${rejected.join(" | ")}`);
   const { appendFile, mkdir } = await import("node:fs/promises");
   await mkdir(REVIEWS_DIR, { recursive: true });
   await appendFile(join(REVIEWS_DIR, `${dateISO}.md`), `\n## Checker calibration — ${dateISO}\n\n${raw.assessment}\n`);
   if (notes.length) {
     const prior = existing ? existing.split("\n") : [];
-    const merged = [...notes.map((n) => `- ${n.trim()} _(added ${dateISO})_`), ...prior].slice(0, MAX_CHECKER_NOTES);
-    await writeFile(CHECKER_NOTES_FILE, `# Standing checker calibration notes\n\nInjected into the fact-check prompt daily; curated by the post-run tuner. Prune freely.\n\n${merged.join("\n")}\n`);
+    const merged = curateCheckerNotes([...notes.map((n) => `- ${n.trim()} _(added ${dateISO})_`), ...prior], dateISO);
+    await writeFile(
+      CHECKER_NOTES_FILE,
+      `# Standing checker calibration notes\n\nInjected into the fact-check prompt daily; curated by the post-run tuner.\nNotes age out after ${NOTE_TTL_DAYS} days unless re-earned, and a note that passes a draft by submission count or "regardless" is discarded. Prune freely.\n\n${merged.join("\n")}\n`,
+    );
   }
-  return { notes, assessment: raw.assessment };
+  return { notes, assessment: raw.assessment, rejected };
 }
 
 async function loadEditorNotes() {
@@ -1663,8 +1802,11 @@ export async function main({ dryRun = false } = {}) {
   const now = new Date();
 
   if (dryRun) {
-    // Plumbing check without an API call: print one filled prompt.
-    console.log(fillTemplate(TEMPLATE, buildParams(data, 467, now)));
+    // Plumbing check without an API call: print one filled prompt, with the
+    // "already reported" block the live run would carry.
+    const params = buildParams(data, 467, now);
+    const reported = renderAlreadyReported(previousLeadsFor(data, await readRecentRunReports(), 467, params.TEAM_NAME));
+    console.log(`${fillTemplate(TEMPLATE, params)}${reported ? `\n\n${reported}` : ""}`);
     return { dryRun: true };
   }
 
@@ -1676,11 +1818,15 @@ export async function main({ dryRun = false } = {}) {
   // nothing more than that.
   let callModel;
   let ladderCtx = null;
+  // What was already reported (novelty.mjs). Read once; the published
+  // editions in `data` are the other half of it.
+  const recentRuns = await readRecentRunReports();
+  console.log(`recent run reports: ${recentRuns.map((r) => r.date).join(", ") || "none"}`);
   if (geminiKey) {
     console.log(`provider: gemini (${GEMINI_MODEL}, RSS source pack + fact-check pass)`);
     const editorNotes = await loadEditorNotes();
     if (editorNotes) console.log(`standing editor notes:\n${editorNotes}`);
-    const checkerNotes = await loadCheckerNotes();
+    const checkerNotes = await loadCheckerNotes(sydneyDateParts(now).DATE_ISO);
     if (checkerNotes) console.log(`standing checker notes:\n${checkerNotes}`);
     // The spine pool, harvested hourly (harvest-news.yml). Read ONCE and shared
     // across all 12 teams — it is one file covering every team, which is the
@@ -1701,13 +1847,13 @@ export async function main({ dryRun = false } = {}) {
       used: [],
     };
     console.log(`storyline backlog: ${ladderCtx.backlog.length} open`);
-    generateFor = (teamId) => generateOneGemini(geminiKey, data, teamId, now, editorNotes, checkerNotes, pool, ladderCtx);
+    generateFor = (teamId) => generateOneGemini(geminiKey, data, teamId, now, editorNotes, checkerNotes, pool, ladderCtx, recentRuns);
     callModel = (prompt) => geminiCall(geminiKey, prompt);
   } else if (process.env.ANTHROPIC_API_KEY) {
     console.log(`provider: anthropic (${MODEL})`);
     const { default: Anthropic } = await import("@anthropic-ai/sdk");
     const client = new Anthropic();
-    generateFor = async (teamId) => ({ digest: await generateOne(client, data, teamId, now), note: "" });
+    generateFor = async (teamId) => ({ digest: await generateOne(client, data, teamId, now, recentRuns), note: "" });
     callModel = (prompt) => anthropicText(client, prompt);
   } else {
     console.log("GEMINI_API_KEY / ANTHROPIC_API_KEY not set — skipping digest generation");
@@ -1719,9 +1865,9 @@ export async function main({ dryRun = false } = {}) {
   const failed = [];
   for (const teamId of Object.keys(TEAMS).map(Number)) {
     try {
-      const { digest, note, shortlist = [], quiet = false, ladder = null } = await generateFor(teamId);
+      const { digest, note, shortlist = [], quiet = false, ladder = null, repeatLead = null, noveltyRevised = false } = await generateFor(teamId);
       generated[teamId] = digest;
-      retrieval[teamId] = { shortlist, quiet, ladder };
+      retrieval[teamId] = { shortlist, quiet, ladder, repeatLead, noveltyRevised };
       console.log(`${TEAMS[teamId].name}: ok (${digest.edition}${note ? `, ${note}` : ""})`);
     } catch (e) {
       failed.push({ team: TEAMS[teamId].name, reason: e.message.slice(0, 300) });
@@ -1734,6 +1880,16 @@ export async function main({ dryRun = false } = {}) {
     process.exitCode = 1;
     return { failed };
   }
+  {
+    const repeated = Object.keys(retrieval).filter((id) => retrieval[id].repeatLead);
+    const revised = Object.keys(retrieval).filter((id) => retrieval[id].noveltyRevised && !retrieval[id].repeatLead);
+    console.log(
+      `novelty gate: ${repeated.length} REPEAT_LEAD` +
+        (repeated.length ? ` (${repeated.map((id) => TEAMS[id]?.name ?? id).join(", ")})` : "") +
+        `, ${revised.length} revised to a new lead` +
+        (revised.length ? ` (${revised.map((id) => TEAMS[id]?.name ?? id).join(", ")})` : ""),
+    );
+  }
 
   // "Around the world": one call over today's fact-checked editions, appended
   // to each of them as a second section (world-roundup.mjs). A failure here
@@ -1742,15 +1898,22 @@ export async function main({ dryRun = false } = {}) {
   let world = [];
   let worldDropped = [];
   try {
-    const candidates = roundupCandidates(TEAMS, generated);
+    // An edition that repeats a recent lead was already offered to the
+    // roundup the day it was new; it is not a candidate again.
+    const repeats = new Set(Object.keys(retrieval).filter((id) => retrieval[id].repeatLead).map(Number));
+    const candidates = roundupCandidates(TEAMS, generated, { skip: repeats });
     const roundup = await worldRoundup(callModel, extractJson, candidates, sydneyDateParts(now).DATE_ISO, {
       notes: await loadWorldNotes(),
+      previous: previousWorldLines(recentRuns),
     });
     world = roundup.highlights;
     worldDropped = roundup.dropped;
+    const repeated = world.filter((h) => h.repeat);
     console.log(
       `around the world: ${world.length} of ${candidates.length} nations cleared the bar` +
         (world.length ? ` (${world.map((h) => h.team).join(", ")})` : "") +
+        (repeats.size ? `; ${repeats.size} repeat-lead edition(s) not offered (${[...repeats].map((id) => TEAMS[id]?.name ?? id).join(", ")})` : "") +
+        (repeated.length ? `; REPEAT_LINE: ${repeated.map((h) => `${h.team} (as on ${h.repeat.date})`).join(", ")}` : "") +
         (roundup.checked ? ", fact-checked" : ", UNCHECKED") +
         (roundup.revised ? " after 1 revision" : "") +
         (roundup.unused?.length ? `; ${roundup.unused.length} more passed but sat below the cut` : "") +
@@ -1779,13 +1942,14 @@ export async function main({ dryRun = false } = {}) {
   // and it is the only record of WHY an edition reads the way it does — the
   // daily email reports from it, and it is the first thing to look at when a
   // team goes bland.
-  await writeRunReport(now, generated, retrieval, failed, world, worldDropped);
-
   // What the run actually cost in model calls, per model (map #198). Printed
   // every run so the answer is never a guess again — and so a shift in which
   // rung carries the load is visible the day it happens rather than after an
-  // outage.
+  // outage. The run report carries the same so the watchdog can alert on it.
   const usage = geminiUsage();
+  await writeRunReport(now, generated, retrieval, failed, world, worldDropped, {
+    model: { servedBy: usage.servedBy, onLastRung: usage.onLastRung, calls: usage.totalCalls, rejections: usage.totalRejections },
+  });
   console.log(
     `gemini: ${usage.totalCalls} calls served, ${usage.totalRejections} rejections — ` +
       usage.rows.map((r) => `${r.model} ok=${r.ok} 429=${r[429]} 503=${r[503]}`).join(" | "),

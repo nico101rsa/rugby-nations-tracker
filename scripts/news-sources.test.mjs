@@ -9,6 +9,9 @@ import {
   ageHours,
   scoreStory,
   isMatchReport,
+  isFresh,
+  firstSeenAt,
+  FRESH_HOURS,
   buildShortlist,
   isQuiet,
   renderShortlist,
@@ -215,7 +218,7 @@ test("renderShortlist: numbers candidates and shows why each scored", () => {
     NOW,
   );
   const out = renderShortlist(list);
-  assert.match(out, /^1\. \[score /);
+  assert.match(out, /^1\. \[NEW · score /);
   assert.match(out, /2 outlets \(planetrugby, bbc\)/);
   assert.match(renderShortlist([]), /coverage is silent/);
 });
@@ -253,4 +256,64 @@ test("buildShortlist: a genuine team story outranks a passing mention in a bigge
     NOW,
   );
   assert.match(list[0].title, /Erasmus provides/, "the Bok briefing must lead on a Bok story");
+});
+
+// The Esterhuizen case: Planet Rugby's Springbok team announcement sat at feed
+// position 0 on 22 Sep 2026 and, three days later, still out-scored every
+// fresh story and led the edition for the third day running. A story that
+// broke since the last edition now ranks above anything older, whatever the
+// scores say; older stories stay on the list, printed as background.
+test("buildShortlist: a story that broke since the last edition outranks a higher-scoring older one", () => {
+  const feed = [
+    item("Springboks team: Rassie Erasmus rotates for Wallabies showdown with new captain named", {
+      position: 0,
+      date: hoursAgo(70),
+      firstSeen: new Date(NOW.getTime() - 70 * 3_600_000).toISOString(),
+    }),
+    item("Rassie Erasmus addresses Cameron Hanekom's absence as Springboks have 'security'", {
+      position: 6,
+      date: hoursAgo(10),
+      firstSeen: new Date(NOW.getTime() - 10 * 3_600_000).toISOString(),
+    }),
+  ];
+  const list = buildShortlist(feed, 467, NOW);
+  assert.equal(list.length, 2);
+  assert.match(list[0].title, /Hanekom/, "the fresh story leads");
+  assert.equal(list[0].fresh, true);
+  assert.match(list[1].title, /rotates/);
+  assert.equal(list[1].fresh, false);
+  assert.ok(list[1].score > list[0].score, "the test only means something if the old story out-scores the new one");
+  const out = renderShortlist(list);
+  assert.match(out, /^1\. \[NEW · /);
+  assert.match(out, /2\. \[BACKGROUND \(first seen 3 days ago\) · /);
+  // Quiet is judged on the strongest candidate, not the first one printed.
+  assert.equal(isQuiet(list), false);
+});
+
+test("isFresh: the pool's firstSeen wins, the outlet's pubDate stands in, nothing means stale", () => {
+  const fresh = new Date(NOW.getTime() - 3 * 3_600_000).toISOString();
+  const stale = new Date(NOW.getTime() - (FRESH_HOURS + 1) * 3_600_000).toISOString();
+  assert.equal(isFresh({ items: [{ firstSeen: fresh }] }, NOW), true);
+  assert.equal(isFresh({ items: [{ firstSeen: stale, date: hoursAgo(1) }] }, NOW), false, "firstSeen outranks a newer pubDate");
+  assert.equal(isFresh({ items: [{ date: hoursAgo(2) }] }, NOW), true, "a widener hit has only its pubDate");
+  assert.equal(isFresh({ items: [{ date: "rubbish" }] }, NOW), false);
+  assert.equal(isFresh({ date: hoursAgo(2) }, NOW), true, "a bare story with no items falls back to its own date");
+});
+
+test("firstSeenAt: a cluster is as old as its EARLIEST sighting", () => {
+  const a = new Date(NOW.getTime() - 50 * 3_600_000).toISOString();
+  const b = new Date(NOW.getTime() - 2 * 3_600_000).toISOString();
+  assert.equal(firstSeenAt([{ firstSeen: b }, { firstSeen: a }]), Date.parse(a));
+  assert.equal(firstSeenAt([]), null);
+  // A second outlet picking a story up today does not make it new.
+  const list = buildShortlist(
+    [
+      item("Rassie Erasmus rotates for Wallabies showdown", { position: 0, firstSeen: a, date: hoursAgo(50) }),
+      item("Erasmus rotates Springboks for Wallabies showdown", { position: 1, firstSeen: b, date: hoursAgo(2), feedId: "bbc", feedName: "BBC" }),
+    ],
+    467,
+    NOW,
+  );
+  assert.equal(list.length, 1);
+  assert.equal(list[0].fresh, false);
 });

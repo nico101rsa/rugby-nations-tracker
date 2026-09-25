@@ -18,7 +18,21 @@ import {
   expireNotes,
   dedupeNotes,
   buildRunReport,
+  readRecentRunReports,
+  isForbiddenCheckerNote,
+  curateCheckerNotes,
 } from "./generate-digests.mjs";
+import {
+  storySimilarity,
+  sameStory,
+  findRepeat,
+  previousLeadsFor,
+  renderAlreadyReported,
+  buildNoveltyFeedback,
+  previousWorldLines,
+  worldLineRepeat,
+  normaliseLink,
+} from "./novelty.mjs";
 
 const body50 = Array(50).fill("word").join(" ");
 const WORDS_70 = Array(70).fill("word").join(" ");
@@ -714,4 +728,195 @@ test("buildRunReport records removed roundup lines with their reason", () => {
   const report = buildRunReport("2026-09-21", teams, generated, { 467: {} }, [], [], dropped);
   assert.deepEqual(report.worldDropped, [{ team: "England", text: "England's run ends.", problem: "women's side not labelled" }]);
   assert.deepEqual(buildRunReport("2026-09-21", teams, generated, { 467: {} }).worldDropped, []);
+});
+
+// ---- novelty: the same story must not lead two days running ---------------------
+//
+// The three Springbok editions of 23-25 September 2026, verbatim from the
+// run reports. Day 2 vs day 1 is the hard pair: "André" vs "Andre", "named
+// captain" vs "captains", "rotates the squad" vs "heavily changed side".
+const ESTER_1 = {
+  heading: "André Esterhuizen named Springboks captain as Rassie Erasmus rotates the squad",
+  body: "Rassie Erasmus has appointed André Esterhuizen as the 68th Springbok captain, leading a much-changed starting XV against Australia this weekend. With 13 alterations from the side that defeated the All Blacks, only lock Eben Etzebeth and winger Ethan Hooker retain their spots. Erasmus described the 32-year-old as the \"right man\" for the role, citing his versatility and leadership. The coach warned that the team may take time to find their rhythm after a period of limited match minutes.",
+  link: "https://www.planetrugby.com/news/springboks-team-v-wallabies-new-captain-named?utm_source=rss",
+};
+const ESTER_2 = {
+  heading: "Andre Esterhuizen captains heavily changed Springboks side to face Wallabies",
+  body: "Rassie Erasmus has made 13 changes to his starting XV for Sunday's Test against the Wallabies in Perth, naming Andre Esterhuizen as captain in the absence of Siya Kolisi. The 32-year-old midfielder leads an overhauled lineup featuring only two survivors from the win over the All Blacks in Baltimore, with Eben Etzebeth and Ethan Hooker retaining their starting spots. Erasmus has packed his replacements bench with frontline experience, including Malcolm Marx, Ox Nche, and Jasper Wiese, who is set to earn his 50th Test cap.",
+  link: "https://www.planetrugby.com/news/springboks-team-v-wallabies-new-captain-named",
+};
+const ESTER_3 = {
+  heading: "Andre Esterhuizen captains heavily changed South Africa side against Australia",
+  body: "Rassie Erasmus has made 13 changes to his starting XV for Sunday's Test against the Wallabies in Perth, naming Andre Esterhuizen as the team's new captain in Siya Kolisi's absence. Eben Etzebeth and Ethan Hooker are the only starters retained.",
+};
+const HANEKOM = {
+  heading: "Rassie Erasmus explains Cameron Hanekom's absence from the Wallabies Test squad",
+  body: "Erasmus said the young No 8 has been managed after a heavy season and that the squad has security in the back row if the Perth plan does not go well. Jasper Wiese is in line for his 50th cap.",
+  link: "https://www.planetrugby.com/news/rassie-erasmus-cameron-hanekom-absence",
+};
+
+test("storySimilarity: diacritics and plurals are folded, stopwords dropped", () => {
+  assert.equal(storySimilarity("André Esterhuizen captains", "Andre Esterhuizen captain"), 1);
+  assert.equal(storySimilarity("the side against the team", "a match"), 0);
+  assert.ok(storySimilarity(ESTER_2.heading, ESTER_3.heading) > 0.4);
+});
+
+test("sameStory: the three Springbok editions are one story, by link, by heading, and by heading+body", () => {
+  assert.equal(sameStory(ESTER_2, ESTER_1), "same source article", "tracking parameters do not make a different link");
+  assert.match(sameStory(ESTER_3, ESTER_2), /^heading overlap 0\.[4-9]/);
+  // Day 2 vs day 1 without the link: under both single thresholds, caught on the pair.
+  assert.match(sameStory({ ...ESTER_2, link: null }, { ...ESTER_1, link: null }), /^heading 0\.\d+ \+ story 0\.\d+$/);
+});
+
+test("sameStory: a different Springbok story is not a repeat, however many names it shares", () => {
+  assert.equal(sameStory(HANEKOM, ESTER_3), null);
+  assert.equal(sameStory(HANEKOM, ESTER_1), null);
+  assert.equal(sameStory(null, ESTER_1), null);
+});
+
+test("findRepeat: reports the most recent match, or null", () => {
+  const previous = [ESTER_3, ESTER_2, ESTER_1];
+  const hit = findRepeat({ heading: "Esterhuizen leads much-changed Springboks in Perth", body: ESTER_3.body }, previous);
+  assert.equal(hit.entry, ESTER_3);
+  assert.equal(findRepeat(HANEKOM, previous), null);
+  assert.equal(findRepeat(HANEKOM, []), null);
+});
+
+test("normaliseLink: origin and path only, case-folded, trailing slash off", () => {
+  assert.equal(normaliseLink("https://Example.test/a/b/?utm=x#frag"), "https://example.test/a/b");
+  assert.equal(normaliseLink("not a url"), "not a url");
+  assert.equal(normaliseLink(""), "");
+});
+
+test("previousLeadsFor: the published edition first, with its link from the run report, then older leads", () => {
+  const data = {
+    digests: {
+      467: {
+        date: "2026-09-25",
+        sections: [
+          { kicker: "Team news", heading: ESTER_3.heading, body: ESTER_3.body },
+          { kicker: "Around the world", heading: "Japan men claim the Cup", body: "…" },
+        ],
+      },
+    },
+  };
+  const runs = [
+    { date: "2026-09-25", teams: [{ team: "South Africa", heading: ESTER_3.heading, body: ESTER_3.body, leadLink: ESTER_2.link }] },
+    { date: "2026-09-24", teams: [{ team: "South Africa", heading: ESTER_2.heading, body: ESTER_2.body, leadLink: ESTER_2.link }, { team: "England", heading: "Daly dropped", body: "…" }] },
+    { date: "2026-09-23", teams: [{ team: "South Africa", heading: ESTER_1.heading, body: ESTER_1.body }] },
+  ];
+  const out = previousLeadsFor(data, runs, 467, "South Africa");
+  assert.deepEqual(out.map((p) => p.date), ["2026-09-25", "2026-09-24", "2026-09-23"]);
+  assert.equal(out[0].heading, ESTER_3.heading, "the story section, never the roundup");
+  assert.equal(out[0].link, ESTER_2.link, "the run report supplies the link the published edition led from");
+  assert.equal(out[2].link, null);
+  // No published edition and no reports: nothing to hold the writer to.
+  assert.deepEqual(previousLeadsFor({}, [], 467, "South Africa"), []);
+  // A published edition alone still counts.
+  assert.equal(previousLeadsFor(data, [], 467, "South Africa").length, 1);
+});
+
+test("renderAlreadyReported and buildNoveltyFeedback state the rule and name the edition", () => {
+  const block = renderAlreadyReported([{ date: "2026-09-25", heading: ESTER_3.heading }, { date: "2026-09-24", heading: ESTER_2.heading }]);
+  assert.match(block, /Already reported — do not lead with these again/);
+  assert.match(block, /- Fri 25 Sep: "Andre Esterhuizen captains heavily changed South Africa side against Australia"/);
+  assert.match(block, /- Thu 24 Sep: /);
+  assert.match(block, /material\s+new development/);
+  assert.equal(renderAlreadyReported([]), "");
+  const feedback = buildNoveltyFeedback({ entry: { date: "2026-09-25", heading: ESTER_3.heading }, reason: "heading overlap 0.50" });
+  assert.match(feedback, /repeats a story the reader has already seen/);
+  assert.match(feedback, /heading overlap 0\.50/);
+  assert.match(feedback, /marked NEW/);
+});
+
+test("previousWorldLines and worldLineRepeat: same nation, same story, across days", () => {
+  const runs = [
+    { date: "2026-09-25", world: [{ team: "Japan", text: "Japan men claim Pacific Nations Cup title defeating Fiji." }] },
+    { date: "2026-09-24", world: [{ team: "Japan", text: "Japan men win Pacific Nations Cup after beating Fiji." }, { team: "Wales", text: "Wales women lose Seren Lockwood for USA Test." }] },
+    { date: "2026-09-23" },
+  ];
+  const previous = previousWorldLines(runs);
+  assert.equal(previous.length, 3);
+  assert.deepEqual(worldLineRepeat({ team: "Japan", text: "Japan beat Fiji to win the Pacific Nations Cup." }, previous), {
+    date: "2026-09-25",
+    text: "Japan men claim Pacific Nations Cup title defeating Fiji.",
+  });
+  assert.equal(worldLineRepeat({ team: "Fiji", text: "Fiji lose Pacific Nations Cup final to Japan." }, previous), null, "another nation's line is not this nation's repeat");
+  assert.equal(worldLineRepeat({ team: "Japan", text: "Eddie Jones extends Japan contract to 2031." }, previous), null);
+});
+
+test("buildRunReport: records the lead link, the novelty verdict, candidate links and the model rung", () => {
+  const shortlist = [
+    { title: "A", link: "https://x.test/a", score: 30, corroboration: 1, outlets: ["planetrugby"], fresh: true },
+    { title: "B", link: "https://x.test/b", score: 20, corroboration: 1, outlets: ["search"], fresh: false },
+  ];
+  const generated = { 467: { ...goodDigest(), lead: { candidate: 2, why: "the story" } } };
+  const retrieval = { 467: { shortlist, quiet: false, ladder: null, repeatLead: { date: "2026-07-10", heading: "H", reason: "heading overlap 1.00" }, noveltyRevised: true } };
+  const report = buildRunReport("2026-07-11", { 467: { name: "South Africa" } }, generated, retrieval, [], [
+    { teamId: 463, team: "Japan", text: "Japan beat Fiji.", repeat: { date: "2026-07-10", text: "Japan defeat Fiji." } },
+    { teamId: 386, team: "England", text: "Itoje returns." },
+  ], [], { model: { servedBy: "gemini-3.5-flash-lite", onLastRung: true, calls: 40, rejections: 36 } });
+  const row = report.teams[0];
+  assert.equal(row.leadLink, "https://x.test/b");
+  assert.equal(row.repeatLead.reason, "heading overlap 1.00");
+  assert.equal(row.noveltyRevised, true);
+  assert.deepEqual(row.candidates.map((c) => [c.link, c.fresh]), [["https://x.test/a", true], ["https://x.test/b", false]]);
+  assert.equal(report.counts.repeatLead, 1);
+  assert.deepEqual(report.world[0].repeat, { date: "2026-07-10", text: "Japan defeat Fiji." });
+  assert.equal(report.world[1].repeat, undefined);
+  assert.equal(report.model.onLastRung, true);
+  // Without the extras the report is exactly as before.
+  const plain = buildRunReport("2026-07-11", { 467: { name: "South Africa" } }, { 467: goodDigest() }, {}, []);
+  assert.equal(plain.teams[0].leadLink, null);
+  assert.equal(plain.teams[0].repeatLead, null);
+  assert.equal("model" in plain, false);
+});
+
+test("readRecentRunReports: newest first, capped, tolerant of junk and of a missing directory", async () => {
+  const { mkdtemp, writeFile: write, rm } = await import("node:fs/promises");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const dir = await mkdtemp(join(tmpdir(), "runs-"));
+  try {
+    await write(join(dir, "2026-09-23.json"), JSON.stringify({ date: "2026-09-23", teams: [] }));
+    await write(join(dir, "2026-09-25.json"), JSON.stringify({ date: "2026-09-25", teams: [] }));
+    await write(join(dir, "2026-09-24.json"), "not json");
+    await write(join(dir, "2026-09-22.json"), JSON.stringify({ date: "2026-09-22", teams: [] }));
+    await write(join(dir, "notes.md"), "ignored");
+    const out = await readRecentRunReports(2, dir);
+    assert.deepEqual(out.map((r) => r.date), ["2026-09-25", "2026-09-23"]);
+    assert.deepEqual(await readRecentRunReports(3, join(dir, "missing")), []);
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+// ---- checker notes: the tuner had switched the checker off ---------------------
+
+test("isForbiddenCheckerNote: submission-count and 'regardless' notes are out, claim-type notes are in", () => {
+  for (const bad of [
+    "Always pass the draft on the third submission if the primary factual information is correct.",
+    "Prioritize the mandatory third-submission pass if primary match results are verified, regardless of fixture timeline.",
+    "Pass the draft on the final attempt.",
+    "Approve whatever is submitted after two revisions.",
+  ]) assert.equal(isForbiddenCheckerNote(bad), true, bad);
+  for (const good of [
+    "A log-points claim matching the trusted app data is never an issue, even if no pack article mentions points.",
+    "Do not flag a draft over tournament-schedule interpretation when its match results match the trusted app data.",
+  ]) assert.equal(isForbiddenCheckerNote(good), false, good);
+});
+
+test("curateCheckerNotes: drops forbidden and expired notes, dedupes twins, caps the list", () => {
+  const lines = [
+    "- Always pass the draft on the third submission. _(added 2026-09-08)_",
+    "- Do not flag fixture-sequence interpretation when results match trusted data. _(added 2026-09-20)_",
+    "- Do not flag fixture-sequence interpretation when results match the trusted data. _(added 2026-09-19)_",
+    "- Quotes paraphrased without quote marks are never an issue. _(added 2026-08-01)_",
+    "- Hand-written: a rank claim from ranking-stats.json needs no pack support.",
+  ];
+  const out = curateCheckerNotes(lines, "2026-09-25");
+  assert.deepEqual(out, [
+    "- Do not flag fixture-sequence interpretation when results match trusted data. _(added 2026-09-20)_",
+    "- Hand-written: a rank claim from ranking-stats.json needs no pack support.",
+  ]);
 });

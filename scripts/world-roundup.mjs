@@ -27,6 +27,7 @@
 //
 // Pure helpers; the model call is injected so everything tests offline.
 import { bannedCopyIn, words } from "./copy-rules.mjs";
+import { renderPreviousWorld, worldLineRepeat } from "./novelty.mjs";
 
 export const WORLD_KICKER = "Around the world";
 // Four, not eight. The first live edition (2026-09-21) ran six 20-word
@@ -44,8 +45,15 @@ const ITEM_MAX_WORDS = 16; // the prompt asks for ≤12; this is the hard gate
 
 // The editions the roundup may draw on: today's, story-rung only. `teams` is
 // the generator's id → { name } map; `generated` its id → digest map.
-export function roundupCandidates(teams, generated) {
+//
+// `skip` is the set of team ids whose edition REPEATS a previous day's lead
+// (the novelty gate in generate-digests.mjs let it through, flagged). A story
+// that already led that tab yesterday was already offered to the roundup
+// yesterday; offering it again is how "Japan … Pacific Nations Cup … Fiji"
+// closed every briefing from 22 to 25 September 2026.
+export function roundupCandidates(teams, generated, { skip = new Set() } = {}) {
   return Object.entries(generated)
+    .filter(([id]) => !skip.has(Number(id)))
     .filter(([, d]) => d && d.rung !== "data" && d.sections?.[0]?.heading)
     .map(([id, d]) => ({
       teamId: Number(id),
@@ -71,10 +79,13 @@ export function labelledNonMens(text, team) {
 
 // `notes` are the standing roundup notes the nightly review keeps
 // (editorial/world-notes.md) — the same self-tuning loop the writer has.
-export function buildWorldPrompt(candidates, dateISO, notes = "") {
+// `previous` are the lines published on recent days (novelty.mjs), so the
+// writer knows what the reader has already been told.
+export function buildWorldPrompt(candidates, dateISO, notes = "", previous = []) {
   const blocks = candidates
     .map((c) => `### ${c.team}\n${c.heading}\n${c.body}`)
     .join("\n\n");
+  const previousBlock = previous.length ? `\n\n${renderPreviousWorld(previous)}` : "";
   const notesBlock = notes
     ? `\n\n## Standing notes (from previous days' reviews — follow them)\n${notes}`
     : "";
@@ -123,7 +134,7 @@ the reader sees. Zero is fine on a dead day.
 
 ## Output — strict JSON, nothing else
 
-{"highlights": [{"team": "<nation exactly as headed above>", "text": "<headline, ≤12 words>"}]}${notesBlock}`;
+{"highlights": [{"team": "<nation exactly as headed above>", "text": "<headline, ≤12 words>"}]}${previousBlock}${notesBlock}`;
 }
 
 const terminal = (s) => (/[.!?…”"']$/.test(s) ? s : `${s}.`);
@@ -325,9 +336,16 @@ export function applyWorldCheck(highlights, raw) {
 // today"); a checker that answers nothing usable is logged and the roundup
 // ships unchecked, since every line was cut from copy that already passed
 // its own fact-check.
-export async function worldRoundup(callModel, extractJson, candidates, dateISO, { notes = "" } = {}) {
+//
+// `previous` (novelty.mjs) is what recent roundups already said. It goes into
+// the prompt, and each published line is then MARKED — never dropped — when
+// it still reads as one of those: a repeat on a nation whose briefing is new
+// is a development the writer judged worth a line, so it stands, and the
+// mark is what the run report and the watchdog read. Repeated BRIEFINGS are
+// kept out earlier, at roundupCandidates.
+export async function worldRoundup(callModel, extractJson, candidates, dateISO, { notes = "", previous = [] } = {}) {
   if (candidates.length < 2) return { highlights: [], dropped: [], unused: [], checked: false, revised: false };
-  const prompt = buildWorldPrompt(candidates, dateISO, notes);
+  const prompt = buildWorldPrompt(candidates, dateISO, notes, previous);
 
   // One pass: write (with optional feedback), gate in code, fact-check.
   const pass = async (feedback) => {
@@ -358,9 +376,13 @@ the claim) or leave that nation out. Output the complete JSON again.`;
       // still ship, and the run log says what was dropped.
     }
   }
+  const flagged = result.kept.map((h) => {
+    const repeat = worldLineRepeat(h, previous);
+    return repeat ? { ...h, repeat } : h;
+  });
   return {
-    highlights: result.kept.slice(0, WORLD_MAX_ITEMS),
-    unused: result.kept.slice(WORLD_MAX_ITEMS),
+    highlights: flagged.slice(0, WORLD_MAX_ITEMS),
+    unused: flagged.slice(WORLD_MAX_ITEMS),
     dropped: result.dropped,
     checked: result.checked,
     revised,
