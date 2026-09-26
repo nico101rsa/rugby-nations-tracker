@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-26T22:00:29.934Z",
+  "updatedAt": "2026-09-26T22:15:02.864Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 207,
+  "count": 211,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -2771,28 +2771,33 @@
       "id": "wales-selection-and-performance-1xywkt",
       "subject": "Wales' selection and performance in the WXV Global Series",
       "teams": [
-        391
+        391,
+        388,
+        461,
+        463,
+        465,
+        467
       ],
       "resolution": "until the conclusion of the WXV tournament",
       "sources": [
         {
-          "title": "Davey reignites international ambitions with Wales",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cy0z4d01e1no?at_medium=RSS&at_campaign=rss",
+          "title": "USA stun Ireland with comeback WXV win in Dublin",
+          "link": "https://www.bbc.co.uk/sport/articles/c5j9xplp19m1o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         },
         {
-          "title": "Wales lose injured Powell for entire WXV campaign",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c3qjk20yj27go?at_medium=RSS&at_campaign=rss",
+          "title": "USA loss a game Ireland 'should have won' - Bemand",
+          "link": "https://www.bbc.co.uk/sport/articles/cmz7z2wvr510o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         },
         {
-          "title": "Bevan to play at fly-half in Wales' WXV opener",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmd94enz5nqqo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
+          "title": "WXV Global Series 2026 Preview – Italy vs Japan",
+          "link": "https://www.rugbyasia247.com/wxv-global-series-2026-preview-italy-vs-japan/",
+          "feedName": "Rugby Asia 247"
         }
       ],
       "firstSeen": "2026-09-17",
-      "lastSeen": "2026-09-17",
+      "lastSeen": "2026-09-27",
       "uses": 0
     },
     {
@@ -3548,8 +3553,8 @@
       ],
       "firstSeen": "2026-09-21",
       "lastSeen": "2026-09-22",
-      "uses": 1,
-      "lastUsed": "2026-09-25"
+      "uses": 2,
+      "lastUsed": "2026-09-27"
     },
     {
       "id": "joe-marchant-and-courtney-1cm2yu7",
@@ -4779,7 +4784,7 @@
     },
     {
       "id": "steve-borthwick-s-progress-78mzxt",
-      "subject": "England's progress under Steve Borthwick toward the 2027 Rugby World Cup",
+      "subject": "Steve Borthwick's progress as England head coach ahead of the 2027 Rugby World Cup",
       "teams": [
         386
       ],
@@ -4863,6 +4868,98 @@
           "title": "Springboks: Nick Mallett's blunt verdict on Malcolm Marx potential positional switch against Wallabies",
           "link": "https://www.planetrugby.com/news/springboks-nick-malletts-blunt-verdict-on-malcolm-marx-potential-positional-switch-against-wallabies",
           "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-s-experimental-1rxy1w3",
+      "subject": "Rassie Erasmus's experimental Springbok team selections and positional shifts",
+      "teams": [
+        467
+      ],
+      "resolution": "until Rassie Erasmus settles on a consistent starting XV following his rotation of players like Malcolm Marx and Cameron Hanekom",
+      "sources": [
+        {
+          "title": "Rassie Erasmus addresses Cameron Hanekom's absence as Springboks have 'security if it doesn't go well'",
+          "link": "https://www.planetrugby.com/news/thursday-rassie-erasmus-addresses-cameron-hanekoms-absence-as-springboks-have-security-if-it-doesnt-go-well",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Springboks: Nick Mallett's blunt verdict on Malcolm Marx potential positional switch against Wallabies",
+          "link": "https://www.planetrugby.com/news/springboks-nick-malletts-blunt-verdict-on-malcolm-marx-potential-positional-switch-against-wallabies",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Rassie Erasmus explains 'chops and changes' for Australia and why the Springboks have 'to roll the dice'",
+          "link": "https://www.planetrugby.com/news/why-the-springboks-are-rolling-the-dice-rassie-erasmus-explains-wholesale-changes",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
+      "uses": 0
+    },
+    {
+      "id": "wales-professional-team-structure-w2m44t",
+      "subject": "Wales' professional team structure and financial sustainability",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union or the regional boards confirm the long-term status of their four professional teams",
+      "sources": [
+        {
+          "title": "Ex-Welsh first minister Jones joins Scarlets board",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cj3v403y7wn5o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
+      "uses": 0
+    },
+    {
+      "id": "investment-and-financial-viability-1mcqxrt",
+      "subject": "Investment and financial viability of Premiership Rugby clubs",
+      "teams": [
+        386
+      ],
+      "resolution": "until the clubs in talks with overseas investors finalize their deals",
+      "sources": [
+        {
+          "title": "From ruin to a (Red) Bull market - how Prem became hot property",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmg49dvg2gp7o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Three leading Prem clubs in talks with overseas investors on eve of rugby union season",
+          "link": "https://www.theguardian.com/sport/2026/sep/24/harlequins-northampton-gloucester-prem-clubs-talks-with-overseas-investors-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "The Breakdown | The Prem at 30: are all the fights and mistakes out of the way?",
+          "link": "https://www.theguardian.com/sport/2026/sep/22/the-prem-at-30-are-all-the-fights-and-mistakes-out-of-the-way",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
+      "uses": 0
+    },
+    {
+      "id": "r360-rebel-rugby-series-1yemdxl",
+      "subject": "R360 rebel rugby series solvency",
+      "teams": [
+        386
+      ],
+      "resolution": "until the company either publishes its overdue accounts or is dissolved",
+      "sources": [
+        {
+          "title": "R360 rebel series given ultimatum on overdue accounts",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6wyzqy8gq1ko?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-27",
