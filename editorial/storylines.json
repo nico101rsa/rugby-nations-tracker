@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-26T12:33:54.938Z",
+  "updatedAt": "2026-09-26T17:00:48.577Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 191,
+  "count": 197,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -778,7 +778,8 @@
       ],
       "firstSeen": "2026-09-06",
       "lastSeen": "2026-09-26",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-27"
     },
     {
       "id": "the-rfu-s-plans-1hypy2m",
@@ -3240,6 +3241,11 @@
       "resolution": "until a formal announcement is made regarding Siya Kolisi's club future for the upcoming season",
       "sources": [
         {
+          "title": "Watch: Siya feeling ‘Impi yamaStormer’ vibe",
+          "link": "https://www.sarugbymag.co.za/watch-siya-feeling-impi-yamastormer-vibe/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
           "title": "Siya to tackle Edinburgh?",
           "link": "https://www.sarugbymag.co.za/siya-tackle-edinburgh/",
           "feedName": "SA Rugby Magazine"
@@ -3251,7 +3257,7 @@
         }
       ],
       "firstSeen": "2026-09-19",
-      "lastSeen": "2026-09-26",
+      "lastSeen": "2026-09-27",
       "uses": 0
     },
     {
@@ -4146,7 +4152,7 @@
         }
       ],
       "firstSeen": "2026-09-25",
-      "lastSeen": "2026-09-26",
+      "lastSeen": "2026-09-27",
       "uses": 0
     },
     {
@@ -4241,7 +4247,8 @@
       ],
       "firstSeen": "2026-09-26",
       "lastSeen": "2026-09-26",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-09-27"
     },
     {
       "id": "malcolm-marx-s-potential-vbn9bi",
@@ -4332,6 +4339,11 @@
       "resolution": "until the Springboks versus Australia Test on Sunday is completed and the effectiveness of the positional experiment is clear",
       "sources": [
         {
+          "title": "Springboks: Nick Mallett's blunt verdict on Malcolm Marx potential positional switch against Wallabies",
+          "link": "https://www.planetrugby.com/news/springboks-nick-malletts-blunt-verdict-on-malcolm-marx-potential-positional-switch-against-wallabies",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Springboks: Rassie Erasmus reveals Malcolm Marx experiment that could debut versus Australia",
           "link": "https://www.planetrugby.com/news/springboks-rassie-erasmus-reveals-malcolm-marx-experiment",
           "feedName": "Planet Rugby"
@@ -4340,15 +4352,10 @@
           "title": "Mallett: Don’t move Marx",
           "link": "https://www.sarugbymag.co.za/mallett-dont-move-marx/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Nick Mallett: 'Unusual selection' from Rassie Erasmus means Springboks have 'a very big ask' against Wallabies",
-          "link": "https://www.planetrugby.com/news/nick-mallett-unusual-selection-from-rassie-erasmus-means-springboks-have-a-very-big-ask-against-wallabies",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-09-26",
-      "lastSeen": "2026-09-26",
+      "lastSeen": "2026-09-27",
       "uses": 0
     },
     {
@@ -4425,7 +4432,7 @@
         }
       ],
       "firstSeen": "2026-09-26",
-      "lastSeen": "2026-09-26",
+      "lastSeen": "2026-09-27",
       "uses": 0
     },
     {
@@ -4473,6 +4480,150 @@
       ],
       "firstSeen": "2026-09-26",
       "lastSeen": "2026-09-26",
+      "uses": 0
+    },
+    {
+      "id": "henry-pollock-s-future-10c0t9x",
+      "subject": "Henry Pollock's future with Northampton Saints",
+      "teams": [
+        386
+      ],
+      "resolution": "until the multi-year contract recently reported is formally signed and confirmed by the club",
+      "sources": [
+        {
+          "title": "Northampton Saints: Phil Dowson reveals 'great starting point' in Henry Pollock negotiations and why England star has 'more in him'",
+          "link": "https://www.planetrugby.com/news/northampton-saints-phil-dowson-reveals-great-starting-point-in-henry-pollock-negotiations-and-why-england-star-has-more-in-him",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Northampton lead Prem charge but history shows title defence will be no simple task | Robert Kitson",
+          "link": "https://www.theguardian.com/sport/2026/sep/24/northampton-lead-prem-charge-but-history-shows-title-defence-will-be-no-simple-task",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Pollock denies signing Northampton deal and is ‘open to every opportunity’",
+          "link": "https://www.theguardian.com/sport/2026/sep/14/henry-pollock-northampton-new-contract-negotiations-move-abroad-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
+      "uses": 0
+    },
+    {
+      "id": "sacha-feinberg-mngomezulu-s-ijkgyz",
+      "subject": "Sacha Feinberg-Mngomezulu's development as Springbok fly-half",
+      "teams": [
+        467
+      ],
+      "resolution": "until he demonstrates consistent application of the playmaking improvements requested by Nick Mallett",
+      "sources": [
+        {
+          "title": "Mallett pinpoints Sacha’s next big lesson",
+          "link": "https://www.sarugbymag.co.za/mallett-pinpoints-sachas-next-big-lesson/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Springboks: Nick Mallett reveals the two key 'lessons' which Sacha Feinberg-Mngomezulu 'has to learn'",
+          "link": "https://www.planetrugby.com/news/springboks-nick-mallett-reveals-the-two-key-lessons-which-sacha-feinberg-mngomezulu-has-to-learn",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
+      "uses": 0
+    },
+    {
+      "id": "joseph-suaalii-s-success-wew42d",
+      "subject": "Joseph Suaalii's success as a wing for the Wallabies",
+      "teams": [
+        461
+      ],
+      "resolution": "until his performance in the upcoming Test against South Africa provides a verdict on his positional switch",
+      "sources": [
+        {
+          "title": "Wallabies team: Les Kiss gambles with Joseph Suaalii positional switch and forward-heavy bench split for Springboks",
+          "link": "https://www.planetrugby.com/news/wallabies-team-v-springboks-joseph-suaalii-positional-switch-as-les-kiss-gambles-with-bench-split",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Joseph-Aukuso Suaalii given nod to start on wing for Wallabies against South Africa",
+          "link": "https://www.theguardian.com/sport/2026/sep/25/joseph-aukuso-suaalii-to-start-on-wing-for-wallabies-vs-south-africa",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Kiss: Joe was up for it",
+          "link": "https://www.sarugbymag.co.za/kiss-joe-was-up-for-it/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
+      "uses": 0
+    },
+    {
+      "id": "wales-s-injury-situation-obsrvh",
+      "subject": "Wales's injury situation and scrum-half depth",
+      "teams": [
+        391
+      ],
+      "resolution": "until Seren Lockwood and other sidelined players return to full match fitness",
+      "sources": [
+        {
+          "title": "Wales suffer scrum-half Lockwood blow for USA Test",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cm3wjy05l679o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
+      "uses": 0
+    },
+    {
+      "id": "england-s-adaptation-to-16v1ro8",
+      "subject": "England's adaptation to new refereeing interpretations",
+      "teams": [
+        386
+      ],
+      "resolution": "until the impact of these changes on England's performance becomes clear during the Nations Championship/World Cup cycle",
+      "sources": [
+        {
+          "title": "Prem agrees to revamp refereeing in boost for England’s Rugby World Cup hopes",
+          "link": "https://www.theguardian.com/sport/2026/sep/23/prem-agrees-to-revamp-refereeing-in-boost-for-englands-rugby-world-cup-hopes",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Progress or standing still - where are England under Borthwick?",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/crr8r25yv7vo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Why England are yet to reap rewards of £264m deal with Rugby World Cup only a year away | Gerard Meagher",
+          "link": "https://www.theguardian.com/sport/2026/sep/24/england-rugby-prem-deal-12-months-world-cup",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
+      "uses": 0
+    },
+    {
+      "id": "r360-s-corporate-status-j9th0o",
+      "subject": "R360's corporate status and transparency",
+      "teams": [
+        461,
+        386
+      ],
+      "resolution": "until the company publishes its overdue accounts or faces dissolution",
+      "sources": [
+        {
+          "title": "R360 rebel series given ultimatum on overdue accounts",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6wyzqy8gq1ko?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-27",
+      "lastSeen": "2026-09-27",
       "uses": 0
     }
   ]
