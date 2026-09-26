@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-26T12:00:40.680Z",
+  "updatedAt": "2026-09-26T12:33:54.938Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 189,
+  "count": 191,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -269,23 +269,23 @@
       "resolution": "until England proves their tactical consistency in the Nations Championship",
       "sources": [
         {
-          "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
-          "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
+          "title": "Prem agrees to revamp refereeing in boost for England’s Rugby World Cup hopes",
+          "link": "https://www.theguardian.com/sport/2026/sep/23/prem-agrees-to-revamp-refereeing-in-boost-for-englands-rugby-world-cup-hopes",
           "feedName": "Guardian Rugby Union"
         },
         {
-          "title": "Progress or standing still - where are England under Borthwick?",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/crr8r25yv7vo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
+          "title": "Why England are yet to reap rewards of £264m deal with Rugby World Cup only a year away | Gerard Meagher",
+          "link": "https://www.theguardian.com/sport/2026/sep/24/england-rugby-prem-deal-12-months-world-cup",
+          "feedName": "Guardian Rugby Union"
         },
         {
-          "title": "England beaten by South Africa in Nations Championship",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/videos/c9d234pwvg1o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
+          "title": "England to extend Borthwick contract as Pollock closes on £400,000 Northampton deal",
+          "link": "https://www.theguardian.com/sport/2026/sep/09/england-extend-borthwick-deal-pollock-400k-northampton-deal-rugby-world-cup",
+          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-08-26",
-      "lastSeen": "2026-09-17",
+      "lastSeen": "2026-09-26",
       "uses": 1,
       "lastUsed": "2026-09-06"
     },
@@ -1203,6 +1203,11 @@
       "resolution": "until the WRU appoints a permanent head coach",
       "sources": [
         {
+          "title": "Inside rugby's greatest production factory",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwym77z8gl9o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
           "title": "Inspired Wales seal stunning win over South Africa",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cme3rg39xe7do?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -1211,15 +1216,10 @@
           "title": "Wales deliver performance of serious promise",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c862e4g7346lo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Argentina too strong as they halt Wales' mini-revival",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/videos/cz75x538ewlo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-09-07",
-      "lastSeen": "2026-09-22",
+      "lastSeen": "2026-09-26",
       "uses": 0
     },
     {
@@ -3234,7 +3234,8 @@
       "id": "siya-kolisi-s-potential-5lw9zd",
       "subject": "Siya Kolisi's return to competitive action for the Stormers",
       "teams": [
-        467
+        467,
+        386
       ],
       "resolution": "until a formal announcement is made regarding Siya Kolisi's club future for the upcoming season",
       "sources": [
@@ -4416,6 +4417,53 @@
         386
       ],
       "resolution": "until the potential overseas investment deals are confirmed or abandoned",
+      "sources": [
+        {
+          "title": "Three leading Prem clubs in talks with overseas investors on eve of rugby union season",
+          "link": "https://www.theguardian.com/sport/2026/sep/24/harlequins-northampton-gloucester-prem-clubs-talks-with-overseas-investors-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-26",
+      "lastSeen": "2026-09-26",
+      "uses": 0
+    },
+    {
+      "id": "the-outcome-of-the-c7nahc",
+      "subject": "The outcome of the Wallabies versus Springboks one-off Test in Perth",
+      "teams": [
+        461,
+        467
+      ],
+      "resolution": "until the match concludes and the final score is recorded",
+      "sources": [
+        {
+          "title": "Captain Harry outlines Wallabies' victory plan",
+          "link": "https://www.sarugbymag.co.za/captain-harry-outlines-wallabies-victory-plan/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Duane: We’ll have a game on our hands",
+          "link": "https://www.sarugbymag.co.za/duane-boks-will-game-hands/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Wallabies wing waits for final Bok 23",
+          "link": "https://www.sarugbymag.co.za/wallabies-wing-waits-for-final-bok-23/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-09-26",
+      "lastSeen": "2026-09-26",
+      "uses": 0
+    },
+    {
+      "id": "the-potential-sale-of-1i25fq2",
+      "subject": "The potential sale of Harlequins, Northampton, and Gloucester to overseas investors",
+      "teams": [
+        386
+      ],
+      "resolution": "until the negotiations with the interested investment groups conclude",
       "sources": [
         {
           "title": "Three leading Prem clubs in talks with overseas investors on eve of rugby union season",
