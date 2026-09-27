@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-09-27T05:59:46.837Z",
+ "updatedAt": "2026-09-27T15:36:33.532Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -846,20 +846,6 @@
   "AUS": {
    "last": [
     {
-     "id": 14884319,
-     "date": "2025-11-08T17:40:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Italy",
-     "opponentCode": "ITA",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 19,
-     "them": 26,
-     "result": "L",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14884326,
      "date": "2025-11-15T20:10:00.000Z",
      "league": "International Friendlies",
@@ -984,9 +970,7 @@
      "result": "D",
      "tries": null,
      "cards": null
-    }
-   ],
-   "next": [
+    },
     {
      "id": 17149480,
      "date": "2026-09-27T09:45:00.000Z",
@@ -995,11 +979,14 @@
      "opponentCode": "RSA",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Optus Stadium, Perth"
-    },
+     "us": 42,
+     "them": 38,
+     "result": "W",
+     "tries": 5,
+     "cards": 4
+    }
+   ],
+   "next": [
     {
      "venue": "Eden Park, Auckland",
      "id": "espn-603463",
@@ -1073,6 +1060,18 @@
      "opponentCode": null,
      "tracked": false,
      "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248078,
+     "date": "2027-10-09T06:10:00.000Z",
+     "league": "World Cup, Pool A",
+     "opponent": "New Zealand",
+     "opponentCode": "NZL",
+     "tracked": true,
+     "homeAway": "A",
      "us": null,
      "them": null,
      "result": null
@@ -1698,20 +1697,6 @@
   "RSA": {
    "last": [
     {
-     "id": 14884338,
-     "date": "2025-11-29T15:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Wales",
-     "opponentCode": "WAL",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 73,
-     "them": 0,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 16106686,
      "date": "2026-06-20T13:00:00.000Z",
      "league": "International Friendlies",
@@ -1836,9 +1821,7 @@
      "result": "W",
      "tries": 6,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 17149480,
      "date": "2026-09-27T09:45:00.000Z",
@@ -1847,11 +1830,14 @@
      "opponentCode": "AUS",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Optus Stadium, Perth"
-    },
+     "us": 38,
+     "them": 42,
+     "result": "L",
+     "tries": 6,
+     "cards": 0
+    }
+   ],
+   "next": [
     {
      "id": 16098076,
      "date": "2026-11-07T11:40:00.000Z",
@@ -1898,6 +1884,18 @@
      "opponent": "Italy",
      "opponentCode": "ITA",
      "tracked": true,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248080,
+     "date": "2027-10-10T06:45:00.000Z",
+     "league": "World Cup, Pool B",
+     "opponent": "Georgia",
+     "opponentCode": null,
+     "tracked": false,
      "homeAway": "H",
      "us": null,
      "them": null,
