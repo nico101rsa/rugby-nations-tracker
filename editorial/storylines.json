@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-29T00:02:24.991Z",
+  "updatedAt": "2026-09-29T20:01:48.041Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 193,
+  "count": 198,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -3418,7 +3418,7 @@
     },
     {
       "id": "harlequins-northampton-saints-and-ts7sr1",
-      "subject": "Potential overseas investment talks involving Harlequins, Northampton Saints, and Gloucester",
+      "subject": "Investment talks between leading Premiership clubs Harlequins, Northampton Saints, Gloucester and overseas investors",
       "teams": [
         386,
         391,
@@ -3433,8 +3433,9 @@
         }
       ],
       "firstSeen": "2026-09-25",
-      "lastSeen": "2026-09-29",
-      "uses": 0
+      "lastSeen": "2026-09-30",
+      "uses": 1,
+      "lastUsed": "2026-09-30"
     },
     {
       "id": "andr-esterhuizen-s-captaincy-5158tr",
@@ -4392,7 +4393,7 @@
         }
       ],
       "firstSeen": "2026-09-28",
-      "lastSeen": "2026-09-28",
+      "lastSeen": "2026-09-30",
       "uses": 0
     },
     {
@@ -4521,9 +4522,10 @@
     },
     {
       "id": "fehi-fineanganofo-s-delayed-l4r090",
-      "subject": "Fehi Fineanganofo's delayed arrival at Newcastle Red Bulls",
+      "subject": "Fehi Fineanganofo's delayed arrival at Newcastle Red Bulls to pursue Rugby World Cup selection with the All Blacks",
       "teams": [
-        386
+        386,
+        465
       ],
       "resolution": "until he reports for duty at Newcastle following the conclusion of his Rugby World Cup aspirations",
       "sources": [
@@ -4534,7 +4536,117 @@
         }
       ],
       "firstSeen": "2026-09-29",
-      "lastSeen": "2026-09-29",
+      "lastSeen": "2026-09-30",
+      "uses": 0
+    },
+    {
+      "id": "andr-esterhuizen-s-captaincy-1q9l78q",
+      "subject": "André Esterhuizen's captaincy and the Springboks' disciplinary issues following their defeat to Australia",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Springboks play their next fixture and address their disciplinary concerns",
+      "sources": [
+        {
+          "title": "Springboks preparations for Wallabies Test disrupted as Andre Esterhuizen faces backlash over old racial slur",
+          "link": "https://www.planetrugby.com/news/springboks-preparations-for-wallabies-test-disrupted-as-andre-esterhuizen-faces-backlash-over-old-racial-slur",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "André the Giant: Lack of discipline cost us",
+          "link": "https://www.sarugbymag.co.za/andre-giant-lack-discipline-cost-us/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Rassie Erasmus identifies where Springboks lost the game against Wallabies and reveals why it's a 'valuable experience'",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-identifies-where-springboks-lost-the-game-against-wallabies",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-30",
+      "lastSeen": "2026-09-30",
+      "uses": 0
+    },
+    {
+      "id": "les-kiss-s-centre-nh8fgv",
+      "subject": "Les Kiss's centre crisis and injury concerns ahead of the Wallabies' Bledisloe Cup matches against the All Blacks",
+      "teams": [
+        461
+      ],
+      "resolution": "until Australia announce their lineup for the upcoming Bledisloe Cup Tests against New Zealand",
+      "sources": [
+        {
+          "title": "Injury cloud over Wallabies' two-try hero",
+          "link": "https://www.sarugbymag.co.za/injury-cloud-wallabies-two-try-hero/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Wallabies' centre crisis for All Blacks showdown as Les Kiss issues verdict on Joseph Sua'ali'i trial",
+          "link": "https://www.planetrugby.com/news/wallabies-centre-cited-as-les-kiss-issues-verdict-on-joseph-suaalii-trial",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-09-30",
+      "lastSeen": "2026-09-30",
+      "uses": 0
+    },
+    {
+      "id": "jack-willis-s-international-1biawvs",
+      "subject": "Jack Willis's international future with England after winning the Top 14 best player award",
+      "teams": [
+        386
+      ],
+      "resolution": "until Steve Borthwick selects his next England squad and clarifies Jack Willis's international availability",
+      "sources": [
+        {
+          "title": "Jack Willis and Louis Bielle-Biarrey headline French rugby awards",
+          "link": "https://www.planetrugby.com/news/jack-willis-and-louis-bielle-biarrey-headline-french-rugby-awards",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Top 14 award winner Willis reiterates desire to play Test rugby",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmrerg8eevvdo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-30",
+      "lastSeen": "2026-09-30",
+      "uses": 0
+    },
+    {
+      "id": "immanuel-feyi-waboso-s-15quc4k",
+      "subject": "Immanuel Feyi-Waboso's fitness and his potential to star for England at the upcoming Rugby World Cup",
+      "teams": [
+        386
+      ],
+      "resolution": "until Immanuel Feyi-Waboso completes the season without further injury setbacks",
+      "sources": [
+        {
+          "title": "Feyi-Waboso could be star at World Cup - Baxter",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cm207y3qq2d6o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-30",
+      "lastSeen": "2026-09-30",
+      "uses": 0
+    },
+    {
+      "id": "the-future-of-the-1hd4u7",
+      "subject": "The future of the Ospreys and Scarlets amid the WRU's proposal to cut a Welsh club by 2028",
+      "teams": [
+        391
+      ],
+      "resolution": "until a final decision is reached on which Welsh club is cut under the WRU restructuring plan",
+      "sources": [
+        {
+          "title": "‘Rugby’s in people’s blood here’: mutiny rising in west Wales as Scarlets fight WRU plan | Andy Bull",
+          "link": "https://www.theguardian.com/sport/2026/sep/28/welsh-rugby-union-mutiny-west-wales-scarlets-ospreys-fight-wru-plan",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-09-30",
+      "lastSeen": "2026-09-30",
       "uses": 0
     }
   ]
