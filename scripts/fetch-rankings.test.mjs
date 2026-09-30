@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { parseRankings, buildRankingsJson, withHistory, parseAsOfDate, isRegression, isFutureDated } from "./fetch-rankings.mjs";
+import { parseRankings, parseWorldRugby, isoToAsOf, buildRankingsJson, withHistory, parseAsOfDate, isRegression, isFutureDated } from "./fetch-rankings.mjs";
 
 // Trimmed real wikitext from Template:World_Rugby_Rankings (13 Jul 2026).
 const WIKITEXT = `{{sticky header}}
@@ -108,4 +108,53 @@ test("isFutureDated: a future caption is a typo, not a release", () => {
   // unparseable proves nothing, so it never blocks the write
   assert.equal(isFutureDated("garbled", now), false);
   assert.equal(isFutureDated(null, now), false);
+});
+
+// Shape of world.rugby's rankings feed (api.wr-rims-prod.pulselive.com/rugby/v3/rankings/mru).
+const WR = {
+  label: "Mens Rugby Union",
+  effective: { millis: Date.UTC(2026, 8, 28), gmtOffset: 0, label: "2026-09-28" },
+  entries: [
+    { pos: 1, previousPos: 1, pts: 95.094, previousPts: 95.09, team: { abbreviation: "RSA", name: "South Africa" } },
+    { pos: 2, previousPos: 3, pts: 90.1, team: { abbreviation: "IRE", name: "Ireland" } },
+    { pos: 3, previousPos: 2, pts: 89.9, team: { abbreviation: "NZL", name: "New Zealand" } },
+    { pos: 11, previousPos: 12, pts: 76.5, team: { abbreviation: "XJP", name: "Japan" } },
+    { pos: 13, previousPos: 13, pts: 73.3, team: { abbreviation: "GEO", name: "Georgia" } },
+  ],
+};
+
+test("parseWorldRugby: rank, code, points and movement from previousPos", () => {
+  const rows = parseWorldRugby(WR);
+  assert.deepEqual(rows[0], { rank: 1, code: "RSA", points: 95.09, move: 0 });
+  assert.deepEqual(rows[1], { rank: 2, code: "IRE", points: 90.1, move: 1 });
+  assert.deepEqual(rows[2], { rank: 3, code: "NZL", points: 89.9, move: -1 });
+  assert.equal(rows.length, 5);
+});
+
+test("parseWorldRugby: an unfamiliar abbreviation falls back to the team name", () => {
+  assert.equal(parseWorldRugby(WR)[3].code, "JPN");
+});
+
+test("parseWorldRugby: effective date becomes the Wikipedia-style asOf", () => {
+  assert.equal(parseWorldRugby(WR).asOf, "28 September 2026");
+  assert.equal(parseWorldRugby({ ...WR, effective: { millis: Date.UTC(2026, 8, 21) } }).asOf, "21 September 2026");
+  assert.equal(parseWorldRugby({ entries: [] }).asOf, null);
+});
+
+test("isoToAsOf: ISO date to caption format that parseAsOfDate reads back", () => {
+  assert.equal(isoToAsOf("2026-09-07"), "7 September 2026");
+  assert.equal(parseAsOfDate(isoToAsOf("2026-09-28")), Date.UTC(2026, 8, 28));
+  assert.equal(isoToAsOf("garbled"), null);
+  assert.equal(isoToAsOf("2026-13-01"), null);
+});
+
+test("buildRankingsJson: records world.rugby as the source", () => {
+  const out = buildRankingsJson(parseWorldRugby(WR), "x", { min: 3, source: "world.rugby" });
+  assert.equal(out.source, "world.rugby");
+  assert.equal(out.asOf, "28 September 2026");
+  assert.equal(out.rankings.GEO, undefined);
+});
+
+test("buildRankingsJson: a short world.rugby feed throws so the Wikipedia fallback runs", () => {
+  assert.throws(() => buildRankingsJson(parseWorldRugby({ entries: [] }), "x", { source: "world.rugby" }), /parsed only/);
 });

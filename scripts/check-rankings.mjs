@@ -12,9 +12,10 @@
 // 10/12 best-worst rows), which catches a LAYOUT change and is blind to a
 // timeline that is perfectly well-formed and merely out of date.
 //
-// The cheap mitigation: rankings.json and ranking-stats.json are produced by
-// the same daily cron from two different Wikipedia pages, so they can be
-// cross-checked against each other. The live table's No. 1 and the timeline's
+// The cheap mitigation: rankings.json (world.rugby's feed since 2026-09-30,
+// Wikipedia as fallback) and ranking-stats.json (a Wikipedia page) are
+// produced by the same daily cron, so they can be cross-checked against each
+// other. The live table's No. 1 and the timeline's
 // open-ended spell holder must be the same nation. When they disagree, the
 // timeline is the stale one — the live table updates weekly, the template is
 // hand-edited.
@@ -98,8 +99,8 @@ export function checkNo1(rankings, stats) {
 
 // --- the 22 Aug 2026 gap: the WHOLE table can be stale, not just the timeline ---
 //
-// checkNo1 compares two Wikipedia sources against each other, so when BOTH lag
-// a result they agree and it passes. That is exactly what happened when NZ took
+// checkNo1 compares two sources against each other, so when BOTH lag a result
+// they agree and it passes (both were Wikipedia until 2026-09-30). That is exactly what happened when NZ took
 // No. 1 off SA at Ellis Park: for two days the app kept showing SA "#1 for 49
 // wks" and nothing went red. Two independent signals close that hole.
 
@@ -179,9 +180,13 @@ export function checkTableFreshness(rankings, teamEvents, asOfTime, now = Date.n
       `${u.us === u.them ? "drew with" : "beat"} higher-ranked **${u.code}** ${u.us}–${u.them}. An upset by the ` +
       `table's own ordering always exchanges ranking points, so a fresh table would carry a later ` +
       `"as of" date by now (${GRACE_DAYS}-day grace already allowed).\n\n` +
-      `Wikipedia's Template:World_Rugby_Rankings is lagging the real rankings — every rank, points ` +
-      `figure and the No. 1 badge in the app may be out of date. Check world.rugby and hand-correct ` +
-      `rankings.json / ranking-stats.json if the nightly refresh hasn't caught up.` +
+      (rankings?.source === "world.rugby"
+        ? `The table came from world.rugby's own feed, so either no release has happened since or the ` +
+          `feed is serving an old one — check www.world.rugby/rankings. `
+        : `The table came from ${rankings?.source ?? "an unknown source"} (the Wikipedia fallback, used ` +
+          `when world.rugby's feed fails), which lags the real rankings. Check the rankings workflow log ` +
+          `for why world.rugby failed. `) +
+      `Every rank, points figure and the No. 1 badge in the app may be out of date until it catches up.` +
       (upsets.length > 1 ? `\n\nUnreflected upsets/draws seen: ${upsets.map((x) => `${x.code} ${x.us}–${x.them} ${x.opponentCode} (${x.date})`).join(", ")}.` : ""),
   };
 }
