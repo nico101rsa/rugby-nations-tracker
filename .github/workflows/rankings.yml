@@ -1,7 +1,8 @@
 name: World rankings
 
 # World Rugby rankings update Mondays (after each test window); a daily check
-# is cheap and publishes only when the Wikipedia template actually changes.
+# is cheap and publishes only when the table actually changes. Source is
+# world.rugby's own feed, with Wikipedia's template as the fallback.
 on:
   schedule:
     - cron: "0 21 * * *"
@@ -27,7 +28,7 @@ jobs:
         with:
           node-version: 22
 
-      - name: Fetch rankings from Wikipedia
+      - name: Fetch rankings from world.rugby (Wikipedia fallback)
         run: node scripts/fetch-rankings.mjs
 
       - name: Fetch historical ranking stats from Wikipedia
