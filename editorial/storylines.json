@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-09-30T20:01:45.271Z",
+  "updatedAt": "2026-09-30T23:18:40.612Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 196,
+  "count": 197,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -59,8 +59,8 @@
       ],
       "firstSeen": "2026-08-05",
       "lastSeen": "2026-09-27",
-      "uses": 1,
-      "lastUsed": "2026-08-09"
+      "uses": 2,
+      "lastUsed": "2026-10-01"
     },
     {
       "id": "all-blacks-flyhalf-richie-1d2lcp5",
@@ -4540,10 +4540,16 @@
       "id": "brendan-venter-s-media-1juchna",
       "subject": "Brendan Venter's media no-shows and potential Saracens fines",
       "teams": [
-        387
+        387,
+        386
       ],
       "resolution": "until Prem Rugby resolves the disciplinary process and fines regarding Brendan Venter's media absences",
       "sources": [
+        {
+          "title": "Venter becomes Saracens ‘wine consultant’",
+          "link": "https://www.sarugbymag.co.za/venter-becomes-saracens-wine-consultant/",
+          "feedName": "SA Rugby Magazine"
+        },
         {
           "title": "Saracens face fines over 'wine consultant' Venter's media no-shows",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ck7902q3g5vgo?at_medium=RSS&at_campaign=rss",
@@ -4557,7 +4563,8 @@
       ],
       "firstSeen": "2026-10-01",
       "lastSeen": "2026-10-01",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-01"
     },
     {
       "id": "joseph-dweba-s-absence-4wmjwh",
@@ -4594,6 +4601,29 @@
           "title": "Watch: 'World Rugby will investigate Boks'",
           "link": "https://www.sarugbymag.co.za/watch-world-rugby-will-investigate-boks/",
           "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-01",
+      "lastSeen": "2026-10-01",
+      "uses": 0
+    },
+    {
+      "id": "sam-underhill-s-bicep-n6ixwx",
+      "subject": "Sam Underhill's bicep injury and upcoming surgery",
+      "teams": [
+        386
+      ],
+      "resolution": "until Sam Underhill returns to action following his bicep surgery",
+      "sources": [
+        {
+          "title": "England star Sam Underhill OUT of Nations Championship Tests as Bath issue injury update",
+          "link": "https://www.planetrugby.com/news/england-star-sam-underhill-out-of-nations-championship-tests-as-bath-issue-surgery-update",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "England's Underhill to miss autumn internationals",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwe9ek53ngm3o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-10-01",
