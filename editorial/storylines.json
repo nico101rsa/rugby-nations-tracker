@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-01T20:00:50.155Z",
+  "updatedAt": "2026-10-01T23:33:03.253Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 200,
+  "count": 203,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -4482,36 +4482,6 @@
       "uses": 0
     },
     {
-      "id": "brendan-venter-s-media-1juchna",
-      "subject": "Brendan Venter's media no-shows and potential Saracens fines",
-      "teams": [
-        387,
-        386
-      ],
-      "resolution": "until Prem Rugby resolves the disciplinary process and fines regarding Brendan Venter's media absences",
-      "sources": [
-        {
-          "title": "Venter becomes Saracens ‘wine consultant’",
-          "link": "https://www.sarugbymag.co.za/venter-becomes-saracens-wine-consultant/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Saracens face fines over 'wine consultant' Venter's media no-shows",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ck7902q3g5vgo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Saracens boss Venter skips more media duties",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmwyz9ypw3x2o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-10-01",
-      "lastSeen": "2026-10-01",
-      "uses": 2,
-      "lastUsed": "2026-10-02"
-    },
-    {
       "id": "joseph-dweba-s-absence-4wmjwh",
       "subject": "Joseph Dweba's absence from Exeter Chiefs' starting lineup",
       "teams": [
@@ -4704,6 +4674,99 @@
           "title": "POLL: Is Giliomee making right move?",
           "link": "https://www.sarugbymag.co.za/poll-is-giliomee-making-right-move/",
           "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "uses": 0
+    },
+    {
+      "id": "ruben-love-s-injury-1ukursx",
+      "subject": "Ruben Love's injury and his path back to the All Blacks squad",
+      "teams": [
+        465
+      ],
+      "resolution": "until Ruben Love recovers from injury and returns to selection contention for the All Blacks",
+      "sources": [
+        {
+          "title": "All Blacks squad: Ruben Love dealt Bledisloe Cup blow while Scott Barrett and experienced forward return",
+          "link": "https://www.planetrugby.com/news/all-blacks-squad-ruben-love-dealt-bledisloe-cup-blow-while-scott-barrett-and-experienced-forward-return",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "uses": 0
+    },
+    {
+      "id": "hunter-paisami-s-suspension-1bzyjv1",
+      "subject": "Hunter Paisami's suspension and his availability for the Wallabies' Bledisloe Cup tests",
+      "teams": [
+        461
+      ],
+      "resolution": "until Hunter Paisami serves his four-match ban and becomes eligible to play for the Wallabies again",
+      "sources": [
+        {
+          "title": "Wallabies centre banned after dangerous tackle on Springboks fly-half and misses All Blacks Tests",
+          "link": "https://www.planetrugby.com/news/wallabies-centre-banned-after-dangerous-tackle-on-springboks-fly-half-and-misses-all-blacks-tests",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Wallabies centre banned for Sacha hit",
+          "link": "https://www.sarugbymag.co.za/wallabies-centre-banned/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Wallabies: Les Kiss gives circumspect verdict on Hunter Paisami's suspension for Bledisloe Cup Tests",
+          "link": "https://www.planetrugby.com/news/wallabies-les-kiss-gives-circumspect-verdict-on-hunter-paisamis-suspension-for-bledisloe-cup-tests",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "uses": 0
+    },
+    {
+      "id": "caelan-doris-fitness-and-1fdzo9k",
+      "subject": "Caelan Doris' fitness and availability for Ireland's Test against the Springboks",
+      "teams": [
+        388,
+        467
+      ],
+      "resolution": "until Caelan Doris proves his fitness and is named in Ireland's matchday squad to face South Africa",
+      "sources": [
+        {
+          "title": "Doris doubtful for Bok duel",
+          "link": "https://www.sarugbymag.co.za/doris-doubtful-bok-duel/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-02",
+      "lastSeen": "2026-10-02",
+      "uses": 0
+    },
+    {
+      "id": "brendan-venter-s-ongoing-tp5jl4",
+      "subject": "Brendan Venter's ongoing media no-shows and Saracens' disciplinary situation with Prem Rugby",
+      "teams": [
+        386
+      ],
+      "resolution": "until Brendan Venter resumes media duties or the disciplinary process between Saracens and Prem Rugby is resolved",
+      "sources": [
+        {
+          "title": "Venter becomes Saracens ‘wine consultant’",
+          "link": "https://www.sarugbymag.co.za/venter-becomes-saracens-wine-consultant/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Saracens face fines over 'wine consultant' Venter's media no-shows",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ck7902q3g5vgo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Saracens boss Venter skips more media duties",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmwyz9ypw3x2o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-10-02",
