@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-02T20:01:27.330Z",
+  "updatedAt": "2026-10-02T23:24:09.911Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 196,
+  "count": 197,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -4136,7 +4136,8 @@
       ],
       "firstSeen": "2026-09-30",
       "lastSeen": "2026-10-03",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-03"
     },
     {
       "id": "sam-underhill-s-bicep-1p8l3jq",
@@ -4494,7 +4495,8 @@
       "id": "hunter-paisami-s-suspension-1bzyjv1",
       "subject": "Hunter Paisami's suspension and his availability for the Wallabies' Bledisloe Cup tests",
       "teams": [
-        461
+        461,
+        465
       ],
       "resolution": "until Hunter Paisami serves his four-match ban and becomes eligible to play for the Wallabies again",
       "sources": [
@@ -4515,7 +4517,7 @@
         }
       ],
       "firstSeen": "2026-10-02",
-      "lastSeen": "2026-10-02",
+      "lastSeen": "2026-10-03",
       "uses": 0
     },
     {
@@ -4600,6 +4602,34 @@
           "title": "Iosefa-Scott set for France move when contract ends",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cqrm9gr3j7k9o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "uses": 0
+    },
+    {
+      "id": "sam-underhill-s-injury-7z9l0g",
+      "subject": "Sam Underhill's injury and recovery timeline",
+      "teams": [
+        386
+      ],
+      "resolution": "until Sam Underhill returns to competitive play following his bicep surgery",
+      "sources": [
+        {
+          "title": "England star Sam Underhill OUT of Nations Championship Tests as Bath issue injury update",
+          "link": "https://www.planetrugby.com/news/england-star-sam-underhill-out-of-nations-championship-tests-as-bath-issue-surgery-update",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "England's Underhill to miss autumn internationals",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwe9ek53ngm3o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Sam Underhill OUT: Ranking 11 England back-row options for November Tests as Steve Borthwick faces latest big call",
+          "link": "https://www.planetrugby.com/news/sam-underhill-out-ranking-11-england-back-row-options-for-november-tests-as-steve-borthwick-faces-latest-big-call",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-10-03",
