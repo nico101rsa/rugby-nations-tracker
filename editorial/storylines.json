@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-03T08:00:23.975Z",
+  "updatedAt": "2026-10-03T12:00:48.715Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 196,
+  "count": 201,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -2774,8 +2774,8 @@
       ],
       "firstSeen": "2026-09-25",
       "lastSeen": "2026-09-27",
-      "uses": 1,
-      "lastUsed": "2026-10-01"
+      "uses": 2,
+      "lastUsed": "2026-10-03"
     },
     {
       "id": "andr-esterhuizen-s-captaincy-5158tr",
@@ -4069,7 +4069,7 @@
       ],
       "firstSeen": "2026-09-30",
       "lastSeen": "2026-10-03",
-      "uses": 1,
+      "uses": 2,
       "lastUsed": "2026-10-03"
     },
     {
@@ -4305,7 +4305,7 @@
     },
     {
       "id": "joseph-dweba-s-exeter-76uujq",
-      "subject": "Joseph Dweba's Exeter Chiefs season debut",
+      "subject": "Joseph Dweba's return to the Exeter Chiefs lineup",
       "teams": [
         467,
         386
@@ -4324,7 +4324,7 @@
         }
       ],
       "firstSeen": "2026-10-02",
-      "lastSeen": "2026-10-02",
+      "lastSeen": "2026-10-03",
       "uses": 0
     },
     {
@@ -4384,6 +4384,11 @@
       "resolution": "until Hunter Paisami serves his four-match ban and becomes eligible to play for the Wallabies again",
       "sources": [
         {
+          "title": "Wallabies squad: Taniela Tupou and Tom Hooper released for All Blacks Tests as Les Kiss recalls snubbed forward",
+          "link": "https://www.planetrugby.com/news/wallabies-squad-named-for-bledisloe-cup-matches-against-all-blacks-2026",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Cited centre in Wallabies' Bledisloe squad",
           "link": "https://www.sarugbymag.co.za/cited-centre-wallabies-bledisloe-squad/",
           "feedName": "SA Rugby Magazine"
@@ -4392,11 +4397,6 @@
           "title": "Wallabies centre banned after dangerous tackle on Springboks fly-half and misses All Blacks Tests",
           "link": "https://www.planetrugby.com/news/wallabies-centre-banned-after-dangerous-tackle-on-springboks-fly-half-and-misses-all-blacks-tests",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Wallabies centre banned for Sacha hit",
-          "link": "https://www.sarugbymag.co.za/wallabies-centre-banned/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-10-02",
@@ -4477,7 +4477,8 @@
       "id": "josh-iosefa-scott-s-1qh2jza",
       "subject": "Josh Iosefa-Scott's prospective transfer to France",
       "teams": [
-        386
+        386,
+        387
       ],
       "resolution": "until Josh Iosefa-Scott confirms his destination club following the end of his Exeter contract",
       "sources": [
@@ -4517,16 +4518,23 @@
       ],
       "firstSeen": "2026-10-03",
       "lastSeen": "2026-10-03",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-03"
     },
     {
       "id": "michael-hooper-s-call-1sybn37",
       "subject": "Michael Hooper's call for World Rugby to ban referee Andrea Piardi from Australia matches",
       "teams": [
-        461
+        461,
+        389
       ],
       "resolution": "until World Rugby issues a ruling or appoints Piardi to another Australia match",
       "sources": [
+        {
+          "title": "'Stop Aussie, Kiwi refereeing virus'",
+          "link": "https://www.sarugbymag.co.za/stop-aussie-kiwi-refereeing-virus/",
+          "feedName": "SA Rugby Magazine"
+        },
         {
           "title": "Michael Hooper hides referee bias accusation behind call for World Rugby to protect Andrea Piardi",
           "link": "https://www.planetrugby.com/news/michael-hooper-hides-referee-bias-accusation-behind-call-for-world-rugby-to-protect-andrea-piardi",
@@ -4536,11 +4544,6 @@
           "title": "Ex-Wallabies captain calls for ref ban",
           "link": "https://www.sarugbymag.co.za/ex-wallabies-captain-calls-ref-ban/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Sir Steve Hansen defends Michael Hooper amid backlash over referee bias accusations: 'What he said made a lot of sense'",
-          "link": "https://www.planetrugby.com/news/sir-steve-hansen-defends-michael-hoopers-ref-rant",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-10-03",
@@ -4600,6 +4603,116 @@
           "title": "Wales wing Adams targets third World Cup",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmd797grev7ro?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "uses": 0
+    },
+    {
+      "id": "sam-underhill-s-autumn-1sjq3o0",
+      "subject": "Sam Underhill's autumn international availability",
+      "teams": [
+        386
+      ],
+      "resolution": "until England release their squad for the autumn internationals confirming his replacement",
+      "sources": [
+        {
+          "title": "England's Underhill to miss autumn internationals",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwe9ek53ngm3o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Sam Underhill OUT: Ranking 11 England back-row options for November Tests as Steve Borthwick faces latest big call",
+          "link": "https://www.planetrugby.com/news/sam-underhill-out-ranking-11-england-back-row-options-for-november-tests-as-steve-borthwick-faces-latest-big-call",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "uses": 0
+    },
+    {
+      "id": "munster-s-search-for-l7a1ec",
+      "subject": "Munster's search for a new chief executive",
+      "teams": [
+        388
+      ],
+      "resolution": "until Munster appoints a successor to Ian Flanagan",
+      "sources": [
+        {
+          "title": "Munster: Ian Flanagan set to step down as chief executive after recent criticism",
+          "link": "https://www.planetrugby.com/news/munster-ian-flanagan-set-to-step-down-as-chief-executive-after-recent-criticism",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "uses": 0
+    },
+    {
+      "id": "saracens-definition-of-brendan-1kqnpt6",
+      "subject": "Saracens' definition of Brendan Venter's role",
+      "teams": [
+        386
+      ],
+      "resolution": "until Saracens officially confirms his job title and responsibilities",
+      "sources": [
+        {
+          "title": "Saracens boss Venter skips more media duties",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmwyz9ypw3x2o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Saracens overcome adversity to battle back and edge Leicester in 12-try thriller",
+          "link": "https://www.theguardian.com/sport/2026/sep/27/leicester-tigers-saracens-prem-rugby-match-report",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Saracens move to 'clarify' Brendan Venter role quickly after 'wine consultant' reports",
+          "link": "https://www.planetrugby.com/news/saracens-move-to-clarify-brendan-venter-role-quickly-after-wine-consultant-reports",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "uses": 0
+    },
+    {
+      "id": "brain-injury-legal-claims-mcft4h",
+      "subject": "Brain injury legal claims against rugby authorities",
+      "teams": [
+        386,
+        388,
+        391,
+        461,
+        465,
+        467
+      ],
+      "resolution": "until the claimants settle the £2.8m legal bill requirement",
+      "sources": [
+        {
+          "title": "Rugby’s brain injury claimants face £2.8m legal bill to continue case",
+          "link": "https://www.theguardian.com/sport/2026/oct/02/rugby-union-players-liable-for-28m-in-legal-fees-to-brain-injury-case-concussion",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-03",
+      "lastSeen": "2026-10-03",
+      "uses": 0
+    },
+    {
+      "id": "wales-potential-reduction-of-rq0gmc",
+      "subject": "Wales' potential reduction of professional clubs",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union finalizes its structural plans for 2028",
+      "sources": [
+        {
+          "title": "‘Rugby’s in people’s blood here’: mutiny rising in west Wales as Scarlets fight WRU plan",
+          "link": "https://www.theguardian.com/sport/2026/sep/28/welsh-rugby-union-mutiny-west-wales-scarlets-ospreys-fight-wru-plan",
+          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-10-03",
