@@ -1,21 +1,16 @@
 {
   "date": "2026-10-04",
   "counts": {
-    "editions": 11,
+    "editions": 12,
     "quiet": 4,
-    "storyline": 2,
-    "dataEdition": 2,
-    "failed": 1,
-    "noLead": 3,
-    "repeatLead": 1,
-    "world": 0
+    "storyline": 1,
+    "dataEdition": 3,
+    "failed": 0,
+    "noLead": 1,
+    "repeatLead": 2,
+    "world": 2
   },
-  "failed": [
-    {
-      "team": "Wales",
-      "reason": "fact-check failed after 3 revisions: The score is inconsistent; the Planet Rugby source states 36-26, and the trusted app data is independent of this specific match. Planet Rugby identifies 36-26 as the result."
-    }
-  ],
+  "failed": [],
   "teams": [
     {
       "team": "Fiji",
@@ -23,12 +18,15 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "scoring",
-      "heading": "Fiji record 63-10 victory against Canada to headline current 11-match scoring data",
-      "kicker": "SCORING TRENDS",
-      "body": "The Flying Fijians' 63-10 home victory against Canada in September 2025 remains the highest-scoring performance for the senior men's side within their current 11-match window. Despite a winless start to the Nations Championship, Fiji maintain an average of 28.5 points scored per game. This attacking efficiency is currently undermined by a defensive average of 31.9 points conceded per fixture, including 145 points shipped across their opening three tournament matches.",
+      "heading": "Fiji women secure inaugural WXV Challenger title after 20-17 victory over Netherlands",
+      "kicker": "Tournament win",
+      "body": "The Fiji women's side secured the inaugural World Rugby WXV Global Series Challenger 2026 title following a 20-17 victory over the Netherlands in Hong Kong. A decisive kick in the 80th minute confirmed the win for Fijiana, who led 12-7 at half-time after tries from Merewairita Neivosa and Ivamere Nabura Rokowati. Despite severe heat delays that cancelled other tournament fixtures, Fiji finished top of the standings ahead of the Dutch and Spain, marking a significant achievement for the national women's programme.",
       "source": null,
-      "lead": null,
-      "leadLink": null,
+      "lead": {
+        "candidate": 1,
+        "why": "The national women's side secured a significant international title in a tournament that dominated recent Fijian rugby coverage."
+      },
+      "leadLink": "https://www.rugbyasia247.com/fiji-claim-inaugural-world-rugby-wxv-global-series-challenger-title-hong-kong-china-defeated-by-samoa/",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
@@ -44,8 +42,8 @@
         },
         {
           "title": "Rugby Nations Championship 2026: what time and on which channel to watch France vs Fiji?",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac15ef165614ce3a8768cb25e719888&url=https%3a%2f%2fwww.sortiraparis.com%2fen%2fwhat-to-do-in-paris%2fsport-wellness%2farticles%2f353218-nations-championship-2026-what-time-and-which-channel-to-watch-france-vs-fiji&c=18116422749836077171&mkt=en-us",
-          "score": 4.7,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17b1082bb4dbb978521da6761ae32&url=https%3a%2f%2fwww.sortiraparis.com%2fen%2fwhat-to-do-in-paris%2fsport-wellness%2farticles%2f353218-nations-championship-2026-what-time-and-which-channel-to-watch-france-vs-fiji&c=18116422749836077171&mkt=en-us",
+          "score": 4.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -54,8 +52,8 @@
         },
         {
           "title": "Fiji international dies aged 39 as tributes paid",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac15ef165614ce3a8768cb25e719888&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fnews%2fother%2ffiji-international-dies-aged-39-as-tributes-paid%2far-AA2dgtHf&c=5365491297423943069&mkt=en-us",
-          "score": 3.9,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17b1082bb4dbb978521da6761ae32&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fnews%2fother%2ffiji-international-dies-aged-39-as-tributes-paid%2far-AA2dgtHf&c=5365491297423943069&mkt=en-us",
+          "score": 3.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -64,7 +62,7 @@
         },
         {
           "title": "How Fiji’s historic Rugby World Cup victory left Australia facing the prospect of early elimination",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac15ef165614ce3a8768cb25e719888&url=https%3a%2f%2fwww.cnn.com%2f2023%2f09%2f18%2fsport%2ffiji-australia-rugby-world-cup-spt-intl&c=11727853525055730916&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17b1082bb4dbb978521da6761ae32&url=https%3a%2f%2fwww.cnn.com%2f2023%2f09%2f18%2fsport%2ffiji-australia-rugby-world-cup-spt-intl&c=11727853525055730916&mkt=en-us",
           "score": 1.9,
           "corroboration": 1,
           "outlets": [
@@ -74,7 +72,7 @@
         },
         {
           "title": "Springboks to tackle Fiji in 2027 Rugby World Cup warm-up Test in Australia",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac15ef165614ce3a8768cb25e719888&url=https%3a%2f%2fwww.news24.com%2fsport%2frugby%2fspringboks%2fspringboks-to-tackle-fiji-in-2027-rugby-world-cup-warm-up-test-in-australia-20260918-0339&c=9450181195614811360&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17b1082bb4dbb978521da6761ae32&url=https%3a%2f%2fwww.news24.com%2fsport%2frugby%2fspringboks%2fspringboks-to-tackle-fiji-in-2027-rugby-world-cup-warm-up-test-in-australia-20260918-0339&c=9450181195614811360&mkt=en-us",
           "score": 1.7,
           "corroboration": 1,
           "outlets": [
@@ -90,22 +88,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Will Joseph stakes claim for England shirt after Gloucester’s emphatic victory",
-      "kicker": "Selection call",
-      "body": "Gloucester centre Will Joseph caught the eye in Saturday’s 48-0 win over Harlequins, delivering a standout performance that saw him cross the whitewash in an eight-try rout. His display at Kingsholm, described by observers as a moment where he \"shouts loud\" for international inclusion, provides Steve Borthwick with a fresh option as the midfield picture continues to evolve. While Harlequins endure a difficult start to the season with two consecutive losses, Gloucester’s pack and backline fluidity impressed throughout.",
+      "heading": "England centre Benhard Janse van Rensburg stretchered off after heavy collision",
+      "kicker": "Injury concern",
+      "body": "England centre Benhard Janse van Rensburg was stretchered off during Saturday’s Premiership clash between Bristol and Northampton. The incident occurred shortly before half-time following an awkward collision with Henry Pollock while attempting a tackle. The game at Ashton Gate faced an eight-minute stoppage as medical staff attended to the player. In the same fixture, Bristol’s Louis Rees-Zammit impressed with two tries, while Northampton’s Tommy Freeman struggled after being shifted into the full-back position.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "The performance of Will Joseph in a dominant victory marks a notable development in the midfield competition for England."
+        "candidate": 3,
+        "why": "The injury to a current England centre in a weekend fixture is the most significant development for the national side."
       },
-      "leadLink": "https://www.planetrugby.com/news/gloucester-v-harlequins-five-takeaways-as-hulking-centre-shouts-loud-for-england-minutes-in-eight-try-nilling",
+      "leadLink": "https://www.planetrugby.com/news/bristol-bears-v-northampton-saints-winners-and-losers-as-louis-rees-zammit-back-to-his-best-while-england-star-struggles-in-new-position",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Gloucester v Harlequins: Five takeaways as hulking centre 'shouts loud' for England minutes in eight-try nilling",
           "link": "https://www.planetrugby.com/news/gloucester-v-harlequins-five-takeaways-as-hulking-centre-shouts-loud-for-england-minutes-in-eight-try-nilling",
-          "score": 30,
+          "score": 29.1,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -115,7 +113,7 @@
         {
           "title": "Bristol v Northampton: Five takeaways as 'electric' Louis Rees-Zammit lights up Ashton Gate after England midfielder's 'sparked out exit'",
           "link": "https://www.planetrugby.com/news/bristol-v-northampton-five-takeaways-as-electric-louis-rees-zammit-lights-up-ashton-gate-after-england-midfielders-sparked-out-exit",
-          "score": 29,
+          "score": 28.2,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -125,7 +123,7 @@
         {
           "title": "Bristol Bears v Northampton Saints: Winners and losers as Louis Rees-Zammit 'back to his best' while England star 'struggles' in new position",
           "link": "https://www.planetrugby.com/news/bristol-bears-v-northampton-saints-winners-and-losers-as-louis-rees-zammit-back-to-his-best-while-england-star-struggles-in-new-position",
-          "score": 22.2,
+          "score": 21.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -135,7 +133,7 @@
         {
           "title": "Bath player ratings: England international 'world-class' while special talent 'especially poor' in thrilling display at the Rec",
           "link": "https://www.planetrugby.com/news/bath-player-ratings-england-international-world-class-while-special-talent-especially-poor-in-thrilling-display-at-the-rec",
-          "score": 10,
+          "score": 9.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -145,7 +143,7 @@
         {
           "title": "Exeter Chiefs player ratings v Bath: 'Video game stuff' from Immanuel Feyi-Waboso while England hopefuls' 'unrelenting' effort in vain",
           "link": "https://www.planetrugby.com/news/exeter-chiefs-player-ratings-v-bath-video-game-stuff-from-immanuel-feyi-waboso-while-england-hopefuls-unrelenting-effort-in-vain",
-          "score": 5.2,
+          "score": 5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -159,26 +157,26 @@
       "quiet": true,
       "rung": "storyline",
       "storyline": {
-        "subject": "Jack Willis' international eligibility and desire to play for England",
-        "resolution": "until there is a change in the RFU selection policy or Willis returns to a Premiership club",
-        "recheckHits": 3
+        "subject": "Josh Iosefa-Scott's prospective transfer to France",
+        "resolution": "until Josh Iosefa-Scott confirms his destination club following the end of his Exeter contract",
+        "recheckHits": 1
       },
       "dataAngle": null,
-      "heading": "Jack Willis becomes eligible to represent Ireland following policy update",
-      "kicker": "Selection news",
-      "body": "Jack Willis is now eligible to play for Ireland following a change in international selection policy. The Top 14 award winner, who has previously expressed his ongoing desire to play Test rugby, is now positioned for a potential international call-up. While his recent form in France has drawn significant praise, this change resolves the uncertainty surrounding his eligibility status, marking a significant development for the back-row forward as he continues his club career abroad.",
-      "source": "Planet Rugby",
+      "heading": "Josh Iosefa-Scott prepares for impending move to French club rugby",
+      "kicker": "Transfer news",
+      "body": "Exeter Chiefs prop Josh Iosefa-Scott remains linked with a move to France ahead of the 2027 World Cup. Coverage indicates the forward is set to depart his current club when his contract ends, continuing a trend of players crossing the Channel. No official destination club in France has been confirmed in today's press as the open storyline persists.",
+      "source": "BBC Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The eligibility status of Jack Willis has shifted following recent reports, providing a clear update on an ongoing storyline."
+        "why": "Returning to the open Josh Iosefa-Scott transfer storyline following fresh coverage."
       },
-      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac160061bbc4e2fb3546ac018708cc3&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2fother%2ffrance-rugby-fixtures-and-2026-schedule-in-the-nations-championship%2far-AA272PFA&c=8594583698313607746&mkt=en-us",
+      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17d5e79f04e26bff83f0677c27f26&url=https%3a%2f%2fsports.yahoo.com%2farticles%2ffrance-rugby-vs-blacks-5-155714602.html&c=15569828522918392772&mkt=en-us",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
-          "title": "France rugby fixtures and 2026 schedule in the Nations Championship",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac160061bbc4e2fb3546ac018708cc3&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2fother%2ffrance-rugby-fixtures-and-2026-schedule-in-the-nations-championship%2far-AA272PFA&c=8594583698313607746&mkt=en-us",
+          "title": "France Rugby vs. All Blacks: 5 Things To Know Before July 4",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17d5e79f04e26bff83f0677c27f26&url=https%3a%2f%2fsports.yahoo.com%2farticles%2ffrance-rugby-vs-blacks-5-155714602.html&c=15569828522918392772&mkt=en-us",
           "score": 1.9,
           "corroboration": 1,
           "outlets": [
@@ -187,8 +185,8 @@
           "fresh": false
         },
         {
-          "title": "France Rugby vs. All Blacks: 5 Things To Know Before July 4",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac160061bbc4e2fb3546ac018708cc3&url=https%3a%2f%2fsports.yahoo.com%2farticles%2ffrance-rugby-vs-blacks-5-155714602.html&c=15569828522918392772&mkt=en-us",
+          "title": "France rugby fixtures and 2026 schedule in the Nations Championship",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17d5e79f04e26bff83f0677c27f26&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2fother%2ffrance-rugby-fixtures-and-2026-schedule-in-the-nations-championship%2far-AA272PFA&c=8594583698313607746&mkt=en-us",
           "score": 1.8,
           "corroboration": 1,
           "outlets": [
@@ -198,8 +196,8 @@
         },
         {
           "title": "Watch Japan vs. France Rugby Live: Les Bleus Visit Brave Blossoms In Round 3",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac160061bbc4e2fb3546ac018708cc3&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fwatch-japan-vs-france-rugby-120629286.html&c=3135052960459423481&mkt=en-us",
-          "score": 1.4,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17d5e79f04e26bff83f0677c27f26&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fwatch-japan-vs-france-rugby-120629286.html&c=3135052960459423481&mkt=en-us",
+          "score": 1.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -214,22 +212,26 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Ireland women defeat Japan with seven tries in Cork Test match",
-      "kicker": "Test rugby",
-      "body": "The Ireland women’s side secured a comprehensive 43-19 victory over Japan at Virgin Media Park on Saturday, marking their second consecutive win against the visitors. After a tight opening, Ireland pulled away to lead 22-7 at half-time before adding further scores, including debut tries from Alana McInerney and Sophie Barrett. Beibhinn Parsons also crossed to extend her all-time Ireland try-scoring record to 25. The team now turns its attention to a two-match series against South Africa in the WXV.",
+      "heading": "Ireland women secure consecutive victories over Japan with seven tries",
+      "kicker": "Match report",
+      "body": "The Ireland women's side secured a comprehensive 43-19 win over Japan in their Test match at Virgin Media Park in Cork on Saturday, scoring seven tries to claim consecutive victories following their previous win in Galway. Scott Bemand's side recovered from conceding an early try to build a 22-7 half-time advantage before extending their lead in the second period, with debuts off the bench marked by tries from Alana McInerney and Sophie Barrett as confidence grows ahead of their upcoming WXV fixtures in South Africa.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "It is the most significant recent result for the Ireland senior team."
+        "why": "The Ireland women's side secured a comprehensive 43-19 win over Japan in Cork to claim consecutive victories."
       },
       "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/c6vgxejkxz1jo?at_medium=RSS&at_campaign=rss",
-      "repeatLead": null,
+      "repeatLead": {
+        "date": "2026-10-04",
+        "heading": "Ireland women defeat Japan with seven tries in Cork Test match",
+        "reason": "same source article"
+      },
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Seven-try Ireland seal consecutive wins over Japan",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6vgxejkxz1jo?at_medium=RSS&at_campaign=rss",
-          "score": 51.4,
+          "score": 49.9,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -239,7 +241,7 @@
         {
           "title": "Irish legend: Rassie hurt me",
           "link": "https://www.sarugbymag.co.za/irish-legend-rassie-hurt/",
-          "score": 38.6,
+          "score": 37.9,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -249,7 +251,7 @@
         {
           "title": "Preview – Ireland vs Japan – October 2026",
           "link": "https://www.rugbyasia247.com/preview-ireland-vs-japan-october-2026/",
-          "score": 31.4,
+          "score": 31.1,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -259,7 +261,7 @@
         {
           "title": "SA clubs force Irish star to up his game",
           "link": "https://www.sarugbymag.co.za/sa-clubs-force-irish-playmaker-game/",
-          "score": 10.2,
+          "score": 9.8,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -269,7 +271,7 @@
         {
           "title": "Clohessy and Gallagher handed first Ireland starts",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmqlwlep16xko?at_medium=RSS&at_campaign=rss",
-          "score": 8,
+          "score": 7.8,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -281,26 +283,25 @@
     {
       "team": "Italy",
       "quiet": true,
-      "rung": "storyline",
-      "storyline": {
-        "subject": "Michael Hooper's call for World Rugby to ban referee Andrea Piardi from Australia matches",
-        "resolution": "until World Rugby issues a ruling or appoints Piardi to another Australia match",
-        "recheckHits": 4
+      "rung": "data",
+      "storyline": null,
+      "dataAngle": "ranking",
+      "heading": "Italy men’s XV reflect on previous world ranking peaks",
+      "kicker": "World ranking",
+      "body": "Italy men’s international rugby side have reached a peak position of No. 8 in the official world rankings, a milestone previously achieved in 2007 and again in 2024. The Azzurri continue their preparations within the international calendar under head coach Gonzalo Quesada, aiming to climb higher in the global hierarchy during the ongoing Nations Championship.",
+      "source": null,
+      "lead": {
+        "candidate": 2,
+        "why": "Writing from historical ranking data due to a quiet news cycle."
       },
-      "dataAngle": null,
-      "heading": "Michael Hooper faces sustained backlash over call to ban Andrea Piardi",
-      "kicker": "Referee controversy",
-      "body": "The campaign led by former Australia captain Michael Hooper to have Andrea Piardi stood down from officiating Wallabies matches continues to draw intense scrutiny. Recent coverage confirms that while Sir Steve Hansen has publicly defended Hooper’s comments, the call for a referee ban remains a highly contentious topic across international media. There is no indication of any formal World Rugby response regarding the status of Piardi, who remains a central figure in this ongoing dispute between international rugby stakeholders.",
-      "source": "SA Rugby Magazine",
-      "lead": null,
-      "leadLink": null,
+      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17d94b0164a2d901c24e1fa52645c&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fitaly-south-africa-top-level-130600042.html&c=18274207188734793674&mkt=en-us",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Ciar&#225;n Frawley's Connacht era starts in Italy: Benetton vs. Connacht kickoff, lineups",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1607048314be7ac648b3a0225b7ff&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2frugby%2fciar%25C3%25A1n-frawley-s-connacht-era-starts-in-italy-benetton-vs-connacht-kickoff-lineups%2far-AA2dn0RN&c=11104477673584407221&mkt=en-us",
-          "score": 6.3,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17d94b0164a2d901c24e1fa52645c&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2frugby%2fciar%25C3%25A1n-frawley-s-connacht-era-starts-in-italy-benetton-vs-connacht-kickoff-lineups%2far-AA2dn0RN&c=11104477673584407221&mkt=en-us",
+          "score": 6.1,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -309,7 +310,7 @@
         },
         {
           "title": "Italy-South Africa: top-level rugby returns to the Allianz Stadium",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1607048314be7ac648b3a0225b7ff&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fitaly-south-africa-top-level-130600042.html&c=18274207188734793674&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17d94b0164a2d901c24e1fa52645c&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fitaly-south-africa-top-level-130600042.html&c=18274207188734793674&mkt=en-us",
           "score": 1.9,
           "corroboration": 1,
           "outlets": [
@@ -319,7 +320,7 @@
         },
         {
           "title": "Lucas Bianchi completes move from Super Rugby Americas to Italy",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1607048314be7ac648b3a0225b7ff&url=https%3a%2f%2fwww.americasrugbynews.com%2f2026%2f09%2f26%2flucas-bianchi-completes-move-from-super-rugby-americas-to-italy%2f&c=7123619389058776883&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17d94b0164a2d901c24e1fa52645c&url=https%3a%2f%2fwww.americasrugbynews.com%2f2026%2f09%2f26%2flucas-bianchi-completes-move-from-super-rugby-americas-to-italy%2f&c=7123619389058776883&mkt=en-us",
           "score": 0.9,
           "corroboration": 1,
           "outlets": [
@@ -329,7 +330,7 @@
         },
         {
           "title": "Live: Ireland vs. Italy rugby score, updates & Six Nations 2026 fixtures",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1607048314be7ac648b3a0225b7ff&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2fother%2flive-ireland-vs-italy-rugby-score-updates-six-nations-2026-fixtures%2far-AA1WlNhJ&c=18409353778858177941&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17d94b0164a2d901c24e1fa52645c&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2fother%2flive-ireland-vs-italy-rugby-score-updates-six-nations-2026-fixtures%2far-AA1WlNhJ&c=18409353778858177941&mkt=en-us",
           "score": 0.6,
           "corroboration": 1,
           "outlets": [
@@ -339,7 +340,7 @@
         },
         {
           "title": "Japan vs. Italy Rugby: 5 Things To Know Before July 4",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1607048314be7ac648b3a0225b7ff&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fjapan-vs-italy-rugby-5-155253332.html&c=739684827427460088&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17d94b0164a2d901c24e1fa52645c&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fjapan-vs-italy-rugby-5-155253332.html&c=739684827427460088&mkt=en-us",
           "score": 0.5,
           "corroboration": 1,
           "outlets": [
@@ -355,22 +356,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Scotland women suffer heavy second-half defeat against Australia in Edinburgh",
-      "kicker": "WXV Global Series",
-      "body": "The Scotland women's side were defeated 30-10 by Australia at Hive Stadium after failing to maintain their interval lead. Despite entering the break 10-5 ahead following a try from Evie Gallagher and points from Helen Nelson, the hosts conceded 25 unanswered points in the second half. Following a captain's speech, Australia executed a clinical comeback, scoring three tries in eight minutes. Scotland were further hampered when Gallagher was sent to the sin-bin during a crucial period of the match.",
-      "source": "Guardian Rugby Union",
+      "heading": "Hector Patterson attracts Bath attention amid potential England eligibility question",
+      "kicker": "Transfer interest",
+      "body": "Edinburgh scrum-half Hector Patterson has emerged as a transfer target for Bath ahead of next season as leading clubs monitor his contract situation. The 21-year-old, who represented Scotland at age-grade level and won the 2024 World Rugby U20 Trophy, is contracted only until the end of the campaign. Although he came through the Scottish system, Patterson is also eligible to represent England through a grandparent, leaving his international future open before he is capped at senior level.",
+      "source": null,
       "lead": {
-        "candidate": 2,
-        "why": "This is a new report detailing the Scotland women's side's recent WXV Global Series loss to Australia."
+        "candidate": 1,
+        "why": "Leading sports coverage features Edinburgh scrum-half Hector Patterson attracting interest from English clubs with potential England eligibility."
       },
-      "leadLink": "https://www.theguardian.com/sport/2026/sep/26/wallaroos-blow-away-scotland-wxv-series-rugby-union-report",
+      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17da70d134a5aa7d1e90ad501ffdb&url=https%3a%2f%2fwww.ruck.co.uk%2frugby-transfer-news%2fscotland-legends-son-could-switch-allegiance-to-england-after-transfer-development&c=12610822440615904078&mkt=en-us",
       "repeatLead": null,
-      "noveltyRevised": true,
+      "noveltyRevised": false,
       "candidates": [
         {
           "title": "Scotland legend’s son could switch allegiance to England after transfer development",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1609c269a4e619b2027ea669c0c75&url=https%3a%2f%2fwww.ruck.co.uk%2frugby-transfer-news%2fscotland-legends-son-could-switch-allegiance-to-england-after-transfer-development&c=12610822440615904078&mkt=en-us",
-          "score": 24.6,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17da70d134a5aa7d1e90ad501ffdb&url=https%3a%2f%2fwww.ruck.co.uk%2frugby-transfer-news%2fscotland-legends-son-could-switch-allegiance-to-england-after-transfer-development&c=12610822440615904078&mkt=en-us",
+          "score": 23.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -390,7 +391,7 @@
         {
           "title": "Bath v Exeter: Scotland star edges England international for jersey while Chief returns after 16 months out",
           "link": "https://www.planetrugby.com/news/bath-v-exeter-scotland-star-edges-england-international-for-jersey-while-chief-returns-after-16-months-out",
-          "score": 18.8,
+          "score": 18.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -399,8 +400,8 @@
         },
         {
           "title": "McKay for Scotland? Edinburgh's injury jinx - your questions answered",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1609c269a4e619b2027ea669c0c75&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fmckay-scotland-edinburghs-injury-jinx-085733877.html&c=14053780090211890939&mkt=en-us",
-          "score": 11.1,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17da70d134a5aa7d1e90ad501ffdb&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fmckay-scotland-edinburghs-injury-jinx-085733877.html&c=14053780090211890939&mkt=en-us",
+          "score": 10.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -409,11 +410,83 @@
         },
         {
           "title": "Scotland, renegades bring national stars to Safari Sevens",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1609c269a4e619b2027ea669c0c75&url=https%3a%2f%2fwww.msn.com%2fen-xl%2fafrica%2fkenya%2fscotland-renegades-bring-national-stars-to-safari-sevens%2far-AA2domlp&c=5288401275767385730&mkt=en-us",
-          "score": 9.4,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17da70d134a5aa7d1e90ad501ffdb&url=https%3a%2f%2fwww.msn.com%2fen-xl%2fafrica%2fkenya%2fscotland-renegades-bring-national-stars-to-safari-sevens%2far-AA2domlp&c=5288401275767385730&mkt=en-us",
+          "score": 8.9,
           "corroboration": 1,
           "outlets": [
             "search"
+          ],
+          "fresh": false
+        }
+      ]
+    },
+    {
+      "team": "Wales",
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
+      "dataAngle": null,
+      "heading": "Elliot Dee scores twice as Dragons defeat Scarlets in derby",
+      "kicker": "Derby win",
+      "body": "The Dragons secured a 36-26 victory over the Scarlets in a high-scoring United Rugby Championship encounter at Rodney Parade. Elliot Dee led the hosts with a brace as the Dragons outscored their rivals by six tries to four, with Anzelo Tuitavuki, Rodrigo Martinez, Huw Anderson and Robert Hunt also crossing. Macs Page scored twice for the Scarlets alongside tries from Sam O'Connor and Ioan Jones, while Scarlets captain Josh Macleod received a yellow card in the 68th minute.",
+      "source": "Planet Rugby",
+      "lead": {
+        "candidate": 1,
+        "why": "The Dragons defeated the Scarlets 36-26 in a six-try United Rugby Championship derby at Rodney Parade."
+      },
+      "leadLink": "https://www.planetrugby.com/news/six-try-dragons-claim-bragging-rights-over-scarlets-in-high-scoring-welsh-derby",
+      "repeatLead": null,
+      "noveltyRevised": false,
+      "candidates": [
+        {
+          "title": "Six-try Dragons claim bragging rights over Scarlets in high-scoring Welsh derby",
+          "link": "https://www.planetrugby.com/news/six-try-dragons-claim-bragging-rights-over-scarlets-in-high-scoring-welsh-derby",
+          "score": 18.7,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Ospreylia: How Welsh club turned to a land down under",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c5j9xrpljk0yo?at_medium=RSS&at_campaign=rss",
+          "score": 0.7,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Wales wing Adams targets third World Cup",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmd797grev7ro?at_medium=RSS&at_campaign=rss",
+          "score": 57.6,
+          "corroboration": 2,
+          "outlets": [
+            "bbc",
+            "search"
+          ],
+          "fresh": false
+        },
+        {
+          "title": "‘Rugby’s in people’s blood here’: mutiny rising in west Wales as Scarlets fight WRU plan",
+          "link": "https://www.theguardian.com/sport/2026/sep/28/welsh-rugby-union-mutiny-west-wales-scarlets-ospreys-fight-wru-plan",
+          "score": 24.2,
+          "corroboration": 2,
+          "outlets": [
+            "guardian",
+            "search"
+          ],
+          "fresh": false
+        },
+        {
+          "title": "Wales counting down the year until World Cup",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c30rekqglyr7o?at_medium=RSS&at_campaign=rss",
+          "score": 11.6,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
           ],
           "fresh": false
         }
@@ -425,9 +498,9 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "ranking",
-      "heading": "Argentina reflect on reaching No. 3 in the world rankings",
-      "kicker": "Historical record",
-      "body": "While looking ahead to the upcoming international window, it is worth noting that Argentina's highest ever standing in the World Rugby rankings is No. 3. The team achieved this position during the 2007–08 period. Los Pumas currently sit 8th in the tournament log following their first 3 matches, with 1 victory and 2 defeats recorded so far. The side continues preparations for their next fixture against Ireland.",
+      "heading": "Argentina examine previous high water mark reaching world ranking peak",
+      "kicker": "Historical rank",
+      "body": "Los Pumas look back at their highest position in the global standings as the senior men's international side previously climbed as high as No. 3 in the world rankings during the 2007-08 period.",
       "source": null,
       "lead": null,
       "leadLink": null,
@@ -435,9 +508,9 @@
       "noveltyRevised": false,
       "candidates": [
         {
-          "title": "Watch Argentina vs. Wales Rugby: Los Pumas Host Round 2 Clash",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1615833a34148832de92bc9f6e136&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fwatch-argentina-vs-wales-rugby-180101043.html&c=15981291769392901949&mkt=en-us",
-          "score": 1.5,
+          "title": "Trial opens in Paris over murder of Argentina rugby star Federico Aramburu",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17ddc72de45eca3e09adb220aee14&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2ftrial-opens-in-paris-over-murder-of-argentina-rugby-star-federico-aramburu%2far-AA2bK4ty&c=18329962919877381780&mkt=en-us",
+          "score": 1.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -445,8 +518,8 @@
           "fresh": false
         },
         {
-          "title": "Trial opens in Paris over murder of Argentina rugby star Federico Aramburu",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1615833a34148832de92bc9f6e136&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2ftrial-opens-in-paris-over-murder-of-argentina-rugby-star-federico-aramburu%2far-AA2bK4ty&c=18329962919877381780&mkt=en-us",
+          "title": "Watch Argentina vs. Wales Rugby: Los Pumas Host Round 2 Clash",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17ddc72de45eca3e09adb220aee14&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fwatch-argentina-vs-wales-rugby-180101043.html&c=15981291769392901949&mkt=en-us",
           "score": 1.4,
           "corroboration": 1,
           "outlets": [
@@ -456,7 +529,7 @@
         },
         {
           "title": "Argentina vs. Wales Rugby Lineups, Kickoff Times",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1615833a34148832de92bc9f6e136&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fargentina-vs-wales-rugby-lineups-180524138.html&c=12992374899430230293&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17ddc72de45eca3e09adb220aee14&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fargentina-vs-wales-rugby-lineups-180524138.html&c=12992374899430230293&mkt=en-us",
           "score": 1.3,
           "corroboration": 1,
           "outlets": [
@@ -466,7 +539,7 @@
         },
         {
           "title": "Argentina 28-28 Australia: rugby union second Test – as it happened",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1615833a34148832de92bc9f6e136&url=https%3a%2f%2fwww.theguardian.com%2fsport%2flive%2f2026%2fsep%2f05%2farg-vs-aus-wallabies-rugby-union-second-test-live-updates&c=17471973934148600879&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17ddc72de45eca3e09adb220aee14&url=https%3a%2f%2fwww.theguardian.com%2fsport%2flive%2f2026%2fsep%2f05%2farg-vs-aus-wallabies-rugby-union-second-test-live-updates&c=17471973934148600879&mkt=en-us",
           "score": 0.9,
           "corroboration": 1,
           "outlets": [
@@ -476,7 +549,7 @@
         },
         {
           "title": "Wallabies vs Argentina: Australia defeats Los Pumas 27-21 in first rugby Test",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1615833a34148832de92bc9f6e136&url=https%3a%2f%2fwww.abc.net.au%2fnews%2f2026-08-30%2flive-wallabies-vs-argentina-rugby-first-test%2f107080634&c=2840918023846481223&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17ddc72de45eca3e09adb220aee14&url=https%3a%2f%2fwww.abc.net.au%2fnews%2f2026-08-30%2flive-wallabies-vs-argentina-rugby-first-test%2f107080634&c=2840918023846481223&mkt=en-us",
           "score": 0.5,
           "corroboration": 1,
           "outlets": [
@@ -492,26 +565,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Richie Mo’unga expects Australia to be a threat at Eden Park",
-      "kicker": "Bledisloe Cup",
-      "body": "All Blacks fly-half Richie Mo’unga has warned his teammates to expect a difficult challenge when they host Australia in the opening Bledisloe Cup fixture next weekend. Speaking to Newstalk ZB, Mo’unga noted that the Wallabies would have \"grown an arm and a leg\" following their recent victory over the Springboks. Les Kiss’ side enters the upcoming series in New Zealand seeking to maintain the momentum from their latest Test performances as they prepare to face the All Blacks.",
-      "source": "SA Rugby Magazine",
+      "heading": "Digby Ioane praises Les Kiss after Australia's six-Test unbeaten run",
+      "kicker": "Team news",
+      "body": "Former Wallabies winger Digby Ioane has expressed optimism regarding the men's national team's current form under head coach Les Kiss, highlighting the coach's supportive culture. Australia enters the upcoming Bledisloe Cup series on a six-Test unbeaten run, following a 42-38 victory over South Africa in Perth. Ioane praised Kiss as a player's coach who cares for the squad's wellbeing both on and off the pitch during his media appearances.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "The All Blacks fly-half's warning reflects the significant external attention on Australia's improved performance."
+        "candidate": 2,
+        "why": "Digby Ioane's comments on Les Kiss provide a fresh angle from the shortlist."
       },
-      "leadLink": "https://www.sarugbymag.co.za/richie-wary-wallabies-threat/",
-      "repeatLead": {
-        "date": "2026-10-03",
-        "heading": "Richie Mo’unga warns All Blacks of resurgent Wallabies' growing confidence",
-        "reason": "same source article"
-      },
-      "noveltyRevised": false,
+      "leadLink": "https://www.planetrugby.com/news/digby-ioane-reveals-why-hes-optimistic-about-the-wallabies-and-what-makes-les-kiss-a-good-coach",
+      "repeatLead": null,
+      "noveltyRevised": true,
       "candidates": [
         {
           "title": "Richie wary of Wallabies threat",
           "link": "https://www.sarugbymag.co.za/richie-wary-wallabies-threat/",
-          "score": 36.2,
+          "score": 35.3,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -521,7 +590,7 @@
         {
           "title": "Digby Ioane reveals why he's optimistic about the Wallabies and what makes Les Kiss 'a good coach'",
           "link": "https://www.planetrugby.com/news/digby-ioane-reveals-why-hes-optimistic-about-the-wallabies-and-what-makes-les-kiss-a-good-coach",
-          "score": 33,
+          "score": 32.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -541,7 +610,7 @@
         {
           "title": "Wallabies centre banned after dangerous tackle on Springboks fly-half and misses All Blacks Tests",
           "link": "https://www.planetrugby.com/news/wallabies-centre-banned-after-dangerous-tackle-on-springboks-fly-half-and-misses-all-blacks-tests",
-          "score": 30.3,
+          "score": 30,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -551,7 +620,7 @@
         {
           "title": "Wallabies squad: Winners and losers as Les Kiss makes 'shock selection' and snubs experienced playmakers",
           "link": "https://www.planetrugby.com/news/wallabies-squad-winners-and-losers-as-les-kiss-makes-shock-selection-and-snubs-experienced-playmakers",
-          "score": 29.1,
+          "score": 28.9,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -566,22 +635,26 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Japan women suffer seven-try defeat in second test against Ireland",
-      "kicker": "Match report",
-      "body": "The Japan women's side concluded their tour with a 43-19 defeat to Ireland in Cork on Saturday. Despite early momentum following a try from Sakurako Korai, the Sakura XV struggled to contain the hosts, who ran in seven tries to secure a series sweep. Japan’s second-half efforts saw Nami Asari and Nijiho Nagata add to the scoresheet, but the side remained hampered by discipline issues, including a yellow card for Nishi following a head-to-head collision late in the contest.",
+      "heading": "Japan women's team suffer comprehensive forty-three to nineteen defeat against Ireland",
+      "kicker": "Test defeat",
+      "body": "The Japan women's national rugby team fell to a 43-19 defeat against Ireland at Virgin Media Park in Cork on Saturday. Toshizumi Kitagawa's side struggled early as Ireland crossed the whitewash four times in the first half to establish a 22-7 advantage at the break. Despite tries from Sakurako Korai, Nami Asari and Nijiho Nagata, the visitors were unable to halt the hosts, who secured seven tries in total to wrap up consecutive wins in the series.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "It is the most significant recent match result involving a Japanese international team."
+        "why": "The women's national team suffered a comprehensive defeat against Ireland on Saturday."
       },
       "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/c6vgxejkxz1jo?at_medium=RSS&at_campaign=rss",
-      "repeatLead": null,
+      "repeatLead": {
+        "date": "2026-10-04",
+        "heading": "Japan women suffer seven-try defeat in second test against Ireland",
+        "reason": "same source article"
+      },
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Seven-try Ireland seal consecutive wins over Japan",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6vgxejkxz1jo?at_medium=RSS&at_campaign=rss",
-          "score": 28.3,
+          "score": 27.4,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -591,7 +664,7 @@
         {
           "title": "Preview – Ireland vs Japan – October 2026",
           "link": "https://www.rugbyasia247.com/preview-ireland-vs-japan-october-2026/",
-          "score": 11,
+          "score": 10.9,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -601,7 +674,7 @@
         {
           "title": "Japan Defeated By Ireland in WXV Global Series But Showed Improvements",
           "link": "https://www.rugbyasia247.com/japan-defeated-by-ireland-in-wxv-global-series-but-showed-improvements/",
-          "score": 5.7,
+          "score": 5.6,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -610,8 +683,8 @@
         },
         {
           "title": "Japan confirms bid for Rugby World Cup 2035",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac161ce65f2494dae91394e7db6ad55&url=https%3a%2f%2fwww.americasrugbynews.com%2f2026%2f09%2f30%2fjapan-confirms-bid-for-rugby-world-cup-2035%2f&c=5048187030599071800&mkt=en-us",
-          "score": 5.3,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17e241ff74934a07939e2ba54f722&url=https%3a%2f%2fwww.americasrugbynews.com%2f2026%2f09%2f30%2fjapan-confirms-bid-for-rugby-world-cup-2035%2f&c=5048187030599071800&mkt=en-us",
+          "score": 5.2,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -619,9 +692,9 @@
           "fresh": false
         },
         {
-          "title": "Watch Japan vs. Ireland Rugby Live: Ireland Visits Brave Blossoms",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac161ce65f2494dae91394e7db6ad55&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fwatch-japan-vs-ireland-rugby-090101301.html&c=6580694434432514972&mkt=en-us",
-          "score": 1.6,
+          "title": "Japanese rugby officials roll back restrictions on some foreign-born players",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17e241ff74934a07939e2ba54f722&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fjapanese-rugby-officials-roll-back-062824076.html&c=2422776928823577604&mkt=en-us",
+          "score": 1.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -636,28 +709,18 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Dane Gagai cleared to switch rugby league eligibility to New Zealand",
-      "kicker": "Eligibility call",
-      "body": "Dane Gagai has been cleared to switch his rugby league eligibility from Australia to New Zealand. The decision opens a new international pathway for the experienced back, who has previously featured prominently on the rugby league stage. While the All Blacks operate strictly within rugby union, cross-code eligibility rulings continue to attract significant attention across the sporting landscape in both countries as players navigate international representation.",
-      "source": null,
+      "heading": "All Blacks captain Ardie Savea confirms move to the Blues",
+      "kicker": "Transfer news",
+      "body": "All Blacks skipper Ardie Savea has signed with the Blues for the 2027 Super Rugby Pacific season. The 32-year-old loose forward will return to New Zealand rugby following his latest sabbatical with the Kobe Steelers in Japan, having previously represented Moana Pasifika in 2025. Savea said the club had 'always been on my heart' as he prepares to link up with the Auckland-based team later this year.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "Dane Gagai has been cleared to switch rugby league eligibility to New Zealand."
+        "candidate": 5,
+        "why": "Ardie Savea's confirmed signing with the Blues for the 2027 Super Rugby Pacific season is the day's major player movement story."
       },
-      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac161ef50224318bf6bf0b6700f6789&url=https%3a%2f%2fwww.msn.com%2fen-nz%2fnews%2fnational%2fdane-gagai-cleared-to-switch-rugby-league-eligibility-from-australia-to-new-zealand%2far-AA2dsBUn&c=4050142388245822633&mkt=en-us",
+      "leadLink": "https://www.planetrugby.com/news/all-blacks-skipper-ardie-saveas-long-awaited-move-to-the-blues-confirmed",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
-        {
-          "title": "Dane Gagai cleared to switch rugby league eligibility from Australia to New Zealand",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac161ef50224318bf6bf0b6700f6789&url=https%3a%2f%2fwww.msn.com%2fen-nz%2fnews%2fnational%2fdane-gagai-cleared-to-switch-rugby-league-eligibility-from-australia-to-new-zealand%2far-AA2dsBUn&c=4050142388245822633&mkt=en-us",
-          "score": 10.3,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ],
-          "fresh": true
-        },
         {
           "title": "England secure win over New Zealand with last-gasp try",
           "link": "https://www.bbc.co.uk/sport/rugby-union/videos/c6vgyyvyr45po?at_medium=RSS&at_campaign=rss",
@@ -691,11 +754,21 @@
         {
           "title": "Dave Rennie gives blunt verdict on the NPC and opens up on New Zealand's Super Rugby Pacific participation",
           "link": "https://www.planetrugby.com/news/dave-rennie-gives-blunt-verdict-on-the-npc-and-opens-up-on-new-zealands-super-rugby-pacific-participation",
-          "score": 72.7,
+          "score": 72.3,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
             "search"
+          ],
+          "fresh": false
+        },
+        {
+          "title": "All Blacks skipper Ardie Savea's long-awaited move to the Blues confirmed",
+          "link": "https://www.planetrugby.com/news/all-blacks-skipper-ardie-saveas-long-awaited-move-to-the-blues-confirmed",
+          "score": 35.4,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
           ],
           "fresh": false
         }
@@ -707,22 +780,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "André Esterhuizen and Edwill van der Merwe star as Sharks defeat Leinster",
-      "kicker": "Team news",
-      "body": "Skipper André Esterhuizen and winger Edwill van der Merwe scored tries as a Springbok-laden Sharks side defeated Leinster 26-20 in Durban on Saturday. Sharks coach JP Pietersen recalled six Boks for the round two fixture, with Esterhuizen taking over the captaincy and Thomas du Toit starting at loosehead. Manu Tshituka and Lili Bester also crossed the whitewash to secure a bonus-point triumph at Kings Park, keeping the Durbanites unbeaten through two rounds.",
-      "source": "SA Rugby Magazine",
+      "heading": "Stormers suffer Edinburgh defeat following Andre-Hugo Venter injury blow",
+      "kicker": "Lineout woes",
+      "body": "The Stormers dropped a 17-13 United Rugby Championship result against Edinburgh at Hive Stadium after losing hooker Andre-Hugo Venter to a head clash in the 22nd minute. Venter failed his head injury assessment, leaving John Dobson's side to win just 57% of their 21 lineout throws. Despite tries from replacement back Wandisile Simelane — later overturned for touch — and Man of the Match Hacjivah Dayimani, late lineout errors cost the visitors the match.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "Reports on the senior Springbok players starring for the Sharks in their URC win over Leinster."
+        "candidate": 2,
+        "why": "Covers the Stormers' URC defeat and lineout struggles in Edinburgh."
       },
-      "leadLink": "https://www.sarugbymag.co.za/boks-power-sharks-victory/",
+      "leadLink": "https://www.planetrugby.com/news/edinburgh-17-13-stormers-five-takeaways-from-the-urc-round-two-clash",
       "repeatLead": null,
-      "noveltyRevised": false,
+      "noveltyRevised": true,
       "candidates": [
         {
           "title": "Boks power Sharks to victory",
           "link": "https://www.sarugbymag.co.za/boks-power-sharks-victory/",
-          "score": 53.6,
+          "score": 52.1,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -732,7 +805,7 @@
         {
           "title": "Edinburgh v Stormers: Five takeaways as 'friendly-fire' results in the 'biggest turning point' with ex-champions primed for Springboks boost",
           "link": "https://www.planetrugby.com/news/edinburgh-17-13-stormers-five-takeaways-from-the-urc-round-two-clash",
-          "score": 15.8,
+          "score": 15.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -741,8 +814,8 @@
         },
         {
           "title": "Youthful Leinster fall to narrow defeat against Sharks in South Africa",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1635f08894e7ab6cbc144fb2a2bcc&url=https%3a%2f%2fwww.msn.com%2fen-ie%2fsports%2frugby%2fyouthful-leinster-fall-to-narrow-defeat-against-sharks-in-south-africa%2far-AA2dveCk&c=4836373093539618053&mkt=en-us",
-          "score": 14.1,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac17e5977de49c3a916ae48a55d40da&url=https%3a%2f%2fwww.msn.com%2fen-ie%2fsports%2frugby%2fyouthful-leinster-fall-to-narrow-defeat-against-sharks-in-south-africa%2far-AA2dveCk&c=4836373093539618053&mkt=en-us",
+          "score": 13.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -772,11 +845,20 @@
       ]
     }
   ],
-  "world": [],
+  "world": [
+    {
+      "team": "New Zealand",
+      "text": "All Blacks captain Ardie Savea signs with the Blues."
+    },
+    {
+      "team": "South Africa",
+      "text": "Stormers lose to Edinburgh after Andre-Hugo Venter injury."
+    }
+  ],
   "model": {
-    "servedBy": "gemini-3.1-flash-lite",
-    "onLastRung": false,
-    "calls": 45,
+    "servedBy": "gemini-3.5-flash-lite",
+    "onLastRung": true,
+    "calls": 38,
     "rejections": 9
   },
   "worldDropped": []
