@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-03T12:51:54.049Z",
+  "updatedAt": "2026-10-03T17:01:29.519Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 205,
+  "count": 207,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -4014,7 +4014,7 @@
         }
       ],
       "firstSeen": "2026-09-30",
-      "lastSeen": "2026-10-02",
+      "lastSeen": "2026-10-04",
       "uses": 0
     },
     {
@@ -4252,7 +4252,7 @@
         }
       ],
       "firstSeen": "2026-10-02",
-      "lastSeen": "2026-10-03",
+      "lastSeen": "2026-10-04",
       "uses": 0
     },
     {
@@ -4270,7 +4270,7 @@
         }
       ],
       "firstSeen": "2026-10-02",
-      "lastSeen": "2026-10-03",
+      "lastSeen": "2026-10-04",
       "uses": 0
     },
     {
@@ -4460,8 +4460,8 @@
       ],
       "firstSeen": "2026-10-03",
       "lastSeen": "2026-10-03",
-      "uses": 1,
-      "lastUsed": "2026-10-03"
+      "uses": 2,
+      "lastUsed": "2026-10-04"
     },
     {
       "id": "sam-underhill-s-injury-7z9l0g",
@@ -4519,8 +4519,8 @@
       ],
       "firstSeen": "2026-10-03",
       "lastSeen": "2026-10-03",
-      "uses": 1,
-      "lastUsed": "2026-10-03"
+      "uses": 2,
+      "lastUsed": "2026-10-04"
     },
     {
       "id": "steve-borthwick-s-selection-mf13xj",
@@ -4619,12 +4619,12 @@
         }
       ],
       "firstSeen": "2026-10-03",
-      "lastSeen": "2026-10-03",
+      "lastSeen": "2026-10-04",
       "uses": 0
     },
     {
       "id": "saracens-definition-of-brendan-1kqnpt6",
-      "subject": "Saracens' definition of Brendan Venter's role",
+      "subject": "Saracens' management structure and Brendan Venter's official role",
       "teams": [
         386
       ],
@@ -4647,7 +4647,7 @@
         }
       ],
       "firstSeen": "2026-10-03",
-      "lastSeen": "2026-10-03",
+      "lastSeen": "2026-10-04",
       "uses": 1,
       "lastUsed": "2026-10-03"
     },
@@ -4724,6 +4724,11 @@
       "resolution": "until Hunter Paisami completes his four-match ban and returns to the Wallabies squad",
       "sources": [
         {
+          "title": "Wallabies: Les Kiss gives circumspect verdict on Hunter Paisami's suspension for Bledisloe Cup Tests",
+          "link": "https://www.planetrugby.com/news/wallabies-les-kiss-gives-circumspect-verdict-on-hunter-paisamis-suspension-for-bledisloe-cup-tests",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Cited centre in Wallabies' Bledisloe squad",
           "link": "https://www.sarugbymag.co.za/cited-centre-wallabies-bledisloe-squad/",
           "feedName": "SA Rugby Magazine"
@@ -4732,15 +4737,10 @@
           "title": "Wallabies centre banned after dangerous tackle on Springboks fly-half and misses All Blacks Tests",
           "link": "https://www.planetrugby.com/news/wallabies-centre-banned-after-dangerous-tackle-on-springboks-fly-half-and-misses-all-blacks-tests",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Wallabies centre banned for Sacha hit",
-          "link": "https://www.sarugbymag.co.za/wallabies-centre-banned/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-10-03",
-      "lastSeen": "2026-10-03",
+      "lastSeen": "2026-10-04",
       "uses": 0
     },
     {
@@ -4762,7 +4762,8 @@
       ],
       "firstSeen": "2026-10-03",
       "lastSeen": "2026-10-03",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-04"
     },
     {
       "id": "ian-flanagan-s-departure-1gi2wj9",
@@ -4784,7 +4785,7 @@
     },
     {
       "id": "phil-cokanasiga-s-foot-bmvpm9",
-      "subject": "Phil Cokanasiga's foot injury recovery",
+      "subject": "Phil Cokanasiga's recovery from foot surgery",
       "teams": [
         386
       ],
@@ -4797,7 +4798,53 @@
         }
       ],
       "firstSeen": "2026-10-03",
-      "lastSeen": "2026-10-03",
+      "lastSeen": "2026-10-04",
+      "uses": 0
+    },
+    {
+      "id": "joseph-dweba-s-injury-1ofnwsq",
+      "subject": "Joseph Dweba's injury status and availability for Exeter Chiefs",
+      "teams": [
+        386,
+        467
+      ],
+      "resolution": "until Joseph Dweba makes his first appearance of the season for Exeter Chiefs",
+      "sources": [
+        {
+          "title": "Exeter Chiefs: Rob Baxter addresses Springbok's omission while Test star 'getting close' to PREM return",
+          "link": "https://www.planetrugby.com/news/exeter-chiefs-rob-baxter-addresses-springboks-omission-while-test-star-getting-close-to-prem-return",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Exeter explain Bok’s absence",
+          "link": "https://www.sarugbymag.co.za/exeter-explain-boks-absence/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-04",
+      "lastSeen": "2026-10-04",
+      "uses": 0
+    },
+    {
+      "id": "legal-action-regarding-concussion-vk05l",
+      "subject": "Legal action regarding concussion and brain injuries in rugby union",
+      "teams": [
+        386,
+        388,
+        390,
+        391,
+        467
+      ],
+      "resolution": "until the claimants settle the required legal fees to continue their case",
+      "sources": [
+        {
+          "title": "Rugby’s brain injury claimants face £2.8m legal bill to continue case",
+          "link": "https://www.theguardian.com/sport/2026/oct/02/rugby-union-players-liable-for-28m-in-legal-fees-to-brain-injury-case-concussion",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-04",
+      "lastSeen": "2026-10-04",
       "uses": 0
     }
   ]
