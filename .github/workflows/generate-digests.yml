@@ -98,8 +98,14 @@ jobs:
           # hourly by harvest-news.yml, so restoring the whole editorial/ dir
           # wholesale would silently revert any harvest that landed during the
           # ~10 minutes this run spends on 12 model calls.
+          # editorial/health/ is NOT ours: the weekly health check, the
+          # watchdog's ops-status.{json,md} and the Claude weekly review write
+          # it. Snapshotting it here put this run's stale copy back over theirs
+          # on every push race — losing a heal record, which delays a page by
+          # a day. The watchdog lands ~00:00-02:00 UTC, inside the late digest
+          # runs' window, so the race is real.
           rm -rf /tmp/editorial-ours && mkdir -p /tmp/editorial-ours
-          cp -R editorial/reviews editorial/health editorial/runs /tmp/editorial-ours/ 2>/dev/null || true
+          cp -R editorial/reviews editorial/runs /tmp/editorial-ours/ 2>/dev/null || true
           # storylines.json is authored HERE (the quiet-day backlog) and carries
           # the use counts. Omitting it from this snapshot would silently revert
           # the day's backlog update on any push race.
