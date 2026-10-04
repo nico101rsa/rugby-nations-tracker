@@ -11,8 +11,9 @@
 //    correct and that there is no competition older than a month"
 //
 // So this asserts the things that must be true of the published data every
-// day, and raises a GitHub issue when one is not. It runs after the fixtures
-// build, on the daily job.
+// day, and raises a GitHub issue when one is not — silent (no @mention, no
+// assignee; notify.mjs), for the Claude weekly review to triage. It runs after
+// the fixtures build, on the daily job.
 //
 // The checks are deliberately arithmetic or structural — each one either holds
 // or it doesn't. None of them asks a model anything.

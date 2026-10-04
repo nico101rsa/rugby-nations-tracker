@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { isoWeekLabel, parseGrade, tallyRuns, summarizeChanges } from "./health-report.mjs";
+import { isoWeekLabel, parseGrade, tallyRuns, summarizeChanges, deliveryPlan } from "./health-report.mjs";
 
 test("isoWeekLabel is Thursday-anchored", () => {
   assert.equal(isoWeekLabel(new Date("2026-07-16T21:00:00Z")), "2026-W29");
@@ -35,6 +35,7 @@ test("summarizeChanges drops bot noise, keeps real commits", () => {
     "Data refresh 2026-07-13 06:41 AEST",
     "Daily digests 2026-07-12 08:00 AEST",
     "chore: keepalive",
+    "Ops status 2026-10-05 11:35 AEDT",
     "Digests: own concurrency group, race-safe publish (#13)",
     "Fix round-2 archive failures (#90)",
     "",
@@ -43,4 +44,18 @@ test("summarizeChanges drops bot noise, keeps real commits", () => {
     "Digests: own concurrency group, race-safe publish (#13)",
     "Fix round-2 archive failures (#90)",
   ]);
+});
+
+// The weekly report is delivered by being committed: the Claude weekly review
+// reads editorial/health/<week>.md. Until 2026-10-04 it also filed an issue
+// that @mentioned Nico and emailed him every Thursday; both are off unless he
+// opts the email back in with the HEALTH_EMAIL repository variable.
+test("deliveryPlan: silent by default, email only on HEALTH_EMAIL=1, never an issue", () => {
+  assert.deepEqual(deliveryPlan({}), { issue: false, email: false });
+  assert.deepEqual(deliveryPlan(undefined), { issue: false, email: false });
+  assert.deepEqual(deliveryPlan({ HEALTH_EMAIL: "1" }), { issue: false, email: true });
+  assert.deepEqual(deliveryPlan({ HEALTH_EMAIL: " 1 " }), { issue: false, email: true });
+  for (const v of ["", "0", "true", "yes"]) assert.equal(deliveryPlan({ HEALTH_EMAIL: v }).email, false, v);
+  // A key being present is not consent: the secrets stay wired for the opt-in.
+  assert.equal(deliveryPlan({ RESEND_API_KEY: "x", DIGEST_EMAIL_TO: "y" }).email, false);
 });

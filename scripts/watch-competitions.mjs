@@ -10,11 +10,12 @@
 //   - a competition that HAD fixtures loses them, or its window moves, which
 //     means either a reschedule or the vendor breaking underneath us.
 //
-// Why an issue and not an email: Gmail SMTP is rejected from Actions runners
-// (535, datacenter IPs), so email cannot be relied on to reach anyone. An
-// assigned + @mentioned issue notifies under GitHub's default "Participating
-// and @mentions" whatever the repo watch setting is. Same channel the
-// watchdog uses.
+// Why an issue: it is a durable, deduplicated ticket the scheduled Claude
+// weekly review triages ("anything raised by check-competitions, the
+// competitions watcher or the daily health job"). It is filed SILENT — no
+// @mention, no assignee (postIssue's default, see notify.mjs) — because these
+// are data-correctness tickets for the review, not outages; the review
+// escalates to Nico if one needs him.
 
 import { readFile, writeFile } from "node:fs/promises";
 import { buildRegistry, defaultCompetition } from "./build-competitions.mjs";

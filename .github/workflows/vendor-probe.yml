@@ -1,6 +1,7 @@
 # Read-only SportsAPI Pro health check — see scripts/vendor-probe.mjs for why.
 # Four vendor calls a night (2 teams x last/next), writes only the probe log,
-# never team-events.json. Files an assigned issue at three dead nights.
+# never team-events.json. Files a silent issue (no @mention, no assignee) at
+# three dead nights, for the Claude weekly review to triage.
 name: Vendor probe
 
 on:
@@ -12,7 +13,7 @@ on:
 
 permissions:
   contents: write # commit the probe log
-  issues: write # the escalation issue at three dead nights
+  issues: write # the silent ticket at three dead nights
 
 jobs:
   probe:

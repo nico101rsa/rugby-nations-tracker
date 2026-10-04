@@ -59,6 +59,51 @@ shared across jobs. Prefer a targeted refresh over a broader schedule, and make
 the no-op path cost nothing —
 `scripts/refresh-played-teams.mjs` is the worked example.
 
+## Alerts: who gets pinged
+
+Nico does not review ops output; the scheduled **Claude weekly review** does
+(Mondays 20:30 UTC = Tuesday 07:30 Sydney time in AEDT, 06:30 in AEST). So
+automation has two tiers, and `scripts/notify.mjs` holds the switch: silent
+unless a caller passes `page: true`.
+
+- **Page — pings Nico.** Only the watchdog, and only when a user-facing job
+  (`refresh-data.yml`, `team-events.yml`, `generate-digests.yml`) stays broken
+  despite the automatic retry: *still* overdue on a watchdog run after an
+  earlier run re-dispatched it, with no success since (about a day down), or
+  overdue on three watchdog runs in a row (the re-run lands but its own
+  schedule doesn't keep it current; refresh-data's 6h limit is far shorter
+  than the watchdog's day). One "⚠️ Rugby Tracker ops alert" issue, assigned
+  and @mentioning him. Its signature is the set of paged jobs and nothing
+  else, so one outage is one ping; another job joining adds one comment;
+  recovery closes it with no comment. If he closes it while the outage goes
+  on, it stays closed: `ops-status.json` keeps the page he was sent (`page`),
+  and only a job not in it opens a new one.
+- **Silent — everything else.** The watchdog re-dispatches any overdue job
+  first (self-heal) and records the state in `editorial/health/ops-status.json`
+  and `ops-status.md`: current signals, heal attempts and streaks, a 35-day
+  change log (the newest entry always kept), committed only when something
+  changed. Day counts, the latest reworded headline and the ladder's report
+  date are kept out of it, so a signal that just carries on commits nothing.
+  A workflow whose run history can't be read is `unknown`: not re-run, not
+  paged, and never the reason a page closes. Repeat leads, the model ladder on its
+  last rung, squad gaps and the catch-up job never page. The weekly health
+  check commits `editorial/health/<week>.md` and files no issue and sends no
+  email (email is opt-in: repository variable `HEALTH_EMAIL=1`). The rankings,
+  competitions, vendor-probe and box-score checks still file their
+  deduplicated issues, with no @mention and no assignee.
+
+The weekly review reads `editorial/health/ops-status.md` and the newest
+`editorial/health/<week>.md`, triages the open silent issues, and is the only
+other thing that escalates to Nico (its own "🚨 Weekly review <week>: …"
+issue, raised only when something needs him).
+
+Don't add an `@nico101rsa`, an `--assignee` or a default-on email anywhere
+else. If a new check really is an outage, route it through the watchdog's
+page tier and its "still down after a retry" rules. One caveat this can't fix
+from code: if Nico watches the repo on "All activity", GitHub still notifies
+him on every new issue, which is why the silent tier keeps issues for rare
+data-correctness tickets and puts routine findings in files.
+
 ## A result is symmetric — never trust one team's record alone
 
 `team-events.json` holds twelve **separately-fetched** per-team records, so a

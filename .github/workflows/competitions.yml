@@ -3,7 +3,8 @@ name: Competitions watcher
 # Rebuilds competitions.json — the registry the app's Fixtures dropdown and
 # Standings tab both read — and raises a GitHub issue when a registered
 # competition publishes fixtures for the first time, loses them, moves its
-# window, or classifies as UNKNOWN.
+# window, or classifies as UNKNOWN. The issue is silent (no @mention, no
+# assignee): the Claude weekly review triages it and escalates if needed.
 #
 # Weekly is the right cadence: fixture lists are announced months ahead, and
 # the daily fixtures build (team-events.yml) already re-reads the registry
