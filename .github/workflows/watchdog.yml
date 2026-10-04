@@ -8,7 +8,9 @@ name: Watchdog
 #   2. commits editorial/health/ops-status.{json,md}, the SILENT log the Claude
 #      weekly review reads (only when it changed);
 #   3. pages Nico on the "⚠️ Rugby Tracker ops alert" issue ONLY when a
-#      user-facing job is still overdue on a run after it was already re-run.
+#      user-facing job stays broken despite the re-run: still overdue on a run
+#      after it was already re-run, or overdue on three runs in a row. Once per
+#      outage, even if he closes the issue while it goes on.
 # Editorial signals (repeat leads, model ladder, squad gaps) never page, and
 # nothing here emails.
 on:
@@ -44,13 +46,20 @@ jobs:
         run: node scripts/watchdog.mjs
       # Nothing is triggered by this push: no workflow has a push trigger on
       # editorial/, and pushes made with GITHUB_TOKEN start no workflows anyway.
+      #
+      # continue-on-error: a red scheduled run emails Nico through GitHub's own
+      # failure notice — the very ping this job exists to spare him. Losing one
+      # status write is cheap by comparison: the next run works from the last
+      # record that did land (a page a day later, or rarely one repeat ping).
       - name: Commit the ops status (only when it changed)
+        continue-on-error: true
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add editorial/health/ops-status.json editorial/health/ops-status.md
           git diff --cached --quiet && echo "No ops-status change" && exit 0
           git commit -m "Ops status $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
-          # Live-refresh commits race us; only these two files are ours, so a
+          # Live-refresh commits race us (every ~12 min on match days), and one
+          # retry can lose a second race. Only these two files are ours, so a
           # rebase is safe.
-          git push || (git pull --rebase --autostash && git push)
+          for i in 1 2 3; do git push && exit 0; git pull --rebase --autostash; done; exit 1

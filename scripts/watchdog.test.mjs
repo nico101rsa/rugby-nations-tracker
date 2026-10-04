@@ -8,6 +8,7 @@ import {
   WATCHERS as LIVE_WATCHERS, PAGE_AFTER_HEAL_HOURS, summariseRuns, selectHeals, dispatchArgs, nextHeals,
   pagingMisses, pageSignature, pagedIn, decidePageAction, pageReport, sydney,
   statusLine, appendHistory, buildStatus, renderStatusMarkdown, writeStatus,
+  nextPageRecord, heldPages, syncPageIssue,
 } from "./watchdog.mjs";
 import { PUBLISH_TEAMSHEETS } from "./generate-digests.mjs";
 
@@ -179,7 +180,9 @@ test("nextHeals: one record per outage — first heal kept, attempts counted, re
   const day2 = new Date("2026-10-02T01:40:00Z");
   const m = [overdue("team-events.yml", "2026-09-29T06:20:44Z")];
   const h1 = nextHeals({}, m, { dispatch: ["team-events.yml"], skipped: [] }, { "team-events.yml": { ok: true } }, day1);
-  assert.deepEqual(h1["team-events.yml"], { firstAt: day1.toISOString(), lastAt: day1.toISOString(), attempts: 1, outcome: "re-run dispatched" });
+  assert.deepEqual(h1["team-events.yml"], {
+    firstAt: day1.toISOString(), lastAt: day1.toISOString(), attempts: 1, outcome: "re-run dispatched", streak: 1, streakSince: day1.toISOString(),
+  });
 
   const h2 = nextHeals(h1, m, { dispatch: ["team-events.yml"], skipped: [] }, { "team-events.yml": { ok: false, error: "HTTP 403" } }, day2);
   assert.equal(h2["team-events.yml"].firstAt, day1.toISOString()); // same outage
@@ -272,20 +275,20 @@ test("editorial signals never page and never touch the page signature", () => {
   assert.equal(pageSignature(status.paging), "");
   assert.equal(decidePageAction(null, status.paging), "noop");
   assert.equal(decidePageAction({ number: 132, body: "<!-- sig: leads=[Ireland:2] -->" }, status.paging), "close");
-  assert.deepEqual(status.signals.repeatLeads.map((r) => [r.team, r.days]), [["Ireland", 2]]);
-  assert.deepEqual(status.signals.ladderLastRung, { model: "model-b", date: "2026-10-04" });
+  assert.deepEqual(status.signals.repeatLeads.map((r) => [r.team, r.since]), [["Ireland", "2026-10-03"]]);
+  assert.deepEqual(status.signals.ladderLastRung, { model: "model-b", since: "2026-10-04" });
   assert.equal(status.signals.squadGaps[0].team, "Fiji");
 });
 
 test("statusLine / appendHistory: the change log grows only when the state changes, and ages out", () => {
   const t = (iso) => new Date(iso);
   const s1 = buildStatus({ now: t("2026-10-01T01:00:00Z"), misses: [], paging: [], heals: {}, coverage: null, repeats: leads(2), ladder: null });
-  assert.equal(statusLine(s1), "repeat leads: Ireland 2d");
+  assert.equal(statusLine(s1), "repeat leads: Ireland"); // no day count: it grew every morning
   const s2 = buildStatus({ now: t("2026-10-02T01:00:00Z"), misses: [], paging: [], heals: {}, coverage: null, repeats: leads(2), ladder: null, prev: s1 });
   assert.equal(s2.history.length, 1); // same state → no new entry
   const s3 = buildStatus({ now: t("2026-10-03T01:00:00Z"), misses: [], paging: [], heals: {}, coverage: null, repeats: null, ladder: null, prev: s2 });
   assert.equal(s3.state, "ok");
-  assert.deepEqual(s3.history.map((h) => h.summary), ["repeat leads: Ireland 2d", "all clear"]);
+  assert.deepEqual(s3.history.map((h) => h.summary), ["repeat leads: Ireland", "all clear"]);
   const old = [{ at: "2026-08-01T00:00:00Z", summary: "a" }, { at: "2026-10-01T00:00:00Z", summary: "b" }];
   assert.deepEqual(appendHistory(old, { at: "2026-10-04T00:00:00Z", summary: "c" }, t("2026-10-04T00:00:00Z")).map((h) => h.summary), ["b", "c"]);
   const many = Array.from({ length: 80 }, (_, i) => ({ at: "2026-10-03T00:00:00Z", summary: `s${i}` }));
@@ -386,4 +389,288 @@ test("ladderReport: only a run that completed on the last rung is an alert", () 
   const out = ladderReport(run("2026-09-25", [], { servedBy: "gemini-3.5-flash-lite", onLastRung: true, calls: 40, rejections: 36 }));
   assert.equal(out.model, "gemini-3.5-flash-lite");
   assert.match(out.text, /LAST rung .*gemini-3\.5-flash-lite/);
+});
+
+// ---- review fixes, 4 Oct 2026 --------------------------------------------------
+// Each block below covers a gap found before the quiet-alerts change shipped.
+
+const HOUR = 3600000;
+const NOV = Date.UTC(2026, 10, 1, 1, 0); // Sun 1 Nov 2026, 01:00 UTC (12:00 AEDT), a typical watchdog start
+const freshAll = (now) => Object.fromEntries(LIVE_WATCHERS.map((w) => [w.workflow, new Date(now - HOUR)]));
+
+// One watchdog run's pure decisions, strung together the way main() does.
+function watchdogRun(now, latest, prev, { unknown = [] } = {}) {
+  const misses = evaluate(now, latest, LIVE_WATCHERS, { unknown });
+  const paging = pagingMisses(misses, prev?.heals, now);
+  const plan = selectHeals(misses, {});
+  const results = Object.fromEntries(plan.dispatch.map((w) => [w, { ok: true }]));
+  const heals = nextHeals(prev?.heals, misses, plan, results, now, { unknown });
+  return { misses, paging, plan, heals };
+}
+
+// 1. refresh-data's limit is 6h and the watchdog runs daily. With its own cron
+// and the Worker both dead, the watchdog's re-run succeeds every morning, which
+// reset the outage to attempts:1 each day, so it never paged.
+test("streak: a job whose re-run works but whose own schedule stays dead pages on its third overdue run in a row", () => {
+  let prev = null;
+  const seen = [];
+  for (let d = 0; d < 4; d++) {
+    const now = new Date(NOV + d * 24 * HOUR);
+    // Only the watchdog's own re-run lands, ten minutes after each watchdog run.
+    const lastRefresh = d === 0 ? new Date(now - 20 * HOUR) : new Date(NOV + (d - 1) * 24 * HOUR + 10 * 60000);
+    const r = watchdogRun(now, { ...freshAll(now), "refresh-data.yml": lastRefresh }, prev);
+    const h = r.heals["refresh-data.yml"];
+    seen.push({ paging: r.paging.map((m) => m.workflow), streak: h.streak, attempts: h.attempts });
+    prev = { heals: JSON.parse(JSON.stringify(r.heals)) };
+  }
+  assert.deepEqual(seen.map((s) => s.attempts), [1, 1, 1, 1]); // each re-run worked, so the old rule saw a new outage daily
+  assert.deepEqual(seen.map((s) => s.streak), [1, 2, 3, 4]);
+  assert.deepEqual(seen.map((s) => s.paging), [[], [], ["refresh-data.yml"], ["refresh-data.yml"]]);
+});
+
+test("nextHeals streak: counts consecutive overdue runs across a successful re-run; a healthy run clears it", () => {
+  const d0 = new Date(NOV);
+  const d1 = new Date(NOV + 24 * HOUR);
+  const d2 = new Date(NOV + 48 * HOUR);
+  const m = (last) => [overdue("refresh-data.yml", last)];
+  const plan = { dispatch: ["refresh-data.yml"], skipped: [] };
+  const ok = { "refresh-data.yml": { ok: true } };
+  const h0 = nextHeals({}, m(new Date(d0 - 20 * HOUR)), plan, ok, d0);
+  assert.equal(h0["refresh-data.yml"].streak, 1);
+  assert.equal(h0["refresh-data.yml"].streakSince, d0.toISOString());
+  // The re-run landed and it is overdue again a day later: a new outage for the
+  // attempt count, the same streak.
+  const h1 = nextHeals(h0, m(new Date(d0.getTime() + 10 * 60000)), plan, ok, d1);
+  assert.equal(h1["refresh-data.yml"].firstAt, d1.toISOString());
+  assert.equal(h1["refresh-data.yml"].attempts, 1);
+  assert.equal(h1["refresh-data.yml"].streak, 2);
+  assert.equal(h1["refresh-data.yml"].streakSince, d0.toISOString());
+  // A run that finds it healthy drops the record, so the next outage counts from 1.
+  const healthy = nextHeals(h1, [], { dispatch: [], skipped: [] }, {}, d2);
+  assert.deepEqual(healthy, {});
+  const again = nextHeals(healthy, m(new Date(d2 - 7 * HOUR)), plan, ok, new Date(d2.getTime() + 24 * HOUR));
+  assert.equal(again["refresh-data.yml"].streak, 1);
+  // A record written before the streak existed counts as one run, starting at its outage.
+  const legacy = nextHeals({ "refresh-data.yml": { firstAt: d0.toISOString(), attempts: 1 } }, m(new Date(d0 - 20 * HOUR)), plan, ok, d1);
+  assert.equal(legacy["refresh-data.yml"].streak, 2);
+  assert.equal(legacy["refresh-data.yml"].streakSince, d0.toISOString());
+});
+
+test("pagingMisses streak rule: two earlier overdue runs spanning the heal floor, user-facing jobs only", () => {
+  const now = new Date(NOV + 48 * HOUR);
+  const afterHeal = new Date(NOV + 24 * HOUR + 10 * 60000); // a success after the latest heal: the first rule stays quiet
+  const rec = (streak, streakSince = new Date(NOV).toISOString()) => ({ firstAt: new Date(NOV + 24 * HOUR).toISOString(), attempts: 1, streak, streakSince });
+  const m = [overdue("refresh-data.yml", afterHeal), overdue("team-events-catchup.yml", afterHeal)];
+  assert.deepEqual(pagingMisses(m, { "refresh-data.yml": rec(1) }, now), []); // second overdue run in a row: not yet
+  assert.deepEqual(
+    pagingMisses(m, { "refresh-data.yml": rec(2), "team-events-catchup.yml": rec(5) }, now).map((x) => x.workflow),
+    ["refresh-data.yml"],
+  ); // the catch-up never pages
+  // Three watchdog runs inside twenty minutes (manual re-runs) are not a day of failure.
+  const quick = new Date(NOV + 20 * 60000);
+  assert.deepEqual(pagingMisses([overdue("refresh-data.yml")], { "refresh-data.yml": { firstAt: new Date(NOV).toISOString(), attempts: 1, streak: 2, streakSince: new Date(NOV).toISOString() } }, quick), []);
+  assert.deepEqual(pagingMisses(m, { "refresh-data.yml": { ...rec(2), streakSince: "garbage", firstAt: "garbage" } }, now), []);
+});
+
+test("pageReport: a job that keeps falling behind says so, instead of 'no success since'", () => {
+  const now = new Date(NOV + 48 * HOUR);
+  const p = [overdue("refresh-data.yml", new Date(NOV + 24 * HOUR + 10 * 60000).toISOString())];
+  const text = pageReport(p, { "refresh-data.yml": { firstAt: now.toISOString(), attempts: 1, streak: 3, streakSince: new Date(NOV).toISOString() } }, now);
+  assert.match(text, /overdue on 3 watchdog runs in a row since Sun 1 Nov 2026, 12:00 AEDT/);
+  assert.match(text, /live scores, fixtures and tables stop updating/);
+  assert.doesNotMatch(text, /still no success since/);
+  const md = renderStatusMarkdown(buildStatus({ now, misses: p, paging: p, heals: { "refresh-data.yml": { firstAt: now.toISOString(), lastAt: now.toISOString(), attempts: 1, outcome: "re-run dispatched", streak: 3, streakSince: new Date(NOV).toISOString() } }, coverage: null, repeats: null, ladder: null }));
+  assert.match(md, /overdue on 3 watchdog runs in a row since Sun 1 Nov 2026, 12:00 AEDT/);
+});
+
+// 2. findAlertIssue only sees OPEN issues, so a page Nico closed while the
+// outage went on was re-created, and re-pinged him, every day.
+test("page record: a page Nico closed stays closed while that outage continues; a new job or a new outage pages", () => {
+  const stored = { signature: "refresh-data.yml", openedAt: "2026-11-02T01:00:00.000Z" };
+  assert.equal(decidePageAction(null, [miss("refresh-data.yml")], stored), "noop"); // closed by hand, same outage
+  assert.equal(decidePageAction(null, [miss("refresh-data.yml"), miss("team-events.yml")], stored), "create"); // a job he wasn't paged for
+  assert.equal(decidePageAction(null, [miss("refresh-data.yml")], null), "create"); // no record: first page
+  assert.equal(decidePageAction(null, [miss("refresh-data.yml")]), "create");
+  const open = { number: 150, body: "x\n<!-- page: refresh-data.yml -->" };
+  assert.equal(decidePageAction(open, [miss("refresh-data.yml")], stored), "edit"); // an open page behaves as before
+
+  const now = new Date("2026-11-04T01:00:00Z");
+  const one = [miss("refresh-data.yml")];
+  assert.equal(nextPageRecord(stored, [], "close", { now }), null); // nothing pages: cleared
+  assert.equal(nextPageRecord(stored, [], "noop", { now }), null);
+  assert.deepEqual(nextPageRecord(null, one, "create", { now }), { signature: "refresh-data.yml", openedAt: now.toISOString() });
+  assert.deepEqual(nextPageRecord(stored, one, "noop", { now }), stored); // closed by hand: the original page is kept
+  assert.deepEqual(nextPageRecord(stored, one, "edit", { now }), stored);
+  assert.deepEqual(nextPageRecord(stored, [...one, miss("team-events.yml")], "update", { now }), { signature: "refresh-data.yml,team-events.yml", openedAt: stored.openedAt });
+  // An open page found with no record (a lost status write): openedAt from the issue.
+  assert.deepEqual(nextPageRecord(null, one, "edit", { now, openedAt: "2026-11-03T00:00:00Z" }), { signature: "refresh-data.yml", openedAt: "2026-11-03T00:00:00Z" });
+  // Never remember a page that was not sent, or it would never be retried.
+  assert.equal(nextPageRecord(null, one, "create", { now, ok: false }), null);
+  assert.equal(nextPageRecord(null, one, "error", { now }), null);
+  assert.deepEqual(nextPageRecord(stored, one, "error", { now }), stored);
+});
+
+test("a page Nico closes after the first ping is the only ping of that outage; the next outage pages again", () => {
+  let prev = null;
+  const actions = [];
+  const dead = new Date(NOV - 10 * HOUR);
+  for (let d = 0; d < 8; d++) {
+    const now = new Date(NOV + d * 24 * HOUR);
+    // Dead on days 0-4, healthy on day 5, dead again from day 6.
+    const lastRefresh = d < 5 ? dead : d === 5 ? new Date(now - HOUR) : new Date(NOV + 5 * 24 * HOUR - HOUR);
+    const r = watchdogRun(now, { ...freshAll(now), "refresh-data.yml": lastRefresh }, prev);
+    const action = decidePageAction(null, r.paging, prev?.page ?? null); // he closed it straight away: never an open issue
+    actions.push(action);
+    const page = nextPageRecord(prev?.page ?? null, r.paging, action, { now });
+    prev = JSON.parse(JSON.stringify(buildStatus({ now, misses: r.misses, paging: r.paging, heals: r.heals, coverage: null, repeats: null, ladder: null, prev, page })));
+    if (d === 2) assert.deepEqual(prev.page, { signature: "refresh-data.yml", openedAt: new Date(NOV + 24 * HOUR).toISOString() });
+    if (d === 5) assert.equal(prev.page, null); // the healthy run clears it
+  }
+  assert.deepEqual(actions, ["noop", "create", "noop", "noop", "noop", "noop", "noop", "create"]);
+});
+
+test("syncPageIssue: with the page closed by hand it writes nothing to GitHub, and a create is recorded only once it succeeded", async () => {
+  const now = new Date(NOV + 48 * HOUR);
+  const paging = [overdue("refresh-data.yml", new Date(NOV - 10 * HOUR).toISOString())];
+  const calls = [];
+  const fakeGh = (issues, { fail = false } = {}) => async (args) => {
+    calls.push(args.slice(0, 2).join(" "));
+    if (args[0] === "issue" && args[1] === "list") return JSON.stringify(issues);
+    if (fail) throw new Error("HTTP 502");
+    return "https://github.com/o/r/issues/151\n";
+  };
+  const stored = { signature: "refresh-data.yml", openedAt: "2026-11-02T01:00:00.000Z" };
+  const quiet = await syncPageIssue(paging, {}, now, "", { stored, gh: fakeGh([]) });
+  assert.equal(quiet.action, "noop");
+  assert.deepEqual(quiet.page, stored);
+  assert.deepEqual(calls, ["issue list"]);
+
+  calls.length = 0;
+  const created = await syncPageIssue(paging, {}, now, "", { stored: null, gh: fakeGh([]) });
+  assert.equal(created.action, "create");
+  assert.deepEqual(created.page, { signature: "refresh-data.yml", openedAt: now.toISOString() });
+  assert.deepEqual(calls, ["issue list", "issue create"]);
+
+  await assert.rejects(syncPageIssue(paging, {}, now, "", { stored: null, gh: fakeGh([], { fail: true }) }), /HTTP 502/);
+});
+
+// 4. The 35-day age cut removed the ONLY entry after a long unchanged spell:
+// day 36 wrote an empty log, day 37 re-added it — two pointless commits.
+test("appendHistory always keeps the newest entry, so a long unchanged state never empties the change log", () => {
+  const only = [{ at: "2026-11-01T01:00:00.000Z", summary: "all clear" }];
+  const later = new Date("2026-12-10T01:00:00Z");
+  assert.deepEqual(appendHistory(only, { at: later.toISOString(), summary: "all clear" }, later), only);
+  let prev = null;
+  const writes = new Set();
+  for (let d = 0; d < 40; d++) {
+    const now = new Date(NOV + d * 24 * HOUR);
+    prev = JSON.parse(JSON.stringify(buildStatus({ now, misses: [], paging: [], heals: {}, coverage: null, repeats: null, ladder: null, prev })));
+    writes.add(JSON.stringify(prev));
+  }
+  assert.equal(writes.size, 1); // forty all-clear days, one write
+  assert.equal(prev.history.length, 1);
+});
+
+// 5. A failed scheduled run emails Nico through GitHub's own failure notice.
+// The ops-status push races the live refresh, so it must neither give up after
+// one retry nor turn the run red.
+test("watchdog.yml: the ops-status push retries three times and can never fail the run", async () => {
+  const yml = await readFile(new URL("../.github/workflows/watchdog.yml", import.meta.url), "utf8");
+  const step = yml.split(/\n(?= {6}- )/).find((s) => s.includes("name: Commit the ops status"));
+  assert.ok(step, "the commit step exists");
+  assert.match(step, /^ {8}continue-on-error: true$/m);
+  assert.match(step, /for i in 1 2 3; do git push && exit 0; git pull --rebase --autostash; done; exit 1/);
+  assert.doesNotMatch(step, /git push \|\|/);
+});
+
+// 6. Day counts, reworded headlines and the ladder's report date changed every
+// morning: replaying 21 Sep-4 Oct gave 13 commits in 14 days.
+test("status file: a repeat lead and a last-rung ladder that simply carry on are byte-identical the next day", async () => {
+  const sa = [
+    ["South Africa", "André Esterhuizen named Springboks captain as Rassie Erasmus rotates the squad", "Erasmus has named Esterhuizen captain in a heavily changed side to face the Wallabies.", ESTER],
+    ["South Africa", "Andre Esterhuizen captains heavily changed Springboks side to face Wallabies", "Rassie Erasmus has made 13 changes, naming Esterhuizen captain.", ESTER],
+    ["South Africa", "Andre Esterhuizen captains heavily changed South Africa side against Australia", "Rassie Erasmus has made 13 changes to his starting XV for Sunday's Test, naming Andre Esterhuizen as captain.", ESTER],
+  ];
+  const lastRung = { servedBy: "model-c", onLastRung: true, calls: 40, rejections: 36 };
+  const reports = ["2026-09-23", "2026-09-24", "2026-09-25"].map((date, i) => run(date, [sa[i]], lastRung));
+  const day = (n, prev) => {
+    const window = reports.slice(0, n);
+    return buildStatus({
+      now: new Date(`${window[window.length - 1].date}T01:00:00Z`), misses: [], paging: [], heals: {}, coverage: null,
+      repeats: repeatLeadReport(window), ladder: ladderReport(window[window.length - 1]), prev,
+    });
+  };
+  const s2 = day(2, null);
+  const s3 = day(3, JSON.parse(JSON.stringify(s2)));
+  assert.equal(repeatLeadReport(reports.slice(0, 2)).repeats[0].days, 2);
+  assert.equal(repeatLeadReport(reports).repeats[0].days, 3); // the run log still says how long
+  assert.equal(JSON.stringify(s3), JSON.stringify(s2)); // ...the committed file does not
+  assert.equal(statusLine(s3), "repeat leads: South Africa; model ladder on its last rung");
+  assert.deepEqual(s3.signals.repeatLeads[0], { team: "South Africa", since: "2026-09-23", heading: sa[0][1], flagged: false });
+  assert.deepEqual(s3.signals.ladderLastRung, { model: "model-c", since: "2026-09-24" });
+  const md = renderStatusMarkdown(s3);
+  assert.match(md, /South Africa — same lead story since Wed 23 Sep/);
+  assert.match(md, /LAST rung \(model-c\) since Thu 24 Sep/);
+  const dir = await mkdtemp(join(tmpdir(), "ops-status-"));
+  try {
+    const paths = { jsonPath: join(dir, "ops-status.json"), mdPath: join(dir, "ops-status.md") };
+    assert.equal(await writeStatus(s2, paths), true);
+    assert.equal(await writeStatus(s3, paths), false); // no commit
+  } finally {
+    await rm(dir, { recursive: true, force: true });
+  }
+});
+
+test("status file: a repeat as long as the report window keeps the start it was first seen with", () => {
+  const window = (from) => Array.from({ length: 3 }, (_, i) => run(`2026-09-${String(from + i).padStart(2, "0")}`, [["Japan", "Eddie Jones names Japan squad for the Pacific Nations Cup final", "Jones recalls three uncapped forwards."]]));
+  const full = repeatLeadReport(window(22));
+  assert.equal(full.repeats[0].open, true); // the run reaches the oldest report it was given
+  const broken = repeatLeadReport([run("2026-09-21", [["Japan", "Japan lose to Fiji", "A different story."]]), ...window(22)]);
+  assert.equal(broken.repeats[0].open, false);
+  const prev = { signals: { repeatLeads: [{ team: "Japan", since: "2026-09-18", heading: "Eddie Jones names Japan squad", flagged: false }] } };
+  const s = buildStatus({ now: new Date("2026-09-25T01:00:00Z"), misses: [], paging: [], heals: {}, coverage: null, repeats: repeatLeadReport(window(23)), ladder: null, prev });
+  assert.deepEqual(s.signals.repeatLeads[0], prev.signals.repeatLeads[0]); // the window slid; the story didn't start again
+  // A run that visibly starts inside the window is a new one, whatever came before.
+  const fresh = buildStatus({ now: new Date("2026-09-25T01:00:00Z"), misses: [], paging: [], heals: {}, coverage: null, repeats: broken, ladder: null, prev });
+  assert.equal(fresh.signals.repeatLeads[0].since, "2026-09-22");
+});
+
+// 7. A failed `gh run list` used to count as "no success at all": two flaky API
+// days would page a healthy job.
+test("unknown: a workflow whose run history can't be read is not overdue, not re-run, not paged, keeps its record, and is in the status file", () => {
+  const now = new Date(NOV + 24 * HOUR);
+  const unknown = [{ ...W["refresh-data.yml"], error: "HTTP 502: Bad Gateway" }];
+  const latest = freshAll(now);
+  delete latest["refresh-data.yml"]; // the query failed: nothing to say
+  const prevHeals = { "refresh-data.yml": { firstAt: new Date(NOV).toISOString(), lastAt: new Date(NOV).toISOString(), attempts: 1, outcome: "re-run dispatched", streak: 1, streakSince: new Date(NOV).toISOString() } };
+  const r = watchdogRun(now, latest, { heals: prevHeals }, { unknown });
+  assert.deepEqual(r.misses, []);
+  assert.deepEqual(r.paging, []);
+  assert.deepEqual(r.plan.dispatch, []);
+  assert.deepEqual(r.heals, prevHeals); // neither a recovery (that clears it) nor another overdue run
+  const status = buildStatus({ now, misses: r.misses, paging: r.paging, heals: r.heals, coverage: null, repeats: null, ladder: null, unknown });
+  assert.equal(status.state, "attention");
+  assert.deepEqual(status.unknown, [{ workflow: "refresh-data.yml", label: "Live data refresh", error: "HTTP 502: Bad Gateway" }]);
+  assert.equal(statusLine(status), "status unknown: refresh-data.yml");
+  assert.match(renderStatusMarkdown(status), /Live data refresh\*\* \(`refresh-data\.yml`\) — its run history could not be read \(HTTP 502: Bad Gateway\)/);
+  // Without the unknown flag the same gap reads as a miss: the old behaviour.
+  assert.deepEqual(evaluate(now, latest, LIVE_WATCHERS).map((m) => m.workflow), ["refresh-data.yml"]);
+});
+
+test("unknown: a job that was already paging and can't be read keeps its page as it is (no close, no second ping)", () => {
+  const now = new Date(NOV + 48 * HOUR);
+  const stored = { signature: "refresh-data.yml", openedAt: new Date(NOV + 24 * HOUR).toISOString() };
+  const open = { number: 150, body: "x\n<!-- page: refresh-data.yml -->" };
+  const unknown = [{ ...W["refresh-data.yml"], error: "HTTP 502" }, { ...W["team-events.yml"], error: "HTTP 502" }];
+  const held = heldPages(unknown, open, stored);
+  assert.deepEqual(held.map((h) => h.workflow), ["refresh-data.yml"]); // team-events was not paging: nothing to hold
+  assert.equal(decidePageAction(open, held, stored), "edit"); // was "close", then "create" (a ping) the next day
+  assert.equal(decidePageAction(null, held, stored), "noop");
+  assert.deepEqual(nextPageRecord(stored, held, "edit", { now }), stored);
+  assert.deepEqual(heldPages(unknown, null, null), []);
+  assert.deepEqual(heldPages(unknown, null, stored).map((h) => h.workflow), ["refresh-data.yml"]);
+  assert.match(pageReport(held, {}, now), /could not be read this time \(HTTP 502\)/);
+  const status = buildStatus({ now, misses: [], paging: held, heals: {}, coverage: null, repeats: null, ladder: null, unknown, page: stored });
+  assert.equal(status.state, "paging");
+  assert.deepEqual(status.paging.map((p) => [p.workflow, p.unknown]), [["refresh-data.yml", true]]);
 });

@@ -15,10 +15,19 @@
 //      ops-status.md) holds the current signals, each workflow's heal attempts
 //      and a short change log. The Claude weekly review reads it. Nobody is
 //      notified by it.
-//   3. PAGE NICO only for a user-facing job that is STILL overdue on a run after
-//      the watchdog already re-ran it on an earlier run — i.e. it has stayed
-//      broken for about a day despite the automatic retry. That is the one case
-//      that assigns + @mentions him, on the "⚠️ Rugby Tracker ops alert" issue.
+//   3. PAGE NICO only for a user-facing job that stays broken despite the
+//      retry: STILL overdue on a run after the watchdog already re-ran it on an
+//      earlier run with no success since (about a day down), or overdue on
+//      three watchdog runs in a row (the re-run gets it going, its own schedule
+//      doesn't keep it current: refresh-data's 6h limit is far shorter than the
+//      watchdog's day). That is the one case that assigns + @mentions him, on
+//      the "⚠️ Rugby Tracker ops alert" issue — once per outage. If he closes
+//      it while the outage goes on, the page stored in ops-status.json keeps it
+//      closed; only a job he has not been paged for opens a new one.
+//
+// A workflow whose run history can't be read this run is UNKNOWN, not overdue:
+// no re-run, no page, its heal record kept as it was, and a page it was already
+// part of left alone (neither closed nor re-sent).
 //
 // The editorial checks (repeated leads, the model ladder on its last rung,
 // squad coverage) and the catch-up job NEVER page: they are quality signals for
@@ -90,11 +99,25 @@ export const WATCHERS = [
 // watchdog cron would halve time-to-page without touching this.
 export const PAGE_AFTER_HEAL_HOURS = 12;
 
+// The second page rule: the previous runs' record must already show at least
+// this many consecutive overdue runs, so the run that pages is the third in a
+// row. That gives a job whose re-run keeps succeeding one more day than a job
+// that is plainly dead (which pages on its second run), and it still has to
+// span PAGE_AFTER_HEAL_HOURS, so a burst of manual watchdog runs can't page.
+export const PAGE_AFTER_STREAK = 2;
+
+const workflowSet = (xs) => new Set((xs ?? []).map((x) => (typeof x === "string" ? x : x?.workflow)).filter(Boolean));
+
 // Pure core: given the last-success time per workflow, decide what's overdue.
 // latestByWorkflow: { [workflow]: Date | null }
-export function evaluate(now, latestByWorkflow, watchers = WATCHERS) {
+// unknown: the watchers whose run history could not be read this run. They are
+// neither fresh nor overdue, so they are left out: no re-run and no page off an
+// API failure.
+export function evaluate(now, latestByWorkflow, watchers = WATCHERS, { unknown = [] } = {}) {
+  const skip = workflowSet(unknown);
   const misses = [];
   for (const w of watchers) {
+    if (skip.has(w.workflow)) continue;
     const last = latestByWorkflow[w.workflow] ?? null;
     const ageHours = last ? (now.getTime() - last.getTime()) / 3600000 : null;
     if (last === null || ageHours > w.maxAgeHours) {
@@ -121,7 +144,7 @@ export function formatReport(misses, now) {
   lines.push(
     "",
     "Likely cause: GitHub dropped the scheduled run (cron drift). The watchdog",
-    "re-dispatches it (self-heal) and pages only if it is still overdue next run.",
+    "re-dispatches it (self-heal) and pages only if it stays overdue after that.",
   );
   return lines.join("\n");
 }
@@ -181,7 +204,16 @@ export function dispatchArgs(watcher) {
 // Skipping the dispatch because a run is already in flight still counts as an
 // attempt: that run IS the retry, and if the job is still overdue a day later
 // it did not fix it either.
-export function nextHeals(prev = {}, misses, plan, results = {}, now) {
+//
+// `streak` counts consecutive watchdog runs that found it overdue, from
+// `streakSince`. Unlike `firstAt` it survives a successful re-run: a previous
+// record only exists if the job was also overdue on the last run (a run that
+// finds it healthy drops it), so carrying on from one is what "in a row" means.
+//
+// An UNKNOWN workflow (its run history couldn't be read) keeps its record
+// exactly as it was: not a recovery, which would clear it, and not another
+// overdue run, which would count against it.
+export function nextHeals(prev = {}, misses, plan, results = {}, now, { unknown = [] } = {}) {
   const skippedWhy = new Map(plan.skipped.map((s) => [s.workflow, s.reason]));
   const out = {};
   for (const m of misses) {
@@ -196,26 +228,39 @@ export function nextHeals(prev = {}, misses, plan, results = {}, now) {
       lastAt: now.toISOString(),
       attempts: continuing ? (p.attempts ?? 1) + 1 : 1,
       outcome,
+      streak: p ? (Number(p.streak) || 1) + 1 : 1,
+      streakSince: (p && (p.streakSince ?? p.firstAt)) || now.toISOString(),
     };
   }
+  for (const wf of workflowSet(unknown)) if (prev?.[wf] && !out[wf]) out[wf] = prev[wf];
   return out;
 }
 
 // ---- the page tier --------------------------------------------------------------
 
-// Pure: the overdue jobs that page. User-facing, and the PREVIOUS runs' state
-// (not this run's) shows a heal for this same outage at least
-// PAGE_AFTER_HEAL_HOURS ago. A heal that a later success superseded belongs to
-// an outage that already ended, so it does not count.
-export function pagingMisses(misses, prevHeals = {}, now, { afterHours = PAGE_AFTER_HEAL_HOURS } = {}) {
+// Pure: the overdue jobs that page. User-facing, judged on the PREVIOUS runs'
+// record (not this run's), and either
+//   - still down after a re-run: a heal for this same outage at least
+//     PAGE_AFTER_HEAL_HOURS ago and no success since. A heal that a later
+//     success superseded belongs to an outage that ended, so it does not count;
+//   - or keeps falling behind: already overdue on PAGE_AFTER_STREAK runs in a
+//     row, over at least PAGE_AFTER_HEAL_HOURS, and overdue again now. This is
+//     the refresh-data case — its re-run succeeds every morning, so the first
+//     rule never fires, while live scores update once a day.
+export function pagingMisses(misses, prevHeals = {}, now, { afterHours = PAGE_AFTER_HEAL_HOURS, afterStreak = PAGE_AFTER_STREAK } = {}) {
+  const hoursSince = (when) => {
+    const t = when == null ? NaN : new Date(when).getTime();
+    return Number.isNaN(t) ? null : (now.getTime() - t) / 3600000;
+  };
   return misses.filter((m) => {
     if (!m.userFacing) return false;
     const h = prevHeals?.[m.workflow];
     if (!h?.firstAt) return false;
-    const first = new Date(h.firstAt);
-    if (Number.isNaN(first.getTime())) return false;
-    if (m.lastSuccessAt && m.lastSuccessAt >= first) return false;
-    return (now.getTime() - first.getTime()) / 3600000 >= afterHours;
+    const sinceHeal = hoursSince(h.firstAt);
+    const stillDown = sinceHeal !== null && sinceHeal >= afterHours && !(m.lastSuccessAt && m.lastSuccessAt >= new Date(h.firstAt));
+    const sinceStreak = hoursSince(h.streakSince ?? h.firstAt);
+    const keepsFalling = (Number(h.streak) || 1) >= afterStreak && sinceStreak !== null && sinceStreak >= afterHours;
+    return stillDown || keepsFalling;
   });
 }
 
@@ -227,10 +272,12 @@ export function pageSignature(paging = []) {
   return [...new Set(paging.map((m) => m.workflow))].sort().join(",");
 }
 
+const signatureSet = (sig) => new Set(String(sig ?? "").split(",").map((s) => s.trim()).filter(Boolean));
+
 const PAGE_MARKER = /<!-- page: ([^>]*?) -->/;
 export function pagedIn(body) {
   const m = PAGE_MARKER.exec(String(body ?? ""));
-  return new Set(m ? m[1].split(",").map((s) => s.trim()).filter(Boolean) : []);
+  return signatureSet(m ? m[1] : "");
 }
 
 // Pure: what to do with the alert issue.
@@ -238,13 +285,47 @@ export function pagedIn(body) {
 //   update — a NEW user-facing job joined an open page (edit + one comment)
 //   edit   — same jobs, or fewer: refresh the body silently (edits don't notify)
 //   close  — nothing pages any more: close, with no "recovered" comment
-//   noop   — nothing pages and nothing is open
-export function decidePageAction(existing, paging = []) {
+//   noop   — nothing pages and nothing is open, OR Nico closed the page while
+//            the same outage goes on (stored = the page ops-status.json keeps)
+//
+// findAlertIssue only sees open issues, so without `stored` a page he closed
+// was re-created, and re-pinged him, every morning. Only a job he has not been
+// paged for in this outage opens a new one; one dropping out never does.
+export function decidePageAction(existing, paging = [], stored = null) {
   const current = new Set(paging.map((m) => m.workflow));
   if (!current.size) return existing ? "close" : "noop";
-  if (!existing) return "create";
-  const before = pagedIn(existing.body);
-  return [...current].some((w) => !before.has(w)) ? "update" : "edit";
+  if (existing) {
+    const before = pagedIn(existing.body);
+    return [...current].some((w) => !before.has(w)) ? "update" : "edit";
+  }
+  const paged = signatureSet(stored?.signature);
+  return [...current].some((w) => !paged.has(w)) ? "create" : "noop";
+}
+
+// Pure: the page record ops-status.json keeps — { signature, openedAt } of the
+// page Nico was sent, or null when nothing pages. A create is remembered only
+// once it went through (ok), and an "error" (the issue sync failed) changes
+// nothing, so a page that was never sent is retried on the next run rather
+// than taken as already sent.
+export function nextPageRecord(stored, paging = [], action, { ok = true, now, openedAt = null } = {}) {
+  if (!paging.length) return null;
+  const signature = pageSignature(paging);
+  if (action === "create") return ok ? { signature, openedAt: now.toISOString() } : stored ?? null;
+  if (action === "edit" || action === "update" || action === "noop") {
+    return { signature, openedAt: stored?.openedAt ?? openedAt ?? now.toISOString() };
+  }
+  return stored ?? null;
+}
+
+// Pure: UNKNOWN workflows that were part of the current page (the open issue's
+// marker or the stored record). They stay in it as they are: an API failure is
+// no evidence the job recovered, and closing on it would mean a second ping
+// when the next run can read it again.
+export function heldPages(unknown = [], existing = null, stored = null) {
+  const was = new Set([...pagedIn(existing?.body), ...signatureSet(stored?.signature)]);
+  return (unknown ?? [])
+    .filter((u) => was.has(u.workflow))
+    .map((u) => ({ ...u, held: true, lastSuccessAt: null, ageHours: null }));
 }
 
 // ---- Sydney time ----------------------------------------------------------------
@@ -275,12 +356,31 @@ const ageText = (m, now) =>
     ? `last success ${sydney(m.lastSuccessAt)} (${((now - m.lastSuccessAt) / 3600000).toFixed(1)}h ago; limit ${m.maxAgeHours}h)`
     : `no successful run in the last ${RUN_WINDOW} runs (limit ${m.maxAgeHours}h)`;
 
+// True when the job did run successfully during its overdue streak (the
+// re-runs work) but keeps going stale between watchdog runs.
+const fallingBehind = (m, h) =>
+  Number(h?.streak) >= 2 && Boolean(h.streakSince) && Boolean(m.lastSuccessAt) && m.lastSuccessAt >= new Date(h.streakSince);
+
 export function pageReport(paging, heals, now, repoUrl = "") {
-  const lines = ["A user-facing job has stayed down for about a day despite an automatic re-run.", ""];
+  const lines = ["A user-facing job is still overdue despite the watchdog's automatic re-runs.", ""];
   for (const m of paging) {
     const h = heals?.[m.workflow];
-    lines.push(`• ${m.label} (${m.workflow}) — ${ageText(m, now)}.`);
-    if (h) lines.push(`  The watchdog first re-ran it ${sydney(h.firstAt)} (${h.attempts} attempt${h.attempts === 1 ? "" : "s"} so far); still no success since.`);
+    if (m.held) {
+      lines.push(
+        `• ${m.label} (${m.workflow}) — its run history could not be read this time (${m.error ?? "GitHub API error"}). ` +
+          "It was already down, so this stays open until a run can confirm it recovered.",
+      );
+    } else {
+      lines.push(`• ${m.label} (${m.workflow}) — ${ageText(m, now)}.`);
+      if (fallingBehind(m, h)) {
+        lines.push(
+          `  Found overdue on ${h.streak} watchdog runs in a row since ${sydney(h.streakSince)}. Each automatic re-run got it going, ` +
+            "but its own schedule is not keeping it current.",
+        );
+      } else if (h) {
+        lines.push(`  The watchdog first re-ran it ${sydney(h.firstAt)} (${h.attempts} attempt${h.attempts === 1 ? "" : "s"} so far); still no success since.`);
+      }
+    }
     if (m.impact) lines.push(`  Meanwhile in the app: ${m.impact}.`);
     if (repoUrl) lines.push(`  Runs: ${repoUrl}/actions/workflows/${m.workflow}`);
   }
@@ -346,19 +446,26 @@ export function repeatLeadReport(reports, { minDays = 2 } = {}) {
     let days = 1;
     let since = latest.date;
     let current = row;
+    // open: the run reaches the oldest report given, so it may have started
+    // earlier than `since` (the window is a week of reports).
+    let open = true;
     for (let i = ordered.length - 2; i >= 0; i--) {
       const prev = ordered[i].teams.find((t) => t?.team === row.team);
-      if (!prev?.heading) break;
-      const reason = sameStory(
+      const reason = prev?.heading && sameStory(
         { heading: current.heading, body: current.body, link: current.leadLink },
         { heading: prev.heading, body: prev.body, link: prev.leadLink },
       );
-      if (!reason) break;
+      if (!reason) {
+        open = false;
+        break;
+      }
       days++;
       since = ordered[i].date;
       current = prev;
     }
-    if (days >= minDays) repeats.push({ team: row.team, days, since, heading: row.heading, flagged: Boolean(row.repeatLead) });
+    if (days >= minDays) {
+      repeats.push({ team: row.team, days, since, heading: row.heading, firstHeading: current.heading, flagged: Boolean(row.repeatLead), open });
+    }
   }
   if (!repeats.length) return null;
   repeats.sort((a, b) => b.days - a.days || a.team.localeCompare(b.team));
@@ -405,45 +512,91 @@ export const HISTORY_MAX = 60;
 
 const iso = (d) => (d ? new Date(d).toISOString() : null);
 
-// One line per state, free of timestamps, so the change log only grows when
-// something actually changed.
+// One line per state, free of timestamps and day counts, so the change log
+// only grows when something actually changed.
 export function statusLine(status) {
   const parts = [];
   if (status.paging.length) parts.push(`PAGING: ${status.paging.map((p) => p.workflow).join(", ")}`);
   if (status.overdue.length) parts.push(`overdue: ${status.overdue.map((o) => o.workflow).join(", ")}`);
+  if (status.unknown?.length) parts.push(`status unknown: ${status.unknown.map((u) => u.workflow).join(", ")}`);
   const s = status.signals;
-  if (s.repeatLeads.length) parts.push(`repeat leads: ${s.repeatLeads.map((r) => `${r.team} ${r.days}d`).join(", ")}`);
+  if (s.repeatLeads.length) parts.push(`repeat leads: ${s.repeatLeads.map((r) => r.team).sort().join(", ")}`);
   if (s.ladderLastRung) parts.push("model ladder on its last rung");
   if (s.squadGaps.length) parts.push(`squad gaps: ${s.squadGaps.map((g) => g.team).join(", ")}`);
   return parts.length ? parts.join("; ") : "all clear";
 }
 
+// The newest entry is always kept, however old: it is the current state, and
+// ageing it out emptied the log after 35 unchanged days (then re-added it the
+// next day — two commits about nothing).
 export function appendHistory(history = [], entry, now, { days = HISTORY_DAYS, max = HISTORY_MAX } = {}) {
   const kept = [...(Array.isArray(history) ? history : [])];
   if (kept[kept.length - 1]?.summary !== entry.summary) kept.push(entry);
   const cutoff = now.getTime() - days * 86400000;
-  return kept.filter((h) => new Date(h.at).getTime() >= cutoff).slice(-max);
+  return kept.filter((h, i, all) => i === all.length - 1 || new Date(h.at).getTime() >= cutoff).slice(-max);
 }
 
-export function buildStatus({ now, misses, paging, heals, coverage, repeats, ladder, prev = null }) {
+// The committed form of the editorial signals carries nothing that moves while
+// the situation stands still, so an unchanged day writes the same bytes and
+// makes no commit. Replaying 21 Sep-4 Oct 2026, the day counts ("Ireland 2d",
+// "3d"), each morning's reworded headline and the ladder's report date gave 13
+// commits in 14 days. So: a repeat lead is its team, the date it started and
+// the headline it FIRST ran under; the ladder is its model and the date it
+// first hit the last rung. The run log keeps the full daily text.
+//
+// A repeat as long as the report window has no visible start (`open`), and
+// its `since` would slide forward a day each morning; it keeps the start the
+// previous run recorded.
+function committedLeads(repeats, prev) {
+  if (!repeats?.repeats?.length) return [];
+  const before = new Map((prev?.signals?.repeatLeads ?? []).map((r) => [r.team, r]));
+  return repeats.repeats
+    .map((r) => {
+      const p = before.get(r.team);
+      const carry = Boolean(r.open && p?.since && String(p.since) < String(r.since));
+      return {
+        team: r.team,
+        since: carry ? p.since : r.since,
+        heading: carry ? p.heading : r.firstHeading ?? r.heading,
+        flagged: Boolean(r.flagged),
+      };
+    })
+    .sort((a, b) => String(a.since).localeCompare(String(b.since)) || String(a.team).localeCompare(String(b.team)));
+}
+
+function committedLadder(ladder, prev) {
+  if (!ladder) return null;
+  const p = prev?.signals?.ladderLastRung;
+  const since = p && p.model === ladder.model ? p.since ?? p.date ?? ladder.date ?? null : ladder.date ?? null;
+  return { model: ladder.model, since };
+}
+
+// paging: what is on the page — this run's pagingMisses plus any heldPages.
+// unknown: watchers whose run history could not be read ({ workflow, label, error }).
+// page: the nextPageRecord for this run.
+export function buildStatus({ now, misses, paging, heals, coverage, repeats, ladder, prev = null, unknown = [], page = null }) {
   const pagingSet = new Set(paging.map((m) => m.workflow));
   const status = {
     about:
       "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: " +
       "routine findings land here instead of notifying anyone, and the Claude weekly review reads it. " +
-      "state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue).",
-    state: paging.length ? "paging" : misses.length || coverage || repeats || ladder ? "attention" : "ok",
+      "state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); " +
+      "`page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
+    state: paging.length ? "paging" : misses.length || unknown.length || coverage || repeats || ladder ? "attention" : "ok",
     paging: paging.map((m) => ({
       workflow: m.workflow, label: m.label, lastSuccessAt: iso(m.lastSuccessAt), healFirstAt: heals?.[m.workflow]?.firstAt ?? null,
+      ...(m.held ? { unknown: true } : {}),
     })),
+    page: page ?? null,
     overdue: misses.map((m) => ({
       workflow: m.workflow, label: m.label, userFacing: Boolean(m.userFacing), maxAgeHours: m.maxAgeHours,
       lastSuccessAt: iso(m.lastSuccessAt), paging: pagingSet.has(m.workflow),
     })),
+    unknown: (unknown ?? []).map((u) => ({ workflow: u.workflow, label: u.label ?? u.workflow, error: u.error ?? null })),
     heals: heals ?? {},
     signals: {
-      repeatLeads: repeats ? repeats.repeats.map((r) => ({ team: r.team, days: r.days, since: r.since, heading: r.heading, flagged: r.flagged })) : [],
-      ladderLastRung: ladder ? { model: ladder.model, date: ladder.date ?? null } : null,
+      repeatLeads: committedLeads(repeats, prev),
+      ladderLastRung: committedLadder(ladder, prev),
       squadGaps: coverage ? coverage.gaps.map((g) => ({ team: g.team, kickoff: g.kickoff })) : [],
     },
     history: [],
@@ -473,18 +626,33 @@ export function renderStatusMarkdown(status) {
   ];
   if (!status.paging.length) L.push("- Nothing pages.");
   for (const p of status.paging) {
-    L.push(`- **${p.label}** (\`${p.workflow}\`) — last success ${sydney(p.lastSuccessAt)}; first re-run ${sydney(p.healFirstAt)}.`);
+    L.push(p.unknown
+      ? `- **${p.label}** (\`${p.workflow}\`) — status unknown this run (see below); it was already paging, so the page stays as it is.`
+      : `- **${p.label}** (\`${p.workflow}\`) — last success ${sydney(p.lastSuccessAt)}; first re-run ${sydney(p.healFirstAt)}.`);
+  }
+  if (status.page) {
+    L.push(
+      `- Page sent ${sydney(status.page.openedAt)} for \`${status.page.signature}\`. If that issue was closed by hand it stays ` +
+        "closed for this outage; only a job not in it pages again.",
+    );
   }
   L.push("", "## Overdue jobs and self-heal", "");
   if (!status.overdue.length) L.push("- Every watched job has a recent successful run.");
   for (const o of status.overdue) {
     const h = status.heals?.[o.workflow];
+    const streak = Number(h?.streak) >= 2 ? ` Streak: overdue on ${h.streak} watchdog runs in a row since ${sydney(h.streakSince)}.` : "";
     const heal = h
-      ? ` Self-heal: ${h.outcome} (attempt ${h.attempts}; first ${sydney(h.firstAt)}, latest ${sydney(h.lastAt)}).`
+      ? ` Self-heal: ${h.outcome} (attempt ${h.attempts}; first ${sydney(h.firstAt)}, latest ${sydney(h.lastAt)}).${streak}`
       : "";
     L.push(
       `- **${o.label}** (\`${o.workflow}\`${o.userFacing ? ", user-facing" : ", not user-facing — never pages"}) — ` +
         `last success ${sydney(o.lastSuccessAt)}; limit ${o.maxAgeHours}h.${heal}`,
+    );
+  }
+  for (const u of status.unknown ?? []) {
+    L.push(
+      `- **${u.label}** (\`${u.workflow}\`) — its run history could not be read (${u.error ?? "no error text"}). ` +
+        "Not re-run and not paged on that; its self-heal record is kept as it was.",
     );
   }
   const s = status.signals;
@@ -492,18 +660,18 @@ export function renderStatusMarkdown(status) {
   if (!s.repeatLeads.length) L.push("- None — every briefing moved on.");
   for (const r of s.repeatLeads) {
     L.push(
-      `- ${r.team} — same lead for ${r.days} days (since ${shortDate(r.since)}): "${r.heading}"` +
-        (r.flagged ? " — the novelty gate flagged it and published anyway" : " — the novelty gate did NOT flag it"),
+      `- ${r.team} — same lead story since ${shortDate(r.since)}, first run as "${r.heading}"` +
+        (r.flagged ? " — the novelty gate flagged the latest edition and published anyway" : " — the novelty gate did NOT flag the latest edition"),
     );
   }
   L.push("", "**Model ladder**", "");
   L.push(s.ladderLastRung
-    ? `- The ${s.ladderLastRung.date ?? "latest"} digest run completed on the LAST rung (${s.ladderLastRung.model}) — no spare left above it.`
+    ? `- Digest runs are completing on the LAST rung (${s.ladderLastRung.model})${s.ladderLastRung.since ? ` since ${shortDate(s.ladderLastRung.since)}` : ""} — no spare left above it.`
     : "- Spare capacity above the serving model.");
   L.push("", "**Squad coverage**", "");
   if (!s.squadGaps.length) L.push("- No gaps (or teamsheets are paused).");
   for (const g of s.squadGaps) L.push(`- ${g.team} — kickoff ${g.kickoff}: no published squad in nations.json`);
-  L.push("", `## Change log (last ${HISTORY_DAYS} days, newest first)`, "");
+  L.push("", `## Change log (last ${HISTORY_DAYS} days, newest first; the current state is always kept)`, "");
   for (const h of [...(status.history ?? [])].reverse()) L.push(`- ${sydney(h.at)} — ${h.summary}`);
   return L.join("\n") + "\n";
 }
@@ -521,51 +689,58 @@ export async function writeStatus(status, { jsonPath = STATUS_JSON, mdPath = STA
   return true;
 }
 
-// ---- GitHub plumbing (not unit-tested; every call is best-effort) ----------------
+// ---- GitHub plumbing (best-effort; only syncPageIssue is unit-tested, with a fake gh) ----
 
 async function gh(args) {
   const { stdout } = await execFileAsync("gh", args);
   return stdout;
 }
 
-async function findAlertIssue() {
-  const rows = JSON.parse(await gh(["issue", "list", "--state", "open", "--limit", "50", "--json", "number,title,body"]));
+async function findAlertIssue(run = gh) {
+  const rows = JSON.parse(await run(["issue", "list", "--state", "open", "--limit", "50", "--json", "number,title,body,createdAt"]));
   return rows.find((r) => r.title === ALERT_TITLE) ?? null;
 }
 
-// Post/refresh/close the page. Best-effort: an alerting failure must not fail
-// the watchdog — the status file and the run log carry the state either way.
-export async function syncPageIssue(paging, heals, now, repoUrl = "") {
-  const existing = await findAlertIssue();
-  const action = decidePageAction(existing, paging);
-  const report = paging.length ? pageReport(paging, heals, now, repoUrl) : "";
-  const body = `@${ALERT_OWNER}\n\n${report}\n\n_Updated ${now.toISOString()} by the watchdog._\n<!-- page: ${pageSignature(paging)} -->`;
+// Post/refresh/close the page, and return what the status file should record:
+// { action, paged, page }. `paged` is this run's pages plus any held ones (an
+// unknown job that was already on the page); `page` is the nextPageRecord.
+// Throws if GitHub does — main() then keeps the stored page as it was, so a
+// page that failed to send is retried rather than remembered as sent.
+export async function syncPageIssue(paging, heals, now, repoUrl = "", { stored = null, unknown = [], gh: run = gh } = {}) {
+  const existing = await findAlertIssue(run);
+  const paged = [...paging, ...heldPages(unknown, existing, stored)];
+  const action = decidePageAction(existing, paged, stored);
+  const report = paged.length ? pageReport(paged, heals, now, repoUrl) : "";
+  const marker = `<!-- page: ${pageSignature(paged)} -->`;
+  const body = `@${ALERT_OWNER}\n\n${report}\n\n_Updated ${now.toISOString()} by the watchdog._\n${marker}`;
 
   if (action === "noop") {
-    console.log("Ops alert: nothing pages, nothing open.");
+    console.log(paged.length
+      ? `Ops alert: the page for ${pageSignature(paged)} was closed by hand and that outage goes on — not paging again.`
+      : "Ops alert: nothing pages, nothing open.");
   } else if (action === "create") {
     // issueCreateArgs adds the @mention and the assignee itself.
-    const createBody = `${report}\n\n_Updated ${now.toISOString()} by the watchdog._\n<!-- page: ${pageSignature(paging)} -->`;
-    const url = (await gh(issueCreateArgs({ title: ALERT_TITLE, body: createBody, page: true }))).trim();
+    const createBody = `${report}\n\n_Updated ${now.toISOString()} by the watchdog._\n${marker}`;
+    const url = (await run(issueCreateArgs({ title: ALERT_TITLE, body: createBody, page: true }))).trim();
     console.log(`Ops alert opened, paging ${ALERT_OWNER}: ${url}`);
   } else if (action === "edit") {
-    await gh(["issue", "edit", String(existing.number), "--body", body]);
+    await run(["issue", "edit", String(existing.number), "--body", body]);
     console.log(`Ops alert #${existing.number} refreshed silently (no new job paging).`);
   } else if (action === "update") {
     const n = String(existing.number);
-    const joined = paging.filter((m) => !pagedIn(existing.body).has(m.workflow));
-    await gh(["issue", "edit", n, "--body", body, "--add-assignee", ALERT_OWNER]);
+    const joined = paged.filter((m) => !pagedIn(existing.body).has(m.workflow));
+    await run(["issue", "edit", n, "--body", body, "--add-assignee", ALERT_OWNER]);
     // A comment (not a silent body edit) is what notifies — once, for a job
     // that was not already paging.
-    await gh(["issue", "comment", n, "--body", `@${ALERT_OWNER} now also down: ${joined.map((m) => m.label).join(", ")}.\n\n${pageReport(joined, heals, now, repoUrl)}`]);
+    await run(["issue", "comment", n, "--body", `@${ALERT_OWNER} now also down: ${joined.map((m) => m.label).join(", ")}.\n\n${pageReport(joined, heals, now, repoUrl)}`]);
     console.log(`Ops alert #${n} updated (new job paging).`);
   } else if (action === "close") {
     // No "recovered" comment: a comment is a notification, and good news can
     // wait for the weekly review.
-    await gh(["issue", "close", String(existing.number)]);
+    await run(["issue", "close", String(existing.number)]);
     console.log(`Ops alert #${existing.number} closed — nothing pages any more.`);
   }
-  return action;
+  return { action, paged, page: nextPageRecord(stored, paged, action, { now, openedAt: existing?.createdAt ?? null }) };
 }
 
 async function recentRuns(workflow) {
@@ -595,19 +770,22 @@ async function main() {
 
   const latest = {};
   const active = {};
+  const unknown = [];
   for (const w of WATCHERS) {
     try {
       const s = summariseRuns(await recentRuns(w.workflow));
       latest[w.workflow] = s.lastSuccessAt ?? (await lastSuccessFallback(w.workflow));
       active[w.workflow] = s.active;
     } catch (err) {
-      console.error(`Failed to query ${w.workflow}: ${firstLine(err.stderr || err.message)}`);
-      latest[w.workflow] = null; // treat an unqueryable workflow as a miss
-      active[w.workflow] = false;
+      // UNKNOWN, not a miss: counted as "no success at all", two flaky API
+      // days in a row would page a healthy job.
+      const error = firstLine(err.stderr || err.message);
+      console.error(`::warning::could not read the run history of ${w.workflow} (${error}) — status unknown: not re-run, not paged`);
+      unknown.push({ ...w, error });
     }
   }
 
-  const misses = evaluate(now, latest);
+  const misses = evaluate(now, latest, WATCHERS, { unknown });
   // Judged on the PREVIOUS runs' heal records, before this run adds its own.
   const paging = pagingMisses(misses, prev?.heals, now);
 
@@ -625,7 +803,7 @@ async function main() {
     }
   }
   for (const s of plan.skipped) console.log(`Self-heal: ${s.workflow} not dispatched — ${s.reason}`);
-  const heals = nextHeals(prev?.heals, misses, plan, results, now);
+  const heals = nextHeals(prev?.heals, misses, plan, results, now, { unknown });
 
   // Squad coverage runs off the committed nations.json (repo root, one level up).
   let coverage = null;
@@ -652,16 +830,23 @@ async function main() {
     if (text) console.log(`${text}\n\n———\n`);
   }
 
-  const status = buildStatus({ now, misses, paging, heals, coverage, repeats, ladder, prev });
+  // The page goes first so the status file records the page actually sent.
+  // Best-effort: an alerting failure must not fail the watchdog.
+  const stored = prev?.page ?? null;
+  let paged;
+  let page;
+  try {
+    ({ paged, page } = await syncPageIssue(paging, heals, now, repoUrl, { stored, unknown }));
+  } catch (err) {
+    console.error(`::warning::ops alert sync failed (${firstLine(err.message)}); the status file has the state`);
+    paged = [...paging, ...heldPages(unknown, null, stored)];
+    page = nextPageRecord(stored, paged, "error", { now });
+  }
+
+  const status = buildStatus({ now, misses, paging: paged, heals, coverage, repeats, ladder, prev, unknown, page });
   const changed = await writeStatus(status);
   console.log(changed ? "Ops status changed — editorial/health/ops-status.{json,md} rewritten." : "Ops status unchanged.");
   console.log(renderStatusMarkdown(status));
-
-  try {
-    await syncPageIssue(paging, heals, now, repoUrl);
-  } catch (err) {
-    console.error(`::warning::ops alert sync failed (${firstLine(err.message)}); the status file has the state`);
-  }
 }
 
 // Only run main when invoked directly (not when imported by the test).
