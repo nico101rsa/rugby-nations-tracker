@@ -89,7 +89,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add nations.json public/nations.json scripts/.cache-games.json scripts/match-tries.json scripts/tour-results.json fixtures.json
           git diff --cached --quiet && echo "No data changes" && exit 0
-          git commit -m "Data refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          git commit -m "Data refresh $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
           # Retry after a rebase rather than losing a push race. This job runs
           # every 15 min (every 10 on Saturdays) and shares main with the
           # team-events, rankings, news-harvest and digest jobs, so a race is

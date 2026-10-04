@@ -77,7 +77,15 @@ unless a caller passes `page: true`.
   else, so one outage is one ping; another job joining adds one comment;
   recovery closes it with no comment. If he closes it while the outage goes
   on, it stays closed: `ops-status.json` keeps the page he was sent (`page`),
-  and only a job not in it opens a new one.
+  and only a job not in it opens a new one. The watchdog runs daily at 22:15
+  UTC, plus 10:15 UTC (21:15 AEDT) **in November only**, for the match
+  weekends. GitHub's start delays (the 10:15 cron's is unmeasured) put those
+  two runs as little as ~8h20 apart, which is why the heal-to-page floor
+  (`PAGE_AFTER_HEAL_HOURS`) is 6h and not 12. Keep it under the shortest gap
+  between runs if the cadence changes. The second run doesn't double the
+  quota spend: `team-events.yml` (SportsAPI Pro, ~25 calls) is re-run at most
+  once every 20h (`reHealAfterHours`), though it is checked and paged on
+  every run.
 - **Silent — everything else.** The watchdog re-dispatches any overdue job
   first (self-heal) and records the state in `editorial/health/ops-status.json`
   and `ops-status.md`: current signals, heal attempts and streaks, a 35-day
@@ -103,6 +111,22 @@ page tier and its "still down after a retry" rules. One caveat this can't fix
 from code: if Nico watches the repo on "All activity", GitHub still notifies
 him on every new issue, which is why the silent tier keeps issues for rare
 data-correctness tickets and puts routine findings in files.
+
+## News shadow test (6–12 Oct 2026)
+
+For one week the digests workflow replays each day's production writer
+prompts on the paid model and writes the drafts, token counts and cost to
+`editorial/shadow/<date>.json` (`scripts/news-shadow.mjs`). It runs after
+publication and only on the first run of each Sydney date. It is capped at
+US$1.50 a run and US$9 for the week, and it stops itself after 12 Oct. It
+never writes `nations.json`. The prompts carry publishers' article text, so
+they stay in the runner's temp directory (`DIGEST_PROMPTS_DIR`) and are never
+committed. The drafts it does commit were never fact-checked and this repo is
+public (Pages serves it all), so each record opens with a `notice` saying so.
+`editorial/shadow/README.md` says how the weekly review grades it. Remove the
+three shadow steps and `DIGEST_PROMPTS_DIR` once that is done; the workflow
+test in `scripts/news-shadow.test.mjs` passes either way, by design, because
+the suite runs first in the digest job and a failing test stops publication.
 
 ## A result is symmetric — never trust one team's record alone
 

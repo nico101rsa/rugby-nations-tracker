@@ -5,19 +5,26 @@
 //
 // Usage: ANTHROPIC_API_KEY=... node scripts/compare-digest-models.mjs
 import { spawnSync } from "node:child_process";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join } from "node:path";
 import { extractJson, validateDigest } from "./generate-digests.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
-// USD per million tokens (input, output). Sonnet 5 at intro pricing to 2026-08-31.
-const MODELS = [
+// USD per million tokens (input, output). Checked against the pricing page on
+// 2026-10-04: Sonnet 5's launch price, first announced as introductory to
+// 2026-08-31, became its standard price (the planned rise did not happen).
+// Exported: the news shadow test (news-shadow.mjs) takes its model and its
+// spend guard's prices from here, so there is one place to update them.
+export const MODELS = [
   { id: "claude-haiku-4-5", in: 1, out: 5 },
   { id: "claude-sonnet-5", in: 2, out: 10 },
   { id: "claude-opus-4-8", in: 5, out: 25 },
   { id: "claude-fable-5", in: 10, out: 50 },
 ];
+
+// The Sonnet entry: the shadow test's writer unless vars.SHADOW_MODEL says otherwise.
+export const SONNET = MODELS.find((m) => m.id.includes("sonnet"));
 
 // Haiku 4.5 predates the dynamic-filtering web-search variant; the current
 // models use the same version production does.
@@ -62,7 +69,7 @@ async function runModel(client, model, prompt) {
   return { digest: ok ? digest : raw, valid: ok, errors, usage, searches, stopReason: resp.stop_reason };
 }
 
-function estCost(m, u) {
+export function estCost(m, u) {
   // Cache writes bill at 1.25x input, reads at 0.1x.
   return ((u.input + u.cacheWrite * 1.25 + u.cacheRead * 0.1) * m.in + u.output * m.out) / 1e6;
 }
@@ -104,7 +111,11 @@ async function main() {
   console.table(summary);
 }
 
-main().catch((e) => {
-  console.error(e);
-  process.exit(1);
-});
+// Guarded so the shadow test can import MODELS / estCost without running the
+// comparison (and spending money) as a side effect of the import.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((e) => {
+    console.error(e);
+    process.exit(1);
+  });
+}

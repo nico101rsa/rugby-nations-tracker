@@ -50,11 +50,18 @@ test("not yet live 16 min before kickoff", () => {
   assert.notEqual(d.mode, "live");
 });
 
-test("still live 149 min after kickoff, idle at 151 min", () => {
-  const live = decideMode({ now: at("2026-07-11T07:39:00Z"), schedule: SCHED, remaining: 90 });
-  assert.equal(live.mode, "live"); // 05:10 + 149m = 07:39
-  const gap = decideMode({ now: at("2026-07-11T07:41:00Z"), schedule: SCHED, remaining: 90 });
-  assert.notEqual(gap.mode, "live"); // 05:10 + 151m, before next match's PRE
+test("still live 169 min after kickoff, idle at 171 min", () => {
+  // 170 since 2026-10-04: the app's full-time alert fires at kickoff + 160.
+  const live = decideMode({ now: at("2026-07-11T07:59:00Z"), schedule: SCHED, remaining: 90 });
+  assert.equal(live.mode, "live"); // 05:10 + 169m = 07:59
+  const gap = decideMode({ now: at("2026-07-11T08:01:00Z"), schedule: SCHED, remaining: 90 });
+  assert.notEqual(gap.mode, "live"); // 05:10 + 171m, before next match's PRE
+});
+
+test("the live window outlasts the app's full-time alert (kickoff + 160)", () => {
+  const ko = Date.parse("2026-07-11T05:10:00Z");
+  const d = decideMode({ now: new Date(ko + 160 * 60000), schedule: SCHED, remaining: 90 });
+  assert.equal(d.mode, "live");
 });
 
 test("SWEEP at a 6-hourly UTC slot when no match is live", () => {

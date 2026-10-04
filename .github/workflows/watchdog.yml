@@ -19,6 +19,16 @@ on:
     # 21:30 archive. In practice GitHub starts it 2-3.5h late (00:00-01:55 UTC
     # through Sep-Oct 2026), which is fine for a daily check.
     - cron: "15 22 * * *"
+    # November only (Nations Championship rounds 4-6 and the finals): a second
+    # check at 10:15 UTC = 21:15 AEDT, so a match weekend gets two a day and a
+    # broken job pages within about half a day instead of a whole one. The
+    # month field limits it to November with no code change needed to stop it.
+    # The two runs can start as little as ~8h20 apart once GitHub's start delay
+    # is added (this cron's own delay is unmeasured), which is why
+    # PAGE_AFTER_HEAL_HOURS in scripts/watchdog.mjs is 6. team-events.yml,
+    # which spends SportsAPI Pro quota, is still re-run at most once a day
+    # (reHealAfterHours); it is checked and paged on both runs.
+    - cron: "15 10 * 11 *"
   workflow_dispatch:
 
 # Own group on purpose (never share — see the other workflows): two watchdogs

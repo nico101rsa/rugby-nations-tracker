@@ -14,6 +14,8 @@
 // Cost: 2 teams x 2 halves = 4 calls a night against the 100/day tier.
 // Writes a row to vendor-probe-log.json; never touches team-events.json.
 
+import { vendorEvents } from "./fetch-team-events.mjs";
+
 const TEAMS = { NZL: 4227, RSA: 4231 };
 const LOG = "vendor-probe-log.json";
 
@@ -21,9 +23,13 @@ export async function probe(team, half, fetchImpl = fetch) {
   const url = `https://api.sportsapipro.com/v2/rugby/api/teams/${team}/events/${half}/0`;
   try {
     const res = await fetchImpl(url, { headers: { "x-api-key": process.env.SPORTSAPIPRO_KEY } });
+    // Counted the way fetch-team-events.mjs reads the page (`data.events`).
+    // Reading the bare `.events` logged every healthy answer as 0 events from
+    // the first night (23 Aug 2026) to 3 Oct. Entries before this fix carry
+    // that 0, so read them as "count unknown", not "empty".
     let events = null;
     try {
-      events = ((await res.json()).events ?? []).length;
+      events = vendorEvents(await res.json()).length;
     } catch {
       events = null;
     }

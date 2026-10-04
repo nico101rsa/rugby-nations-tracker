@@ -117,7 +117,7 @@ async function fetchNews() {
 // or lose); +1 bonus for losing by 7 or fewer. Try counts are scraped from
 // ESPN (the api-sports plan doesn't expose them) — see scrape-tries.mjs.
 // Tiebreak: table points, then wins, then points difference.
-function computeLog(finished, matchTries) {
+export function computeLog(finished, matchTries) {
   const t = {};
   const row = (team) =>
     (t[team.id] ??= {
@@ -152,6 +152,25 @@ function computeLog(finished, matchTries) {
     .map((r) => ({ ...r, PD: r.PF - r.PA }))
     .sort((x, y) => y.Pts - x.Pts || y.W - x.W || y.PD - x.PD || y.PF - x.PF)
     .map((r, i) => ({ rank: i + 1, ...r }));
+}
+
+// How many finished games the log has counted WITHOUT their try counts, so
+// without any 4+ try bonus they earned. computeLog scores a game the moment
+// api-sports calls it final, but the try bonus waits for scrapeTries, which
+// skips a game until ESPN marks it completed with scoring details, never
+// matches one whose kickoff minute or home-team name differs between the two
+// vendors, and keeps the cached counts when ESPN errors. Each of those leaves
+// the table a point short somewhere while P/W/D/L and Pts = 4W + 2D + BP all
+// still add up — so nothing downstream can see it unless we say so.
+//
+// Published as nations.json `triesPending`. The app's "what they need" line
+// (rugby-nations-tracker-app src/scenarios.js) sits on 1-point boundaries and
+// shows nothing unless this is exactly 0. Same skip rule as computeLog: a
+// game without both scores isn't in the log at all, so it isn't pending.
+export function countTriesPending(finished, matchTries) {
+  return finished.filter(
+    (g) => g.scores?.home != null && g.scores?.away != null && !matchTries[g.id],
+  ).length;
 }
 
 const LIVE = new Set(["1H", "2H", "HT", "ET", "BT", "PT", "SH", "LIVE"]);
@@ -203,6 +222,7 @@ export async function refresh({ dates }) {
     updatedAt: new Date().toISOString(),
     counts: { fixtures: fixtures.length, results: results.length, teams: log.length, news: news.length },
     fixtures, results, log, news,
+    triesPending: countTriesPending(finished, matchTries),
   };
 
   // The daily digest workflow writes `digests` into nations.json; this full

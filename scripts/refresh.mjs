@@ -9,7 +9,13 @@ import { runTourProbe } from "./probe-tour.mjs";
 import { pushWithRetries } from "./git-push-retry.mjs";
 
 const PRE_MS = 15 * 60000;    // start polling 15 min before kickoff
-const POST_MS = 150 * 60000;  // keep polling 150 min after (play + HT + FT settle)
+// Keep polling 170 min after kickoff (play + HT + FT settle). 150 until
+// 2026-10-04: the app's opt-in full-time alert fires at kickoff + 160 and says
+// "Result in the app", so the final has to have landed by then. api-sports
+// finals reached the feed 111-144 min after kickoff in July's rounds; the extra
+// 20 min costs at most two 12-min polls at the tail of a round, inside the
+// GUARD_FLOOR budget.
+const POST_MS = 170 * 60000;
 const GUARD_FLOOR = 10;       // never spend the last ~10 requests of the day
 const SWEEP_WINDOW_DAYS = 2;  // today..+2 UTC = 3 calls per sweep
 // Live-burst tuning. A Round has up to 6 matches staggered across a ~17h UTC

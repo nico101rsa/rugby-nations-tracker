@@ -22,7 +22,11 @@ import { pushWithRetries } from "./git-push-retry.mjs";
 import { liveTracked } from "./espn-scored.mjs";
 
 const PRE_MS = 15 * 60000;             // start 15 min before kickoff
-const POST_MS = 150 * 60000;           // play + HT + the FT settle, as refresh.mjs uses
+// Play + HT + the FT settle. 150 until 2026-10-04, when the app's full-time
+// alert (kickoff + 160) needed the final in by then: ESPN's 12 Sep SA v NZ
+// final first landed at 150.4 min. This source is keyless, so the longer tail
+// costs nothing but a few no-op rebuilds.
+const POST_MS = 180 * 60000;
 const POLL_MS = 3 * 60000;
 const BURST_MAX_MS = 2 * 60 * 60000;   // one landed fire covers a full match, well under the 6h job cap
 const MAX_CONSECUTIVE_FAILURES = 5;    // ~15 min of nothing working — stop pretending
