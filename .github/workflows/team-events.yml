@@ -64,8 +64,9 @@ jobs:
       # nothing anywhere noticing. Asserts: nothing expired is the default,
       # fixture counts match their classified shape (arithmetic), the registry
       # and fixtures.json agree, and each structure still holds against its own
-      # published fixtures. Raises a GitHub issue, never fails the build — the
-      # data is already published by this point.
+      # published fixtures. Raises a silent GitHub issue (no @mention, no
+      # assignee — the Claude weekly review triages it), never fails the
+      # build — the data is already published by this point.
       - name: Check competition integrity
         continue-on-error: true
         env:

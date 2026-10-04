@@ -85,9 +85,11 @@ async function main() {
   const streak = deadStreak(entries);
   console.log(v.healthy ? "vendor healthy" : `vendor DEGRADED — ${v.summary} (night ${streak} in a row)`);
 
-  // Escalate once, at three consecutive dead nights, so a one-off blip stays
-  // quiet but a sustained withdrawal actually reaches Nico. Anything less
-  // than an assigned + @mentioned issue is a notification he never sees.
+  // File once, at three consecutive dead nights, so a one-off blip stays out
+  // of the record but a sustained withdrawal gets a ticket. Silent (no
+  // @mention, no assignee — notify.mjs): the Claude weekly review triages it.
+  // If the vendor going down actually breaks the app, team-events.yml stops
+  // succeeding and the watchdog pages Nico through that instead.
   if (streak === 3) {
     const { postIssue } = await import("./notify.mjs");
     await postIssue({

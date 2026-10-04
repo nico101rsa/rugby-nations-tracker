@@ -209,8 +209,6 @@ export async function runPipeline({ nations, prevStats, fetchJson = defaultFetch
   };
 }
 
-const ALERT_OWNER = "nico101rsa";
-
 async function gh(args) {
   const { execFile } = await import("node:child_process");
   const { promisify } = await import("node:util");
@@ -219,6 +217,9 @@ async function gh(args) {
 }
 
 // Best-effort per-match alert sync: create on first failure, close on recovery.
+// The issue is silent (no @mention, no assignee — notify.mjs decides): a box
+// score that won't reconcile is a data ticket for the Claude weekly review,
+// not something to ping Nico about.
 export async function syncAlerts(matches, failures) {
   try {
     const open = JSON.parse(await gh(["issue", "list", "--state", "open", "--limit", "100", "--json", "number,title"]));
@@ -227,8 +228,8 @@ export async function syncAlerts(matches, failures) {
     for (const [title, f] of failed) {
       const existing = open.find((i) => i.title === title) ?? null;
       if (decideAlert(existing, false) === "create") {
-        await gh(["issue", "create", "--title", title, "--assignee", ALERT_OWNER,
-          "--body", `@${ALERT_OWNER}\n\n${f.reason}\n\nHeld out of stats.json; retried automatically on every run.`]);
+        const { issueCreateArgs } = await import("./notify.mjs");
+        await gh(issueCreateArgs({ title, body: `${f.reason}\n\nHeld out of stats.json; retried automatically on every run.` }));
         console.log(`Opened alert: ${title}`);
       }
     }

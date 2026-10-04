@@ -1,19 +1,29 @@
 name: Weekly health check
 
-# Thursday health check: ALWAYS emails a summary and commits a dated report to
-# editorial/health/. Covers run reliability, digest quality grades, and what
-# changed this week; points to the manual checks (app analytics, App Store
-# review status) that a headless job can't reach.
+# Thursday health check: commits a dated report to editorial/health/<week>.md.
+# Covers run reliability, the silent-failure checks, digest quality grades, and
+# what changed this week; points to the manual checks (app analytics, App
+# Store review status) that a headless job can't reach.
+#
+# SILENT by default (2026-10-04). Nico asked for the weekly review to be done
+# by Claude rather than by him, so this no longer files a "🩺 weekly health
+# check" issue or emails: the scheduled Claude weekly review reads the newest
+# editorial/health/<week>.md (and ops-status.md beside it) and escalates only
+# what needs him.
+#
+# Email is opt-in: set the repository VARIABLE HEALTH_EMAIL to "1"
+# (Settings → Secrets and variables → Actions → Variables) to get the report
+# by email as well. It goes over the Resend HTTP API, which works from Actions
+# (Gmail SMTP app-passwords are rejected from datacenter IPs with a 535).
 on:
   schedule:
-    # Wed 21:00 UTC = Thu 07:00 AEST.
+    # Wed 21:00 UTC = Thu 07:00 AEST / 08:00 AEDT.
     - cron: "0 21 * * 3"
   workflow_dispatch:
 
 permissions:
   actions: read # gh run list
   contents: write # commit the report
-  issues: write # deliver the report as a GitHub issue (email 535s from Actions)
 
 jobs:
   health:
@@ -27,13 +37,10 @@ jobs:
           node-version: 22
       - name: Unit tests
         run: node --test scripts/*.test.mjs
-      # Email now goes over the Resend HTTP API. Gmail SMTP app-passwords are
-      # rejected from Actions datacenter IPs (535), which hard-failed this job
-      # on 2026-07-12 and meant it had been silently delivering nothing since.
-      # No nodemailer install needed — it is a plain HTTPS POST.
-      - name: Build report, file the issue, and email
+      - name: Build the report (email only if HEALTH_EMAIL is "1")
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEALTH_EMAIL: ${{ vars.HEALTH_EMAIL }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
           DIGEST_EMAIL_TO: ${{ secrets.DIGEST_EMAIL_TO }}

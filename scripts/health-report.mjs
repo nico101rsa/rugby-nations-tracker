@@ -1,19 +1,22 @@
-// Weekly health check — runs Thursday, always writes a dated markdown file to
-// editorial/health/, and delivers it as a GitHub issue (assigned + @mentioning
-// the owner). Delivery used to be email-only, which hard-failed the job every
-// week: Gmail SMTP app-passwords are rejected (535) from Actions datacenter IPs,
-// so the check went red and sent nothing. Both channels are now best-effort —
-// the committed report is the durable record. Covers what a headless job can
-// know for sure (run reliability, digest quality grades, what changed) and
-// leaves honest, qualified pointers for what it can't reach headless (app
-// analytics behind logins, App Store review status that arrives by email).
+// Weekly health check — runs Thursday and writes a dated markdown file to
+// editorial/health/<week>.md, which the workflow commits. That committed file
+// IS the delivery: the scheduled Claude weekly review reads the newest one
+// (alongside the watchdog's editorial/health/ops-status.md) and escalates only
+// what needs Nico. Until 2026-10-04 it also filed an assigned + @mentioning
+// "🩺 weekly health check" issue and emailed him every week; he asked for the
+// review to be done by Claude instead, so both are off. Email can be switched
+// back on with HEALTH_EMAIL=1 (a repository variable — see weekly-health.yml).
+// Covers what a headless job can know for sure (run reliability, digest
+// quality grades, what changed) and leaves honest, qualified pointers for what
+// it can't reach headless (app analytics behind logins, App Store review
+// status that arrives by email).
 
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { readdir, readFile, mkdir, writeFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { sendEmail, postIssue } from "./notify.mjs";
+import { sendEmail } from "./notify.mjs";
 import { silentFailuresSection } from "./silent-failures.mjs";
 
 const execFileAsync = promisify(execFile);
@@ -64,10 +67,19 @@ export function tallyRuns(rows, now, sinceDays = 7) {
 // Drop the high-volume bot commits so "what changed" shows real work.
 export function summarizeChanges(commitLines) {
   // Bot commit shapes: "data: live refresh (...)", "Data refresh <date> AEST",
-  // "Daily digests <date> AEST", "chore: keepalive". Real PR commits like
-  // "Digests: own concurrency group…" have no date after the word and survive.
-  const noise = /^\s*(data: live refresh|Data refresh \d|Daily digests \d|chore: keepalive)/i;
+  // "Daily digests <date> AEST", "chore: keepalive", and the watchdog's
+  // "Ops status <date> AEDT". Real PR commits like "Digests: own concurrency
+  // group…" have no date after the word and survive.
+  const noise = /^\s*(data: live refresh|Data refresh \d|Daily digests \d|chore: keepalive|Ops status \d)/i;
   return commitLines.filter((l) => l.trim() && !noise.test(l));
+}
+
+// Who hears about the report. Silent by default: no issue, no email — the
+// Claude weekly review reads the committed file. HEALTH_EMAIL=1 opts the email
+// back in. There is deliberately no issue option: an issue that @mentions Nico
+// every Thursday is exactly the noise this replaced.
+export function deliveryPlan(env = {}) {
+  return { issue: false, email: String(env.HEALTH_EMAIL ?? "").trim() === "1" };
 }
 
 // ---- data gathering ------------------------------------------------------
@@ -194,21 +206,19 @@ async function main() {
   console.log(`Wrote ${outPath}`);
   console.log(report);
 
-  // Delivery. The report is already committed to editorial/health/, so neither
-  // channel failing may fail the run — which is exactly what used to happen:
-  // sendEmail threw 535 (Gmail app-passwords are rejected from Actions IPs) and
-  // took the whole Thursday job down with it, so the check went red and sent
-  // nothing. The GitHub issue is the channel that actually reaches Nico.
-  const subject = `🩺 Rugby Tracker weekly health check — ${weekLabel}`;
-  try {
-    await postIssue({ title: subject, body: report });
-  } catch (err) {
-    console.error(`::warning::health issue failed (${String(err.message).split("\n")[0]}); report is at ${outPath}`);
+  // Delivery is the committed file. Email only on opt-in, and never fatal:
+  // a send failure used to take the whole Thursday job down (the 2026-07-12
+  // Gmail 535), and the report is already written by this point.
+  const plan = deliveryPlan(process.env);
+  if (!plan.email) {
+    console.log("Delivery: committed report only (silent; set HEALTH_EMAIL=1 to email it too).");
+    return;
   }
+  const subject = `🩺 Rugby Tracker weekly health check — ${weekLabel}`;
   try {
     await sendEmail({ subject, text: report });
   } catch (err) {
-    console.error(`::warning::health email failed (${String(err.message).split("\n")[0]}); the GitHub issue is the live channel`);
+    console.error(`::warning::health email failed (${String(err.message).split("\n")[0]}); the report is at ${outPath}`);
   }
 }
 
