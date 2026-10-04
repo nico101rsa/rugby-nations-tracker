@@ -50,7 +50,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add rankings.json ranking-stats.json
           git diff --cached --quiet && echo "No rankings changes" && exit 0
-          git commit -m "Rankings refresh $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          git commit -m "Rankings refresh $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
           # refresh-data commits nations.json every ~15 min; retry after a
           # rebase rather than losing that race (disjoint files).
           git push || (git pull --rebase --autostash && git push)

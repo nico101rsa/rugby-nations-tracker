@@ -8,8 +8,9 @@
 // v1 dry-run validated 2026-07-09). The public repo has no docs/, so the template
 // is embedded here — keep the two in sync when the editorial rules change.
 import { readFile, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { dirname, join } from "node:path";
+import { dirname, join, resolve, relative, isAbsolute, sep } from "node:path";
 import { buildShortlist, isQuiet, renderShortlist } from "./news-sources.mjs";
 import {
   extractionCandidates, buildExtractionPrompt, parseStorylines, mergeBacklog,
@@ -447,6 +448,80 @@ export function buildRunReport(dateISO, teams, generated, retrieval, failed = []
     // Lines the code gate or the checker removed, with the reason — the only
     // record of WHY a nation is missing from the roundup.
     worldDropped: worldDropped.map((d) => ({ team: d.team, text: d.text, problem: d.problem })),
+  };
+}
+
+// ---- writer inputs for the news shadow test ---------------------------------
+//
+// What the writer step was given, and what it produced, per team, so the
+// shadow test (news-shadow.mjs) can replay the SAME prompt on a paid model
+// after the run and compare like with like. Written only when
+// DIGEST_PROMPTS_DIR is set; generate-digests.yml points it at the runner's
+// temp directory, OUTSIDE the checkout, so it is never committed. That matters:
+// each prompt carries up to five article bodies copied from publishers' sites,
+// and this repo is served publicly by GitHub Pages. The shadow file that IS
+// committed records only each prompt's hash and length.
+export const WRITER_INPUTS_FILE = "writer-inputs.json";
+
+export const sha256 = (text) => createHash("sha256").update(String(text)).digest("hex");
+
+// The directory to write writer inputs to, or null with the reason. A path
+// inside the repo is refused: the publish step runs `git add editorial/`, and
+// the pack must never be committed.
+export function writerInputsDir(value, root = ROOT) {
+  if (!value || !String(value).trim()) return { dir: null, reason: "DIGEST_PROMPTS_DIR not set" };
+  const dir = resolve(String(value));
+  const rel = relative(resolve(root), dir);
+  const outside = rel === ".." || rel.startsWith(`..${sep}`) || isAbsolute(rel);
+  if (!outside) {
+    return { dir: null, reason: `DIGEST_PROMPTS_DIR (${dir}) is inside the repo, which is published; refusing to write source packs there` };
+  }
+  return { dir, reason: null };
+}
+
+const ladderSummary = (ladder) => ladder
+  ? {
+      rung: ladder.rung,
+      ...(ladder.angle ? { angle: ladder.angle } : {}),
+      ...(ladder.freshCount != null ? { freshCount: ladder.freshCount } : {}),
+      ...(ladder.storyline ? { storyline: { subject: ladder.storyline.subject, resolution: ladder.storyline.resolution } } : {}),
+    }
+  : null;
+
+// Pure. `traces` is { [teamId]: trace } as filled by generateOneGemini;
+// `generated` the editions that passed, `failed` the run's failure list.
+export function buildWriterInputs({ dateISO, generatedAt, servedBy = null, traces = {}, generated = {}, failed = [], teams = TEAMS }) {
+  const failedBy = new Map(failed.map((f) => [f.team, f.reason]));
+  return {
+    kind: "digest-writer-inputs",
+    date: dateISO,
+    generatedAt,
+    provider: "gemini",
+    servedBy,
+    teams: Object.entries(traces)
+      .filter(([, t]) => typeof t?.prompt === "string" && t.prompt.length > 0)
+      .map(([id, t]) => {
+        const name = teams[id]?.name ?? String(id);
+        return {
+          teamId: Number(id),
+          team: name,
+          date: t.dateISO ?? dateISO,
+          prompt: t.prompt,
+          promptSha256: sha256(t.prompt),
+          quiet: Boolean(t.quiet),
+          ladder: ladderSummary(t.ladder),
+          shortlist: (t.shortlist ?? []).map((c) => ({
+            title: c.title, link: c.link ?? null, score: c.score, corroboration: c.corroboration, outlets: c.outlets,
+          })),
+          production: {
+            firstDraft: t.firstDraft ?? null,
+            firstCheck: t.firstCheck ?? null,
+            revisions: t.revisions ?? null,
+            published: generated[id] ?? null,
+            failed: failedBy.get(name) ?? null,
+          },
+        };
+      }),
   };
 }
 
@@ -1260,7 +1335,14 @@ export function parseVerdict(raw) {
   return { verdict: issues.length ? "fail" : "pass", issues };
 }
 
-export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, checkerNotes = "", pool = [], ladderCtx = null, recentRuns = []) {
+// `trace`, when given, is filled in as the edition is written: the exact
+// first-draft writer prompt, the first draft, its first fact-check verdict and
+// the revision count. Record only. It changes nothing this function returns or
+// publishes, and it is filled even when the edition then fails (the prompt is
+// recorded before any model call). The news shadow test (news-shadow.mjs)
+// replays the recorded prompt on a paid model; main() passes a trace only when
+// DIGEST_PROMPTS_DIR is set.
+export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, checkerNotes = "", pool = [], ladderCtx = null, recentRuns = [], trace = null) {
   const params = buildParams(data, teamId, now);
   const { pack, shortlist, quiet, ladder, articleCount, poolCount, widenedCount } =
     await buildSourcePack(teamId, params.TEAM_NAME, now, pool, ladderCtx ? () => resolveLadder(ladderCtx, teamId, params, now) : null);
@@ -1273,6 +1355,7 @@ export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, 
   const previous = previousLeadsFor(data, recentRuns, teamId, params.TEAM_NAME);
   const reportedBlock = renderAlreadyReported(previous);
   const prompt = `${fillTemplate(TEMPLATE, params)}${notesBlock}${reportedBlock ? `\n\n${reportedBlock}` : ""}\n\n${pack}`;
+  if (trace) Object.assign(trace, { dateISO: params.DATE_ISO, prompt, shortlist, quiet, ladder });
 
   const draft = async (feedback) => {
     const text = await geminiCall(apiKey, feedback ? `${prompt}\n\n${feedback}` : prompt);
@@ -1288,7 +1371,9 @@ export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, 
     .join("\n");
 
   let digest = await draft();
+  if (trace) trace.firstDraft = digest;
   let check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack, checkerNotes))));
+  if (trace) trace.firstCheck = { verdict: check.verdict, materialIssues: check.issues.length };
   let revisions = 0;
 
   while (check.verdict !== "pass" && revisions < MAX_REVISIONS) {
@@ -1319,6 +1404,7 @@ JSON again.`;
     digest = await draft(feedback);
     check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack, checkerNotes))));
   }
+  if (trace) trace.revisions = revisions;
   if (check.verdict !== "pass") {
     const remaining = check.issues.map((i) => i.problem).join("; ");
     throw new Error(`fact-check failed after ${revisions} revisions: ${remaining}`);
@@ -1818,6 +1904,11 @@ export async function main({ dryRun = false } = {}) {
   // nothing more than that.
   let callModel;
   let ladderCtx = null;
+  // Writer inputs for the news shadow test, filled only when DIGEST_PROMPTS_DIR
+  // names a directory outside the repo (writerInputsDir). Recording only.
+  const promptsDir = writerInputsDir(process.env.DIGEST_PROMPTS_DIR);
+  if (process.env.DIGEST_PROMPTS_DIR && !promptsDir.dir) console.warn(`writer inputs off: ${promptsDir.reason}`);
+  let writerTraces = null;
   // What was already reported (novelty.mjs). Read once; the published
   // editions in `data` are the other half of it.
   const recentRuns = await readRecentRunReports();
@@ -1847,7 +1938,11 @@ export async function main({ dryRun = false } = {}) {
       used: [],
     };
     console.log(`storyline backlog: ${ladderCtx.backlog.length} open`);
-    generateFor = (teamId) => generateOneGemini(geminiKey, data, teamId, now, editorNotes, checkerNotes, pool, ladderCtx, recentRuns);
+    if (promptsDir.dir) writerTraces = {};
+    generateFor = (teamId) => generateOneGemini(
+      geminiKey, data, teamId, now, editorNotes, checkerNotes, pool, ladderCtx, recentRuns,
+      writerTraces ? (writerTraces[teamId] = {}) : null,
+    );
     callModel = (prompt) => geminiCall(geminiKey, prompt);
   } else if (process.env.ANTHROPIC_API_KEY) {
     console.log(`provider: anthropic (${MODEL})`);
@@ -1954,6 +2049,26 @@ export async function main({ dryRun = false } = {}) {
     `gemini: ${usage.totalCalls} calls served, ${usage.totalRejections} rejections — ` +
       usage.rows.map((r) => `${r.model} ok=${r.ok} 429=${r[429]} 503=${r[503]}`).join(" | "),
   );
+  // After publication, like the run report: a failure here never costs an
+  // edition, and nothing written here reaches nations.json.
+  if (writerTraces) {
+    try {
+      const { mkdir } = await import("node:fs/promises");
+      await mkdir(promptsDir.dir, { recursive: true });
+      const inputs = buildWriterInputs({
+        dateISO: sydneyDateParts(now).DATE_ISO,
+        generatedAt: now.toISOString(),
+        servedBy: usage.servedBy,
+        traces: writerTraces,
+        generated,
+        failed,
+      });
+      await writeFile(join(promptsDir.dir, WRITER_INPUTS_FILE), JSON.stringify(inputs));
+      console.log(`writer inputs for the news shadow test: ${inputs.teams.length} team(s) in ${promptsDir.dir} (not committed)`);
+    } catch (e) {
+      console.warn(`writer inputs not written (editions unaffected): ${e.message}`);
+    }
+  }
   if (usage.onLastRung) {
     console.log(
       "::warning::The digest completed on the LAST rung of the model ladder. " +

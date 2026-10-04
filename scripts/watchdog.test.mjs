@@ -182,6 +182,7 @@ test("nextHeals: one record per outage — first heal kept, attempts counted, re
   const h1 = nextHeals({}, m, { dispatch: ["team-events.yml"], skipped: [] }, { "team-events.yml": { ok: true } }, day1);
   assert.deepEqual(h1["team-events.yml"], {
     firstAt: day1.toISOString(), lastAt: day1.toISOString(), attempts: 1, outcome: "re-run dispatched", streak: 1, streakSince: day1.toISOString(),
+    lastDispatchAt: day1.toISOString(),
   });
 
   const h2 = nextHeals(h1, m, { dispatch: ["team-events.yml"], skipped: [] }, { "team-events.yml": { ok: false, error: "HTTP 403" } }, day2);
@@ -399,11 +400,11 @@ const NOV = Date.UTC(2026, 10, 1, 1, 0); // Sun 1 Nov 2026, 01:00 UTC (12:00 AED
 const freshAll = (now) => Object.fromEntries(LIVE_WATCHERS.map((w) => [w.workflow, new Date(now - HOUR)]));
 
 // One watchdog run's pure decisions, strung together the way main() does.
-function watchdogRun(now, latest, prev, { unknown = [] } = {}) {
+function watchdogRun(now, latest, prev, { unknown = [], dispatchOk = true } = {}) {
   const misses = evaluate(now, latest, LIVE_WATCHERS, { unknown });
   const paging = pagingMisses(misses, prev?.heals, now);
-  const plan = selectHeals(misses, {});
-  const results = Object.fromEntries(plan.dispatch.map((w) => [w, { ok: true }]));
+  const plan = selectHeals(misses, {}, { prevHeals: prev?.heals, now });
+  const results = Object.fromEntries(plan.dispatch.map((w) => [w, dispatchOk ? { ok: true } : { ok: false, error: "HTTP 500" }]));
   const heals = nextHeals(prev?.heals, misses, plan, results, now, { unknown });
   return { misses, paging, plan, heals };
 }
@@ -673,4 +674,162 @@ test("unknown: a job that was already paging and can't be read keeps its page as
   const status = buildStatus({ now, misses: [], paging: held, heals: {}, coverage: null, repeats: null, ladder: null, unknown, page: stored });
   assert.equal(status.state, "paging");
   assert.deepEqual(status.paging.map((p) => [p.workflow, p.unknown]), [["refresh-data.yml", true]]);
+});
+
+// ---- November: two watchdog runs a day (4 Oct 2026) ---------------------------
+// watchdog.yml adds "15 10 * 11 *" next to the daily "15 22 * * *". GitHub
+// starts these 1h45-3h40 late (00:00-01:55 UTC for the 22:15 cron, Sep-Oct
+// 2026), so consecutive runs can be ~10h apart, not 12.
+const at = (iso) => new Date(iso);
+const minutes = (h, m) => h * 60 + m;
+const LATE_MIN = minutes(1, 45);
+const LATE_MAX = minutes(3, 40);
+
+const DAILY = minutes(22, 15);
+const EVENING = minutes(10, 15);
+// The 22:15 cron's delay is measured (LATE_MIN..LATE_MAX). The 10:15 cron's
+// is not, so it is planned for as anything from on time to LATE_MAX.
+const EVENING_LATE_MIN = 0;
+const gaps = (eveningLateMin) => {
+  const morningToEvening = { shortest: (EVENING + eveningLateMin) - (DAILY + LATE_MAX - 24 * 60), longest: (EVENING + LATE_MAX) - (DAILY + LATE_MIN - 24 * 60) };
+  const eveningToMorning = { shortest: (DAILY + LATE_MIN) - (EVENING + LATE_MAX), longest: (DAILY + LATE_MAX) - (EVENING + eveningLateMin) };
+  return {
+    shortest: Math.min(morningToEvening.shortest, eveningToMorning.shortest) / 60,
+    longest: Math.max(morningToEvening.longest, eveningToMorning.longest) / 60,
+  };
+};
+
+test("PAGE_AFTER_HEAL_HOURS sits below the shortest gap between the two November runs", () => {
+  // If both crons ran as late as the measured one, the runs could be ~10h apart...
+  const measured = gaps(LATE_MIN).shortest;
+  assert.ok(measured > 10 && measured < 10.2, `shortest gap ${measured}h`);
+  // ...but the 10:15 cron's delay is unmeasured: on time after a late morning
+  // run is 8h20, which left the 8h floor only ~20 minutes.
+  const shortest = gaps(EVENING_LATE_MIN).shortest;
+  assert.equal(shortest, 8 + 20 / 60);
+  assert.ok(PAGE_AFTER_HEAL_HOURS <= shortest - 2, `floor ${PAGE_AFTER_HEAL_HOURS}h needs 2h of margin under ${shortest.toFixed(2)}h`);
+  // ...and still long enough that a manual re-run an hour or two after a heal can't page.
+  assert.ok(PAGE_AFTER_HEAL_HOURS >= 4);
+});
+
+test("November: an on-time evening run under 8h after a late morning one pages; the 8h floor would have waited a run", () => {
+  // The latest morning start seen is 01:55 UTC; one half an hour later than
+  // that, then an evening run five minutes late, are 7h55m apart.
+  const deadSince = at("2026-11-05T01:20:00Z");
+  const latest = (now) => ({ ...freshAll(now), "generate-digests.yml": deadSince });
+  const morning = at("2026-11-07T02:25:00Z"); // 13:25 AEDT
+  const evening = at("2026-11-07T10:20:00Z"); // 21:20 AEDT
+  const r1 = watchdogRun(morning, latest(morning), null);
+  assert.deepEqual(r1.plan.dispatch, ["generate-digests.yml"]);
+  const r2 = watchdogRun(evening, latest(evening), { heals: r1.heals });
+  assert.deepEqual(r2.paging.map((m) => m.workflow), ["generate-digests.yml"]);
+  assert.deepEqual(pagingMisses(r2.misses, r1.heals, evening, { afterHours: 8 }), []);
+});
+
+// ---- November: the second run must not double team-events' quota spend ---------
+
+test("reHealAfterHours: only team-events.yml has it, and it never bites outside November", () => {
+  assert.deepEqual(LIVE_WATCHERS.filter((w) => w.reHealAfterHours).map((w) => [w.workflow, w.reHealAfterHours]), [["team-events.yml", 20]]);
+  const { reHealAfterHours } = W["team-events.yml"];
+  // Above the longest gap between the two November runs: one re-run a day.
+  assert.ok(reHealAfterHours > gaps(EVENING_LATE_MIN).longest, `${reHealAfterHours} vs ${gaps(EVENING_LATE_MIN).longest}`);
+  // Below the shortest gap between two daily runs (01:55 then 00:00 next day).
+  const shortestDaily = (24 * 60 - (LATE_MAX - LATE_MIN)) / 60;
+  assert.equal(shortestDaily, 22 + 5 / 60);
+  assert.ok(reHealAfterHours < shortestDaily);
+});
+
+test("November: a down team-events is re-run once a day, not on every check, and still pages on the evening run", () => {
+  // SportsAPI Pro down: team-events' own runs and every re-run fail. The
+  // digests are down too, and are re-run on every check (no quota involved).
+  const deadSince = at("2026-11-05T01:20:00Z");
+  const latest = (now) => ({ ...freshAll(now), "team-events.yml": deadSince, "generate-digests.yml": deadSince });
+  const morning = at("2026-11-07T01:50:00Z");
+  const evening = at("2026-11-07T12:20:00Z");
+  const nextMorning = at("2026-11-08T00:40:00Z"); // 22h50m after the first re-run
+
+  const r1 = watchdogRun(morning, latest(morning), null);
+  assert.deepEqual(r1.plan.dispatch, ["generate-digests.yml", "team-events.yml"]);
+  assert.equal(r1.heals["team-events.yml"].lastDispatchAt, morning.toISOString());
+
+  const r2 = watchdogRun(evening, latest(evening), { heals: r1.heals });
+  assert.deepEqual(r2.plan.dispatch, ["generate-digests.yml"]);
+  assert.deepEqual(r2.plan.skipped.map((x) => x.workflow), ["team-events.yml"]);
+  assert.match(r2.plan.skipped[0].reason, /re-run 10\.5h ago; it spends SportsAPI Pro quota, so it is re-run at most once every 20h/);
+  // Not re-run, but still checked and paged exactly as before.
+  assert.deepEqual(r2.paging.map((m) => m.workflow), ["generate-digests.yml", "team-events.yml"]);
+  assert.equal(r2.heals["team-events.yml"].attempts, 2);
+  assert.match(r2.heals["team-events.yml"].outcome, /^not dispatched — re-run 10\.5h ago/);
+  assert.equal(r2.heals["team-events.yml"].lastDispatchAt, morning.toISOString()); // the skip is not a dispatch
+
+  const r3 = watchdogRun(nextMorning, latest(nextMorning), { heals: r2.heals });
+  assert.deepEqual(r3.plan.dispatch, ["generate-digests.yml", "team-events.yml"]);
+  assert.equal(r3.heals["team-events.yml"].lastDispatchAt, nextMorning.toISOString());
+});
+
+test("reHealAfterHours: a dispatch that failed is not a re-run, so the next check tries again", () => {
+  const deadSince = at("2026-11-05T01:20:00Z");
+  const morning = at("2026-11-07T01:50:00Z");
+  const evening = at("2026-11-07T12:20:00Z");
+  const r1 = watchdogRun(morning, { ...freshAll(morning), "team-events.yml": deadSince }, null, { dispatchOk: false });
+  assert.equal(r1.heals["team-events.yml"].lastDispatchAt, null);
+  const r2 = watchdogRun(evening, { ...freshAll(evening), "team-events.yml": deadSince }, { heals: r1.heals });
+  assert.deepEqual(r2.plan.dispatch, ["team-events.yml"]);
+  // Without a previous record (or a clock), selectHeals behaves as it always did.
+  assert.deepEqual(selectHeals([overdue("team-events.yml")], {}).dispatch, ["team-events.yml"]);
+  assert.deepEqual(selectHeals([overdue("team-events.yml")], {}, { prevHeals: r1.heals }).dispatch, ["team-events.yml"]);
+  // A record from a run "in the future" (a skewed clock) never blocks a re-run.
+  const ahead = { "team-events.yml": { ...r1.heals["team-events.yml"], lastDispatchAt: "2026-11-07T14:00:00Z" } };
+  assert.deepEqual(selectHeals([overdue("team-events.yml")], {}, { prevHeals: ahead, now: evening }).dispatch, ["team-events.yml"]);
+});
+
+test("November: a dead job heals on one run and pages on the NEXT, even ~10.5h later", () => {
+  // Team events' last success was Thursday's run (limit 26h); Saturday's
+  // morning watchdog started late (01:50 UTC), the evening one early
+  // (12:20 UTC): 10.5h apart.
+  const deadSince = at("2026-11-05T01:20:00Z");
+  const latest = (now) => ({ ...freshAll(now), "team-events.yml": deadSince });
+  const morning = at("2026-11-07T01:50:00Z");
+  const evening = at("2026-11-07T12:20:00Z");
+
+  const r1 = watchdogRun(morning, latest(morning), null);
+  assert.deepEqual(r1.misses.map((m) => m.workflow), ["team-events.yml"]);
+  assert.deepEqual(r1.paging, []); // first sight: heal, don't page
+  assert.deepEqual(r1.plan.dispatch, ["team-events.yml"]);
+
+  const r2 = watchdogRun(evening, latest(evening), { heals: r1.heals });
+  assert.deepEqual(r2.paging.map((m) => m.workflow), ["team-events.yml"]); // still down after the re-run: page now
+  // With the old 12h floor the same pair of runs stayed silent until the next morning.
+  assert.deepEqual(pagingMisses(r2.misses, r1.heals, evening, { afterHours: 12 }), []);
+});
+
+test("November: a job whose re-run lands but whose own schedule stays dead pages on the third run, inside a day", () => {
+  // refresh-data's own cron and the Worker both dead; only the watchdog's
+  // re-run lands, ten minutes after each watchdog run.
+  const runs = ["2026-11-07T01:40:00Z", "2026-11-07T12:20:00Z", "2026-11-08T00:30:00Z", "2026-11-08T13:30:00Z"].map(at);
+  let prev = null;
+  let lastRefresh = at("2026-11-06T18:00:00Z");
+  const paging = [];
+  for (const now of runs) {
+    const r = watchdogRun(now, { ...freshAll(now), "refresh-data.yml": lastRefresh }, prev);
+    paging.push(r.paging.map((m) => m.workflow));
+    prev = { heals: JSON.parse(JSON.stringify(r.heals)) };
+    lastRefresh = new Date(now.getTime() + 10 * 60000);
+  }
+  assert.deepEqual(paging, [[], [], ["refresh-data.yml"], ["refresh-data.yml"]]);
+  // 22h50m from first sight to the page, where daily runs took two days.
+  assert.equal((runs[2] - runs[0]) / HOUR, 22 + 50 / 60);
+});
+
+test("November: a manual watchdog re-run soon after a heal still does not page", () => {
+  const morning = at("2026-11-07T01:50:00Z");
+  const deadSince = at("2026-11-05T01:20:00Z");
+  const r1 = watchdogRun(morning, { ...freshAll(morning), "team-events.yml": deadSince }, null);
+  assert.deepEqual(r1.plan.dispatch, ["team-events.yml"]); // healed on this run
+  for (const hoursLater of [0.25, 2, PAGE_AFTER_HEAL_HOURS - 0.5]) {
+    const now = new Date(morning.getTime() + hoursLater * HOUR);
+    const r = watchdogRun(now, { ...freshAll(now), "team-events.yml": deadSince }, { heals: r1.heals });
+    assert.deepEqual(r.misses.map((m) => m.workflow), ["team-events.yml"]); // still overdue...
+    assert.deepEqual(r.paging, [], `${hoursLater}h after the heal`); // ...but too soon to page
+  }
 });

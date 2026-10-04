@@ -2,15 +2,18 @@
 //
 // GitHub silently drops scheduled runs under load (cron drift). That froze the
 // live scores on 2026-07-11 and dropped the 2026-07-12 morning digest with no
-// warning. This job runs daily and checks each watched workflow had a recent
-// SUCCESSFUL run. Then, in this order:
+// warning. This job runs daily (twice a day in November) and checks each
+// watched workflow had a recent SUCCESSFUL run. Then, in this order:
 //
 //   1. SELF-HEAL. Every overdue workflow is re-dispatched (unless a run of it
-//      is already queued or in progress). Most misses are a dropped cron or a
-//      one-off vendor blip, and a re-run is the whole fix — the 30 Sep 2026
-//      team-events failure recovered on its next scheduled run without anyone
-//      touching it. The dispatch uses the built-in GITHUB_TOKEN, which GitHub
-//      deliberately allows to start a workflow_dispatch run.
+//      is already queued or in progress, or it is team-events.yml and the
+//      watchdog re-ran it under reHealAfterHours ago: that one spends vendor
+//      quota, so it is re-run once a day even in November). Most misses are
+//      a dropped cron or a one-off vendor blip, and a re-run is the whole fix
+//      — the 30 Sep 2026 team-events failure recovered on its next scheduled
+//      run without anyone touching it. The dispatch uses the built-in
+//      GITHUB_TOKEN, which GitHub deliberately allows to start a
+//      workflow_dispatch run.
 //   2. WRITE IT DOWN, SILENTLY. editorial/health/ops-status.json (+ a readable
 //      ops-status.md) holds the current signals, each workflow's heal attempts
 //      and a short change log. The Claude weekly review reads it. Nobody is
@@ -74,9 +77,20 @@ export const WATCHERS = [
   },
   // Daily 01:00 UTC (+ Sat 19:00) — feeds the app's Team pages; a dropped run
   // leaves finished games showing as upcoming fixtures (seen 2026-07-19).
+  //
+  // reHealAfterHours: it spends SportsAPI Pro quota (~25 calls a run, up to
+  // 12 retries, against 100 a day shared with every other job), so the
+  // watchdog re-runs it at most once in that many hours. In November the
+  // watchdog runs twice a day, and with the vendor down (flaky since 23 Aug
+  // 2026) a re-run on every check would spend quota the other jobs need on a
+  // match weekend. Only the RE-RUN waits: the job is still evaluated, recorded
+  // and paged on every check, exactly as before. 20h sits above the longest
+  // gap between the two November runs (~15h40) and below the shortest gap
+  // between two daily runs (~22h05), so outside November nothing changes.
   {
     workflow: "team-events.yml", label: "Team events (Team pages)", maxAgeHours: 26,
     userFacing: true, impact: "Team pages keep finished games listed as upcoming",
+    reHealAfterHours: 20,
   },
   // Every 3h across 05:00-14:00 UTC — publishes a finished game to the Team
   // pages between full runs (an Asia-Pacific kickoff otherwise waits ~12h).
@@ -93,11 +107,21 @@ export const WATCHERS = [
 ];
 
 // A heal attempt must be at least this old before a still-overdue job pages.
-// The watchdog runs daily, so in practice this is "on the next day's run"; the
-// floor only stops a manual re-run of the watchdog minutes after a heal from
-// paging before the re-run has had a chance to land. A second, 12-hourly
-// watchdog cron would halve time-to-page without touching this.
-export const PAGE_AFTER_HEAL_HOURS = 12;
+// The floor stops a manual re-run of the watchdog, minutes or a few hours after
+// a heal, from paging before the re-run has had a chance to land (a digest
+// re-run takes ~20 minutes, the others less).
+//
+// It must also stay BELOW the shortest gap between two scheduled runs, or the
+// next run cannot page and the page slips a whole run. Most of the year the
+// watchdog runs daily, so any value under 24h means "on the next day's run".
+// In November it runs twice a day (22:15 and 10:15 UTC, watchdog.yml). GitHub
+// starts the 22:15 cron 1h45-3h40 late (00:00-01:55 UTC through Sep-Oct 2026);
+// the 10:15 cron's delay has never been measured, so it is planned for as
+// anything from on time to as late as the other. A late morning run (01:55)
+// and an on-time evening one (10:15) are then only 8h20 apart, so the 12 used
+// until 4 Oct 2026, and even 8, could make a November page wait a whole extra
+// run. 6 leaves over 2h of margin and is still far longer than any re-run.
+export const PAGE_AFTER_HEAL_HOURS = 6;
 
 // The second page rule: the previous runs' record must already show at least
 // this many consecutive overdue runs, so the run that pages is the third in a
@@ -173,13 +197,22 @@ export function summariseRuns(rows = []) {
 
 // Pure: which overdue workflows to re-dispatch now, and why the rest are not.
 // active: { [workflow]: boolean } — a run is already queued or in progress.
-export function selectHeals(misses, active = {}) {
+// prevHeals + now: a watcher with reHealAfterHours is not re-dispatched again
+// until that long after the watchdog last dispatched it (`lastDispatchAt`).
+export function selectHeals(misses, active = {}, { prevHeals = null, now = null } = {}) {
   const overdue = new Set(misses.map((m) => m.workflow));
   const dispatch = [];
   const skipped = [];
   for (const m of misses) {
+    const lastDispatch = Date.parse(prevHeals?.[m.workflow]?.lastDispatchAt ?? "");
+    const sinceDispatch = now && Number.isFinite(lastDispatch) ? (now.getTime() - lastDispatch) / 3600000 : null;
     if (active[m.workflow]) {
       skipped.push({ workflow: m.workflow, reason: "a run is already queued or in progress" });
+    } else if (m.reHealAfterHours && sinceDispatch !== null && sinceDispatch >= 0 && sinceDispatch < m.reHealAfterHours) {
+      skipped.push({
+        workflow: m.workflow,
+        reason: `re-run ${sinceDispatch.toFixed(1)}h ago; it spends SportsAPI Pro quota, so it is re-run at most once every ${m.reHealAfterHours}h`,
+      });
     } else if (m.coveredBy && (overdue.has(m.coveredBy) || active[m.coveredBy])) {
       skipped.push({ workflow: m.workflow, reason: `covered by ${m.coveredBy}` });
     } else {
@@ -210,6 +243,10 @@ export function dispatchArgs(watcher) {
 // record only exists if the job was also overdue on the last run (a run that
 // finds it healthy drops it), so carrying on from one is what "in a row" means.
 //
+// `lastDispatchAt` is the last time the watchdog actually re-ran it (a
+// successful dispatch), carried while the record lives; selectHeals reads it
+// for the quota throttle.
+//
 // An UNKNOWN workflow (its run history couldn't be read) keeps its record
 // exactly as it was: not a recovery, which would clear it, and not another
 // overdue run, which would count against it.
@@ -230,6 +267,7 @@ export function nextHeals(prev = {}, misses, plan, results = {}, now, { unknown 
       outcome,
       streak: p ? (Number(p.streak) || 1) + 1 : 1,
       streakSince: (p && (p.streakSince ?? p.firstAt)) || now.toISOString(),
+      lastDispatchAt: results[m.workflow]?.ok && !skippedWhy.has(m.workflow) ? now.toISOString() : (p?.lastDispatchAt ?? null),
     };
   }
   for (const wf of workflowSet(unknown)) if (prev?.[wf] && !out[wf]) out[wf] = prev[wf];
@@ -386,9 +424,10 @@ export function pageReport(paging, heals, now, repoUrl = "") {
   }
   lines.push(
     "",
-    "All times Sydney time. The watchdog keeps re-running it daily and closes this issue",
-    "by itself once it succeeds. Routine findings (repeat leads, the model ladder, squad",
-    "gaps) never come here — they are in editorial/health/ops-status.md for the weekly review.",
+    "All times Sydney time. The watchdog keeps re-running it (team events at most once a day,",
+    "to spare the sports-data quota) and closes this issue by itself once it succeeds. Routine",
+    "findings (repeat leads, the model ladder, squad gaps) never come here — they are in",
+    "editorial/health/ops-status.md for the weekly review.",
   );
   return lines.join("\n");
 }
@@ -789,7 +828,7 @@ async function main() {
   // Judged on the PREVIOUS runs' heal records, before this run adds its own.
   const paging = pagingMisses(misses, prev?.heals, now);
 
-  const plan = selectHeals(misses, active);
+  const plan = selectHeals(misses, active, { prevHeals: prev?.heals, now });
   const results = {};
   for (const wf of plan.dispatch) {
     const w = WATCHERS.find((x) => x.workflow === wf);

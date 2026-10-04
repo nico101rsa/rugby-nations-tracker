@@ -39,7 +39,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add editorial/news-pool.json
           git diff --cached --quiet && echo "No new items" && exit 0
-          git commit -m "News pool $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          git commit -m "News pool $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
           # Only this workflow writes the pool, so a rebase onto whatever else
           # landed is always safe — no wholesale-rewrite conflict to handle.
           git push || (git pull --rebase --autostash && git push)

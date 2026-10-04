@@ -10,12 +10,12 @@ const series = (over = {}) => ({
   ...over,
 });
 
-test("the window opens 15 min before kickoff and closes 150 min after", () => {
+test("the window opens 15 min before kickoff and closes 180 min after", () => {
   assert.equal(inBurstWindow([series()], KO - 16 * 60000), false);
   assert.equal(inBurstWindow([series()], KO - 14 * 60000), true);
   assert.equal(inBurstWindow([series()], KO + 60 * 60000), true);
-  assert.equal(inBurstWindow([series()], KO + 149 * 60000), true);
-  assert.equal(inBurstWindow([series()], KO + 151 * 60000), false);
+  assert.equal(inBurstWindow([series()], KO + 179 * 60000), true);
+  assert.equal(inBurstWindow([series()], KO + 181 * 60000), false);
 });
 
 test("test, series, tour and ESPN-scored competition games open the window; NC rounds do not", () => {

@@ -69,7 +69,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add team-events.json team-events-archive.json
           git diff --cached --quiet && echo "No team-events changes" && exit 0
-          git commit -m "Team events catch-up $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          git commit -m "Team events catch-up $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
           # The live fixtures burst commits fixtures.json every few minutes on a
           # match day, so this push routinely loses the race. A plain rebase then
           # CONFLICTS on fixtures.json (both sides rewrite the whole file) and the

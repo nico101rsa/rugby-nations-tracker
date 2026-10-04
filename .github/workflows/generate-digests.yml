@@ -50,10 +50,16 @@ jobs:
       # novelty gate's verdict (scripts/novelty.mjs). REPEAT_LEAD means the
       # edition went out repeating a recent lead after one failed revision;
       # the run report and the watchdog carry the same flag.
+      #
+      # DIGEST_PROMPTS_DIR: the run also records each team's exact writer
+      # prompt there for the news shadow test below. It is the runner's temp
+      # directory, outside the checkout, so it is never committed (the prompts
+      # carry publishers' article text) and it changes nothing that publishes.
       - name: Generate 12 team editions (Gemini Flash + fact-check; Claude fallback)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DIGEST_PROMPTS_DIR: ${{ runner.temp }}/digest-writer-inputs
         run: |
           if [ -z "$GEMINI_API_KEY" ] && [ -z "$ANTHROPIC_API_KEY" ]; then
             echo "::notice::no model API key secret set — digest generation skipped"
@@ -87,7 +93,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add nations.json public/nations.json editorial/
           git diff --cached --quiet && echo "No digest changes" && exit 0
-          git commit -m "Daily digests $(TZ=Australia/Sydney date '+%F %H:%M AEST')"
+          git commit -m "Daily digests $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
           if git push; then exit 0; fi
           # A live-score commit raced us. Both sides rewrite nations.json
           # wholesale, so a rebase would conflict — instead rebuild on top of
@@ -128,5 +134,60 @@ jobs:
           # news-pool.json (and anything else we do not author) intact.
           cp -R /tmp/editorial-ours/. editorial/
           git add nations.json public/nations.json editorial/
-          git commit -m "Daily digests $(TZ=Australia/Sydney date '+%F %H:%M AEST') (reapplied over live refresh)"
+          git commit -m "Daily digests $(TZ=Australia/Sydney date '+%F %H:%M %Z') (reapplied over live refresh)"
           git push || (git pull --rebase --autostash && git push)
+
+      # ---- News shadow test, Sydney dates 6-12 Oct 2026 (scripts/news-shadow.mjs)
+      # Nico's decision 3 (app repo docs/GROWTH_STRATEGY.md): a one-week
+      # side-by-side before paying for a writer. These steps come AFTER the
+      # editions are published, so nothing here can delay, change or fail them,
+      # and all three are continue-on-error. They replay this run's recorded
+      # writer prompts on the paid model (writer step only: no fact-check, no
+      # roundup) and commit ONLY editorial/shadow/<date>.json; nations.json is
+      # never touched. The script skips itself outside the window, after the
+      # first run of each Sydney date, without ANTHROPIC_API_KEY, and at its
+      # spend caps (US$1.50 a run, US$9 for the week). SHADOW_MODEL is an
+      # optional repository variable; unset means the Sonnet entry in
+      # scripts/compare-digest-models.mjs. Delete these three steps and
+      # DIGEST_PROMPTS_DIR above once the week has been graded; the workflow
+      # test in scripts/news-shadow.test.mjs passes with or without them.
+      - name: News shadow test (decide)
+        id: shadow
+        continue-on-error: true
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SHADOW_MODEL: ${{ vars.SHADOW_MODEL }}
+          DIGEST_PROMPTS_DIR: ${{ runner.temp }}/digest-writer-inputs
+        run: |
+          # A run queued behind another was checked out before that run's
+          # shadow commit; fetch so "already shadowed today" sees it.
+          git fetch --quiet origin main || true
+          node scripts/news-shadow.mjs --preflight
+
+      - name: News shadow test (paid writer only; publishes nothing)
+        if: steps.shadow.outputs.run == 'true'
+        continue-on-error: true
+        timeout-minutes: 25
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          SHADOW_MODEL: ${{ vars.SHADOW_MODEL }}
+          DIGEST_PROMPTS_DIR: ${{ runner.temp }}/digest-writer-inputs
+        run: |
+          npm install --no-save @anthropic-ai/sdk
+          node scripts/news-shadow.mjs
+
+      # Separate, and run even if the step above failed or timed out: the
+      # record is rewritten after every team, so whatever was spent is
+      # committed and counts against the week's cap.
+      - name: News shadow test (commit editorial/shadow only)
+        if: always() && steps.shadow.outputs.run == 'true'
+        continue-on-error: true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add editorial/shadow/
+          git diff --cached --quiet && echo "No shadow output" && exit 0
+          git commit -m "News shadow test $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
+          # Only editorial/shadow/ is ours, so a rebase over live-refresh
+          # commits cannot conflict.
+          for i in 1 2 3; do git push && exit 0; git pull --rebase --autostash; done; exit 1

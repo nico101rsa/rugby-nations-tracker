@@ -113,6 +113,14 @@ const RETRY_BACKOFF = [2000, 6000, 15000];
 const RETRY_BUDGET = 12;
 
 let logged = false;
+
+// Where a SportsAPI Pro events page keeps its list. Healthy answers nest it as
+// `data.events`; the bare `events` is kept for older responses. Exported so
+// the vendor probe counts events exactly the way this fetcher reads them: it
+// read the bare `.events` alone, so all 147 HTTP 200 answers it logged between
+// 23 Aug and 3 Oct 2026 said "0 events", and the log could not tell an empty
+// page from a full one.
+export const vendorEvents = (body) => body?.data?.events ?? body?.events ?? [];
 async function fetchJson(url, backoff = RETRY_BACKOFF, budget = { left: Infinity }) {
   const canRetry = () => backoff.length > 0 && budget.left > 0;
   const spend = () => { budget.left -= 1; };
@@ -151,7 +159,7 @@ async function fetchJson(url, backoff = RETRY_BACKOFF, budget = { left: Infinity
   if (!logged && url.includes("/events/")) {
     // Focused sample per run so vendor shape drift is diagnosable from the
     // Actions log (the full event is mostly translation noise).
-    const evs = body.data?.events ?? body.events ?? [];
+    const evs = vendorEvents(body);
     const pick = (e) => e && {
       id: e.id, startTimestamp: e.startTimestamp, status: e.status,
       home: e.homeTeam?.name, away: e.awayTeam?.name,
@@ -176,7 +184,7 @@ async function resolveTeamIds(prev) {
     if (Object.keys(ids).length === 12) break;
     await sleep(PACE);
     const schedBody = await fetchJson(`${BASE}/api/schedule/${date}`);
-    const events = schedBody.data?.events ?? schedBody.events ?? [];
+    const events = vendorEvents(schedBody);
     for (const e of events) {
       for (const t of [e.homeTeam, e.awayTeam]) {
         const code = trackedCodeFor(t?.name);
@@ -219,7 +227,7 @@ export async function fetchEventsByCode(
     await sleep(paceMs);
     try {
       const body = await fetchJson(`${BASE}/api/teams/${id}/events/${which}/0`, backoff, budget);
-      return body.data?.events ?? body.events ?? [];
+      return vendorEvents(body);
     } catch (err) {
       if (err.fatal) throw err;
       missed.push(`${code}/${which}`);
