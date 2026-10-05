@@ -94,8 +94,30 @@ export const BOTH_STORY = 0.2;
 // The link is the strongest signal of all — the same article led three
 // Springbok editions running — but outlets append tracking parameters, so
 // compare origin + path only. Same rule as the news pool's itemKey.
-export function normaliseLink(link) {
+//
+// Except for Bing News's click-tracking redirect, which the per-team packs
+// lead from: bing.com/news/apiclick.aspx?tid=<new every fetch>&url=<article>.
+// Stripping its query turned EVERY Bing-sourced lead into the same link (two
+// different stories read as "same source article") while the real article
+// in `url=` was thrown away, so the same story re-fetched under a new tid
+// slipped past as new — Scotland led with the Hector Patterson story on 4 and
+// 5 Oct 2026 and the gate never flagged it. Unwrap to the article first.
+export function unwrapRedirect(link) {
   const raw = String(link || "").trim();
+  try {
+    const u = new URL(raw);
+    if (/(^|\.)bing\.com$/i.test(u.hostname) && /\/apiclick\.aspx$/i.test(u.pathname)) {
+      const target = u.searchParams.get("url");
+      if (target && /^https?:\/\//i.test(target)) return target;
+    }
+  } catch {
+    // not a URL: leave it to the caller
+  }
+  return raw;
+}
+
+export function normaliseLink(link) {
+  const raw = unwrapRedirect(link);
   if (!raw) return "";
   try {
     const u = new URL(raw);

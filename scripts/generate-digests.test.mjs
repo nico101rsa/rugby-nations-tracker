@@ -782,6 +782,18 @@ test("findRepeat: reports the most recent match, or null", () => {
   assert.equal(findRepeat(HANEKOM, []), null);
 });
 
+test("normaliseLink: a Bing News redirect is unwrapped to its article (2026-10-05 Scotland repeat)", () => {
+  const art = "https%3a%2f%2fwww.ruck.co.uk%2frugby-transfer-news%2fscotland-legends-son-could-switch-allegiance-to-england-after-transfer-development";
+  const day4 = `http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac1efc06f454feeb87c3f4f22cff790&url=${art}&c=12610822440615904078&mkt=en-us`;
+  const day5 = `http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac2d82c57f94e97ae1f5ca79996845b&url=${art}&c=12610822440615904078&mkt=en-us`;
+  assert.equal(normaliseLink(day4), "https://www.ruck.co.uk/rugby-transfer-news/scotland-legends-son-could-switch-allegiance-to-england-after-transfer-development");
+  assert.equal(normaliseLink(day4), normaliseLink(day5), "same article under a new tid is the same link");
+  const other = "http://www.bing.com/news/apiclick.aspx?ref=FexRss&tid=abc&url=https%3a%2f%2fwww.planetrugby.com%2fnews%2fsomething-else";
+  assert.notEqual(normaliseLink(day4), normaliseLink(other), "two different Bing-sourced stories are NOT the same link");
+  assert.equal(normaliseLink("http://www.bing.com/news/apiclick.aspx?tid=x"), "http://www.bing.com/news/apiclick.aspx", "no url= falls back to the old rule");
+  assert.equal(sameStory({ heading: "A", link: day4 }, { heading: "B", link: day5 }), "same source article");
+});
+
 test("normaliseLink: origin and path only, case-folded, trailing slash off", () => {
   assert.equal(normaliseLink("https://Example.test/a/b/?utm=x#frag"), "https://example.test/a/b");
   assert.equal(normaliseLink("not a url"), "not a url");
