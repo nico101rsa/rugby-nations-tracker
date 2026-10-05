@@ -1,0 +1,33 @@
+{
+ "about": "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: routine findings land here instead of notifying anyone, and the Claude weekly review reads it. state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); `page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
+ "state": "attention",
+ "paging": [],
+ "page": null,
+ "overdue": [],
+ "unknown": [],
+ "heals": {},
+ "signals": {
+  "repeatLeads": [
+   {
+    "team": "Ireland",
+    "since": "2026-10-03",
+    "heading": "Peter O’Mahony admits Rassie Erasmus’ abrupt Munster departure caused him pain",
+    "flagged": true
+   },
+   {
+    "team": "Scotland",
+    "since": "2026-10-04",
+    "heading": "Bath monitoring Edinburgh scrum-half Hector Patterson amid potential England eligibility",
+    "flagged": false
+   }
+  ],
+  "ladderLastRung": null,
+  "squadGaps": []
+ },
+ "history": [
+  {
+   "at": "2026-10-05T00:53:59.021Z",
+   "summary": "repeat leads: Ireland, Scotland"
+  }
+ ]
+}
