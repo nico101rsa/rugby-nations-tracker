@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-06T01:01:30.431Z",
+  "updatedAt": "2026-10-06T20:00:44.263Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 187,
+  "count": 195,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -118,7 +118,8 @@
       ],
       "firstSeen": "2026-09-07",
       "lastSeen": "2026-10-06",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-07"
     },
     {
       "id": "courtney-lawes-pursuit-of-lun8pb",
@@ -4081,7 +4082,7 @@
         }
       ],
       "firstSeen": "2026-10-05",
-      "lastSeen": "2026-10-05",
+      "lastSeen": "2026-10-07",
       "uses": 0
     },
     {
@@ -4350,7 +4351,7 @@
     },
     {
       "id": "saracens-internal-management-and-19mjjdd",
-      "subject": "Saracens' internal management and player support",
+      "subject": "Saracens' internal management and player relations",
       "teams": [
         386
       ],
@@ -4363,7 +4364,174 @@
         }
       ],
       "firstSeen": "2026-10-06",
-      "lastSeen": "2026-10-06",
+      "lastSeen": "2026-10-07",
+      "uses": 0
+    },
+    {
+      "id": "wales-long-term-structural-gzjcl8",
+      "subject": "Wales' long-term structural future and potential club merger",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union finalizes its proposal regarding the potential cutting of a professional club by 2028",
+      "sources": [
+        {
+          "title": "‘Rugby’s in people’s blood here’: mutiny rising in west Wales as Scarlets fight WRU plan",
+          "link": "https://www.theguardian.com/sport/2026/sep/28/welsh-rugby-union-mutiny-west-wales-scarlets-ospreys-fight-wru-plan",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
+      "uses": 0
+    },
+    {
+      "id": "ruan-venter-and-the-1dms6s4",
+      "subject": "Ruan Venter and the Lions' injury crisis",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Lions provide an update on the availability of Ruan Venter and other injured squad members",
+      "sources": [
+        {
+          "title": "Lions reveal latest on Ruan",
+          "link": "https://www.sarugbymag.co.za/lions-reveal-latest-ruan/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
+      "uses": 0
+    },
+    {
+      "id": "toulon-s-search-for-o8mixr",
+      "subject": "Toulon's search for a new director of rugby",
+      "teams": [
+        387
+      ],
+      "resolution": "until Toulon appoints a successor to Pierre Mignoni",
+      "sources": [
+        {
+          "title": "Pierre Mignoni quits as Toulon boss as players accused of not ‘behaving like competitors’",
+          "link": "https://www.planetrugby.com/news/pierre-mignoni-quits-as-toulon-boss-as-players-accused-of-not-behaving-like-competitors",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Toulon coach quits",
+          "link": "https://www.sarugbymag.co.za/toulon-coach-quits/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
+      "uses": 0
+    },
+    {
+      "id": "the-legal-dispute-over-rv8l3r",
+      "subject": "The legal dispute over brain injuries in rugby union",
+      "teams": [
+        386,
+        388,
+        390,
+        391
+      ],
+      "resolution": "until the claimants settle their legal fees to allow the case to proceed",
+      "sources": [
+        {
+          "title": "Rugby’s brain injury claimants face £2.8m legal bill to continue case",
+          "link": "https://www.theguardian.com/sport/2026/oct/02/rugby-union-players-liable-for-28m-in-legal-fees-to-brain-injury-case-concussion",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
+      "uses": 0
+    },
+    {
+      "id": "replacement-for-ardie-savea-15ndl6q",
+      "subject": "Replacement for Ardie Savea in the All Blacks squad",
+      "teams": [
+        465
+      ],
+      "resolution": "until the All Blacks confirm the team selection for upcoming matches in the absence of the injured Savea",
+      "sources": [
+        {
+          "title": "Dave Rennie's silver lining verdict on Ardie Savea's injury: 'We will miss him'",
+          "link": "https://www.planetrugby.com/news/all-blacks-dave-rennie-why-ardie-saveas-might-be-a-good-thing",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
+      "uses": 0
+    },
+    {
+      "id": "richie-mo-unga-s-1bhsyze",
+      "subject": "Richie Mo'unga's standing as the All Blacks' starting fly-half",
+      "teams": [
+        465
+      ],
+      "resolution": "until the All Blacks confirm their preferred fly-half in the wake of Ruben Love's injury",
+      "sources": [
+        {
+          "title": "All Blacks legend insists Richie Mo'unga 'doesn't own' fly-half jersey after Ruben Love injury",
+          "link": "https://www.planetrugby.com/news/all-blacks-legend-insists-richie-mounga-doesnt-own-fly-half-jersey-after-ruben-love-injury",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Goldie: Richie doesn't own All Blacks 10 jersey",
+          "link": "https://www.sarugbymag.co.za/goldie-richie-doesnt-blacks-10-jersey/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
+      "uses": 0
+    },
+    {
+      "id": "2035-rugby-world-cup-1r14fwz",
+      "subject": "2035 Rugby World Cup host selection",
+      "teams": [
+        460
+      ],
+      "resolution": "until World Rugby announces the successful bid for the 2035 tournament",
+      "sources": [
+        {
+          "title": "Argentina leads joint 2035 Rugby World Cup bid that will challenge World Rugby's desire for a European return",
+          "link": "https://www.planetrugby.com/news/argentina-leads-south-americas-joint-2035-rugby-world-cup-bid",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Who will host the 2035 Rugby World Cup: The four-nation bid, dark horse South Africa, and World Rugby's preference",
+          "link": "https://www.planetrugby.com/news/who-will-host-the-2035-rugby-world-cup",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "South America launches RWC bid",
+          "link": "https://www.sarugbymag.co.za/south-america-launches-rwc-bid/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
+      "uses": 0
+    },
+    {
+      "id": "stormers-lineout-stability-and-1dvec6t",
+      "subject": "Stormers' lineout stability and hooker rotation",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Stormers demonstrate improved set-piece performance in the URC",
+      "sources": [
+        {
+          "title": "Fourie: We can’t point fingers just at Vernon",
+          "link": "https://www.sarugbymag.co.za/fourie-cant-point-fingers-just-vernon/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-07",
+      "lastSeen": "2026-10-07",
       "uses": 0
     }
   ]
