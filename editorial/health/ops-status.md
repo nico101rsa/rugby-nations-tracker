@@ -18,8 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- Ireland — same lead story since Sat 3 Oct, first run as "Peter O’Mahony admits Rassie Erasmus’ abrupt Munster departure caused him pain" — the novelty gate flagged the latest edition and published anyway
-- Scotland — same lead story since Sun 4 Oct, first run as "Bath monitoring Edinburgh scrum-half Hector Patterson amid potential England eligibility" — the novelty gate did NOT flag the latest edition
+- England — same lead story since Mon 5 Oct, first run as "Steve Borthwick retains RFU backing despite persistent scrutiny over England’s tactical identity" — the novelty gate did NOT flag the latest edition
 
 **Model ladder**
 
@@ -31,4 +30,5 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Tue 6 Oct 2026, 13:16 AEDT — repeat leads: England
 - Mon 5 Oct 2026, 11:53 AEDT — repeat leads: Ireland, Scotland
