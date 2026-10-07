@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- England — same lead story since Mon 5 Oct, first run as "Steve Borthwick retains RFU backing despite persistent scrutiny over England’s tactical identity" — the novelty gate did NOT flag the latest edition
+- Argentina — same lead story since Tue 6 Oct, first run as "Argentina launches ambitious joint bid to host 2035 Rugby World Cup" — the novelty gate flagged the latest edition and published anyway
 
 **Model ladder**
 
@@ -30,5 +30,6 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Wed 7 Oct 2026, 12:31 AEDT — repeat leads: Argentina
 - Tue 6 Oct 2026, 13:16 AEDT — repeat leads: England
 - Mon 5 Oct 2026, 11:53 AEDT — repeat leads: Ireland, Scotland
