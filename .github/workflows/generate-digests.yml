@@ -148,7 +148,10 @@ jobs:
       # first run of each Sydney date, without ANTHROPIC_API_KEY, and at its
       # spend caps (US$1.50 a run, US$9 for the week). SHADOW_MODEL is an
       # optional repository variable; unset means the Sonnet entry in
-      # scripts/compare-digest-models.mjs. Delete these three steps and
+      # scripts/compare-digest-models.mjs. SHADOW_ALSO (repository variable,
+      # comma-separated, set 9 Oct to claude-haiku-5-5) runs further writers
+      # after it, each into its own editorial/shadow/<date>.<model>.json with
+      # its own window of spend. Delete these three steps and
       # DIGEST_PROMPTS_DIR above once the week has been graded; the workflow
       # test in scripts/news-shadow.test.mjs passes with or without them.
       - name: News shadow test (decide)
@@ -157,6 +160,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SHADOW_MODEL: ${{ vars.SHADOW_MODEL }}
+          SHADOW_ALSO: ${{ vars.SHADOW_ALSO }}
           DIGEST_PROMPTS_DIR: ${{ runner.temp }}/digest-writer-inputs
         run: |
           # A run queued behind another was checked out before that run's
@@ -167,10 +171,11 @@ jobs:
       - name: News shadow test (paid writer only; publishes nothing)
         if: steps.shadow.outputs.run == 'true'
         continue-on-error: true
-        timeout-minutes: 25
+        timeout-minutes: 40
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SHADOW_MODEL: ${{ vars.SHADOW_MODEL }}
+          SHADOW_ALSO: ${{ vars.SHADOW_ALSO }}
           DIGEST_PROMPTS_DIR: ${{ runner.temp }}/digest-writer-inputs
         run: |
           npm install --no-save @anthropic-ai/sdk

@@ -179,13 +179,21 @@ export function decideShadow({ now, inputs, hasKey, alreadyShadowed = false, spe
 
 // ---- files -----------------------------------------------------------------------
 
-export const shadowPath = (root, dateISO) => join(root, SHADOW_DIR, `${dateISO}.json`);
+// The main writer's record is `<date>.json`, as it was from 6 Oct. A further
+// writer (SHADOW_ALSO, added 9 Oct for Haiku 5.5) gets `<date>.<model id>.json`,
+// so the two never overwrite each other and each has its own window of spend.
+// `modelId` is passed only for those further writers.
+export const recordName = (dateISO, modelId = null) => (modelId ? `${dateISO}.${modelId}.json` : `${dateISO}.json`);
 
-// Total recorded spend across the window's shadow files.
-export async function windowSpend(root = ROOT) {
+export const shadowPath = (root, dateISO, modelId = null) => join(root, SHADOW_DIR, recordName(dateISO, modelId));
+
+// Total recorded spend across the window's shadow files for one writer.
+export async function windowSpend(root = ROOT, modelId = null) {
+  const suffix = modelId ? `\\.${modelId.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}` : "";
+  const pattern = new RegExp(`^\\d{4}-\\d{2}-\\d{2}${suffix}\\.json$`);
   let names = [];
   try {
-    names = (await readdir(join(root, SHADOW_DIR))).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f));
+    names = (await readdir(join(root, SHADOW_DIR))).filter((f) => pattern.test(f));
   } catch {
     return 0;
   }
@@ -217,9 +225,9 @@ async function exists(path) {
 // concurrency group) was checked out at the commit it was queued on, before
 // that run's shadow commit. The workflow fetches origin/main first; any git
 // failure reads as "no", and the working-tree check still applies.
-async function shadowedUpstream(dateISO, root) {
+async function shadowedUpstream(dateISO, root, modelId = null) {
   try {
-    await promisify(execFile)("git", ["cat-file", "-e", `origin/main:editorial/shadow/${dateISO}.json`], { cwd: root });
+    await promisify(execFile)("git", ["cat-file", "-e", `origin/main:editorial/shadow/${recordName(dateISO, modelId)}`], { cwd: root });
     return true;
   } catch {
     return false;
@@ -302,15 +310,17 @@ const realSleep = (ms) => new Promise((r) => setTimeout(r, ms));
 export async function runShadow({
   root = ROOT, inputs, client, model, now = new Date(), log = console.log, spentWindow = null,
   clock = Date.now, timeBudgetMs = TIME_BUDGET_MS, sleep = realSleep, maxAttempts = MAX_ATTEMPTS,
+  also = false, // a SHADOW_ALSO writer: its own record file and its own window
 }) {
-  const window = spentWindow ?? (await windowSpend(root));
+  const fileModel = also ? model.id : null;
+  const window = spentWindow ?? (await windowSpend(root, fileModel));
   const started = clock();
   let spentRun = 0; // known cost of answered calls
   let unaccounted = 0; // worst case of the request in flight, and of any that got no answer
   let aborted = null;
   let dearest = 0; // the most any answered call has cost this run
   const teams = [];
-  const out = shadowPath(root, inputs.date);
+  const out = shadowPath(root, inputs.date, fileModel);
   await mkdir(dirname(out), { recursive: true });
   const save = async () => {
     const record = buildRecord({ inputs, model, now, teams, spentRun, unaccounted, window, aborted });
@@ -513,20 +523,37 @@ export function gradingPrompts(record) {
 
 // ---- entrypoint --------------------------------------------------------------------
 
+// The writers to run: SHADOW_MODEL (Sonnet unless the repository variable
+// says otherwise), then each id in SHADOW_ALSO (comma-separated, repository
+// variable, added 9 Oct for Haiku 5.5). Duplicates and blanks are dropped.
+export function shadowModels(env = process.env) {
+  const first = resolveModel(env.SHADOW_MODEL);
+  const also = String(env.SHADOW_ALSO ?? "").split(",").map((x) => x.trim()).filter(Boolean);
+  const out = [first];
+  for (const id of also) if (!out.some((m) => m.id === id)) out.push(resolveModel(id));
+  return out;
+}
+
 async function decide(now, env = process.env, root = ROOT) {
   const inputs = await readWriterInputs(env, root);
-  const model = resolveModel(env.SHADOW_MODEL);
-  const decision = decideShadow({
-    now,
-    inputs,
-    hasKey: Boolean(env.ANTHROPIC_API_KEY),
-    alreadyShadowed: inputs?.date
-      ? (await exists(shadowPath(root, inputs.date))) || (await shadowedUpstream(inputs.date, root))
-      : false,
-    spentWindow: await windowSpend(root),
-    model,
-  });
-  return { inputs, model, decision };
+  const runs = [];
+  const models = shadowModels(env);
+  for (const [i, model] of models.entries()) {
+    const also = i > 0;
+    const fileModel = also ? model.id : null;
+    const decision = decideShadow({
+      now,
+      inputs,
+      hasKey: Boolean(env.ANTHROPIC_API_KEY),
+      alreadyShadowed: inputs?.date
+        ? (await exists(shadowPath(root, inputs.date, fileModel))) || (await shadowedUpstream(inputs.date, root, fileModel))
+        : false,
+      spentWindow: await windowSpend(root, fileModel),
+      model,
+    });
+    runs.push({ model, decision, also });
+  }
+  return { inputs, runs };
 }
 
 async function main(argv = process.argv.slice(2)) {
@@ -550,31 +577,29 @@ async function main(argv = process.argv.slice(2)) {
     return;
   }
 
-  const { inputs, model, decision } = await decide(now);
-  const say = `::${decision.level}::news shadow test: ${decision.reason}`;
+  const { inputs, runs } = await decide(now);
+  for (const { model, decision } of runs) console.log(`::${decision.level}::news shadow test (${model.id}): ${decision.reason}`);
+  const due = runs.filter((r) => r.decision.run);
   if (mode === "--preflight") {
-    console.log(say);
-    if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `run=${decision.run}\n`);
+    if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT, `run=${due.length > 0}\n`);
     return;
   }
-  if (!decision.run) {
-    console.log(say);
-    return;
-  }
-  console.log(decision.reason);
+  if (!due.length) return;
   const { default: Anthropic } = await import("@anthropic-ai/sdk");
   // No SDK retries: runShadow retries itself, so that every attempt passes the
   // spend guard and reserves its own worst case. No new request starts after
-  // TIME_BUDGET_MS, and one in flight ends by REQUEST_TIMEOUT_MS, so the step
-  // ends inside ~20 of its 25 minutes.
+  // TIME_BUDGET_MS, and one in flight ends by REQUEST_TIMEOUT_MS, so one
+  // writer ends inside ~20 minutes; the step allows 40 for two.
   const client = new Anthropic({ maxRetries: 0, timeout: REQUEST_TIMEOUT_MS });
-  const record = await runShadow({ inputs, client, model, now });
-  console.log(
-    `shadow ${record.date}: ${record.counts.valid}/${record.counts.teams} valid, ${record.counts.errors} error(s), ${record.counts.skipped} skipped; ` +
-      `${usd(record.cost.runUSD)} this run (${record.cost.perTeamUSD == null ? "n/a" : usd(record.cost.perTeamUSD)} a team), ` +
-      `${usd(record.cost.windowAfterUSD)} of ${usd(WINDOW_CAP_USD)} in the window` +
-      (record.aborted ? `; ABORTED: ${record.aborted}` : ""),
-  );
+  for (const { model, also } of due) {
+    const record = await runShadow({ inputs, client, model, now, also });
+    console.log(
+      `shadow ${record.date} on ${model.id}: ${record.counts.valid}/${record.counts.teams} valid, ${record.counts.errors} error(s), ${record.counts.skipped} skipped; ` +
+        `${usd(record.cost.runUSD)} this run (${record.cost.perTeamUSD == null ? "n/a" : usd(record.cost.perTeamUSD)} a team), ` +
+        `${usd(record.cost.windowAfterUSD)} of ${usd(WINDOW_CAP_USD)} in the window` +
+        (record.aborted ? `; ABORTED: ${record.aborted}` : ""),
+    );
+  }
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

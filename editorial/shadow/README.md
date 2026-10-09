@@ -44,6 +44,14 @@ real people, so every record opens with a `notice` field that says so.
   US$0.40–0.80 a run, or US$3–6 for the week. Measuring the real figure is
   half the point.
 
+## A second writer from 10 Oct: `<date>.claude-haiku-5-5.json`
+
+From the 10 Oct run the same prompts also go to Claude Haiku 5.5 (US$0.10 in,
+US$0.50 out per million tokens, a twentieth of Sonnet 5), set by the
+repository variable `SHADOW_ALSO`. Its records sit beside Sonnet's with the
+model id in the name, same fields, and its spend is capped on its own. The
+Sonnet files are unchanged.
+
 ## `<date>.json`
 
 | field | meaning |

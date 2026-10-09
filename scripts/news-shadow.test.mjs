@@ -666,3 +666,28 @@ test("gradingPrompts: both writers' first drafts through the production review r
     await rm(root, { recursive: true, force: true });
   }
 });
+
+// ---- a second writer (SHADOW_ALSO, 9 Oct 2026) -------------------------------------
+
+test("shadowModels: SHADOW_MODEL first, then each SHADOW_ALSO id once; blanks dropped", async () => {
+  const { shadowModels, recordName } = await import("./news-shadow.mjs");
+  const ids = shadowModels({ SHADOW_ALSO: " claude-haiku-5-5, ,claude-haiku-5-5" }).map((m) => m.id);
+  assert.deepEqual(ids, [SONNET.id, "claude-haiku-5-5"]);
+  assert.deepEqual(shadowModels({}).map((m) => m.id), [SONNET.id]);
+  assert.ok(shadowModels({ SHADOW_ALSO: "claude-haiku-5-5" })[1].price, "Haiku 5.5 is priced, so it can run");
+  assert.equal(recordName("2026-10-10"), "2026-10-10.json");
+  assert.equal(recordName("2026-10-10", "claude-haiku-5-5"), "2026-10-10.claude-haiku-5-5.json");
+});
+
+test("windowSpend: a further writer's files are its own window, and never count in Sonnet's", async () => {
+  const root = await mkdtemp(join(tmpdir(), "shadow-also-"));
+  try {
+    await mkdir(join(root, "editorial", "shadow"), { recursive: true });
+    await writeFile(join(root, "editorial", "shadow", "2026-10-10.json"), JSON.stringify({ cost: { runUSD: 0.7, unaccountedUSD: 0 } }));
+    await writeFile(join(root, "editorial", "shadow", "2026-10-10.claude-haiku-5-5.json"), JSON.stringify({ cost: { runUSD: 0.04, unaccountedUSD: 0 } }));
+    assert.ok(Math.abs((await windowSpend(root)) - 0.7) < 1e-9);
+    assert.ok(Math.abs((await windowSpend(root, "claude-haiku-5-5")) - 0.04) < 1e-9);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});

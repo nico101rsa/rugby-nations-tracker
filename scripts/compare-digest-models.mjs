@@ -18,6 +18,9 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 // spend guard's prices from here, so there is one place to update them.
 export const MODELS = [
   { id: "claude-haiku-4-5", in: 1, out: 5 },
+  // 2026-10-09: Haiku 5.5 at its launch list price (prompts up to 100K tokens;
+  // the writer prompt is ~8K). Priced here so the shadow test can run it.
+  { id: "claude-haiku-5-5", in: 0.1, out: 0.5 },
   { id: "claude-sonnet-5", in: 2, out: 10 },
   { id: "claude-opus-4-8", in: 5, out: 25 },
   { id: "claude-fable-5", in: 10, out: 50 },
@@ -29,7 +32,7 @@ export const SONNET = MODELS.find((m) => m.id.includes("sonnet"));
 // Haiku 4.5 predates the dynamic-filtering web-search variant; the current
 // models use the same version production does.
 const searchToolFor = (model) => ({
-  type: model === "claude-haiku-4-5" ? "web_search_20250305" : "web_search_20260209",
+  type: model.startsWith("claude-haiku") ? "web_search_20250305" : "web_search_20260209",
   name: "web_search",
   max_uses: 8,
 });
