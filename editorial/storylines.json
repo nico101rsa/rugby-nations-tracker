@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-09T20:00:45.762Z",
+  "updatedAt": "2026-10-09T23:40:37.230Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 212,
+  "count": 213,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -2444,8 +2444,8 @@
       ],
       "firstSeen": "2026-09-27",
       "lastSeen": "2026-09-27",
-      "uses": 1,
-      "lastUsed": "2026-10-03"
+      "uses": 2,
+      "lastUsed": "2026-10-10"
     },
     {
       "id": "andre-esterhuizen-s-controversy-e2rhex",
@@ -3841,7 +3841,10 @@
       "id": "legal-costs-and-resolution-1n0pkyl",
       "subject": "Legal costs and resolution of the brain injury claim case",
       "teams": [
-        386
+        386,
+        388,
+        390,
+        391
       ],
       "resolution": "until the claimants settle their legal fees or the case reaches a final verdict",
       "sources": [
@@ -3852,7 +3855,7 @@
         }
       ],
       "firstSeen": "2026-10-05",
-      "lastSeen": "2026-10-05",
+      "lastSeen": "2026-10-10",
       "uses": 0
     },
     {
@@ -4334,7 +4337,7 @@
         }
       ],
       "firstSeen": "2026-10-08",
-      "lastSeen": "2026-10-08",
+      "lastSeen": "2026-10-10",
       "uses": 0
     },
     {
@@ -4387,7 +4390,7 @@
         }
       ],
       "firstSeen": "2026-10-08",
-      "lastSeen": "2026-10-09",
+      "lastSeen": "2026-10-10",
       "uses": 0
     },
     {
@@ -4618,7 +4621,7 @@
         }
       ],
       "firstSeen": "2026-10-09",
-      "lastSeen": "2026-10-09",
+      "lastSeen": "2026-10-10",
       "uses": 0
     },
     {
@@ -4760,7 +4763,7 @@
         }
       ],
       "firstSeen": "2026-10-09",
-      "lastSeen": "2026-10-09",
+      "lastSeen": "2026-10-10",
       "uses": 0
     },
     {
@@ -4826,7 +4829,7 @@
     },
     {
       "id": "potential-move-of-barrett-lr2nyp",
-      "subject": "Potential move of Barrett brothers to Premiership Rugby clubs",
+      "subject": "The Barrett brothers' potential post-World Cup move to Premiership Rugby",
       "teams": [
         386,
         465
@@ -4903,6 +4906,34 @@
           "title": "'Never say never' to SA-Super Rugby reunion",
           "link": "https://www.sarugbymag.co.za/never-say-never-sa-super-rugby-reunion/",
           "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-10",
+      "lastSeen": "2026-10-10",
+      "uses": 0
+    },
+    {
+      "id": "world-rugby-s-introduction-1asmocu",
+      "subject": "World Rugby's introduction of new 'drop' tackle laws",
+      "teams": [
+        467
+      ],
+      "resolution": "until the implementation and initial compliance period of the new tackle laws concludes",
+      "sources": [
+        {
+          "title": "World Rugby outlaws controversial tackle which almost ended Springbok's career after South Africa coach's request",
+          "link": "https://www.planetrugby.com/news/world-rugby-outlaws-controversial-tackle-which-almost-ended-springboks-career-after-south-africa-coachs-request",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "World Rugby cracks down on ‘drop’ tackles",
+          "link": "https://www.sarugbymag.co.za/world-rugby-cracks-drop-tackles/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Top ref boss accuses World Rugby of breaking agreement as they seek 'clarity' on new tackle laws",
+          "link": "https://www.planetrugby.com/news/top-ref-boss-accuses-world-rugby-of-breaking-agreement-as-they-seek-clarity-on-new-tackle-laws",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-10-10",
