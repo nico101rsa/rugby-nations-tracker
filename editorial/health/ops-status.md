@@ -19,7 +19,6 @@ _All times Sydney time._
 **Repeat leads**
 
 - Argentina — same lead story since Tue 6 Oct, first run as "Argentina launches ambitious joint bid to host 2035 Rugby World Cup" — the novelty gate flagged the latest edition and published anyway
-- Scotland — same lead story since Wed 7 Oct, first run as "Lucia Scott returns as Scotland women finalise WXV tour squad" — the novelty gate did NOT flag the latest edition
 
 **Model ladder**
 
@@ -31,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Fri 9 Oct 2026, 13:07 AEDT — repeat leads: Argentina
 - Thu 8 Oct 2026, 12:54 AEDT — repeat leads: Argentina, Scotland
 - Wed 7 Oct 2026, 12:31 AEDT — repeat leads: Argentina
 - Tue 6 Oct 2026, 13:16 AEDT — repeat leads: England
