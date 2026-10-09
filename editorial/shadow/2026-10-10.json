@@ -1,0 +1,1741 @@
+{
+ "kind": "news-shadow-test",
+ "notice": "Internal comparison of two news writers, not news. These are unedited machine drafts that were never fact-checked and never published: they may be wrong about real people. The app never reads this file.",
+ "date": "2026-10-10",
+ "publishes": false,
+ "window": {
+  "first": "2026-10-06",
+  "last": "2026-10-12"
+ },
+ "production": {
+  "provider": "gemini",
+  "servedBy": "gemini-3.1-flash-lite",
+  "generatedAt": "2026-10-09T20:00:45.762Z"
+ },
+ "shadow": {
+  "model": "claude-sonnet-5",
+  "pricesUSDPerMTok": {
+   "input": 2,
+   "output": 10
+  },
+  "maxTokens": 12000,
+  "maxAttempts": 3,
+  "ranAt": "2026-10-09T20:21:54.918Z"
+ },
+ "counts": {
+  "teams": 12,
+  "valid": 12,
+  "invalid": 0,
+  "errors": 0,
+  "skipped": 0,
+  "pending": 0,
+  "productionFailed": 0,
+  "shadowValidWhereProductionFailed": 0
+ },
+ "usage": {
+  "input": 110602,
+  "output": 40248
+ },
+ "cost": {
+  "runUSD": 0.62368,
+  "unaccountedUSD": 0,
+  "windowBeforeUSD": 2.55144,
+  "windowAfterUSD": 3.17512,
+  "perTeamUSD": 0.05197,
+  "runCapUSD": 1.5,
+  "windowCapUSD": 9
+ },
+ "aborted": null,
+ "complete": true,
+ "teams": [
+  {
+   "teamId": 28,
+   "team": "Fiji",
+   "promptSha256": "b9fbd4d99b7a65f6bcf4c5ab520438ff72b1ce713781c9a3a3cb721187dbe8cd",
+   "promptMatchesProduction": true,
+   "promptChars": 23689,
+   "quiet": false,
+   "rung": "news",
+   "ladder": null,
+   "shortlist": [
+    {
+     "title": "Coca-Cola Launches Limited-Edition Fiji Sevens Collectable Packs Of Memorable Moments From 2025 Hong Kong and Singapore 7s",
+     "link": "https://www.rugbyasia247.com/coca-cola-launches-limited-edition-fiji-sevens-collectable-packs-of-memorable-moments-from-2025-hong-kong-and-singapore-7s/",
+     "score": 35.7,
+     "corroboration": 1,
+     "outlets": [
+      "rugbyasia247"
+     ]
+    },
+    {
+     "title": "Fiji, Samoa and Tonga name 2026 Rugby League World Cup squads",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac947edd31a4df889f848c20eb44f6f&url=https%3a%2f%2fwww.msn.com%2fen-nz%2fnews%2fnational%2ffiji-samoa-and-tonga-name-2026-rugby-league-world-cup-squads%2far-AA2dDSii&c=11195345730930605904&mkt=en-us",
+     "score": 3.3,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Fiji deaf rugby teams need up to $70K for Japan world championship",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac947edd31a4df889f848c20eb44f6f&url=https%3a%2f%2ffijisun.com.fj%2fsports%2frugby%2ffiji-deaf-rugby-teams-need-up-to-70k-for-japan-world-championship&c=15116967977743878368&mkt=en-us",
+     "score": 2.5,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "How Fiji’s historic Rugby World Cup victory left Australia facing the prospect of early elimination",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac947edd31a4df889f848c20eb44f6f&url=https%3a%2f%2fwww.cnn.com%2f2023%2f09%2f18%2fsport%2ffiji-australia-rugby-world-cup-spt-intl&c=11727853525055730916&mkt=en-us",
+     "score": 1.9,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Fiji part with coach Byrne 18 months before Rugby World Cup",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac947edd31a4df889f848c20eb44f6f&url=https%3a%2f%2fwww.rfi.fr%2fen%2fsports%2f20260401-fiji-part-with-coach-byrne-18-months-before-rugby-world-cup&c=2205298483197145427&mkt=en-us",
+     "score": 1.8,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "FUNDING CRISIS",
+       "heading": "Manager Lionel Danford appeals for funds to save deaf sevens campaign",
+       "body": "The Fiji men’s and women’s deaf rugby sevens teams are facing a major financial hurdle ahead of the upcoming World Deaf Rugby Sevens Championship in Tokyo. Team manager Lionel Danford revealed a funding gap of up to $70,000 remains for daily expenses and camp preparations, despite valuable kit sponsorship from PacificAus Sports. Many of the squad's players are currently unemployed and must cover their own transport costs to Sigatoka. Despite these hardships, preparations continue, including a crucial scrimmage session scheduled against Osea Kolinisau’s national sevens side."
+      }
+     ],
+     "lead": {
+      "candidate": 3,
+      "why": "The Fiji deaf rugby sevens teams are facing a critical funding shortage of up to $70,000 for their upcoming World Championship in Japan."
+     }
+    },
+    "firstCheck": {
+     "verdict": "pass",
+     "materialIssues": 0
+    },
+    "revisions": 0,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "FUNDING CRISIS",
+       "heading": "Manager Lionel Danford appeals for funds to save deaf sevens campaign",
+       "body": "The Fiji men’s and women’s deaf rugby sevens teams are facing a major financial hurdle ahead of the upcoming World Deaf Rugby Sevens Championship in Tokyo. Team manager Lionel Danford revealed a funding gap of up to $70,000 remains for daily expenses and camp preparations, despite valuable kit sponsorship from PacificAus Sports. Many of the squad's players are currently unemployed and must cover their own transport costs to Sigatoka. Despite these hardships, preparations continue, including a crucial scrimmage session scheduled against Osea Kolinisau’s national sevens side."
+      }
+     ],
+     "lead": {
+      "candidate": 3,
+      "why": "The Fiji deaf rugby sevens teams are facing a critical funding shortage of up to $70,000 for their upcoming World Championship in Japan."
+     }
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Deaf rugby funding",
+       "heading": "Lionel Danford flags $70,000 gap for Fiji deaf rugby sevens",
+       "body": "Fiji's men's and women's deaf rugby sevens teams need up to $70,000 before the World Deaf Rugby Sevens Championship in Tokyo, October 31-November 3. Manager Lionel Danford says funding from the Fiji National Sports Commission and Australia's PacificAus Sports programme has helped, but many unemployed players still cover their own travel to training. Despite a tough draw featuring defending champions Wales, Danford says the squad is preparing 'as much as any national rugby team prepares for a tournament.'"
+      }
+     ],
+     "lead": {
+      "candidate": 3,
+      "why": "The only genuinely textured, sourced story in today's pack beyond the already-covered Coca-Cola tie-up and coaching saga."
+     }
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 10,
+     "body": 78
+    },
+    "sameLeadAsProductionFirstDraft": true,
+    "usage": {
+     "input": 9064,
+     "output": 8856,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.10669,
+    "seconds": 90.3,
+    "attempts": 1
+   }
+  },
+  {
+   "teamId": 386,
+   "team": "England",
+   "promptSha256": "d1d8f44227694d5f3eabaa0c75e5b64ced0ec67178a05fd4106f9570a66a8493",
+   "promptMatchesProduction": true,
+   "promptChars": 24593,
+   "quiet": false,
+   "rung": "news",
+   "ladder": null,
+   "shortlist": [
+    {
+     "title": "In-form Carpenter aims to advance England case by outshining Furbank",
+     "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c615jzgej9zko?at_medium=RSS&at_campaign=rss",
+     "score": 27.9,
+     "corroboration": 1,
+     "outlets": [
+      "bbc"
+     ]
+    },
+    {
+     "title": "England rugby player Emeka Ilione completes medical degree while playing for Leicester Tigers",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac9488f4e554d90b8a72741504d1828&url=https%3a%2f%2fwww.msn.com%2fen-xl%2fmoney%2fgeneral%2fengland-rugby-player-emeka-ilione-completes-medical-degree-while-playing-for-leicester-tigers%2far-AA2dV0fy&c=9809398698602297065&mkt=en-us",
+     "score": 24.8,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "England duo 'on track' for injury return as Harlequins boss issues fresh injury update",
+     "link": "https://www.planetrugby.com/news/england-duo-on-track-for-injury-return-as-harlequins-boss-issues-fresh-injury-update",
+     "score": 17.9,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    },
+    {
+     "title": "Borthwick’s England reign remains full of contradictions with World Cup a year away",
+     "link": "https://www.theguardian.com/sport/2026/oct/01/borthwicks-england-reign-remains-full-of-contradictions-with-world-cup-a-year-away",
+     "score": 2.1,
+     "corroboration": 1,
+     "outlets": [
+      "guardian"
+     ]
+    },
+    {
+     "title": "‘They said I ran away from rucks’: Emmanuel Iyogun on going from reluctant prop to England debut",
+     "link": "https://www.theguardian.com/sport/2026/oct/02/they-said-i-ran-away-from-rucks-emmanuel-iyogun-on-going-from-reluctant-prop-to-england-debut",
+     "score": 1.2,
+     "corroboration": 1,
+     "outlets": [
+      "guardian"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Selection duel",
+       "heading": "Joe Carpenter targets George Furbank Premiership duel for England squad recall",
+       "body": "Sale Sharks full-back Joe Carpenter is targeting Sunday’s Premiership clash with Harlequins to outshine George Furbank and force his way back into Steve Borthwick’s plans. The Sale man has not featured for England since earning his sole cap in 2025, but his form has surged following a full pre-season. Only Immanuel Feyi-Waboso has beaten more defenders in the opening rounds of the domestic season, and Carpenter believes back-to-back performances will \"put me in the best position to hopefully get involved come November.\""
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "It highlights a direct selection narrative between a high-performing challenger and the incumbent England full-back ahead of the November international window."
+     }
+    },
+    "firstCheck": {
+     "verdict": "pass",
+     "materialIssues": 0
+    },
+    "revisions": 0,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Selection duel",
+       "heading": "Joe Carpenter targets George Furbank Premiership duel for England squad recall",
+       "body": "Sale Sharks full-back Joe Carpenter is targeting Sunday’s Premiership clash with Harlequins to outshine George Furbank and force his way back into Steve Borthwick’s plans. The Sale man has not featured for England since earning his sole cap in 2025, but his form has surged following a full pre-season. Only Immanuel Feyi-Waboso has beaten more defenders in the opening rounds of the domestic season, and Carpenter believes back-to-back performances will \"put me in the best position to hopefully get involved come November.\""
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "It highlights a direct selection narrative between a high-performing challenger and the incumbent England full-back ahead of the November international window."
+     },
+     "source": {
+      "name": "BBC Rugby Union"
+     }
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Full-back battle",
+       "heading": "Joe Carpenter eyes George Furbank duel to boost England full-back case",
+       "body": "Joe Carpenter admits outshining George Furbank at Sale on Sunday would boost his November prospects, having beaten more defenders than all but Exeter's Immanuel Feyi-Waboso in the Premiership. The Sale full-back has not played for England since his lone cap against the United States in July 2025, but a full pre-season has sharpened his game. \"I'm just probably outside the mix at the moment but having back-to-back performances and playing as well as possible will definitely put me in the best position to hopefully get involved come November,\" he said."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "It's the freshest, most detailed story with genuine England selection stakes ahead of November, not just a repeat beat."
+     }
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 11,
+     "body": 90
+    },
+    "sameLeadAsProductionFirstDraft": true,
+    "usage": {
+     "input": 8915,
+     "output": 3020,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.04803,
+    "seconds": 24.8,
+    "attempts": 1
+   }
+  },
+  {
+   "teamId": 387,
+   "team": "France",
+   "promptSha256": "807c86f157246892844f80f58df308019648dbf51ba250346f4bfd706947ceb0",
+   "promptMatchesProduction": true,
+   "promptChars": 23807,
+   "quiet": true,
+   "rung": "storyline",
+   "ladder": {
+    "rung": "storyline",
+    "freshCount": 1,
+    "storyline": {
+     "subject": "Toulon's search for a new director of rugby",
+     "resolution": "until Toulon appoints a successor to Pierre Mignoni"
+    }
+   },
+   "shortlist": [
+    {
+     "title": "France are ready to join Springboks, All Blacks, as rugby's third superpower",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac9492dd7be4a238259b72cf693277d&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2ffrance-are-ready-to-join-springboks-all-blacks-as-rugbys-third-superpower%2far-AA2dF8ss&c=5455801327421648325&mkt=en-us",
+     "score": 6.8,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "England greats snub Super Rugby teams in top 10 list as 'whole package' French outfit claim bragging rights",
+     "link": "https://www.planetrugby.com/news/england-greats-snub-super-rugby-teams-in-top-10-list-as-whole-package-french-outfit-claim-bragging-rights",
+     "score": 6.5,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    },
+    {
+     "title": "From France to Old Reigatians: the most inspiring sides in rugby history",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac9492dd7be4a238259b72cf693277d&url=https%3a%2f%2fwww.theguardian.com%2fsport%2f2026%2foct%2f06%2fold-reigatians-sherborne-school-1st-xv-inspiring-rugby-union-teams-france-australia-fiji-barbarians&c=3924359016800169408&mkt=en-us",
+     "score": 4.6,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "France rugby fixtures and 2026 schedule in the Nations Championship",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac9492dd7be4a238259b72cf693277d&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2fother%2ffrance-rugby-fixtures-and-2026-schedule-in-the-nations-championship%2far-AA272PFA&c=8594583698313607746&mkt=en-us",
+     "score": 1.8,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "France Rugby vs. All Blacks: 5 Things To Know Before July 4",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac9492dd7be4a238259b72cf693277d&url=https%3a%2f%2fsports.yahoo.com%2farticles%2ffrance-rugby-vs-blacks-5-155714602.html&c=15569828522918392772&mkt=en-us",
+     "score": 1.7,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Club vacancy",
+       "heading": "Toulon begin search for new director after Pierre Mignoni's abrupt exit",
+       "body": "Toulon are still without a director of rugby following Pierre Mignoni’s sudden resignation earlier this week. Mignoni departed the Top 14 giants after a series of frustrations, reportedly accusing his players of not “behaving like competitors.” While the club’s leadership prioritises a swift appointment to restore order, no definitive successor has emerged in today’s reports. The vacancy remains the primary focus in the French domestic landscape as the national side prepares for the upcoming November internationals."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "Develops the ongoing story of Pierre Mignoni's exit from Toulon as the club begins its search for a successor."
+     }
+    },
+    "firstCheck": {
+     "verdict": "pass",
+     "materialIssues": 0
+    },
+    "revisions": 0,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Club vacancy",
+       "heading": "Toulon begin search for new director after Pierre Mignoni's abrupt exit",
+       "body": "Toulon are still without a director of rugby following Pierre Mignoni’s sudden resignation earlier this week. Mignoni departed the Top 14 giants after a series of frustrations, reportedly accusing his players of not “behaving like competitors.” While the club’s leadership prioritises a swift appointment to restore order, no definitive successor has emerged in today’s reports. The vacancy remains the primary focus in the French domestic landscape as the national side prepares for the upcoming November internationals."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "Develops the ongoing story of Pierre Mignoni's exit from Toulon as the club begins its search for a successor."
+     },
+     "source": {
+      "name": "Planet Rugby"
+     },
+     "rung": "storyline"
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Toulon vacancy",
+       "heading": "Toulon still searching for a new head coach after Mignoni's shock exit",
+       "body": "Toulon remain without a director of rugby three days after Pierre Mignoni's abrupt departure, with no successor yet named. Mignoni quit having accused his players of not \"behaving like competitors\" as results slipped. Today's search turns up nothing beyond that original account — no shortlist, no interim appointment, no fresh comment from the Toulon board — leaving one of the Top 14's leading jobs unfilled heading into the next round of fixtures."
+      }
+     ]
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 12,
+     "body": 72
+    },
+    "sameLeadAsProductionFirstDraft": null,
+    "usage": {
+     "input": 8877,
+     "output": 2090,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.03865,
+    "seconds": 22,
+    "attempts": 1
+   }
+  },
+  {
+   "teamId": 388,
+   "team": "Ireland",
+   "promptSha256": "35c0b2400ff196a62c0b05a77c22ea2636533b835852336a8069a9d6e7947c05",
+   "promptMatchesProduction": true,
+   "promptChars": 21477,
+   "quiet": false,
+   "rung": "news",
+   "ladder": null,
+   "shortlist": [
+    {
+     "title": "Ex-Ireland coach’s verdict on World Rugby’s ‘striking feature’ problem after Leinster ‘taken to the woodshed’",
+     "link": "https://www.planetrugby.com/news/ex-ireland-coachs-verdict-on-world-rugbys-striking-feature-problem-after-leinster-taken-to-the-woodshed",
+     "score": 37.4,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    },
+    {
+     "title": "Wafer ruled out of Ireland's South Africa Tests",
+     "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwkg50ng5mk3o?at_medium=RSS&at_campaign=rss",
+     "score": 25.5,
+     "corroboration": 1,
+     "outlets": [
+      "bbc"
+     ]
+    },
+    {
+     "title": "Ireland rugby legends take time out with wives for San Sebastian group trip",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94958e53e45b7b29ea116641a2b08&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fnews%2fother%2fireland-rugby-legends-take-time-out-with-wives-for-san-sebastian-group-trip%2far-AA2dUELV&c=12315599184695438018&mkt=en-us",
+     "score": 23.5,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Ireland rugby legends and WAGs enjoy weekend trip away",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94958e53e45b7b29ea116641a2b08&url=https%3a%2f%2fwww.msn.com%2fen-ie%2fnews%2fother%2fireland-rugby-legends-and-wags-enjoy-weekend-trip-away%2far-AA2dO1jg&c=12344984378962849853&mkt=en-us",
+     "score": 11.4,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "NZ Rugby CEO: All Blacks and British &#038; Irish Lions want to 'maximise revenue' but a Test in Australia is 'not acceptable'",
+     "link": "https://www.planetrugby.com/news/new-zealand-rugby-ceo-on-2029-british-and-irish-lions-tour",
+     "score": 8.4,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Scrum scrutiny",
+       "heading": "Eddie O’Sullivan warns Andy Farrell after Leinster’s international front-row scrum struggles",
+       "body": "Former head coach Eddie O’Sullivan has flagged South Africa’s \"frightening\" scrum dominance as a major concern for Andy Farrell ahead of the autumn internationals. Following Leinster’s recent 26-20 defeat to the Sharks, where a Test-strength front-row including Andrew Porter and Ronan Kelleher conceded eight scrum penalties, O’Sullivan suggested the Springboks’ physical power is becoming a problem for World Rugby. While acknowledging the challenge is not unique to Ireland, he noted that South Africa \"take you to the woodshed\" through sheer physical attrition."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "Former head coach Eddie O'Sullivan's warning about scrum dominance addresses a significant tactical concern for Ireland’s front-row ahead of the autumn Tests."
+     }
+    },
+    "firstCheck": {
+     "verdict": "pass",
+     "materialIssues": 0
+    },
+    "revisions": 0,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Scrum scrutiny",
+       "heading": "Eddie O’Sullivan warns Andy Farrell after Leinster’s international front-row scrum struggles",
+       "body": "Former head coach Eddie O’Sullivan has flagged South Africa’s \"frightening\" scrum dominance as a major concern for Andy Farrell ahead of the autumn internationals. Following Leinster’s recent 26-20 defeat to the Sharks, where a Test-strength front-row including Andrew Porter and Ronan Kelleher conceded eight scrum penalties, O’Sullivan suggested the Springboks’ physical power is becoming a problem for World Rugby. While acknowledging the challenge is not unique to Ireland, he noted that South Africa \"take you to the woodshed\" through sheer physical attrition."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "Former head coach Eddie O'Sullivan's warning about scrum dominance addresses a significant tactical concern for Ireland’s front-row ahead of the autumn Tests."
+     },
+     "source": {
+      "name": "Planet Rugby"
+     }
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Scrum worry",
+       "heading": "Eddie O'Sullivan warns Ireland's scrum faces 'almost unbeatable' Springbok power",
+       "body": "Eddie O'Sullivan says the Springboks have become 'almost unbeatable' at scrum time, a worry for Andy Farrell before Ireland host them again this autumn. The former Ireland coach's comments follow a bruising week for Leinster's Test front-row of Andrew Porter, Ronan Kelleher and Thomas Clarkson, beaten up at scrum time by the Sharks in Durban — eight scrum penalties conceded and Clarkson sin-binned. It echoes last year's Aviva Test, when Porter and Paddy McCarthy were both yellow-carded for scrum infringements against South Africa."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "Freshest, highest-scoring story and the only genuine men's Ireland angle — a direct read on Farrell's autumn scrum worries."
+     }
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 10,
+     "body": 83
+    },
+    "sameLeadAsProductionFirstDraft": true,
+    "usage": {
+     "input": 8404,
+     "output": 2935,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.04616,
+    "seconds": 28.5,
+    "attempts": 1
+   }
+  },
+  {
+   "teamId": 389,
+   "team": "Italy",
+   "promptSha256": "ff5af77704f5cb08781772866bed846867280ce41be94f7ecdd2e20ee32b33d3",
+   "promptMatchesProduction": true,
+   "promptChars": 21942,
+   "quiet": true,
+   "rung": "data",
+   "ladder": {
+    "rung": "data",
+    "angle": "lastMeeting"
+   },
+   "shortlist": [
+    {
+     "title": "Italy-South Africa: top-level rugby returns to the Allianz Stadium",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac949895275428c80a8f10bc73e5ae3&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fitaly-south-africa-top-level-130600042.html&c=18274207188734793674&mkt=en-us",
+     "score": 1.8,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Lucas Bianchi completes move from Super Rugby Americas to Italy",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac949895275428c80a8f10bc73e5ae3&url=https%3a%2f%2fwww.americasrugbynews.com%2f2026%2f09%2f26%2flucas-bianchi-completes-move-from-super-rugby-americas-to-italy%2f&c=7123619389058776883&mkt=en-us",
+     "score": 0.9,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Live updates: Ireland vs. Italy rugby | Six Nations 2026 fixtures & news",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac949895275428c80a8f10bc73e5ae3&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2fother%2flive-updates-ireland-vs-italy-rugby-six-nations-2026-fixtures-news%2far-AA1Wltbv&c=2414292079344871327&mkt=en-us",
+     "score": 0.7,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Japan vs. Italy Rugby: 5 Things To Know Before July 4",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac949895275428c80a8f10bc73e5ae3&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fjapan-vs-italy-rugby-5-155253332.html&c=739684827427460088&mkt=en-us",
+     "score": 0.6,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "PREVIOUS ENCOUNTER",
+       "heading": "Italy face South Africa in Turin following previous home defeat",
+       "body": "Italy lost 32-14 to South Africa in the most recent meeting between the sides at home in November 2025. The Azzurri currently sit 11th in the Nations Championship log after three rounds of play. Gonzalo Quesada’s squad returns to home soil for the first time in the competition for this Round 4 fixture following a 57-10 defeat against Australia in Round 3. Italy have yet to record a victory in the tournament and currently carry a points difference of -94."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "The fixture marks Italy's return to Turin for a rematch of their 2025 meeting with the Springboks."
+     },
+     "match": {
+      "venue": "Allianz Stadium, Turin"
+     }
+    },
+    "firstCheck": {
+     "verdict": "pass",
+     "materialIssues": 0
+    },
+    "revisions": 0,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "PREVIOUS ENCOUNTER",
+       "heading": "Italy face South Africa in Turin following previous home defeat",
+       "body": "Italy lost 32-14 to South Africa in the most recent meeting between the sides at home in November 2025. The Azzurri currently sit 11th in the Nations Championship log after three rounds of play. Gonzalo Quesada’s squad returns to home soil for the first time in the competition for this Round 4 fixture following a 57-10 defeat against Australia in Round 3. Italy have yet to record a victory in the tournament and currently carry a points difference of -94."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "The fixture marks Italy's return to Turin for a rematch of their 2025 meeting with the Springboks."
+     },
+     "match": {
+      "venue": "Allianz Stadium, Turin"
+     },
+     "rung": "data"
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Last meeting",
+       "heading": "Italy lost to South Africa 32-14 in last home meeting",
+       "body": "Italy's most recent meeting with South Africa ended in a 32-14 defeat at home, in November 2025, as part of that year's International Friendlies. That result stands as the two sides' most recent head-to-head fixture ahead of November's return meeting. The scoreline is the only data point available from that match; no wider pattern across other meetings is indicated in today's figures."
+      }
+     ]
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 10,
+     "body": 62
+    },
+    "sameLeadAsProductionFirstDraft": null,
+    "usage": {
+     "input": 8476,
+     "output": 1643,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.03338,
+    "seconds": 14.9,
+    "attempts": 1
+   }
+  },
+  {
+   "teamId": 390,
+   "team": "Scotland",
+   "promptSha256": "a0c45d6c2da2e9c2ad2c903ee96958909ba4647d47284e80b40579304e6ba826",
+   "promptMatchesProduction": true,
+   "promptChars": 24088,
+   "quiet": true,
+   "rung": "storyline",
+   "ladder": {
+    "rung": "storyline",
+    "freshCount": 2,
+    "storyline": {
+     "subject": "The legal dispute over brain injuries in rugby union",
+     "resolution": "until the claimants settle their legal fees to allow the case to proceed"
+    }
+   },
+   "shortlist": [
+    {
+     "title": "Scottish Rugby and Macron launch The Archive Collection",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac949dcd602455bacef377ff3ace430&url=https%3a%2f%2fscottishrugby.org%2fnews-and-features%2fscottish-rugby-and-macron-launch-the-archive-collection%2f&c=14161798415618661660&mkt=en-us",
+     "score": 19.5,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "'Would love to play Test rugby': Scotland have a new full-back option from next month",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac949dcd602455bacef377ff3ace430&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fnews%2fother%2fwould-love-to-play-test-rugby-scotland-have-a-new-full-back-option-from-next-month%2far-AA2dQqa7&c=10040075768171513809&mkt=en-us",
+     "score": 10.1,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Scotland legend’s son could switch allegiance to England after transfer development",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac949dcd602455bacef377ff3ace430&url=https%3a%2f%2fwww.ruck.co.uk%2frugby-transfer-news%2fscotland-legends-son-could-switch-allegiance-to-england-after-transfer-development&c=12610822440615904078&mkt=en-us",
+     "score": 2,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Scotland vs. England rugby Six Nations 2026 lineups kickoff time",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac949dcd602455bacef377ff3ace430&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2fother%2fscotland-vs-england-rugby-six-nations-2026-lineups-kickoff-time%2far-AA1WivH8&c=15355365349352975880&mkt=en-us",
+     "score": 1.7,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "McKay for Scotland? Edinburgh's injury jinx - your questions answered",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac949dcd602455bacef377ff3ace430&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fmckay-scotland-edinburghs-injury-jinx-085733877.html&c=14053780090211890939&mkt=en-us",
+     "score": 1.6,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "LEGAL DISPUTE",
+       "heading": "Scottish Rugby faces continued legal uncertainty over stalled concussion lawsuit",
+       "body": "The legal challenge regarding brain injuries in rugby union remains in a state of uncertainty as claimants navigate a multi-million-pound financial hurdle. Although former players won a significant court battle in August to prevent World Rugby and Scottish Rugby from having the case thrown out, the litigation is currently hindered by a £2.8 million bill for legal costs. This impasse must be resolved before the group, which includes several former internationals, can proceed with their pursuit of damages for neurological conditions."
+      }
+     ]
+    },
+    "firstCheck": {
+     "verdict": "pass",
+     "materialIssues": 0
+    },
+    "revisions": 0,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "LEGAL DISPUTE",
+       "heading": "Scottish Rugby faces continued legal uncertainty over stalled concussion lawsuit",
+       "body": "The legal challenge regarding brain injuries in rugby union remains in a state of uncertainty as claimants navigate a multi-million-pound financial hurdle. Although former players won a significant court battle in August to prevent World Rugby and Scottish Rugby from having the case thrown out, the litigation is currently hindered by a £2.8 million bill for legal costs. This impasse must be resolved before the group, which includes several former internationals, can proceed with their pursuit of damages for neurological conditions."
+      }
+     ],
+     "source": {
+      "name": "Guardian Rugby Union"
+     },
+     "rung": "storyline"
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Brain injury case",
+       "heading": "Scottish Rugby concussion case remains stalled over unpaid legal fees",
+       "body": "The group lawsuit brought by ex-players against World Rugby, the WRU, the RFU and Scottish Rugby remains unresolved. Claimants won a court battle in August, when judges refused to throw the case out, but the action stalled again this week: the Guardian reported earlier this week that hundreds of claimants face a £2.8m legal bill, with no resolution reported since. The case stays open only if that fee is settled — for now, there's no word on when, or whether, it will be."
+      }
+     ]
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 10,
+     "body": 83
+    },
+    "sameLeadAsProductionFirstDraft": null,
+    "usage": {
+     "input": 8956,
+     "output": 3733,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.05524,
+    "seconds": 38.9,
+    "attempts": 1
+   }
+  },
+  {
+   "teamId": 391,
+   "team": "Wales",
+   "promptSha256": "61db9c3c2ea9f28bbef0b59e92c2ff02d1efdf7fcfc570cab24fc77f8127e7b1",
+   "promptMatchesProduction": true,
+   "promptChars": 21682,
+   "quiet": false,
+   "rung": "news",
+   "ladder": null,
+   "shortlist": [
+    {
+     "title": "WRU publishes data on why west Wales team will be cut",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94ad43a5e4fb281958e957617db67&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fwru-publishes-data-why-west-152344899.html&c=11977886423579686601&mkt=en-us",
+     "score": 18.9,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Coach in no doubt over talent's Wales chances and Pollock makes switch",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94ad43a5e4fb281958e957617db67&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fsport%2frugby%2fcoach-in-no-doubt-over-talent-s-wales-chances-and-pollock-makes-switch%2far-AA2dURwN&c=16538930787782199418&mkt=en-us",
+     "score": 18.7,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Wales head coach left buzzing and England star stood down after worrying incident",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94ad43a5e4fb281958e957617db67&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fsport%2frugby%2fwales-head-coach-left-buzzing-and-england-star-stood-down-after-worrying-incident%2far-AA2dSeKV&c=16261539875593084934&mkt=en-us",
+     "score": 18.4,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "‘Rugby’s in people’s blood here’: mutiny rising in west Wales as Scarlets fight WRU plan",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94ad43a5e4fb281958e957617db67&url=https%3a%2f%2fwww.theguardian.com%2fsport%2f2026%2fsep%2f28%2fwelsh-rugby-union-mutiny-west-wales-scarlets-ospreys-fight-wru-plan&c=1921154313111501376&mkt=en-us",
+     "score": 22.8,
+     "corroboration": 2,
+     "outlets": [
+      "guardian",
+      "search"
+     ]
+    },
+    {
+     "title": "Wallabies star set for URC debut while Tonga international among three changes for Welsh side",
+     "link": "https://www.planetrugby.com/news/wallabies-star-set-for-urc-debut-while-tonga-international-among-three-changes-for-welsh-side",
+     "score": 14.1,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "REGIONAL CULL",
+       "heading": "Welsh Rugby Union publishes report justifying the 2028 West Wales professional cull",
+       "body": "The Welsh Rugby Union has released the 68-page Keystone report detailing the evidence used to decide that only one professional team will represent West Wales from 2028. With Cardiff and the Dragons already granted capital and east licences, the Ospreys and Scarlets must now compete for the remaining slot. Union bosses maintain that funding cannot support four professional sides beyond the 2027-28 season. A final decision on which of the two historic west-Wales clubs will be culled is expected in June 2027."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "The release of the Keystone report provides the official institutional evidence and data justification for the upcoming reduction of Wales' professional regions."
+     }
+    },
+    "firstCheck": {
+     "verdict": "pass",
+     "materialIssues": 0
+    },
+    "revisions": 0,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "REGIONAL CULL",
+       "heading": "Welsh Rugby Union publishes report justifying the 2028 West Wales professional cull",
+       "body": "The Welsh Rugby Union has released the 68-page Keystone report detailing the evidence used to decide that only one professional team will represent West Wales from 2028. With Cardiff and the Dragons already granted capital and east licences, the Ospreys and Scarlets must now compete for the remaining slot. Union bosses maintain that funding cannot support four professional sides beyond the 2027-28 season. A final decision on which of the two historic west-Wales clubs will be culled is expected in June 2027."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "The release of the Keystone report provides the official institutional evidence and data justification for the upcoming reduction of Wales' professional regions."
+     }
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Regional cull row",
+       "heading": "WRU publishes data behind axing one of Scarlets or Ospreys",
+       "body": "The WRU has published the evidence behind its plan to cut one of Wales's four regional sides by 2028, confirming Cardiff and Dragons keep the capital and east licences while Scarlets and Ospreys fight for the sole west Wales spot. The 68-page Keystone report underpins the call to go from four professional sides to three, citing insufficient funding beyond 2028. A final decision is due in June 2027, with former captain Jonathan Davies among those who have called for the WRU board to resign over the plan."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "Highest-corroborated institutional story today — the WRU's own evidence for cutting a regional side outweighs routine club or injury items."
+     }
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 10,
+     "body": 87
+    },
+    "sameLeadAsProductionFirstDraft": true,
+    "usage": {
+     "input": 8218,
+     "output": 2412,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.04056,
+    "seconds": 25.6,
+    "attempts": 1
+   }
+  },
+  {
+   "teamId": 460,
+   "team": "Argentina",
+   "promptSha256": "7028bbe3554e71159e56e48fbfed12614254bacfc22bd4c5738d7ecfbfa54288",
+   "promptMatchesProduction": true,
+   "promptChars": 21428,
+   "quiet": false,
+   "rung": "news",
+   "ladder": null,
+   "shortlist": [
+    {
+     "title": "Contepomi bolsters Los Pumas backroom",
+     "link": "https://www.sarugbymag.co.za/contepomi-bolsters-los-pumas-backroom/",
+     "score": 34,
+     "corroboration": 1,
+     "outlets": [
+      "sarugbymag"
+     ]
+    },
+    {
+     "title": "Edwards joins Argentina as defence coach",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94b04876c419ba72a6625de2b86aa&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2frugby%2fedwards-joins-argentina-as-defence-coach%2far-AA2dUHZO&c=4733773652830354812&mkt=en-us",
+     "score": 24.3,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Argentina snap up defence guru Edwards ahead of World Cup",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94b04876c419ba72a6625de2b86aa&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fargentina-snap-up-defence-guru-edwards-ahead-of-world-cup%2far-AA2dU5SE&c=13961398475360172944&mkt=en-us",
+     "score": 23.4,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Argentina spearheads ambitious South American 2035 Rugby World Cup bid",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94b04876c419ba72a6625de2b86aa&url=https%3a%2f%2fwww.kickoff.com%2frugby%2finternational-news%2fargentina-leads-four-nation-bid-for-2035-rugby-world-cup&c=14736084612504587584&mkt=en-us",
+     "score": 4,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Argentina and Region Present Candidacy to Host Rugby World Cup 2035",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94b04876c419ba72a6625de2b86aa&url=https%3a%2f%2fwww.americasrugbynews.com%2f2026%2f10%2f05%2fargentina-and-region-present-candidacy-to-host-rugby-world-cup-2035%2f&c=13639445037708124096&mkt=en-us",
+     "score": 3.5,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "COACHING COUP",
+       "heading": "Felipe Contepomi recruits Shaun Edwards and Mario Ledesma to backroom team",
+       "body": "Argentina head coach Felipe Contepomi has bolstered his support staff ahead of the Nations Championship resumption by recruiting Shaun Edwards and Mario Ledesma. Edwards, the renowned defence guru who helped France to three Six Nations titles, joins through to the 2027 World Cup. He is joined by former Pumas head coach Ledesma, who returns as forwards coach after four years away. Contepomi noted the pair bring “enormous international experience” to the squad before next month’s test against Ireland in Dublin."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "The recruitment of a world-renowned defence coach and a former head coach represents a major strategic upgrade for the national coaching staff."
+     },
+     "match": {
+      "venue": "Dublin"
+     }
+    },
+    "firstCheck": {
+     "verdict": "pass",
+     "materialIssues": 0
+    },
+    "revisions": 0,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "COACHING COUP",
+       "heading": "Felipe Contepomi recruits Shaun Edwards and Mario Ledesma to backroom team",
+       "body": "Argentina head coach Felipe Contepomi has bolstered his support staff ahead of the Nations Championship resumption by recruiting Shaun Edwards and Mario Ledesma. Edwards, the renowned defence guru who helped France to three Six Nations titles, joins through to the 2027 World Cup. He is joined by former Pumas head coach Ledesma, who returns as forwards coach after four years away. Contepomi noted the pair bring “enormous international experience” to the squad before next month’s test against Ireland in Dublin."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "The recruitment of a world-renowned defence coach and a former head coach represents a major strategic upgrade for the national coaching staff."
+     },
+     "match": {
+      "venue": "Dublin"
+     },
+     "source": {
+      "name": "SA Rugby Magazine"
+     }
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Backroom boost",
+       "heading": "Contepomi recruits Shaun Edwards and Mario Ledesma for Pumas",
+       "body": "Felipe Contepomi has strengthened his staff through to the end of the 2027 World Cup, bringing in Shaun Edwards as defence coach and reinstalling Mario Ledesma, Argentina's head coach from 2018 to 2022, as forwards coach. Edwards arrives off seven years with France, where he helped them win three Six Nations titles. \"Mario and Shaun arrive at Los Pumas with enormous international experience,\" Contepomi said, with both set to join the camp before the Nations Championship resumes against Ireland."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "A concrete coaching appointment — Edwards and Ledesma both arriving ahead of the Ireland test — outweighs the already-reported bid story and yesterday's match post-mortem."
+     }
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 9,
+     "body": 79
+    },
+    "sameLeadAsProductionFirstDraft": true,
+    "usage": {
+     "input": 8252,
+     "output": 709,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.02359,
+    "seconds": 7.2,
+    "attempts": 1
+   }
+  },
+  {
+   "teamId": 461,
+   "team": "Australia",
+   "promptSha256": "065a7bb6c42229878c124f5a6469f56ce6965f5dc4182848d5eda9e4c78c530f",
+   "promptMatchesProduction": true,
+   "promptChars": 27716,
+   "quiet": false,
+   "rung": "news",
+   "ladder": null,
+   "shortlist": [
+    {
+     "title": "Wallabies stare down Eden Park hoodoo in bid to break 23-year Bledisloe Cup drought | Jack Snape",
+     "link": "https://www.theguardian.com/sport/2026/oct/09/wallabies-bledisloe-cup-eden-park-drought-23-years",
+     "score": 42,
+     "corroboration": 1,
+     "outlets": [
+      "guardian"
+     ]
+    },
+    {
+     "title": "Wallabies: The 'Bermuda Triangle' challenge facing 'big body' Joseph Suaalii on the Eden Park wing",
+     "link": "https://www.planetrugby.com/news/wallabies-the-bermuda-triangle-challenge-facing-big-body-joseph-suaalii-on-the-eden-park-wing",
+     "score": 30,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    },
+    {
+     "title": "Justin Marshall baffled by 'real melon scratcher' All Blacks selection and predicts Wallabies won't create history",
+     "link": "https://www.planetrugby.com/news/justin-marshall-baffled-by-real-melon-scratcher-all-blacks-selection-and-predicts-wallabies-wont-create-history",
+     "score": 18.2,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    },
+    {
+     "title": "Harry Wilson explains the ‘really good pictures’ Rugby’s Greatest Rivalry painted for the Wallabies",
+     "link": "https://www.planetrugby.com/news/harry-wilson-explains-the-really-good-pictures-rugbys-greatest-rivalry-painted-for-the-wallabies",
+     "score": 14.1,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    },
+    {
+     "title": "Gloucester-Hartpury sign Australia prop O'Gorman",
+     "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmly0vzz1x3eo?at_medium=RSS&at_campaign=rss",
+     "score": 13.4,
+     "corroboration": 1,
+     "outlets": [
+      "bbc"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Selection call",
+       "heading": "Les Kiss replaces suspended Hunter Paisami with Isaac Henry for Auckland Test",
+       "body": "Les Kiss has drafted Isaac Henry into the midfield for Saturday’s Bledisloe Cup opener at Eden Park, replacing the suspended Hunter Paisami. It is the sole change to the starting XV as the Wallabies attempt to end a 40-year winless run at the venue. Kiss described the Auckland ground as a \"bloody cool stadium to play at\" but warned it can suffocate teams who are not ready. Captain Harry Wilson says the squad is drawing confidence from last year's victory at Ellis Park."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "It covers the only personnel change for the crucial Bledisloe Cup clash at Eden Park."
+     },
+     "match": {
+      "venue": "Eden Park, Auckland"
+     }
+    },
+    "firstCheck": {
+     "verdict": "fail",
+     "materialIssues": 1
+    },
+    "revisions": 1,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Bledisloe Cup",
+       "heading": "Australia look to break 23-year Eden Park hoodoo against All Blacks",
+       "body": "The Wallabies face the daunting task of ending a winless run at Eden Park that stretches back to 1986. While the venue remains a fortress where the All Blacks are unbeaten since 1994, coach Les Kiss has maintained consistency, making only one change to his starting side as Isaac Henry replaces the suspended Hunter Paisami. Reflecting on the challenge, Kiss noted: “It’s got its own sense of atmosphere, that really can envelope you and it can suffocate you if you’re not ready.”"
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "It is the primary narrative in the rugby press today regarding Australia's immediate objective at Eden Park."
+     },
+     "source": {
+      "name": "Guardian Rugby Union"
+     }
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "EDEN PARK DROUGHT",
+       "heading": "Les Kiss eyes end to 40-year Eden Park Bledisloe Cup drought",
+       "body": "The All Blacks are Les Kiss's sternest test yet — Australia haven't beaten them at Eden Park since 1986, and the hosts are unbeaten there in 53 Tests stretching back to 1994. Kiss, chasing a breakthrough in Saturday's Bledisloe Cup opener, admits the ground \"can suffocate you if you're not ready.\" New Zealand arrive with selection headaches of their own: fly-half Richie Mo'unga is out with a calf complaint, Ruben Love's season is over after ankle surgery, Damian McKenzie moves to No. 10, and Beauden Barrett returns at full-back."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "Highest-scored story with genuine new team news — the All Blacks' injury-forced reshuffle — layered onto the Eden Park drought angle, distinct from yesterday's Suaalii wing story."
+     },
+     "match": {
+      "venue": "Eden Park, Auckland"
+     }
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 11,
+     "body": 89
+    },
+    "sameLeadAsProductionFirstDraft": true,
+    "usage": {
+     "input": 10294,
+     "output": 5323,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.07382,
+    "seconds": 56.3,
+    "attempts": 1
+   }
+  },
+  {
+   "teamId": 463,
+   "team": "Japan",
+   "promptSha256": "f5d302fa3cd01bd249d66c62dd1c90ab2929a2be7ac2176e45801c72e519deee",
+   "promptMatchesProduction": true,
+   "promptChars": 27726,
+   "quiet": false,
+   "rung": "news",
+   "ladder": null,
+   "shortlist": [
+    {
+     "title": "Hong Kong China Men Complete Treble of Golds and Japan Claim Women's Gold at the 20th Asian Games Rugby 7s",
+     "link": "https://www.rugbyasia247.com/hong-kong-china-men-complete-treble-of-golds-and-japan-claim-womens-gold-at-the-20th-asian-games-rugby-7s/",
+     "score": 36.3,
+     "corroboration": 2,
+     "outlets": [
+      "rugbyasia247",
+      "search"
+     ]
+    },
+    {
+     "title": "Japan Sakura XV Leave Europe Winless After Second Irish Loss",
+     "link": "https://www.rugbyasia247.com/japan-sakura-xv-leave-europe-winless-after-second-irish-loss/",
+     "score": 4.8,
+     "corroboration": 1,
+     "outlets": [
+      "rugbyasia247"
+     ]
+    },
+    {
+     "title": "[Charity Event Report No. 371] Japan Rugby Football Union 100th Anniversary: Gratitude and Future Forum @ Online",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94c0c4c714e068449d1673a0ff8d4&url=https%3a%2f%2fnote.com%2fyasuhisayamada%2fn%2fn03fe1e944297%3fhl%3den&c=13869958802975298767&mkt=en-us",
+     "score": 4,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    },
+    {
+     "title": "Japan Defeated By Ireland in WXV Global Series But Showed Improvements",
+     "link": "https://www.rugbyasia247.com/japan-defeated-by-ireland-in-wxv-global-series-but-showed-improvements/",
+     "score": 2.5,
+     "corroboration": 1,
+     "outlets": [
+      "rugbyasia247"
+     ]
+    },
+    {
+     "title": "RUGBY/ Backlash forces Japan rugby to relent on foreign-born players",
+     "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ac94c0c4c714e068449d1673a0ff8d4&url=https%3a%2f%2fwww.asahi.com%2fajw%2farticles%2f16850253&c=4069070304588935146&mkt=en-us",
+     "score": 1.8,
+     "corroboration": 1,
+     "outlets": [
+      "search"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Asian Games Gold",
+       "heading": "Japan Sakura 7s Reclaim Gold Medal At The 20th Asian Games",
+       "body": "The Japan Sakura 7s secured a dramatic 10-5 victory over defending champions China in Aichi to reclaim the gold medal at the 20th Asian Games. In a closely contested final, Japan demonstrated their resilience to return to the top of the podium, a feat last achieved two Games ago. The result provided a boost for Japanese rugby, concluding a weekend where the men’s side also finished on the podium by defeating Korea 17-5 to claim the bronze medal."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "The Sakura 7s' gold medal win at the Asian Games represents the most significant recent competitive achievement for Japanese rugby."
+     }
+    },
+    "firstCheck": {
+     "verdict": "pass",
+     "materialIssues": 0
+    },
+    "revisions": 0,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Centenary milestone",
+       "heading": "Japan Rugby Football Union hosts online forum to discuss future values",
+       "body": "The Japan Rugby Football Union held an online forum this week to mark its centenary, shifting focus toward the long-term societal impact of the game. Rather than focusing on match results, the event explored how the sport’s core values—the spirit of 'No Side', respect for diversity, and 'One Team'—can be integrated into wider social development. Top executives and stakeholders reviewed the union's history while discussing the evolving role of rugby within the modern era."
+      }
+     ],
+     "lead": {
+      "candidate": 3,
+      "why": "This is a fresh report on the JRFU centenary forum discussing the future of Japanese rugby values."
+     }
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Eligibility U-turn",
+       "heading": "Japan Rugby League One retreats on naturalised Brave Blossoms eligibility",
+       "body": "Japan Rugby League One has backtracked on contentious new registration rules that would have classified naturalised, Japanese-passport-holding players as foreigners, limiting their game time and, by extension, their visibility for Brave Blossoms selection. Following legal challenges and a fierce backlash — including a Japan Fair Trade Commission complaint from 27 players — the league confirmed naturalised players who held or had applied for citizenship by May 2025 will be treated as Japanese-born when the new system starts in the 2026-27 season. \"The criticism was much stronger than we expected,\" a league executive admitted."
+      }
+     ],
+     "lead": {
+      "candidate": 5,
+      "why": "The only story not already covered this week, and editor notes prioritise institutional/regulatory shifts over repeat match reports on the Ireland tour or Asian Games sevens."
+     }
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 10,
+     "body": 93
+    },
+    "sameLeadAsProductionFirstDraft": false,
+    "usage": {
+     "input": 10459,
+     "output": 2635,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.04727,
+    "seconds": 27.3,
+    "attempts": 1
+   }
+  },
+  {
+   "teamId": 465,
+   "team": "New Zealand",
+   "promptSha256": "4d24643a4ff8ae2dffbadc7051ecb8fdf30f0d45c88e10a9b2835101229f8806",
+   "promptMatchesProduction": true,
+   "promptChars": 28039,
+   "quiet": false,
+   "rung": "news",
+   "ladder": null,
+   "shortlist": [
+    {
+     "title": "All Blacks v Wallabies prediction: 'Battered' New Zealand to lose Eden Park record in Bledisloe Cup opener",
+     "link": "https://www.planetrugby.com/news/all-blacks-v-wallabies-prediction-battered-new-zealand-to-lose-eden-park-record-in-bledisloe-cup-opener",
+     "score": 32.4,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    },
+    {
+     "title": "Cam Roigard admits to 'weird' feeling ahead of Bledisloe Cup as All Blacks star makes 'stinging' admission after Springboks loss",
+     "link": "https://www.planetrugby.com/news/cam-roigard-admits-to-weird-feeling-ahead-of-bledisloe-cup-as-all-blacks-star-makes-stinging-admission-after-springboks-loss",
+     "score": 32.1,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    },
+    {
+     "title": "All Blacks turn Eden Park pressure into fuel",
+     "link": "https://www.sarugbymag.co.za/blacks-turn-eden-park-pressure-fuel/",
+     "score": 28.5,
+     "corroboration": 1,
+     "outlets": [
+      "sarugbymag"
+     ]
+    },
+    {
+     "title": "All Blacks great reveals 'astounding number' that could be impacting NZ Rugby as he calls for more 'private investment' in Super Rugby",
+     "link": "https://www.planetrugby.com/news/all-blacks-great-reveals-astounding-number-that-could-be-impacting-nz-rugby-as-he-calls-for-more-private-investment-in-super-rugby",
+     "score": 27.6,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    },
+    {
+     "title": "Justin Marshall baffled by 'real melon scratcher' All Blacks selection and predicts Wallabies won't create history",
+     "link": "https://www.planetrugby.com/news/justin-marshall-baffled-by-real-melon-scratcher-all-blacks-selection-and-predicts-wallabies-wont-create-history",
+     "score": 26.4,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Bledisloe Cup",
+       "heading": "Dave Rennie prepares All Blacks for high-stakes Eden Park Bledisloe clash",
+       "body": "New Zealand faces a significant test today, looking to protect a 53-match unbeaten record at Eden Park while navigating a lengthy casualty list. With captain Ardie Savea, Richie Mo'unga and several other key starters ruled out, coach Dave Rennie has prioritised mental resilience to counter the pressure. “No one wants to be part of the first team for a long time to lose at Eden Park or to lose the Bledisloe,” Rennie admitted, urging his side to use the external scrutiny as fuel."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "The opening match of the Bledisloe Cup at Eden Park is the primary story dominating the press coverage today."
+     }
+    },
+    "firstCheck": {
+     "verdict": "pass",
+     "materialIssues": 0
+    },
+    "revisions": 0,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Bledisloe Cup",
+       "heading": "Dave Rennie prepares All Blacks for high-stakes Eden Park Bledisloe clash",
+       "body": "New Zealand faces a significant test today, looking to protect a 53-match unbeaten record at Eden Park while navigating a lengthy casualty list. With captain Ardie Savea, Richie Mo'unga and several other key starters ruled out, coach Dave Rennie has prioritised mental resilience to counter the pressure. “No one wants to be part of the first team for a long time to lose at Eden Park or to lose the Bledisloe,” Rennie admitted, urging his side to use the external scrutiny as fuel."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "The opening match of the Bledisloe Cup at Eden Park is the primary story dominating the press coverage today."
+     },
+     "source": {
+      "name": "Planet Rugby"
+     }
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Eden Park pressure",
+       "heading": "Dave Rennie confronts All Blacks' Eden Park pressure as Wallabies threaten record",
+       "body": "Dave Rennie says the All Blacks have deliberately confronted the weight of their 53-match unbeaten Eden Park record, with Les Kiss' Wallabies unbeaten in five and fresh off stunning the Springboks in Perth. New Zealand go into Saturday's Bledisloe Cup opener without Ardie Savea, Luke Jacobson and Richie Mo'unga, Damian McKenzie shifting to fly-half. 'No one wants to be part of the first team for a long time to lose at Eden Park or to lose the Bledisloe,' Rennie said."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "Freshest, highest-salience story — a battered All Blacks side facing a genuine threat to their 53-match Eden Park record against an in-form Wallabies."
+     },
+     "match": {
+      "venue": "Eden Park, Auckland"
+     }
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 12,
+     "body": 80
+    },
+    "sameLeadAsProductionFirstDraft": true,
+    "usage": {
+     "input": 10221,
+     "output": 3814,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.05858,
+    "seconds": 36.8,
+    "attempts": 1
+   }
+  },
+  {
+   "teamId": 467,
+   "team": "South Africa",
+   "promptSha256": "c8d5f1a47c48dad152ecb0a8b36f2bf07ce173d9ae21885083c3182bbf287c15",
+   "promptMatchesProduction": true,
+   "promptChars": 27978,
+   "quiet": false,
+   "rung": "news",
+   "ladder": null,
+   "shortlist": [
+    {
+     "title": "Wafer ruled out of Ireland's South Africa Tests",
+     "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwkg50ng5mk3o?at_medium=RSS&at_campaign=rss",
+     "score": 57.5,
+     "corroboration": 2,
+     "outlets": [
+      "bbc",
+      "search"
+     ]
+    },
+    {
+     "title": "Cam Roigard admits to 'weird' feeling ahead of Bledisloe Cup as All Blacks star makes 'stinging' admission after Springboks loss",
+     "link": "https://www.planetrugby.com/news/cam-roigard-admits-to-weird-feeling-ahead-of-bledisloe-cup-as-all-blacks-star-makes-stinging-admission-after-springboks-loss",
+     "score": 22.1,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    },
+    {
+     "title": "NZ Rugby chief's verdict on South Africa's possible Super Rugby return: 'They are pretty bullish'",
+     "link": "https://www.planetrugby.com/news/nz-rugby-chiefs-verdict-on-south-africas-possible-super-rugby-return-they-are-pretty-bullish",
+     "score": 48.9,
+     "corroboration": 2,
+     "outlets": [
+      "planetrugby",
+      "search"
+     ]
+    },
+    {
+     "title": "Springboks galore as Sharks ditch bench ploy for all-star Stormers showdown",
+     "link": "https://www.planetrugby.com/news/springboks-galore-as-sharks-ditch-bench-ploy-for-all-star-stormers-showdown",
+     "score": 38.4,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    },
+    {
+     "title": "Tony Brown's 'three key things' for attacking success as Springboks coach reveals 'mindset challenge' for South African stars",
+     "link": "https://www.planetrugby.com/news/tony-browns-three-key-things-for-attacking-success-as-springboks-coach-reveals-mindset-challenge-for-south-african-stars",
+     "score": 25.3,
+     "corroboration": 1,
+     "outlets": [
+      "planetrugby"
+     ]
+    }
+   ],
+   "production": {
+    "firstDraft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Selection call",
+       "heading": "Eben Etzebeth and Ox Nché named to start for Sharks derby",
+       "body": "The Sharks have elevated Springboks duo Eben Etzebeth and Ox Nché to their starting XV for today’s United Rugby Championship clash against the Stormers in Cape Town. Head coach JP Pietersen has overhauled his pack, moving Etzebeth into the second row and Nché to loosehead prop, while captain Andre Esterhuizen retains his place in the midfield. Both sides have opted for a 6-2 bench split, with the Sharks naming Stephan Lewies among the replacements for his second club debut."
+      }
+     ],
+     "lead": {
+      "candidate": 4,
+      "why": "The story provides a confirmed, high-profile team selection for a major domestic derby featuring key Springboks."
+     },
+     "match": {
+      "venue": "Cape Town"
+     },
+     "teamsheet": {
+      "starters": [
+       {
+        "no": 1,
+        "name": "Ox Nché"
+       },
+       {
+        "no": 2,
+        "name": "Eduan Swart"
+       },
+       {
+        "no": 3,
+        "name": "Thomas du Toit"
+       },
+       {
+        "no": 4,
+        "name": "Eben Etzebeth"
+       },
+       {
+        "no": 5,
+        "name": "Darrien Landsberg"
+       },
+       {
+        "no": 6,
+        "name": "Matt Romao"
+       },
+       {
+        "no": 7,
+        "name": "Manu Tshituka"
+       },
+       {
+        "no": 8,
+        "name": "Phepsi Buthelezi"
+       },
+       {
+        "no": 9,
+        "name": "Jaden Hendrikse"
+       },
+       {
+        "no": 10,
+        "name": "Vusi Moyo"
+       },
+       {
+        "no": 11,
+        "name": "Ethan Hooker"
+       },
+       {
+        "no": 12,
+        "name": "Andre Esterhuizen"
+       },
+       {
+        "no": 13,
+        "name": "Jurenzo Julius"
+       },
+       {
+        "no": 14,
+        "name": "Edwill van der Merwe"
+       },
+       {
+        "no": 15,
+        "name": "Zekhethelo Siyaya"
+       }
+      ],
+      "bench": [
+       {
+        "no": 16,
+        "name": "Esethu Mnebelele"
+       },
+       {
+        "no": 17,
+        "name": "Cameron Dawson"
+       },
+       {
+        "no": 18,
+        "name": "Vincent Koch"
+       },
+       {
+        "no": 19,
+        "name": "Jason Jenkins"
+       },
+       {
+        "no": 20,
+        "name": "Stephan Lewies"
+       },
+       {
+        "no": 21,
+        "name": "Hatton"
+       },
+       {
+        "no": 22,
+        "name": "Ivan van Zyl"
+       },
+       {
+        "no": 23,
+        "name": "Gianni Lombard"
+       }
+      ]
+     }
+    },
+    "firstCheck": {
+     "verdict": "fail",
+     "materialIssues": 1
+    },
+    "revisions": 3,
+    "published": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Injury update",
+       "heading": "Aoife Wafer ruled out of Ireland's WXV tests against South Africa",
+       "body": "Ireland forward Aoife Wafer will not travel to South Africa for the upcoming WXV Global Series matches. The player has been ruled out of the fixtures scheduled for 24 and 31 October in Cape Town due to an injury sustained during training. Ireland head coach Scott Bemand has named a 30-player squad for the trip, which includes the return of Ruth Campbell following an ankle recovery, while Sam Monaghan remains unavailable for selection due to an Achilles injury."
+      }
+     ],
+     "lead": {
+      "candidate": 1,
+      "why": "The news of Aoife Wafer being ruled out of the upcoming WXV Global Series tests is a significant development for the Springbok Women's upcoming schedule."
+     },
+     "source": {
+      "name": "BBC Rugby Union"
+     }
+    },
+    "failed": null
+   },
+   "shadow": {
+    "draft": {
+     "date": "2026-10-10",
+     "edition": "Saturday 10 October",
+     "sections": [
+      {
+       "kicker": "Super Rugby talk",
+       "heading": "Steve Lancaster says Springboks 'pretty bullish' on URC, not Super Rugby return",
+       "body": "NZ Rugby chief executive Steve Lancaster has given the clearest read yet on the Springboks' stance on a possible Super Rugby return, insisting there's no appetite in Pretoria for a switch back. Lancaster says the two unions remain close after Rugby's Greatest Rivalry, but South Africa are committed to the United Rugby Championship for now. 'South Africa are pretty bullish about how things have played out for them,' he said, pointing to the Springboks, URC, Currie Cup and growing participation numbers as evidence it's working."
+      }
+     ],
+     "lead": {
+      "candidate": 3,
+      "why": "Institutional Super Rugby return talk carries more weight and direct Bok relevance than the women's WXV story or the low-scoring Bledisloe quote, matching the desk's steer toward structural news."
+     }
+    },
+    "valid": true,
+    "errors": [],
+    "stopReason": "end_turn",
+    "words": {
+     "heading": 12,
+     "body": 85
+    },
+    "sameLeadAsProductionFirstDraft": false,
+    "usage": {
+     "input": 10466,
+     "output": 3078,
+     "cacheWrite": 0,
+     "cacheRead": 0
+    },
+    "costUSD": 0.05171,
+    "seconds": 28.1,
+    "attempts": 1
+   }
+  }
+ ]
+}
