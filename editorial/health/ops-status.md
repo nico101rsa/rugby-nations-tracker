@@ -18,7 +18,8 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- Argentina — same lead story since Tue 6 Oct, first run as "Argentina launches ambitious joint bid to host 2035 Rugby World Cup" — the novelty gate flagged the latest edition and published anyway
+- Australia — same lead story since Fri 9 Oct, first run as "Les Kiss keeps Joseph Suaalii on wing for Bledisloe Cup opener" — the novelty gate flagged the latest edition and published anyway
+- Japan — same lead story since Fri 9 Oct, first run as "Japan Sakura Sevens reclaim Asian Games gold with final win over China" — the novelty gate flagged the latest edition and published anyway
 
 **Model ladder**
 
@@ -30,6 +31,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Sat 10 Oct 2026, 12:44 AEDT — repeat leads: Australia, Japan
 - Fri 9 Oct 2026, 13:07 AEDT — repeat leads: Argentina
 - Thu 8 Oct 2026, 12:54 AEDT — repeat leads: Argentina, Scotland
 - Wed 7 Oct 2026, 12:31 AEDT — repeat leads: Argentina
