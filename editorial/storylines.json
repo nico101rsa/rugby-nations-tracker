@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-10T12:00:37.291Z",
+  "updatedAt": "2026-10-10T14:06:01.975Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 212,
+  "count": 216,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -3585,28 +3585,6 @@
       "uses": 0
     },
     {
-      "id": "legal-costs-and-resolution-1n0pkyl",
-      "subject": "Legal costs and resolution of the brain injury claim case",
-      "teams": [
-        386,
-        388,
-        390,
-        391
-      ],
-      "resolution": "until the claimants settle their legal fees or the case reaches a final verdict",
-      "sources": [
-        {
-          "title": "Rugby’s brain injury claimants face £2.8m legal bill to continue case",
-          "link": "https://www.theguardian.com/sport/2026/oct/02/rugby-union-players-liable-for-28m-in-legal-fees-to-brain-injury-case-concussion",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-10-05",
-      "lastSeen": "2026-10-10",
-      "uses": 2,
-      "lastUsed": "2026-10-10"
-    },
-    {
       "id": "dave-rennie-s-campaign-1ymab27",
       "subject": "Dave Rennie's campaign to change World Rugby scrum laws",
       "teams": [
@@ -4369,7 +4347,7 @@
         }
       ],
       "firstSeen": "2026-10-09",
-      "lastSeen": "2026-10-10",
+      "lastSeen": "2026-10-11",
       "uses": 0
     },
     {
@@ -4913,6 +4891,121 @@
       ],
       "firstSeen": "2026-10-10",
       "lastSeen": "2026-10-10",
+      "uses": 0
+    },
+    {
+      "id": "the-future-of-south-1gs64wd",
+      "subject": "The future of South African teams' possible return to Super Rugby",
+      "teams": [
+        465,
+        467
+      ],
+      "resolution": "until New Zealand Rugby and South African stakeholders confirm or abandon plans for a competition reunion",
+      "sources": [
+        {
+          "title": "NZ Rugby chief's verdict on South Africa's possible Super Rugby return: 'They are pretty bullish'",
+          "link": "https://www.planetrugby.com/news/nz-rugby-chiefs-verdict-on-south-africas-possible-super-rugby-return-they-are-pretty-bullish",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "'Never say never' to SA-Super Rugby reunion",
+          "link": "https://www.sarugbymag.co.za/never-say-never-sa-super-rugby-reunion/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-11",
+      "lastSeen": "2026-10-11",
+      "uses": 0
+    },
+    {
+      "id": "england-s-search-for-15oc1pu",
+      "subject": "England's search for a new assistant coach following Joe El-Abd's departure",
+      "teams": [
+        386
+      ],
+      "resolution": "until the RFU announces a permanent replacement for the assistant coaching role",
+      "sources": [
+        {
+          "title": "England: Steve Borthwick's assistant lands Top 14 gig opening the door for Shaun Edwards post-World Cup",
+          "link": "https://www.planetrugby.com/news/steve-borthwicks-assistant-lands-top-14-gig-opening-the-door-for-shaun-edwards",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-11",
+      "lastSeen": "2026-10-11",
+      "uses": 0
+    },
+    {
+      "id": "the-legal-battle-regarding-yzsdo5",
+      "subject": "The legal battle regarding rugby brain injury compensation",
+      "teams": [
+        386,
+        391,
+        388,
+        390
+      ],
+      "resolution": "until the claimants satisfy the required legal costs to proceed with the case",
+      "sources": [
+        {
+          "title": "Rugby’s brain injury claimants face £2.8m legal bill to continue case",
+          "link": "https://www.theguardian.com/sport/2026/oct/02/rugby-union-players-liable-for-28m-in-legal-fees-to-brain-injury-case-concussion",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-11",
+      "lastSeen": "2026-10-11",
+      "uses": 0
+    },
+    {
+      "id": "the-pursuit-of-the-xuynqp",
+      "subject": "The pursuit of the Barrett brothers by Premiership Rugby clubs",
+      "teams": [
+        386,
+        465
+      ],
+      "resolution": "until the Barrett brothers sign contracts with their respective clubs for the post-World Cup period",
+      "sources": [
+        {
+          "title": "Barrett brothers set for stunning post-World Cup switch as PREM Rugby pair enter tug of war for All Blacks greats",
+          "link": "https://www.planetrugby.com/news/all-blacks-barrett-brothers-set-for-stunning-post-world-cup-switch-as-prem-rugby-pair-enter-tug-of-war",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Barretts lined up for Prem move",
+          "link": "https://www.sarugbymag.co.za/barretts-lined-prem-move/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-11",
+      "lastSeen": "2026-10-11",
+      "uses": 0
+    },
+    {
+      "id": "the-impact-of-world-3aoecg",
+      "subject": "The impact of World Rugby's new tackle law amendments",
+      "teams": [
+        467
+      ],
+      "resolution": "until the rugby community and referee bodies reach a consensus on the implementation of the new tackle techniques",
+      "sources": [
+        {
+          "title": "World Rugby outlaws controversial tackle which almost ended Springbok's career after South Africa coach's request",
+          "link": "https://www.planetrugby.com/news/world-rugby-outlaws-controversial-tackle-which-almost-ended-springboks-career-after-south-africa-coachs-request",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "World Rugby cracks down on ‘drop’ tackles",
+          "link": "https://www.sarugbymag.co.za/world-rugby-cracks-drop-tackles/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Top ref boss accuses World Rugby of breaking agreement as they seek 'clarity' on new tackle laws",
+          "link": "https://www.planetrugby.com/news/top-ref-boss-accuses-world-rugby-of-breaking-agreement-as-they-seek-clarity-on-new-tackle-laws",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-11",
+      "lastSeen": "2026-10-11",
       "uses": 0
     }
   ]
