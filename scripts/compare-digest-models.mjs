@@ -22,6 +22,9 @@ export const MODELS = [
   // the writer prompt is ~8K). Priced here so the shadow test can run it.
   { id: "claude-haiku-5-5", in: 0.1, out: 0.5 },
   { id: "claude-sonnet-5", in: 2, out: 10 },
+  // 2026-10-11: Sonnet 5.5, same list price as Sonnet 5. The daily review's
+  // model (model-router.mjs).
+  { id: "claude-sonnet-5-5", in: 2, out: 10 },
   { id: "claude-opus-4-8", in: 5, out: 25 },
   { id: "claude-fable-5", in: 10, out: 50 },
 ];
