@@ -2,16 +2,51 @@
   "notice": "Outlets proposed by the daily editorial review and probed by code. Nothing here is a news source until it is added to scripts/news-sources.mjs by hand.",
   "candidates": [
     {
+      "outlet": "Fiji Sun",
+      "host": "fijisun.com.fj",
+      "homepage": "https://fijisun.com.fj",
+      "teams": [
+        "Fiji"
+      ],
+      "why": "Fiji's pack held a Coca-Cola promo, deaf rugby and a six-month-old coaching exit; a Fijian daily with a sports desk could add current men's 15s news.",
+      "proposed": "2026-10-11",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-10-11",
+          "error": "no feed found (8 tried)"
+        }
+      ]
+    },
+    {
+      "outlet": "FijiVillage",
+      "host": "fijivillage.com",
+      "homepage": "https://www.fijivillage.com",
+      "teams": [
+        "Fiji"
+      ],
+      "why": "A free Fijian news site with regular rugby coverage that could fill the gap in Fiji's thin pack.",
+      "proposed": "2026-10-11",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-10-11",
+          "error": "no feed found (8 tried)"
+        }
+      ]
+    },
+    {
       "outlet": "RugbyPass",
       "host": "rugbypass.com",
-      "homepage": "https://www.rugbypass.com/",
+      "homepage": "https://www.rugbypass.com",
       "teams": [
         "France",
-        "Fiji",
         "Japan",
-        "Italy"
+        "England"
       ],
-      "why": "Free English-language men's rugby coverage that could fill today's gaps for France, Fiji and Japan, where retrieval returned only stale or off-topic items.",
+      "why": "France, Japan and England packs led with July or August items or off-field filler; a dedicated rugby site would add current men's coverage.",
       "proposed": "2026-10-11",
       "status": "proposed",
       "feedUrl": null,
@@ -21,47 +56,6 @@
           "error": "no feed found (8 tried)"
         }
       ]
-    },
-    {
-      "outlet": "Fijivillage",
-      "host": "fijivillage.com",
-      "homepage": "https://www.fijivillage.com/",
-      "teams": [
-        "Fiji"
-      ],
-      "why": "Fiji's retrieval pack held no current Flying Fijians news, only a six-month-old coaching story and sevens/league items.",
-      "proposed": "2026-10-11",
-      "status": "proposed",
-      "feedUrl": null,
-      "probes": [
-        {
-          "date": "2026-10-11",
-          "error": "no feed found (8 tried)"
-        }
-      ]
-    },
-    {
-      "outlet": "FBC News",
-      "host": "fbcnews.com.fj",
-      "homepage": "https://www.fbcnews.com.fj/",
-      "teams": [
-        "Fiji"
-      ],
-      "why": "Local Fijian broadcaster's news site that could supply current Flying Fijians and Drua coverage missing from today's pack.",
-      "proposed": "2026-10-11",
-      "status": "ready",
-      "feedUrl": "https://www.fbcnews.com.fj/feed/",
-      "probes": [
-        {
-          "date": "2026-10-11",
-          "feedUrl": "https://www.fbcnews.com.fj/feed/",
-          "items": 10,
-          "hits": {
-            "Fiji": 7
-          }
-        }
-      ],
-      "decided": "2026-10-11"
     }
   ]
 }

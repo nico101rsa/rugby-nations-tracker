@@ -4,14 +4,15 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 ## Ready — carried stories about the team they were proposed for
 
-- **FBC News** (fbcnews.com.fj) — proposed 2026-10-11 for Fiji: Local Fijian broadcaster's news site that could supply current Flying Fijians and Drua coverage missing from today's pack.
-  - feed: https://www.fbcnews.com.fj/feed/; probes: 1; stories about tracked teams: Fiji 7
+- Nothing ready.
 
 ## Being probed
 
-- **RugbyPass** (rugbypass.com) — proposed 2026-10-11 for France, Fiji, Japan, Italy: Free English-language men's rugby coverage that could fill today's gaps for France, Fiji and Japan, where retrieval returned only stale or off-topic items.
+- **Fiji Sun** (fijisun.com.fj) — proposed 2026-10-11 for Fiji: Fiji's pack held a Coca-Cola promo, deaf rugby and a six-month-old coaching exit; a Fijian daily with a sports desk could add current men's 15s news.
   - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
-- **Fijivillage** (fijivillage.com) — proposed 2026-10-11 for Fiji: Fiji's retrieval pack held no current Flying Fijians news, only a six-month-old coaching story and sevens/league items.
+- **FijiVillage** (fijivillage.com) — proposed 2026-10-11 for Fiji: A free Fijian news site with regular rugby coverage that could fill the gap in Fiji's thin pack.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+- **RugbyPass** (rugbypass.com) — proposed 2026-10-11 for France, Japan, England: France, Japan and England packs led with July or August items or off-field filler; a dedicated rugby site would add current men's coverage.
   - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
