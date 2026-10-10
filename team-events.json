@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-10T06:33:06.666Z",
+ "updatedAt": "2026-10-10T11:03:59.392Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -18,20 +18,6 @@
  "teams": {
   "NZL": {
    "last": [
-    {
-     "id": 16098054,
-     "date": "2026-07-11T05:10:00.000Z",
-     "league": "Nations Championship, Group Stage",
-     "opponent": "Italy",
-     "opponentCode": "ITA",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 47,
-     "them": 17,
-     "result": "W",
-     "tries": 7,
-     "cards": 0
-    },
     {
      "id": 16098058,
      "date": "2026-07-18T07:10:00.000Z",
@@ -156,6 +142,20 @@
      "them": 43,
      "result": "L",
      "tries": 4,
+     "cards": 0
+    },
+    {
+     "id": 17243432,
+     "date": "2026-10-10T06:10:00.000Z",
+     "league": "International Friendlies",
+     "opponent": "Australia",
+     "opponentCode": "AUS",
+     "tracked": true,
+     "homeAway": "H",
+     "us": 50,
+     "them": 19,
+     "result": "W",
+     "tries": 7,
      "cards": 0
     }
    ],
@@ -833,20 +833,6 @@
   "AUS": {
    "last": [
     {
-     "id": 14884326,
-     "date": "2025-11-15T20:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Ireland",
-     "opponentCode": "IRE",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 19,
-     "them": 46,
-     "result": "L",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14884335,
      "date": "2025-11-22T20:10:00.000Z",
      "league": "International Friendlies",
@@ -971,6 +957,20 @@
      "result": "W",
      "tries": 5,
      "cards": 4
+    },
+    {
+     "id": 17243432,
+     "date": "2026-10-10T06:10:00.000Z",
+     "league": "International Friendlies",
+     "opponent": "New Zealand",
+     "opponentCode": "NZL",
+     "tracked": true,
+     "homeAway": "A",
+     "us": 19,
+     "them": 50,
+     "result": "L",
+     "tries": 3,
+     "cards": 0
     }
    ],
    "next": [
