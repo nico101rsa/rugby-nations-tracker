@@ -59,6 +59,33 @@ shared across jobs. Prefer a targeted refresh over a broader schedule, and make
 the no-op path cost nothing —
 `scripts/refresh-played-teams.mjs` is the worked example.
 
+## Models: who writes, who checks, who reviews
+
+`scripts/model-router.mjs` decides, per role, from the keys and the
+`DIGEST_*_MODEL` repository variables. Since 2026-10-11 (the news shadow test,
+`editorial/shadow/`): **Haiku 5.5** writes and fact-checks every edition and the
+roundup, **Sonnet 5.5** does the post-run review, and Gemini's free ladder is
+the fallback for every paid call plus the home of the two housekeeping calls
+(storyline extraction, checker tuning). About US$0.05 a run, US$5 a month,
+against the US$12–24 budgeted; the run report's `model.anthropic` block and
+the Actions log carry the real spend per model. A paid model that fails falls
+back to Gemini on that call and the log says so (`fellBack`). To try another
+model for a week, set the variable (any model priced in
+`scripts/compare-digest-models.mjs`, or `gemini`); no code change.
+
+Don't put Opus on the daily review: it reads twelve 90-word editions and
+leaves two notes, a Sonnet-shaped job. The weekly review is where the deeper
+model earns its price, and it already runs there.
+
+**New news sources are proposed, probed, and adopted by hand.** The review may
+name up to three outlets a day for a retrieval-starved team; they land in
+`editorial/source-candidates.json`, `scripts/probe-source-candidates.mjs`
+finds each one's feed and counts its stories about the tracked teams for a
+week, and `editorial/source-candidates.md` shows the result. Nothing adds an
+outlet to `scripts/news-sources.mjs` except a person: this repo is public and
+the spine carries publishers' text. The weekly review puts the ready ones to
+Nico.
+
 ## Alerts: who gets pinged
 
 Nico does not review ops output; the scheduled **Claude weekly review** does
@@ -100,8 +127,9 @@ unless a caller passes `page: true`.
   competitions, vendor-probe and box-score checks still file their
   deduplicated issues, with no @mention and no assignee.
 
-The weekly review reads `editorial/health/ops-status.md` and the newest
-`editorial/health/<week>.md`, triages the open silent issues, and is the only
+The weekly review reads `editorial/health/ops-status.md`, the newest
+`editorial/health/<week>.md` and `editorial/source-candidates.md`, triages
+the open silent issues, and is the only
 other thing that escalates to Nico (its own "🚨 Weekly review <week>: …"
 issue, raised only when something needs him).
 

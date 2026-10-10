@@ -1,8 +1,12 @@
-// Daily team-briefing generator: one Claude call per team (Haiku + server-side
-// web search), publishing a `digests` block into public/nations.json that the
-// app's digestFor() prefers over the bundled fallback. Model + daily cadence are
-// Nico's locked call (2026-07-10). Pure helpers are exported for node:test; the
-// API call is isolated in generateOne() so everything else tests offline.
+// Daily team-briefing generator: one fact-checked edition per team from the
+// publisher spine (editorial/news-pool.json), publishing a `digests` block into
+// public/nations.json that the app's digestFor() prefers over the bundled
+// fallback. Daily cadence is Nico's locked call (2026-07-10). Which model
+// answers which call (writer, checker, review, …) is decided in
+// model-router.mjs: Haiku 5.5 writes and checks, Sonnet 5.5 reviews, Gemini's
+// free ladder is the fallback (switched 2026-10-11 on the news shadow test).
+// Pure helpers are exported for node:test; every model call goes through
+// `calls[role](prompt)` so everything else tests offline.
 //
 // Template source of truth: docs/news-digest-generation-prompt.md (private repo,
 // v1 dry-run validated 2026-07-09). The public repo has no docs/, so the template
@@ -11,7 +15,9 @@ import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join, resolve, relative, isAbsolute, sep } from "node:path";
-import { buildShortlist, isQuiet, renderShortlist } from "./news-sources.mjs";
+import { FEEDS, buildShortlist, isQuiet, renderShortlist } from "./news-sources.mjs";
+import { ROLES, REQUEST_TIMEOUT_MS, modelPlan, buildCallers, describePlan } from "./model-router.mjs";
+import { readCandidates, addCandidates, renderCandidatesForReview } from "./source-candidates.mjs";
 import {
   extractionCandidates, buildExtractionPrompt, parseStorylines, mergeBacklog,
   pickStoryline, markUsed, renderStorylineEdition, recheckQuery,
@@ -34,13 +40,6 @@ export { BANNED_COPY };
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = join(ROOT, "public", "nations.json");
 
-const MODEL = process.env.DIGEST_MODEL || "claude-haiku-4-5";
-// Haiku 4.5 only supports the basic web-search tool; the _20260209 variant
-// (dynamic filtering) needs Opus 4.6+ / Sonnet 5 / Sonnet 4.6. Keep both so a
-// DIGEST_MODEL override back to Sonnet still works.
-const WEB_SEARCH_TYPE = MODEL.startsWith("claude-haiku")
-  ? "web_search_20250305"
-  : "web_search_20260209";
 const TZ = "Australia/Sydney"; // editions are dated for the reader's day
 
 // Teamsheets (the app's "Squad · next game" card) are PAUSED — 2026-07-15.
@@ -160,6 +159,15 @@ one a fan would text a mate about.
 - **Body: one paragraph, 55–90 words.** Lead with the story, then the one or
   two supporting facts that give it weight. If the story is match-pinned,
   say which match ("Saturday's second test"), never a vague "this season".
+  Count before you finish: a body over 90 words is a failed edition — cut a
+  supporting fact rather than run long.
+- **The reader never sees your inputs.** Never describe the press pack, the
+  shortlist, the sources' freshness or your own process in the copy ("today's
+  pack contains no fresh team news", "this is a backwards look", "according
+  to the shortlist"). Write the story as a desk would print it; if it is an
+  older story, date it plainly ("July's 73-8 defeat") and move on. A kicker
+  like "Background check" that labels your process rather than the story has
+  failed.
 - Standings claims stay **edition-relative** ("goes into the weekend top of
   the log") — earlier kickoffs can move the live table while your copy is up.
 - At most **one direct coach quote** per edition, verbatim and sourced.
@@ -488,15 +496,15 @@ const ladderSummary = (ladder) => ladder
     }
   : null;
 
-// Pure. `traces` is { [teamId]: trace } as filled by generateOneGemini;
+// Pure. `traces` is { [teamId]: trace } as filled by generateEdition;
 // `generated` the editions that passed, `failed` the run's failure list.
-export function buildWriterInputs({ dateISO, generatedAt, servedBy = null, traces = {}, generated = {}, failed = [], teams = TEAMS }) {
+export function buildWriterInputs({ dateISO, generatedAt, provider = "gemini", servedBy = null, traces = {}, generated = {}, failed = [], teams = TEAMS }) {
   const failedBy = new Map(failed.map((f) => [f.team, f.reason]));
   return {
     kind: "digest-writer-inputs",
     date: dateISO,
     generatedAt,
-    provider: "gemini",
+    provider,
     servedBy,
     teams: Object.entries(traces)
       .filter(([, t]) => typeof t?.prompt === "string" && t.prompt.length > 0)
@@ -620,75 +628,13 @@ export async function writeBacklog(storylines, now, path = BACKLOG_FILE) {
 // One extraction call for ALL twelve teams. The pool is a single shared spine,
 // so per-team calls would re-read the same ~120 headlines twelve times for no
 // extra signal (docs/adr/0002).
-export async function extractBacklog(apiKey, pool, existing, now, dateISO) {
+export async function extractBacklog(call, pool, existing, now, dateISO) {
   const items = extractionCandidates(pool);
   if (!items.length) return existing;
   const names = Object.fromEntries(Object.entries(TEAMS).map(([id, t]) => [id, t.name]));
-  const text = await geminiCall(apiKey, buildExtractionPrompt(items, names, dateISO));
+  const text = await call(buildExtractionPrompt(items, names, dateISO));
   const parsed = parseStorylines(extractJson(text), items, dateISO);
   return mergeBacklog(existing, parsed, dateISO, now);
-}
-
-// ---- API call ---------------------------------------------------------------
-
-const MAX_CONTINUATIONS = 5; // pause_turn resumes (server-side web search loop)
-// Cost cap. 8 was the launch value; the first live run (2026-07-10) showed the
-// search-result context compounds quadratically with each extra search — 4 is
-// plenty for a daily briefing and cuts token spend by well over half.
-const MAX_SEARCHES = 4;
-// Haiku 4.5 runs without thinking, but keep 12000 for search-loop headroom —
-// and because a DIGEST_MODEL override to Sonnet 5 re-enables adaptive thinking,
-// which counts against max_tokens (the first live run at 4000 exhausted it on
-// 10/12 teams before the JSON). Actual JSON output is <1k tokens.
-const MAX_TOKENS = 12000;
-
-async function generateOne(client, data, teamId, now, recentRuns = []) {
-  const params = buildParams(data, teamId, now);
-  const reported = renderAlreadyReported(previousLeadsFor(data, recentRuns, teamId, params.TEAM_NAME));
-  const prompt = `${fillTemplate(TEMPLATE, params)}${reported ? `\n\n${reported}` : ""}`;
-  const request = (messages) =>
-    client.messages.create({
-      model: MODEL,
-      max_tokens: MAX_TOKENS,
-      // Auto-cache the last cacheable block: pause_turn continuations then
-      // re-read the accumulated prefix (prompt + search results) at ~0.1x
-      // instead of full input price.
-      cache_control: { type: "ephemeral" },
-      tools: [{ type: WEB_SEARCH_TYPE, name: "web_search", max_uses: MAX_SEARCHES }],
-      messages,
-    });
-  let messages = [{ role: "user", content: prompt }];
-  let resp = await request(messages);
-  // Server-side tool loop can pause; re-send with the assistant turn appended
-  // and the server resumes where it left off.
-  for (let i = 0; resp.stop_reason === "pause_turn" && i < MAX_CONTINUATIONS; i++) {
-    messages = [...messages, { role: "assistant", content: resp.content }];
-    resp = await request(messages);
-  }
-  if (resp.stop_reason === "refusal") throw new Error("refusal");
-  const text = resp.content.filter((b) => b.type === "text").map((b) => b.text).join("\n");
-  const raw = extractJson(text);
-  const { ok, digest, errors } = validateDigest(raw, { dateISO: params.DATE_ISO });
-  if (!ok) {
-    // Diagnosable failures: stop_reason distinguishes truncation (max_tokens)
-    // from a malformed answer; the text tail shows what the model last wrote.
-    const tail = text.slice(-200).replace(/\s+/g, " ");
-    throw new Error(`invalid edition (stop=${resp.stop_reason}): ${errors.join("; ")} | tail: …${tail}`);
-  }
-  return digest;
-}
-
-// Plain text call on the Anthropic fallback path — no web search, no tool
-// loop. Used for the "Around the world" roundup, whose only input is the
-// day's editions.
-async function anthropicText(client, prompt) {
-  const resp = await client.messages.create({
-    model: MODEL,
-    max_tokens: 4000,
-    messages: [{ role: "user", content: prompt }],
-  });
-  if (resp.stop_reason === "refusal") throw new Error("refusal");
-  return resp.content.filter((b) => b.type === "text").map((b) => b.text).join("\n");
 }
 
 // ---- source pack (free news retrieval) ---------------------------------------
@@ -1342,7 +1288,7 @@ export function parseVerdict(raw) {
 // recorded before any model call). The news shadow test (news-shadow.mjs)
 // replays the recorded prompt on a paid model; main() passes a trace only when
 // DIGEST_PROMPTS_DIR is set.
-export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, checkerNotes = "", pool = [], ladderCtx = null, recentRuns = [], trace = null) {
+export async function generateEdition(calls, data, teamId, now, editorNotes, checkerNotes = "", pool = [], ladderCtx = null, recentRuns = [], trace = null) {
   const params = buildParams(data, teamId, now);
   const { pack, shortlist, quiet, ladder, articleCount, poolCount, widenedCount } =
     await buildSourcePack(teamId, params.TEAM_NAME, now, pool, ladderCtx ? () => resolveLadder(ladderCtx, teamId, params, now) : null);
@@ -1358,7 +1304,7 @@ export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, 
   if (trace) Object.assign(trace, { dateISO: params.DATE_ISO, prompt, shortlist, quiet, ladder });
 
   const draft = async (feedback) => {
-    const text = await geminiCall(apiKey, feedback ? `${prompt}\n\n${feedback}` : prompt);
+    const text = await calls.writer(feedback ? `${prompt}\n\n${feedback}` : prompt);
     const raw = extractJson(text);
     const { ok, digest, errors } = validateDigest(raw, { dateISO: params.DATE_ISO });
     if (!ok) throw new Error(`invalid edition: ${errors.join("; ")} | tail: …${text.slice(-200).replace(/\s+/g, " ")}`);
@@ -1372,7 +1318,7 @@ export async function generateOneGemini(apiKey, data, teamId, now, editorNotes, 
 
   let digest = await draft();
   if (trace) trace.firstDraft = digest;
-  let check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack, checkerNotes))));
+  let check = parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, digest, pack, checkerNotes))));
   if (trace) trace.firstCheck = { verdict: check.verdict, materialIssues: check.issues.length };
   let revisions = 0;
 
@@ -1385,7 +1331,7 @@ support. If a quote was flagged, either use the exact verbatim wording the
 fact-checker cites or remove the quotation marks and paraphrase — do not
 re-word a quote a third way. Output the complete JSON again.`;
     digest = await draft(feedback);
-    check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack, checkerNotes))));
+    check = parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, digest, pack, checkerNotes))));
   }
 
   if (check.verdict !== "pass") {
@@ -1402,7 +1348,7 @@ what headlines and articles in the source pack plainly report, plus the
 trusted app data. Bodies may run short (around 50 words). Output the complete
 JSON again.`;
     digest = await draft(feedback);
-    check = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, digest, pack, checkerNotes))));
+    check = parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, digest, pack, checkerNotes))));
   }
   if (trace) trace.revisions = revisions;
   if (check.verdict !== "pass") {
@@ -1433,7 +1379,7 @@ JSON again.`;
     if (repeat) {
       try {
         const alt = await draft(buildNoveltyFeedback(repeat));
-        const altCheck = parseVerdict(extractJson(await geminiCall(apiKey, buildFactCheckPrompt(params, alt, pack, checkerNotes))));
+        const altCheck = parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, alt, pack, checkerNotes))));
         if (altCheck.verdict === "pass") {
           digest = alt;
           noveltyRevised = true;
@@ -1527,8 +1473,9 @@ const NOTES_FILE = join(ROOT, "editorial", "editor-notes.md");
 const REVIEWS_DIR = join(ROOT, "editorial", "reviews");
 const MAX_NOTES = 8;
 
-export function buildReviewPrompt(editions, dateISO, world = [], worldDropped = []) {
+export function buildReviewPrompt(editions, dateISO, world = [], worldDropped = [], { feeds = [], candidates = [] } = {}) {
   const hasWorld = world.length > 0 || worldDropped.length > 0;
+  const sourcesBlock = feeds.length ? renderCandidatesForReview(feeds, candidates) : "";
   const blocks = editions.map(({ team, digest, shortlist = [], quiet = false, ladder = null }) => {
     const candidates = shortlist.length
       ? shortlist.map((s, n) => `  ${n + 1}. [score ${s.score}${s.corroboration > 1 ? `, ${s.corroboration} outlets` : ""}] ${s.title}`).join("\n")
@@ -1605,7 +1552,9 @@ days in July 2026 and produced fabricated "recovery protocols" copy.
 
 Retrieval problems go in \`source_notes\` instead, which humans read — they are
 not injected into any prompt.
-
+${sourcesBlock ? `
+${sourcesBlock}
+` : ""}
 ## Review criteria
 1. **Facts**: internal contradictions between editions (two teams describing
    the same match differently), impossible claims, hedges masquerading as facts.
@@ -1649,7 +1598,8 @@ fault a men's line for not saying "men's". Notes for the roundup go in
 {
   "report": "<markdown, max 300 words: today's grade (A-F), the 2-3 most important observations with one example each. Say how many editions were retrieval-starved vs badly-chosen.${hasWorld ? " End with one short paragraph headed 'Around the world' grading the roundup." : ""}>",
   "prompt_notes": ["<up to 2 short imperative notes for the WRITER prompt, addressing CHOICE or CRAFT defects seen in MULTIPLE editions. Empty array if today's weakness was retrieval.>"],
-  "source_notes": ["<up to 2 notes about RETRIEVAL for human readers — which teams the press ignored, which outlets are missing, whether the ranking mis-ordered. Empty array if retrieval was fine.>"]${hasWorld ? `,
+  "source_notes": ["<up to 2 notes about RETRIEVAL for human readers — which teams the press ignored, which outlets are missing, whether the ranking mis-ordered. Empty array if retrieval was fine.>"]${sourcesBlock ? `,
+  "source_candidates": [{ "outlet": "<publication name>", "homepage": "<https://… its front page>", "teams": ["<tracked team it covers>"], "why": "<one sentence: the gap it fills, from today's editions>" }]` : ""}${hasWorld ? `,
   "world_notes": ["<up to 2 short imperative notes for the ROUNDUP prompt — selection, labelling or register defects in today's roundup. Empty array if it was fine.>"]` : ""}
 }
 Only propose a prompt note for a defect visible in MULTIPLE editions; one-off
@@ -1718,9 +1668,9 @@ async function loadWorldNotes() {
   }
 }
 
-async function reviewRun(apiKey, editions, dateISO, world = [], worldDropped = []) {
+async function reviewRun(call, editions, dateISO, world = [], worldDropped = [], { sources = null } = {}) {
   const hasWorld = world.length > 0 || worldDropped.length > 0;
-  const raw = extractJson(await geminiCall(apiKey, buildReviewPrompt(editions, dateISO, world, worldDropped)));
+  const raw = extractJson(await call(buildReviewPrompt(editions, dateISO, world, worldDropped, sources ?? {})));
   if (!raw || typeof raw.report !== "string") throw new Error("review returned no usable JSON");
   const clean = (list) => (Array.isArray(list) ? list : []).filter((n) => typeof n === "string" && n.trim()).slice(0, 2);
   const notes = clean(raw.prompt_notes);
@@ -1728,6 +1678,11 @@ async function reviewRun(apiKey, editions, dateISO, world = [], worldDropped = [
   // cannot fix a famine, it can only paper over one.
   const sourceNotes = clean(raw.source_notes);
   const worldNotes = hasWorld ? clean(raw.world_notes) : [];
+  // Outlets the review thinks the spine is missing. Recorded as candidates,
+  // probed daily, never added to the spine by code (source-candidates.mjs).
+  const proposed = (Array.isArray(raw.source_candidates) ? raw.source_candidates : [])
+    .filter((c) => c && typeof c === "object" && typeof c.outlet === "string" && typeof c.homepage === "string")
+    .slice(0, 3);
 
   const { mkdir } = await import("node:fs/promises");
   await mkdir(REVIEWS_DIR, { recursive: true });
@@ -1769,7 +1724,7 @@ async function reviewRun(apiKey, editions, dateISO, world = [], worldDropped = [
       `# Standing roundup notes\n\nInjected into the "Around the world" prompt daily; curated by the post-run review.\nNotes age out after ${NOTE_TTL_DAYS} days unless re-earned. Prune freely.\n\n${mergedWorld.join("\n")}\n`,
     );
   }
-  return { notes, sourceNotes, worldNotes, expired };
+  return { notes, sourceNotes, worldNotes, expired, proposed };
 }
 
 const CHECKER_NOTES_FILE = join(ROOT, "editorial", "checker-notes.md");
@@ -1849,9 +1804,9 @@ it will be discarded unread.
  "checker_notes": ["<up to 2 notes, or empty array>"]}`;
 }
 
-async function checkerTuneRun(apiKey, failures, publishedCount, dateISO) {
+async function checkerTuneRun(call, failures, publishedCount, dateISO) {
   const existing = await loadCheckerNotes();
-  const raw = extractJson(await geminiCall(apiKey, buildCheckerTunePrompt(failures, publishedCount, existing)));
+  const raw = extractJson(await call(buildCheckerTunePrompt(failures, publishedCount, existing)));
   if (!raw || typeof raw.assessment !== "string") throw new Error("checker tuner returned no usable JSON");
   const proposed = (Array.isArray(raw.checker_notes) ? raw.checker_notes : [])
     .filter((n) => typeof n === "string" && n.trim())
@@ -1896,14 +1851,32 @@ export async function main({ dryRun = false } = {}) {
     return { dryRun: true };
   }
 
-  // Provider: Gemini Flash (free tier, fact-checked) when GEMINI_API_KEY is
-  // set; Claude Haiku as the fallback path; skip cleanly when neither key is.
+  // Models: model-router.mjs decides which model answers each role from the
+  // keys at hand and the DIGEST_*_MODEL repository variables. With both keys
+  // set, Haiku 5.5 writes and fact-checks, Sonnet 5.5 reviews, and Gemini's
+  // free ladder is the fallback for every Anthropic call and the home of the
+  // two housekeeping calls. With one key, everything runs on that provider.
+  // Skip cleanly when neither key is set.
   const geminiKey = process.env.GEMINI_API_KEY;
-  let generateFor;
-  // Plain prompt → text, whichever provider is serving. The roundup needs
-  // nothing more than that.
-  let callModel;
-  let ladderCtx = null;
+  const anthropicKey = process.env.ANTHROPIC_API_KEY;
+  if (!geminiKey && !anthropicKey) {
+    console.log("GEMINI_API_KEY / ANTHROPIC_API_KEY not set — skipping digest generation");
+    return { skipped: "no-key" };
+  }
+  const { plan, warnings: planWarnings } = modelPlan(process.env, { gemini: !!geminiKey, anthropic: !!anthropicKey });
+  for (const w of planWarnings) console.warn(`::warning::${w}`);
+  let client = null;
+  if (ROLES.some((r) => plan[r] && plan[r] !== "gemini")) {
+    const { default: Anthropic } = await import("@anthropic-ai/sdk");
+    client = new Anthropic({ timeout: REQUEST_TIMEOUT_MS });
+  }
+  const { calls, tally } = await buildCallers({
+    plan,
+    geminiCall: geminiKey ? (prompt) => geminiCall(geminiKey, prompt) : null,
+    client,
+  });
+  console.log(`models: ${describePlan(plan)}${geminiKey ? ` (gemini ladder from ${GEMINI_MODEL}${client ? ", as fallback" : ""})` : ""}`);
+
   // Writer inputs for the news shadow test, filled only when DIGEST_PROMPTS_DIR
   // names a directory outside the repo (writerInputsDir). Recording only.
   const promptsDir = writerInputsDir(process.env.DIGEST_PROMPTS_DIR);
@@ -1913,47 +1886,36 @@ export async function main({ dryRun = false } = {}) {
   // editions in `data` are the other half of it.
   const recentRuns = await readRecentRunReports();
   console.log(`recent run reports: ${recentRuns.map((r) => r.date).join(", ") || "none"}`);
-  if (geminiKey) {
-    console.log(`provider: gemini (${GEMINI_MODEL}, RSS source pack + fact-check pass)`);
-    const editorNotes = await loadEditorNotes();
-    if (editorNotes) console.log(`standing editor notes:\n${editorNotes}`);
-    const checkerNotes = await loadCheckerNotes(sydneyDateParts(now).DATE_ISO);
-    if (checkerNotes) console.log(`standing checker notes:\n${checkerNotes}`);
-    // The spine pool, harvested hourly (harvest-news.yml). Read ONCE and shared
-    // across all 12 teams — it is one file covering every team, which is the
-    // whole reason the publisher spine replaced 36 per-team queries.
-    const pool = await readNewsPool();
-    console.log(`news pool: ${pool.length} items`);
-    // Quiet-day ladder context, read once and shared. `used` collects the
-    // storylines that actually carried an edition, so their use counts are
-    // incremented AFTER the run — incrementing at pick time would burn a
-    // storyline on a team whose edition later failed fact-check.
-    ladderCtx = {
-      backlog: await readBacklog(),
-      archive: await readJsonOrNull(join(ROOT, "team-events-archive.json")),
-      rankingStats: await readJsonOrNull(join(ROOT, "ranking-stats.json")),
-      // Carried here rather than closed over: `pool` is scoped to this branch,
-      // and the backlog refresh at the end of main() is outside it.
-      pool,
-      used: [],
-    };
-    console.log(`storyline backlog: ${ladderCtx.backlog.length} open`);
-    if (promptsDir.dir) writerTraces = {};
-    generateFor = (teamId) => generateOneGemini(
-      geminiKey, data, teamId, now, editorNotes, checkerNotes, pool, ladderCtx, recentRuns,
-      writerTraces ? (writerTraces[teamId] = {}) : null,
-    );
-    callModel = (prompt) => geminiCall(geminiKey, prompt);
-  } else if (process.env.ANTHROPIC_API_KEY) {
-    console.log(`provider: anthropic (${MODEL})`);
-    const { default: Anthropic } = await import("@anthropic-ai/sdk");
-    const client = new Anthropic();
-    generateFor = async (teamId) => ({ digest: await generateOne(client, data, teamId, now, recentRuns), note: "" });
-    callModel = (prompt) => anthropicText(client, prompt);
-  } else {
-    console.log("GEMINI_API_KEY / ANTHROPIC_API_KEY not set — skipping digest generation");
-    return { skipped: "no-key" };
-  }
+  const editorNotes = await loadEditorNotes();
+  if (editorNotes) console.log(`standing editor notes:\n${editorNotes}`);
+  const checkerNotes = await loadCheckerNotes(sydneyDateParts(now).DATE_ISO);
+  if (checkerNotes) console.log(`standing checker notes:\n${checkerNotes}`);
+  // The spine pool, harvested hourly (harvest-news.yml). Read ONCE and shared
+  // across all 12 teams — it is one file covering every team, which is the
+  // whole reason the publisher spine replaced 36 per-team queries.
+  const pool = await readNewsPool();
+  console.log(`news pool: ${pool.length} items`);
+  // Quiet-day ladder context, read once and shared. `used` collects the
+  // storylines that actually carried an edition, so their use counts are
+  // incremented AFTER the run — incrementing at pick time would burn a
+  // storyline on a team whose edition later failed fact-check.
+  const ladderCtx = {
+    backlog: await readBacklog(),
+    archive: await readJsonOrNull(join(ROOT, "team-events-archive.json")),
+    rankingStats: await readJsonOrNull(join(ROOT, "ranking-stats.json")),
+    // Carried here rather than closed over: the backlog refresh at the end of
+    // main() reads it from here.
+    pool,
+    used: [],
+  };
+  console.log(`storyline backlog: ${ladderCtx.backlog.length} open`);
+  if (promptsDir.dir) writerTraces = {};
+  const generateFor = (teamId) => generateEdition(
+    calls, data, teamId, now, editorNotes, checkerNotes, pool, ladderCtx, recentRuns,
+    writerTraces ? (writerTraces[teamId] = {}) : null,
+  );
+  // Plain prompt → text for the roundup (write and check on one model).
+  const callModel = calls.world;
 
   const generated = {};
   const retrieval = {}; // shortlist + quiet flag per team, for the review
@@ -2042,13 +2004,34 @@ export async function main({ dryRun = false } = {}) {
   // rung carries the load is visible the day it happens rather than after an
   // outage. The run report carries the same so the watchdog can alert on it.
   const usage = geminiUsage();
+  const paid = tally.summary();
+  // `servedBy` names the writer when it is a paid model; `onLastRung` is only
+  // ever true when Gemini carried the run (the watchdog alerts on it, and a
+  // paid writer with Gemini as its spare has not lost its spare).
+  const servedBy = plan.writer !== "gemini" ? plan.writer : usage.servedBy;
   await writeRunReport(now, generated, retrieval, failed, world, worldDropped, {
-    model: { servedBy: usage.servedBy, onLastRung: usage.onLastRung, calls: usage.totalCalls, rejections: usage.totalRejections },
+    model: {
+      servedBy,
+      onLastRung: plan.writer === "gemini" && usage.onLastRung,
+      calls: usage.totalCalls + paid.calls,
+      rejections: usage.totalRejections + paid.failed,
+      plan,
+      anthropic: paid.rows.length ? { calls: paid.calls, failed: paid.failed, fellBack: paid.fellBack, costUSD: paid.costUSD, rows: paid.rows } : null,
+      gemini: usage.rows.length ? { calls: usage.totalCalls, rejections: usage.totalRejections, servedBy: usage.servedBy, onLastRung: usage.onLastRung } : null,
+    },
   });
-  console.log(
-    `gemini: ${usage.totalCalls} calls served, ${usage.totalRejections} rejections — ` +
-      usage.rows.map((r) => `${r.model} ok=${r.ok} 429=${r[429]} 503=${r[503]}`).join(" | "),
-  );
+  if (paid.rows.length) {
+    console.log(
+      `anthropic: ${paid.calls} calls, ${paid.failed} failed (${paid.fellBack} fell back to gemini), US$${paid.costUSD.toFixed(4)} — ` +
+        paid.rows.map((r) => `${r.model} calls=${r.calls} in=${r.input} out=${r.output} US$${r.costUSD.toFixed(4)}`).join(" | "),
+    );
+  }
+  if (usage.rows.length || plan.writer === "gemini") {
+    console.log(
+      `gemini: ${usage.totalCalls} calls served, ${usage.totalRejections} rejections — ` +
+        (usage.rows.map((r) => `${r.model} ok=${r.ok} 429=${r[429]} 503=${r[503]}`).join(" | ") || "no calls"),
+    );
+  }
   // After publication, like the run report: a failure here never costs an
   // edition, and nothing written here reaches nations.json.
   if (writerTraces) {
@@ -2058,7 +2041,8 @@ export async function main({ dryRun = false } = {}) {
       const inputs = buildWriterInputs({
         dateISO: sydneyDateParts(now).DATE_ISO,
         generatedAt: now.toISOString(),
-        servedBy: usage.servedBy,
+        provider: plan.writer === "gemini" ? "gemini" : "anthropic",
+        servedBy,
         traces: writerTraces,
         generated,
         failed,
@@ -2069,7 +2053,7 @@ export async function main({ dryRun = false } = {}) {
       console.warn(`writer inputs not written (editions unaffected): ${e.message}`);
     }
   }
-  if (usage.onLastRung) {
+  if (plan.writer === "gemini" && usage.onLastRung) {
     console.log(
       "::warning::The digest completed on the LAST rung of the model ladder. " +
         "Every rung above it was exhausted, so there is no spare left: if this model sheds " +
@@ -2084,7 +2068,7 @@ export async function main({ dryRun = false } = {}) {
   // written by this point, and a backlog that misses a day costs one quiet-day
   // rung, not an edition. Same reasoning as the email step being
   // continue-on-error — nothing after publication may cost what was published.
-  if (geminiKey && ladderCtx) {
+  if (calls.extract) {
     try {
       // Only storylines that actually carried a published edition are charged a
       // use — a team that failed fact-check keeps its thread for tomorrow.
@@ -2094,7 +2078,7 @@ export async function main({ dryRun = false } = {}) {
         if (generated[teamId]) backlog = markUsed(backlog, storylineId, today);
       }
       const before = backlog.length;
-      backlog = await extractBacklog(geminiKey, ladderCtx.pool, backlog, now, today);
+      backlog = await extractBacklog(calls.extract, ladderCtx.pool, backlog, now, today);
       await writeBacklog(backlog, now);
       console.log(`storyline backlog: ${before} → ${backlog.length} open`);
     } catch (e) {
@@ -2114,10 +2098,11 @@ export async function main({ dryRun = false } = {}) {
     console.warn(`⚠️ TEAMSHEET GAP: ${TEAMS[g.teamId]?.name ?? g.teamId} play ${g.kickoff} but no squad is published`);
   }
 
-  // Post-run editorial review (Gemini path only): grade the batch, persist the
-  // report, and let it add standing notes to tomorrow's writer prompt. A review
-  // failure never fails the run — the editions are already published.
-  if (geminiKey && Object.keys(generated).length) {
+  // Post-run editorial review: grade the batch, persist the report, let it add
+  // standing notes to tomorrow's writer prompt, and collect the news outlets
+  // it proposes (source-candidates.mjs; probed daily, adopted by hand). A
+  // review failure never fails the run — the editions are already published.
+  if (calls.review && Object.keys(generated).length) {
     try {
       const dateISO = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
       const editions = Object.entries(generated).map(([id, digest]) => ({
@@ -2125,7 +2110,10 @@ export async function main({ dryRun = false } = {}) {
         digest,
         ...(retrieval[id] ?? {}),
       }));
-      const { notes, sourceNotes, worldNotes, expired } = await reviewRun(geminiKey, editions, dateISO, world, worldDropped);
+      const candidates = await readCandidates();
+      const { notes, sourceNotes, worldNotes, expired, proposed } = await reviewRun(calls.review, editions, dateISO, world, worldDropped, {
+        sources: { feeds: FEEDS, candidates },
+      });
       console.log(
         `review written (editorial/reviews/${dateISO}.md)` +
           `${notes.length ? `; new prompt notes: ${notes.join(" | ")}` : "; no new prompt notes"}` +
@@ -2133,16 +2121,23 @@ export async function main({ dryRun = false } = {}) {
           `${worldNotes.length ? `; roundup notes: ${worldNotes.join(" | ")}` : ""}` +
           `${expired ? `; ${expired} note(s) aged out` : ""}`,
       );
+      if (proposed.length) {
+        const { added, ignored } = await addCandidates(candidates, proposed, dateISO, FEEDS);
+        console.log(
+          `source candidates: ${added.length} new (${added.map((c) => c.outlet).join(", ") || "none"})` +
+            `${ignored.length ? `; ${ignored.length} ignored (${ignored.join("; ")})` : ""}`,
+        );
+      }
     } catch (e) {
       console.warn(`review step failed (editions unaffected): ${e.message}`);
     }
     // Checker tuner: only fact-check failures teach it anything (rss/network
     // failures are not calibration signals).
     const checkFails = failed.filter((f) => /fact-check failed/i.test(f.reason));
-    if (checkFails.length) {
+    if (checkFails.length && calls.tune) {
       try {
         const dateISO = new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
-        const { notes } = await checkerTuneRun(geminiKey, checkFails, Object.keys(generated).length, dateISO);
+        const { notes } = await checkerTuneRun(calls.tune, checkFails, Object.keys(generated).length, dateISO);
         console.log(notes.length ? `checker calibration notes added: ${notes.join(" | ")}` : "checker calibration reviewed; no new notes");
       } catch (e) {
         console.warn(`checker tuner failed (editions unaffected): ${e.message}`);
