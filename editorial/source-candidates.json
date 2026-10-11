@@ -16,6 +16,10 @@
         {
           "date": "2026-10-11",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-12",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -33,6 +37,10 @@
       "probes": [
         {
           "date": "2026-10-11",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-12",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -53,6 +61,10 @@
       "probes": [
         {
           "date": "2026-10-11",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-12",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -82,6 +94,17 @@
             "Japan": 1,
             "New Zealand": 1
           }
+        },
+        {
+          "date": "2026-10-12",
+          "feedUrl": "https://www.the42.ie/feed/",
+          "items": 40,
+          "hits": {
+            "France": 1,
+            "Ireland": 6,
+            "Scotland": 1,
+            "Japan": 1
+          }
         }
       ],
       "decided": "2026-10-11"
@@ -100,6 +123,20 @@
       "probes": [
         {
           "date": "2026-10-11",
+          "feedUrl": "https://www.rte.ie/feeds/rss/?index=/sport/rugby/",
+          "items": 50,
+          "hits": {
+            "England": 1,
+            "Ireland": 16,
+            "Argentina": 1,
+            "Australia": 2,
+            "Japan": 7,
+            "New Zealand": 1,
+            "South Africa": 2
+          }
+        },
+        {
+          "date": "2026-10-12",
           "feedUrl": "https://www.rte.ie/feeds/rss/?index=/sport/rugby/",
           "items": 50,
           "hits": {
