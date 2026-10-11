@@ -17,6 +17,8 @@ import {
   renderShortlist,
   QUIET_THRESHOLD,
   subjectWeight,
+  sameHeadline,
+  FEEDS,
 } from "./news-sources.mjs";
 
 const NOW = new Date("2026-07-20T10:00:00Z");
@@ -316,4 +318,69 @@ test("firstSeenAt: a cluster is as old as its EARLIEST sighting", () => {
   );
   assert.equal(list.length, 1);
   assert.equal(list[0].fresh, false);
+});
+
+// The Ospreylia case (Wales, 11 Oct 2026): BBC's "How Welsh club turned to a
+// land down under" carried a 17 Sep pubDate but entered the pool on 10 Oct,
+// so the pool's firstSeen made a 23-day-old feature NEW and it ranked above a
+// two-outlet Scarlets/WRU story from 28 Sep. A late sighting is not a story
+// breaking: the earlier of firstSeen and pubDate decides.
+test("buildShortlist: a stale article the feed surfaced late is BACKGROUND, not NEW", () => {
+  const feed = [
+    item("Ospreylia: How Welsh club turned to a land down under", {
+      feedId: "bbc", feedName: "BBC Rugby Union", position: 36,
+      date: hoursAgo(23 * 24), // the real pubDate was 23 days before the 10 Oct sighting
+      firstSeen: new Date(NOW.getTime() - 10 * 3_600_000).toISOString(),
+    }),
+    item("Scarlets and WRU agree deal to keep Wales region in Llanelli", {
+      feedId: "guardian", feedName: "Guardian Rugby Union", position: 4,
+      date: hoursAgo(2 * 24), firstSeen: new Date(NOW.getTime() - 2 * 24 * 3_600_000).toISOString(),
+    }),
+    item("Scarlets and WRU agree deal to keep Wales region in Llanelli", {
+      feedId: "search", feedName: "Search", position: 2, date: hoursAgo(2 * 24), firstSeen: undefined,
+    }),
+    item("Wales name side for Argentina Test as Sherratt rings the changes", {
+      position: 0, date: hoursAgo(3), firstSeen: new Date(NOW.getTime() - 3 * 3_600_000).toISOString(),
+    }),
+    item("Tandy backs Wales bench to finish the job in Buenos Aires", {
+      position: 1, date: hoursAgo(5), firstSeen: new Date(NOW.getTime() - 5 * 3_600_000).toISOString(),
+    }),
+  ];
+  const list = buildShortlist(feed, 391, NOW);
+  const ospreylia = list.find((s) => /Ospreylia/.test(s.title));
+  assert.equal(ospreylia.fresh, false);
+  assert.equal(list[list.length - 1], ospreylia, "it is last");
+  assert.match(renderShortlist(list), /BACKGROUND \(first seen 23 days ago\) · score [\d.]+ · 1 outlet \(bbc\)\] Ospreylia/);
+  assert.equal(isFresh({ items: [{ firstSeen: new Date(NOW.getTime() - 3 * 3_600_000).toISOString(), date: hoursAgo(10 * 24) }] }, NOW), false);
+});
+
+// The Edwards case (Argentina, 11 Oct 2026): five outlets' versions of one
+// signing, Jaccard 0.10–0.30 between the short and the long headlines, so
+// corroboration read 1–2 where it was four outlets.
+test("clusterStories: the Edwards case — five outlets' versions of one signing are one story", () => {
+  const feed = [
+    item("Defence guru Shaun Edwards joins the Pumas as Felipe Contepomi bolsters Los Pumas backroom", { feedId: "planetrugby", position: 0 }),
+    item("Edwards joins Argentina as defence coach", { feedId: "bbc", feedName: "BBC Rugby Union", position: 1 }),
+    item("Argentina snap up defence guru Edwards", { feedId: "sarugbymag", feedName: "SA Rugby Magazine", position: 2 }),
+    item("Shaun Edwards joins Argentina coaching staff as defence coach", { feedId: "search", feedName: "Search", position: 5 }),
+    item("Felipe Contepomi bolsters Los Pumas backroom with Shaun Edwards", { feedId: "search", feedName: "Search", position: 7 }),
+  ];
+  const clusters = clusterStories(feed);
+  assert.equal(clusters.length, 1);
+  assert.equal(clusters[0].corroboration, 4);
+  assert.match(clusters[0].title, /^Defence guru Shaun Edwards/);
+  assert.equal(sameHeadline("Argentina beat Wales in Buenos Aires", "Wales name team to face Argentina"), false);
+  assert.equal(sameHeadline("Springboks confirm Argentina tour venues for next month", "South Africa announce a new defence coach on a two-year deal"), false);
+  assert.equal(sameHeadline("Edwards joins Argentina as defence coach", "Argentina snap up defence guru Edwards"), true);
+});
+
+test("FEEDS: FBC News is in the spine for Fiji, with a rugby topic filter", () => {
+  const fbc = FEEDS.find((f) => f.id === "fbcnews");
+  assert.ok(fbc);
+  assert.equal(new URL(fbc.url).hostname.replace(/^www\./, ""), "fbcnews.com.fj");
+  assert.ok(fbc.topic instanceof RegExp);
+  assert.equal(fbc.topic.test("Flying Fijians name squad for November"), true);
+  assert.equal(fbc.topic.test("Drua sign two props for next season"), true);
+  assert.equal(fbc.topic.test("Fiji records budget surplus"), false);
+  assert.equal(FEEDS.filter((f) => f.topic).length, 1, "only the general-news site needs a topic");
 });

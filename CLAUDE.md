@@ -68,7 +68,8 @@ roundup, **Sonnet 5.5** does the post-run review, and Gemini's free ladder is
 the fallback for every paid call plus the home of the two housekeeping calls
 (storyline extraction, checker tuning). About US$0.05 a run, US$5 a month,
 against the US$12–24 budgeted; the run report's `model.anthropic` block and
-the Actions log carry the real spend per model. A paid model that fails falls
+the Actions log carry the real spend per model (the block is rewritten after
+the review and the tuner have run, so their calls are in it too). A paid model that fails falls
 back to Gemini on that call and the log says so (`fellBack`). To try another
 model for a week, set the variable (any model priced in
 `scripts/compare-digest-models.mjs`, or `gemini`); no code change.

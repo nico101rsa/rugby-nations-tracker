@@ -21,6 +21,7 @@ import {
   readRecentRunReports,
   isForbiddenCheckerNote,
   curateCheckerNotes,
+  buildModelBlock,
 } from "./generate-digests.mjs";
 import {
   storySimilarity,
@@ -574,7 +575,11 @@ test("buildReviewPrompt: shows retrieval, the pick, and bars writer notes for fa
       {
         team: "South Africa",
         quiet: false,
-        shortlist: [{ score: 54, corroboration: 2, title: "Erasmus provides fitness update" }],
+        shortlist: [
+          { score: 54, corroboration: 2, title: "Erasmus provides fitness update", fresh: true },
+          { score: 30, corroboration: 1, title: "Springboks team: Rassie rotates", fresh: false },
+          { score: 12, corroboration: 1, title: "A legacy candidate with no fresh flag" },
+        ],
         digest: { edition: "Monday 20 July", lead: { candidate: 1, why: "the day's story" }, sections: [] },
       },
       { team: "Fiji", quiet: true, shortlist: [], digest: { edition: "Monday 20 July", sections: [] } },
@@ -582,6 +587,12 @@ test("buildReviewPrompt: shows retrieval, the pick, and bars writer notes for fa
     "2026-07-20",
   );
   assert.match(prompt, /Erasmus provides fitness update/);
+  // The review sees the same NEW / BACKGROUND tag the writer saw, so the
+  // fresh-first order is never reported as "not sorted by score" again.
+  assert.match(prompt, /1\. \[NEW · score 54, 2 outlets\] Erasmus/);
+  assert.match(prompt, /2\. \[BACKGROUND · score 30\] Springboks team/);
+  assert.match(prompt, /3\. \[score 12\] A legacy candidate/);
+  assert.match(prompt, /Do not report that ordering as a defect/);
   assert.match(prompt, /led with #1/);
   assert.match(prompt, /Fiji — QUIET DAY/);
   assert.match(prompt, /the press carried nothing about this team today/);
@@ -931,4 +942,37 @@ test("curateCheckerNotes: drops forbidden and expired notes, dedupes twins, caps
     "- Do not flag fixture-sequence interpretation when results match trusted data. _(added 2026-09-20)_",
     "- Hand-written: a rank claim from ranking-stats.json needs no pack support.",
   ]);
+});
+
+// The 11 Oct 2026 run report had no Sonnet row: the model block was built
+// before the review ran. It is now a pure function, rebuilt after the review.
+test("buildModelBlock: paid rows for every model, review included; Gemini only when it served", () => {
+  const plan = { writer: "claude-haiku-5-5", checker: "claude-haiku-5-5", review: "claude-sonnet-5-5", world: "claude-haiku-5-5", extract: "gemini", tune: "gemini" };
+  const paid = {
+    rows: [
+      { model: "claude-haiku-5-5", calls: 38, failed: 0, fellBack: 0, input: 301542, output: 84636, costUSD: 0.07249 },
+      { model: "claude-sonnet-5-5", calls: 1, failed: 0, fellBack: 0, input: 18000, output: 3000, costUSD: 0.066 },
+    ],
+    calls: 39, failed: 0, fellBack: 0, costUSD: 0.13849,
+  };
+  const quiet = { rows: [], servedBy: null, totalCalls: 0, totalRejections: 0, onLastRung: false };
+  const block = buildModelBlock({ plan, usage: quiet, paid });
+  assert.equal(block.servedBy, "claude-haiku-5-5");
+  assert.equal(block.onLastRung, false);
+  assert.equal(block.calls, 39);
+  assert.equal(block.anthropic.rows.length, 2);
+  assert.equal(block.anthropic.rows[1].model, "claude-sonnet-5-5");
+  assert.equal(block.anthropic.costUSD, 0.13849);
+  assert.equal(block.gemini, null);
+  assert.deepEqual(block.plan, plan);
+
+  const geminiRun = { rows: [{ model: "gemini-3.1-flash-lite", ok: 40, 429: 36, 503: 0, other: 0 }], servedBy: "gemini-3.1-flash-lite", totalCalls: 40, totalRejections: 36, onLastRung: true };
+  const free = buildModelBlock({ plan: { ...plan, writer: "gemini" }, usage: geminiRun, paid: { rows: [], calls: 0, failed: 0, fellBack: 0, costUSD: 0 } });
+  assert.equal(free.servedBy, "gemini-3.1-flash-lite");
+  assert.equal(free.onLastRung, true, "the watchdog's last-rung alert still fires when Gemini carried the run");
+  assert.equal(free.anthropic, null);
+  assert.equal(free.gemini.onLastRung, true);
+  const spare = buildModelBlock({ plan, usage: geminiRun, paid });
+  assert.equal(spare.onLastRung, false, "Gemini on its last rung as the SPARE is not an outage");
+  assert.equal(spare.calls, 79);
 });
