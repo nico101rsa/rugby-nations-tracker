@@ -56,6 +56,64 @@
           "error": "no feed found (8 tried)"
         }
       ]
+    },
+    {
+      "outlet": "The42",
+      "host": "the42.ie",
+      "homepage": "https://www.the42.ie",
+      "teams": [
+        "Ireland"
+      ],
+      "why": "Ireland's men's shortlist was only club matches and opinion; The42 has a dedicated rugby desk covering the national team.",
+      "proposed": "2026-10-11",
+      "status": "ready",
+      "feedUrl": "https://www.the42.ie/feed/",
+      "probes": [
+        {
+          "date": "2026-10-11",
+          "feedUrl": "https://www.the42.ie/feed/",
+          "items": 40,
+          "hits": {
+            "England": 1,
+            "France": 1,
+            "Ireland": 6,
+            "Scotland": 1,
+            "Australia": 1,
+            "Japan": 1,
+            "New Zealand": 1
+          }
+        }
+      ],
+      "decided": "2026-10-11"
+    },
+    {
+      "outlet": "RTÉ Sport",
+      "host": "rte.ie",
+      "homepage": "https://www.rte.ie/sport/rugby/",
+      "teams": [
+        "Ireland"
+      ],
+      "why": "The state broadcaster's rugby pages carry regular men's Ireland team news that the current spine missed today.",
+      "proposed": "2026-10-11",
+      "status": "ready",
+      "feedUrl": "https://www.rte.ie/feeds/rss/?index=/sport/rugby/",
+      "probes": [
+        {
+          "date": "2026-10-11",
+          "feedUrl": "https://www.rte.ie/feeds/rss/?index=/sport/rugby/",
+          "items": 50,
+          "hits": {
+            "England": 1,
+            "Ireland": 16,
+            "Argentina": 1,
+            "Australia": 2,
+            "Japan": 7,
+            "New Zealand": 1,
+            "South Africa": 2
+          }
+        }
+      ],
+      "decided": "2026-10-11"
     }
   ]
 }

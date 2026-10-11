@@ -4,7 +4,10 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 ## Ready — carried stories about the team they were proposed for
 
-- Nothing ready.
+- **The42** (the42.ie) — proposed 2026-10-11 for Ireland: Ireland's men's shortlist was only club matches and opinion; The42 has a dedicated rugby desk covering the national team.
+  - feed: https://www.the42.ie/feed/; probes: 1; stories about tracked teams: Ireland 6, England 1, France 1, Scotland 1, Australia 1, Japan 1, New Zealand 1
+- **RTÉ Sport** (rte.ie) — proposed 2026-10-11 for Ireland: The state broadcaster's rugby pages carry regular men's Ireland team news that the current spine missed today.
+  - feed: https://www.rte.ie/feeds/rss/?index=/sport/rugby/; probes: 1; stories about tracked teams: Ireland 16, Japan 7, Australia 2, South Africa 2, England 1, Argentina 1, New Zealand 1
 
 ## Being probed
 

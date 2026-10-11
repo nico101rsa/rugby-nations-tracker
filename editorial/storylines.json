@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-10T23:05:32.941Z",
+  "updatedAt": "2026-10-11T00:34:46.447Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 225,
+  "count": 213,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -150,34 +150,6 @@
       "uses": 0
     },
     {
-      "id": "the-wallabies-search-for-11uthnw",
-      "subject": "The Wallabies' search for a starting fly-half following Carter Gordon's leg injury",
-      "teams": [
-        461
-      ],
-      "resolution": "until Les Kiss settles on a starting No 10 for the upcoming Test against South Africa",
-      "sources": [
-        {
-          "title": "Wallabies veterans miss out as Les Kiss selects new face for Springboks Test",
-          "link": "https://www.theguardian.com/sport/2026/sep/14/wallabies-vs-south-africa-les-kiss-names-harry-mclaughlin-phillips",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Wallabies call up rookie playmaker for Boks",
-          "link": "https://www.sarugbymag.co.za/wallabies-call-rookie-playmaker-boks/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Wallabies’ Carter Gordon set for stint on sidelines after breaking leg in latest injury blow",
-          "link": "https://www.theguardian.com/sport/2026/sep/07/wallabies-carter-gordon-broken-leg-injury-blow-bledisloe-cup",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-09",
-      "lastSeen": "2026-09-20",
-      "uses": 0
-    },
-    {
       "id": "steve-borthwick-s-england-1l1f8u7",
       "subject": "Steve Borthwick's contract extension with England",
       "teams": [
@@ -309,133 +281,6 @@
       "uses": 0
     },
     {
-      "id": "the-potential-transfer-of-1dss6hg",
-      "subject": "The potential transfer of scrum-half Haashim Pead from the Lions to the Stormers",
-      "teams": [
-        467
-      ],
-      "resolution": "until the Stormers or Lions announce a final decision on Pead's transfer",
-      "sources": [
-        {
-          "title": "Cash: Hash can become a Springbok with us",
-          "link": "https://www.sarugbymag.co.za/cash-hash-can-become-springbok-us/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "'Complete hogwash' – Stormers boss rubbishes Siya Kolisi transfer figure and admits 'smoke' around ex-Junior Springbok superstar swoop",
-          "link": "https://www.planetrugby.com/news/stormers-john-dobson-addresses-siya-kolisi-transfer-and-haashim-pead-approach",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Dobbo clears up Haashim ‘smoke’",
-          "link": "https://www.sarugbymag.co.za/dobbo-clears-haashim-smoke/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-09-14",
-      "lastSeen": "2026-09-20",
-      "uses": 0
-    },
-    {
-      "id": "the-rfu-s-implementation-1f8fvwj",
-      "subject": "The Red Roses' campaign for fertility and egg-freezing support for international players",
-      "teams": [
-        386
-      ],
-      "resolution": "until the RFU implements a formal policy regarding fertility support for the England women's team",
-      "sources": [
-        {
-          "title": "The Breakdown | Meg Jones leads the call to provide fertility support for rugby players",
-          "link": "https://www.theguardian.com/sport/2026/sep/15/meg-jones-leads-call-fertility-support-for-rugby-players-breakdown",
-          "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "England captain Jones calls for fertility support",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ce9er3xdgvdo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Title, ring and IVF eye opener - Evans' whirlwind year",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cjrx01yl7xpo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-14",
-      "lastSeen": "2026-09-20",
-      "uses": 0
-    },
-    {
-      "id": "fertility-support-for-england-cfnf7p",
-      "subject": "England Women's implementation of fertility support and egg freezing for players",
-      "teams": [
-        386
-      ],
-      "resolution": "until the RFU provides a formal policy or funding for egg freezing and fertility support",
-      "sources": [
-        {
-          "title": "England captain Jones calls for fertility support",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ce9er3xdgvdo?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "The Breakdown | Meg Jones leads the call to provide fertility support for rugby players",
-          "link": "https://www.theguardian.com/sport/2026/sep/15/meg-jones-leads-call-fertility-support-for-rugby-players-breakdown",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-16",
-      "lastSeen": "2026-09-20",
-      "uses": 0
-    },
-    {
-      "id": "springbok-team-selection-for-aczmu",
-      "subject": "Springbok team selection for the upcoming Test against the Wallabies",
-      "teams": [
-        467,
-        461
-      ],
-      "resolution": "until the Springboks announce their squad to face Australia in Perth",
-      "sources": [
-        {
-          "title": "Keo &#038; Zels: Who does Rassie pick for Wallabies?",
-          "link": "https://www.sarugbymag.co.za/keo-zels-rassie-pick-wallabies/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Rassie: Wallabies Test is 'massive'",
-          "link": "https://www.sarugbymag.co.za/boks-brace-massive-wallabies-challenge/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Springboks: Rassie Erasmus releases two leading players from squad to face Wallabies",
-          "link": "https://www.planetrugby.com/news/springboks-rassie-erasmus-releases-two-leading-players-from-squad-to-face-wallabies",
-          "feedName": "Planet Rugby"
-        }
-      ],
-      "firstSeen": "2026-09-17",
-      "lastSeen": "2026-09-20",
-      "uses": 0
-    },
-    {
-      "id": "potential-inclusion-of-irish-7bsg3a",
-      "subject": "Potential inclusion of Irish women's teams in the PWR (Premiership Women's Rugby)",
-      "teams": [
-        388
-      ],
-      "resolution": "until the IRFU confirms whether Irish sides will join the English domestic structure",
-      "sources": [
-        {
-          "title": "IRFU await news of 'massive opportunity' to join PWR",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6dx0z98d289o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-18",
-      "lastSeen": "2026-09-20",
-      "uses": 1,
-      "lastUsed": "2026-09-20"
-    },
-    {
       "id": "ireland-s-potential-involvement-a1tohs",
       "subject": "Ireland's potential involvement in a future British and Irish Women's League",
       "teams": [
@@ -512,148 +357,6 @@
       "lastSeen": "2026-09-29",
       "uses": 1,
       "lastUsed": "2026-09-29"
-    },
-    {
-      "id": "kwagga-smith-s-potential-1uy2y6j",
-      "subject": "Kwagga Smith's potential move to the Bulls",
-      "teams": [
-        467
-      ],
-      "resolution": "until the Bulls or the player confirm or reject the transfer rumors",
-      "sources": [
-        {
-          "title": "Bulls line up Kwagga",
-          "link": "https://www.sarugbymag.co.za/bulls-line-up-kwagga/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-09-20",
-      "lastSeen": "2026-09-20",
-      "uses": 0
-    },
-    {
-      "id": "eligibility-and-selection-of-vlzogq",
-      "subject": "Eligibility and selection of 'Springbok' hopeful Haashim Pead",
-      "teams": [
-        467
-      ],
-      "resolution": "until Pead's formal integration or debut for his new club and potential international status is clarified",
-      "sources": [
-        {
-          "title": "'Complete hogwash' – Stormers boss rubbishes Siya Kolisi transfer figure and admits 'smoke' around ex-Junior Springbok superstar swoop",
-          "link": "https://www.planetrugby.com/news/stormers-john-dobson-addresses-siya-kolisi-transfer-and-haashim-pead-approach",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Dobbo clears up Haashim ‘smoke’",
-          "link": "https://www.sarugbymag.co.za/dobbo-clears-haashim-smoke/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Cash: Hash can become a Springbok with us",
-          "link": "https://www.sarugbymag.co.za/cash-hash-can-become-springbok-us/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-09-20",
-      "lastSeen": "2026-09-20",
-      "uses": 0
-    },
-    {
-      "id": "eligibility-and-selection-of-106xhr4",
-      "subject": "Eligibility and selection of 'Springbok-qualified' Stormers for URC fixtures",
-      "teams": [
-        467
-      ],
-      "resolution": "until the Springboks players have fully integrated back into the Stormers' match-day squads for the URC",
-      "sources": [
-        {
-          "title": "‘We’re going to have to be brave with Sacha’",
-          "link": "https://www.sarugbymag.co.za/going-brave-sacha/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Bok boost for Stormers’ Connacht clash?",
-          "link": "https://www.sarugbymag.co.za/bok-boost-stormers-connacht-clash/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Stormers leave door ajar for Bok’s return",
-          "link": "https://www.sarugbymag.co.za/stormers-leave-door-ajar-boks-return/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-09-20",
-      "lastSeen": "2026-09-20",
-      "uses": 0
-    },
-    {
-      "id": "sky-sports-bid-for-1sd54dq",
-      "subject": "Sky Sports' bid for the inaugural women’s British & Irish Lions broadcast rights",
-      "teams": [
-        386,
-        388,
-        390,
-        391
-      ],
-      "resolution": "until the official broadcast partner for the 2027 tour is announced",
-      "sources": [
-        {
-          "title": "Sky closes in on broadcast rights for first women’s British & Irish Lions tour",
-          "link": "https://www.theguardian.com/sport/2026/sep/16/womens-rugby-union-sky-broadcast-rights-first-british-irish-lions-tour",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-20",
-      "lastSeen": "2026-09-20",
-      "uses": 1,
-      "lastUsed": "2026-09-20"
-    },
-    {
-      "id": "fin-smith-s-audition-1h8h6op",
-      "subject": "Fin Smith's audition for the England fly-half role",
-      "teams": [
-        386
-      ],
-      "resolution": "until England's performance in the autumn internationals confirms his status as a permanent starter",
-      "sources": [
-        {
-          "title": "Fin Smith sets England autumn ultimatum to hit form",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cqjdv900rmego?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-09-20",
-      "lastSeen": "2026-09-20",
-      "uses": 0
-    },
-    {
-      "id": "rassie-erasmus-s-squad-a2wj0v",
-      "subject": "Rassie Erasmus's squad selection for the 2027 Rugby World Cup",
-      "teams": [
-        467
-      ],
-      "resolution": "until the final 2027 Rugby World Cup squad is announced",
-      "sources": [
-        {
-          "title": "Jake: Bok veterans have silenced haters",
-          "link": "https://www.sarugbymag.co.za/jake-bok-veterans-silenced-haters/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Jake White: Springboks don't need to change anything, the chasing pack has to catch up",
-          "link": "https://www.planetrugby.com/news/jake-white-rassie-erasmus-springboks-dont-need-to-change-anything",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "‘We’re going to have to be brave with Sacha’",
-          "link": "https://www.sarugbymag.co.za/going-brave-sacha/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-09-20",
-      "lastSeen": "2026-09-20",
-      "uses": 0
     },
     {
       "id": "leo-cullen-s-upcoming-1gle451",
@@ -4405,7 +4108,7 @@
     },
     {
       "id": "the-naming-rights-dispute-1ig9scl",
-      "subject": "Legal dispute over the 'Chiefs' brand between NZ Rugby and the ARLC",
+      "subject": "New Zealand Rugby's legal dispute with the ARLC over the 'Chiefs' brand name",
       "teams": [
         465,
         461
@@ -4545,7 +4248,7 @@
     },
     {
       "id": "potential-move-of-barrett-lr2nyp",
-      "subject": "Beauden and Scott Barrett's potential post-2027 World Cup moves to Premiership Rugby",
+      "subject": "Beauden and Jordie Barrett's potential post-2027 World Cup moves to Premiership Rugby",
       "teams": [
         386,
         465
@@ -4564,7 +4267,7 @@
         }
       ],
       "firstSeen": "2026-10-10",
-      "lastSeen": "2026-10-10",
+      "lastSeen": "2026-10-11",
       "uses": 0
     },
     {
@@ -4926,28 +4629,6 @@
       "uses": 0
     },
     {
-      "id": "the-legal-battle-regarding-yzsdo5",
-      "subject": "The legal battle regarding rugby union brain injury compensation",
-      "teams": [
-        386,
-        391,
-        388,
-        390
-      ],
-      "resolution": "until the claimants satisfy the required legal costs to proceed with the case",
-      "sources": [
-        {
-          "title": "Rugby’s brain injury claimants face £2.8m legal bill to continue case",
-          "link": "https://www.theguardian.com/sport/2026/oct/02/rugby-union-players-liable-for-28m-in-legal-fees-to-brain-injury-case-concussion",
-          "feedName": "Guardian Rugby Union"
-        }
-      ],
-      "firstSeen": "2026-10-11",
-      "lastSeen": "2026-10-11",
-      "uses": 2,
-      "lastUsed": "2026-10-11"
-    },
-    {
       "id": "the-pursuit-of-the-xuynqp",
       "subject": "The future of the Barrett brothers potentially moving to English Premiership clubs",
       "teams": [
@@ -5144,7 +4825,7 @@
     },
     {
       "id": "richie-mo-unga-s-281ojw",
-      "subject": "Richie Mo'unga's injury recovery and return timeline for New Zealand",
+      "subject": "Richie Mo'unga's fly-half injury status and return timeline for New Zealand",
       "teams": [
         465
       ],
@@ -5224,6 +4905,24 @@
           "title": "In-form Carpenter aims to advance England case by outshining Furbank",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c615jzgej9zko?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-11",
+      "lastSeen": "2026-10-11",
+      "uses": 0
+    },
+    {
+      "id": "the-welsh-rugby-union-v01w3p",
+      "subject": "The Welsh Rugby Union's proposal to eliminate one Welsh region by 2028",
+      "teams": [
+        391
+      ],
+      "resolution": "until the Welsh Rugby Union announces its final decision on regional rugby restructuring",
+      "sources": [
+        {
+          "title": "‘Rugby’s in people’s blood here’: mutiny rising in west Wales as Scarlets fight WRU plan",
+          "link": "https://www.theguardian.com/sport/2026/sep/28/welsh-rugby-union-mutiny-west-wales-scarlets-ospreys-fight-wru-plan",
+          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-10-11",
