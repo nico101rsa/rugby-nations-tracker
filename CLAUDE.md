@@ -141,21 +141,13 @@ from code: if Nico watches the repo on "All activity", GitHub still notifies
 him on every new issue, which is why the silent tier keeps issues for rare
 data-correctness tickets and puts routine findings in files.
 
-## News shadow test (6–12 Oct 2026)
+## News shadow test (6–12 Oct 2026) — closed
 
-For one week the digests workflow replays each day's production writer
-prompts on the paid model and writes the drafts, token counts and cost to
-`editorial/shadow/<date>.json` (`scripts/news-shadow.mjs`). It runs after
-publication and only on the first run of each Sydney date. It is capped at
-US$1.50 a run and US$9 for the week, and it stops itself after 12 Oct. It
-never writes `nations.json`. The prompts carry publishers' article text, so
-they stay in the runner's temp directory (`DIGEST_PROMPTS_DIR`) and are never
-committed. The drafts it does commit were never fact-checked and this repo is
-public (Pages serves it all), so each record opens with a `notice` saying so.
-`editorial/shadow/README.md` says how the weekly review grades it. Remove the
-three shadow steps and `DIGEST_PROMPTS_DIR` once that is done; the workflow
-test in `scripts/news-shadow.test.mjs` passes either way, by design, because
-the suite runs first in the digest job and a failing test stops publication.
+One week of production writer prompts replayed on paid models, recorded in
+`editorial/shadow/` (`README.md` there has the method and the grading). It
+decided the model split above on 11 Oct; its workflow steps were removed on
+12 Oct. The records are public and were never fact-checked, which is why each
+opens with a `notice`.
 
 ## A result is symmetric — never trust one team's record alone
 
