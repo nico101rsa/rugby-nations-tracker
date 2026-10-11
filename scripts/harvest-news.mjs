@@ -81,13 +81,22 @@ export function prunePool(pool, now, retentionHours = RETENTION_HOURS) {
 
 // ---- I/O --------------------------------------------------------------------
 
+// A feed with a `topic` (news-sources.mjs FEEDS) is a general news site whose
+// rugby is a category: keep only the items that are about rugby at all, so
+// the positions below are rugby-only ranks and a court report that names
+// "Fiji" never reaches a shortlist. Feeds without a topic keep everything.
+export function keepItem(feed, item) {
+  if (!feed?.topic) return true;
+  return feed.topic.test(`${item?.title ?? ""} ${item?.desc ?? ""}`);
+}
+
 async function fetchFeed(feed) {
   const res = await fetch(feed.url, {
     headers: { "user-agent": UA },
     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const items = parseRss(await res.text());
+  const items = parseRss(await res.text()).filter((item) => keepItem(feed, item));
   if (!items.length) throw new Error("no items");
   // Position is where the outlet placed it — borrowed editorial ranking.
   return items.map((item, position) => ({

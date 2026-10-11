@@ -1010,9 +1010,10 @@ fill space.
 
 ## Today's shortlist${ladder ? " — background only" : " — lead with ONE of these"}
 
-Ranked by how much the rugby press is actually making of each story:
-corroboration across outlets first, then where the outlet placed it, then how
-fresh it is.${ladder ? `
+Candidates marked NEW broke since the previous edition and sit above
+BACKGROUND ones whatever their score; within each group they are ranked by how
+much the rugby press is making of the story: corroboration across outlets
+first, then where the outlet placed it, then how fresh it is.${ladder ? `
 
 **Nothing here cleared the bar today, so do NOT lead from this list.** It is
 printed only so you know what was available. Your instructions are in the
@@ -1478,7 +1479,13 @@ export function buildReviewPrompt(editions, dateISO, world = [], worldDropped = 
   const sourcesBlock = feeds.length ? renderCandidatesForReview(feeds, candidates) : "";
   const blocks = editions.map(({ team, digest, shortlist = [], quiet = false, ladder = null }) => {
     const candidates = shortlist.length
-      ? shortlist.map((s, n) => `  ${n + 1}. [score ${s.score}${s.corroboration > 1 ? `, ${s.corroboration} outlets` : ""}] ${s.title}`).join("\n")
+      ? shortlist.map((s, n) => {
+        // The writer saw the NEW / BACKGROUND tag (news-sources.mjs
+        // renderShortlist); without it here the review reads the fresh-first
+        // order as "not sorted by score" and files that every day (11 Oct 2026).
+        const tag = typeof s.fresh === "boolean" ? `${s.fresh ? "NEW" : "BACKGROUND"} · ` : "";
+        return `  ${n + 1}. [${tag}score ${s.score}${s.corroboration > 1 ? `, ${s.corroboration} outlets` : ""}] ${s.title}`;
+      }).join("\n")
       : "  (none — the press carried nothing about this team today)";
     const led = digest.lead ? `led with #${digest.lead.candidate}: "${digest.lead.why}"` : "did not record a pick";
 
@@ -1520,6 +1527,9 @@ ${JSON.stringify({ ...digest, lead: undefined }, null, 1)}`;
 
 For each team you are shown THREE things: the ranked shortlist retrieval offered
 the writer, which candidate the writer chose and why, and what it published.
+Candidates marked NEW broke since the previous edition and are listed above
+BACKGROUND ones whatever their score; within each group the list is ranked by
+score. Do not report that ordering as a defect.
 
 ${blocks.join("\n\n")}
 
@@ -2003,35 +2013,16 @@ export async function main({ dryRun = false } = {}) {
   // every run so the answer is never a guess again — and so a shift in which
   // rung carries the load is visible the day it happens rather than after an
   // outage. The run report carries the same so the watchdog can alert on it.
+  // Written now so a crash later still leaves a report, and rewritten once
+  // the review and tuner have run so their calls are counted too (the 11 Oct
+  // report had no Sonnet row because this ran before the review).
   const usage = geminiUsage();
   const paid = tally.summary();
-  // `servedBy` names the writer when it is a paid model; `onLastRung` is only
-  // ever true when Gemini carried the run (the watchdog alerts on it, and a
-  // paid writer with Gemini as its spare has not lost its spare).
   const servedBy = plan.writer !== "gemini" ? plan.writer : usage.servedBy;
   await writeRunReport(now, generated, retrieval, failed, world, worldDropped, {
-    model: {
-      servedBy,
-      onLastRung: plan.writer === "gemini" && usage.onLastRung,
-      calls: usage.totalCalls + paid.calls,
-      rejections: usage.totalRejections + paid.failed,
-      plan,
-      anthropic: paid.rows.length ? { calls: paid.calls, failed: paid.failed, fellBack: paid.fellBack, costUSD: paid.costUSD, rows: paid.rows } : null,
-      gemini: usage.rows.length ? { calls: usage.totalCalls, rejections: usage.totalRejections, servedBy: usage.servedBy, onLastRung: usage.onLastRung } : null,
-    },
+    model: buildModelBlock({ plan, usage, paid }),
   });
-  if (paid.rows.length) {
-    console.log(
-      `anthropic: ${paid.calls} calls, ${paid.failed} failed (${paid.fellBack} fell back to gemini), US$${paid.costUSD.toFixed(4)} — ` +
-        paid.rows.map((r) => `${r.model} calls=${r.calls} in=${r.input} out=${r.output} US$${r.costUSD.toFixed(4)}`).join(" | "),
-    );
-  }
-  if (usage.rows.length || plan.writer === "gemini") {
-    console.log(
-      `gemini: ${usage.totalCalls} calls served, ${usage.totalRejections} rejections — ` +
-        (usage.rows.map((r) => `${r.model} ok=${r.ok} 429=${r[429]} 503=${r[503]}`).join(" | ") || "no calls"),
-    );
-  }
+  logSpend(plan, usage, paid, "after publication");
   // After publication, like the run report: a failure here never costs an
   // edition, and nothing written here reaches nations.json.
   if (writerTraces) {
@@ -2119,7 +2110,11 @@ export async function main({ dryRun = false } = {}) {
           `${notes.length ? `; new prompt notes: ${notes.join(" | ")}` : "; no new prompt notes"}` +
           `${sourceNotes.length ? `; retrieval notes: ${sourceNotes.join(" | ")}` : ""}` +
           `${worldNotes.length ? `; roundup notes: ${worldNotes.join(" | ")}` : ""}` +
-          `${expired ? `; ${expired} note(s) aged out` : ""}`,
+          `${expired ? `; ${expired} note(s) aged out` : ""}` +
+          (() => {
+            const row = tally.summary().rows.find((r) => r.model === plan.review);
+            return row ? `; review cost US$${row.costUSD.toFixed(4)} (in ${row.input}, out ${row.output})` : "";
+          })(),
       );
       if (proposed.length) {
         const { added, ignored } = await addCandidates(candidates, proposed, dateISO, FEEDS);
@@ -2145,7 +2140,54 @@ export async function main({ dryRun = false } = {}) {
     }
   }
 
+  // The final model block: the review and the checker tuner spent after the
+  // first report was written. Same report, same path; a failure here changes
+  // nothing that was published.
+  try {
+    const finalUsage = geminiUsage();
+    const finalPaid = tally.summary();
+    if (finalPaid.calls !== paid.calls || finalUsage.totalCalls !== usage.totalCalls) {
+      await writeRunReport(now, generated, retrieval, failed, world, worldDropped, {
+        model: buildModelBlock({ plan, usage: finalUsage, paid: finalPaid }),
+      });
+      logSpend(plan, finalUsage, finalPaid, "final, incl. review");
+    }
+  } catch (e) {
+    console.warn(`final model block not written (editions unaffected): ${e.message}`);
+  }
+
   return { generated: Object.keys(generated).length, failed };
+}
+
+// The run report's `model` block: who served the run and what it cost, per
+// model. `servedBy` names the writer when it is a paid model; `onLastRung` is
+// only ever true when Gemini carried the run (the watchdog alerts on it, and
+// a paid writer with Gemini as its spare has not lost its spare). Pure.
+export function buildModelBlock({ plan, usage, paid }) {
+  return {
+    servedBy: plan.writer !== "gemini" ? plan.writer : usage.servedBy,
+    onLastRung: plan.writer === "gemini" && usage.onLastRung,
+    calls: usage.totalCalls + paid.calls,
+    rejections: usage.totalRejections + paid.failed,
+    plan,
+    anthropic: paid.rows.length ? { calls: paid.calls, failed: paid.failed, fellBack: paid.fellBack, costUSD: paid.costUSD, rows: paid.rows } : null,
+    gemini: usage.rows.length ? { calls: usage.totalCalls, rejections: usage.totalRejections, servedBy: usage.servedBy, onLastRung: usage.onLastRung } : null,
+  };
+}
+
+function logSpend(plan, usage, paid, label) {
+  if (paid.rows.length) {
+    console.log(
+      `anthropic (${label}): ${paid.calls} calls, ${paid.failed} failed (${paid.fellBack} fell back to gemini), US$${paid.costUSD.toFixed(4)} — ` +
+        paid.rows.map((r) => `${r.model} calls=${r.calls} in=${r.input} out=${r.output} US$${r.costUSD.toFixed(4)}`).join(" | "),
+    );
+  }
+  if (usage.rows.length || plan.writer === "gemini") {
+    console.log(
+      `gemini (${label}): ${usage.totalCalls} calls served, ${usage.totalRejections} rejections — ` +
+        (usage.rows.map((r) => `${r.model} ok=${r.ok} 429=${r[429]} 503=${r[503]}`).join(" | ") || "no calls"),
+    );
+  }
 }
 
 // pathToFileURL, not `file://${argv[1]}` — paths with spaces percent-encode in

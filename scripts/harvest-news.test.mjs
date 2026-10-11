@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { itemKey, mergeIntoPool, prunePool, RETENTION_HOURS } from "./harvest-news.mjs";
+import { itemKey, mergeIntoPool, prunePool, keepItem, RETENTION_HOURS } from "./harvest-news.mjs";
 
 const NOW = new Date("2026-07-20T10:00:00Z");
 const hoursAgo = (h) => new Date(NOW.getTime() - h * 3_600_000).toISOString();
@@ -87,4 +87,13 @@ test("prunePool: falls back to pubDate when firstSeen is absent", () => {
 test("prunePool: an item with no usable timestamp is dropped, not kept forever", () => {
   const kept = prunePool([{ ...item(), firstSeen: undefined, date: "nonsense" }], NOW);
   assert.equal(kept.length, 0);
+});
+
+test("keepItem: a feed with a topic keeps only matching items; feeds without one keep everything", () => {
+  const topic = { id: "fbcnews", topic: /\b(rugby|drua)\b/i };
+  assert.equal(keepItem(topic, item({ title: "Drua name side", desc: "" })), true, "title match");
+  assert.equal(keepItem(topic, item({ title: "Weekend sport", desc: "Rugby: the Flying Fijians train in Suva" })), true, "description match");
+  assert.equal(keepItem(topic, item({ title: "Fiji records budget surplus", desc: "Parliament sat late" })), false);
+  assert.equal(keepItem(topic, item({ title: "Fiji records budget surplus", desc: undefined })), false);
+  assert.equal(keepItem({ id: "bbc" }, item({ title: "Anything at all" })), true);
 });

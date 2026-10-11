@@ -7,7 +7,4 @@ Notes age out after 14 days unless re-earned. Prune freely.
 - Check every number and date against the pack before writing, and say 'next Saturday' or 'last Saturday' rather than a bare weekday where two matches could be meant. _(added 2026-10-11)_
 - If the lead event is more than a week old, say so in the first sentence (e.g. 'In April') and keep the heading from reading as breaking news; use the correct tense. _(added 2026-10-11)_
 - Mark club and league stories in the heading (e.g. 'URC') and the first sentence, but never narrate the label ('a club match rather than a Test', 'a club-level story'). _(added 2026-10-11)_
-- Ensure all headings explicitly identify the sport/tier for non-senior men's international rugby (e.g., 'Sevens', 'U20') to avoid ambiguity. _(added 2026-10-11)_
-- When citing match venues, ensure coach/team affiliations are consistently cross-referenced across briefings to prevent conflicting biographical data. _(added 2026-10-11)_
 - Ensure headings for non-senior international stories (Women’s, U20, or Sevens) explicitly include the team category to prevent confusion. _(added 2026-10-11)_
-- When providing data-only editions, prioritize specific numerical trends or head-to-head records over qualitative narratives to maintain the requested technical register. _(added 2026-10-11)_

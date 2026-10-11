@@ -17,17 +17,34 @@
 // recognises what is a story.
 
 // The spine: publisher feeds pulled once for all 12 teams, filtered by mention.
-// Roster held at five deliberately — a spine concentrates the product on outlets
+// Roster held small deliberately — a spine concentrates the product on outlets
 // we have no relationship with, so no single one should dominate. Verified live
-// 2026-07-20; RugbyPass has no usable feed (/feed/ returns HTML), and Fiji has
-// no working dedicated feed at all (Fiji Times returns no items, Fiji Sun and
-// fijivillage 404), so Fiji runs on the widener plus the backlog.
+// 2026-07-20; RugbyPass has no usable feed (/feed/ returns HTML), and the Fiji
+// press had no working dedicated feed (Fiji Times returns no items, Fiji Sun
+// and fijivillage 404), so Fiji ran on the widener plus the backlog until FBC
+// News was adopted on 2026-10-11: the daily review proposed it for a starved
+// Fiji tab and the probe (scripts/probe-source-candidates.mjs) found a working
+// WordPress feed with 7 Fiji stories in 10 items. It is a national
+// broadcaster's news site, so the feed is its rugby category and `topic`
+// keeps anything else out (the probe matched "Fiji" in title + description,
+// where politics and weather say "Fiji" too; the spine's aboutness test is
+// title-only). A feed with `topic` keeps only items whose title or
+// description match it (harvest-news.mjs keepItem).
 export const FEEDS = [
   { id: "planetrugby", name: "Planet Rugby", url: "https://www.planetrugby.com/rss" },
   { id: "bbc", name: "BBC Rugby Union", url: "https://feeds.bbci.co.uk/sport/rugby-union/rss.xml" },
   { id: "guardian", name: "Guardian Rugby Union", url: "https://www.theguardian.com/sport/rugbyunion/rss" },
   { id: "sarugbymag", name: "SA Rugby Magazine", url: "https://www.sarugbymag.co.za/feed" },
   { id: "rugbyasia247", name: "Rugby Asia 247", url: "https://www.rugbyasia247.com/feed" },
+  {
+    id: "fbcnews",
+    name: "FBC News",
+    url: "https://www.fbcnews.com.fj/category/sports/rugby/feed/",
+    // If the first harvest logs "fbcnews: FAILED — HTTP 404", fall back to
+    // /category/sports/feed/ and then /feed/; the topic filter is what makes
+    // the general feed safe.
+    topic: /\b(rugby|drua|flying fijians|fijiana|sevens|7s|test match|world cup|super rugby|pacific nations)\b/i,
+  },
 ];
 
 // Aliases decide whether a feed item is ABOUT a team. Coaches and nicknames are
@@ -110,6 +127,24 @@ export function titleSimilarity(a, b) {
 
 const SIMILAR_ENOUGH = 0.34;
 
+// Jaccard alone misses a short headline against a long one: on 2026-10-11 the
+// Argentina pack held five versions of ONE story (Shaun Edwards joining as
+// defence coach — Planet Rugby's 13-token headline, the BBC's 5-token one,
+// SA Rugby Magazine's and two search hits) at Jaccard 0.10–0.30, so the
+// corroboration stayed at 1–2 where the real figure was four outlets, and
+// the review read five candidates for one signing. The overlap coefficient
+// (shared ÷ the smaller headline) catches that: three shared names covering
+// half of the short headline is the same story.
+export function sameHeadline(a, b) {
+  if (titleSimilarity(a, b) >= SIMILAR_ENOUGH) return true;
+  const A = significantTokens(a);
+  const B = significantTokens(b);
+  if (!A.size || !B.size) return false;
+  let shared = 0;
+  for (const t of A) if (B.has(t)) shared++;
+  return shared >= 3 && shared / Math.min(A.size, B.size) >= 0.5;
+}
+
 // Group items across outlets that are covering the same story. Greedy
 // single-pass clustering: cheap, order-stable, and good enough for ~100 items a
 // day. The cluster keeps the EARLIEST feed position and the BEST-placed item as
@@ -117,7 +152,7 @@ const SIMILAR_ENOUGH = 0.34;
 export function clusterStories(items) {
   const clusters = [];
   for (const item of items) {
-    const hit = clusters.find((c) => c.items.some((i) => titleSimilarity(i.title, item.title) >= SIMILAR_ENOUGH));
+    const hit = clusters.find((c) => c.items.some((i) => sameHeadline(i.title, item.title)));
     if (hit) hit.items.push(item);
     else clusters.push({ items: [item] });
   }
@@ -143,15 +178,21 @@ export function clusterStories(items) {
   });
 }
 
-// The earliest moment any item in a cluster was first sighted, as epoch ms,
-// or null when none carries a usable stamp. Pool items carry `firstSeen`
-// (the hourly harvest's own clock); widener hits carry only the outlet's
-// pubDate, which stands in for it.
+// The earliest moment any item in a cluster broke, as epoch ms, or null when
+// none carries a usable stamp. Pool items carry `firstSeen` (the hourly
+// harvest's own clock) and usually a pubDate; widener hits carry only the
+// outlet's pubDate. The EARLIER of the two counts: a feed can surface an old
+// feature late (BBC's "Ospreylia" piece, pubDate 17 Sep 2026, entered the
+// pool on 10 Oct and ranked as NEW above a two-outlet Scarlets/WRU story
+// from 28 Sep on the 11 Oct Wales shortlist), and a late sighting is not a
+// story breaking.
 export function firstSeenAt(items) {
   let earliest = null;
   for (const i of items ?? []) {
-    const t = Date.parse(i?.firstSeen || i?.date || "");
-    if (!Number.isNaN(t) && (earliest === null || t < earliest)) earliest = t;
+    for (const stamp of [i?.firstSeen, i?.date]) {
+      const t = Date.parse(stamp || "");
+      if (!Number.isNaN(t) && (earliest === null || t < earliest)) earliest = t;
+    }
   }
   return earliest;
 }

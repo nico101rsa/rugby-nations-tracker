@@ -100,6 +100,9 @@ test("recordProbe: ready after enough stories about its team, dead after a week 
 
   const adopted = recordProbe({ ...base, host: "planetrugby.com" }, { error: "x" }, "2026-10-12", FEEDS);
   assert.equal(adopted.status, "adopted");
+  // FBC News went into the spine on 11 Oct 2026; the next probe flips its record.
+  const fbc = recordProbe({ ...base, host: "fbcnews.com.fj", status: "ready" }, { feedUrl: "https://www.fbcnews.com.fj/feed/", items: 10, hits: { Fiji: 7 } }, "2026-10-12", FEEDS);
+  assert.equal(fbc.status, "adopted");
 });
 
 test("pruneCandidates and dueForProbe: decided ones age out, open ones are probed once a day", () => {
