@@ -5,7 +5,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   KICKOFF_OVERRIDES, ESPN_TEAM_IDS, UNTRACKED_CODES,
-  utcDay, matchKey, keyOf, overrideKickoff, applyKickoffOverrides,
+  utcDay, matchKey, keyOf, overrideKickoff, applyKickoffOverrides, correctedKickoffMs,
 } from "./kickoff-overrides.mjs";
 import { API_SPORTS_TEAMS, API_SPORTS_CODE_BY_ID, staticFixtures } from "./static-fixtures.mjs";
 import { SEEDS } from "./seed-competitions.mjs";
@@ -180,4 +180,46 @@ test("applyKickoffOverrides: the same array when nothing applies, a new one othe
 test("an empty table changes nothing", () => {
   const rows = [fixtureRow()];
   assert.equal(applyKickoffOverrides(rows, keyOf.fixture, {}, quiet), rows);
+});
+
+// ---- correctedKickoffMs: the kickoff every live-window decision reads -----------
+
+test("correctedKickoffMs: the earlier of the row's time and its correction — vendor and corrected feeds agree", () => {
+  const corrected = ms("2026-10-17T04:45:00.000Z");
+  assert.equal(correctedKickoffMs(fixtureRow(), keyOf.fixture, TABLE), corrected, "feed still on ESPN's 05:00Z");
+  assert.equal(correctedKickoffMs(fixtureRow({ date: "2026-10-17T04:45:00.000Z" }), keyOf.fixture, TABLE), corrected, "feed already corrected");
+  assert.equal(correctedKickoffMs(fixtureRow({ date: "2026-10-17T05:00Z" }), keyOf.fixture, TABLE), corrected, "short ESPN date form");
+  // The default key function is the fixtures.json one.
+  assert.equal(correctedKickoffMs(fixtureRow(), undefined, TABLE), corrected);
+});
+
+test("correctedKickoffMs: reads only — the row is untouched and the published rows are what they were", () => {
+  const row = fixtureRow();
+  const before = JSON.stringify(row);
+  correctedKickoffMs(row, keyOf.fixture, TABLE);
+  assert.equal(JSON.stringify(row), before);
+  // And applyKickoffOverrides still publishes exactly the corrected row.
+  assert.equal(applyKickoffOverrides([row], keyOf.fixture, TABLE, quiet)[0].date, "2026-10-17T04:45:00.000Z");
+});
+
+test("correctedKickoffMs: the vendor guard holds — a rescheduled game follows the feed, either way", () => {
+  assert.equal(correctedKickoffMs(fixtureRow({ date: "2026-10-17T05:30:00.000Z" }), keyOf.fixture, TABLE), ms("2026-10-17T05:30:00.000Z"));
+  assert.equal(correctedKickoffMs(fixtureRow({ date: "2026-10-17T04:00:00.000Z" }), keyOf.fixture, TABLE), ms("2026-10-17T04:00:00.000Z"));
+});
+
+test("correctedKickoffMs: no row in the table, no key, or no date", () => {
+  assert.equal(correctedKickoffMs(fixtureRow(), keyOf.fixture, {}), ms("2026-10-17T05:00:00.000Z"));
+  assert.equal(correctedKickoffMs({ date: "2026-10-17T05:00:00.000Z", comp: { kind: "test" } }, keyOf.fixture, TABLE), ms("2026-10-17T05:00:00.000Z"));
+  assert.ok(Number.isNaN(correctedKickoffMs(fixtureRow({ date: "TBC" }), keyOf.fixture, TABLE)));
+  assert.ok(Number.isNaN(correctedKickoffMs(null, keyOf.fixture, TABLE)));
+  assert.ok(Number.isNaN(correctedKickoffMs(undefined)));
+});
+
+test("correctedKickoffMs: never later than the row's own time, for every committed row", () => {
+  for (const [key, o] of Object.entries(KICKOFF_OVERRIDES)) {
+    const [home, away] = key.slice(11).split("-");
+    const row = fixtureRow({ date: o.vendor, home: { code: home }, away: { code: away } });
+    assert.equal(correctedKickoffMs(row), ms(o.date), `${key}: the live window opens from the corrected time`);
+    assert.ok(correctedKickoffMs(row) <= ms(row.date));
+  }
 });

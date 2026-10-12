@@ -1,7 +1,8 @@
 import { withPools } from "./build-fixtures.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildFixtures, compFor, roundLookup, mergeSources, fetchSeriesScores, fetchLiveStates, isPlaceholderFinal, withHandFinals, HAND_FINALS, publishFixtures, UNTRACKED_CODES } from "./build-fixtures.mjs";
+import { buildFixtures, compFor, roundLookup, mergeSources, fetchSeriesScores, fetchLiveStates, isPlaceholderFinal, withHandFinals, HAND_FINALS, publishFixtures, UNTRACKED_CODES, liveCandidates, LIVE_WINDOW_MS } from "./build-fixtures.mjs";
+import { KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 
 const ref = (id) => ({ $ref: `http://sports.core.api.espn.com/v2/sports/rugby/leagues/1/seasons/2026/teams/${id}?lang=en` });
 const ev = (id, iso, homeId, awayId, extra = {}) => ({
@@ -501,4 +502,82 @@ test("UNTRACKED_CODES is exported for the kickoff-override keys, and buildFixtur
   assert.equal(UNTRACKED_CODES["Hong Kong"], "HKG");
   const out = buildFixtures([ev(9, "2027-10-01T10:45:00Z", 6, 99)], new Map([["99", "Hong Kong"]]), {});
   assert.equal(out[0].away.code, "HKG");
+});
+
+// ---- liveCandidates: the live-score window opens at the CORRECTED kickoff ------
+//
+// Critic (b)2, 12 Oct 2026: the candidates were picked from the rows before
+// publishFixtures corrected them, so the Bledisloe (ESPN 05:00Z, corrected
+// 04:45Z = Sat 17 Oct 15:45 Sydney time) got its burst at 15:30 but no live
+// score fetched until 16:00. The row below is fixtures.json's espn-603464 as
+// the first build pass sees it (vendor time); the table is the committed row,
+// pinned so the test outlives its deletion after the game.
+
+const BLEDISLOE_ROW = {
+  id: "espn-603464", date: "2026-10-17T05:00:00.000Z", timeTBC: false,
+  home: { code: "AUS", name: "Australia", tracked: true },
+  away: { code: "NZL", name: "New Zealand", tracked: true },
+  comp: { key: "series-nzl-aus-2026", label: "NZ v AUS", kind: "series" },
+  venue: "Accor Stadium, Sydney", series: { label: "NZ v AUS", game: 2, of: 2 },
+};
+const at = (iso) => Date.parse(iso);
+const ids = (rows) => rows.map((f) => f.id);
+
+test("liveCandidates: the Bledisloe is a live candidate at 04:50Z (5 min after the corrected kickoff) and not at 04:40Z", () => {
+  assert.deepEqual(ids(liveCandidates([BLEDISLOE_ROW], at("2026-10-17T04:50:00Z"), { table: BLEDISLOE })), ["espn-603464"]);
+  assert.deepEqual(liveCandidates([BLEDISLOE_ROW], at("2026-10-17T04:40:00Z"), { table: BLEDISLOE }), []);
+  // From the corrected minute itself.
+  assert.deepEqual(ids(liveCandidates([BLEDISLOE_ROW], at("2026-10-17T04:45:00Z"), { table: BLEDISLOE })), ["espn-603464"]);
+  // The bug, pinned: without the correction it waited for ESPN's 05:00Z.
+  assert.deepEqual(liveCandidates([BLEDISLOE_ROW], at("2026-10-17T04:50:00Z"), { table: {} }), []);
+});
+
+test("liveCandidates: a feed that already carries 04:45Z behaves the same", () => {
+  const published = { ...BLEDISLOE_ROW, date: "2026-10-17T04:45:00.000Z" };
+  for (const table of [BLEDISLOE, {}]) {
+    assert.deepEqual(ids(liveCandidates([published], at("2026-10-17T04:50:00Z"), { table })), ["espn-603464"]);
+    assert.deepEqual(liveCandidates([published], at("2026-10-17T04:40:00Z"), { table }), []);
+  }
+});
+
+test("liveCandidates: the 6h window runs from the corrected kickoff; a missing final keeps it a candidate", () => {
+  const sixHoursOn = at("2026-10-17T04:45:00Z") + LIVE_WINDOW_MS;
+  const scored = { ...BLEDISLOE_ROW, homeScore: 21, awayScore: 24 };
+  assert.deepEqual(ids(liveCandidates([scored], sixHoursOn - 60_000, { table: BLEDISLOE })), ["espn-603464"]);
+  assert.deepEqual(liveCandidates([scored], sixHoursOn, { table: BLEDISLOE }), []);
+  assert.deepEqual(ids(liveCandidates([BLEDISLOE_ROW], sixHoursOn + 3_600_000, { table: BLEDISLOE })), ["espn-603464"]);
+});
+
+test("liveCandidates: Nations Championship rows never (nations.json is their live feed); tour rows never (no ESPN score)", () => {
+  const rnc = { ...BLEDISLOE_ROW, id: "espn-603993", comp: { key: "rnc-2026", label: "RNC '26", kind: "competition" } };
+  const tour = { ...BLEDISLOE_ROW, id: "seed-tour-x", comp: { key: "tour-nzl-2026", label: "TOUR", kind: "tour" } };
+  assert.deepEqual(liveCandidates([rnc, tour], at("2026-10-17T04:50:00Z"), { table: BLEDISLOE }), []);
+  assert.deepEqual(liveCandidates(undefined, at("2026-10-17T04:50:00Z")), []);
+});
+
+test("liveCandidates: with the committed table, while it still carries the Bledisloe row", { skip: !KICKOFF_OVERRIDES["2026-10-17 AUS-NZL"] && "row removed after the game" }, () => {
+  assert.deepEqual(ids(liveCandidates([BLEDISLOE_ROW], at("2026-10-17T04:50:00Z"))), ["espn-603464"]);
+  assert.deepEqual(liveCandidates([BLEDISLOE_ROW], at("2026-10-17T04:40:00Z")), []);
+});
+
+test("buildFixtures: a played competition game drops from its CORRECTED kickoff", () => {
+  // A competition row (not a persisting kind) keyed in a test table: ESPN
+  // 05:00Z, corrected 04:45Z. At 04:50Z it has been played by the time the
+  // app shows; with no correction it would still be upcoming.
+  const TABLE = { "2026-10-17 AUS-NZL": BLEDISLOE["2026-10-17 AUS-NZL"] };
+  const raw = [{
+    leagueName: "Nations Championship",
+    event: {
+      id: 603464, date: "2026-10-17T05:00Z",
+      competitions: [{ competitors: [
+        { homeAway: "home", team: { id: "6" } },
+        { homeAway: "away", team: { id: "8" } },
+      ] }],
+    },
+  }];
+  const now = at("2026-10-17T04:50:00Z");
+  assert.equal(buildFixtures(raw, new Map(), {}, { now, table: {} }).length, 1);
+  assert.equal(buildFixtures(raw, new Map(), {}, { now, table: TABLE }).length, 0);
+  // The row itself still carries the vendor time — only publishFixtures writes the correction.
+  assert.equal(buildFixtures(raw, new Map(), {}, { now: 0, table: TABLE })[0].date, "2026-10-17T05:00:00.000Z");
 });

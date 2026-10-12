@@ -83,6 +83,26 @@ export function overrideKickoff(row, keyFn, table = KICKOFF_OVERRIDES) {
   return { ...row, date: o.date, timeTBC: false };
 }
 
+// The kickoff every "is this game on yet?" decision must use: the EARLIER of
+// the row's own time and its correction, in epoch ms (NaN for an unparseable
+// date). Publishes nothing and never changes a row — it only reads the same
+// table, through the same vendor guard, so a rescheduled game follows the feed
+// here exactly as it does in the published files.
+//
+// Why it exists: build-fixtures chose its live-score candidates from the rows
+// BEFORE publishFixtures laid the corrections over them, so the Bledisloe
+// (ESPN 05:00Z, corrected 04:45Z) would have had its burst running from 04:30Z
+// but no live score fetched until 05:00Z, 15 minutes into the match.
+// Deciding from the raw time and the published time alike through this one
+// function makes the order of those steps irrelevant: a feed that already
+// carries 04:45Z gets 04:45Z, and so does one that still says 05:00Z.
+export function correctedKickoffMs(row, keyFn = keyOf.fixture, table = KICKOFF_OVERRIDES) {
+  const t = ms(row?.date);
+  if (!Number.isFinite(t)) return t;
+  const o = ms(overrideKickoff(row, keyFn, table).date);
+  return Number.isFinite(o) ? Math.min(t, o) : t;
+}
+
 // A whole array. Returns the SAME array when nothing applies, a new one
 // otherwise (callers that sort must re-sort: the move can reorder a day).
 export function applyKickoffOverrides(rows, keyFn, table = KICKOFF_OVERRIDES, { log = console.log } = {}) {

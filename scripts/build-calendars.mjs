@@ -5,13 +5,17 @@
 //
 // one per tracked nation (ESPN_TEAM_IDS keys) plus one with every row, all
 // built from fixtures.json AFTER the kickoff corrections — so a calendar
-// carries the same time the app shows. Never from nations.json: its static
-// November rows are noon placeholders. Subscribe with webcal://… on Apple
-// devices, or paste the https:// URL into Google Calendar / Outlook.
+// carries the same time the app shows. Never from nations.json: it carries
+// only the Nations Championship, and only api-sports' times. Subscribe with
+// webcal://… on Apple devices, or paste the https:// URL into Google
+// Calendar / Outlook.
 //
 // Called from build-fixtures.mjs right after every fixtures.json write (daily
 // build, live-window ticks, each 3-min burst pass, the push-triggered rebuild),
-// so it costs no vendor call and needs no workflow of its own. Zero
+// so it costs no vendor call and needs no workflow of its own. The command
+// line (rebuildFromCommitted, below) lays the same corrections over the
+// committed fixtures.json first, so a hand run can never publish a vendor
+// time the app no longer shows. Zero
 // dependencies: RFC 5545 is small enough to write by hand, and
 // build-calendars.test.mjs parses the output strictly.
 //
@@ -39,6 +43,7 @@ import * as nodeFs from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { ESPN_TEAM_IDS, CODE_NAMES } from "./fetch-espn-fixtures.mjs";
+import { applyKickoffOverrides, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 
 export const TRACKED_CODES = Object.keys(ESPN_TEAM_IDS);
 export const SITE_URL = "https://nico101rsa.github.io/rugby-nations-tracker/";
@@ -299,12 +304,24 @@ export async function writeCalendars(fixturesPayload, { root = ".", fs = nodeFs 
   return { written, unchanged };
 }
 
+// The command-line rebuild: calendar/ from the COMMITTED fixtures.json, with
+// the kickoff corrections laid over it exactly as publishFixtures does before
+// its write. Without them a hand run between a row's merge and the next
+// fixtures build (or after a failed push-triggered rebuild) would put the
+// vendor's later time back into every subscriber's calendar. fixtures.json
+// itself is read, never written: the app's copy stays the fixtures build's
+// job. Each correction logs `kickoff override applied: …`, as in the build.
+export async function rebuildFromCommitted({ root = ".", fs = nodeFs, table = KICKOFF_OVERRIDES, log = console.log } = {}) {
+  const payload = JSON.parse(await fs.readFile(join(root, "fixtures.json"), "utf8"));
+  const fixtures = applyKickoffOverrides(payload?.fixtures, keyOf.fixture, table, { log });
+  return writeCalendars({ ...payload, fixtures }, { root, fs });
+}
+
 // CLI: node scripts/build-calendars.mjs — rebuilds calendar/ from the
-// committed fixtures.json. No network.
+// committed fixtures.json (corrections applied). No network.
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-  const payload = JSON.parse(await nodeFs.readFile(join(root, "fixtures.json"), "utf8"));
-  const { written, unchanged } = await writeCalendars(payload, { root });
+  const { written, unchanged } = await rebuildFromCommitted({ root });
   console.log(`calendars: ${written.length} file(s) changed, ${unchanged.length} unchanged`);
   for (const path of written) console.log(`  wrote ${path}`);
 }

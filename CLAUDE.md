@@ -101,7 +101,8 @@ subscribable calendars served from Pages
 (`webcal://nico101rsa.github.io/rugby-nations-tracker/calendar/NZL.ics`; the
 support page links all 13 at `index.html#calendars`).
 `scripts/build-calendars.mjs` builds them from fixtures.json — after the
-kickoff corrections, never from nations.json's static placeholders — and
+kickoff corrections (the command-line run applies them too), never from
+nations.json, which carries only the Nations Championship — and
 `build-fixtures.mjs` calls it right after every fixtures.json write. So they
 follow every rebuild at zero vendor calls: the daily team-events run (12:00
 Sydney time in AEDT, 11:00 in AEST), its Saturday run (Sun 06:00 Sydney time in
@@ -153,13 +154,24 @@ installed copy with no build.
   applies only while the feed still says that, so a vendor reschedule beats a
   stale row and a vendor catching up makes it a no-op. Never key a row on a
   seed or static placeholder time. Delete a row once its game is played.
-- **Exactly three hooks.** `publishFixtures` in build-fixtures (before the
+- **Three feed hooks.** `publishFixtures` in build-fixtures (before the
   final sort, so the moved game re-sorts), `slimGames` in fetch-nations (the
   published `results`/`fixtures` arrays only — never the raw games cache:
   `scrapeTries` matches ESPN by the vendor's kickoff minute, so a corrected
   time there would lose the try count), and `mergeUpcoming` in
   fetch-team-events (each team's `next`, after the ESPN merge; the catch-up job
-  reuses it). Each logs `kickoff override applied: <key> <vendor>→<date>`.
+  reuses it). The calendar command line (`node scripts/build-calendars.mjs`,
+  `rebuildFromCommitted`) lays the same table over the committed fixtures.json
+  before it writes, so a hand run never puts a vendor time back. Each logs
+  `kickoff override applied: <key> <vendor>→<date>`.
+- **Every "is it on yet?" decision reads the corrected kickoff** through
+  `correctedKickoffMs` (the earlier of the row's time and its correction, same
+  vendor guard, writes nothing): build-fixtures' live-score candidates
+  (`liveCandidates`) and played filter, `fixtures-refresh-due` and the burst's
+  `inBurstWindow`. Before 12 Oct the candidates were picked from the rows
+  before `publishFixtures` corrected them, so the Bledisloe (Sat 17 Oct, 15:45
+  Sydney time) would have burst from 15:30 but fetched no live score until
+  16:00. A new decision about kickoff goes through the same function.
 - **When a row lands:** at the next fixtures rebuild (daily 12:00 Sydney time,
   Sun 06:00 Sydney time, any live-window tick), or about two minutes after the
   merge through **Actions → "Rebuild fixtures & calendars"**
@@ -174,9 +186,19 @@ installed copy with no build.
   fixture id) goes quiet by itself once the feed carries the earlier time — its
   vendor guard sees a different time — and is deleted in the dec-jan build. New
   rows go here only.
-- nations.json's November rows are still static noon placeholders, so no row
-  can match one until those carry real times. That is harmless (the feed wins);
-  fixtures.json and team-events.json carry ESPN's real times and match.
+- nations.json's November rows (Rounds 4–6) are no longer noon placeholders:
+  since #144 (12 Oct 2026) `SCHEDULE` in static-fixtures.mjs carries ESPN's
+  confirmed kickoffs (`timeTBC: false`), and nations.json takes them at its
+  next write (a sweep at 00/06/12/18 UTC, i.e. 11:00, 17:00, 23:00 or 05:00
+  Sydney time in AEDT, or a live window; the first after the merge was due at
+  17:00 Sydney time on 12 Oct). All 18 key and time-match their fixtures.json
+  rows, so a row written against ESPN's time corrects nations.json too, and all
+  three feeds move together. Two limits: once a game is inside api-sports'
+  fetch window its own record replaces the static row, and if api-sports lists
+  a different minute from ESPN the vendor guard leaves nations.json on
+  api-sports' time (harmless, the feed wins; the nations run's log shows
+  whether `kickoff override applied` fired). Finals weekend isn't in
+  `SCHEDULE`: nations.json carries the finals only once api-sports does.
 
 ## Models: who writes, who checks, who reviews
 

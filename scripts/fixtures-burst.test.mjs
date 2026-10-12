@@ -33,6 +33,30 @@ test("test, series, tour and ESPN-scored competition games open the window; NC r
   assert.equal(inBurstWindow([pnc], KO), true);
 });
 
+// The Bledisloe, Sat 17 Oct 2026: ESPN 05:00Z, corrected to 04:45Z (15:45
+// Sydney time). The window must open 15 min before the CORRECTED kickoff
+// whether fixtures.json already carries it or not — the build's live-score
+// candidates (build-fixtures liveCandidates) use the same kickoff, so the
+// burst never loops through minutes in which nothing is fetched.
+const BLEDISLOE = {
+  "2026-10-17 AUS-NZL": { date: "2026-10-17T04:45:00.000Z", vendor: "2026-10-17T05:00:00.000Z", note: "test" },
+};
+const bledisloe = (date) => series({
+  id: "espn-603464", date,
+  comp: { key: "series-nzl-aus-2026", label: "NZ v AUS", kind: "series" },
+  home: { code: "AUS", name: "Australia" }, away: { code: "NZL", name: "New Zealand" },
+});
+
+test("the window opens 15 min before the CORRECTED kickoff, on the vendor's time or the corrected one", () => {
+  for (const date of ["2026-10-17T05:00:00.000Z", "2026-10-17T04:45:00.000Z"]) {
+    assert.equal(inBurstWindow([bledisloe(date)], Date.parse("2026-10-17T04:29:00Z"), BLEDISLOE), false, date);
+    assert.equal(inBurstWindow([bledisloe(date)], Date.parse("2026-10-17T04:30:00Z"), BLEDISLOE), true, date);
+    assert.equal(inBurstWindow([bledisloe(date)], Date.parse("2026-10-17T04:50:00Z"), BLEDISLOE), true, date);
+  }
+  // Without the correction, a vendor-time feed opened 15 minutes late.
+  assert.equal(inBurstWindow([bledisloe("2026-10-17T05:00:00.000Z")], Date.parse("2026-10-17T04:40:00Z"), {}), false);
+});
+
 test("a malformed row cannot crash the check", () => {
   assert.equal(inBurstWindow([{ comp: { kind: "test" }, date: "not-a-date" }], KO), false);
   assert.equal(inBurstWindow([null, undefined, {}], KO), false);

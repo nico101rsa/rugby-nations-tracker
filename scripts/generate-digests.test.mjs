@@ -85,7 +85,7 @@ test("buildFactCheckPrompt embeds trusted data and the draft", () => {
   const params = {
     MASTHEAD: "Bok Watch", TEAM_NAME: "South Africa", DAY_NAME: "Saturday",
     DATE_LONG: "11 July 2026", HOME_TEAM: "South Africa", AWAY_TEAM: "Scotland",
-    ROUND: 2, RANK: "1", P: "1", W: "1", D: "0", L: "0", PF: "45", PA: "21",
+    ROUND: "Round 2", RANK: "1", P: "1", W: "1", D: "0", L: "0", PF: "45", PA: "21",
     PD: "+24", LAST_RESULT: "beat England 45-21 (Round 1)",
   };
   const prompt = buildFactCheckPrompt(params, goodDigest());
@@ -209,7 +209,7 @@ test("hasNumberedLineup detects a real numbered XV and rejects prose", async () 
 test("buildFactCheckPrompt injects standing checker notes and calibration rules", async () => {
   const { buildFactCheckPrompt } = await import("./generate-digests.mjs");
   const params = { MASTHEAD: "Bok Watch", TEAM_NAME: "South Africa", DAY_NAME: "Saturday", DATE_LONG: "11 July 2026",
-    HOME_TEAM: "South Africa", AWAY_TEAM: "Scotland", ROUND: "2", RANK: "1", P: "1", W: "1", D: "0", L: "0",
+    HOME_TEAM: "South Africa", AWAY_TEAM: "Scotland", ROUND: "Round 2", RANK: "1", P: "1", W: "1", D: "0", L: "0",
     PF: "45", PA: "21", PD: "+24", LAST_RESULT: "beat England 45-21 (Round 1)" };
   const withNotes = buildFactCheckPrompt(params, goodDigest(), "pack", "- never flag trusted-data claims");
   assert.ok(withNotes.includes("Standing calibration notes"));
@@ -975,4 +975,108 @@ test("buildModelBlock: paid rows for every model, review included; Gemini only w
   const spare = buildModelBlock({ plan, usage: geminiRun, paid });
   assert.equal(spare.onLastRung, false, "Gemini on its last rung as the SPARE is not an outage");
   assert.equal(spare.calls, 79);
+});
+
+// ---- the round label: pool rounds, and finals weekend in the app's words --------
+//
+// Finals weekend (from Sat 28 Nov 2026, 03:40 Sydney time) carries week labels
+// that are not round numbers; "(Round ${week})" would have printed "Round
+// Final" in the writer's trusted data.
+import { roundLabel, finalsLabel, buildParams, fillTemplate, TEMPLATE, FINALS_LABELS, FINALS_WEEKEND } from "./generate-digests.mjs";
+
+// The 12 sides, api-sports ids; North = the Six Nations sides.
+const NORTH = [386, 387, 388, 389, 390, 391]; // ENG FRA IRE ITA SCO WAL
+const SOUTH = [467, 465, 461, 460, 28, 463];  // RSA NZL AUS ARG FIJ JPN
+const NAME = { 386: "England", 387: "France", 388: "Ireland", 389: "Italy", 390: "Scotland", 391: "Wales",
+  467: "South Africa", 465: "New Zealand", 461: "Australia", 460: "Argentina", 28: "Fiji", 463: "Japan" };
+// A finished pool stage: each conference ranked in array order, no points ties.
+const finalLog = (P = 6, pts = (i) => 28 - 4 * i) =>
+  [...NORTH.map((id, i) => ({ id, i })), ...SOUTH.map((id, i) => ({ id, i }))]
+    .map(({ id, i }) => ({ id, team: NAME[id], P, W: 0, D: 0, L: 0, PF: 0, PA: 0, PD: 0, Pts: pts(i) }))
+    .sort((a, b) => b.Pts - a.Pts)
+    .map((r, k) => ({ rank: k + 1, ...r }));
+const game = (id, date, week, home, away, hs = null, as = null) => ({
+  id, date, week,
+  status: hs == null ? { short: "NS", long: "Not Started", live: false } : { short: "FT", long: "Finished", live: false },
+  home: { id: home, name: NAME[home], score: hs }, away: { id: away, name: NAME[away], score: as },
+});
+// The pool meetings the finals repeat (place k = North k v South k).
+const POOL_MEETINGS = NORTH.map((n, i) => game(5000 + i, `2026-11-${String(7 + i).padStart(2, "0")}T14:10:00+00:00`, String(1 + (i % 6)), n, SOUTH[i], 20, 10));
+
+test("roundLabel: a pool round reads 'Round N', exactly as before", () => {
+  assert.equal(roundLabel(game(1, "2026-07-04T07:10:00+00:00", "1", 465, 387, 34, 32)), "Round 1");
+  assert.equal(roundLabel(game(1, "2026-11-07T14:10:00+00:00", " 4 ", 390, 465)), "Round 4");
+  assert.equal(roundLabel(game(1, "2026-07-04T07:10:00+00:00", null, 465, 387)), null);
+  assert.equal(roundLabel(null), null);
+});
+
+test("roundLabel: a finals week label never prints as 'Round Final'", () => {
+  for (const week of ["Final", "Finals", "3rd Place Final", "Play-off", "7"]) {
+    const label = roundLabel(game(9001, "2026-11-29T16:40:00+00:00", week, 386, 467), { results: POOL_MEETINGS, log: finalLog() });
+    assert.ok(!/^Round /.test(label), `${week} -> ${label}`);
+    assert.ok([...FINALS_LABELS, FINALS_WEEKEND].includes(label), `${week} -> ${label}`);
+  }
+});
+
+test("roundLabel: a repeat pairing under a numeric week is a final too (the pool-table rule)", () => {
+  // Wales v Japan met in the pool; finals weekend pairs them again as the
+  // 6th-placed sides, and the vendor files it under week "6".
+  const rematch = game(9006, "2026-11-27T16:40:00+00:00", "6", 391, 463);
+  assert.equal(roundLabel(rematch, { results: POOL_MEETINGS, log: finalLog() }), "11th-place final");
+  // Without the earlier meeting it is just round 6.
+  assert.equal(roundLabel(rematch, { results: [], log: finalLog() }), "Round 6");
+});
+
+test("finalsLabel: the app's names, place k = North k v South k, once the pool stage is over", () => {
+  assert.deepEqual(FINALS_LABELS, ["Grand final", "3rd-place final", "5th-place final", "7th-place final", "9th-place final", "11th-place final"]);
+  NORTH.forEach((n, i) => {
+    assert.equal(finalsLabel(game(1, "2026-11-29T16:40:00+00:00", "Final", n, SOUTH[i]), finalLog()), FINALS_LABELS[i]);
+    assert.equal(finalsLabel(game(1, "2026-11-29T16:40:00+00:00", "Final", SOUTH[i], n), finalLog()), FINALS_LABELS[i], "either side at home");
+  });
+});
+
+test("finalsLabel: 'finals weekend' whenever the log cannot prove which final", () => {
+  const grand = game(1, "2026-11-29T16:40:00+00:00", "Final", 386, 467);
+  assert.equal(finalsLabel(grand, finalLog(5)), FINALS_WEEKEND, "pool stage unfinished");
+  assert.equal(finalsLabel(grand, finalLog().slice(0, 11)), FINALS_WEEKEND, "a short log");
+  assert.equal(finalsLabel(grand, []), FINALS_WEEKEND);
+  assert.equal(finalsLabel(grand, undefined), FINALS_WEEKEND);
+  assert.equal(finalsLabel(game(1, "2026-11-29T16:40:00+00:00", "Final", 386, 465), finalLog()), FINALS_WEEKEND, "different places");
+  assert.equal(finalsLabel(game(1, "2026-11-29T16:40:00+00:00", "Final", 386, 387), finalLog()), FINALS_WEEKEND, "same conference");
+  // 1st and 2nd level on points in both conferences: the order is the
+  // unverified tiebreak's, so neither the Grand final nor the 3rd-place one is named.
+  const level = finalLog(6, (i) => (i < 2 ? 24 : 28 - 4 * i));
+  assert.equal(finalsLabel(grand, level), FINALS_WEEKEND);
+  assert.equal(finalsLabel(game(1, "2026-11-28T16:40:00+00:00", "Final", 387, 465), level), FINALS_WEEKEND);
+  assert.equal(finalsLabel(game(1, "2026-11-27T16:40:00+00:00", "Final", 391, 463), level), "11th-place final", "an untied place is still named");
+});
+
+test("buildParams: the last result and the next fixture carry the finals wording into both prompts", () => {
+  const grandFinal = game(9001, "2026-11-29T16:40:00+00:00", "Final", 386, 467, 18, 24);
+  const data = { log: finalLog(), results: [...POOL_MEETINGS, grandFinal], fixtures: [] };
+  const p = buildParams(data, 467, new Date("2026-11-30T09:00:00Z"));
+  assert.equal(p.LAST_RESULT, "beat England 24-18 (Grand final)");
+  assert.equal(p.ROUND, "Round TBC", "no next fixture");
+
+  const before = { log: finalLog(), results: POOL_MEETINGS, fixtures: [game(9001, "2026-11-29T16:40:00+00:00", "Final", 386, 467)] };
+  const q = buildParams(before, 467, new Date("2026-11-28T09:00:00Z"));
+  assert.equal(q.ROUND, "Grand final");
+  const writer = fillTemplate(TEMPLATE, q);
+  assert.ok(writer.includes("- Next fixture: England v South Africa, Grand final, kickoff 2026-11-29T16:40:00+00:00."));
+  assert.ok(!/Round (Final|Grand|finals)/.test(writer));
+  assert.ok(buildFactCheckPrompt(q, goodDigest()).includes("- Next fixture: England v South Africa, Grand final."));
+});
+
+test("buildParams: a pool round reads as it always did", () => {
+  const data = {
+    log: finalLog(3),
+    results: [game(53213, "2026-07-04T07:10:00+00:00", "1", 465, 387, 34, 32)],
+    fixtures: [game(7001, "2026-11-08T15:10:00+00:00", "4", 386, 461)],
+  };
+  const p = buildParams(data, 465, new Date("2026-10-12T04:30:00Z"));
+  assert.equal(p.LAST_RESULT, "beat France 34-32 (Round 1)");
+  const a = buildParams(data, 461, new Date("2026-10-12T04:30:00Z"));
+  assert.equal(a.ROUND, "Round 4");
+  assert.ok(fillTemplate(TEMPLATE, a).includes("- Next fixture: England v Australia, Round 4, kickoff 2026-11-08T15:10:00+00:00."));
+  assert.equal(buildParams(data, 386, new Date("2026-10-12T04:30:00Z")).LAST_RESULT, "no completed match yet this season");
 });

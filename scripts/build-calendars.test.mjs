@@ -6,7 +6,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  escapeText, fold, fmtUtc, eventFor, buildCalendars, writeCalendars, compNamesFrom,
+  escapeText, fold, fmtUtc, eventFor, buildCalendars, writeCalendars, compNamesFrom, rebuildFromCommitted,
   TRACKED_CODES, STATE_PATH,
 } from "./build-calendars.mjs";
 
@@ -492,4 +492,49 @@ test("writeCalendars rejects (rather than writing garbage) when updatedAt is unu
   const mem = memoryFs();
   await assert.rejects(() => writeCalendars({ fixtures: rows() }, { root: "/r", fs: mem.fs }));
   assert.deepEqual(mem.writes, []);
+});
+
+// ---- the command line: the committed fixtures.json, corrected ------------------
+
+const BLEDISLOE_TABLE = {
+  "2026-10-17 AUS-NZL": { date: "2026-10-17T04:45:00.000Z", vendor: "2026-10-17T05:00:00.000Z", note: "test" },
+};
+
+test("rebuildFromCommitted: a vendor-time fixtures.json still gives the calendars the corrected kickoff, and is not rewritten", async () => {
+  const fixturesJson = JSON.stringify({ updatedAt: T1, source: "espn", fixtures: rows() });
+  const mem = memoryFs({ "/r/fixtures.json": fixturesJson });
+  const logs = [];
+  const out = await rebuildFromCommitted({ root: "/r", fs: mem.fs, table: BLEDISLOE_TABLE, log: (l) => logs.push(l) });
+  assert.equal(out.written.length, 14);
+  for (const file of ["calendar/AUS.ics", "calendar/NZL.ics", "calendar/all.ics"]) {
+    const e = byUid(parseIcs(mem.files.get(`/r/${file}`)), "espn-603464");
+    assert.equal(prop(e, "DTSTART"), "20261017T044500Z", file);
+    assert.equal(prop(e, "DTEND"), "20261017T064500Z", file);
+  }
+  assert.deepEqual(logs, ["kickoff override applied: 2026-10-17 AUS-NZL 2026-10-17T05:00Z→2026-10-17T04:45:00.000Z"]);
+  assert.equal(mem.files.get("/r/fixtures.json"), fixturesJson, "fixtures.json is the fixtures build's to write");
+  assert.ok(!mem.writes.includes("/r/fixtures.json"));
+});
+
+test("rebuildFromCommitted: the same bytes as the fixtures build's own calendars, whichever time fixtures.json carries", async () => {
+  // What publishFixtures hands writeCalendars: the corrected rows.
+  const corrected = rows();
+  corrected[0].date = "2026-10-17T04:45:00.000Z";
+  const viaBuild = memoryFs();
+  await writeCalendars({ updatedAt: T1, fixtures: corrected }, { root: "/r", fs: viaBuild.fs });
+
+  for (const fixtures of [rows(), corrected]) {
+    const viaCli = memoryFs({ "/r/fixtures.json": JSON.stringify({ updatedAt: T1, fixtures }) });
+    await rebuildFromCommitted({ root: "/r", fs: viaCli.fs, table: BLEDISLOE_TABLE, log: () => {} });
+    for (const [path, text] of viaBuild.files) {
+      assert.equal(viaCli.files.get(path), text, `${path} (fixtures.json at ${fixtures[0].date})`);
+    }
+  }
+});
+
+test("rebuildFromCommitted: an empty table publishes fixtures.json's own times", async () => {
+  const mem = memoryFs({ "/r/fixtures.json": JSON.stringify({ updatedAt: T1, fixtures: rows() }) });
+  await rebuildFromCommitted({ root: "/r", fs: mem.fs, table: {}, log: () => {} });
+  const e = byUid(parseIcs(mem.files.get("/r/calendar/AUS.ics")), "espn-603464");
+  assert.equal(prop(e, "DTSTART"), "20261017T050000Z");
 });

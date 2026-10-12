@@ -18,7 +18,7 @@ import { scoredByEspn } from "./espn-scored.mjs";
 import { seededFixtures } from "./seed-competitions.mjs";
 import { tourFixtures, loadProbeResults } from "./seed-tour.mjs";
 import { venueLabel } from "./venues.mjs";
-import { applyKickoffOverrides, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
+import { applyKickoffOverrides, correctedKickoffMs, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 import { writeCalendars } from "./build-calendars.mjs";
 
 const ID_TO_CODE = Object.fromEntries(Object.entries(ESPN_TEAM_IDS).map(([c, id]) => [String(id), c]));
@@ -106,8 +106,10 @@ export function roundLookup(nations) {
 // whose results the app takes from this file (see keepsResults in
 // fetch-league-fixtures: ESPN-scored and still offered). The Pacific Nations
 // Cup is the first; the Nations Championship is never one, nations.json is
-// its record.
-export function buildFixtures(events, names, nations, { now = 0, scores = {}, resultKeys = new Set() } = {}) {
+// its record. "Played" is judged from the CORRECTED kickoff
+// (correctedKickoffMs, `table`), the time the app shows; the rows themselves
+// keep the vendor's time until publishFixtures corrects them.
+export function buildFixtures(events, names, nations, { now = 0, scores = {}, resultKeys = new Set(), table = KICKOFF_OVERRIDES } = {}) {
   const findRound = roundLookup(nations);
   const out = [];
   for (const { event, leagueName, comp: registryComp, registered } of events) {
@@ -167,7 +169,7 @@ export function buildFixtures(events, names, nations, { now = 0, scores = {}, re
   // Past-game policy (see the function comment): series and one-off test
   // games persist and pick up their score; everything else played drops.
   const kept = out.filter((e) => {
-    const played = new Date(e.date).getTime() < now;
+    const played = correctedKickoffMs(e, keyOf.fixture, table) < now;
     const persists = e.comp.kind === "series" || e.comp.kind === "test" || resultKeys.has(e.comp.key);
     if (played && !persists) return false;
     const s = scores[e.id];
@@ -303,6 +305,29 @@ async function defaultGetJson(url) {
   return res.json();
 }
 
+// Which built rows get a live/final score fetch this pass. Pure; `nowMs` is
+// the REAL clock, not main()'s grace-shifted `now` — judging playedness by the
+// grace meant a Saturday final sat scoreless until Sunday's build (JPN v AUS,
+// 2026-08-09). A game keeps refreshing for 6h after kickoff so live scores
+// update tick-to-tick and the FT flip lands; after that only a still-missing
+// final warrants a fetch.
+//
+// "Kickoff" is the CORRECTED one (correctedKickoffMs): these rows still carry
+// the vendor's time, because publishFixtures lays the corrections over them
+// only at the end. Judged from the vendor's time, the Bledisloe (ESPN 05:00Z,
+// corrected 04:45Z, Sat 17 Oct 15:45 Sydney time) would have had the burst
+// running from 15:30 Sydney time and no score fetched before 16:00, 15
+// minutes into the match.
+export const LIVE_WINDOW_MS = 6 * 3600 * 1000;
+export function liveCandidates(fixtures, nowMs, { table = KICKOFF_OVERRIDES, windowMs = LIVE_WINDOW_MS } = {}) {
+  return (fixtures ?? []).filter((f) => {
+    if (!scoredByEspn(f.comp)) return false;
+    const t = correctedKickoffMs(f, keyOf.fixture, table);
+    if (!Number.isFinite(t) || t > nowMs) return false;
+    return f.homeScore == null || nowMs - t < windowMs;
+  });
+}
+
 // Per-team events + league-wide events -> one list, deduped by ESPN event id.
 // The league-wide entry wins: it carries the registry's comp tag, and a match
 // in a registered competition should be filed under that competition even
@@ -340,22 +365,10 @@ async function main() {
 
   // Two-pass score/live fill for every ESPN-scored game (tests, series, and
   // registered competitions other than the Nations Championship): the first
-  // pass tells us which entries are past kickoff, then fetchLiveStates reads
-  // each one's pre/in/post status and running-or-final score off the raw
-  // events, and the (cheap, pure) build reruns with the map. Candidates use
-  // the REAL clock, not the grace-shifted `now` — judging playedness by the
-  // grace meant a Saturday final sat scoreless until Sunday's build (JPN v
-  // AUS, 2026-08-09). A game keeps refreshing for 6h after kickoff so live
-  // scores update tick-to-tick and the FT flip lands; after that only a
-  // still-missing final warrants a fetch.
-  const nowMs = Date.now();
-  const LIVE_WINDOW_MS = 6 * 3600 * 1000;
-  const candidates = fixtures.filter((f) => {
-    if (!scoredByEspn(f.comp)) return false;
-    const t = new Date(f.date).getTime();
-    if (t > nowMs) return false;
-    return f.homeScore == null || nowMs - t < LIVE_WINDOW_MS;
-  });
+  // pass tells us which entries are past kickoff (liveCandidates), then
+  // fetchLiveStates reads each one's pre/in/post status and running-or-final
+  // score off the raw events, and the (cheap, pure) build reruns with the map.
+  const candidates = liveCandidates(fixtures, Date.now());
   if (candidates.length) {
     const byId = new Map(merged.map((e) => [`espn-${e.event?.id}`, e]));
     const raw = candidates.map((f) => byId.get(f.id)).filter(Boolean);
@@ -390,8 +403,10 @@ async function main() {
 // sort, the write, then the calendars.
 //
 // The corrections go in BEFORE the sort so a moved kickoff re-sorts within
-// its day, and only here: the second-pass live candidates above keep vendor
-// times, which is harmless inside a 6h window.
+// its day. This is the only place a corrected time is WRITTEN into the rows;
+// every earlier decision (buildFixtures' played filter, liveCandidates) reads
+// the corrected kickoff through correctedKickoffMs instead, so a correction
+// opens the live-score window as early as it moves the published time.
 //
 // The calendars follow every fixtures.json write (daily build, live-window
 // ticks, every 3-min burst pass, the push-triggered rebuild) and can never
