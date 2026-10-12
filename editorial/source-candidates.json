@@ -20,6 +20,10 @@
         {
           "date": "2026-10-12",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-13",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -41,6 +45,10 @@
         },
         {
           "date": "2026-10-12",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-13",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -65,6 +73,10 @@
         },
         {
           "date": "2026-10-12",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-13",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -104,6 +116,17 @@
             "Ireland": 6,
             "Scotland": 1,
             "Japan": 1
+          }
+        },
+        {
+          "date": "2026-10-13",
+          "feedUrl": "https://www.the42.ie/feed/",
+          "items": 40,
+          "hits": {
+            "France": 1,
+            "Ireland": 5,
+            "Japan": 1,
+            "South Africa": 1
           }
         }
       ],
@@ -148,6 +171,20 @@
             "New Zealand": 1,
             "South Africa": 2
           }
+        },
+        {
+          "date": "2026-10-13",
+          "feedUrl": "https://www.rte.ie/feeds/rss/?index=/sport/rugby/",
+          "items": 50,
+          "hits": {
+            "England": 1,
+            "Ireland": 15,
+            "Argentina": 1,
+            "Australia": 2,
+            "Japan": 6,
+            "New Zealand": 1,
+            "South Africa": 2
+          }
         }
       ],
       "decided": "2026-10-11"
@@ -166,6 +203,10 @@
       "probes": [
         {
           "date": "2026-10-12",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-13",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -188,6 +229,45 @@
           "items": 10,
           "hits": {
             "Italy": 1
+          }
+        },
+        {
+          "date": "2026-10-13",
+          "feedUrl": "https://www.federugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "Italy": 1
+          }
+        }
+      ]
+    },
+    {
+      "outlet": "Rugby World",
+      "host": "rugbyworld.com",
+      "homepage": "https://www.rugbyworld.com",
+      "teams": [
+        "France",
+        "Argentina",
+        "Japan"
+      ],
+      "why": "France, Argentina and Japan had no NEW national-team stories today, and this magazine's news desk covers all the major nations in English.",
+      "proposed": "2026-10-13",
+      "status": "proposed",
+      "feedUrl": "https://www.rugbyworld.com/feed",
+      "probes": [
+        {
+          "date": "2026-10-13",
+          "feedUrl": "https://www.rugbyworld.com/feed",
+          "items": 30,
+          "hits": {
+            "England": 2,
+            "Ireland": 1,
+            "Italy": 2,
+            "Scotland": 2,
+            "Wales": 2,
+            "Australia": 4,
+            "New Zealand": 1,
+            "South Africa": 3
           }
         }
       ]
