@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- Argentina — same lead story since Sat 10 Oct, first run as "Shaun Edwards joins Felipe Contepomi’s Argentina staff for World Cup push" — the novelty gate flagged the latest edition and published anyway
+- Ireland — same lead story since Sun 11 Oct, first run as "Ireland women's Aoife Wafer ruled out of South Africa WXV trip" — the novelty gate did NOT flag the latest edition
 
 **Model ladder**
 
@@ -30,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Mon 12 Oct 2026, 12:18 AEDT — repeat leads: Ireland
 - Sun 11 Oct 2026, 11:59 AEDT — repeat leads: Argentina
 - Sat 10 Oct 2026, 12:44 AEDT — repeat leads: Australia, Japan
 - Fri 9 Oct 2026, 13:07 AEDT — repeat leads: Argentina
