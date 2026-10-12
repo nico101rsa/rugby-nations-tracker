@@ -351,6 +351,15 @@ test("checkStandings: a tied row in no unresolved set -> standings-tiebreak", ()
   assert.deepEqual(kinds(check(s)), ["standings-tiebreak"]);
 });
 
+test("checkStandings: teams yet to play may share a rank without an unresolved set", () => {
+  const s = consistent();
+  // rnc-2026 has two games in, so eight of its twelve teams have P 0.
+  const idle = entry(s, "rnc-2026").groups.flatMap((g) => g.rows).filter((r) => r.P === 0);
+  assert.ok(idle.length >= 2 && idle.every((r) => r.tied));
+  assert.deepEqual(entry(s, "rnc-2026").unresolved, []);
+  assert.deepEqual(check(s), []);
+});
+
 test("checkStandings: a bracket slot after the registry endDate -> standings-stage-past-end", () => {
   const s = consistent();
   entry(s, "6n-2027").qualification = { bracket: [{ stage: "FINAL", n: 1, date: "2027-11-13" }] };

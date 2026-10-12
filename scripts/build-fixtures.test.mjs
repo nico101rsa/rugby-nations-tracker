@@ -346,9 +346,11 @@ const POOLS_REGISTRY = {
     { key: "6n-2027", structure: "table", groups: null, teams: ["ENG", "FRA", "IRE", "ITA", "SCO", "WAL"] },
     {
       key: "rwc-2027", structure: "pools",
+      // The letter is in `pool`; a pool's `name` stays null (the shipped app
+      // prints `name` bare as the heading — build-competitions.mjs header).
       groups: [
-        { name: "A", teams: ["AUS", "HKG", "CHI", "NZL"] },
-        { name: null, teams: ["WAL", "ENG", "TGA", "ZIM"] }, // not (yet) named
+        { name: null, teams: ["AUS", "HKG", "CHI", "NZL"], pool: "A" },
+        { name: null, teams: ["WAL", "ENG", "TGA", "ZIM"], pool: null }, // not (yet) lettered
       ],
     },
   ],
@@ -358,7 +360,7 @@ const poolRow = (id, key, home, away) => ({ id, date: "2027-10-02T10:45:00.000Z"
 test("withPools tags a World Cup row with its home side's pool, and nothing else", () => {
   const input = [
     poolRow("espn-1", "rwc-2027", "NZL", "CHI"),
-    poolRow("espn-2", "rwc-2027", "ENG", "TGA"), // group has no name -> no field
+    poolRow("espn-2", "rwc-2027", "ENG", "TGA"), // group has no letter -> no field
     poolRow("seed-6n", "6n-2027", "IRE", "ENG"), // table competition -> no field
     poolRow("espn-3", "test", "NZL", "AUS"),
   ];
@@ -371,6 +373,14 @@ test("withPools tags a World Cup row with its home side's pool, and nothing else
   assert.equal(JSON.stringify(input), before, "input not mutated");
   assert.notEqual(out[0], input[0], "a tagged row is a new object");
   assert.equal(out[2], input[2], "an untagged row passes through");
+});
+
+test("withPools reads the letter from `pool`, never from a group's `name`", () => {
+  const registry = {
+    competitions: [{ key: "rwc-2027", structure: "pools", groups: [{ name: "A", teams: ["AUS", "NZL"] }] }],
+  };
+  const input = [poolRow("espn-1", "rwc-2027", "NZL", "AUS")];
+  assert.ok(!("pool" in withPools(input, registry)[0]));
 });
 
 test("withPools with no registry changes nothing", () => {

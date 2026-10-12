@@ -273,6 +273,19 @@ test("(e) the same round with tries in: split on tries, the rest shared", () => 
   assert.deepEqual(out.notes, ["England and Wales share 4th place under the rules."]);
 });
 
+test("(e) teams yet to play share their rank with no unresolved set and no note", () => {
+  // One drawn game: IRE and ENG genuinely share 1st under the rules; the four
+  // who haven't played are level only because nothing has happened yet.
+  const games = [game("IRE", "ENG", 10, 10, t(1, 1))];
+  const out = rankRows(tally(games, RULES["6n"], SIX, names), games, RULES["6n"]);
+  assert.deepEqual(out.rows.map((r) => [r.rank, r.code, r.tied, r.P]), [
+    [1, "ENG", true, 1], [1, "IRE", true, 1],
+    [3, "FRA", true, 0], [3, "ITA", true, 0], [3, "SCO", true, 0], [3, "WAL", true, 0],
+  ]);
+  assert.deepEqual(out.unresolved, [{ codes: ["ENG", "IRE"], rank: 1, criterion: "shared", needs: "shared" }]);
+  assert.deepEqual(out.notes, ["England and Ireland share 1st place under the rules."]);
+});
+
 test("(e) PD splits a points tie before tries are even asked for", () => {
   const games = [game("IRE", "ENG", 30, 10, null), game("FRA", "WAL", 24, 20, t(3, 2))];
   const out = rankRows(tally(games, RULES["6n"], SIX, names), games, RULES["6n"]);
@@ -413,19 +426,45 @@ test("(g) a conference game credits a North row and a South row, each ranked in 
 const RWC = {
   key: "rwc-2027", label: "RWC '27", name: "Rugby World Cup", season: 2027, structure: "pools", fixtureCount: 36,
   defaultUntil: "2027-10-31",
+  // As competitions.json carries them: the drawn letter in `pool`, `name`
+  // null (the shipped app prints a pool's `name` bare).
   groups: [
-    { name: "A", teams: ["AUS", "HKG", "CHI", "NZL"] },
-    { name: null, teams: ["WAL", "ENG", "TGA", "ZIM"] },
+    { name: null, teams: ["AUS", "HKG", "CHI", "NZL"], pool: "A" },
+    { name: null, teams: ["WAL", "ENG", "TGA", "ZIM"], pool: null },
   ],
 };
 
-test("(h) pools: group names copied from the registry (null stays null), codes without api ids have id null", () => {
+test("(h) pools: a group's name is the registry's pool letter (null stays null), codes without api ids have id null", () => {
   const games = [game("AUS", "HKG", 50, 5, t(8, 1)), game("ENG", "TGA", 30, 10, t(4, 1))];
   const { groups } = groupStandings(RWC, games, RULES.rwc, { ...names, HKG: "Hong Kong China", TGA: "Tonga" });
   assert.deepEqual(groups.map((g) => g.name), ["A", null]);
+  // A conference side keeps its registry name; a pool letter never leaks onto it.
+  const conf = { ...RWC, structure: "conference", groups: [{ name: "South", teams: ["AUS", "HKG"], pool: "Z" }, { name: "North", teams: ["ENG", "TGA"] }] };
+  assert.deepEqual(groupStandings(conf, [game("AUS", "ENG", 20, 10)], RULES.rnc, names).groups.map((g) => g.name), ["South", "North"]);
   const hkg = groups[0].rows.find((r) => r.code === "HKG");
   assert.deepEqual([hkg.id, hkg.team], [null, "Hong Kong China"]);
   assert.equal(groups[0].rows.find((r) => r.code === "AUS").id, 461);
+});
+
+test("(h) pools: one game in, the unplayed pools and pairs carry no ranking needs or notes; provable", () => {
+  // Review of PR #146: AUS 30-10 HKG alone used to publish provable:false and
+  // "Chile and New Zealand ... the World Rugby rankings decide" for every pool.
+  const games = [game("AUS", "HKG", 30, 10, t(4, 1))];
+  const { groups, unresolved, notes } = groupStandings(RWC, games, RULES.rwc, names);
+  assert.deepEqual(groups[0].rows.map((r) => [r.rank, r.code, r.tied]), [
+    [1, "AUS", false], [2, "CHI", true], [2, "NZL", true], [4, "HKG", false],
+  ]);
+  assert.ok(groups[1].rows.every((r) => r.rank === 1 && r.tied && r.P === 0));
+  assert.deepEqual(unresolved, []);
+  assert.deepEqual(notes, []);
+  const row = {
+    id: "espn-rwc-1", date: "2027-10-01T10:00:00Z", comp: { key: "rwc-2027", kind: "competition" },
+    home: { code: "AUS", name: "Australia" }, away: { code: "HKG", name: "Hong Kong China" }, homeScore: 30, awayScore: 10,
+  };
+  const entry = competitionEntry(RWC, { fixtures: { fixtures: [row] }, espnTries: { "espn-rwc-1": { home: 4, away: 1 } } });
+  assert.equal(entry.played, 1);
+  assert.equal(entry.provable, true);
+  assert.deepEqual([entry.unresolved, entry.notes], [[], []]);
 });
 
 test("(h) a knockout and a played-0 competition yield groups null", () => {

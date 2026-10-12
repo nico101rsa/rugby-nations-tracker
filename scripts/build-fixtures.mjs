@@ -191,17 +191,19 @@ export function buildFixtures(events, names, nations, { now = 0, scores = {}, re
 }
 
 // Tag each row of a pools competition (the World Cup) with its pool letter:
-// `pool` is the name of the registry group holding the HOME side, set only
-// when competitions.json has named that group (build-competitions namePools,
-// from the official draw). An unnamed group, a team in no group, and every
-// non-pools competition get no field at all. Pure: returns new row objects
-// for the rows it tags and leaves its input untouched.
+// `pool` is the `pool` letter of the registry group holding the HOME side,
+// set only when competitions.json has lettered that group (build-competitions
+// namePools, from the official draw). A group's `name` is not a letter source
+// (it stays null for pools; the shipped app prints it bare). An unlettered
+// group, a team in no group, and every non-pools competition get no field at
+// all. Pure: returns new row objects for the rows it tags and leaves its
+// input untouched.
 export function withPools(fixtures, registry) {
   const poolOf = new Map(); // comp key -> Map(team code -> letter)
   for (const c of registry?.competitions ?? []) {
     if (c.structure !== "pools" || !Array.isArray(c.groups)) continue;
     const byCode = new Map();
-    for (const g of c.groups) if (g.name) for (const t of g.teams ?? []) byCode.set(t, g.name);
+    for (const g of c.groups) if (g.pool) for (const t of g.teams ?? []) byCode.set(t, g.pool);
     poolOf.set(c.key, byCode);
   }
   return fixtures.map((f) => {
@@ -374,7 +376,7 @@ async function main() {
   const seeded = registry ? seededFixtures(registry).filter((f) => new Date(f.date).getTime() >= now) : [];
   if (seeded.length) console.log(`seeded ${seeded.length} fixtures for competitions ESPN has not published`);
   fixtures.push(...seeded);
-  // World Cup rows carry their pool letter once the registry has named it
+  // World Cup rows carry their pool letter once the registry has lettered it
   // (the tour rows appended next are never a pools competition).
   fixtures = withPools(fixtures, registry);
   // The NZ tour midweek games (kind:"tour") — no vendor carries them, so no

@@ -131,9 +131,9 @@ export function rulesFor(key) {
 // Official pool letters, from the draw in Sydney on 3 Dec 2025:
 // https://www.skysports.com/rugby-union/news/12321/13478666/2027-rugby-world-cup-england-drawn-with-wales-in-pool-stages-as-ireland-face-scotland-and-hosts-australia-play-new-zealand
 // (also https://www.hkrugby.com/news/details/mens-rugby-world-cup-2027-draw-results-and-reaction).
-// build-competitions names a group only when its team set equals one of
-// these EXACTLY, so a vendor team-set change drops the letter to null rather
-// than mislabelling a pool.
+// build-competitions letters a group (`groups[].pool`, never its `name`) only
+// when its team set equals one of these EXACTLY, so a vendor team-set change
+// drops the letter to null rather than mislabelling a pool.
 export const POOL_NAMES = deepFreeze({
   "rwc-2027": {
     A: ["NZL", "AUS", "CHI", "HKG"],

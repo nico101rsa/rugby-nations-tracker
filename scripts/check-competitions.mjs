@@ -334,7 +334,9 @@ export function checkStandings(registry, standings, fixturesFile, nations, today
       const bad = [];
       for (const r of rows) {
         if (r.decidedBy != null && !allowed.has(r.decidedBy)) bad.push(`${r.code} placed by "${r.decidedBy}", not in ${[...allowed].join(" > ")}`);
-        if (r.tied && !(e.unresolved ?? []).some((u) => u.codes?.includes(r.code))) bad.push(`${r.code} is tied but in no unresolved set`);
+        // A team that hasn't played shares its rank without an unresolved set
+        // (build-standings rankRows): nothing is unsettled yet.
+        if (r.tied && r.P > 0 && !(e.unresolved ?? []).some((u) => u.codes?.includes(r.code))) bad.push(`${r.code} is tied but in no unresolved set`);
       }
       for (const u of e.unresolved ?? []) if (!u.needs) bad.push(`${(u.codes ?? []).join("/")} tied without saying what it needs`);
       if (bad.length) {

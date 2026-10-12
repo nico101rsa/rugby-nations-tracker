@@ -371,6 +371,10 @@ export function noteFor({ rows, rank, criterion, needs }) {
 // order), the level sets the chain could not split, and their notes.
 // `decidedBy` names the criterion that placed a row below the one above it
 // ("pts" when points differ; null for the top row and inside a tie).
+// A level set in which nobody has played (every P 0) still shares its rank,
+// but it is not an unsettled tiebreak: it gets no `unresolved` entry and no
+// note (a note would tell the reader the rankings decide, or that teams
+// "share 3rd place under the rules", before a ball is kicked).
 export function rankRows(rows, games, rules) {
   const segments = order(rows, 0, rules, games);
   const ranked = [];
@@ -381,7 +385,7 @@ export function rankRows(rows, games, rules) {
     seg.rows.forEach((r, j) => {
       ranked.push({ ...r, rank: pos, tied: !!seg.tied, decidedBy: j === 0 ? seg.decidedBy ?? null : null });
     });
-    if (seg.tied) {
+    if (seg.tied && !seg.rows.every((r) => r.P === 0)) {
       unresolved.push({ codes: seg.rows.map((r) => r.code), rank: pos, criterion: seg.criterion, needs: seg.needs });
       notes.push(noteFor({ rows: seg.rows, rank: pos, criterion: seg.criterion, needs: seg.needs }));
     }
@@ -394,12 +398,17 @@ export function rankRows(rows, games, rules) {
 // Groups and entries
 // ---------------------------------------------------------------------------
 
+// A pool's published name is its drawn letter, which competitions.json keeps
+// in `pool` (its `name` stays null for the shipped app's sake — see
+// build-competitions.mjs); a conference side's is its `name`.
 const groupDefs = (comp) =>
-  comp.structure === "table" ? [{ name: null, teams: comp.teams ?? [] }] : (comp.groups ?? []).map((g) => ({ name: g.name ?? null, teams: g.teams ?? [] }));
+  comp.structure === "table"
+    ? [{ name: null, teams: comp.teams ?? [] }]
+    : (comp.groups ?? []).map((g) => ({ name: (comp.structure === "pools" ? g.pool : null) ?? g.name ?? null, teams: g.teams ?? [] }));
 
 // table -> one group {name:null}; conference/pools -> one group per registry
-// group, in registry order, names copied from the registry (null until it
-// has one). Every game is credited to both sides wherever they live, and each
+// group, in registry order, names from the registry (a pool's letter, a
+// conference's side; null until it has one). Every game is credited to both sides wherever they live, and each
 // group is ranked on its own. Knockouts, competitions without a table rule
 // and anything not yet played -> groups null.
 export function groupStandings(comp, games, rules, names = {}) {
