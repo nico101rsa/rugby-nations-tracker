@@ -5,6 +5,8 @@ import { readFileSync } from "node:fs";
 import {
   parseIncidents, reconcile, buildAggregates, findEvent, decideAlert, runPipeline,
   POINTS, espnMinute, parseEspnDetails, findEspnEvent,
+  vendorPenaltyTries, espnPenaltyTries, espnRowsLine, vendorIncidentsLine,
+  penaltyTryConverted, espnSaysConverted,
 } from "./fetch-stats.mjs";
 
 const FIXTURE = JSON.parse(readFileSync(new URL("./fixtures/incidents-nzl-fra.json", import.meta.url), "utf8"));
@@ -550,4 +552,456 @@ test("parseEspnDetails: a team id matching neither competitor holds the match ev
   const { scoring, unknown } = parseEspnDetails([{ type: { text: "Try" }, clock: { value: 60 }, team: { id: "9" } }], ["1"], ["2"]);
   assert.deepEqual(scoring, []);
   assert.deepEqual(unknown, ["Try for team 9"]);
+});
+
+// ---- Issue #143: the penalty try neither source labels ---------------------
+//
+// Argentina 24-31 England, 18 Jul 2026, as the 12 Oct run saw it. The first
+// eleven ESPN rows are the run log's, field for field (its JSON dump stopped
+// there); the rest are rebuilt from the match reports (Sky, TNT, AP): the
+// penalty try to Argentina for Alex Coles' deliberate knock-on just after
+// Jack van Poortvliet's yellow, England's tries by Marcus Smith and Immanuel
+// Feyi-Waboso, Justo Piccardo's 79th-minute try, seven yellow cards, and the
+// run log's own counts — 60 rows, 40 of them substitutions. Minutes after the
+// 45th and the names the reports don't give ("ENG kicker", "ARG player",
+// replacements) are placeholders. ESPN has no row for the penalty try; its
+// score on the rows after it does include it.
+const ENG_T = { id: "1", uid: "s:300~t:1", name: "England", abbreviation: "ENG", displayName: "England" };
+const ARG_T = { id: "10", uid: "s:300~t:10", name: "Argentina", abbreviation: "ARG", displayName: "Argentina" };
+const ESPN_TYPE_ID = { try: "1", conversion: "2", "penalty goal": "3", "yellow card": "5", "player substituted": "7", "substitute on": "8" };
+const ESPN_PTS = { try: 5, conversion: 2, "penalty goal": 3, "penalty try": 7 };
+const ARG_ENG_PLAYS = [ // [second of play, ESPN type.text, team, player]
+  [230, "try", "ENG", "Tommy Freeman"],
+  [1384, "yellow card", "ARG", "Mateo Carreras"],
+  [1405, "try", "ENG", "Ben Earl"],
+  [1451, "conversion", "ENG", "Fin Smith"],
+  [1782, "penalty goal", "ARG", "Tomas Albornoz"],
+  [1957, "try", "ENG", "Ben Earl"],
+  [1979, "conversion", "ENG", "Fin Smith"],
+  [2573, "try", "ARG", "Mateo Carreras"],
+  [2633, "conversion", "ARG", "Tomas Albornoz"],
+  [2664, "player substituted", "ENG", "Fin Smith"],
+  [2664, "substitute on", "ENG", "ENG replacement 1"],
+  // rebuilt from the reports from here on
+  [2820, "yellow card", "ENG", "Jack van Poortvliet"],
+  [2930, "penalty try", "ARG", null], // NOT an ESPN row: only its 7 points are in the score
+  [2930, "yellow card", "ENG", "Alex Coles"],
+  [3460, "try", "ENG", "Marcus Smith"],
+  [3500, "conversion", "ENG", "ENG kicker"],
+  [3700, "yellow card", "ARG", "Joaquin Oviedo"],
+  [3940, "try", "ENG", "Immanuel Feyi-Waboso"],
+  [4150, "yellow card", "ARG", "ARG player"],
+  [4300, "yellow card", "ENG", "Henry Pollock"],
+  [4420, "yellow card", "ENG", "Emmanuel Iyogun"],
+  [4710, "try", "ARG", "Justo Piccardo"],
+  [4790, "conversion", "ARG", "Tomas Albornoz"],
+  // the other 19 replacement pairs, 50' to 77'
+  ...Array.from({ length: 19 }, (_, k) => {
+    const code = k % 2 ? "ARG" : "ENG";
+    return [[3000 + k * 90, "player substituted", code, `${code} starter ${k + 2}`], [3000 + k * 90, "substitute on", code, `${code} replacement ${k + 2}`]];
+  }).flat(),
+];
+// scoreHasPenaltyTry false: ESPN's score never shows it either (the case the
+// rows alone can't fix — the match must stay held).
+function argEngEspnRows({ scoreHasPenaltyTry = true } = {}) {
+  const plays = ARG_ENG_PLAYS.map((p, i) => [...p, i]).sort((a, b) => a[0] - b[0] || a[4] - b[4]);
+  let home = 0, away = 0;
+  const rows = [];
+  for (const [sec, text, code, name] of plays) {
+    const pts = text === "penalty try" && !scoreHasPenaltyTry ? 0 : (ESPN_PTS[text] ?? 0);
+    if (code === "ARG") home += pts; else away += pts;
+    if (text === "penalty try") continue;
+    const shown = `${Math.ceil(sec / 60)}'`;
+    rows.push({ sequenceNumber: "0", type: { id: ESPN_TYPE_ID[text], text }, awayScore: away, homeScore: home,
+      period: { number: sec < 2400 ? 1 : 2 }, clock: { value: sec, displayValue: shown },
+      team: code === "ARG" ? ARG_T : ENG_T, participants: [{ athlete: { displayName: name } }],
+      addedClock: { value: 0, displayValue: shown } });
+  }
+  return rows;
+}
+const argEngSummary = (opts) => ({ header: { competitions: [{
+  competitors: [
+    { id: "10", homeAway: "home", score: "24", team: { id: "10", displayName: "Argentina" } },
+    { id: "1", homeAway: "away", score: "31", team: { id: "1", displayName: "England" } },
+  ],
+  details: argEngEspnRows(opts),
+}] } });
+
+// The vendor's incidents for the same plays, newest first as it lists them.
+// `penaltyTry` says how the vendor sent the penalty try:
+//   "try"        — a plain try whose own score moves Argentina 10 -> 17;
+//   "tryFive"    — a plain try with a 5-point score step (no evidence at all);
+//   "penaltyTry" — labelled right, but Piccardo's conversion missing.
+// All three sum Argentina to 22, the run's "home 22/24".
+const VENDOR_CLS = { try: "try", conversion: "twoPoints", "penalty goal": "threePoints" };
+function argEngVendor(penaltyTry) {
+  let home = 0, away = 0;
+  const out = [];
+  for (const [sec, text, code, name] of [...ARG_ENG_PLAYS].sort((a, b) => a[0] - b[0])) {
+    const time = Math.ceil(sec / 60);
+    const isHome = code === "ARG";
+    if (text === "yellow card") { out.push({ time, incidentType: "card", incidentClass: "yellow", player: { name }, isHome }); continue; }
+    if (text === "penalty try") {
+      const step = penaltyTry === "tryFive" ? 5 : 7;
+      home += step;
+      out.push({ time, incidentType: "goal", incidentClass: penaltyTry === "penaltyTry" ? "penaltyTry" : "try", isHome, homeScore: home, awayScore: away });
+      continue;
+    }
+    if (!(text in VENDOR_CLS)) { if (text === "substitute on") out.push({ time, incidentType: "substitution", incidentClass: "regular", isHome }); continue; }
+    if (penaltyTry === "penaltyTry" && sec === 4790) continue; // the conversion that vendor list loses
+    if (isHome) home += ESPN_PTS[text]; else away += ESPN_PTS[text];
+    out.push({ time, incidentType: "goal", incidentClass: VENDOR_CLS[text], player: { name }, isHome, homeScore: home, awayScore: away });
+  }
+  return { data: { incidents: out.reverse() } };
+}
+
+const ARG_ENG_SCOREBOARD = espnScoreboard([["603992", "2026-07-18T19:10Z", "Argentina"]]);
+function argEngRun({ vendor, summary }) {
+  const vendorCalls = [], espnCalls = [];
+  const fetchJson = async (url) => { vendorCalls.push(url); return vendor; };
+  const fetchEspn = async (url) => {
+    espnCalls.push(url.slice(url.lastIndexOf("/") + 1));
+    if (summary === "down") throw new Error(`HTTP 503 for ${url}`);
+    if (url.includes("scoreboard?dates=20260718")) return ARG_ENG_SCOREBOARD;
+    if (url.endsWith("summary?event=603992")) return summary;
+    throw new Error(`unexpected ESPN url ${url}`);
+  };
+  return runPipeline({ nations: ARG_ENG_NATIONS, prevStats: ARG_ENG_PREV, fetchJson, fetchEspn, sleepMs: 0 })
+    .then((res) => ({ ...res, vendorCalls, espnCalls }));
+}
+async function quietly(fn) {
+  const lines = [];
+  const log = console.log;
+  console.log = (...a) => lines.push(a.join(" "));
+  try { return { result: await fn(), lines }; } finally { console.log = log; }
+}
+const ARG_TOTALS = { team: "Argentina", tries: 3, cons: 2, pens: 1, drops: 0, pointsFor: 24 }; // the penalty try is a try
+const ENG_TOTALS = { team: "England", tries: 5, cons: 3, pens: 0, drops: 0, pointsFor: 31 };
+
+test("#143 fixture reproduces the 12 Oct run: vendor home 22/24, ESPN home 17/24 as labelled, 60 rows, no unknown types", () => {
+  for (const shape of ["try", "tryFive", "penaltyTry"]) {
+    const v = parseIncidents(argEngVendor(shape).data.incidents);
+    const g = reconcile(v.scoring, 24, 31);
+    assert.deepEqual([g.home.computed, g.away.computed, v.unknown], [22, 31, []], shape);
+  }
+  const rows = argEngEspnRows();
+  assert.equal(rows.length, 60);
+  assert.equal(rows.filter((d) => /^(player substituted|substitute on)$/.test(d.type.text)).length, 40);
+  const e = parseEspnDetails(rows, ["10"], ["1"]);
+  const g = reconcile(e.scoring, 24, 31);
+  assert.deepEqual([g.home.computed, g.away.computed], [17, 31]);
+  assert.deepEqual(e.unknown, []); // "player substituted" / "substitute on" are known non-scoring rows now
+  assert.equal(e.cards.length, 7);
+});
+
+test("#143 vendor sends a plain 'try' that moves the score 7: ESPN is asked first, and its own reading publishes (PR #150 review)", async () => {
+  const { result: { stats, failures, vendorCalls, espnCalls } } = await quietly(() =>
+    argEngRun({ vendor: argEngVendor("try"), summary: argEngSummary() }));
+  assert.deepEqual(failures, []);
+  const m = stats.matches[0];
+  assert.equal(m.reconciled, true);
+  assert.equal(m.source, "espn"); // not the vendor's 7-point reading, which no longer pre-empts ESPN
+  assert.deepEqual(m.scoring.filter((s) => s.type === "penaltyTry"), [{ min: 49, team: "home", type: "penaltyTry", player: null, after: [17, 19] }]);
+  assert.deepEqual(stats.aggregates.teamTotals.find((t) => t.team === "Argentina"), ARG_TOTALS);
+  assert.equal(vendorCalls.length, 1);
+  assert.deepEqual(espnCalls, ["scoreboard?dates=20260718", "summary?event=603992"]);
+});
+
+test("#143 vendor path, last resort: ESPN answers but its score never shows the penalty try -> the vendor's 7-point try is read as one and publishes", async () => {
+  const { result: { stats, failures, vendorCalls, espnCalls }, lines } = await quietly(() =>
+    argEngRun({ vendor: argEngVendor("try"), summary: argEngSummary({ scoreHasPenaltyTry: false }) }));
+  assert.deepEqual(failures, []);
+  const m = stats.matches[0];
+  assert.equal(m.reconciled, true);
+  assert.equal(m.source, undefined); // the vendor's own list, re-read
+  assert.deepEqual(m.scoring.filter((s) => s.type === "penaltyTry"), [{ min: 49, team: "home", type: "penaltyTry", player: null, after: [17, 19] }]);
+  assert.equal(reconcile(m.scoring, 24, 31).ok, true);
+  assert.equal(penaltyTryConverted(m.scoring), false);
+  assert.equal(m.cards.length, 7);
+  assert.deepEqual(stats.aggregates.teamTotals.find((t) => t.team === "Argentina"), ARG_TOTALS);
+  assert.deepEqual(stats.aggregates.teamTotals.find((t) => t.team === "England"), ENG_TOTALS);
+  assert.equal(vendorCalls.length, 1);
+  assert.deepEqual(espnCalls, ["scoreboard?dates=20260718", "summary?event=603992"]);
+  assert.ok(lines.some((l) => /home 22\/24, away 31\/31 as labelled; ESPN event 603992 did not reconcile: home 17\/24.*penalty try \(home 49'\)/.test(l)), lines.join("\n"));
+});
+
+test("#143 vendor path: with ESPN unreachable the 7-point reading waits — held for the next run, nothing published", async () => {
+  const { result: { stats, failures } } = await quietly(() =>
+    argEngRun({ vendor: argEngVendor("try"), summary: "down" }));
+  const m = stats.matches[0];
+  assert.equal(m.reconciled, false);
+  assert.deepEqual(m.scoring, []);
+  assert.match(failures[0].reason, /^did not reconcile: home 22\/24, away 31\/31; ESPN: HTTP 503 for /);
+});
+
+test("#143 ESPN path: no row for the penalty try, the score carries it -> publishes from ESPN with 24-31", async () => {
+  const { result: { stats, failures, espnCalls }, lines } = await quietly(() =>
+    argEngRun({ vendor: argEngVendor("penaltyTry"), summary: argEngSummary() }));
+  assert.deepEqual(failures, []);
+  const m = stats.matches[0];
+  assert.equal(m.reconciled, true);
+  assert.equal(m.source, "espn");
+  assert.equal(m.eventId, 16098059);
+  assert.equal(m.scoring.length, 14); // 13 rows + the penalty try
+  assert.deepEqual(m.scoring.filter((s) => s.type === "penaltyTry"), [{ min: 49, team: "home", type: "penaltyTry", player: null, after: [17, 19] }]);
+  assert.deepEqual(m.scoring[0], { min: 4, team: "away", type: "try", player: "Tommy Freeman", after: [0, 5] }); // participants[0].athlete
+  assert.deepEqual(m.scoring.at(-1), { min: 80, team: "home", type: "conversion", player: "Tomas Albornoz", after: [24, 31] });
+  assert.equal(reconcile(m.scoring, 24, 31).ok, true);
+  assert.deepEqual(m.cards[0], { min: 24, team: "home", type: "yellow", player: "Mateo Carreras" });
+  assert.deepEqual(stats.aggregates.teamTotals.find((t) => t.team === "Argentina"), ARG_TOTALS);
+  assert.deepEqual(stats.aggregates.teamTotals.find((t) => t.team === "England"), ENG_TOTALS);
+  assert.deepEqual(stats.aggregates.discipline, [{ team: "England", yellow: 4, red: 0 }, { team: "Argentina", yellow: 3, red: 0 }]);
+  assert.deepEqual(stats.aggregates.topTryScorers[0], { player: "Ben Earl", team: "England", tries: 2 });
+  assert.deepEqual(espnCalls, ["scoreboard?dates=20260718", "summary?event=603992"]);
+  assert.ok(lines.some((l) => /603992 for match 53230: the running score shows 1 penalty try\(s\) with no row \(home 49'\); with them it reconciles/.test(l)), lines.join("\n"));
+});
+
+test("#143 negative: when neither source's score shows the penalty try the match stays held, reasons as in the issue, the whole match logged", async () => {
+  const { result: { stats, failures }, lines } = await quietly(() =>
+    argEngRun({ vendor: argEngVendor("tryFive"), summary: argEngSummary({ scoreHasPenaltyTry: false }) }));
+  const m = stats.matches[0];
+  assert.equal(m.reconciled, false);
+  assert.deepEqual(m.scoring, []);
+  assert.equal(failures[0].reason, "did not reconcile: home 22/24, away 31/31; ESPN event 603992 did not reconcile: home 17/24, away 31/31");
+  const espnLine = lines.find((l) => l.startsWith("ESPN event 603992 rows for match 53230 (60): "));
+  assert.ok(espnLine, lines.join("\n"));
+  assert.match(espnLine, /^ESPN event 603992 rows for match 53230 \(60\): 4' try t1 0-5 Tommy Freeman; /);
+  assert.match(espnLine, /; 80' conversion t10 17-31 Tomas Albornoz$/); // the end of the match is in the log
+  const vendorLine = lines.find((l) => l.startsWith("vendor incidents for match 53230 "));
+  assert.match(vendorLine, /49' goal:try home 15-19 \(no player\)/);
+  assert.ok(!lines.some((l) => /rows not recognised/.test(l)));
+});
+
+test("#143 a vendor list that reconciles as labelled is never re-read, even with a 7-point try in it", async () => {
+  const nations = { results: [{ id: 1, date: "2026-07-18T19:10:00+00:00", week: "3", status: { short: "FT" },
+    home: { id: 460, name: "Argentina", score: 7 }, away: { id: 386, name: "England", score: 0 } }], fixtures: [] };
+  // the try carries the post-conversion score, the conversion repeats it
+  const vendor = { data: { incidents: [
+    { time: 11, incidentType: "goal", incidentClass: "twoPoints", player: { name: "K" }, isHome: true, homeScore: 7, awayScore: 0 },
+    { time: 10, incidentType: "goal", incidentClass: "try", player: { name: "T" }, isHome: true, homeScore: 7, awayScore: 0 },
+  ] } };
+  const { stats, failures } = await runPipeline({ nations, prevStats: { matches: [{ id: 1, eventId: 5, reconciled: false }] },
+    fetchJson: async () => vendor, fetchEspn: async () => { throw new Error("no ESPN call expected"); }, sleepMs: 0 });
+  assert.deepEqual(failures, []);
+  assert.deepEqual(stats.matches[0].scoring.map((s) => [s.type, s.player]), [["try", "T"], ["conversion", "K"]]);
+});
+
+test("vendorPenaltyTries: only a try whose own score step is exactly 7, the other side unchanged", () => {
+  assert.deepEqual(vendorPenaltyTries([{ min: 10, team: "away", type: "try", player: "X", after: [0, 7] }]),
+    [{ min: 10, team: "away", type: "penaltyTry", player: null, after: [0, 7] }]);
+  assert.equal(vendorPenaltyTries([{ min: 10, team: "home", type: "try", player: "X", after: [7, 3] }]), null); // both sides moved
+  assert.equal(vendorPenaltyTries([
+    { min: 10, team: "home", type: "try", player: "X", after: [5, 0] },
+    { min: 11, team: "home", type: "conversion", player: "K", after: [7, 0] },
+  ]), null);
+  assert.equal(vendorPenaltyTries([ // a score missing before it breaks the chain: no step to read
+    { min: 5, team: "home", type: "penalty", player: "K", after: [undefined, undefined] },
+    { min: 10, team: "home", type: "try", player: "X", after: [10, 0] },
+  ]), null);
+  assert.equal(vendorPenaltyTries([{ min: 10, team: "home", type: "penaltyTry", player: null, after: [7, 0] }]), null); // already labelled
+  assert.equal(vendorPenaltyTries([]), null);
+});
+
+const scoreRow = (sec, text, team, h, a) => ({ type: { text }, clock: { value: sec }, team: { id: team }, homeScore: h, awayScore: a });
+test("espnPenaltyTries: one clean 7-point step that holds to the end, placed at the first row that shows it", () => {
+  const rows = [
+    scoreRow(300, "try", "9", 5, 0),
+    scoreRow(900, "substitute on", "4", 5, 0),
+    scoreRow(1200, "yellow card", "4", 12, 0), // the penalty try's 7, no row of its own
+    scoreRow(2400, "penalty goal", "4", 12, 3),
+    scoreRow(3000, "substitute on", "9", 19, 3), // and a second one
+    scoreRow(3300, "try", "4", 19, 8),
+  ];
+  assert.deepEqual(espnPenaltyTries(rows, ["9"], ["4"]), [
+    { min: 20, team: "home", type: "penaltyTry", player: null, after: [12, 0] },
+    { min: 50, team: "home", type: "penaltyTry", player: null, after: [19, 3] },
+  ]);
+  // the same rows out of order: play order is restored from the clock first
+  assert.deepEqual(espnPenaltyTries([...rows].reverse(), ["9"], ["4"]).map((p) => p.min), [20, 50]);
+});
+
+test("espnPenaltyTries: no reading for anything that is not one clean 7 (negative cases)", () => {
+  // a lost try and its lost conversion with a row between: the gap goes 5, then 7
+  assert.deepEqual(espnPenaltyTries([
+    scoreRow(60, "penalty goal", "9", 3, 0), scoreRow(600, "substitute on", "9", 8, 0), scoreRow(660, "substitute on", "4", 10, 0),
+  ], ["9"], ["4"]), []);
+  // a final gap that is not a multiple of 7
+  assert.deepEqual(espnPenaltyTries([scoreRow(600, "substitute on", "9", 5, 0)], ["9"], ["4"]), []);
+  // a blip that does not hold
+  assert.deepEqual(espnPenaltyTries([scoreRow(600, "substitute on", "9", 7, 0), scoreRow(700, "substitute on", "9", 0, 0)], ["9"], ["4"]), []);
+  // a jump of 9 that settles at 7 is not a clean step
+  assert.deepEqual(espnPenaltyTries([scoreRow(600, "substitute on", "9", 9, 0), scoreRow(700, "substitute on", "9", 7, 0)], ["9"], ["4"]), []);
+  // the #142 fakes: no running score on any row
+  assert.deepEqual(espnPenaltyTries(espnSummary(ARG_ENG).header.competitions[0].details, [HOME_ID], [AWAY_ID]), []);
+  assert.deepEqual(espnPenaltyTries(undefined), []);
+  // listed rows that add up leave nothing to read
+  assert.deepEqual(espnPenaltyTries([scoreRow(300, "try", "9", 5, 0), scoreRow(360, "conversion", "9", 7, 0)], ["9"], ["4"]), []);
+});
+
+test("parseEspnDetails: the player comes from participants[0].athlete, as ESPN rugby sends it", () => {
+  const { scoring, cards } = parseEspnDetails(argEngEspnRows().slice(0, 4), ["10"], ["1"]);
+  assert.deepEqual(scoring.map((s) => s.player), ["Tommy Freeman", "Ben Earl", "Fin Smith"]);
+  assert.deepEqual(cards, [{ min: 24, team: "home", type: "yellow", player: "Mateo Carreras" }]);
+});
+
+test("reason: a repeated unknown type is counted, not repeated (#143's issue body listed one pair 20 times)", async () => {
+  const fetchJson = async () => SHORT_VENDOR;
+  const fetchEspn = async (url) =>
+    url.includes("scoreboard?dates=20260718")
+      ? espnScoreboard([["401", "2026-07-18T19:10Z", "Argentina"]])
+      : espnSummary(ARG_ENG, [1, 2, 3].map((k) => espnDetail([60 + k, "home", "Bonus Point", null])));
+  const { result: { failures }, lines } = await quietly(() =>
+    runPipeline({ nations: ARG_ENG_NATIONS, prevStats: ARG_ENG_PREV, fetchJson, fetchEspn, sleepMs: 0 }));
+  assert.match(failures[0].reason, /unknown event types: Bonus Point ×3$/);
+  assert.ok(lines.some((l) => /^ESPN event 401 rows not recognised: \[\{"type":\{"text":"Bonus Point"\}/.test(l)), lines.join("\n"));
+});
+
+test("log lines: one short entry per row, in the source's order", () => {
+  assert.equal(vendorIncidentsLine([
+    { time: 2, incidentType: "card", incidentClass: "yellow", player: { name: "Ruben Love" }, isHome: true },
+    { time: 2, incidentType: "goal", incidentClass: "try", player: { name: "Damian Penaud" }, isHome: false, homeScore: 0, awayScore: 5 },
+    { time: 3, incidentType: "substitution", incidentClass: "regular", isHome: true },
+  ]), "2' card:yellow home Ruben Love; 2' goal:try away 0-5 Damian Penaud");
+  assert.equal(espnRowsLine(argEngEspnRows().slice(8, 11)),
+    "44' conversion t10 10-19 Tomas Albornoz; 45' player substituted t1 10-19; 45' substitute on t1 10-19");
+});
+
+// ---- PR #150 review: a lost conversion is not a penalty try ----------------
+//
+// The reviewer's repro. Real play: Carreras try 10' and Albornoz's conversion
+// 11' (7-0), Isgro try 20' and Albornoz's conversion 21' (14-0). The vendor
+// drops the 11' conversion incident but keeps the true running score (the #48
+// class, "one scoring event short"), so Isgro's try steps 5 -> 12: the same 7
+// a penalty try makes. Read that way it would publish a penalty try followed
+// by a conversion, and take a try from Isgro and a conversion from Albornoz.
+// It must reconcile from ESPN, or stay held; never publish a penalty try.
+const REPRO_ID = 7001;
+const reproNations = (home) => ({ results: [{ id: REPRO_ID, date: "2026-07-18T19:10:00+00:00", week: "3", status: { short: "FT" },
+  home: { id: 460, name: "Argentina", score: home }, away: { id: 386, name: "England", score: 0 } }], fixtures: [] });
+const REPRO_PREV = { matches: [{ id: REPRO_ID, eventId: 555, reconciled: false, scoring: [], cards: [] }] };
+const vGoal = (time, cls, h, name) => ({ incidentType: "goal", incidentClass: cls, isHome: true, time, homeScore: h, awayScore: 0, player: { name } });
+// newest first, as the vendor lists them; the 11' conversion is the one lost
+const REPRO_VENDOR = { data: { incidents: [vGoal(21, "twoPoints", 14, "Albornoz"), vGoal(20, "try", 12, "Isgro"), vGoal(10, "try", 5, "Carreras")] } };
+// the same loss when Isgro's try goes unconverted: final 12-0, no conversion after it
+const REPRO_VENDOR_UNCONVERTED = { data: { incidents: [vGoal(20, "try", 12, "Isgro"), vGoal(10, "try", 5, "Carreras")] } };
+const namedRow = (sec, text, team, h, a, name) => ({ ...scoreRow(sec, text, team, h, a), participants: [{ athlete: { displayName: name } }] });
+const reproSummary = (rows) => ({ header: { competitions: [{
+  competitors: [
+    { id: HOME_ID, homeAway: "home", team: { id: HOME_ID, displayName: "Argentina" } },
+    { id: AWAY_ID, homeAway: "away", team: { id: AWAY_ID, displayName: "England" } },
+  ],
+  details: rows,
+}] } });
+const REPRO_ESPN_ROWS = [
+  namedRow(570, "try", HOME_ID, 5, 0, "Carreras"), namedRow(630, "conversion", HOME_ID, 7, 0, "Albornoz"),
+  namedRow(1170, "try", HOME_ID, 12, 0, "Isgro"), namedRow(1230, "conversion", HOME_ID, 14, 0, "Albornoz"),
+];
+// espn: rows for the summary, "no event" (ESPN answers, has no such match) or "down" (ESPN unreachable)
+function reproRun({ vendor = REPRO_VENDOR, home = 14, espn }) {
+  const espnCalls = [];
+  const fetchEspn = async (url) => {
+    espnCalls.push(url.slice(url.lastIndexOf("/") + 1));
+    if (espn === "down") throw new Error(`HTTP 503 for ${url}`);
+    if (url.includes("/scoreboard?")) return espnScoreboard(espn === "no event" ? [] : [["555", "2026-07-18T19:10Z", "Argentina"]]);
+    if (url.endsWith("summary?event=555")) return reproSummary(espn);
+    throw new Error(`unexpected ESPN url ${url}`);
+  };
+  return quietly(() => runPipeline({ nations: reproNations(home), prevStats: REPRO_PREV, fetchJson: async () => vendor, fetchEspn, sleepMs: 0 })
+    .then((res) => ({ ...res, espnCalls })));
+}
+
+test("PR #150 review repro: a lost conversion's 7-point step is not read as a penalty try", () => {
+  const { scoring } = parseIncidents(REPRO_VENDOR.data.incidents);
+  const g = reconcile(scoring, 14, 0);
+  assert.deepEqual([g.ok, g.home.computed], [false, 12]);
+  assert.equal(vendorPenaltyTries(scoring), null); // both guards apply here
+  // the try before it is the same side's: its lost conversion explains the 2 (no conversion after it to give it away)
+  assert.equal(vendorPenaltyTries(parseIncidents(REPRO_VENDOR_UNCONVERTED.data.incidents).scoring), null);
+  // a same-side conversion straight after it: a penalty try is never converted
+  const pen = { min: 5, team: "home", type: "penalty", player: "K", after: [3, 0] };
+  const seven = { min: 20, team: "home", type: "try", player: "Isgro", after: [10, 0] };
+  assert.equal(vendorPenaltyTries([pen, seven, { min: 21, team: "home", type: "conversion", player: "K", after: [12, 0] }]), null);
+  // the control: the same 7 with neither neighbour is still read as a penalty try
+  assert.deepEqual(vendorPenaltyTries([pen, seven]).map((s) => [s.type, s.player]), [["penalty", "K"], ["penaltyTry", null]]);
+  // an away try by the other side between them breaks the "try just before": its own step shows the lost 2
+  assert.equal(vendorPenaltyTries([
+    { min: 10, team: "home", type: "try", player: "A", after: [5, 0] },
+    { min: 15, team: "away", type: "penalty", player: "B", after: [7, 3] },
+    { min: 20, team: "home", type: "try", player: "C", after: [12, 3] },
+  ]), null);
+});
+
+test("PR #150 review repro: ESPN has the full list -> reconciles from ESPN with the right players, no penalty try", async () => {
+  const { result: { stats, failures, espnCalls } } = await reproRun({ espn: REPRO_ESPN_ROWS });
+  assert.deepEqual(failures, []);
+  const m = stats.matches[0];
+  assert.equal(m.reconciled, true);
+  assert.equal(m.source, "espn");
+  assert.deepEqual(m.scoring.map((s) => [s.min, s.type, s.player]),
+    [[10, "try", "Carreras"], [11, "conversion", "Albornoz"], [20, "try", "Isgro"], [21, "conversion", "Albornoz"]]);
+  assert.deepEqual(stats.aggregates.topTryScorers.map((p) => [p.player, p.tries]).sort(), [["Carreras", 1], ["Isgro", 1]]);
+  assert.deepEqual(espnCalls, ["scoreboard?dates=20260718", "summary?event=555"]);
+});
+
+test("PR #150 review repro: ESPN has no such match, or is unreachable -> held, nothing published", async () => {
+  for (const [vendor, home] of [[REPRO_VENDOR, 14], [REPRO_VENDOR_UNCONVERTED, 12]]) {
+    const { result: { stats, failures } } = await reproRun({ vendor, home, espn: "no event" });
+    const m = stats.matches[0];
+    assert.equal(m.reconciled, false, `home ${home}`);
+    assert.deepEqual(m.scoring, []);
+    assert.equal(failures[0].reason, `did not reconcile: home ${home - 2}/${home}, away 0/0; no ESPN event for Argentina at 2026-07-18T19:10:00+00:00`);
+  }
+  const { result: { stats, failures } } = await reproRun({ espn: "down" });
+  assert.equal(stats.matches[0].reconciled, false);
+  assert.match(failures[0].reason, /^did not reconcile: home 12\/14, away 0\/0; ESPN: HTTP 503 for /);
+});
+
+test("vendor penalty try, last resort: never published where ESPN lists a converted try within 3 minutes", async () => {
+  // The vendor's try carries the post-conversion score and the conversion
+  // incident is lost: neither neighbour gives it away (a penalty before it,
+  // nothing after). ESPN lacks the 5' penalty row, so it can't reconcile
+  // either (home 7/10), but it does show Isgro's try converted.
+  const vendor = { data: { incidents: [vGoal(20, "try", 10, "Isgro"), vGoal(5, "threePoints", 3, "Albornoz")] } };
+  assert.ok(vendorPenaltyTries(parseIncidents(vendor.data.incidents).scoring)); // the vendor alone would read it
+  const espn = [namedRow(1170, "try", HOME_ID, 8, 0, "Isgro"), namedRow(1230, "conversion", HOME_ID, 10, 0, "Albornoz")];
+  const { result: { stats, failures }, lines } = await reproRun({ vendor, home: 10, espn });
+  assert.equal(stats.matches[0].reconciled, false);
+  assert.deepEqual(stats.matches[0].scoring, []);
+  assert.equal(failures[0].reason, "did not reconcile: home 8/10, away 0/0; ESPN event 555 did not reconcile: home 7/10, away 0/0");
+  assert.ok(lines.some((l) => /penalty try \(home 20'\), but ESPN lists a converted try there; held/.test(l)), lines.join("\n"));
+});
+
+test("espnSaysConverted: a same-side try within 3 minutes that ESPN follows with that side's conversion", () => {
+  const pt = { min: 20, team: "home", type: "penaltyTry", player: null };
+  const tryCon = (min, team = "home") => [{ min, team, type: "try" }, { min: min + 1, team, type: "conversion" }];
+  assert.equal(espnSaysConverted(pt, tryCon(20)), true);
+  assert.equal(espnSaysConverted(pt, tryCon(17)), true);
+  assert.equal(espnSaysConverted(pt, tryCon(24)), false); // 4 minutes away
+  assert.equal(espnSaysConverted(pt, tryCon(20, "away")), false); // the other side's
+  assert.equal(espnSaysConverted(pt, [{ min: 20, team: "home", type: "try" }]), false); // unconverted: no contradiction
+  assert.equal(espnSaysConverted(pt, [{ min: 20, team: "home", type: "try" }, { min: 21, team: "away", type: "conversion" }]), false);
+  assert.equal(espnSaysConverted(pt, []), false);
+  assert.equal(espnSaysConverted(pt, undefined), false);
+});
+
+test("penaltyTryConverted: a penalty try followed by its own side's conversion is an impossible list", () => {
+  const PT = { team: "home", type: "penaltyTry" };
+  assert.equal(penaltyTryConverted([PT, { team: "home", type: "conversion" }]), true);
+  assert.equal(penaltyTryConverted([PT, { team: "away", type: "conversion" }]), false);
+  assert.equal(penaltyTryConverted([PT, { team: "home", type: "try" }, { team: "home", type: "conversion" }]), false);
+  assert.equal(penaltyTryConverted([{ team: "home", type: "try" }, { team: "home", type: "conversion" }]), false);
+  assert.equal(penaltyTryConverted([]), false);
+});
+
+test("ESPN penalty-try reading: not used when it would put a conversion straight after the penalty try", async () => {
+  // ESPN's score on the conversion row jumps 7 + 2 (a lagging score, or lost
+  // rows): the reading would place a penalty try at 11' right before
+  // Albornoz's conversion. It adds up (14), but it can't happen: held.
+  const espn = [namedRow(570, "try", HOME_ID, 5, 0, "Carreras"), namedRow(630, "conversion", HOME_ID, 14, 0, "Albornoz")];
+  assert.deepEqual(espnPenaltyTries(espn, [HOME_ID], [AWAY_ID]).map((p) => [p.min, p.after]), [[11, [12, 0]]]);
+  const vendor = { data: { incidents: [vGoal(10, "try", 5, "Carreras")] } };
+  const { result: { stats, failures }, lines } = await reproRun({ vendor, espn });
+  assert.equal(stats.matches[0].reconciled, false);
+  assert.equal(failures[0].reason, "did not reconcile: home 5/14, away 0/0; ESPN event 555 did not reconcile: home 7/14, away 0/0");
+  assert.ok(lines.some((l) => /penalty try is followed by its side's conversion, which can't happen: not used/.test(l)), lines.join("\n"));
 });

@@ -47,6 +47,20 @@ test("ncStatsByEventId: per-side tries + cards keyed by the vendor event id; unr
   assert.equal(map.has(999), false);
 });
 
+test("ncStatsByEventId: a penalty try counts as a try, as extractEspnStats and countTries count it (#143)", () => {
+  const map = ncStatsByEventId({ matches: [{
+    id: 53230, eventId: 16098059, reconciled: true, source: "espn",
+    scoring: [
+      { min: 43, team: "home", type: "try", player: "Mateo Carreras" },
+      { min: 44, team: "home", type: "conversion", player: "Tomas Albornoz" },
+      { min: 50, team: "home", type: "penaltyTry", player: null },
+      { min: 4, team: "away", type: "try", player: "Tommy Freeman" },
+    ],
+    cards: [],
+  }] });
+  assert.deepEqual(map.get(16098059), { home: { tries: 2, cards: 0 }, away: { tries: 1, cards: 0 } });
+});
+
 test("enrichLast: NC games enrich from stats.json by event id + homeAway; others from ESPN by day; unmatched stay null", () => {
   const teams = {
     NZL: {

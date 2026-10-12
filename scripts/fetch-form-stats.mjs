@@ -30,12 +30,14 @@ export function extractEspnStats(statsJson) {
 }
 
 // stats.json -> Map(eventId -> { home: {tries,cards}, away: {...} }).
+// A penalty try is a try here, as it is in extractEspnStats above, in
+// scrape-tries countTries and in stats.json's own teamTotals (issue #143).
 export function ncStatsByEventId(statsJson) {
   const map = new Map();
   for (const m of statsJson?.matches ?? []) {
     if (!m.reconciled || m.eventId == null) continue;
     const side = (s) => ({
-      tries: (m.scoring ?? []).filter((e) => e.team === s && e.type === "try").length,
+      tries: (m.scoring ?? []).filter((e) => e.team === s && (e.type === "try" || e.type === "penaltyTry")).length,
       cards: (m.cards ?? []).filter((e) => e.team === s).length,
     });
     map.set(m.eventId, { home: side("home"), away: side("away") });
