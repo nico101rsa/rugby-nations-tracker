@@ -76,7 +76,7 @@ const validTries = (t) =>
 // a reason: a numeric week outside 1-6, a week label naming a final or
 // play-off, and any later meeting of a pair. Same rules as the pool-stage
 // filter on nations.json's own log, so the two tables count the same games
-// (the parity test pins them together whenever that filter is exported).
+// (poolStageGames in fetch-nations.mjs; a test pins the two together).
 const FINALS_WEEK = /final|play-?off|place|semi|quarter|knock/i;
 export function rncPoolStage(finished) {
   const kept = [];

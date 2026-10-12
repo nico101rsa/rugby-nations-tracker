@@ -4,7 +4,7 @@
 // 4+ try bonus computeLog could not award, and survive every later writer.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { computeLog, countTriesPending, applyNews, preserveDigests } from "./fetch-nations.mjs";
+import { computeLog, countTriesPending, applyNews, preserveDigests, slimGames, poolStageGames } from "./fetch-nations.mjs";
 
 const team = (id, name) => ({ id, name, logo: "" });
 const IRE = team(388, "Ireland"), ARG = team(460, "Argentina");
@@ -53,4 +53,167 @@ test("triesPending: survives the news-only refresh and the digest carry-forward"
   assert.equal(applyNews(out, news, new Date("2026-11-07T00:00:00Z")).triesPending, 2);
   assert.equal(preserveDigests(out, { digests: { 388: {} } }).triesPending, 2);
   assert.equal(preserveDigests(out, null).triesPending, 2);
+});
+
+// ---- kickoff corrections land on the published slim rows only
+
+const BLEDISLOE = {
+  "2026-10-17 AUS-NZL": { date: "2026-10-17T04:45:00.000Z", vendor: "2026-10-17T05:00:00.000Z", note: "test" },
+};
+const AUS = team(461, "Australia"), NZL = team(465, "New Zealand"), JPN = team(463, "Japan"), FIJ2 = team(28, "Fiji");
+const raw = (id, date, home, away, status, hs = null, as = null) => ({
+  id, date, week: null, status, teams: { home, away }, scores: { home: hs, away: as },
+});
+const FT = { short: "FT", long: "Finished" };
+const NS = { short: "NS", long: "Not Started" };
+
+test("slimGames: a finished slim row is corrected; the raw cache game computeLog and scrapeTries read is not", () => {
+  const game = raw(901, "2026-10-17T05:00:00+00:00", AUS, NZL, FT, 24, 31);
+  const all = [game];
+  const snapshot = structuredClone(game);
+  const { results } = slimGames(all, { table: BLEDISLOE, log: () => {} });
+  assert.equal(results.length, 1);
+  assert.equal(results[0].date, "2026-10-17T04:45:00.000Z");
+  assert.equal(results[0].home.score, 24);
+  assert.equal(all[0], game, "the cache array still holds the raw game");
+  assert.deepEqual(game, snapshot, "raw game untouched: scrapeTries matches ESPN by the vendor's kickoff minute");
+  assert.equal(game.date, "2026-10-17T05:00:00+00:00");
+});
+
+test("slimGames: an upcoming row is corrected and re-sorted; nothing to correct keeps the arrays as built", () => {
+  const all = [
+    raw(902, "2026-10-17T04:50:00+00:00", JPN, FIJ2, NS),
+    raw(903, "2026-10-17T05:00:00+00:00", AUS, NZL, NS),
+  ];
+  const { fixtures } = slimGames(all, { table: BLEDISLOE, log: () => {} });
+  const ours = fixtures.filter((f) => f.id === 902 || f.id === 903);
+  assert.deepEqual(ours.map((f) => f.id), [903, 902]);
+  assert.equal(ours[0].date, "2026-10-17T04:45:00.000Z");
+  assert.equal(ours[0].timeTBC, false);
+  for (let i = 1; i < fixtures.length; i++) {
+    assert.ok(new Date(fixtures[i - 1].date) <= new Date(fixtures[i].date), "fixtures stay sorted");
+  }
+  // Empty table: the corrected arrays are exactly the plain build.
+  const plain = slimGames(all, { table: {}, log: () => {} });
+  assert.equal(plain.fixtures.find((f) => f.id === 903).date, "2026-10-17T05:00:00+00:00");
+});
+
+// ---- pool stage: finals weekend stays out of the table ----------------------
+// Each side meets every opposing-conference side exactly once in weeks 1-6;
+// finals weekend (27-29 Nov) pairs them again place for place, under the same
+// api-sports league. Without poolStageGames the first final (Sat 28 Nov 03:40
+// Sydney time) would give two rows P=7 in the table every phone reads.
+
+const NORTH = [[386, "England"], [387, "France"], [388, "Ireland"], [389, "Italy"], [390, "Scotland"], [391, "Wales"]].map(([i, n]) => team(i, n));
+const SOUTH = [[460, "Argentina"], [461, "Australia"], [463, "Japan"], [465, "New Zealand"], [467, "South Africa"], [28, "Fiji"]].map(([i, n]) => team(i, n));
+const at = (id, week, day, home, away, hs, as) => ({
+  ...game(id, home, away, hs, as), week, date: `2026-11-${String(day).padStart(2, "0")}T15:10:00+00:00`,
+});
+// The 36-game pool stage: in week w, North i hosts South (i + w) % 6. Scores
+// vary so bonus points and margins are all exercised.
+const POOL = [];
+for (let w = 1; w <= 6; w++) {
+  for (let i = 0; i < 6; i++) {
+    POOL.push(at(1000 + w * 10 + i, String(w), w, NORTH[i], SOUTH[(i + w) % 6], 10 + 3 * i + w, 12 + 2 * w));
+  }
+}
+const POOL_TRIES = Object.fromEntries(POOL.map((g, k) => [g.id, { home: k % 5, away: (k + 2) % 5 }]));
+// Finals weekend: North i v South i, every one a repeat of a pool pairing.
+const FINALS = NORTH.map((n, i) => at(2000 + i, "Final", 27 + Math.floor(i / 2), n, SOUTH[i], 30, 20));
+
+test("pool stage: a week-'7' repeat pairing is excluded, with a reason", () => {
+  const repeat = { ...POOL[0], id: 9001, week: "7", date: "2026-11-27T16:40:00+00:00" };
+  const { kept, excluded } = poolStageGames([POOL[0], repeat]);
+  assert.deepEqual(kept.map((g) => g.id), [POOL[0].id]);
+  assert.equal(excluded.length, 1);
+  assert.equal(excluded[0].id, 9001);
+  assert.match(excluded[0].reason, /week 7/);
+});
+
+test("pool stage: a repeat pairing with no week field is excluded as a repeat", () => {
+  const { week, ...noWeek } = { ...POOL[0], id: 9002, date: "2026-11-27T16:40:00+00:00" };
+  assert.equal(week, "1");
+  const { kept, excluded } = poolStageGames([POOL[0], noWeek]);
+  assert.deepEqual(kept.map((g) => g.id), [POOL[0].id]);
+  assert.deepEqual(excluded.map((x) => x.id), [9002]);
+  assert.match(excluded[0].reason, /repeat pairing/);
+});
+
+test("pool stage: the pairing is unordered — the away side hosting the rematch is still a repeat", () => {
+  const flipped = { ...game(9003, POOL[0].teams.away, POOL[0].teams.home, 20, 10), week: undefined, date: "2026-11-28T13:10:00+00:00" };
+  assert.deepEqual(poolStageGames([POOL[0], flipped]).excluded.map((x) => x.id), [9003]);
+});
+
+test("pool stage: a week-'Finals' string is excluded", () => {
+  const finals = { ...POOL[0], id: 9004, week: "Finals", date: "2026-11-29T16:40:00+00:00" };
+  const { kept, excluded } = poolStageGames([POOL[0], finals]);
+  assert.deepEqual(kept.map((g) => g.id), [POOL[0].id]);
+  assert.deepEqual(excluded.map((x) => x.id), [9004]);
+});
+
+test("pool stage: a finals-labelled or week-7 game is excluded even with no pool twin in the cache", () => {
+  // api-sports never recorded the pool meeting: the label alone has to do it.
+  for (const week of ["Final", "3rd Place Final", "7", "Play-off"]) {
+    const { kept, excluded } = poolStageGames([{ ...FINALS[0], week }]);
+    assert.equal(kept.length, 0, `week ${week}`);
+    assert.equal(excluded.length, 1, `week ${week}`);
+  }
+  assert.equal(poolStageGames([{ ...POOL[0], week: "0" }]).kept.length, 0, "week 0 is not pool stage");
+});
+
+test("pool stage: first meetings in weeks 1-6 are kept in input order", () => {
+  const { kept, excluded } = poolStageGames([...POOL, ...FINALS]);
+  assert.deepEqual(kept.map((g) => g.id), POOL.map((g) => g.id));
+  assert.deepEqual(excluded.map((x) => x.id), FINALS.map((g) => g.id));
+});
+
+test("pool stage: no repeats → kept is the input, and the log and triesPending are exactly today's", () => {
+  // Today's feed: weeks 1-3 played, no finals — the filter must be a no-op.
+  const today = POOL.slice(0, 18);
+  const { kept, excluded } = poolStageGames(today);
+  assert.deepEqual(kept, today);
+  assert.deepEqual(excluded, []);
+  assert.deepEqual(computeLog(kept, POOL_TRIES), computeLog(today, POOL_TRIES));
+  assert.equal(countTriesPending(kept, {}), countTriesPending(today, {}));
+  assert.equal(countTriesPending(kept, POOL_TRIES), 0);
+});
+
+test("pool stage: with finals weekend played, every team still shows P=6 and 36 pairings", () => {
+  const { kept } = poolStageGames([...POOL, ...FINALS]);
+  // The app's scenarios.js (seasonInputs) expects exactly the 36 North-v-South
+  // pairings behind the table.
+  assert.equal(kept.length, 36);
+  assert.equal(new Set(kept.map((g) => [g.teams.home.id, g.teams.away.id].sort().join("-"))).size, 36);
+  const log = computeLog(kept, POOL_TRIES);
+  assert.equal(log.length, 12);
+  for (const r of log) {
+    assert.equal(r.P, 6, `${r.team} P`);
+    assert.equal(r.Pts, 4 * r.W + 2 * r.D + r.BP, `${r.team} Pts adds up`);
+  }
+  assert.deepEqual(log, computeLog(POOL, POOL_TRIES), "finals change nothing in the table");
+  // Unfiltered, the bug: the six finals would make it P=7 on every row.
+  assert.ok(computeLog([...POOL, ...FINALS], POOL_TRIES).every((r) => r.P === 7));
+});
+
+test("pool stage: triesPending ignores finals without try counts (same filter as the log)", () => {
+  // The scrape only runs over the kept games, so a final never has tries;
+  // counting it would hold triesPending above 0 and hide the app's scenario
+  // line for a game that is not in the table.
+  const { kept } = poolStageGames([...POOL, ...FINALS]);
+  assert.equal(countTriesPending(kept, POOL_TRIES), 0);
+  assert.equal(countTriesPending([...POOL, ...FINALS], POOL_TRIES), 6);
+});
+
+test("pool stage: the slim nations.json shape ({home:{id}, away:{id}}) is accepted", () => {
+  const slim = (g) => ({
+    id: g.id, date: g.date, week: g.week, status: g.status,
+    home: { id: g.teams.home.id, name: g.teams.home.name, score: g.scores.home },
+    away: { id: g.teams.away.id, name: g.teams.away.name, score: g.scores.away },
+  });
+  const { kept, excluded } = poolStageGames([...POOL, ...FINALS].map(slim));
+  assert.equal(kept.length, 36);
+  assert.deepEqual(excluded.map((x) => x.id), FINALS.map((g) => g.id));
+  // A slim rematch with no week is caught on the pairing alone.
+  const rematch = { ...slim(POOL[5]), id: 9005, week: undefined, date: "2026-11-28T16:40:00+00:00" };
+  assert.deepEqual(poolStageGames([slim(POOL[5]), rematch]).excluded.map((x) => x.id), [9005]);
 });

@@ -1,7 +1,7 @@
 import { withPools } from "./build-fixtures.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildFixtures, compFor, roundLookup, mergeSources, fetchSeriesScores, fetchLiveStates, isPlaceholderFinal, withHandFinals, HAND_FINALS } from "./build-fixtures.mjs";
+import { buildFixtures, compFor, roundLookup, mergeSources, fetchSeriesScores, fetchLiveStates, isPlaceholderFinal, withHandFinals, HAND_FINALS, publishFixtures, UNTRACKED_CODES } from "./build-fixtures.mjs";
 
 const ref = (id) => ({ $ref: `http://sports.core.api.espn.com/v2/sports/rugby/leagues/1/seasons/2026/teams/${id}?lang=en` });
 const ev = (id, iso, homeId, awayId, extra = {}) => ({
@@ -422,4 +422,83 @@ test("hand finals lay over the fetched map and win, and carry the PNC 2026 final
   assert.equal(out[0].homeScore, 20);
   assert.equal(out[0].awayScore, 15);
   assert.equal(out[0].status, undefined);
+});
+
+// ---- publishFixtures: kickoff corrections before the sort, calendars after the write
+
+const BLEDISLOE = {
+  "2026-10-17 AUS-NZL": { date: "2026-10-17T04:45:00.000Z", vendor: "2026-10-17T05:00:00.000Z", note: "test" },
+};
+const fxRow = (id, date, home, away) => ({
+  id, date, timeTBC: false,
+  home: { code: home, name: home, tracked: true }, away: { code: away, name: away, tracked: true },
+  comp: { key: "test", label: "TEST", kind: "test" }, venue: null,
+});
+const publishDeps = (over = {}) => {
+  const calls = { writes: [], calendars: [], logs: [], warns: [] };
+  return {
+    calls,
+    deps: {
+      write: async (path, text) => calls.writes.push({ path, text }),
+      calendars: async (out) => { calls.calendars.push(out); return { written: ["calendar/AUS.ics"], unchanged: [] }; },
+      now: () => new Date("2026-10-16T01:00:00.000Z"),
+      table: BLEDISLOE,
+      log: (l) => calls.logs.push(l),
+      warn: (l) => calls.warns.push(l),
+      ...over,
+    },
+  };
+};
+
+test("publishFixtures: the Bledisloe at 05:00Z is published at 04:45Z and re-sorted ahead of a 04:50Z game", async () => {
+  const sorted = [
+    fxRow("espn-1", "2026-10-17T04:50:00.000Z", "JPN", "FIJ"),
+    fxRow("espn-603464", "2026-10-17T05:00:00.000Z", "AUS", "NZL"),
+    fxRow("espn-2", "2026-10-18T05:00:00.000Z", "ENG", "FRA"),
+  ];
+  const { calls, deps } = publishDeps();
+  const out = await publishFixtures(sorted, deps);
+  assert.deepEqual(out.fixtures.map((f) => f.id), ["espn-603464", "espn-1", "espn-2"]);
+  assert.equal(out.fixtures[0].date, "2026-10-17T04:45:00.000Z");
+  assert.equal(out.fixtures[0].timeTBC, false);
+  assert.equal(sorted[1].date, "2026-10-17T05:00:00.000Z", "the input row is not mutated");
+  assert.equal(calls.writes.length, 1);
+  assert.equal(calls.writes[0].path, "fixtures.json");
+  const written = JSON.parse(calls.writes[0].text);
+  assert.equal(written.updatedAt, "2026-10-16T01:00:00.000Z");
+  assert.equal(written.fixtures[0].date, "2026-10-17T04:45:00.000Z");
+  assert.ok(calls.writes[0].text.endsWith("\n"));
+  // The calendars are built from exactly what was published.
+  assert.equal(calls.calendars.length, 1);
+  assert.equal(calls.calendars[0], out);
+  assert.ok(calls.logs.includes("calendars: 1 file(s) changed"));
+  assert.ok(calls.logs.some((l) => l.startsWith("kickoff override applied: 2026-10-17 AUS-NZL")));
+});
+
+test("publishFixtures: nothing to correct leaves the rows as they were, sorted", async () => {
+  const rows = [fxRow("b", "2026-10-18T05:00:00.000Z", "ENG", "FRA"), fxRow("a", "2026-10-17T05:00:00.000Z", "ITA", "WAL")];
+  const { deps } = publishDeps();
+  const out = await publishFixtures(rows, deps);
+  assert.deepEqual(out.fixtures.map((f) => f.id), ["a", "b"]);
+  assert.equal(out.source, "espn");
+});
+
+test("publishFixtures: a calendar failure is a warning, never a throw, and fixtures.json is still written", async () => {
+  for (const calendars of [
+    async () => { throw new Error("disk full"); },
+    () => { throw new Error("sync boom"); },
+  ]) {
+    const { calls, deps } = publishDeps({ calendars });
+    const out = await publishFixtures([fxRow("a", "2026-10-17T05:00:00.000Z", "ITA", "WAL")], deps);
+    assert.equal(out.fixtures.length, 1);
+    assert.equal(calls.writes.length, 1, "fixtures.json written before the calendars run");
+    assert.equal(calls.warns.length, 1);
+    assert.match(calls.warns[0], /^calendars skipped: /);
+  }
+});
+
+test("UNTRACKED_CODES is exported for the kickoff-override keys, and buildFixtures still prints it", () => {
+  assert.equal(UNTRACKED_CODES["Hong Kong"], "HKG");
+  const out = buildFixtures([ev(9, "2027-10-01T10:45:00Z", 6, 99)], new Map([["99", "Hong Kong"]]), {});
+  assert.equal(out[0].away.code, "HKG");
 });

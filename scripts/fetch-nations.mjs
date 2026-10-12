@@ -12,7 +12,8 @@
 import { writeFile, readFile, mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { mergeStaticFixtures } from "./static-fixtures.mjs";
+import { mergeStaticFixtures, API_SPORTS_CODE_BY_ID } from "./static-fixtures.mjs";
+import { applyKickoffOverrides, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 import { scrapeTries } from "./scrape-tries.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -154,6 +155,57 @@ export function computeLog(finished, matchTries) {
     .map((r, i) => ({ rank: i + 1, ...r }));
 }
 
+// ---- pool stage: which finished games the log may count ----
+// The Nations Championship log is a POOL table. Each side plays every
+// opposing-conference side exactly once in weeks 1-6 (36 North-v-South
+// pairings), then finals weekend (27-29 Nov 2026, Twickenham) pairs the
+// conferences place for place: 1st v 1st down to 6th v 6th. Every finals game
+// is therefore a REPEAT of a pool pairing, and api-sports files it under the
+// same league 145 — so without this filter the first final (the 11th-place
+// game, Fri 27 Nov 16:40 UTC = Sat 28 Nov 03:40 Sydney time) would put a 7th
+// game on two rows of the table every phone reads, and the final would hand
+// its winner 4 more points in a table that has already finished.
+//
+// Rules, over the date-sorted input:
+//   - a numeric week outside 1..6 is not pool stage;
+//   - a non-numeric week that names a final or play-off ("Final", "Finals",
+//     "3rd Place Final", "Play-off") is not pool stage, even with no pool
+//     twin in the cache to repeat (a game api-sports never recorded);
+//   - anything else (week "1".."6", or a missing/unrecognised label) counts
+//     only as the FIRST meeting of its unordered pair; a later meeting of the
+//     same two sides is excluded as a repeat.
+// Accepts the raw api-sports shape (teams.home.id) and the slim nations.json
+// shape (home.id). Returns { kept, excluded: [{ id, reason }] }; on a season
+// with no finals, kept is the input unchanged.
+const FINALS_WEEK = /final|play-?off|place|semi|quarter|knock/i;
+export function poolStageGames(finished) {
+  const kept = [];
+  const excluded = [];
+  const met = new Set();
+  for (const g of finished) {
+    const week = g.week == null ? "" : String(g.week).trim();
+    const n = week === "" ? NaN : Number(week);
+    if (Number.isFinite(n) && (n < 1 || n > 6)) {
+      excluded.push({ id: g.id, reason: `week ${week} is outside the pool stage (1-6)` });
+      continue;
+    }
+    if (!Number.isFinite(n) && FINALS_WEEK.test(week)) {
+      excluded.push({ id: g.id, reason: `week "${week}" is a finals-weekend game` });
+      continue;
+    }
+    const h = g.teams?.home?.id ?? g.home?.id;
+    const a = g.teams?.away?.id ?? g.away?.id;
+    const pair = [h, a].map(String).sort().join("-");
+    if (met.has(pair)) {
+      excluded.push({ id: g.id, reason: `repeat pairing ${pair} (first meeting already counted)` });
+      continue;
+    }
+    met.add(pair);
+    kept.push(g);
+  }
+  return { kept, excluded };
+}
+
 // How many finished games the log has counted WITHOUT their try counts, so
 // without any 4+ try bonus they earned. computeLog scores a game the moment
 // api-sports calls it final, but the try bonus waits for scrapeTries, which
@@ -186,6 +238,24 @@ const slim = (g) => ({
   away: { id: g.teams.away.id, name: g.teams.away.name, logo: g.teams.away.logo, score: g.scores?.away ?? null },
 });
 
+// Raw cached api-sports games -> the two published arrays, with the kickoff
+// corrections (kickoff-overrides.mjs) laid over the SLIM rows only. The raw
+// games — the cache, `finished`, computeLog and scrapeTries — keep the
+// vendor's times: scrapeTries matches ESPN by kickoff minute
+// (scrape-tries.mjs), so a corrected time there would lose the try count.
+// A moved row re-sorts; the arrays are otherwise exactly what they were.
+export function slimGames(all, { table = KICKOFF_OVERRIDES, log = console.log } = {}) {
+  const keyFn = keyOf.nations(API_SPORTS_CODE_BY_ID);
+  const corrected = (rows) => {
+    const out = applyKickoffOverrides(rows, keyFn, table, { log });
+    return out === rows ? rows : out.sort((a, b) => new Date(a.date) - new Date(b.date));
+  };
+  return {
+    results: corrected(all.filter((g) => isFinished(g) || isLive(g)).map(slim)),
+    fixtures: corrected(mergeStaticFixtures(all.filter(isUpcoming).map(slim), all)),
+  };
+}
+
 export async function refresh({ dates }) {
   // load cache
   let cache = {};
@@ -207,9 +277,15 @@ export async function refresh({ dates }) {
   await writeFile(CACHE, JSON.stringify(cache, null, 0));
 
   const all = Object.values(cache).sort((a, b) => new Date(a.date) - new Date(b.date));
-  const results = all.filter((g) => isFinished(g) || isLive(g)).map(slim);
-  const fixtures = mergeStaticFixtures(all.filter(isUpcoming).map(slim), all);
-  const finished = all.filter(isFinished);
+  // slimGames lays the kickoff corrections over the published rows only;
+  // the raw games below (pool filter, try scrape, log) keep vendor times.
+  const { results, fixtures } = slimGames(all);
+  // Pool stage only: the log, its try scrape and triesPending all see the
+  // same games, so a finals-weekend result can neither add a 7th game to the
+  // table nor hold triesPending above 0. `results` above still lists every
+  // finished game, finals included — only the table is filtered.
+  const { kept: finished, excluded } = poolStageGames(all.filter(isFinished));
+  for (const x of excluded) console.log(`[log] not counted in the pool table: game ${x.id} — ${x.reason}`);
   const matchTries = await scrapeTries(finished);
   const log = computeLog(finished, matchTries);
   const news = await fetchNews();

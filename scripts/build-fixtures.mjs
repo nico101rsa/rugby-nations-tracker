@@ -12,12 +12,14 @@
 // round numbers). Live/today status is merged client-side from the live feed.
 
 import { readFile, writeFile } from "node:fs/promises";
-import { fetchEspnEvents, ESPN_TEAM_IDS } from "./fetch-espn-fixtures.mjs";
+import { fetchEspnEvents, ESPN_TEAM_IDS, UNTRACKED_CODES } from "./fetch-espn-fixtures.mjs";
 import { fetchLeagueFixtures, loadRegistry, keepsResults } from "./fetch-league-fixtures.mjs";
 import { scoredByEspn } from "./espn-scored.mjs";
 import { seededFixtures } from "./seed-competitions.mjs";
 import { tourFixtures, loadProbeResults } from "./seed-tour.mjs";
 import { venueLabel } from "./venues.mjs";
+import { applyKickoffOverrides, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
+import { writeCalendars } from "./build-calendars.mjs";
 
 const ID_TO_CODE = Object.fromEntries(Object.entries(ESPN_TEAM_IDS).map(([c, id]) => [String(id), c]));
 
@@ -27,17 +29,10 @@ const CODE_NAMES = {
   ARG: "Argentina", FIJ: "Fiji", ITA: "Italy", JPN: "Japan",
 };
 
-// Codes for common untracked opponents; anything else falls back to the
-// first three letters of the name (flags for these don't exist in the app —
-// it renders the code as text).
-const UNTRACKED_CODES = {
-  Georgia: "GEO", Portugal: "POR", Uruguay: "URU", Spain: "ESP", Chile: "CHI",
-  Samoa: "SAM", Tonga: "TGA", Romania: "ROU", Namibia: "NAM", Canada: "CAN",
-  "United States": "USA", USA: "USA", Barbarians: "BAR", "Hong Kong": "HKG",
-  // ESPN's league-wide feed spells it out; the 3-letter fallback would make
-  // this "UNI".
-  "United States of America": "USA", Zimbabwe: "ZIM",
-};
+// Codes for common untracked opponents (defined in fetch-espn-fixtures.mjs,
+// shared with kickoff-overrides.mjs); anything else falls back to the first
+// three letters of the name.
+export { UNTRACKED_CODES };
 
 // Short forms for series labels ("SA v NZ", not "RSA v NZL").
 const SERIES_SHORT = {
@@ -386,11 +381,43 @@ async function main() {
   const tour = tourFixtures(await loadProbeResults());
   console.log(`seeded ${tour.length} NZ-tour fixtures (${tour.filter((f) => f.homeScore != null).length} with results)`);
   fixtures.push(...tour);
-  fixtures.sort((a, b) => new Date(a.date) - new Date(b.date) || (a.id < b.id ? -1 : 1));
-  const out = { updatedAt: new Date().toISOString(), source: "espn", fixtures };
-  await writeFile("fixtures.json", JSON.stringify(out, null, 1) + "\n");
-  const kinds = fixtures.reduce((m, f) => ((m[f.comp.label] = (m[f.comp.label] ?? 0) + 1), m), {});
-  console.log(`fixtures.json written — ${fixtures.length} fixtures:`, JSON.stringify(kinds));
+  const out = await publishFixtures(fixtures);
+  const kinds = out.fixtures.reduce((m, f) => ((m[f.comp.label] = (m[f.comp.label] ?? 0) + 1), m), {});
+  console.log(`fixtures.json written — ${out.fixtures.length} fixtures:`, JSON.stringify(kinds));
+}
+
+// The last mile of every fixtures.json build: kickoff corrections, the final
+// sort, the write, then the calendars.
+//
+// The corrections go in BEFORE the sort so a moved kickoff re-sorts within
+// its day, and only here: the second-pass live candidates above keep vendor
+// times, which is harmless inside a 6h window.
+//
+// The calendars follow every fixtures.json write (daily build, live-window
+// ticks, every 3-min burst pass, the push-triggered rebuild) and can never
+// cost it: a throw here would count toward fixtures-burst's
+// MAX_CONSECUTIVE_FAILURES and end a burst mid-match over a calendar, so a
+// failure is a warning in the Actions log (silent tier) and fixtures.json is
+// already written by then. Deps are injectable for the tests.
+export async function publishFixtures(fixtures, {
+  write = (path, text) => writeFile(path, text),
+  calendars = writeCalendars,
+  now = () => new Date(),
+  table = KICKOFF_OVERRIDES,
+  log = console.log,
+  warn = console.warn,
+} = {}) {
+  const rows = applyKickoffOverrides(fixtures, keyOf.fixture, table, { log });
+  rows.sort((a, b) => new Date(a.date) - new Date(b.date) || (a.id < b.id ? -1 : 1));
+  const out = { updatedAt: now().toISOString(), source: "espn", fixtures: rows };
+  await write("fixtures.json", JSON.stringify(out, null, 1) + "\n");
+  try {
+    const { written } = await calendars(out);
+    log(`calendars: ${written.length} file(s) changed`);
+  } catch (err) {
+    warn(`calendars skipped: ${err.message}`);
+  }
+  return out;
 }
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop())) {

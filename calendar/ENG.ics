@@ -1,0 +1,225 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rugby Nations Tracker//fixtures//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+NAME:England fixtures · Rugby Nations Tracker
+X-WR-CALNAME:England fixtures · Rugby Nations Tracker
+X-WR-CALDESC:Every announced England match from Rugby Nations Tracker. Kick
+ off times come from ESPN and can move — the app is the live source.
+URL:https://nico101rsa.github.io/rugby-nations-tracker/
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+X-APPLE-CALENDAR-COLOR:#C8F135
+BEGIN:VEVENT
+UID:espn-603998@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20261108T151000Z
+DTEND:20261108T171000Z
+SUMMARY:England v Australia · RNC '26 R4
+LOCATION:Allianz Stadium\, London
+DESCRIPTION:Nations Championship 2026\, Round 4.\nKickoff times come from E
+ SPN and can move — the app is the live source.\nhttps://nico101rsa.githu
+ b.io/rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: England v Australia
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-604002@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20261114T164000Z
+DTEND:20261114T184000Z
+SUMMARY:England v Japan · RNC '26 R5
+LOCATION:Allianz Stadium\, London
+DESCRIPTION:Nations Championship 2026\, Round 5.\nKickoff times come from E
+ SPN and can move — the app is the live source.\nhttps://nico101rsa.githu
+ b.io/rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: England v Japan
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-604005@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20261121T141000Z
+DTEND:20261121T161000Z
+SUMMARY:England v New Zealand · RNC '26 R6
+LOCATION:Allianz Stadium\, London
+DESCRIPTION:Nations Championship 2026\, Round 6.\nKickoff times come from E
+ SPN and can move — the app is the live source.\nhttps://nico101rsa.githu
+ b.io/rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: England v New Zealand
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-6n2027-ire-eng@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20270205T201000Z
+DTEND:20270205T221000Z
+SUMMARY:(time TBC) Ireland v England · 6N '27 R1
+LOCATION:Aviva Stadium\, Dublin
+DESCRIPTION:Six Nations 2027\, Round 1.\nKickoff time not yet confirmed —
+  this is the expected slot.\nKickoff times come from ESPN and can move —
+  the app is the live source.\nhttps://nico101rsa.github.io/rugby-nations-t
+ racker/
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-6n2027-eng-fra@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20270214T151000Z
+DTEND:20270214T171000Z
+SUMMARY:(time TBC) England v France · 6N '27 R2
+LOCATION:Twickenham Stadium\, London
+DESCRIPTION:Six Nations 2027\, Round 2.\nKickoff time not yet confirmed —
+  this is the expected slot.\nKickoff times come from ESPN and can move —
+  the app is the live source.\nhttps://nico101rsa.github.io/rugby-nations-t
+ racker/
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-6n2027-eng-ita@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20270220T164000Z
+DTEND:20270220T184000Z
+SUMMARY:(time TBC) England v Italy · 6N '27 R3
+LOCATION:Twickenham Stadium\, London
+DESCRIPTION:Six Nations 2027\, Round 3.\nKickoff time not yet confirmed —
+  this is the expected slot.\nKickoff times come from ESPN and can move —
+  the app is the live source.\nhttps://nico101rsa.github.io/rugby-nations-t
+ racker/
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-6n2027-wal-eng@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20270306T164000Z
+DTEND:20270306T184000Z
+SUMMARY:(time TBC) Wales v England · 6N '27 R4
+LOCATION:Principality Stadium\, Cardiff
+DESCRIPTION:Six Nations 2027\, Round 4.\nKickoff time not yet confirmed —
+  this is the expected slot.\nKickoff times come from ESPN and can move —
+  the app is the live source.\nhttps://nico101rsa.github.io/rugby-nations-t
+ racker/
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+END:VEVENT
+BEGIN:VEVENT
+UID:seed-6n2027-eng-sco@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20270313T164000Z
+DTEND:20270313T184000Z
+SUMMARY:(time TBC) England v Scotland · 6N '27 R5
+LOCATION:Twickenham Stadium\, London
+DESCRIPTION:Six Nations 2027\, Round 5.\nKickoff time not yet confirmed —
+  this is the expected slot.\nKickoff times come from ESPN and can move —
+  the app is the live source.\nhttps://nico101rsa.github.io/rugby-nations-t
+ racker/
+STATUS:TENTATIVE
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603503@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20271002T101500Z
+DTEND:20271002T121500Z
+SUMMARY:England v Tonga · RWC '27
+LOCATION:Suncorp Stadium\, Brisbane
+DESCRIPTION:Rugby World Cup 2027.\nKickoff times come from ESPN and can mov
+ e — the app is the live source.\nhttps://nico101rsa.github.io/rugby-nati
+ ons-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: England v Tonga
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603512@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20271008T094500Z
+DTEND:20271008T114500Z
+SUMMARY:England v Zimbabwe · RWC '27
+LOCATION:Adelaide Oval\, Adelaide
+DESCRIPTION:Rugby World Cup 2027.\nKickoff times come from ESPN and can mov
+ e — the app is the live source.\nhttps://nico101rsa.github.io/rugby-nati
+ ons-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: England v Zimbabwe
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603528@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20271016T084500Z
+DTEND:20271016T104500Z
+SUMMARY:England v Wales · RWC '27
+LOCATION:Accor Stadium\, Sydney
+DESCRIPTION:Rugby World Cup 2027.\nKickoff times come from ESPN and can mov
+ e — the app is the live source.\nhttps://nico101rsa.github.io/rugby-nati
+ ons-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: England v Wales
+END:VALARM
+END:VEVENT
+END:VCALENDAR

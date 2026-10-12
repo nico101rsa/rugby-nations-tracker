@@ -1,0 +1,188 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rugby Nations Tracker//fixtures//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+NAME:Argentina fixtures · Rugby Nations Tracker
+X-WR-CALNAME:Argentina fixtures · Rugby Nations Tracker
+X-WR-CALDESC:Every announced Argentina match from Rugby Nations Tracker. Ki
+ ckoff times come from ESPN and can move — the app is the live source.
+URL:https://nico101rsa.github.io/rugby-nations-tracker/
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+X-APPLE-CALENDAR-COLOR:#C8F135
+BEGIN:VEVENT
+UID:espn-603498@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20260808T190000Z
+DTEND:20260808T210000Z
+SUMMARY:Argentina v South Africa
+LOCATION:Estadio José Amalfitani\, Buenos Aires
+DESCRIPTION:Full time — result in the app.\nKickoff times come from ESPN 
+ and can move — the app is the live source.\nhttps://nico101rsa.github.io
+ /rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603460@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20260829T190000Z
+DTEND:20260829T210000Z
+SUMMARY:Argentina v Australia · ARG v AUS Game 1/2
+LOCATION:Estadio 23 de Agosto\, San Salvador
+DESCRIPTION:Full time — result in the app.\nKickoff times come from ESPN 
+ and can move — the app is the live source.\nhttps://nico101rsa.github.io
+ /rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603461@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20260905T210000Z
+DTEND:20260905T230000Z
+SUMMARY:Argentina v Australia · ARG v AUS Game 2/2
+LOCATION:Estadio Malvinas Argentinas\, Mendoza
+DESCRIPTION:Full time — result in the app.\nKickoff times come from ESPN 
+ and can move — the app is the live source.\nhttps://nico101rsa.github.io
+ /rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603993@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20261106T201000Z
+DTEND:20261106T221000Z
+SUMMARY:Ireland v Argentina · RNC '26 R4
+LOCATION:Aviva Stadium\, Dublin
+DESCRIPTION:Nations Championship 2026\, Round 4.\nKickoff times come from E
+ SPN and can move — the app is the live source.\nhttps://nico101rsa.githu
+ b.io/rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: Ireland v Argentina
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-604000@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20261114T114000Z
+DTEND:20261114T134000Z
+SUMMARY:Italy v Argentina · RNC '26 R5
+LOCATION:Stadio Luigi Ferraris\, Genova
+DESCRIPTION:Nations Championship 2026\, Round 5.\nKickoff times come from E
+ SPN and can move — the app is the live source.\nhttps://nico101rsa.githu
+ b.io/rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: Italy v Argentina
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-604009@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20261121T201000Z
+DTEND:20261121T221000Z
+SUMMARY:France v Argentina · RNC '26 R6
+LOCATION:Stade de France\, Saint-Denis
+DESCRIPTION:Nations Championship 2026\, Round 6.\nKickoff times come from E
+ SPN and can move — the app is the live source.\nhttps://nico101rsa.githu
+ b.io/rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: France v Argentina
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603510@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20271004T084500Z
+DTEND:20271004T104500Z
+SUMMARY:Argentina v Canada · RWC '27
+LOCATION:Suncorp Stadium\, Brisbane
+DESCRIPTION:Rugby World Cup 2027.\nKickoff times come from ESPN and can mov
+ e — the app is the live source.\nhttps://nico101rsa.github.io/rugby-nati
+ ons-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: Argentina v Canada
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603518@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20271010T041500Z
+DTEND:20271010T061500Z
+SUMMARY:Argentina v Spain · RWC '27
+LOCATION:Marvel Stadium\, Melbourne
+DESCRIPTION:Rugby World Cup 2027.\nKickoff times come from ESPN and can mov
+ e — the app is the live source.\nhttps://nico101rsa.github.io/rugby-nati
+ ons-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: Argentina v Spain
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603526@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20271016T024500Z
+DTEND:20271016T044500Z
+SUMMARY:Argentina v Fiji · RWC '27
+LOCATION:Adelaide Oval\, Adelaide
+DESCRIPTION:Rugby World Cup 2027.\nKickoff times come from ESPN and can mov
+ e — the app is the live source.\nhttps://nico101rsa.github.io/rugby-nati
+ ons-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: Argentina v Fiji
+END:VALARM
+END:VEVENT
+END:VCALENDAR

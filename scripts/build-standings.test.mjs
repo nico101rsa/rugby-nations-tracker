@@ -156,7 +156,11 @@ test("(a) parity on one table: a Pts tie split by W, then PD, then PF, exactly a
   assert.deepEqual(ranked.rows.map((r) => r.id), log.map((r) => r.id));
 });
 
-test("(a) rncPoolStage agrees with fetch-nations' pool-stage filter whenever that is exported", { skip: typeof nationsModule.poolStageGames !== "function" && "fetch-nations.mjs has no poolStageGames yet" }, () => {
+// fetch-nations' poolStageGames is on main (#144), so this is no longer
+// skippable: dropping or renaming that export fails here instead of quietly
+// un-pinning the two tables.
+test("(a) rncPoolStage agrees with fetch-nations' pool-stage filter", () => {
+  assert.equal(typeof nationsModule.poolStageGames, "function", "fetch-nations.mjs exports poolStageGames");
   const g = (id, week, h, a) => ({ id, week, home: { id: h }, away: { id: a } });
   const input = [
     g(1, "1", 465, 387), g(2, "2", 467, 390), g(3, "6", 386, 461), g(4, "7", 465, 387),
