@@ -185,8 +185,9 @@ installed copy with no build.
 `editorial/shadow/`): **Haiku 5.5** writes and fact-checks every edition and the
 roundup, **Sonnet 5.5** does the post-run review, and Gemini's free ladder is
 the fallback for every paid call plus the home of the two housekeeping calls
-(storyline extraction, checker tuning). About US$0.05 a run, US$5 a month,
-against the US$12–24 budgeted; the run report's `model.anthropic` block and
+(storyline extraction, checker tuning). About US$0.16 a run (12 Oct: Haiku
+US$0.05 over 28 calls, the one Sonnet review US$0.11), so about US$7–8 a month
+with the Saturday extra runs, against the US$12–24 budgeted; the run report's `model.anthropic` block and
 the Actions log carry the real spend per model (the block is rewritten after
 the review and the tuner have run, so their calls are in it too). A paid model that fails falls
 back to Gemini on that call and the log says so (`fellBack`). To try another
@@ -209,7 +210,8 @@ Nico.
 ## Alerts: who gets pinged
 
 Nico does not review ops output; the scheduled **Claude weekly review** does
-(Mondays 20:30 UTC = Tuesday 07:30 Sydney time in AEDT, 06:30 in AEST). So
+(Tuesdays 07:17 Sydney time all year: the routine's cron is in Sydney time, so it is
+Monday 20:17 UTC in AEDT and 21:17 UTC in AEST). So
 automation has two tiers, and `scripts/notify.mjs` holds the switch: silent
 unless a caller passes `page: true`.
 
