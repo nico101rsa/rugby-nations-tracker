@@ -83,13 +83,32 @@ jobs:
             node scripts/fixtures-burst.mjs
           fi
 
+      # standings.json follows every feed this job changes: nations.json (the
+      # Nations Championship table) and fixtures.json (every other
+      # competition's results). Unguarded on purpose: the build is milliseconds
+      # and writes only when a table changes, while a `git diff --quiet` guard
+      # would read "nothing changed" after the nations burst has already
+      # committed its results mid-run. --recent: a game ESPN has no try counts
+      # for is re-asked only near its kickoff, so a quiet tick makes zero
+      # requests; the daily team-events run takes the backlog. Keyless, zero
+      # api-sports quota, log-only on failure (this is a paged job).
+      - name: Cache ESPN try counts (keyless)
+        continue-on-error: true
+        run: node scripts/espn-tries.mjs --recent
+
+      - name: Build standings.json (computed from results, zero vendor calls)
+        continue-on-error: true
+        run: node scripts/build-standings.mjs
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # calendar/ is rebuilt by build-fixtures alongside fixtures.json
           # (scripts/build-calendars.mjs); every committer of one commits both.
-          git add nations.json public/nations.json scripts/.cache-games.json scripts/match-tries.json scripts/tour-results.json fixtures.json calendar
+          # standings.json and the ESPN try cache likewise ride every commit of
+          # the job that rebuilt them (fixtures-burst.test.mjs checks both).
+          git add nations.json public/nations.json scripts/.cache-games.json scripts/match-tries.json scripts/tour-results.json fixtures.json calendar standings.json scripts/match-tries-espn.json
           git diff --cached --quiet && echo "No data changes" && exit 0
           git commit -m "Data refresh $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
           # Retry after a rebase rather than losing a push race. This job runs

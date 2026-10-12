@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { fetchEspnTries, tryCandidates, serialiseCache } from "./espn-tries.mjs";
+import { fetchEspnTries, tryCandidates, serialiseCache, RECENT_HOURS } from "./espn-tries.mjs";
 
 const REGISTRY = {
   competitions: [
@@ -179,4 +179,30 @@ test("serialiseCache sorts keys so a new game is a one-entry diff", () => {
   assert.ok(text.indexOf("espn-10") < text.indexOf("espn-9"));
   assert.ok(text.endsWith("}\n"));
   assert.equal(serialiseCache({}), "{}\n");
+});
+
+// ---- --recent: what the 15-minute and 3-minute callers pass ----------------
+
+test("--recent asks only about games within RECENT_HOURS of kickoff; the daily run takes the backlog", async () => {
+  assert.equal(RECENT_HOURS, 6);
+  // NOW is 2027-02-06T00:00Z: espn-101 kicked off 3h50m before it, espn-102 26h before.
+  const rows = [
+    row("espn-101", { date: "2027-02-05T20:10:00.000Z" }),
+    row("espn-102", { date: "2027-02-04T22:00:00.000Z" }),
+  ];
+  const { urls, fetchJson } = stub(() => summary({ details: [] , completed: false }));
+  const recent = await run(rows, fetchJson, { recentHours: RECENT_HOURS });
+  assert.equal(urls.length, 1, "only the game from the last six hours");
+  assert.match(urls[0], /summary\?event=101$/);
+  assert.equal(recent.cached, 0);
+  urls.length = 0;
+  await run(rows, fetchJson);
+  assert.equal(urls.length, 2, "without --recent the backlog is retried too");
+});
+
+test("--recent with only old misses makes zero requests (the 15-minute no-op stays free)", async () => {
+  const { urls, fetchJson } = stub(() => { throw new Error("must not fetch"); });
+  const out = await run([row("espn-1", { date: "2027-02-01T20:10:00.000Z" })], fetchJson, { recentHours: RECENT_HOURS });
+  assert.deepEqual([urls.length, out.fetched, out.cached], [0, 0, 0]);
+  assert.deepEqual(tryCandidates([row("espn-1", { date: "not a date" })], REGISTRY, {}, { since: 0 }), [], "an unreadable date is never 'recent'");
 });

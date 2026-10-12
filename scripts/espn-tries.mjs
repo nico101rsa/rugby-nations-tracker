@@ -19,6 +19,17 @@
 // Never more than `max` summary fetches a run; an HTTP or JSON error is
 // logged and skipped, never thrown. A run with nothing new scored makes ZERO
 // requests — the no-op path costs nothing (CLAUDE.md).
+//
+// Who runs it, and how often a miss is retried. It runs before every
+// build-standings: the daily team-events job (full backlog), every
+// refresh-data tick and every 3-minute fixtures-burst pass (both with
+// --recent). A game ESPN never gives try counts for — a league whose summary
+// has no scoring details and whose statistics have no tries — would otherwise
+// be re-asked on all of those, every 15 minutes (or 3) for as long as its
+// result stays in fixtures.json. So --recent retries a miss only while the
+// game is within RECENT_HOURS of kickoff (ESPN fills the details live, so the
+// counts are normally there at full time); after that only the daily run
+// asks again, at most `max` games a day.
 
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -33,13 +44,16 @@ export const CACHE_PATH = join(ROOT, "scripts", "match-tries-espn.json");
 const SITE = "https://site.api.espn.com/apis/site/v2/sports/rugby";
 const CORE = "https://sports.core.api.espn.com/v2/sports/rugby/leagues";
 
+export const RECENT_HOURS = 6;
+
 const eventIdOf = (id) => (/^espn-(\d+)$/.exec(String(id ?? "")) ?? [])[1] ?? null;
 
 // fixtures.json rows that need a fetch: competition games other than the
 // Nations Championship, ESPN-keyed, with a final score, not live, not cached,
 // in a registered competition that names its ESPN league. Oldest first, so a
 // backlog drains in kickoff order under the `max` cap.
-export function tryCandidates(fixtures, registry, cache = {}) {
+// `since` (epoch ms, optional): skip games that kicked off before it (--recent).
+export function tryCandidates(fixtures, registry, cache = {}, { since = null } = {}) {
   const leagues = new Map((registry?.competitions ?? []).map((c) => [c.key, c.espnLeagueId]));
   const rows = Array.isArray(fixtures) ? fixtures : fixtures?.fixtures ?? [];
   const out = [];
@@ -51,6 +65,7 @@ export function tryCandidates(fixtures, registry, cache = {}) {
     if (f.homeScore == null || f.awayScore == null) continue;
     if (f.status?.live) continue;
     if (Object.hasOwn(cache, f.id)) continue;
+    if (since != null && !(Date.parse(f.date) >= since)) continue;
     const league = leagues.get(f.comp.key);
     if (league == null) continue;
     out.push({ row: f, eventId: n, league });
@@ -68,13 +83,14 @@ const competitorTeamId = (c) => String(c?.team?.id ?? c?.id ?? "");
 
 export async function fetchEspnTries({
   fixtures, registry, cache = {}, fetchJson = defaultFetchJson, max = 20,
-  log = console, now = () => new Date(),
+  log = console, now = () => new Date(), recentHours = null,
 } = {}) {
   const next = { ...cache };
+  const since = recentHours == null ? null : now().getTime() - recentHours * 3600000;
   let fetched = 0;
   let summaries = 0;
   let cached = 0;
-  for (const { row, eventId, league } of tryCandidates(fixtures, registry, cache)) {
+  for (const { row, eventId, league } of tryCandidates(fixtures, registry, cache, { since })) {
     if (summaries >= max) break;
     summaries++;
     fetched++;
@@ -138,9 +154,10 @@ async function main() {
   const read = (p) => readFile(p, "utf8").then(JSON.parse);
   const [fixtures, registry] = await Promise.all([read(join(ROOT, "fixtures.json")), read(join(ROOT, "competitions.json"))]);
   const cache = await read(CACHE_PATH).catch(() => ({}));
-  const { cache: next, fetched, cached } = await fetchEspnTries({ fixtures, registry, cache });
+  const recent = process.argv.includes("--recent");
+  const { cache: next, fetched, cached } = await fetchEspnTries({ fixtures, registry, cache, recentHours: recent ? RECENT_HOURS : null });
   if (cached) await writeFile(CACHE_PATH, serialiseCache(next));
-  console.log(`espn-tries: ${cached} new, ${fetched} fetches`);
+  console.log(`espn-tries: ${cached} new, ${fetched} fetches${recent ? ` (games from the last ${RECENT_HOURS}h)` : ""}`);
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

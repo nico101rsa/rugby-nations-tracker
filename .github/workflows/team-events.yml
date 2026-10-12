@@ -58,6 +58,23 @@ jobs:
       - name: Build fixtures.json (match-level upcoming list, keyless ESPN)
         run: node scripts/build-fixtures.mjs
 
+      # standings.json: a points table per competition, computed from the
+      # results already in the repo (scripts/build-standings.mjs) and written
+      # only when a table changes. The ESPN try cache goes first so a game
+      # finished since the last run carries its try bonus. This daily run takes
+      # the whole backlog (no --recent): it is where a game ESPN had no try
+      # counts for near kickoff gets asked about again. Keyless, zero
+      # SportsAPI Pro / api-sports quota, and log-only on failure: this is a
+      # paged job (scripts/watchdog.mjs), and a table one run late is not an
+      # outage. Before the integrity check, which compares the two.
+      - name: Cache ESPN try counts (keyless)
+        continue-on-error: true
+        run: node scripts/espn-tries.mjs
+
+      - name: Build standings.json (computed from results, zero vendor calls)
+        continue-on-error: true
+        run: node scripts/build-standings.mjs
+
       # Daily integrity check on what the app is actually being shown. Catches
       # the class Nico found by opening TestFlight — Six Nations 2026 finished
       # in March and was still on offer in the dropdown in late July, with
@@ -79,7 +96,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # calendar/ is rebuilt by build-fixtures alongside fixtures.json
           # (scripts/build-calendars.mjs); every committer of one commits both.
-          git add team-events.json team-events-archive.json fixtures.json competitions.json calendar
+          # standings.json and the ESPN try cache likewise ride every commit of
+          # the job that rebuilt them (fixtures-burst.test.mjs checks both).
+          git add team-events.json team-events-archive.json fixtures.json competitions.json calendar standings.json scripts/match-tries-espn.json
           git diff --cached --quiet && echo "No team-events changes" && exit 0
           git commit -m "Team events refresh $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
           # The live fixtures burst commits fixtures.json every few minutes on a

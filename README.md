@@ -5,6 +5,8 @@ Public companion repo for the **Rugby Nations Tracker** iOS app. Serves via GitH
 - [`index.html`](index.html) — support page (App Store support URL)
 - [`privacy.html`](privacy.html) — privacy policy (App Store privacy URL)
 - [`nations.json`](nations.json) — match data the app fetches (fixtures, results, standings, news)
+- [`standings.json`](standings.json) — a points table for every competition, computed from the results
+  above (`scripts/build-standings.mjs`, zero vendor calls) on every data refresh; never edited by hand
 - [`calendar/<CODE>.ics`](calendar/) — subscribable fixture calendars, one per tracked nation plus
   `all.ics`, rebuilt with every `fixtures.json` (`scripts/build-calendars.mjs`); subscribe via
   `webcal://nico101rsa.github.io/rugby-nations-tracker/calendar/NZL.ics` (links on the support page)

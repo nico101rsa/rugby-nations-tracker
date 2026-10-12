@@ -92,6 +92,9 @@ export const RULES = deepFreeze({
     thirds: ["pts", "pd", "td"],
     qualify: 2,
     thirdsQualify: 4,
+    // The most table points one game can add: a win (4) plus the try bonus
+    // (1). build-standings' qualification bounds use it for a team's ceiling.
+    maxPerGame: 5,
     meetings: 1,
     source: "https://en.wikipedia.org/wiki/2027_Men%27s_Rugby_World_Cup",
   },
@@ -150,15 +153,19 @@ export const POOL_NAMES = deepFreeze({
 // https://experiences.rugbyworldcup.com/rwc2027/match-schedule ; the thirds
 // rule https://www.world.rugby/media-zone/advisory/1019814. R16 (1)'s venue
 // and every R16 kickoff time were not retrieved, so they stay null.
+// `city` is what build-standings matches an ESPN knockout row on (with the
+// local match day): the official venue names here are the tournament's
+// neutral ones ("Brisbane Stadium") while ESPN prints the sponsored ones
+// ("Suncorp Stadium, Brisbane"), so the city is the part both share.
 export const RWC_R16_SLOTS = deepFreeze([
-  { stage: "R16", n: 1, home: { pool: "C", place: 2 }, away: { pool: "F", place: 2 }, date: "2027-10-23", venue: null },
-  { stage: "R16", n: 2, home: { pool: "A", place: 1 }, away: { thirds: ["C", "E", "F"] }, date: "2027-10-23", venue: "Brisbane Stadium" },
-  { stage: "R16", n: 3, home: { pool: "E", place: 1 }, away: { pool: "D", place: 2 }, date: "2027-10-23", venue: "Docklands Stadium, Melbourne" },
-  { stage: "R16", n: 4, home: { pool: "B", place: 1 }, away: { thirds: ["D", "E", "F"] }, date: "2027-10-23", venue: "Perth Stadium" },
-  { stage: "R16", n: 5, home: { pool: "C", place: 1 }, away: { thirds: ["A", "E", "F"] }, date: "2027-10-24", venue: "Sydney Football Stadium" },
-  { stage: "R16", n: 6, home: { pool: "D", place: 1 }, away: { thirds: ["B", "E", "F"] }, date: "2027-10-24", venue: "Docklands Stadium, Melbourne" },
-  { stage: "R16", n: 7, home: { pool: "A", place: 2 }, away: { pool: "E", place: 2 }, date: "2027-10-24", venue: "Brisbane Stadium" },
-  { stage: "R16", n: 8, home: { pool: "F", place: 1 }, away: { pool: "B", place: 2 }, date: "2027-10-24", venue: "Perth Stadium" },
+  { stage: "R16", n: 1, home: { pool: "C", place: 2 }, away: { pool: "F", place: 2 }, date: "2027-10-23", venue: null, city: null },
+  { stage: "R16", n: 2, home: { pool: "A", place: 1 }, away: { thirds: ["C", "E", "F"] }, date: "2027-10-23", venue: "Brisbane Stadium", city: "Brisbane" },
+  { stage: "R16", n: 3, home: { pool: "E", place: 1 }, away: { pool: "D", place: 2 }, date: "2027-10-23", venue: "Docklands Stadium, Melbourne", city: "Melbourne" },
+  { stage: "R16", n: 4, home: { pool: "B", place: 1 }, away: { thirds: ["D", "E", "F"] }, date: "2027-10-23", venue: "Perth Stadium", city: "Perth" },
+  { stage: "R16", n: 5, home: { pool: "C", place: 1 }, away: { thirds: ["A", "E", "F"] }, date: "2027-10-24", venue: "Sydney Football Stadium", city: "Sydney" },
+  { stage: "R16", n: 6, home: { pool: "D", place: 1 }, away: { thirds: ["B", "E", "F"] }, date: "2027-10-24", venue: "Docklands Stadium, Melbourne", city: "Melbourne" },
+  { stage: "R16", n: 7, home: { pool: "A", place: 2 }, away: { pool: "E", place: 2 }, date: "2027-10-24", venue: "Brisbane Stadium", city: "Brisbane" },
+  { stage: "R16", n: 8, home: { pool: "F", place: 1 }, away: { pool: "B", place: 2 }, date: "2027-10-24", venue: "Perth Stadium", city: "Perth" },
 ]);
 
 // A qualifying third from pools A-D always takes the same R16 slot (A3 plays
@@ -179,19 +186,30 @@ const W = (stage, n) => ({ winner: { stage, n } });
 const L = (stage, n) => ({ loser: { stage, n } });
 export const RWC_KNOCKOUT = deepFreeze([
   // Sat 30 Oct 16:45 Sydney time (AEDT)
-  { stage: "QF", n: 1, home: W("R16", 2), away: W("R16", 4), date: "2027-10-30", kickoff: "2027-10-30T05:45:00Z", venue: "Stadium Australia, Sydney" },
+  { stage: "QF", n: 1, home: W("R16", 2), away: W("R16", 4), date: "2027-10-30", kickoff: "2027-10-30T05:45:00Z", venue: "Stadium Australia, Sydney", city: "Sydney" },
   // Sat 30 Oct 18:45 AEST Brisbane = 19:45 Sydney time (AEDT)
-  { stage: "QF", n: 2, home: W("R16", 1), away: W("R16", 3), date: "2027-10-30", kickoff: "2027-10-30T08:45:00Z", venue: "Brisbane Stadium" },
+  { stage: "QF", n: 2, home: W("R16", 1), away: W("R16", 3), date: "2027-10-30", kickoff: "2027-10-30T08:45:00Z", venue: "Brisbane Stadium", city: "Brisbane" },
   // Sun 31 Oct 16:00 AEST Brisbane = 17:00 Sydney time (AEDT)
-  { stage: "QF", n: 3, home: W("R16", 5), away: W("R16", 6), date: "2027-10-31", kickoff: "2027-10-31T06:00:00Z", venue: "Brisbane Stadium" },
+  { stage: "QF", n: 3, home: W("R16", 5), away: W("R16", 6), date: "2027-10-31", kickoff: "2027-10-31T06:00:00Z", venue: "Brisbane Stadium", city: "Brisbane" },
   // Sun 31 Oct 20:00 Sydney time (AEDT)
-  { stage: "QF", n: 4, home: W("R16", 7), away: W("R16", 8), date: "2027-10-31", kickoff: "2027-10-31T09:00:00Z", venue: "Stadium Australia, Sydney" },
+  { stage: "QF", n: 4, home: W("R16", 7), away: W("R16", 8), date: "2027-10-31", kickoff: "2027-10-31T09:00:00Z", venue: "Stadium Australia, Sydney", city: "Sydney" },
   // Fri 5 Nov 20:00 Sydney time (AEDT)
-  { stage: "SF", n: 1, home: W("QF", 1), away: W("QF", 2), date: "2027-11-05", kickoff: "2027-11-05T09:00:00Z", venue: "Stadium Australia, Sydney" },
+  { stage: "SF", n: 1, home: W("QF", 1), away: W("QF", 2), date: "2027-11-05", kickoff: "2027-11-05T09:00:00Z", venue: "Stadium Australia, Sydney", city: "Sydney" },
   // Sat 6 Nov, kickoff not retrieved
-  { stage: "SF", n: 2, home: W("QF", 3), away: W("QF", 4), date: "2027-11-06", kickoff: null, venue: "Stadium Australia, Sydney" },
+  { stage: "SF", n: 2, home: W("QF", 3), away: W("QF", 4), date: "2027-11-06", kickoff: null, venue: "Stadium Australia, Sydney", city: "Sydney" },
   // Fri 12 Nov 19:45 Sydney time (AEDT)
-  { stage: "BRONZE", n: 1, home: L("SF", 1), away: L("SF", 2), date: "2027-11-12", kickoff: "2027-11-12T08:45:00Z", venue: "Stadium Australia, Sydney" },
+  { stage: "BRONZE", n: 1, home: L("SF", 1), away: L("SF", 2), date: "2027-11-12", kickoff: "2027-11-12T08:45:00Z", venue: "Stadium Australia, Sydney", city: "Sydney" },
   // Sat 13 Nov 20:00 Sydney time (AEDT)
-  { stage: "FINAL", n: 1, home: W("SF", 1), away: W("SF", 2), date: "2027-11-13", kickoff: "2027-11-13T09:00:00Z", venue: "Stadium Australia, Sydney" },
+  { stage: "FINAL", n: 1, home: W("SF", 1), away: W("SF", 2), date: "2027-11-13", kickoff: "2027-11-13T09:00:00Z", venue: "Stadium Australia, Sydney", city: "Sydney" },
 ]);
+
+// A competition's knockout bracket as build-standings resolves it: every slot
+// in play order (R16 1-8, QF 1-4, SF 1-2, bronze, final) and the fixed-slot
+// rule for qualifying thirds. null for a competition without one.
+export const BRACKETS = deepFreeze({
+  // Slot days are local; every RWC 2027 venue is in Australia, so a kickoff's
+  // match day is read in Sydney time (an evening game in Perth, UTC+8, is
+  // still the same day in Sydney).
+  "rwc-2027": { slots: [...RWC_R16_SLOTS, ...RWC_KNOCKOUT], fixedThirds: RWC_FIXED_THIRDS, tz: "Australia/Sydney" },
+});
+export const bracketFor = (key) => (Object.hasOwn(BRACKETS, String(key ?? "")) ? BRACKETS[key] : null);

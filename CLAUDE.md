@@ -59,6 +59,41 @@ shared across jobs. Prefer a targeted refresh over a broader schedule, and make
 the no-op path cost nothing —
 `scripts/refresh-played-teams.mjs` is the worked example.
 
+**`standings.json` is derived, never edited.** `scripts/build-standings.mjs`
+computes a points table for every registered competition from results already
+in the repo: nations.json for the Nations Championship (pool stage only —
+finals weekend repeats pairings and is excluded), fixtures.json for every
+ESPN-scored competition, and the two try caches (`scripts/match-tries.json` by
+api-sports id; `scripts/match-tries-espn.json` by fixture id, filled by
+`scripts/espn-tries.mjs`). Both scripts run in team-events (daily 12:00 Sydney
+time in AEDT, 11:00 in AEST, plus Sun 06:00 Sydney time in AEDT), on every
+refresh-data tick and on every 3-minute fixtures-burst pass, so a result moves
+its table on the pass that lands the score. Zero api-sports or SportsAPI Pro
+calls; ESPN only for a newly finished game's try counts, and the frequent
+callers pass `--recent` so a game ESPN has no counts for is re-asked only
+within six hours of kickoff (the daily run takes the backlog). The file is
+written only when a table changes (`updatedAt` is the last change, not the last
+run), and every job that rebuilds it commits it and the cache alongside
+fixtures.json and `calendar` (`fixtures-burst.test.mjs` checks). A table a try
+bonus short says so (`triesPending`); a tie the data can't split publishes as a
+shared rank with what it `needs`. The app (from the dec-jan build; 1.3.9
+doesn't read the file) takes nations.json `log` for `rnc-*` and standings.json
+for everything else. Fix an input, never the output — the
+next run rewrites it; the one hand edit allowed is a confirmed try count added
+to a cache when ESPN never supplies it (the integrity check asks for that a
+week after a season ends). The Nations Championship tiebreak order is
+computeLog's and **unverified** (`tiebreakVerified: false`): never print it as
+a rule.
+
+The World Cup entry adds, from its first game (Fri 1 Oct 2027, 20:45 Sydney
+time), `q` on every pool row, the best third-placed teams and the 16-slot
+knockout bracket — each filled only once the results prove it. Two things it
+deliberately does not do: apply the World Rugby rankings (the last pool
+tiebreak; the app repo's `docs/DATA_RIGHTS.md` rule 1), and place an E3 and an
+F3 when both qualify (World Rugby's thirds table isn't encoded): those Round of
+16 slots wait for ESPN to name the teams, and the entry says so
+(`needs: "thirds-rule"`).
+
 ## Calendars follow fixtures.json
 
 `calendar/<CODE>.ics` (the 12 tracked nations) and `calendar/all.ics` are

@@ -2,6 +2,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { checkIntegrity, expectedFixtures, checkStandings } from "./check-competitions.mjs";
 import { buildStandings } from "./build-standings.mjs";
+import { POOL_NAMES } from "./competition-rules.mjs";
 import { spawnSync } from "node:child_process";
 import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -364,6 +365,52 @@ test("checkStandings: a bracket slot after the registry endDate -> standings-sta
   const s = consistent();
   entry(s, "6n-2027").qualification = { bracket: [{ stage: "FINAL", n: 1, date: "2027-11-13" }] };
   assert.deepEqual(kinds(check(s)), ["standings-stage-past-end"]);
+});
+
+// A whole World Cup pool stage, places fixed by the scores; each pool's third
+// beats its fourth by `margin[letter]`, so the margins pick the best thirds.
+const RWC_LETTERS = ["A", "F", "E", "B", "D", "C"];
+const rwcRegistry = (endDate) => ({
+  current: "rwc-2027",
+  competitions: [{
+    key: "rwc-2027", label: "RWC '27", name: "Rugby World Cup", season: 2027, structure: "pools", fixtureCount: 36,
+    startDate: "2027-10-01", endDate, defaultFrom: "2027-03-27", defaultUntil: "2027-10-31",
+    groups: RWC_LETTERS.map((l) => ({ name: null, teams: [...POOL_NAMES["rwc-2027"][l]], pool: l })),
+  }],
+});
+function rwcFeeds(margin) {
+  const fixtures = [];
+  const tries = {};
+  RWC_LETTERS.forEach((l, p) => {
+    const [a, b, c, d] = POOL_NAMES["rwc-2027"][l];
+    [[a, b, 30, 10], [a, c, 30, 10], [a, d, 50, 0], [b, c, 30, 10], [b, d, 40, 0], [c, d, 10 + margin[l], 10]].forEach(([h, w, hs, as], i) => {
+      const id = `espn-${l}${i}`;
+      fixtures.push({ id, date: `2027-10-${String(1 + 2 * p).padStart(2, "0")}T0${i}:00:00Z`, home: { code: h }, away: { code: w }, comp: { key: "rwc-2027", kind: "competition" }, homeScore: hs, awayScore: as });
+      tries[id] = { home: 2, away: 1 };
+    });
+  });
+  return { fixtures: { fixtures }, tries };
+}
+
+test("checkStandings: a built World Cup entry (q, best thirds, bracket) holds every invariant; a bracket past endDate is named", () => {
+  const now = new Date("2027-10-18T00:00:00Z");
+  for (const [margin, provable] of [
+    [{ A: 15, B: 14, C: 13, D: 12, E: 11, F: 10 }, true],    // thirds A-D: the fixed rule fills the Round of 16
+    [{ A: 15, B: 14, E: 13, F: 12, C: 11, D: 10 }, false],   // E3 and F3 both through: two slots need the permutation table
+  ]) {
+    const { fixtures, tries } = rwcFeeds(margin);
+    const s = buildStandings({ registry: rwcRegistry("2027-11-13"), fixtures, espnTries: tries, now });
+    const e = entry(s, "rwc-2027");
+    assert.equal(e.played, 36);
+    assert.equal(e.provable, provable);
+    assert.equal(e.qualification.bracket.length, 16);
+    if (!provable) assert.deepEqual(e.unresolved.map((u) => u.needs), ["thirds-rule"]);
+    const opts = { registry: rwcRegistry("2027-11-13"), fixtures, nations: null, today: "2027-10-18", now: now.getTime() };
+    assert.deepEqual(check(s, opts), [], JSON.stringify(margin));
+    // Before ESPN publishes the knockouts the registry ends with the pool
+    // stage, and the bracket outlives it: named, not hidden.
+    assert.deepEqual(kinds(check(s, { ...opts, registry: rwcRegistry("2027-10-17") })), ["standings-stage-past-end"]);
+  }
 });
 
 test("checkStandings: missing file is a problem only when there are results", () => {
