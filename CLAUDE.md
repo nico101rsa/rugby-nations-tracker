@@ -59,6 +59,90 @@ shared across jobs. Prefer a targeted refresh over a broader schedule, and make
 the no-op path cost nothing —
 `scripts/refresh-played-teams.mjs` is the worked example.
 
+## Calendars follow fixtures.json
+
+`calendar/<CODE>.ics` (the 12 tracked nations) and `calendar/all.ics` are
+subscribable calendars served from Pages
+(`webcal://nico101rsa.github.io/rugby-nations-tracker/calendar/NZL.ics`; the
+support page links all 13 at `index.html#calendars`).
+`scripts/build-calendars.mjs` builds them from fixtures.json — after the
+kickoff corrections, never from nations.json's static placeholders — and
+`build-fixtures.mjs` calls it right after every fixtures.json write. So they
+follow every rebuild at zero vendor calls: the daily team-events run (12:00
+Sydney time in AEDT, 11:00 in AEST), its Saturday run (Sun 06:00 Sydney time in
+AEDT), every refresh-data tick that `fixtures-refresh-due` calls due, each 3-min
+burst pass, and the push-triggered rebuild (below). There is deliberately no
+calendar workflow of its own: the bots commit with GITHUB_TOKEN, and those
+commits never trigger `on: push`, so a workflow keyed on fixtures.json changing
+would never fire. Every committer of fixtures.json puts `calendar` in the same
+`git add`; `fixtures-burst.test.mjs` fails if one doesn't.
+
+The files are byte-stable. No scores (GROWTH_STRATEGY rules out score-carrying
+pushes; a played game says "Full time — result in the app."), no generation
+timestamp, and `calendar/state.json` (committed) carries each event's SEQUENCE
+and LAST-MODIFIED, so an unchanged event is reproduced byte for byte and a
+quiet burst pass commits nothing. A moved kickoff or a TBC→confirmed flip bumps
+SEQUENCE; any other change bumps only LAST-MODIFIED; a game that leaves
+fixtures.json leaves the calendars and the state. Don't hand-edit either: the
+next build rewrites any file whose bytes differ from what it would produce,
+which is also what heals a messy merge. `.gitattributes` keeps the CRLF line
+endings RFC 5545 requires. The team calendars carry a 30-minute alert on
+confirmed, unplayed games; all.ics carries none.
+
+Freshness, in Sydney time: the data is at most a day old (minutes, through the
+rebuild workflow); the Pages CDN adds up to ~10 minutes; the subscriber is the
+long pole and can't be forced — iOS refetches on the interval the device
+chooses, Google Calendar roughly every 12–24 hours. Every event says times can
+move and the app is the live source.
+
+A calendar bug is log-only. `publishFixtures` catches it, prints
+`calendars skipped: …` and fixtures.json is already written (a throw would
+count toward the burst's failure limit and end it mid-match). That is the
+silent tier: the weekly review sees it in the Actions log; nothing pages.
+
+## Kickoff overrides
+
+The vendors list some kickoffs late — Rugby Australia's run 10–15 minutes
+behind the union's own time. Policy (Nico, 26 Sep 2026): when sources
+disagree, publish the EARLIER time; ten minutes early costs nothing, ten
+minutes late misses the anthems. The hand-confirmed corrections live in
+`scripts/kickoff-overrides.mjs` — here, not in the app, so a row reaches every
+installed copy with no build.
+
+- **Key:** `"<UTC day of the vendor time> <HOME>-<AWAY>"`, codes as
+  fixtures.json prints them. One game carries three different ids across the
+  feeds; the match is the one thing they agree on.
+- **Rules (kickoff-overrides.test.mjs enforces them):** earlier only, same UTC
+  day, at most 60 minutes — anything bigger is a reschedule and belongs to the
+  vendor. `vendor` records the feed's time when the row was written: the row
+  applies only while the feed still says that, so a vendor reschedule beats a
+  stale row and a vendor catching up makes it a no-op. Never key a row on a
+  seed or static placeholder time. Delete a row once its game is played.
+- **Exactly three hooks.** `publishFixtures` in build-fixtures (before the
+  final sort, so the moved game re-sorts), `slimGames` in fetch-nations (the
+  published `results`/`fixtures` arrays only — never the raw games cache:
+  `scrapeTries` matches ESPN by the vendor's kickoff minute, so a corrected
+  time there would lose the try count), and `mergeUpcoming` in
+  fetch-team-events (each team's `next`, after the ESPN merge; the catch-up job
+  reuses it). Each logs `kickoff override applied: <key> <vendor>→<date>`.
+- **When a row lands:** at the next fixtures rebuild (daily 12:00 Sydney time,
+  Sun 06:00 Sydney time, any live-window tick), or about two minutes after the
+  merge through **Actions → "Rebuild fixtures & calendars"**
+  (`fixtures-rebuild.yml`). That workflow fires on any push to main that
+  touches the override table, the calendar builder or the competition seeds,
+  and can be run by hand; it is keyless. Don't dispatch "Team events" to
+  publish a row early: that is ~25 SportsAPI Pro calls. nations.json and
+  team-events.json pick a row up on their own next runs.
+- **Ship a row at least a day before the game.** Calendar subscribers refresh
+  slowly, and nothing can force them.
+- The app's old table (`src/kickoff-overrides.js`, shipped in 1.3.9, keyed by
+  fixture id) goes quiet by itself once the feed carries the earlier time — its
+  vendor guard sees a different time — and is deleted in the dec-jan build. New
+  rows go here only.
+- nations.json's November rows are still static noon placeholders, so no row
+  can match one until those carry real times. That is harmless (the feed wins);
+  fixtures.json and team-events.json carry ESPN's real times and match.
+
 ## Models: who writes, who checks, who reviews
 
 `scripts/model-router.mjs` decides, per role, from the keys and the
