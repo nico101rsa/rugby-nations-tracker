@@ -11,19 +11,26 @@
 // Everything else is the daily team-events build's job. The tour-probe path
 // (tour-results.json changing) is handled by the workflow's git diff, not
 // here — tour scores come from api-sports, not ESPN.
+//
+// Both windows run from the CORRECTED kickoff (correctedKickoffMs: the earlier
+// of the row's time and its kickoff-overrides row). The published fixtures.json
+// already carries the corrected time, so this is usually a no-op — it is what
+// keeps the window right when the file does not yet: a row merged on match
+// morning whose push-triggered rebuild has not landed, or failed.
 import { readFile } from "node:fs/promises";
 import { liveTracked } from "./espn-scored.mjs";
+import { correctedKickoffMs, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 
 const PRE_MS = 15 * 60000;
 const LIVE_MS = 6 * 3600 * 1000;
 const CATCHUP_MS = 48 * 3600 * 1000;
 
-export function refreshDue(fixtures, nowMs = Date.now()) {
+export function refreshDue(fixtures, nowMs = Date.now(), table = KICKOFF_OVERRIDES) {
   return (fixtures ?? []).some((f) => {
     // Tests, series, tours and every ESPN-scored competition (the Pacific
     // Nations Cup; never the Nations Championship, which nations.json covers).
     if (!liveTracked(f.comp)) return false;
-    const t = new Date(f.date).getTime();
+    const t = correctedKickoffMs(f, keyOf.fixture, table);
     if (t - PRE_MS <= nowMs && nowMs - t < LIVE_MS) return true; // live window
     // A bare 0-0 is ESPN's no-data placeholder (see isPlaceholderFinal in
     // build-fixtures), so it counts as a missing final: the rebuild it

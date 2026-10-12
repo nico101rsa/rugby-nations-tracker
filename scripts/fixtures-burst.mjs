@@ -20,6 +20,7 @@ import { execSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { pushWithRetries } from "./git-push-retry.mjs";
 import { liveTracked } from "./espn-scored.mjs";
+import { correctedKickoffMs, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 
 const PRE_MS = 15 * 60000;             // start 15 min before kickoff
 // Play + HT + the FT settle. 150 until 2026-10-04, when the app's full-time
@@ -38,12 +39,17 @@ const MAX_CONSECUTIVE_FAILURES = 5;    // ~15 min of nothing working — stop pr
 // a vendor published late still gets caught. This one asks "should we still be
 // LOOPING" — and looping six hours past a kickoff would spend most of the job
 // cap rebuilding a finished game.
-export function inBurstWindow(fixtures, nowMs = Date.now()) {
+//
+// Kickoff is the corrected one (correctedKickoffMs), as in fixtures-refresh-due
+// and build-fixtures' liveCandidates: all three must agree on when a game
+// starts, or the burst loops through minutes in which the build fetches
+// nothing.
+export function inBurstWindow(fixtures, nowMs = Date.now(), table = KICKOFF_OVERRIDES) {
   return (fixtures ?? []).some((f) => {
     // Tests, series, tours and ESPN-scored competitions (see espn-scored.mjs).
     // Nations Championship rounds stay with the nations.json burst.
     if (!liveTracked(f?.comp)) return false;
-    const ko = new Date(f.date).getTime();
+    const ko = correctedKickoffMs(f, keyOf.fixture, table);
     return Number.isFinite(ko) && nowMs >= ko - PRE_MS && nowMs <= ko + POST_MS;
   });
 }

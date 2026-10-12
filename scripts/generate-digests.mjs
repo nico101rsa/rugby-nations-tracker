@@ -24,6 +24,7 @@ import {
 } from "./storylines.mjs";
 import { buildDataEdition, renderDataEdition } from "./data-edition.mjs";
 import { BANNED_COPY, words } from "./copy-rules.mjs";
+import { rncPoolStage } from "./build-standings.mjs";
 import { roundupCandidates, worldRoundup, attachWorldSections } from "./world-roundup.mjs";
 import {
   previousLeadsFor,
@@ -90,7 +91,7 @@ export const TEAMS = {
 export const SECTION_COUNT = 1;
 const KICKER_MAX = 30;
 
-const TEMPLATE = `You write **{MASTHEAD}**, the daily {TEAM_NAME} briefing inside Rugby Nations
+export const TEMPLATE = `You write **{MASTHEAD}**, the daily {TEAM_NAME} briefing inside Rugby Nations
 Tracker, an iOS app covering men's international rugby (all competitions —
 Nations Championship, test series, tours, Rugby Championship, Six Nations,
 World Cup). Your reader is a knowledgeable {TEAM_NAME} fan who checks the app
@@ -98,7 +99,7 @@ once a day. Today is {DAY_NAME} {DATE_LONG}.
 
 ## App data (trusted — do not re-verify, do not contradict)
 
-- Next fixture: {HOME_TEAM} v {AWAY_TEAM}, Round {ROUND}, kickoff {KICKOFF_ISO}.
+- Next fixture: {HOME_TEAM} v {AWAY_TEAM}, {ROUND}, kickoff {KICKOFF_ISO}.
 - Log: {TEAM_NAME} are {RANK} of 12 — P{P} W{W} D{D} L{L}, PF {PF}, PA {PA}, PD {PD}.
 - Last result: {LAST_RESULT}.
 - The app renders the kickoff line (opponent, local time, countdown), the log
@@ -243,7 +244,63 @@ function nextFixtureFor(fixtures, teamId, now) {
     .sort((a, b) => Date.parse(a.date) - Date.parse(b.date))[0] || null;
 }
 
-function lastResultFor(results, teamId) {
+// ---- which round: a pool round, or a named final ------------------------------
+//
+// Finals weekend (from Sat 28 Nov 2026, 03:40 Sydney time) pairs the two
+// conferences place for place under the same api-sports league, so its rows
+// carry a week label that is not a round number ("Final", "3rd Place Final",
+// a week 7, or a repeat of a pool pairing under week "6"). Printed as
+// "Round ${week}" that read "Round Final" in the writer's trusted data. The
+// finals are recognised by the SAME rule that keeps them out of the table
+// (rncPoolStage in build-standings.mjs, pinned to fetch-nations'
+// poolStageGames), and named in the app's words (rugby-nations-tracker-app
+// src/fixtures-list.js FINALS: "Grand final", "3rd-place final" …), place k
+// being North k v South k.
+export const FINALS_LABELS = ["Grand final", "3rd-place final", "5th-place final", "7th-place final", "9th-place final", "11th-place final"];
+export const FINALS_WEEKEND = "finals weekend";
+const NORTH_IDS = new Set([386, 387, 388, 389, 390, 391]); // the Six Nations sides (the app's conferences.js)
+const POOL_ROUNDS = 6;
+const sideId = (g, side) => g?.[side]?.id ?? g?.teams?.[side]?.id;
+
+// The specific final, or "finals weekend" whenever the log cannot prove it:
+// the pool stage unfinished, the two sides at different conference places, or
+// either place resting on a points tie (the tiebreak order is computeLog's and
+// unverified, CLAUDE.md "standings.json"). Never a guess in trusted data.
+export function finalsLabel(game, log = []) {
+  const rows = Array.isArray(log) ? log : [];
+  if (rows.length !== 12 || !rows.every((r) => (r?.P ?? 0) >= POOL_ROUNDS)) return FINALS_WEEKEND;
+  const place = (id) => {
+    const conf = rows.filter((r) => NORTH_IDS.has(r.id) === NORTH_IDS.has(id));
+    const i = conf.findIndex((r) => r.id === id);
+    if (i < 0) return null;
+    const tied = [conf[i - 1], conf[i + 1]].some((n) => n && n.Pts === conf[i].Pts);
+    return tied ? null : i + 1;
+  };
+  const h = sideId(game, "home");
+  const a = sideId(game, "away");
+  if (NORTH_IDS.has(h) === NORTH_IDS.has(a)) return FINALS_WEEKEND;
+  const ph = place(h);
+  return ph != null && ph === place(a) ? FINALS_LABELS[ph - 1] ?? FINALS_WEEKEND : FINALS_WEEKEND;
+}
+
+// A nations.json row (result or fixture) -> "Round 4", a finals label, the
+// vendor's own label for anything else (as the app's result cards pass it
+// through), or null with no week at all. `results` are the games before it,
+// which is how a repeat pairing is told apart from a first meeting.
+export function roundLabel(game, { results = [], log = [] } = {}) {
+  if (!game) return null;
+  const t = Date.parse(game.date);
+  const earlier = (Array.isArray(results) ? results : [])
+    .filter((g) => g && g.id !== game.id && Date.parse(g.date) < t)
+    .sort((x, y) => Date.parse(x.date) - Date.parse(y.date));
+  const { excluded } = rncPoolStage([...earlier, game]);
+  if (excluded.some((x) => x.id === game.id)) return finalsLabel(game, log);
+  const week = game.week == null ? "" : String(game.week).trim();
+  if (/^\d+$/.test(week)) return `Round ${Number(week)}`;
+  return week || null;
+}
+
+function lastResultFor(results, teamId, log) {
   const r = (Array.isArray(results) ? results : [])
     .filter((g) => g?.home?.id === teamId || g?.away?.id === teamId)
     .filter((g) => g?.status?.short === "FT")
@@ -253,7 +310,8 @@ function lastResultFor(results, teamId) {
   const us = home ? r.home : r.away;
   const them = home ? r.away : r.home;
   const verb = us.score > them.score ? "beat" : us.score < them.score ? "lost to" : "drew with";
-  return `${verb} ${them.name} ${us.score}-${them.score} (Round ${r.week})`;
+  const label = roundLabel(r, { results, log });
+  return `${verb} ${them.name} ${us.score}-${them.score}${label ? ` (${label})` : ""}`;
 }
 
 export function buildParams(data, teamId, now = new Date()) {
@@ -267,13 +325,15 @@ export function buildParams(data, teamId, now = new Date()) {
     TEAM_NAME: team.name,
     HOME_TEAM: fixture?.home?.name ?? "TBC",
     AWAY_TEAM: fixture?.away?.name ?? "TBC",
-    ROUND: fixture?.week ?? "TBC",
+    // The whole label ("Round 4", "Grand final", "finals weekend"); the
+    // templates print it bare.
+    ROUND: (fixture && roundLabel(fixture, { results: data?.results, log: data?.log })) ?? "Round TBC",
     KICKOFF_ISO: fixture?.date ?? "TBC",
     RANK: String(row.rank ?? "?"),
     P: String(row.P ?? 0), W: String(row.W ?? 0), D: String(row.D ?? 0), L: String(row.L ?? 0),
     PF: String(row.PF ?? 0), PA: String(row.PA ?? 0),
     PD: pd > 0 ? `+${pd}` : String(pd),
-    LAST_RESULT: lastResultFor(data?.results, teamId),
+    LAST_RESULT: lastResultFor(data?.results, teamId, data?.log),
   };
 }
 
@@ -1153,7 +1213,7 @@ export function buildFactCheckPrompt(params, digest, sourcePack, checkerNotes = 
 rugby briefing. Today is ${params.DAY_NAME} ${params.DATE_LONG}. Below is a draft edition.${notesBlock}
 
 ## Trusted app data (the draft must not contradict this)
-- Next fixture: ${params.HOME_TEAM} v ${params.AWAY_TEAM}, Round ${params.ROUND}.
+- Next fixture: ${params.HOME_TEAM} v ${params.AWAY_TEAM}, ${params.ROUND}.
 - Log: ${params.TEAM_NAME} are ${params.RANK} of 12 — P${params.P} W${params.W} D${params.D} L${params.L}, PF ${params.PF}, PA ${params.PA}, PD ${params.PD}.
 - Last result: ${params.LAST_RESULT}.
 
