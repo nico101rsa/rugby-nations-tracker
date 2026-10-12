@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir } from "node:fs/promises";
-import { inBurstWindow, runFixturesBurst, PUBLISH_PATHS } from "./fixtures-burst.mjs";
+import { inBurstWindow, runFixturesBurst, PUBLISH_PATHS, buildPass, BUILD_STEP, STANDINGS_STEPS } from "./fixtures-burst.mjs";
 
 const KO = Date.parse("2026-08-22T15:10:00.000Z");   // Ellis Park, the game that exposed this
 const series = (over = {}) => ({
@@ -126,8 +126,8 @@ test("gives up after 5 consecutive failures rather than looping uselessly", asyn
 // corrected kickoff to the app and a stale one to the calendars — and in the
 // burst's case, drops the calendar change entirely until the next daily run.
 
-test("the burst's mid-match publish adds calendar/ with fixtures.json", async () => {
-  assert.deepEqual(PUBLISH_PATHS, ["fixtures.json", "calendar"]);
+test("the burst's mid-match publish adds calendar/, standings.json and the try cache with fixtures.json", async () => {
+  assert.deepEqual(PUBLISH_PATHS, ["fixtures.json", "calendar", "standings.json", "scripts/match-tries-espn.json"]);
   const src = await readFile(new URL("./fixtures-burst.mjs", import.meta.url), "utf8");
   const fn = src.slice(src.indexOf("function gitPublish"));
   assert.match(fn, /execSync\(`git add \$\{PUBLISH_PATHS\.join\(" "\)\}`\)/);
@@ -177,4 +177,98 @@ test("the rebuild workflow: push-triggered on its narrow paths, own concurrency 
   assert.match(yml, /git push \|\| \(git pull --rebase --autostash -X theirs && git push\)/);
   const watchdog = await readFile(new URL("./watchdog.mjs", import.meta.url), "utf8");
   assert.ok(!watchdog.includes("fixtures-rebuild.yml"), "not a paged job");
+});
+
+// ---- standings.json rides every fixtures rebuild ------------------------------
+//
+// A Six Nations or World Cup result moves its points table on the same pass
+// that lands the score. The two standings steps are keyless and zero-quota,
+// and must never cost the burst a pass: a throw counts toward the
+// consecutive-failure limit and could end it mid-match.
+
+test("a pass runs build-fixtures, then the try cache, then build-standings", () => {
+  const ran = [];
+  buildPass({ run: (cmd) => ran.push(cmd), warn: () => {} });
+  assert.deepEqual(ran, [
+    "node scripts/build-fixtures.mjs",
+    "node scripts/espn-tries.mjs --recent",
+    "node scripts/build-standings.mjs",
+  ]);
+  assert.equal(BUILD_STEP, ran[0]);
+  assert.deepEqual(STANDINGS_STEPS, ran.slice(1));
+});
+
+test("a throwing standings step does not abort the pass, or the burst", async () => {
+  const warnings = [];
+  const ran = [];
+  const run = (cmd) => {
+    ran.push(cmd);
+    if (cmd.includes("espn-tries") || cmd.includes("build-standings")) throw new Error(`${cmd} exited 1`);
+  };
+  buildPass({ run, warn: (w) => warnings.push(w) });
+  assert.equal(ran.length, 3, "build-standings still runs after the try cache failed");
+  assert.equal(warnings.length, 2);
+  assert.match(warnings[0], /espn-tries\.mjs --recent failed .* fixtures\.json still publishes/);
+
+  let passes = 0;
+  const published = [];
+  const r = await runFixturesBurst({
+    build: () => { passes++; buildPass({ run, warn: () => {} }); },
+    publish: (m) => published.push(m),
+    stillLive: async () => passes < 3,
+    sleep: async () => {},
+    now: () => 0,
+  });
+  assert.deepEqual([r.iterations, r.consecutiveFailures, published.length], [3, 0, 3]);
+});
+
+test("a failing fixtures build still fails the pass (and skips the standings steps)", () => {
+  const ran = [];
+  assert.throws(() => buildPass({ run: (cmd) => { ran.push(cmd); if (cmd === BUILD_STEP) throw new Error("ESPN 503"); } }), /ESPN 503/);
+  assert.deepEqual(ran, [BUILD_STEP]);
+});
+
+const STANDINGS_FILES = ["standings.json", "scripts/match-tries-espn.json"];
+
+test("every workflow that commits standings.json also commits the try cache, and both run the build", async () => {
+  const committers = [];
+  for (const [file, yml] of Object.entries(await workflowTexts())) {
+    for (const line of yml.match(/git add [^\n]*/g) ?? []) {
+      const paths = line.trim().split(/\s+/).slice(2);
+      if (!STANDINGS_FILES.some((p) => paths.includes(p))) continue;
+      committers.push(file);
+      for (const p of STANDINGS_FILES) assert.ok(paths.includes(p), `${file}: ${line.trim()} lacks ${p}`);
+      assert.ok(paths.includes("fixtures.json") && paths.includes("calendar"), `${file}: ${line.trim()}`);
+    }
+  }
+  assert.deepEqual([...new Set(committers)].sort(), ["refresh-data.yml", "team-events.yml"]);
+  for (const [file, yml] of Object.entries(await workflowTexts())) {
+    if (!/node scripts\/(build-standings|espn-tries)\.mjs/.test(yml)) continue;
+    assert.ok(committers.includes(file), `${file} builds standings.json but never commits it`);
+  }
+});
+
+// The workflow steps, as (name, body) blocks of the job's step list.
+const stepsOf = (yml) => yml.split(/\n(?= {6}- )/).slice(1).map((b) => ({ name: (b.match(/name: (.*)/) ?? [])[1] ?? "", body: b }));
+
+test("team-events and refresh-data: try cache, then standings, after the fixtures build; keyless; never fail the job", async () => {
+  const all = await workflowTexts();
+  for (const [file, cacheCmd] of [["team-events.yml", "node scripts/espn-tries.mjs"], ["refresh-data.yml", "node scripts/espn-tries.mjs --recent"]]) {
+    const steps = stepsOf(all[file]);
+    const at = (re) => steps.findIndex((s) => re.test(s.body));
+    const fixtures = at(/node scripts\/(build-fixtures|fixtures-burst)\.mjs/);
+    const cache = steps.findIndex((s) => s.name === "Cache ESPN try counts (keyless)");
+    const build = steps.findIndex((s) => s.name === "Build standings.json (computed from results, zero vendor calls)");
+    const commit = at(/git add /);
+    assert.ok(fixtures >= 0 && fixtures < cache && cache < build && build < commit, `${file}: ${[fixtures, cache, build, commit]}`);
+    assert.match(steps[cache].body, new RegExp(`run: ${cacheCmd.replace(/[.]/g, "\\.")}\\n`), `${file}: ${cacheCmd}`);
+    assert.match(steps[build].body, /run: node scripts\/build-standings\.mjs\n/);
+    for (const i of [cache, build]) {
+      assert.match(steps[i].body, /continue-on-error: true/, `${file}: ${steps[i].name}`);
+      assert.ok(!/secrets\.|if:/.test(steps[i].body), `${file}: ${steps[i].name} is keyless and unguarded`);
+    }
+  }
+  // The integrity check reads the standings this run just built.
+  const te = stepsOf(all["team-events.yml"]);
+  assert.ok(te.findIndex((s) => s.name === "Build standings.json (computed from results, zero vendor calls)") < te.findIndex((s) => s.name === "Check competition integrity"));
 });

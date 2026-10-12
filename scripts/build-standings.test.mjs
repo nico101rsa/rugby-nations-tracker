@@ -3,8 +3,9 @@ import assert from "node:assert/strict";
 import {
   rncPoolStage, normaliseRncGames, normaliseFixtureGames, tableGames, tally, rankRows,
   groupStandings, tableTotal, competitionEntry, buildStandings, selfCheck, serialise, changed, noteFor,
+  qualifyFlags, poolQualification, poolSettled, atPlace, bestThirds, resolveBracket,
 } from "./build-standings.mjs";
-import { RULES } from "./competition-rules.mjs";
+import { RULES, POOL_NAMES, bracketFor } from "./competition-rules.mjs";
 import * as nationsModule from "./fetch-nations.mjs";
 
 const { computeLog } = nationsModule;
@@ -681,4 +682,330 @@ test("complete: completedAt is stamped once and then kept", () => {
   assert.equal(e.groups[0].rows[0].code, "ENG");
   assert.equal(e.groups[0].rows[0].GS, 3);
   assert.deepEqual(selfCheck(e, sixNations()), []);
+});
+
+// ---------------------------------------------------------------------------
+// World Cup: qualification flags, best thirds, the bracket (data-standings-rwc)
+// ---------------------------------------------------------------------------
+
+test("q bounds: a 2-point lead with 2 games left proves nothing", () => {
+  // Four-team pool, one game played each (games = 3, so 2 left).
+  const rows = [
+    { code: "NZL", Pts: 5, P: 1, pending: 0 },
+    { code: "AUS", Pts: 3, P: 1, pending: 0 },
+    { code: "CHI", Pts: 1, P: 1, pending: 0 },
+    { code: "HKG", Pts: 0, P: 1, pending: 0 },
+  ];
+  assert.deepEqual(qualifyFlags(rows, 2, { outAbove: 3 }), [null, null, null, null]);
+});
+
+test("q bounds: 10 points with every rival's ceiling below 10 is through; three floors above a ceiling is out", () => {
+  const rows = [
+    { code: "NZL", Pts: 10, P: 2, pending: 0 },  // ceil 15
+    { code: "AUS", Pts: 4, P: 2, pending: 0 },   // ceil 9
+    { code: "CHI", Pts: 4, P: 2, pending: 0 },   // ceil 9
+    { code: "HKG", Pts: 0, P: 3, pending: 0 },   // done: ceil 0
+  ];
+  assert.deepEqual(qualifyFlags(rows, 2, { outAbove: 3 }), ["through", null, null, "out"]);
+  // Equality proves nothing: a rival who can only DRAW level still counts.
+  const level = rows.map((r) => (r.code === "AUS" ? { ...r, Pts: 5 } : r)); // AUS ceil 10
+  const twoCanReach = level.map((r) => (r.code === "CHI" ? { ...r, Pts: 5 } : r));
+  assert.equal(qualifyFlags(level, 2, { outAbove: 3 })[0], "through", "one rival reaching 10 still leaves NZL top two");
+  assert.equal(qualifyFlags(twoCanReach, 2, { outAbove: 3 })[0], null, "two rivals able to reach 10 prove nothing");
+});
+
+test("q bounds: a game still waiting on its try counts raises the ceiling by one", () => {
+  const rows = [
+    { code: "NZL", Pts: 10, P: 3, pending: 0 },
+    { code: "AUS", Pts: 10, P: 3, pending: 0 },
+    { code: "CHI", Pts: 9, P: 3, pending: 1 },   // ceil 10
+    { code: "HKG", Pts: 0, P: 3, pending: 0 },
+  ];
+  const q = qualifyFlags(rows, 2, { outAbove: 3 });
+  assert.equal(q[0], null, "CHI's pending try bonus could take it level with NZL, and AUS is already there");
+  assert.equal(q[2], null);
+  assert.deepEqual(qualifyFlags(rows.map((r) => ({ ...r, pending: 0 })), 2, { outAbove: 3 }), ["through", "through", null, "out"]);
+});
+
+// A full World Cup pool stage in fixtures.json shape. In every pool the
+// places are fixed by the scores, POOL_NAMES order = 1st..4th; the third
+// earns `bonus` (0-3) extra points (losing bonuses against 1st and 2nd, a try
+// bonus against 4th) and `pd` extra points difference (its margin over 4th).
+const LETTERS = ["A", "F", "E", "B", "D", "C"]; // registry order, earliest kickoff first
+const RWC_FULL = {
+  key: "rwc-2027", label: "RWC '27", name: "Rugby World Cup", season: 2027, structure: "pools", fixtureCount: 36,
+  defaultUntil: "2027-10-31", endDate: "2027-10-17",
+  groups: LETTERS.map((l) => ({ name: null, teams: [...POOL_NAMES["rwc-2027"][l]], pool: l })),
+};
+function rwcPoolStage(spec = {}, { pendingIds = [], drop = [] } = {}) {
+  const fixtures = [];
+  const tries = {};
+  let day = 1;
+  for (const l of LETTERS) {
+    const [a, b, c, d] = POOL_NAMES["rwc-2027"][l];
+    const { bonus = 0, pd = 0, draw = false } = spec[l] ?? {};
+    const games = [
+      [a, b, 30, 10, 4, 1],
+      bonus >= 1 ? [a, c, 25, 20, 3, 2] : [a, c, 40, 10, 5, 1],
+      [a, d, 50, 0, 7, 0],
+      draw ? [b, c, 15, 15, 2, 2] : bonus >= 2 ? [b, c, 20, 15, 2, 1] : [b, c, 30, 10, 3, 1],
+      [b, d, 40, 0, 6, 0],
+      bonus >= 3 ? [c, d, 30 + pd, 10, 4, 1] : [c, d, 20 + pd, 10, 2, 1],
+    ];
+    games.forEach(([h, aw, hs, as, ht, at], i) => {
+      const id = `espn-rwc-${l}${i}`;
+      if (drop.includes(id)) return;
+      fixtures.push({
+        id, date: `2027-10-${String(day).padStart(2, "0")}T0${i}:00:00Z`, timeTBC: false,
+        home: { code: h, name: h }, away: { code: aw, name: aw }, comp: { key: "rwc-2027", label: "RWC '27", kind: "competition" },
+        homeScore: hs, awayScore: as, pool: l,
+      });
+      if (!pendingIds.includes(id)) tries[id] = { home: ht, away: at };
+    });
+    day += 2;
+  }
+  return { fixtures: { fixtures }, espnTries: tries };
+}
+const ko = (id, date, venue, home, away, hs = null, as = null, over = {}) => ({
+  id, date, timeTBC: false, venue, home: { code: home, name: home }, away: { code: away, name: away },
+  comp: { key: "rwc-2027", label: "RWC '27", kind: "competition" }, homeScore: hs, awayScore: as, ...over,
+});
+const rwcEntry = (spec, opts, extra = []) => {
+  const season = rwcPoolStage(spec, opts);
+  season.fixtures.fixtures.push(...extra);
+  return competitionEntry(RWC_FULL, { ...season, names });
+};
+const slot = (e, stage, n) => e.qualification.bracket.find((s) => s.stage === stage && s.n === n);
+const sides = (s) => [s.home.code, s.away.code];
+const ALL_AD = { A: { bonus: 3 }, B: { bonus: 3 }, C: { bonus: 3 }, D: { bonus: 3 } };
+
+test("pools settle: top two through, fourth out, the third waits on the best-thirds ranking", () => {
+  const e = rwcEntry(ALL_AD);
+  assert.equal(e.played, 36);
+  assert.equal(e.complete, true);
+  const poolA = e.groups.find((g) => g.name === "A");
+  assert.deepEqual(poolA.rows.map((r) => [r.code, r.q]), [["NZL", "through"], ["AUS", "through"], ["CHI", "through"], ["HKG", "out"]]);
+  const poolE = e.groups.find((g) => g.name === "E");
+  assert.deepEqual(poolE.rows.map((r) => r.q), ["through", "through", "out", "out"], "E's third (4 pts) is not among the best four");
+  assert.deepEqual(selfCheck(e, RWC_FULL), []);
+});
+
+test("a drawn pool game counts 2 each and the pool still settles", () => {
+  const e = rwcEntry({ ...ALL_AD, F: { draw: true } });
+  const f = e.groups.find((g) => g.name === "F");
+  const wal = f.rows.find((r) => r.code === "WAL");
+  const tga = f.rows.find((r) => r.code === "TGA");
+  assert.deepEqual([wal.D, tga.D], [1, 1]);
+  assert.equal(tga.Pts, 2 + 4, "a draw (2) and the win over Zimbabwe (4)");
+  assert.equal(poolSettled(f.rows), true);
+  assert.deepEqual(f.rows.map((r) => r.code), ["ENG", "WAL", "TGA", "ZIM"]);
+});
+
+test("best thirds: ranked by points, PD and try difference across the six pools", () => {
+  const e = rwcEntry({ A: { bonus: 3, pd: 5 }, B: { bonus: 3 }, C: { bonus: 2 }, D: { bonus: 1 }, E: { bonus: 1, pd: 3 }, F: { bonus: 0 } });
+  const th = e.qualification.thirds;
+  assert.deepEqual(th.rows.map((r) => [r.pool, r.code, r.rank, r.Pts]), [
+    ["A", "CHI", 1, 7], ["B", "GEO", 2, 7], ["C", "ESP", 3, 6], ["E", "USA", 4, 5], ["D", "URU", 5, 5], ["F", "TGA", 6, 4],
+  ]);
+  assert.equal(th.rows.find((r) => r.code === "USA").PD > th.rows.find((r) => r.code === "URU").PD, true, "E above D on PD");
+  assert.deepEqual(th.rows.map((r) => r.q), ["through", "through", "through", "through", "out", "out"]);
+  assert.equal(th.provable, true);
+  assert.equal(th.qualify, 4);
+  // The pool rows carry the thirds verdict.
+  assert.equal(e.groups.find((g) => g.name === "D").rows[2].q, "out");
+  assert.equal(e.groups.find((g) => g.name === "E").rows[2].q, "through");
+});
+
+test("best thirds: level on points and PD with a game pending is tied, needs tries, and nothing is decided", () => {
+  // A and B thirds identical; one of B's games has no try counts yet.
+  // Georgia (B's third) v Romania has no try counts yet.
+  const e = rwcEntry({ A: { bonus: 2 }, B: { bonus: 2 }, C: { bonus: 3, pd: 5 }, D: { bonus: 3 }, E: { pd: 2 } }, { pendingIds: ["espn-rwc-B5"] });
+  const th = e.qualification.thirds;
+  const ab = th.rows.filter((r) => r.pool === "A" || r.pool === "B");
+  assert.deepEqual(ab.map((r) => [r.rank, r.tied]), [[3, true], [3, true]]);
+  assert.deepEqual(th.unresolved, [{ codes: ["CHI", "GEO"], rank: 3, criterion: "td", needs: "tries" }]);
+  assert.equal(th.provable, false, "a pool with try counts pending is not settled");
+  assert.ok(th.rows.every((r) => r.q === null), "q only once every pool is complete");
+  assert.equal(e.qualification.bracket.filter((s) => s.stage === "R16").every((s) => s.away.from.thirds ? s.away.code === null : true), true);
+});
+
+test("best thirds: not every pool complete -> provisional order, every q null", () => {
+  const e = rwcEntry(ALL_AD, { drop: ["espn-rwc-C5"] });
+  assert.equal(e.qualification.thirds.provable, false);
+  assert.ok(e.qualification.thirds.rows.every((r) => r.q === null));
+  assert.equal(e.groups.find((g) => g.name === "A").rows[0].q, "through", "bounds still decide the pools that are done");
+});
+
+test("best thirds: a pool whose third place is shared names the tie", () => {
+  const rows = [
+    { rank: 1, tied: false, code: "NZL", P: 1, pending: 0, Pts: 5, PD: 20, TF: 4, TA: 1 },
+    { rank: 2, tied: true, code: "AUS", P: 0, pending: 0, Pts: 0, PD: 0, TF: 0, TA: 0 },
+    { rank: 2, tied: true, code: "CHI", P: 0, pending: 0, Pts: 0, PD: 0, TF: 0, TA: 0 },
+    { rank: 4, tied: false, code: "HKG", P: 1, pending: 0, Pts: 0, PD: -20, TF: 1, TA: 4 },
+  ];
+  assert.deepEqual(atPlace(rows, 3), { row: rows[1], tie: ["AUS", "CHI"] });
+  assert.deepEqual(atPlace(rows, 4).tie, null);
+  const th = bestThirds([{ name: "A", rows }], RULES.rwc);
+  assert.deepEqual(th.rows[0].poolTie, ["AUS", "CHI"]);
+  assert.equal(th.rows[0].q, null);
+});
+
+test("bracket: an ESPN row on 23 Oct at Brisbane attaches to Round of 16 (2), projected false, oriented to the slot", () => {
+  const row = ko("espn-700002", "2027-10-23T08:00:00Z", "Suncorp Stadium, Brisbane", "ESP", "NZL", 10, 40);
+  const e = rwcEntry({}, { drop: ["espn-rwc-A5"] }, [row]);
+  const s = slot(e, "R16", 2);
+  assert.equal(s.fixtureId, "espn-700002");
+  assert.equal(s.projected, false);
+  assert.deepEqual(sides(s), ["NZL", "ESP"], "Pool A's winner is the slot's home side whatever ESPN lists first");
+  assert.deepEqual([s.homeScore, s.awayScore, s.winner], [40, 10, "NZL"], "the score turns with the sides");
+  assert.deepEqual([s.date, s.timeTBC, s.venue], ["2027-10-23T08:00:00Z", false, "Suncorp Stadium, Brisbane"]);
+  assert.equal(e.played, 35, "a knockout row is not a table game");
+  assert.ok(e.excluded.some((x) => x.id === "espn-700002"));
+  // Its neighbours have no ESPN row: the settled pools fill them by the
+  // bracket rule, Pool A (one game short) leaves its side empty.
+  const s3 = slot(e, "R16", 3);
+  assert.deepEqual([s3.fixtureId, ...sides(s3), s3.home.label, s3.away.label, s3.date, s3.timeTBC, s3.projected],
+    [null, "FRA", "SCO", "1st Pool E", "2nd Pool D", "2027-10-23T00:00:00Z", true, true]);
+  assert.deepEqual(sides(slot(e, "R16", 7)), [null, "JPN"]);
+});
+
+test("bracket: every pool settled and the four best thirds from A-D -> R16 filled by the fixed rule, projected", () => {
+  const e = rwcEntry(ALL_AD);
+  const r16 = e.qualification.bracket.filter((s) => s.stage === "R16");
+  assert.deepEqual(r16.map((s) => [s.n, ...sides(s)]), [
+    [1, "FIJ", "WAL"], [2, "NZL", "ESP"], [3, "FRA", "SCO"], [4, "RSA", "URU"],
+    [5, "ARG", "CHI"], [6, "IRE", "GEO"], [7, "AUS", "JPN"], [8, "ENG", "ITA"],
+  ]);
+  assert.ok(r16.every((s) => s.projected && s.provable && s.fixtureId === null && s.winner === null));
+  assert.equal(e.provable, true);
+  assert.deepEqual(e.unresolved, []);
+  // Nothing played in the knockouts yet: the quarter-finals stay structural.
+  const qf1 = slot(e, "QF", 1);
+  assert.deepEqual([qf1.home.code, qf1.away.code, qf1.home.label, qf1.away.label], [null, null, "Winner Round of 16 (2)", "Winner Round of 16 (4)"]);
+  assert.deepEqual([qf1.date, qf1.timeTBC, qf1.projected], ["2027-10-30T05:45:00Z", false, false]);
+  assert.equal(e.qualification.bracket.length, 16);
+  assert.deepEqual(e.qualification.bracket.slice(-2).map((s) => s.label), ["Bronze final", "Final"]);
+});
+
+test("bracket: thirds A, B, C and E -> the lone E third takes the one slot left vacant (D/E/F)", () => {
+  // A3, B3 and C3 are only admissible in slots 5, 6 and 2; the four thirds
+  // slots all admit E, so E3 can only be in slot 4. No permutation table needed.
+  const e = rwcEntry({ A: { bonus: 3 }, B: { bonus: 3 }, C: { bonus: 3 }, E: { bonus: 2 } });
+  assert.deepEqual(e.qualification.thirds.rows.filter((r) => r.q === "through").map((r) => r.pool).sort(), ["A", "B", "C", "E"]);
+  assert.deepEqual([2, 4, 5, 6].map((n) => slot(e, "R16", n).away.code), ["ESP", "USA", "CHI", "GEO"]);
+  assert.ok([2, 4, 5, 6].every((n) => slot(e, "R16", n).provable));
+  assert.equal(e.provable, true);
+});
+
+test("bracket: thirds A, B, E and F -> slots 2 and 4 unresolved, needs thirds-rule, until ESPN names the teams", () => {
+  const spec = { A: { bonus: 3 }, B: { bonus: 3 }, E: { bonus: 2 }, F: { bonus: 2 } };
+  const e = rwcEntry(spec);
+  assert.deepEqual([5, 6].map((n) => slot(e, "R16", n).away.code), ["CHI", "GEO"], "A3 and B3 still take their fixed slots");
+  for (const n of [2, 4]) {
+    const s = slot(e, "R16", n);
+    assert.equal(s.away.code, null);
+    assert.equal(s.provable, false);
+    assert.equal(s.home.code, n === 2 ? "NZL" : "RSA", "the pool winner's side is still filled");
+  }
+  assert.equal(e.provable, false);
+  assert.deepEqual(e.unresolved, [{ codes: ["TGA", "USA"], rank: null, criterion: null, needs: "thirds-rule", stage: "R16", slots: [2, 4] }]);
+  assert.match(e.notes.at(-1), /^TGA and USA go through as third-placed teams; World Rugby's allocation table decides which of Round of 16 \(2\) and Round of 16 \(4\)/);
+  // ESPN names them: the slots resolve from the rows and the entry is provable again.
+  const named = rwcEntry(spec, {}, [
+    ko("espn-700002", "2027-10-23T08:00:00Z", "Suncorp Stadium, Brisbane", "NZL", "TGA"),
+    ko("espn-700004", "2027-10-23T11:00:00Z", "Optus Stadium, Perth", "USA", "RSA"),
+  ]);
+  assert.deepEqual(sides(slot(named, "R16", 2)), ["NZL", "TGA"]);
+  assert.deepEqual(sides(slot(named, "R16", 4)), ["RSA", "USA"]);
+  assert.equal(slot(named, "R16", 4).projected, false);
+  assert.deepEqual(named.unresolved, []);
+  assert.equal(named.provable, true);
+});
+
+test("bracket: QF1 resolves only from played Round of 16 (2) and (4) winners", () => {
+  const r16_2 = ko("espn-700002", "2027-10-23T08:00:00Z", "Suncorp Stadium, Brisbane", "NZL", "ESP", 40, 10);
+  const r16_4 = ko("espn-700004", "2027-10-23T11:00:00Z", "Optus Stadium, Perth", "RSA", "URU", 18, 20);
+  const oneDone = rwcEntry(ALL_AD, {}, [r16_2]);
+  assert.equal(slot(oneDone, "R16", 2).winner, "NZL");
+  assert.deepEqual(sides(slot(oneDone, "QF", 1)), ["NZL", null]);
+  assert.equal(slot(oneDone, "QF", 1).projected, true);
+
+  const live = rwcEntry(ALL_AD, {}, [r16_2, { ...r16_4, status: { short: "2H", live: true } }]);
+  assert.equal(slot(live, "R16", 4).winner, null, "a game in play has no winner");
+  assert.deepEqual(slot(live, "R16", 4).status, { short: "2H", live: true });
+  assert.deepEqual(sides(slot(live, "QF", 1)), ["NZL", null]);
+
+  const both = rwcEntry(ALL_AD, {}, [r16_2, r16_4]);
+  assert.equal(slot(both, "R16", 4).winner, "URU", "the upset stands");
+  assert.deepEqual(sides(slot(both, "QF", 1)), ["NZL", "URU"]);
+  assert.deepEqual(sides(slot(both, "SF", 1)), [null, null], "a semi waits on its quarter-finals");
+
+  // A 0-0 with no status is ESPN's no-score placeholder: no winner.
+  const placeholder = rwcEntry(ALL_AD, {}, [{ ...r16_2, homeScore: 0, awayScore: 0 }]);
+  assert.deepEqual([slot(placeholder, "R16", 2).homeScore, slot(placeholder, "R16", 2).winner], [null, null]);
+  assert.deepEqual(sides(slot(placeholder, "QF", 1)), [null, null]);
+
+  // Level at the end (a kicking competition decided it): the score names no winner.
+  const level = rwcEntry(ALL_AD, {}, [{ ...r16_2, homeScore: 20, awayScore: 20 }]);
+  assert.equal(slot(level, "R16", 2).winner, null);
+});
+
+test("bracket: the bronze final takes the semi-final losers; a moved game is still found on its teams", () => {
+  const games = [
+    ko("k1", "2027-10-23T08:00:00Z", "Suncorp Stadium, Brisbane", "NZL", "ESP", 40, 10),
+    ko("k2", "2027-10-23T05:00:00Z", "Allianz Stadium, Sydney", "FIJ", "WAL", 20, 25),  // R16 (1): the venue nobody published
+    ko("k3", "2027-10-23T09:00:00Z", "Marvel Stadium, Melbourne", "FRA", "SCO", 30, 20),
+    ko("k4", "2027-10-23T11:00:00Z", "Optus Stadium, Perth", "RSA", "URU", 50, 0),
+    ko("k5", "2027-10-24T08:00:00Z", "Allianz Stadium, Sydney", "ARG", "CHI", 30, 10),
+    ko("k6", "2027-10-24T09:00:00Z", "Marvel Stadium, Melbourne", "IRE", "GEO", 30, 10),
+    ko("k7", "2027-10-24T06:00:00Z", "Suncorp Stadium, Brisbane", "AUS", "JPN", 30, 10),
+    ko("k8", "2027-10-24T11:00:00Z", "Optus Stadium, Perth", "ENG", "ITA", 30, 10),
+    ko("q1", "2027-10-30T05:45:00Z", "Accor Stadium, Sydney", "NZL", "RSA", 20, 15),
+    ko("q2", "2027-10-30T08:45:00Z", "Suncorp Stadium, Brisbane", "WAL", "FRA", 10, 15),
+    ko("q3", "2027-10-31T06:00:00Z", "Suncorp Stadium, Brisbane", "ARG", "IRE", 10, 15),
+    ko("q4", "2027-10-31T09:00:00Z", "Accor Stadium, Sydney", "AUS", "ENG", 25, 20),
+    // SF1 moved to Melbourne a day late: found on its two teams.
+    ko("s1", "2027-11-06T09:00:00Z", "Marvel Stadium, Melbourne", "FRA", "NZL", 18, 24),
+    ko("s2", "2027-11-06T06:00:00Z", "Accor Stadium, Sydney", "IRE", "AUS", 30, 20),
+  ];
+  const e = rwcEntry(ALL_AD, {}, games);
+  assert.equal(slot(e, "R16", 1).fixtureId, "k2", "the one unmatched row on the one unmatched slot's day");
+  assert.deepEqual(sides(slot(e, "R16", 1)), ["FIJ", "WAL"]);
+  assert.equal(slot(e, "SF", 1).fixtureId, "s1");
+  assert.deepEqual(sides(slot(e, "SF", 1)), ["NZL", "FRA"]);
+  assert.deepEqual(sides(slot(e, "BRONZE", 1)), ["FRA", "AUS"]);
+  assert.deepEqual(sides(slot(e, "FINAL", 1)), ["NZL", "IRE"]);
+  assert.equal(slot(e, "FINAL", 1).projected, true);
+  assert.deepEqual([slot(e, "FINAL", 1).date, slot(e, "FINAL", 1).timeTBC], ["2027-11-13T09:00:00Z", false]);
+  assert.equal(e.played, 36);
+  assert.equal(e.excluded.length, games.length, "no knockout game reaches the pool tables");
+  assert.deepEqual(selfCheck(e, RWC_FULL), []);
+});
+
+test("World Cup extras appear from the first played game only, and only on pools", () => {
+  assert.equal(competitionEntry(RWC_FULL, { fixtures: { fixtures: [] } }).qualification, null);
+  const one = rwcEntry({}, { drop: rwcPoolStage().fixtures.fixtures.slice(1).map((f) => f.id) });
+  assert.equal(one.played, 1);
+  assert.equal(one.qualification.thirds.rows.length, 6);
+  assert.equal(one.qualification.bracket.length, 16);
+  assert.ok(one.qualification.bracket.every((s) => s.home.code === null && s.away.code === null && s.provable));
+  assert.deepEqual([one.unresolved, one.notes, one.provable], [[], [], true]);
+  assert.ok(one.groups.flatMap((g) => g.rows).every((r) => r.q === null));
+  const six = competitionEntry(sixNations(), { fixtures: asFixtures(round1(null)), names });
+  assert.equal(six.qualification, null);
+  assert.ok(six.groups[0].rows.every((r) => r.q === null));
+  assert.equal(resolveBracket(bracketFor("6n-2027"), six.groups, null, null, "6n-2027").bracket.length, 0);
+});
+
+test("poolQualification leaves q null where the bounds and the places prove nothing", () => {
+  const groups = [{ name: "A", rows: [
+    { rank: 1, code: "NZL", P: 3, pending: 0, Pts: 9 },
+    { rank: 2, tied: true, code: "AUS", P: 3, pending: 0, Pts: 9 },
+    { rank: 2, tied: true, code: "CHI", P: 3, pending: 0, Pts: 9 },
+    { rank: 4, code: "HKG", P: 3, pending: 0, Pts: 0 },
+  ] }];
+  // NZL above AUS/CHI on a tiebreak, the pair level for 2nd and 3rd.
+  groups[0].rows[0].rank = 1;
+  poolQualification(groups, RULES.rwc);
+  assert.deepEqual(groups[0].rows.map((r) => r.q), ["through", null, null, "out"]);
 });

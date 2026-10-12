@@ -31,11 +31,17 @@
 // first kickoff Fri 27 Nov 16:40 UTC = Sat 28 Nov 03:40 Sydney time) pairs
 // sides that have already met, so every finals game is excluded (see
 // rncPoolStage) rather than inflating P and Pts.
+//
+// The World Cup entry also carries, from its first played game, `q` on every
+// pool row ("through" / "out" once the arithmetic proves it, null until
+// then), the best third-placed teams ranked across the pools, and the
+// knockout bracket's 16 slots — filled from ESPN's knockout rows where they
+// exist, else by the bracket rule once the pools settle (see resolveBracket).
 
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { rulesFor } from "./competition-rules.mjs";
+import { rulesFor, bracketFor } from "./competition-rules.mjs";
 import { API_SPORTS_NATIONS } from "./static-fixtures.mjs";
 import { HAND_FINALS } from "./build-fixtures.mjs";
 
@@ -430,6 +436,331 @@ export function groupStandings(comp, games, rules, names = {}) {
   return { groups, unresolved, notes };
 }
 
+// ---------------------------------------------------------------------------
+// World Cup: qualification flags, the best thirds, the knockout bracket
+// ---------------------------------------------------------------------------
+// Everything here is published only when the results PROVE it. A pool's top
+// two go through, and the four best third-placed teams across the six pools
+// join them in the Round of 16 (competition-rules.mjs RULES.rwc). Until the
+// arithmetic settles a question the answer is null, never a guess.
+
+const maxPerGameOf = (rules) => rules?.maxPerGame ?? (rules?.win ?? 4) + 1;
+
+// Every team in the pool has played everyone else and every try count is in:
+// nothing can move any more.
+export const poolSettled = (rows) =>
+  Array.isArray(rows) && rows.length > 1 && rows.every((r) => r.P === rows.length - 1 && r.pending === 0);
+
+// The row at a place in a ranked group, or the codes sharing it when the
+// place falls inside a tie ("2=" covers places 2 and 3).
+export function atPlace(rows, place) {
+  const seg = (rows ?? []).filter((r) => {
+    const size = rows.filter((x) => x.rank === r.rank).length;
+    return r.rank <= place && place < r.rank + size;
+  });
+  if (!seg.length) return { row: null, tie: null };
+  return seg.length === 1 ? { row: seg[0], tie: null } : { row: seg[0], tie: seg.map((r) => r.code) };
+}
+
+// q on bounds alone, one value per row (same order). floor = Pts (points
+// never go down); ceil = Pts + one try bonus per game still awaiting its try
+// counts + maxPerGame for every game left. "through": fewer than `qualify`
+// rivals can reach this team's points — a rival that could only draw LEVEL
+// counts, because equality proves nothing. "out": at least `outAbove` rivals
+// are already beyond its ceiling (for the World Cup, three: a fourth-placed
+// team cannot be a best third either). null otherwise.
+export function qualifyFlags(rows, qualify, { maxPerGame = 5, games = rows.length - 1, outAbove = qualify + 1 } = {}) {
+  const b = rows.map((r) => ({ floor: r.Pts, ceil: r.Pts + (r.pending ?? 0) + maxPerGame * Math.max(0, games - r.P) }));
+  return b.map((me, i) => {
+    let reach = 0;
+    let above = 0;
+    b.forEach((o, j) => {
+      if (j === i) return;
+      if (o.ceil >= me.floor) reach++;
+      if (o.floor > me.ceil) above++;
+    });
+    if (reach < qualify) return "through";
+    if (above >= outAbove) return "out";
+    return null;
+  });
+}
+
+// Sets `q` on every row of every pool: the bounds first; then, once a pool is
+// settled, its final places (a tie that straddles the line stays null). The
+// third-placed row is left to the best-thirds ranking (applyThirds).
+export function poolQualification(groups, rules) {
+  const qualify = rules.qualify;
+  const thirdPlace = rules.thirdsQualify ? qualify + 1 : null;
+  for (const g of groups) {
+    const bounds = qualifyFlags(g.rows, qualify, { maxPerGame: maxPerGameOf(rules), outAbove: thirdPlace ?? qualify });
+    const settled = poolSettled(g.rows);
+    g.rows.forEach((r, i) => {
+      let q = bounds[i];
+      if (q == null && settled) {
+        const hi = r.rank + g.rows.filter((x) => x.rank === r.rank).length - 1;
+        if (hi <= qualify) q = "through";
+        else if (r.rank > (thirdPlace ?? qualify)) q = "out";
+      }
+      r.q = q;
+    });
+  }
+  return groups;
+}
+
+// The third-placed team of each pool, ranked across pools by rules.thirds
+// (points, then PD, then try difference) with the same cluster engine as a
+// table: TD is unprovable while a game lacks try counts, and a set level past
+// the last criterion is tied with needs "rule" (the published order ends
+// there). `q` is set only once every pool is settled and no pool's third
+// place is shared; a tie straddling the qualifying line stays null.
+// `poolTie` lists the codes sharing a pool's third place (the row shown is
+// the first of them in code order), null when the place is settled.
+export function bestThirds(groups, rules) {
+  const qualify = rules.thirdsQualify ?? 0;
+  const place = (rules.qualify ?? 2) + 1;
+  const picks = (groups ?? []).map((g) => ({ pool: g.name ?? null, ...atPlace(g.rows, place) })).filter((p) => p.row);
+  const poolOfCode = new Map(picks.map((p) => [p.row.code, p]));
+  const ranked = rankRows(picks.map((p) => p.row), [], { tiebreak: [...(rules.thirds ?? ["pts"])], restart: false });
+  const decidable = picks.length === (groups ?? []).length && (groups ?? []).every((g) => poolSettled(g.rows)) && picks.every((p) => !p.tie);
+  const rows = ranked.rows.map((r) => {
+    const p = poolOfCode.get(r.code);
+    let q = null;
+    if (decidable) {
+      const hi = r.rank + ranked.rows.filter((x) => x.rank === r.rank).length - 1;
+      if (hi <= qualify) q = "through";
+      else if (r.rank > qualify) q = "out";
+    }
+    return {
+      pool: p.pool, rank: r.rank, tied: r.tied, code: r.code, id: r.id, team: r.team,
+      Pts: r.Pts, PD: r.PD, TD: r.TF == null || r.TA == null ? null : r.TF - r.TA,
+      q, poolTie: p.tie,
+    };
+  });
+  return {
+    qualify,
+    provable: decidable && rows.every((r) => r.q != null),
+    rows,
+    unresolved: ranked.unresolved.map(({ codes, rank, criterion, needs }) => ({ codes, rank, criterion, needs })),
+  };
+}
+
+// Copies each third's q onto its pool row (only where the pool row has none).
+function applyThirds(groups, thirds) {
+  const q = new Map(thirds.rows.filter((r) => r.q && !r.poolTie).map((r) => [r.code, r.q]));
+  for (const g of groups) for (const r of g.rows) if (r.q == null && q.has(r.code)) r.q = q.get(r.code);
+}
+
+const STAGE_LABELS = {
+  R16: (n) => `Round of 16 (${n})`,
+  QF: (n) => `Quarter-final ${n}`,
+  SF: (n) => `Semi-final ${n}`,
+  BRONZE: () => "Bronze final",
+  FINAL: () => "Final",
+};
+const stageLabel = (stage, n) => (STAGE_LABELS[stage] ?? ((k) => `${stage} ${k}`))(n);
+const slotKey = (s) => `${s.stage}${s.n}`;
+
+function fromLabel(from) {
+  if (from?.pool) return `${ordinal(from.place)} Pool ${from.pool}`;
+  if (from?.thirds) return `3rd Pool ${from.thirds.join("/")}`;
+  if (from?.winner) return `Winner ${stageLabel(from.winner.stage, from.winner.n)}`;
+  if (from?.loser) return `Loser ${stageLabel(from.loser.stage, from.loser.n)}`;
+  return null;
+}
+
+// The local calendar day of a kickoff in the tournament's time zone (the
+// slots' `date` is the local match day).
+const dayIn = (iso, tz) => {
+  const t = Date.parse(iso ?? "");
+  if (!Number.isFinite(t)) return null;
+  return new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date(t));
+};
+
+// The knockout bracket, slot by slot in play order. Each slot is filled, in
+// this order of trust:
+//   1. an ESPN row for the competition, matched on the local match day and the
+//      slot's city (ESPN prints sponsored venue names), else as the only
+//      unmatched row on a day with one unmatched slot, else — once both sides
+//      are known — on its two teams. Its real teams, kickoff, venue, score and
+//      status are used as they are (projected false);
+//   2. the bracket rule for any side still empty (projected true): a pool's
+//      1st or 2nd once that pool is settled and the place is not shared; a
+//      qualifying third once the best thirds are decided — a third from pools
+//      A-D always takes its fixed slot (it is admissible in only one), and a
+//      lone E or F third takes the one slot left vacant. When BOTH E3 and F3
+//      qualify, which of the two vacant slots each takes is World Rugby's
+//      permutation table, which is not encoded: those slots stay empty,
+//      provable false, and the entry lists them with needs "thirds-rule";
+//   3. later rounds only from an earlier slot's winner (or loser, for the
+//      bronze final), which only a played ESPN row decides. A knockout game
+//      level at the end (decided by a kicking competition) names no winner.
+// A 0-0 row with no live status is ESPN's no-score placeholder, as in the
+// core (unless a person entered it in HAND_FINALS).
+export function resolveBracket(def, groups, thirds, fixtures, key, { handFinals = HAND_FINALS } = {}) {
+  const none = { bracket: [], unresolved: [], notes: [] };
+  if (!def?.slots?.length || !Array.isArray(groups)) return none;
+  const tz = def.tz ?? "UTC";
+  const slots = def.slots;
+  const poolOf = new Map();
+  const rowByCode = new Map();
+  for (const g of groups) for (const r of g.rows ?? []) { poolOf.set(r.code, g.name ?? null); rowByCode.set(r.code, r); }
+  const team = (code) => {
+    const r = rowByCode.get(code);
+    return { code, team: r?.team ?? code, id: r?.id ?? API_ID_BY_CODE[code] ?? null };
+  };
+
+  // A pool's settled place, or null.
+  const placed = (letter, place) => {
+    const g = groups.find((x) => x.name === letter);
+    if (!g || !poolSettled(g.rows)) return null;
+    const at = atPlace(g.rows, place);
+    return at.row && !at.tie ? team(at.row.code) : null;
+  };
+
+  // Qualifying thirds -> slots.
+  const thirdIn = new Map();      // slot key -> team
+  const thirdsOpen = new Map();   // slot key -> candidate codes (needs the permutation table)
+  const thirdsSlots = slots.filter((s) => s.home?.thirds || s.away?.thirds);
+  const admits = (s, letter) => (s.home?.thirds ?? s.away?.thirds ?? []).includes(letter);
+  if (thirds?.provable) {
+    const floating = [];
+    for (const t of thirds.rows.filter((r) => r.q === "through")) {
+      const n = def.fixedThirds?.[t.pool];
+      const slot = thirdsSlots.find((s) => s.n === n);
+      if (slot && admits(slot, t.pool) && !thirdIn.has(slotKey(slot))) thirdIn.set(slotKey(slot), team(t.code));
+      else floating.push(t);
+    }
+    const vacant = thirdsSlots.filter((s) => !thirdIn.has(slotKey(s)));
+    if (floating.length === 1 && vacant.length === 1 && admits(vacant[0], floating[0].pool)) {
+      thirdIn.set(slotKey(vacant[0]), team(floating[0].code));
+    } else if (floating.length) {
+      for (const s of vacant) thirdsOpen.set(slotKey(s), floating.map((t) => t.code).sort());
+    }
+  }
+
+  // ESPN rows for the knockout stage: this competition, on or after the first
+  // slot's day.
+  const rows = (Array.isArray(fixtures) ? fixtures : fixtures?.fixtures ?? []).filter((f) => f?.comp?.key === key);
+  const firstDay = slots.map((s) => s.date).sort()[0];
+  const ko = rows.map((f) => ({ f, day: dayIn(f.date, tz) })).filter((x) => x.day && x.day >= firstDay);
+  const claimed = new Set();
+  const matched = new Map();
+  const claim = (s, x) => { matched.set(slotKey(s), x.f); claimed.add(x.f.id); };
+  for (const s of slots) {
+    if (!s.city) continue;
+    const c = ko.filter((x) => !claimed.has(x.f.id) && x.day === s.date && String(x.f.venue ?? "").toLowerCase().includes(s.city.toLowerCase()));
+    if (c.length === 1) claim(s, c[0]);
+  }
+  for (const day of [...new Set(slots.map((s) => s.date))]) {
+    const open = slots.filter((s) => s.date === day && !matched.has(slotKey(s)));
+    const free = ko.filter((x) => x.day === day && !claimed.has(x.f.id));
+    if (open.length === 1 && free.length === 1) claim(open[0], free[0]);
+  }
+
+  const results = new Map(); // slot key -> { winner, loser }
+  const refCode = (from) => {
+    const ref = from.winner ?? from.loser;
+    const res = results.get(slotKey(ref));
+    return (from.winner ? res?.winner : res?.loser) ?? null;
+  };
+  const ruleSide = (s, from) => {
+    if (from.pool) return placed(from.pool, from.place);
+    if (from.thirds) return thirdIn.get(slotKey(s)) ?? null;
+    if (from.winner || from.loser) {
+      const code = refCode(from);
+      return code ? team(code) : null;
+    }
+    return null;
+  };
+  // Can this team be the side `from` describes? true / false / null (unknown).
+  const fits = (code, from) => {
+    if (!code) return null;
+    if (from.pool) return poolOf.get(code) === from.pool;
+    if (from.thirds) return from.thirds.includes(poolOf.get(code));
+    const c = refCode(from);
+    return c ? c === code : null;
+  };
+  const real = (side) => (side?.code && poolOf.has(side.code) ? team(side.code) : null);
+  const sideOut = (t, from) => ({ code: t?.code ?? null, team: t?.team ?? null, id: t?.id ?? null, from: JSON.parse(JSON.stringify(from)), label: fromLabel(from) });
+
+  const bracket = [];
+  for (const s of slots) {
+    const k = slotKey(s);
+    const rh = ruleSide(s, s.home);
+    const ra = ruleSide(s, s.away);
+    let f = matched.get(k) ?? null;
+    if (!f && rh && ra) {
+      const want = [rh.code, ra.code].sort().join("-");
+      const c = ko.filter((x) => !claimed.has(x.f.id) && [x.f.home?.code, x.f.away?.code].sort().join("-") === want);
+      if (c.length === 1) { claim(s, c[0]); f = c[0].f; }
+    }
+    let home = null;
+    let away = null;
+    let homeScore = null;
+    let awayScore = null;
+    let status = null;
+    if (f) {
+      home = real(f.home);
+      away = real(f.away);
+      homeScore = f.homeScore ?? null;
+      awayScore = f.awayScore ?? null;
+      if (homeScore != null && awayScore != null && Number(homeScore) === 0 && Number(awayScore) === 0 && !f.status?.live && !Object.hasOwn(handFinals ?? {}, f.id)) {
+        homeScore = null;
+        awayScore = null;
+      }
+      const straight = fits(home?.code, s.home) === true || fits(away?.code, s.away) === true;
+      const crossed = fits(home?.code, s.away) === true || fits(away?.code, s.home) === true;
+      if (crossed && !straight) {
+        [home, away] = [away, home];
+        [homeScore, awayScore] = [awayScore, homeScore];
+      }
+      status = f.status ?? null;
+    }
+    const projected = (!home && !!rh) || (!away && !!ra);
+    home ??= rh;
+    away ??= ra;
+    let winner = null;
+    let loser = null;
+    if (home?.code && away?.code && homeScore != null && awayScore != null && !status?.live && Number(homeScore) !== Number(awayScore)) {
+      [winner, loser] = Number(homeScore) > Number(awayScore) ? [home.code, away.code] : [away.code, home.code];
+    }
+    results.set(k, { winner, loser });
+    // A thirds side the permutation table would fill, and no ESPN row named.
+    const thirdsSide = s.home?.thirds ? home : away;
+    const open = thirdsOpen.has(k) && !thirdsSide;
+    bracket.push({
+      stage: s.stage,
+      n: s.n,
+      label: stageLabel(s.stage, s.n),
+      date: f?.date ?? s.kickoff ?? `${s.date}T00:00:00Z`,
+      timeTBC: f ? !!f.timeTBC : !s.kickoff,
+      venue: f?.venue ?? s.venue ?? null,
+      home: sideOut(home, s.home),
+      away: sideOut(away, s.away),
+      fixtureId: f?.id ?? null,
+      homeScore: homeScore == null ? null : Number(homeScore),
+      awayScore: awayScore == null ? null : Number(awayScore),
+      status,
+      winner,
+      projected,
+      provable: !open,
+    });
+  }
+
+  const openSlots = bracket.filter((b) => !b.provable);
+  if (!openSlots.length) return { bracket, unresolved: [], notes: [] };
+  const codes = [...new Set(openSlots.flatMap((b) => thirdsOpen.get(slotKey(b)) ?? []))].sort();
+  const labels = joinNames(openSlots.map((b) => b.label));
+  return {
+    bracket,
+    unresolved: [{ codes, rank: null, criterion: null, needs: "thirds-rule", stage: "R16", slots: openSlots.map((b) => b.n) }],
+    notes: [
+      `${joinNames(codes.map((c) => rowByCode.get(c)?.team ?? c))} go through as third-placed teams; World Rugby's allocation table ` +
+        `decides which of ${labels} each plays, and we don't hold it yet.`,
+    ],
+  };
+}
+
 // Games a complete table holds: the registry's fixture count, except where
 // each pair meets once and the structure fixes the number (so the World
 // Cup's table completes at 36 even once its 16 knockouts are published).
@@ -486,6 +817,19 @@ export function competitionEntry(comp, { nations, fixtures, rncTries = {}, espnT
   const total = tableTotal(comp, tableRules);
   const complete = total > 0 && played === total;
   const { groups, unresolved, notes } = groupStandings(comp, games, tableRules, names);
+  // World Cup extras, from the first played game: q on every row, the best
+  // thirds and the bracket. A bracket slot that needs a rule we don't hold
+  // joins `unresolved` (needs "thirds-rule").
+  let qualification = null;
+  if (groups && comp.structure === "pools" && tableRules?.qualify) {
+    poolQualification(groups, tableRules);
+    const thirds = tableRules.thirdsQualify ? bestThirds(groups, tableRules) : null;
+    if (thirds) applyThirds(groups, thirds);
+    const br = resolveBracket(bracketFor(comp.key), groups, thirds, fixtures, comp.key);
+    unresolved.push(...br.unresolved);
+    notes.push(...br.notes);
+    qualification = { thirds, bracket: br.bracket };
+  }
   return {
     key: comp.key,
     label: comp.label ?? null,
@@ -505,7 +849,7 @@ export function competitionEntry(comp, { nations, fixtures, rncTries = {}, espnT
     unresolved,
     notes,
     excluded,
-    qualification: null,
+    qualification,
   };
 }
 

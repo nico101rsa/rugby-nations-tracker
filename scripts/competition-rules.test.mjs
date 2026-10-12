@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  RULES, TOKENS, rulesFor, POOL_NAMES, RWC_R16_SLOTS, RWC_FIXED_THIRDS, RWC_KNOCKOUT,
+  RULES, TOKENS, rulesFor, POOL_NAMES, RWC_R16_SLOTS, RWC_FIXED_THIRDS, RWC_KNOCKOUT, bracketFor,
 } from "./competition-rules.mjs";
 import { ESPN_CODES } from "./build-competitions.mjs";
 
@@ -111,4 +111,35 @@ test("rulesFor reads the key prefix", () => {
   assert.equal(rulesFor("x-1"), null);
   assert.equal(rulesFor("constructor-2027"), null);
   assert.equal(rulesFor(undefined), null);
+});
+
+test("the World Cup's maxPerGame is a win plus the try bonus", () => {
+  assert.equal(RULES.rwc.maxPerGame, RULES.rwc.win + 1);
+});
+
+test("bracketFor: the World Cup's 16 slots in play order, matchable on (local day, city)", () => {
+  const b = bracketFor("rwc-2027");
+  assert.equal(b.slots.length, 16);
+  assert.deepEqual(b.slots.map((s) => `${s.stage}${s.n}`), [
+    "R161", "R162", "R163", "R164", "R165", "R166", "R167", "R168", "QF1", "QF2", "QF3", "QF4", "SF1", "SF2", "BRONZE1", "FINAL1",
+  ]);
+  assert.equal(b.fixedThirds, RWC_FIXED_THIRDS);
+  assert.equal(b.tz, "Australia/Sydney");
+  const seen = new Set();
+  for (const s of b.slots) {
+    if (s.venue == null) {
+      assert.equal(s.city, null, `${s.stage}${s.n}`);
+      continue;
+    }
+    assert.ok(s.venue.includes(s.city), `${s.stage}${s.n}: ${s.venue} names ${s.city}`);
+    const k = `${s.date} ${s.city}`;
+    assert.ok(!seen.has(k), `${k} is ambiguous`);
+    seen.add(k);
+  }
+  // Only R16 (1)'s venue is unpublished, and it is alone in being unmatched
+  // on its day once the other three are: the build matches it by elimination.
+  assert.deepEqual(b.slots.filter((s) => !s.city).map((s) => `${s.stage}${s.n}`), ["R161"]);
+  assert.equal(bracketFor("6n-2027"), null);
+  assert.equal(bracketFor("constructor"), null);
+  assert.equal(bracketFor(undefined), null);
 });
