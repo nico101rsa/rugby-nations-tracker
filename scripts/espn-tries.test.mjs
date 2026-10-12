@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { fetchEspnTries, tryCandidates, serialiseCache, RECENT_HOURS } from "./espn-tries.mjs";
+import { fetchEspnTries, tryCandidates, serialiseCache, RECENT_HOURS, FETCH_TIMEOUT_MS } from "./espn-tries.mjs";
 
 const REGISTRY = {
   competitions: [
@@ -205,4 +205,22 @@ test("--recent with only old misses makes zero requests (the 15-minute no-op sta
   const out = await run([row("espn-1", { date: "2027-02-01T20:10:00.000Z" })], fetchJson, { recentHours: RECENT_HOURS });
   assert.deepEqual([urls.length, out.fetched, out.cached], [0, 0, 0]);
   assert.deepEqual(tryCandidates([row("espn-1", { date: "not a date" })], REGISTRY, {}, { since: 0 }), [], "an unreadable date is never 'recent'");
+});
+
+test("the default fetch carries a timeout, so a hung ESPN request can't hold up a burst pass", async () => {
+  const seen = [];
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async (url, opts = {}) => {
+    seen.push(opts.signal);
+    return { ok: true, json: async () => summary() };
+  };
+  try {
+    const out = await fetchEspnTries({ fixtures: [row("espn-603602")], registry: REGISTRY, cache: {}, log: quiet, now: NOW });
+    assert.equal(out.cached, 1);
+  } finally {
+    globalThis.fetch = realFetch;
+  }
+  assert.ok(seen.length >= 1);
+  for (const s of seen) assert.ok(s instanceof AbortSignal, "every request is abortable");
+  assert.ok(FETCH_TIMEOUT_MS > 0 && FETCH_TIMEOUT_MS <= 30_000, "well under one 3-minute burst pass");
 });

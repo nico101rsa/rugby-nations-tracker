@@ -73,8 +73,14 @@ export function tryCandidates(fixtures, registry, cache = {}, { since = null } =
   return out.sort((a, b) => String(a.row.date).localeCompare(String(b.row.date)) || (a.row.id < b.row.id ? -1 : 1));
 }
 
+// The fixtures burst runs this between two fixtures.json publishes, every
+// 3 minutes, while a game is in play. Without a timeout one hung ESPN request
+// waits out undici's default (minutes), and the live score of any other game
+// in play waits with it. A missed count is retried next pass.
+export const FETCH_TIMEOUT_MS = 15_000;
+
 async function defaultFetchJson(url) {
-  const res = await fetch(url);
+  const res = await fetch(url, { signal: AbortSignal.timeout(FETCH_TIMEOUT_MS) });
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
   return res.json();
 }
