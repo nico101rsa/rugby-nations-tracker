@@ -17,6 +17,9 @@
 // games, incl. untracked opponents like Portugal) and rolling last-10
 // averages (tracked opponents only — `tracked` flags each entry).
 
+import { mergeNext } from "./fetch-espn-fixtures.mjs";
+import { applyKickoffOverrides, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
+
 const TRACKED_NAMES = {
   England: "ENG", France: "FRA", Ireland: "IRE", Italy: "ITA",
   Scotland: "SCO", Wales: "WAL", Argentina: "ARG", Australia: "AUS",
@@ -367,6 +370,20 @@ export function mirrorMissingResults(teams) {
   return out;
 }
 
+// Each team's `next`: the vendor's list merged with ESPN's (deduped per UTC
+// day + opponent), then the kickoff corrections (kickoff-overrides.mjs) laid
+// over it, keyed from this team's side, so the Team page and the reminders
+// read the same corrected time as fixtures.json. The dedupe runs first, on
+// vendor times; a correction never leaves its UTC day, so it can't change
+// what merged. `last` is untouched — mirrorMissingResults works on that.
+export function mergeUpcoming(teams, espn, { now = Date.now(), table = KICKOFF_OVERRIDES, log = console.log } = {}) {
+  for (const [code, t] of Object.entries(teams)) {
+    t.next = mergeNext(t.next, espn?.[code] ?? [], now);
+    t.next = applyKickoffOverrides(t.next, keyOf.teamNext(code), table, { log });
+  }
+  return teams;
+}
+
 // Raw vendor events -> published team entries: ESPN fixtures merged into
 // `next`, per-game tries/cards enriched onto `last`. Both supplements are
 // keyless (no SportsAPI Pro quota), so the catch-up job runs this too and its
@@ -374,12 +391,8 @@ export function mirrorMissingResults(teams) {
 export async function assembleTeams(eventsByCode, statsJson) {
   // SportsAPI Pro's next feed misses whole competitions (RSA's 2026 Aug–Sep
   // tests were absent) — supplement upcoming fixtures from keyless ESPN.
-  const { fetchEspnFixtures, mergeNext } = await import("./fetch-espn-fixtures.mjs");
-  const teams = buildTeamEvents(eventsByCode);
-  const espn = await fetchEspnFixtures();
-  for (const [code, t] of Object.entries(teams)) {
-    t.next = mergeNext(t.next, espn[code] ?? []);
-  }
+  const { fetchEspnFixtures } = await import("./fetch-espn-fixtures.mjs");
+  const teams = mergeUpcoming(buildTeamEvents(eventsByCode), await fetchEspnFixtures());
 
   // Per-game tries/cards for the last-10 window: NC games from our own
   // stats.json, TRC/6N from ESPN; games with no source keep null (the app

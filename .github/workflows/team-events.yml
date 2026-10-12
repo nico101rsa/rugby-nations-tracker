@@ -77,7 +77,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add team-events.json team-events-archive.json fixtures.json competitions.json
+          # calendar/ is rebuilt by build-fixtures alongside fixtures.json
+          # (scripts/build-calendars.mjs); every committer of one commits both.
+          git add team-events.json team-events-archive.json fixtures.json competitions.json calendar
           git diff --cached --quiet && echo "No team-events changes" && exit 0
           git commit -m "Team events refresh $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
           # The live fixtures burst commits fixtures.json every few minutes on a

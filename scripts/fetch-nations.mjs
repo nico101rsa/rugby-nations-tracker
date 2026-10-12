@@ -12,7 +12,8 @@
 import { writeFile, readFile, mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { mergeStaticFixtures } from "./static-fixtures.mjs";
+import { mergeStaticFixtures, API_SPORTS_CODE_BY_ID } from "./static-fixtures.mjs";
+import { applyKickoffOverrides, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 import { scrapeTries } from "./scrape-tries.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -186,6 +187,24 @@ const slim = (g) => ({
   away: { id: g.teams.away.id, name: g.teams.away.name, logo: g.teams.away.logo, score: g.scores?.away ?? null },
 });
 
+// Raw cached api-sports games -> the two published arrays, with the kickoff
+// corrections (kickoff-overrides.mjs) laid over the SLIM rows only. The raw
+// games — the cache, `finished`, computeLog and scrapeTries — keep the
+// vendor's times: scrapeTries matches ESPN by kickoff minute
+// (scrape-tries.mjs), so a corrected time there would lose the try count.
+// A moved row re-sorts; the arrays are otherwise exactly what they were.
+export function slimGames(all, { table = KICKOFF_OVERRIDES, log = console.log } = {}) {
+  const keyFn = keyOf.nations(API_SPORTS_CODE_BY_ID);
+  const corrected = (rows) => {
+    const out = applyKickoffOverrides(rows, keyFn, table, { log });
+    return out === rows ? rows : out.sort((a, b) => new Date(a.date) - new Date(b.date));
+  };
+  return {
+    results: corrected(all.filter((g) => isFinished(g) || isLive(g)).map(slim)),
+    fixtures: corrected(mergeStaticFixtures(all.filter(isUpcoming).map(slim), all)),
+  };
+}
+
 export async function refresh({ dates }) {
   // load cache
   let cache = {};
@@ -207,8 +226,7 @@ export async function refresh({ dates }) {
   await writeFile(CACHE, JSON.stringify(cache, null, 0));
 
   const all = Object.values(cache).sort((a, b) => new Date(a.date) - new Date(b.date));
-  const results = all.filter((g) => isFinished(g) || isLive(g)).map(slim);
-  const fixtures = mergeStaticFixtures(all.filter(isUpcoming).map(slim), all);
+  const { results, fixtures } = slimGames(all);
   const finished = all.filter(isFinished);
   const matchTries = await scrapeTries(finished);
   const log = computeLog(finished, matchTries);

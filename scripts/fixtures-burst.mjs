@@ -94,9 +94,15 @@ export async function runFixturesBurst({
 // Mid-burst publish, mirroring refresh.mjs's gitPublish. CI only — locally the
 // burst just rewrites the file, as a plain build would. fixtures.json is served
 // from the site root, so unlike nations.json there is nothing to mirror.
+// calendar/ is rebuilt with every fixtures.json (build-calendars.mjs) and must
+// ride the same commit: a pass that left it out would publish a corrected
+// kickoff to the app and not to the calendars. The calendars are byte-stable
+// while a game is live, so this adds nothing to a quiet pass's no-op.
+export const PUBLISH_PATHS = ["fixtures.json", "calendar"];
+
 function gitPublish(msg) {
   if (!process.env.GITHUB_ACTIONS) return;
-  execSync("git add fixtures.json");
+  execSync(`git add ${PUBLISH_PATHS.join(" ")}`);
   if (!execSync("git diff --cached --name-only").toString().trim()) return; // no change → no Pages build
   execSync(`git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m ${JSON.stringify(msg)}`);
 

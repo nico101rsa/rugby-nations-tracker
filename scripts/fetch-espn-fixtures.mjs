@@ -18,10 +18,25 @@ export const ESPN_TEAM_IDS = {
   NZL: 8, FRA: 9, ARG: 10, FIJ: 14, ITA: 20, JPN: 23,
 };
 
-const CODE_NAMES = {
+export const CODE_NAMES = {
   ENG: "England", SCO: "Scotland", IRE: "Ireland", WAL: "Wales",
   RSA: "South Africa", AUS: "Australia", NZL: "New Zealand", FRA: "France",
   ARG: "Argentina", FIJ: "Fiji", ITA: "Italy", JPN: "Japan",
+};
+
+// Codes for common untracked opponents, by ESPN display name; anything else
+// falls back to the first three letters of the name (flags for these don't
+// exist in the app — it renders the code as text). fixtures.json prints these
+// (build-fixtures.mjs re-exports them), and kickoff-overrides.mjs keys an
+// untracked opponent's team-events row with the same map, so lives here, in
+// the leaf module both can import without a cycle.
+export const UNTRACKED_CODES = {
+  Georgia: "GEO", Portugal: "POR", Uruguay: "URU", Spain: "ESP", Chile: "CHI",
+  Samoa: "SAM", Tonga: "TGA", Romania: "ROU", Namibia: "NAM", Canada: "CAN",
+  "United States": "USA", USA: "USA", Barbarians: "BAR", "Hong Kong": "HKG",
+  // ESPN's league-wide feed spells it out; the 3-letter fallback would make
+  // this "UNI".
+  "United States of America": "USA", Zimbabwe: "ZIM",
 };
 
 const ID_TO_CODE = Object.fromEntries(Object.entries(ESPN_TEAM_IDS).map(([c, id]) => [String(id), c]));

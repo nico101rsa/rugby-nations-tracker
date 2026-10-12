@@ -23,6 +23,11 @@ const T = {
   FIJ: { id: 28, name: "Fiji" },
 };
 
+// api-sports team ids, both directions. nations.json rows carry these ids and
+// no codes, so kickoff-overrides.mjs keys its rows through API_SPORTS_CODE_BY_ID.
+export const API_SPORTS_TEAMS = Object.fromEntries(Object.entries(T).map(([code, { id }]) => [code, id]));
+export const API_SPORTS_CODE_BY_ID = Object.fromEntries(Object.entries(T).map(([code, { id }]) => [id, code]));
+
 // [week, home, away, dateISO, timeConfirmed]
 const SCHEDULE = [
   // Round 2 — 11 July (kickoffs confirmed)
