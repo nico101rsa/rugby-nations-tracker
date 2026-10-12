@@ -71,21 +71,49 @@ export const POINTS = { try: 5, conversion: 2, penalty: 3, dropGoal: 3, penaltyT
 // publishes as labelled; the second reading is tried only on a list that has
 // already failed the gate, and it publishes only if it then passes the same
 // gate against the api-sports final.
+//
+// Nor does the vendor's reading pre-empt ESPN (PR #150 review). A 7-point
+// step is also what a LOST CONVERSION looks like: the vendor drops the
+// conversion incident but keeps the true running score, and the next try by
+// the same side then jumps 5 + 2. That is the #48 class of gap ("one scoring
+// event short"), and it explains a 2-point shortfall like 22/24 as well as a
+// mistyped penalty try does. So a failed vendor list goes to ESPN first, as
+// labelled and with ESPN's own penalty-try reading; ESPN is keyless and costs
+// no quota. The vendor's 7-point reading is the last resort, tried only once
+// ESPN has answered and could not reconcile either, and never against ESPN's
+// word (vendorPenaltyTries and espnSaysConverted below).
+
+// A penalty try is never converted: the next scoring event after one can't be
+// a conversion by the same side. A list that reads that way has mistaken a
+// try, and its lost or merged conversion, for a penalty try.
+const sameSide = (x, s, type) => x?.type === type && x.team === s.team;
+export function penaltyTryConverted(scoring = []) {
+  return scoring.some((s, k) => s.type === "penaltyTry" && sameSide(scoring[k + 1], s, "conversion"));
+}
 
 // Vendor: every goal incident carries the score after it. A `try` incident
 // that moves its own side by exactly 7, with the other side unchanged, is a
-// penalty try the vendor delivered as a plain try. Returns the retyped list,
-// or null when no try reads that way. Penalty tries credit no player, as
-// buildAggregates expects.
+// penalty try the vendor delivered as a plain try — unless the list around
+// it says otherwise:
+//   - the scoring event just before it is a try by the same side: that try's
+//     conversion may be the lost 2 (try 5-0, conversion lost, try 12-0), so
+//     the step proves nothing;
+//   - the scoring event just after it is a conversion by the same side: a
+//     penalty try is never converted (penaltyTryConverted).
+// Returns the retyped list, or null when no try reads that way. Penalty
+// tries credit no player, as buildAggregates expects.
 export function vendorPenaltyTries(scoring = []) {
   let prev = [0, 0];
   let changed = false;
-  const out = scoring.map((s) => {
+  const out = scoring.map((s, k) => {
     const after = Array.isArray(s.after) && s.after.every((x) => typeof x === "number" && Number.isFinite(x)) ? s.after : null;
     let next = s;
     if (after && prev && s.type === "try") {
       const i = s.team === "home" ? 0 : 1;
-      if (after[i] - prev[i] === 7 && after[1 - i] === prev[1 - i]) {
+      const sevenAlone = after[i] - prev[i] === 7 && after[1 - i] === prev[1 - i];
+      const lostConversion = sameSide(scoring[k - 1], s, "try");
+      const converted = sameSide(scoring[k + 1], s, "conversion");
+      if (sevenAlone && !lostConversion && !converted) {
         next = { ...s, type: "penaltyTry", player: null };
         changed = true;
       }
@@ -94,6 +122,16 @@ export function vendorPenaltyTries(scoring = []) {
     return next;
   });
   return changed ? out : null;
+}
+
+// ESPN, read but not reconciled, can still contradict a vendor penalty try:
+// a try by the same side within 3 minutes of it, which ESPN follows with that
+// side's conversion, is a converted try, and the vendor's 7 is that try and
+// its conversion. `espnScoring` is ESPN's list as labelled.
+export function espnSaysConverted(penaltyTry, espnScoring = []) {
+  return espnScoring.some((s, k) => s.type === "try" && s.team === penaltyTry.team &&
+    s.min != null && penaltyTry.min != null && Math.abs(s.min - penaltyTry.min) <= 3 &&
+    sameSide(espnScoring[k + 1], s, "conversion"));
 }
 
 // The publish gate: a match ships only when its parsed scoring events sum
@@ -298,6 +336,15 @@ export function parseEspnDetails(details = [], homeIds = [], awayIds = []) {
 // one that arrives 5 then 2 (a lost try and its conversion with a row in
 // between) — is left alone and the gate holds the match. Returns the
 // penalty-try events to add (possibly none).
+//
+// The blind spot, unguarded and accepted: if ESPN drops BOTH a try row and
+// its conversion row, and no other row carrying a score falls between them,
+// the gap steps 0 to 7 in one go and reads as a penalty try. Every ESPN row
+// carries a score (substitutions and cards too), so it takes two adjacent
+// rows missing, against a vendor list that has already failed. Nothing
+// independent counts the tries (scrape-tries reads this same array), so the
+// only check is the impossible shape: a merged list in which a penalty try is
+// followed by its side's conversion is not published (penaltyTryConverted).
 export function espnPenaltyTries(details = [], homeIds = [], awayIds = []) {
   const side = espnSide(homeIds, awayIds);
   const seconds = (d, min) => {
@@ -422,8 +469,10 @@ const LOG_LIMIT = 8000;
 
 // Second-source attempt for one match: ESPN scoreboard (match day, then ±1 —
 // kickoffs cross the UTC date line) -> event summary -> the same gate.
-// Returns { ok, scoring, cards, espnEventId } or { ok: false, reason }; the
-// caller folds the reason into the vendor's so a held match reports both.
+// Returns { ok, scoring, cards, espnEventId } or { ok: false, reason, scoring }
+// (ESPN's list as labelled, empty when there was no event); the caller folds
+// the reason into the vendor's so a held match reports both. A fetch that
+// fails throws: ESPN has not answered, which is not the same as a "no".
 async function reconcileFromEspn(r, fetchEspn, scoreboard) {
   let ev = null;
   for (const shift of [0, 1, -1]) {
@@ -433,7 +482,7 @@ async function reconcileFromEspn(r, fetchEspn, scoreboard) {
     if (ev) break;
     console.log(`ESPN scoreboard ${day}: ${events.map((e) => `${e.id} ${e.date} ${espnHome(e)?.team?.displayName ?? "?"}`).join("; ") || "no events"}`.slice(0, 1000));
   }
-  if (!ev) return { ok: false, reason: `no ESPN event for ${r.home.name} at ${r.date}` };
+  if (!ev) return { ok: false, reason: `no ESPN event for ${r.home.name} at ${r.date}`, scoring: [] };
 
   const summary = await fetchEspn(`${ESPN}/summary?event=${ev.id}`);
   const comp = summary?.header?.competitions?.[0];
@@ -452,8 +501,9 @@ async function reconcileFromEspn(r, fetchEspn, scoreboard) {
     if (added.length) {
       const withPenaltyTries = [...listed, ...added].sort(byPlay);
       const reread = reconcile(withPenaltyTries, r.home.score, r.away.score);
-      console.log(`ESPN event ${ev.id} for match ${r.id}: the running score shows ${added.length} penalty try(s) with no row (${added.map((p) => `${p.team} ${p.min ?? "?"}'`).join(", ")}); with them ${reread.ok ? "it reconciles" : `still home ${reread.home.computed}/${reread.home.expected}, away ${reread.away.computed}/${reread.away.expected}`}`);
-      if (reread.ok) { scoring = withPenaltyTries; gate = reread; }
+      const converted = penaltyTryConverted(withPenaltyTries);
+      console.log(`ESPN event ${ev.id} for match ${r.id}: the running score shows ${added.length} penalty try(s) with no row (${added.map((p) => `${p.team} ${p.min ?? "?"}'`).join(", ")}); with them ${converted ? "a penalty try is followed by its side's conversion, which can't happen: not used" : reread.ok ? "it reconciles" : `still home ${reread.home.computed}/${reread.home.expected}, away ${reread.away.computed}/${reread.away.expected}`}`);
+      if (reread.ok && !converted) { scoring = withPenaltyTries; gate = reread; }
     }
   }
   if (gate.ok && !unknown.length) return { ok: true, scoring, cards, espnEventId: ev.id };
@@ -468,7 +518,7 @@ async function reconcileFromEspn(r, fetchEspn, scoreboard) {
     return (!row.goal && !row.card) ? !ESPN_SKIP.test(row.text) : !row.team;
   });
   if (unread.length) console.log(`ESPN event ${ev.id} rows not recognised: ${JSON.stringify(unread)}`.slice(0, LOG_LIMIT));
-  return { ok: false, reason: `ESPN event ${ev.id} ${reasonFor(gate, unknown, "event types")}` };
+  return { ok: false, reason: `ESPN event ${ev.id} ${reasonFor(gate, unknown, "event types")}`, scoring: listed };
 }
 
 // Core pipeline, network-injectable for tests. Reads finished matches from
@@ -524,22 +574,8 @@ export async function runPipeline({ nations, prevStats, fetchJson = defaultFetch
       await sleep(sleepMs);
       const payload = await fetchJson(`${BASE}/api/match/${entry.eventId}/incidents`);
       const incidents = payload?.data?.incidents ?? [];
-      const parsed = parseIncidents(incidents);
-      const { cards, unknown } = parsed;
-      let { scoring } = parsed;
-      let gate = reconcile(scoring, r.home.score, r.away.score);
-      // Second reading, only for a list that failed: a 7-point "try" is a
-      // penalty try (issue #143). Costs no call — same payload.
-      if (!gate.ok && !unknown.length) {
-        const retyped = vendorPenaltyTries(scoring);
-        const reread = retyped && reconcile(retyped, r.home.score, r.away.score);
-        if (reread?.ok) {
-          const mins = retyped.filter((s, k) => s.type !== scoring[k].type).map((s) => `${s.team} ${s.min}'`);
-          console.log(`match ${r.id} (${r.home.name} v ${r.away.name}): vendor ${reasonFor(gate, [], "")} as labelled; reconciles reading the 7-point try(s) as penalty try (${mins.join(", ")})`);
-          scoring = retyped;
-          gate = reread;
-        }
-      }
+      const { scoring, cards, unknown } = parseIncidents(incidents);
+      const gate = reconcile(scoring, r.home.score, r.away.score);
       if (gate.ok && !unknown.length) {
         Object.assign(entry, { reconciled: true, scoring, cards });
       } else {
@@ -548,11 +584,30 @@ export async function runPipeline({ nations, prevStats, fetchJson = defaultFetch
         // and is retried next run as before.
         const vendorReason = reasonFor(gate, unknown, "incident classes");
         console.log(`vendor incidents for match ${r.id} (${incidents.length}): ${vendorIncidentsLine(incidents)}`.slice(0, LOG_LIMIT));
+        let espnAnswered = true;
         const espn = await reconcileFromEspn(r, fetchEspn, scoreboard)
-          .catch((e) => ({ ok: false, reason: `ESPN: ${e.message}` }));
-        if (!espn.ok) throw new Error(`${vendorReason}; ${espn.reason}`);
-        console.log(`match ${r.id} (${r.home.name} v ${r.away.name}): vendor ${vendorReason}; reconciled from ESPN event ${espn.espnEventId}`);
-        Object.assign(entry, { reconciled: true, source: "espn", scoring: espn.scoring, cards: espn.cards });
+          .catch((e) => { espnAnswered = false; return { ok: false, reason: `ESPN: ${e.message}`, scoring: [] }; });
+        if (espn.ok) {
+          console.log(`match ${r.id} (${r.home.name} v ${r.away.name}): vendor ${vendorReason}; reconciled from ESPN event ${espn.espnEventId}`);
+          Object.assign(entry, { reconciled: true, source: "espn", scoring: espn.scoring, cards: espn.cards });
+        } else {
+          // Last resort: the vendor's own list with a 7-point "try" read as a
+          // penalty try (issue #143; same payload, no call). Only once ESPN has
+          // answered and could not reconcile either — ESPN unreachable holds
+          // the match for the next run instead, since a published match is
+          // never fetched again — and never where ESPN shows a converted try.
+          const retyped = espnAnswered && !unknown.length ? vendorPenaltyTries(scoring) : null;
+          const added = retyped ? retyped.filter((x, k) => x.type !== scoring[k].type) : [];
+          const reread = retyped && reconcile(retyped, r.home.score, r.away.score);
+          const against = added.filter((pt) => espnSaysConverted(pt, espn.scoring));
+          const where = added.map((x) => `${x.team} ${x.min}'`).join(", ");
+          if (reread?.ok && against.length) {
+            console.log(`match ${r.id} (${r.home.name} v ${r.away.name}): the vendor reconciles reading a 7-point try as a penalty try (${where}), but ESPN lists a converted try there; held`);
+          }
+          if (!reread?.ok || against.length) throw new Error(`${vendorReason}; ${espn.reason}`);
+          console.log(`match ${r.id} (${r.home.name} v ${r.away.name}): vendor ${vendorReason} as labelled; ${espn.reason}; the vendor reconciles reading the 7-point try(s) as penalty try (${where})`);
+          Object.assign(entry, { reconciled: true, scoring: retyped, cards });
+        }
       }
     } catch (err) {
       failures.push({ id: r.id, title: `Stats: ${r.home.name} v ${r.away.name} (match ${r.id}) not publishing`, reason: err.message });
