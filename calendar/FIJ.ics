@@ -1,0 +1,161 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Rugby Nations Tracker//fixtures//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+NAME:Fiji fixtures · Rugby Nations Tracker
+X-WR-CALNAME:Fiji fixtures · Rugby Nations Tracker
+X-WR-CALDESC:Every announced Fiji match from Rugby Nations Tracker. Kickoff
+  times come from ESPN and can move — the app is the live source.
+URL:https://nico101rsa.github.io/rugby-nations-tracker/
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+X-APPLE-CALENDAR-COLOR:#C8F135
+BEGIN:VEVENT
+UID:espn-604593@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20261024T055000Z
+DTEND:20261024T075000Z
+SUMMARY:Japan v Fiji
+LOCATION:Prince Chichibu Memorial Stadium\, Tokyo
+DESCRIPTION:Test match.\nKickoff times come from ESPN and can move — the 
+ app is the live source.\nhttps://nico101rsa.github.io/rugby-nations-tracke
+ r/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: Japan v Fiji
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603997@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20261107T201000Z
+DTEND:20261107T221000Z
+SUMMARY:France v Fiji · RNC '26 R4
+LOCATION:Groupama Stadium\, Lyon
+DESCRIPTION:Nations Championship 2026\, Round 4.\nKickoff times come from E
+ SPN and can move — the app is the live source.\nhttps://nico101rsa.githu
+ b.io/rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: France v Fiji
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-604003@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20261114T201000Z
+DTEND:20261114T221000Z
+SUMMARY:Ireland v Fiji · RNC '26 R5
+LOCATION:Aviva Stadium\, Dublin
+DESCRIPTION:Nations Championship 2026\, Round 5.\nKickoff times come from E
+ SPN and can move — the app is the live source.\nhttps://nico101rsa.githu
+ b.io/rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: Ireland v Fiji
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-604008@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20261121T164000Z
+DTEND:20261121T184000Z
+SUMMARY:Italy v Fiji · RNC '26 R6
+LOCATION:Bluenergy Stadium\, Udine
+DESCRIPTION:Nations Championship 2026\, Round 6.\nKickoff times come from E
+ SPN and can move — the app is the live source.\nhttps://nico101rsa.githu
+ b.io/rugby-nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: Italy v Fiji
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603508@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20271004T031500Z
+DTEND:20271004T051500Z
+SUMMARY:Fiji v Spain · RWC '27
+LOCATION:McDonald Jones Stadium\, Newcastle
+DESCRIPTION:Rugby World Cup 2027.\nKickoff times come from ESPN and can mov
+ e — the app is the live source.\nhttps://nico101rsa.github.io/rugby-nati
+ ons-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: Fiji v Spain
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603517@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20271010T014500Z
+DTEND:20271010T034500Z
+SUMMARY:Fiji v Canada · RWC '27
+LOCATION:Adelaide Oval\, Adelaide
+DESCRIPTION:Rugby World Cup 2027.\nKickoff times come from ESPN and can mov
+ e — the app is the live source.\nhttps://nico101rsa.github.io/rugby-nati
+ ons-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: Fiji v Canada
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:espn-603526@rugby-nations-tracker
+DTSTAMP:20261011T063850Z
+LAST-MODIFIED:20261011T063850Z
+SEQUENCE:0
+DTSTART:20271016T024500Z
+DTEND:20271016T044500Z
+SUMMARY:Argentina v Fiji · RWC '27
+LOCATION:Adelaide Oval\, Adelaide
+DESCRIPTION:Rugby World Cup 2027.\nKickoff times come from ESPN and can mov
+ e — the app is the live source.\nhttps://nico101rsa.github.io/rugby-nati
+ ons-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: Argentina v Fiji
+END:VALARM
+END:VEVENT
+END:VCALENDAR
