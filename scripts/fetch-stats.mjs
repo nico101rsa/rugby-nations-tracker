@@ -56,6 +56,46 @@ export function parseIncidents(incidents = []) {
 
 export const POINTS = { try: 5, conversion: 2, penalty: 3, dropGoal: 3, penaltyTry: 7 };
 
+// ---- Penalty tries the label hides (issue #143) ----------------------------
+//
+// A penalty try is the only single scoring event worth 7: no conversion is
+// taken. Neither source labels it reliably. Argentina 24-31 England (18 Jul
+// 2026) had one, awarded to Argentina for Alex Coles' deliberate knock-on
+// (Sky, TNT, AP), and the 12 Oct run saw the vendor sum Argentina to 22 (two
+// short: the penalty try worth 5) and ESPN to 17 (seven short: no row for it
+// at all — its 20 non-substitution rows are 13 scores and the 7 yellow cards
+// the reports count). Both sources do carry a running score, so each gets a
+// second reading that types a penalty try from it.
+//
+// That reading is never the first one. A list that reconciles as labelled
+// publishes as labelled; the second reading is tried only on a list that has
+// already failed the gate, and it publishes only if it then passes the same
+// gate against the api-sports final.
+
+// Vendor: every goal incident carries the score after it. A `try` incident
+// that moves its own side by exactly 7, with the other side unchanged, is a
+// penalty try the vendor delivered as a plain try. Returns the retyped list,
+// or null when no try reads that way. Penalty tries credit no player, as
+// buildAggregates expects.
+export function vendorPenaltyTries(scoring = []) {
+  let prev = [0, 0];
+  let changed = false;
+  const out = scoring.map((s) => {
+    const after = Array.isArray(s.after) && s.after.every((x) => typeof x === "number" && Number.isFinite(x)) ? s.after : null;
+    let next = s;
+    if (after && prev && s.type === "try") {
+      const i = s.team === "home" ? 0 : 1;
+      if (after[i] - prev[i] === 7 && after[1 - i] === prev[1 - i]) {
+        next = { ...s, type: "penaltyTry", player: null };
+        changed = true;
+      }
+    }
+    prev = after; // an incident without a score breaks the chain until the next one with it
+    return next;
+  });
+  return changed ? out : null;
+}
+
 // The publish gate: a match ships only when its parsed scoring events sum
 // exactly to the final score fetched independently via api-sports.
 export function reconcile(scoring, homeFinal, awayFinal) {
@@ -135,13 +175,23 @@ export function findEvent(events = [], homeName, awayName) {
 // been counting tries from in production since round 1 (and it had this very
 // match: 2 tries v 5). So when the vendor's list won't reconcile, that array
 // is parsed into the shape below and run through the same arithmetic gate.
+// (Issue #143, the first real run: that match's gap is a penalty try, and
+// ESPN has no row for it either — its "2 tries" leaves it out. See "Penalty
+// tries the label hides" above.)
 //
 // What scrape-tries relies on is ground truth: `type.text`, `team.id`, and
 // the competitor ids/`homeAway` on the summary header. Everything else
-// (`clock`, `athletesInvolved`, a running score) is read defensively and
-// only the gate decides. A `type.text` we don't recognise holds the match
-// exactly as an unknown vendor class does, and the raw details are logged so
-// the Actions log of the next run shows the real payload.
+// (`clock`, the player, a running score) is read defensively and only the
+// gate decides. A `type.text` we don't recognise holds the match exactly as
+// an unknown vendor class does, and every row is logged in one compact line
+// so the Actions log of the next run shows the real payload.
+//
+// The real payload, first seen on the 12 Oct run (issue #143): `type.text`
+// is lower case ("try", "conversion", "penalty goal", "yellow card",
+// "player substituted", "substitute on"), the player is
+// `participants[0].athlete.displayName` (not `athletesInvolved`, which is the
+// soccer shape the #142 tests assumed), and EVERY row, substitutions and
+// cards included, carries `homeScore`/`awayScore` — the score at that moment.
 
 const ESPN = "https://site.api.espn.com/apis/site/v2/sports/rugby/17567";
 
@@ -155,7 +205,9 @@ const ESPN_SCORING = [
 const ESPN_CARDS = [[/^yellow card$/i, "yellow"], [/^red card$/i, "red"]];
 // Non-scoring, non-card rows ESPN lists in the same array — skipped like the
 // vendor's substitutions and periods, never counted, never held against.
-const ESPN_SKIP = /^(substitution|kick[ -]?off|half[ -]?time|full[ -]?time|(start|end) of (the )?(period|half|match|game))$/i;
+// "player substituted" + "substitute on" are the pair ESPN writes for each
+// replacement (20 pairs in ARG v ENG).
+const ESPN_SKIP = /^(substitution|player substituted|substitute (on|off)|kick[ -]?off|half[ -]?time|full[ -]?time|(start|end) of (the )?(period|half|match|game))$/i;
 
 // clock.value is seconds of play; the 1234th second is in the 21st minute.
 // displayValue ("21'", "40'+2'") is the fallback when value is absent.
@@ -168,48 +220,61 @@ export function espnMinute(clock) {
 
 const finite = (x) => (typeof x === "number" && Number.isFinite(x) ? x : null);
 
+// One detail row -> what it is, read the same way by the parser and by the
+// penalty-try reading below. `side` maps an ESPN team id to "home"/"away".
+function espnRow(d, side) {
+  const text = String(d?.type?.text ?? "").trim();
+  const goal = ESPN_SCORING.find(([re]) => re.test(text))?.[1] ?? null;
+  const card = ESPN_CARDS.find(([re]) => re.test(text))?.[1]
+    ?? (d?.redCard === true ? "red" : d?.yellowCard === true ? "yellow" : null);
+  const hs = finite(d?.homeScore);
+  const as = finite(d?.awayScore);
+  return {
+    text, goal, card,
+    team: side(d?.team),
+    min: espnMinute(d?.clock),
+    player: d?.participants?.[0]?.athlete?.displayName ?? d?.athletesInvolved?.[0]?.displayName ?? null,
+    score: hs != null && as != null ? [hs, as] : null,
+  };
+}
+
+function espnSide(homeIds, awayIds) {
+  const home = new Set(homeIds.map(String));
+  const away = new Set(awayIds.map(String));
+  return (team) => {
+    const id = String(team?.id ?? "");
+    return home.has(id) ? "home" : away.has(id) ? "away" : null;
+  };
+}
+
+// Chronological: by minute, then by the running total where there is one,
+// then a conversion after the try it follows. Rows without a minute keep
+// their arrival order at the end.
+const at = (e) => e.min ?? Number.MAX_SAFE_INTEGER;
+const runTotal = (s) => s.after[0] + s.after[1];
+const convLast = (s) => (s.type === "conversion" ? 1 : 0);
+const byPlay = (a, b) => at(a) - at(b) || (a.after && b.after ? runTotal(a) - runTotal(b) : 0) || convLast(a) - convLast(b);
+
 // ESPN summary details -> the same { scoring, cards, unknown } parseIncidents
 // returns, so reconcile() and buildAggregates() see no difference. homeIds and
 // awayIds are the competitor ids each side may appear under (competitor id
 // and team id, which ESPN usually keeps equal); a row for neither is unknown.
 export function parseEspnDetails(details = [], homeIds = [], awayIds = []) {
-  const home = new Set(homeIds.map(String));
-  const away = new Set(awayIds.map(String));
-  const side = (team) => {
-    const id = String(team?.id ?? "");
-    return home.has(id) ? "home" : away.has(id) ? "away" : null;
-  };
+  const side = espnSide(homeIds, awayIds);
   const scoring = [];
   const cards = [];
   const unknown = [];
   for (const d of details) {
-    const text = String(d?.type?.text ?? "").trim();
-    const goal = ESPN_SCORING.find(([re]) => re.test(text))?.[1] ?? null;
-    const card = ESPN_CARDS.find(([re]) => re.test(text))?.[1]
-      ?? (d?.redCard === true ? "red" : d?.yellowCard === true ? "yellow" : null);
+    const { text, goal, card, team, min, player, score } = espnRow(d, side);
     if (!goal && !card) {
       if (!ESPN_SKIP.test(text)) unknown.push(text || "(untyped)");
       continue;
     }
-    const team = side(d.team);
     if (!team) { unknown.push(`${text} for team ${d.team?.id ?? "?"}`); continue; }
-    const min = espnMinute(d.clock);
-    const player = d.athletesInvolved?.[0]?.displayName ?? null;
-    if (goal) {
-      const hs = finite(d.homeScore);
-      const as = finite(d.awayScore);
-      scoring.push({ min, team, type: goal, player, after: hs != null && as != null ? [hs, as] : null });
-    } else {
-      cards.push({ min, team, type: card, player });
-    }
+    if (goal) scoring.push({ min, team, type: goal, player, after: score });
+    else cards.push({ min, team, type: card, player });
   }
-  // Chronological: by minute, then by ESPN's running total where it gives one,
-  // then a conversion after the try it follows. Rows without a minute keep
-  // their arrival order at the end.
-  const at = (e) => e.min ?? Number.MAX_SAFE_INTEGER;
-  const total = (s) => s.after[0] + s.after[1];
-  const rank = (s) => (s.type === "conversion" ? 1 : 0);
-  scoring.sort((a, b) => at(a) - at(b) || (a.after && b.after ? total(a) - total(b) : 0) || rank(a) - rank(b));
+  scoring.sort(byPlay);
   cards.sort((a, b) => at(a) - at(b));
   // Running score: ESPN's own where present, else accumulated from the points
   // table, so `after` means the same thing from either source.
@@ -221,6 +286,61 @@ export function parseEspnDetails(details = [], homeIds = [], awayIds = []) {
     s.after = run;
   }
   return { scoring, cards, unknown };
+}
+
+// ESPN: the penalty try has no row at all, but the score on the rows after it
+// includes it. Walk every row that carries a score (substitutions and cards
+// too) in play order, and keep the gap between ESPN's score and the sum of
+// the scoring rows listed so far. For a side, an unlisted penalty try is a
+// gap that steps up by exactly 7 from one row to the next and never falls
+// back below that for the rest of the match; it is placed at the first row
+// that shows it. Anything else — a final gap that isn't a multiple of 7, or
+// one that arrives 5 then 2 (a lost try and its conversion with a row in
+// between) — is left alone and the gate holds the match. Returns the
+// penalty-try events to add (possibly none).
+export function espnPenaltyTries(details = [], homeIds = [], awayIds = []) {
+  const side = espnSide(homeIds, awayIds);
+  const seconds = (d, min) => {
+    const v = Number(d?.clock?.value);
+    return Number.isFinite(v) && v > 0 ? v : min != null ? min * 60 : Number.MAX_SAFE_INTEGER;
+  };
+  const rows = [];
+  (Array.isArray(details) ? details : []).forEach((d, idx) => {
+    const r = espnRow(d, side);
+    if (!r.score) return;
+    const pts = [0, 0];
+    if (r.goal && r.team) pts[r.team === "home" ? 0 : 1] = POINTS[r.goal];
+    rows.push({ t: seconds(d, r.min), idx, min: r.min, score: r.score, pts });
+  });
+  rows.sort((a, b) => a.t - b.t || (a.score[0] + a.score[1]) - (b.score[0] + b.score[1]) || a.idx - b.idx);
+  if (!rows.length) return [];
+
+  const listed = [0, 0];
+  const gap = rows.map((r) => {
+    listed[0] += r.pts[0];
+    listed[1] += r.pts[1];
+    return [r.score[0] - listed[0], r.score[1] - listed[1]];
+  });
+
+  const out = [];
+  for (const [i, team] of [[0, "home"], [1, "away"]]) {
+    const g = gap.map((x) => x[i]);
+    const last = g.at(-1);
+    if (!(last > 0 && last % 7 === 0)) continue;
+    const floor = new Array(g.length); // floor[j] = the lowest gap from row j to the end
+    for (let j = g.length - 1, lo = Infinity; j >= 0; j--) floor[j] = lo = Math.min(lo, g[j]);
+    const found = [];
+    for (let level = 7; level <= last; level += 7) {
+      const j = floor.findIndex((x) => x >= level);
+      const before = j > 0 ? g[j - 1] : 0;
+      if (before !== level - 7 || g[j] !== level) { found.length = 0; break; } // not one clean 7-point step
+      const after = [...(j > 0 ? rows[j - 1].score : [0, 0])];
+      after[i] += 7;
+      found.push({ min: rows[j].min, team, type: "penaltyTry", player: null, after });
+    }
+    out.push(...found);
+  }
+  return out;
 }
 
 const kickoffMinute = (iso) => {
@@ -268,9 +388,37 @@ function dayShift(dateIso, days) {
   return d.toISOString().slice(0, 10);
 }
 
+// "player substituted ×20", not the same words twenty times (issue #143's body).
+const tally = (list) => {
+  const n = new Map();
+  for (const x of list) n.set(x, (n.get(x) ?? 0) + 1);
+  return [...n].map(([x, k]) => (k > 1 ? `${x} ×${k}` : x)).join(", ");
+};
+
 const reasonFor = (gate, unknown, label) =>
   `did not reconcile: home ${gate.home.computed}/${gate.home.expected}, away ${gate.away.computed}/${gate.away.expected}` +
-  (unknown.length ? `; unknown ${label}: ${unknown.join(", ")}` : "");
+  (unknown.length ? `; unknown ${label}: ${tally(unknown)}` : "");
+
+// A list that fails is logged whole, one short entry per row, so the next
+// failure can be diagnosed from the Actions log alone. #142 logged ESPN's raw
+// JSON cut at 4000 characters, which the substitution rows filled before the
+// second half began: the rows that mattered for #143 were never seen.
+const score = (h, a) => `${finite(h) ?? "?"}-${finite(a) ?? "?"}`;
+export function vendorIncidentsLine(incidents = []) {
+  return incidents
+    .filter((i) => i?.incidentType === "goal" || i?.incidentType === "card")
+    .map((i) => `${i.time ?? "?"}' ${i.incidentType}:${i.incidentClass} ${i.isHome ? "home" : "away"}` +
+      (i.incidentType === "goal" ? ` ${score(i.homeScore, i.awayScore)}` : "") + ` ${i.player?.name ?? "(no player)"}`)
+    .join("; ");
+}
+export function espnRowsLine(details = []) {
+  return details.map((d) => {
+    const text = String(d?.type?.text ?? "").trim() || "(untyped)";
+    const who = ESPN_SKIP.test(text) ? "" : ` ${d?.participants?.[0]?.athlete?.displayName ?? d?.athletesInvolved?.[0]?.displayName ?? "(no player)"}`;
+    return `${espnMinute(d?.clock) ?? "?"}' ${text} t${d?.team?.id ?? "?"} ${score(d?.homeScore, d?.awayScore)}${who}`;
+  }).join("; ");
+}
+const LOG_LIMIT = 8000;
 
 // Second-source attempt for one match: ESPN scoreboard (match day, then ±1 —
 // kickoffs cross the UTC date line) -> event summary -> the same gate.
@@ -294,13 +442,32 @@ async function reconcileFromEspn(r, fetchEspn, scoreboard) {
     return [c?.id, c?.team?.id].filter((x) => x != null);
   };
   const details = Array.isArray(comp?.details) ? comp.details : [];
-  const { scoring, cards, unknown } = parseEspnDetails(details, ids("home"), ids("away"));
-  const gate = reconcile(scoring, r.home.score, r.away.score);
+  const { scoring: listed, cards, unknown } = parseEspnDetails(details, ids("home"), ids("away"));
+  let scoring = listed;
+  let gate = reconcile(scoring, r.home.score, r.away.score);
+  // Second reading, only for a list that failed: a penalty try ESPN left out
+  // of the rows but kept in the score (issue #143).
+  if (!gate.ok && !unknown.length) {
+    const added = espnPenaltyTries(details, ids("home"), ids("away"));
+    if (added.length) {
+      const withPenaltyTries = [...listed, ...added].sort(byPlay);
+      const reread = reconcile(withPenaltyTries, r.home.score, r.away.score);
+      console.log(`ESPN event ${ev.id} for match ${r.id}: the running score shows ${added.length} penalty try(s) with no row (${added.map((p) => `${p.team} ${p.min ?? "?"}'`).join(", ")}); with them ${reread.ok ? "it reconciles" : `still home ${reread.home.computed}/${reread.home.expected}, away ${reread.away.computed}/${reread.away.expected}`}`);
+      if (reread.ok) { scoring = withPenaltyTries; gate = reread; }
+    }
+  }
   if (gate.ok && !unknown.length) return { ok: true, scoring, cards, espnEventId: ev.id };
 
   // The follow-up needs the real payload and the Actions log is the only
-  // place it can be seen; bounded so a long match can't flood the log.
-  console.log(`ESPN event ${ev.id} details for match ${r.id} (${details.length} rows): ${JSON.stringify(details).slice(0, 4000)}`);
+  // place it can be seen: every row in one line, plus the raw JSON of any row
+  // we could not read. Bounded so a long match can't flood the log.
+  console.log(`ESPN event ${ev.id} rows for match ${r.id} (${details.length}): ${espnRowsLine(details)}`.slice(0, LOG_LIMIT));
+  const side = espnSide(ids("home"), ids("away"));
+  const unread = details.filter((d) => {
+    const row = espnRow(d, side);
+    return (!row.goal && !row.card) ? !ESPN_SKIP.test(row.text) : !row.team;
+  });
+  if (unread.length) console.log(`ESPN event ${ev.id} rows not recognised: ${JSON.stringify(unread)}`.slice(0, LOG_LIMIT));
   return { ok: false, reason: `ESPN event ${ev.id} ${reasonFor(gate, unknown, "event types")}` };
 }
 
@@ -356,8 +523,23 @@ export async function runPipeline({ nations, prevStats, fetchJson = defaultFetch
       }
       await sleep(sleepMs);
       const payload = await fetchJson(`${BASE}/api/match/${entry.eventId}/incidents`);
-      const { scoring, cards, unknown } = parseIncidents(payload?.data?.incidents ?? []);
-      const gate = reconcile(scoring, r.home.score, r.away.score);
+      const incidents = payload?.data?.incidents ?? [];
+      const parsed = parseIncidents(incidents);
+      const { cards, unknown } = parsed;
+      let { scoring } = parsed;
+      let gate = reconcile(scoring, r.home.score, r.away.score);
+      // Second reading, only for a list that failed: a 7-point "try" is a
+      // penalty try (issue #143). Costs no call — same payload.
+      if (!gate.ok && !unknown.length) {
+        const retyped = vendorPenaltyTries(scoring);
+        const reread = retyped && reconcile(retyped, r.home.score, r.away.score);
+        if (reread?.ok) {
+          const mins = retyped.filter((s, k) => s.type !== scoring[k].type).map((s) => `${s.team} ${s.min}'`);
+          console.log(`match ${r.id} (${r.home.name} v ${r.away.name}): vendor ${reasonFor(gate, [], "")} as labelled; reconciles reading the 7-point try(s) as penalty try (${mins.join(", ")})`);
+          scoring = retyped;
+          gate = reread;
+        }
+      }
       if (gate.ok && !unknown.length) {
         Object.assign(entry, { reconciled: true, scoring, cards });
       } else {
@@ -365,6 +547,7 @@ export async function runPipeline({ nations, prevStats, fetchJson = defaultFetch
         // here: a vendor outage or a failed schedule lookup still throws above
         // and is retried next run as before.
         const vendorReason = reasonFor(gate, unknown, "incident classes");
+        console.log(`vendor incidents for match ${r.id} (${incidents.length}): ${vendorIncidentsLine(incidents)}`.slice(0, LOG_LIMIT));
         const espn = await reconcileFromEspn(r, fetchEspn, scoreboard)
           .catch((e) => ({ ok: false, reason: `ESPN: ${e.message}` }));
         if (!espn.ok) throw new Error(`${vendorReason}; ${espn.reason}`);
