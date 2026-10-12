@@ -1,0 +1,81 @@
+name: Rebuild fixtures & calendars
+
+# A targeted republish of fixtures.json and calendar/ — nothing else.
+#
+# Why it exists: a kickoff correction (scripts/kickoff-overrides.mjs) or a
+# calendar change otherwise waits for the next scheduled fixtures build — the
+# daily team-events run at 01:00 UTC (12:00 Sydney time in AEDT) — so a row
+# merged on match morning could miss the game. This runs the same build the
+# moment such a change lands on main: fixtures.json carries the corrected time
+# ~2 minutes after the merge, phones pick it up on the app's next fixtures
+# poll, and the Pages CDN adds up to ~10 minutes for the calendars (calendar
+# subscribers then refresh on their own clock, which nothing can force).
+#
+# Why the paths are narrow: build-fixtures is keyless ESPN, so quota is not
+# the concern — the point is a targeted refresh rather than a broader schedule
+# (CLAUDE.md, "Scheduled jobs own the data"). Only the files that change what
+# this build publishes from committed inputs fire it; the workflow file itself
+# is listed so an edit to it is its own smoke test. Only a PERSON's push fires
+# it: commits made with GITHUB_TOKEN never trigger `on: push`, so the bots'
+# own fixtures/calendar commits cannot loop it. Actions → "Rebuild fixtures &
+# calendars" → Run workflow is the manual lever, at zero vendor quota (unlike
+# dispatching "Team events", ~25 SportsAPI Pro calls).
+#
+# It is a fourth committer of fixtures.json (after team-events.yml,
+# refresh-data.yml and the fixtures burst), so it gets its own concurrency
+# group — never share one (see the other workflows' notes) — and the same
+# rebase retry as team-events.yml: everything it commits was regenerated
+# seconds ago, so on a conflict its copy wins (-X theirs is the commit being
+# replayed, i.e. ours).
+#
+# Silent tier: it is NOT in the watchdog's paged job list (scripts/watchdog.mjs)
+# and must not be. A failure shows as a red run on the merge commit; the daily
+# build stays the carrier either way.
+on:
+  push:
+    branches: [main]
+    paths:
+      - scripts/kickoff-overrides.mjs
+      - scripts/build-calendars.mjs
+      - scripts/seed-competitions.mjs
+      - .github/workflows/fixtures-rebuild.yml
+  workflow_dispatch:
+
+concurrency:
+  group: fixtures-rebuild
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # The two suites that guard what this publishes: the override table's
+      # invariants (earlier only, same UTC day, an hour at most) and the
+      # calendar format. A bad row stops here, before it reaches a phone.
+      - name: Unit tests (kickoff overrides + calendars)
+        run: node --test scripts/kickoff-overrides.test.mjs scripts/build-calendars.test.mjs
+
+      # Keyless ESPN, no secrets (team-events.yml runs it bare too). Logs
+      # "kickoff override applied: …" per corrected row and
+      # "calendars: N file(s) changed".
+      - name: Build fixtures.json and calendar/
+        run: node scripts/build-fixtures.mjs
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add fixtures.json calendar
+          git diff --cached --quiet && echo "No fixtures or calendar changes" && exit 0
+          git commit -m "Fixtures rebuild $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
+          git push || (git pull --rebase --autostash -X theirs && git push)

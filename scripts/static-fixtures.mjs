@@ -42,9 +42,11 @@ const T = {
   FIJ: { id: 28, name: "Fiji" },
 };
 
-// api-sports team ids by our three-letter code, for anything that has to map
-// nations.json rows (keyed by api-sports id) onto codes.
+// api-sports team ids by our three-letter code ({ id, name }), for anything
+// that has to map nations.json rows (keyed by api-sports id) onto codes; and
+// the reverse, id -> code, which kickoff-overrides.mjs keys its rows through.
 export const API_SPORTS_TEAMS = T;
+export const API_SPORTS_CODE_BY_ID = Object.fromEntries(Object.entries(T).map(([code, { id }]) => [id, code]));
 
 // [week, home, away, dateISO, timeConfirmed]
 const SCHEDULE = [

@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { inBurstWindow, runFixturesBurst } from "./fixtures-burst.mjs";
+import { readFile, readdir } from "node:fs/promises";
+import { inBurstWindow, runFixturesBurst, PUBLISH_PATHS } from "./fixtures-burst.mjs";
 
 const KO = Date.parse("2026-08-22T15:10:00.000Z");   // Ellis Park, the game that exposed this
 const series = (over = {}) => ({
@@ -116,4 +117,64 @@ test("gives up after 5 consecutive failures rather than looping uselessly", asyn
   assert.equal(builds, 5);
   assert.equal(r.iterations, 0);
   assert.equal(r.consecutiveFailures, 5);
+});
+
+// ---- calendar/ rides every fixtures.json commit -------------------------------
+//
+// build-fixtures rewrites calendar/ (build-calendars.mjs) every time it writes
+// fixtures.json. A committer that adds one without the other publishes a
+// corrected kickoff to the app and a stale one to the calendars — and in the
+// burst's case, drops the calendar change entirely until the next daily run.
+
+test("the burst's mid-match publish adds calendar/ with fixtures.json", async () => {
+  assert.deepEqual(PUBLISH_PATHS, ["fixtures.json", "calendar"]);
+  const src = await readFile(new URL("./fixtures-burst.mjs", import.meta.url), "utf8");
+  const fn = src.slice(src.indexOf("function gitPublish"));
+  assert.match(fn, /execSync\(`git add \$\{PUBLISH_PATHS\.join\(" "\)\}`\)/);
+});
+
+const WORKFLOWS = new URL("../.github/workflows/", import.meta.url);
+const workflowTexts = async () => {
+  const out = {};
+  for (const f of await readdir(WORKFLOWS)) if (f.endsWith(".yml")) out[f] = await readFile(new URL(f, WORKFLOWS), "utf8");
+  return out;
+};
+
+test("every workflow that commits fixtures.json also commits calendar/", async () => {
+  const committers = [];
+  for (const [file, yml] of Object.entries(await workflowTexts())) {
+    for (const line of yml.match(/git add [^\n]*/g) ?? []) {
+      const paths = line.trim().split(/\s+/).slice(2);
+      if (!paths.includes("fixtures.json")) continue;
+      committers.push(file);
+      assert.ok(paths.includes("calendar"), `${file}: ${line.trim()}`);
+    }
+  }
+  assert.deepEqual([...new Set(committers)].sort(), ["fixtures-rebuild.yml", "refresh-data.yml", "team-events.yml"]);
+});
+
+test("every workflow that builds fixtures.json is one of those committers", async () => {
+  for (const [file, yml] of Object.entries(await workflowTexts())) {
+    if (!/node scripts\/(build-fixtures|fixtures-burst)\.mjs/.test(yml)) continue;
+    assert.ok(/git add [^\n]*\bfixtures\.json\b[^\n]*\bcalendar\b/.test(yml), `${file} builds fixtures.json but never commits it with calendar/`);
+  }
+});
+
+test("the rebuild workflow: push-triggered on its narrow paths, own concurrency group, silent tier", async () => {
+  const all = await workflowTexts();
+  const yml = all["fixtures-rebuild.yml"];
+  assert.match(yml, /^name: Rebuild fixtures & calendars$/m);
+  assert.match(yml, /branches: \[main\]/);
+  for (const p of ["scripts/kickoff-overrides.mjs", "scripts/build-calendars.mjs", "scripts/seed-competitions.mjs"]) {
+    assert.ok(yml.includes(`- ${p}`), p);
+  }
+  assert.match(yml, /workflow_dispatch:/);
+  assert.match(yml, /group: fixtures-rebuild\n\s+cancel-in-progress: false/);
+  for (const [file, other] of Object.entries(all)) {
+    if (file !== "fixtures-rebuild.yml") assert.ok(!/group: fixtures-rebuild\b/.test(other), `${file} shares the group`);
+  }
+  assert.ok(!/secrets\./.test(yml), "keyless: no secrets");
+  assert.match(yml, /git push \|\| \(git pull --rebase --autostash -X theirs && git push\)/);
+  const watchdog = await readFile(new URL("./watchdog.mjs", import.meta.url), "utf8");
+  assert.ok(!watchdog.includes("fixtures-rebuild.yml"), "not a paged job");
 });

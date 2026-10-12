@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { normalizeEvent, buildTeamEvents, trackedCodeFor, fetchEventsByCode, mergeRefreshed, mirrorMissingResults } from "./fetch-team-events.mjs";
+import { normalizeEvent, buildTeamEvents, trackedCodeFor, fetchEventsByCode, mergeRefreshed, mirrorMissingResults, mergeUpcoming } from "./fetch-team-events.mjs";
 
 const NOW = new Date("2026-07-15T00:00:00Z").getTime();
 const ts = (iso) => Math.floor(new Date(iso).getTime() / 1000);
@@ -352,4 +352,64 @@ test("mirrorMissingResults: a mirrored row never cascades back as a source", () 
   const again = mirrorMissingResults(out);
   assert.equal(again.NZL.last.length, 1);
   assert.equal(again.RSA.last.length, 1, "RSA does not gain a copy of its own game back");
+});
+
+// ---- mergeUpcoming: ESPN merge, then the kickoff corrections, per team side
+
+const BLEDISLOE = {
+  "2026-10-17 AUS-NZL": { date: "2026-10-17T04:45:00.000Z", vendor: "2026-10-17T05:00:00.000Z", note: "test" },
+};
+const UPCOMING_NOW = Date.parse("2026-10-12T00:00:00Z");
+const espnNext = (code, opp, oppCode, homeAway) => ({
+  venue: "Accor Stadium, Sydney", id: "espn-603464", date: "2026-10-17T05:00Z",
+  league: "International Test Match", opponent: opp, opponentCode: oppCode, tracked: true,
+  homeAway, us: null, them: null, result: null,
+});
+const vendorNov8 = () => ({
+  id: 16098047, date: "2026-11-08T15:10:00.000Z", league: "Nations Championship, Group Stage",
+  opponent: "England", opponentCode: "ENG", tracked: true, homeAway: "A",
+  us: null, them: null, result: null, venue: "Allianz Stadium, London",
+});
+
+test("mergeUpcoming: the Bledisloe moves on both AUS 'H' and NZL 'A'; the 8 Nov SportsAPI row is untouched", () => {
+  const nov8 = vendorNov8();
+  const teams = { AUS: { last: [], next: [nov8] }, NZL: { last: [], next: [] } };
+  const espn = {
+    AUS: [espnNext("AUS", "New Zealand", "NZL", "H")],
+    NZL: [espnNext("NZL", "Australia", "AUS", "A")],
+  };
+  const lines = [];
+  const out = mergeUpcoming(teams, espn, { now: UPCOMING_NOW, table: BLEDISLOE, log: (l) => lines.push(l) });
+  assert.equal(out.AUS.next.length, 2);
+  assert.equal(out.AUS.next[0].id, "espn-603464");
+  assert.equal(out.AUS.next[0].date, "2026-10-17T04:45:00.000Z");
+  assert.equal(out.AUS.next[0].timeTBC, false);
+  assert.equal(out.AUS.next[1], nov8, "the 8 Nov row is the same object");
+  assert.equal(nov8.date, "2026-11-08T15:10:00.000Z");
+  assert.equal(out.NZL.next[0].date, "2026-10-17T04:45:00.000Z");
+  assert.equal(espn.AUS[0].date, "2026-10-17T05:00Z", "the ESPN input is not mutated");
+  assert.equal(lines.length, 2);
+});
+
+test("mergeUpcoming: the dedupe still runs on vendor times — one Bledisloe row, the vendor's, corrected", () => {
+  // SportsAPI Pro and ESPN both carry the game: mergeNext keeps the vendor
+  // entry (UTC day + opponent key), backfills ESPN's venue, then the
+  // correction lands on that one row.
+  const vendorBledisloe = {
+    id: 16000001, date: "2026-10-17T05:00:00.000Z", league: "Bledisloe Cup",
+    opponent: "New Zealand", opponentCode: "NZL", tracked: true, homeAway: "H",
+    us: null, them: null, result: null,
+  };
+  const teams = { AUS: { last: [], next: [vendorBledisloe, vendorNov8()] } };
+  const out = mergeUpcoming(teams, { AUS: [espnNext("AUS", "New Zealand", "NZL", "H")] }, { now: UPCOMING_NOW, table: BLEDISLOE, log: () => {} });
+  assert.deepEqual(out.AUS.next.map((r) => r.id), [16000001, 16098047]);
+  assert.equal(out.AUS.next[0].date, "2026-10-17T04:45:00.000Z");
+  assert.equal(out.AUS.next[0].venue, "Accor Stadium, Sydney");
+});
+
+test("mergeUpcoming: no correction applies → each team's merged list is returned as merged", () => {
+  const teams = { ENG: { last: [], next: [vendorNov8()] } };
+  const out = mergeUpcoming(teams, {}, { now: UPCOMING_NOW, table: BLEDISLOE, log: () => {} });
+  assert.equal(out.ENG.next.length, 1);
+  assert.equal(out.ENG.next[0].date, "2026-11-08T15:10:00.000Z");
 });

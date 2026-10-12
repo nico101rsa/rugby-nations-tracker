@@ -4,7 +4,7 @@
 // 4+ try bonus computeLog could not award, and survive every later writer.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { computeLog, countTriesPending, applyNews, preserveDigests, poolStageGames } from "./fetch-nations.mjs";
+import { computeLog, countTriesPending, applyNews, preserveDigests, slimGames, poolStageGames } from "./fetch-nations.mjs";
 
 const team = (id, name) => ({ id, name, logo: "" });
 const IRE = team(388, "Ireland"), ARG = team(460, "Argentina");
@@ -53,6 +53,49 @@ test("triesPending: survives the news-only refresh and the digest carry-forward"
   assert.equal(applyNews(out, news, new Date("2026-11-07T00:00:00Z")).triesPending, 2);
   assert.equal(preserveDigests(out, { digests: { 388: {} } }).triesPending, 2);
   assert.equal(preserveDigests(out, null).triesPending, 2);
+});
+
+// ---- kickoff corrections land on the published slim rows only
+
+const BLEDISLOE = {
+  "2026-10-17 AUS-NZL": { date: "2026-10-17T04:45:00.000Z", vendor: "2026-10-17T05:00:00.000Z", note: "test" },
+};
+const AUS = team(461, "Australia"), NZL = team(465, "New Zealand"), JPN = team(463, "Japan"), FIJ2 = team(28, "Fiji");
+const raw = (id, date, home, away, status, hs = null, as = null) => ({
+  id, date, week: null, status, teams: { home, away }, scores: { home: hs, away: as },
+});
+const FT = { short: "FT", long: "Finished" };
+const NS = { short: "NS", long: "Not Started" };
+
+test("slimGames: a finished slim row is corrected; the raw cache game computeLog and scrapeTries read is not", () => {
+  const game = raw(901, "2026-10-17T05:00:00+00:00", AUS, NZL, FT, 24, 31);
+  const all = [game];
+  const snapshot = structuredClone(game);
+  const { results } = slimGames(all, { table: BLEDISLOE, log: () => {} });
+  assert.equal(results.length, 1);
+  assert.equal(results[0].date, "2026-10-17T04:45:00.000Z");
+  assert.equal(results[0].home.score, 24);
+  assert.equal(all[0], game, "the cache array still holds the raw game");
+  assert.deepEqual(game, snapshot, "raw game untouched: scrapeTries matches ESPN by the vendor's kickoff minute");
+  assert.equal(game.date, "2026-10-17T05:00:00+00:00");
+});
+
+test("slimGames: an upcoming row is corrected and re-sorted; nothing to correct keeps the arrays as built", () => {
+  const all = [
+    raw(902, "2026-10-17T04:50:00+00:00", JPN, FIJ2, NS),
+    raw(903, "2026-10-17T05:00:00+00:00", AUS, NZL, NS),
+  ];
+  const { fixtures } = slimGames(all, { table: BLEDISLOE, log: () => {} });
+  const ours = fixtures.filter((f) => f.id === 902 || f.id === 903);
+  assert.deepEqual(ours.map((f) => f.id), [903, 902]);
+  assert.equal(ours[0].date, "2026-10-17T04:45:00.000Z");
+  assert.equal(ours[0].timeTBC, false);
+  for (let i = 1; i < fixtures.length; i++) {
+    assert.ok(new Date(fixtures[i - 1].date) <= new Date(fixtures[i].date), "fixtures stay sorted");
+  }
+  // Empty table: the corrected arrays are exactly the plain build.
+  const plain = slimGames(all, { table: {}, log: () => {} });
+  assert.equal(plain.fixtures.find((f) => f.id === 903).date, "2026-10-17T05:00:00+00:00");
 });
 
 // ---- pool stage: finals weekend stays out of the table ----------------------
