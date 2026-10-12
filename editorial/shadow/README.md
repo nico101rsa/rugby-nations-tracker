@@ -113,9 +113,11 @@ Earlier reviews can report progress.
 
 ## After the week
 
-Delete the three "News shadow test" steps and `DIGEST_PROMPTS_DIR` from
-`.github/workflows/generate-digests.yml`. Keep these records, and leave
-`scripts/news-shadow.mjs` and its test in place (the test checks the workflow
-with or without the steps, so the cleanup cannot fail the digest run). The
-steps are harmless if they are left in, because they skip themselves, but they
-are dead weight.
+The decision was taken on Sun 11 Oct 2026, before the week ended, on the
+records for 6–11 Oct (data repo PR #139): **Haiku 5.5** writes and
+fact-checks, **Sonnet 5.5** reviews; Gemini's free ladder is the fallback.
+The three workflow steps and `DIGEST_PROMPTS_DIR` were removed from
+`generate-digests.yml` on 12 Oct 2026. The records for 6–12 Oct are kept,
+`scripts/news-shadow.mjs` and its test stay in place (`--grade` and `--key`
+still work on the records), and the weekly review of Tue 13 Oct grades the
+week as described above.
