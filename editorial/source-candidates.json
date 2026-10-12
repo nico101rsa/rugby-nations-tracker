@@ -151,6 +151,46 @@
         }
       ],
       "decided": "2026-10-11"
+    },
+    {
+      "outlet": "Scottish Rugby (official union news)",
+      "host": "scottishrugby.org",
+      "homepage": "https://www.scottishrugby.org",
+      "teams": [
+        "Scotland"
+      ],
+      "why": "Scotland's edition fell to a data note with nothing above salience, and the union's own news page would give squad and fixture items the spine misses.",
+      "proposed": "2026-10-12",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-10-12",
+          "error": "no feed found (8 tried)"
+        }
+      ]
+    },
+    {
+      "outlet": "Federazione Italiana Rugby",
+      "host": "federugby.it",
+      "homepage": "https://www.federugby.it",
+      "teams": [
+        "Italy"
+      ],
+      "why": "Italy's shortlist held only three low-score items, none about the team's current campaign, and the union page would cover squad and Round 4 news.",
+      "proposed": "2026-10-12",
+      "status": "proposed",
+      "feedUrl": "https://www.federugby.it/feed/",
+      "probes": [
+        {
+          "date": "2026-10-12",
+          "feedUrl": "https://www.federugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "Italy": 1
+          }
+        }
+      ]
     }
   ]
 }

@@ -17,6 +17,10 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 - **RugbyPass** (rugbypass.com) — proposed 2026-10-11 for France, Japan, England: France, Japan and England packs led with July or August items or off-field filler; a dedicated rugby site would add current men's coverage.
   - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+- **Scottish Rugby (official union news)** (scottishrugby.org) — proposed 2026-10-12 for Scotland: Scotland's edition fell to a data note with nothing above salience, and the union's own news page would give squad and fixture items the spine misses.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+- **Federazione Italiana Rugby** (federugby.it) — proposed 2026-10-12 for Italy: Italy's shortlist held only three low-score items, none about the team's current campaign, and the union page would cover squad and Round 4 news.
+  - feed: https://www.federugby.it/feed/; probes: 1; stories about tracked teams: Italy 1
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
