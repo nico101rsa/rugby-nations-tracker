@@ -188,3 +188,10 @@ export function mergeStaticFixtures(fixtures, cachedGames) {
   ];
   return merged.sort((a, b) => new Date(a.date) - new Date(b.date));
 }
+
+// The 12 Nations Championship teams by code, with their api-sports ids
+// ({ ENG: { id: 386, name: "England" }, ... }). build-standings.mjs maps
+// nations.json results (ids, no codes) onto registry codes with it. The same
+// object as API_SPORTS_TEAMS above: both names landed from parallel branches,
+// and either may be imported.
+export const API_SPORTS_NATIONS = API_SPORTS_TEAMS;

@@ -25,7 +25,9 @@ async function espn(path) {
   return r.json();
 }
 
-function countTries(details, homeId) {
+// Exported for espn-tries.mjs, which counts every other competition's tries
+// from the same ESPN summary shape — one counting rule, not two.
+export function countTries(details, homeId) {
   const t = { home: 0, away: 0 };
   for (const d of details || []) {
     if (!/^(penalty )?try$/i.test(d.type?.text || "")) continue;

@@ -1,11 +1,13 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import {
   classify,
   chainDefaults,
   defaultCompetition,
   statusFor,
   entryFor,
+  namePools,
   sliceRange,
   yearsBetween,
   inWindow,
@@ -285,10 +287,12 @@ test("an unrecognised team leaves both conference names null rather than guessin
 });
 
 test("pool groups carry no invented letters", () => {
+  // None of these three sets is a drawn RWC 2027 pool (each mixes two pools),
+  // so nothing may letter them — letters only come from an exact draw match.
   const pools = [
-    [10, 25, 14, 289211],
-    [6, 289243, 289268, 8],
-    [1, 16, 4, 289356],
+    [10, 25, 14, 8], // ARG CAN FIJ + NZL (Pool C has ESP, not NZL)
+    [6, 289243, 289268, 289211], // AUS CHI HKG + ESP
+    [1, 16, 4, 12], // ENG TGA WAL + ROU (Pool F has ZIM)
   ];
   const events = [];
   let d = 0;
@@ -301,6 +305,105 @@ test("pool groups carry no invented letters", () => {
   assert.equal(e.structure, "pools");
   assert.equal(e.groups.length, 3);
   assert.deepEqual(new Set(e.groups.map((g) => g.name)), new Set([null]));
+  assert.deepEqual(new Set(e.groups.map((g) => g.pool)), new Set([null]));
+});
+
+// --- pool letters from the official draw (competition-rules.mjs) ----------
+// The letter goes in `groups[].pool` and `name` stays null: every installed
+// app up to 1.3.9 renders a group heading as `g.name ?? "Pool ${i + 1}"` next
+// to "the official pool letters aren't published in our data source"
+// (LogTab.jsx LineUp), so a pool `name` of "A" would put a bare "A" on every
+// phone under a sentence that is then false (review of PR #146).
+//
+// competitions.json's six rwc-2027 groups in registry order (earliest kickoff).
+const RWC_2027_GROUPS = () => [
+  { name: null, teams: ["AUS", "HKG", "CHI", "NZL"] },
+  { name: null, teams: ["WAL", "ENG", "TGA", "ZIM"] },
+  { name: null, teams: ["FRA", "USA", "SAM", "JPN"] },
+  { name: null, teams: ["RSA", "ROU", "GEO", "ITA"] },
+  { name: null, teams: ["SCO", "URU", "POR", "IRE"] },
+  { name: null, teams: ["FIJ", "ARG", "CAN", "ESP"] },
+];
+
+test("namePools letters the six RWC 2027 pools A, F, E, B, D, C in registry order", () => {
+  const groups = namePools("rwc-2027", RWC_2027_GROUPS());
+  assert.deepEqual(groups.map((g) => g.pool), ["A", "F", "E", "B", "D", "C"]);
+  // Order and members untouched.
+  assert.deepEqual(groups.map((g) => g.teams), RWC_2027_GROUPS().map((g) => g.teams));
+});
+
+test("namePools never writes a pool's name: the shipped app prints `name` as the bare heading", () => {
+  const groups = namePools("rwc-2027", RWC_2027_GROUPS());
+  assert.deepEqual(groups.map((g) => g.name), [null, null, null, null, null, null]);
+  // What the 1.3.9 LineUp renders from these groups (LogTab.jsx:116 on app
+  // main): still "Pool 1".."Pool 6", exactly as before the letters existed.
+  const shippedLabel = (g, i) => g.name ?? `Pool ${i + 1}`;
+  assert.deepEqual(groups.map(shippedLabel), ["Pool 1", "Pool 2", "Pool 3", "Pool 4", "Pool 5", "Pool 6"]);
+});
+
+test("namePools leaves a group's letter null when its team set differs by one code", () => {
+  const groups = RWC_2027_GROUPS();
+  groups[0].teams = ["AUS", "HKG", "CHI", "FIJ"]; // NZL swapped out
+  namePools("rwc-2027", groups);
+  assert.equal(groups[0].pool, null);
+  assert.equal(groups[0].name, null);
+  assert.equal(groups[1].pool, "F");
+});
+
+test("namePools needs the exact size: a 3-team or 5-team group gets no letter", () => {
+  const three = [{ name: null, teams: ["NZL", "AUS", "CHI"] }];
+  const five = [{ name: null, teams: ["NZL", "AUS", "CHI", "HKG", "FIJ"] }];
+  assert.equal(namePools("rwc-2027", three)[0].pool, null);
+  assert.equal(namePools("rwc-2027", five)[0].pool, null);
+});
+
+test("namePools leaves competitions with no recorded draw untouched", () => {
+  const groups = RWC_2027_GROUPS();
+  namePools("rwc-2031", groups);
+  assert.deepEqual(groups, RWC_2027_GROUPS(), "no pool field, names still null");
+  const conf = [{ name: "North", teams: ["ENG"] }];
+  namePools("rnc-2026", conf);
+  assert.deepEqual(conf, [{ name: "North", teams: ["ENG"] }]);
+});
+
+test("entryFor letters drawn pools for rwc-2027 and only for it, names stay null", () => {
+  const ids = Object.fromEntries(Object.entries({
+    1: "ENG", 2: "SCO", 3: "IRE", 4: "WAL", 5: "RSA", 6: "AUS", 8: "NZL", 9: "FRA", 10: "ARG", 14: "FIJ",
+    20: "ITA", 23: "JPN", 11: "USA", 12: "ROU", 15: "SAM", 16: "TGA", 25: "CAN", 27: "POR", 29: "URU",
+    81: "GEO", 289211: "ESP", 289243: "CHI", 289268: "HKG", 289356: "ZIM",
+  }).map(([id, c]) => [c, Number(id)]));
+  const events = [];
+  let d = 0;
+  for (const g of RWC_2027_GROUPS()) {
+    const p = g.teams.map((c) => ids[c]);
+    for (let i = 0; i < p.length; i++) {
+      for (let j = i + 1; j < p.length; j++) events.push(espnEvent(dayAfter("2027-10-01", d++), p[i], p[j]));
+    }
+  }
+  const e = entryFor(META, 2027, events, "2026-10-12");
+  assert.equal(e.structure, "pools");
+  assert.deepEqual(e.groups.map((g) => g.pool), ["A", "F", "E", "B", "D", "C"]);
+  assert.deepEqual(e.groups.map((g) => g.name), [null, null, null, null, null, null]);
+  // The same draw under a different season is not the 2027 draw.
+  const later = entryFor(META, 2031, events.map((ev) => ({ ...ev, date: ev.date.replace("2027", "2031") })), "2026-10-12");
+  assert.deepEqual(new Set(later.groups.map((g) => g.name)), new Set([null]));
+  assert.ok(later.groups.every((g) => !("pool" in g)));
+});
+
+// The committed file is what Pages serves to every installed phone. This only
+// asserts what code alone controls (no vendor change can set a pool's name),
+// so it can't fail on a legitimate data change — the suite gates the digest
+// and competitions jobs. Lift it only once no supported app build renders a
+// pool's `name` bare (an app that reads `pool` never needs `name` set).
+test("committed competitions.json: every pool's name is null (its letter, if any, is in `pool`)", async () => {
+  const reg = JSON.parse(await readFile(new URL("../competitions.json", import.meta.url), "utf8"));
+  for (const c of reg.competitions ?? []) {
+    if (c.structure !== "pools" || !Array.isArray(c.groups)) continue;
+    for (const g of c.groups) {
+      assert.equal(g.name, null, `${c.key}: a pool group has name ${JSON.stringify(g.name)}; the shipped app would print it bare`);
+      assert.ok(g.pool === undefined || g.pool === null || /^[A-Z]$/.test(g.pool), `${c.key}: pool ${JSON.stringify(g.pool)} is not a letter`);
+    }
+  }
 });
 
 // --- side competitions (the Pacific Nations Cup) ----------------------------

@@ -20,13 +20,26 @@
 // published field — dates, structure, team set — is derived from the fixture
 // records themselves.
 //
-// No pool/group LETTERS are emitted. ESPN carries none (`notes` is empty on
-// every RWC event) and inventing "Pool A" would be a fabricated claim about
-// the official draw. Groups come out ordered by earliest kickoff with
-// `name: null`; naming them is the consuming tab's problem, not ours.
+// Pool LETTERS never come from ESPN: it carries none (`notes` is empty on
+// every RWC event). They come from the official draw (Sydney, 3 Dec 2025),
+// held as data in competition-rules.mjs POOL_NAMES with its source, and a
+// group gets its letter only when its team set equals a drawn pool EXACTLY
+// (size and membership). A vendor team-set change therefore drops the letter
+// to null rather than mislabelling a pool. Groups stay ordered by earliest
+// kickoff (RWC 2027: A, F, E, B, D, C), whatever their letters.
+//
+// The letter goes in `groups[].pool`, NEVER in `groups[].name`: a pool's
+// `name` stays null. Every installed app up to and including 1.3.9 renders a
+// group heading as `g.name ?? "Pool ${i + 1}"` beside the sentence "the
+// official pool letters aren't published in our data source"
+// (LogTab.jsx LineUp), and this file reaches every phone within the hour, so
+// a named pool would turn "Pool 1" into a bare "A" under a sentence that is
+// then false. `pool` is a field no shipped build reads; an app build that
+// renders `Pool ${g.pool}` picks it up whenever it lands.
 
 import { writeFile } from "node:fs/promises";
 import { SEEDS, seededCompetition } from "./seed-competitions.mjs";
+import { POOL_NAMES } from "./competition-rules.mjs";
 
 // The competitions the app tracks as competitions. "International Test Match"
 // (league 289234) is deliberately absent — it is a bucket of one-off tests
@@ -315,7 +328,27 @@ export function entryFor(meta, season, events, today) {
   if (meta.headline === false) entry.headline = false;
   entry.status = statusFor(entry, today);
   if (entry.structure === "conference" && entry.groups) nameConferences(entry.groups);
+  if (entry.structure === "pools" && entry.groups) namePools(entry.key, entry.groups);
   return entry;
+}
+
+// Letter each pool from the official draw (competition-rules.mjs POOL_NAMES)
+// when its team set equals a drawn pool exactly — same size, same members —
+// in `pool`. Anything else in a drawn competition gets `pool: null` (a group
+// one team out, a 3-team group); a competition with no recorded draw is left
+// untouched. `name` is never written (see the header: the shipped app prints
+// it bare). Mutates and returns `groups`.
+export function namePools(key, groups) {
+  const drawn = POOL_NAMES[key];
+  if (!drawn || !Array.isArray(groups)) return groups;
+  for (const g of groups) {
+    const set = new Set(g.teams ?? []);
+    const hit = Object.entries(drawn).find(
+      ([, teams]) => teams.length === set.size && teams.every((t) => set.has(t)),
+    );
+    g.pool = hit ? hit[0] : null;
+  }
+  return groups;
 }
 
 // Name the two conference sides only when every team in a side agrees on a

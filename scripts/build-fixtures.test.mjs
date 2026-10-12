@@ -1,3 +1,4 @@
+import { withPools } from "./build-fixtures.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildFixtures, compFor, roundLookup, mergeSources, fetchSeriesScores, fetchLiveStates, isPlaceholderFinal, withHandFinals, HAND_FINALS, publishFixtures, UNTRACKED_CODES } from "./build-fixtures.mjs";
@@ -336,6 +337,55 @@ test("fetchLiveStates reads the site-API shape too: inline status, score as a st
   assert.deepEqual(out["espn-1"], { home: 57, away: 12, live: false, short: "FT" });
   assert.deepEqual(out["espn-2"], { home: 7, away: 3, live: true, short: "1st Half" });
   assert.equal(out["espn-3"], undefined);
+});
+
+// --- pool letters on World Cup rows (withPools) ------------------------------
+
+const POOLS_REGISTRY = {
+  competitions: [
+    { key: "6n-2027", structure: "table", groups: null, teams: ["ENG", "FRA", "IRE", "ITA", "SCO", "WAL"] },
+    {
+      key: "rwc-2027", structure: "pools",
+      // The letter is in `pool`; a pool's `name` stays null (the shipped app
+      // prints `name` bare as the heading — build-competitions.mjs header).
+      groups: [
+        { name: null, teams: ["AUS", "HKG", "CHI", "NZL"], pool: "A" },
+        { name: null, teams: ["WAL", "ENG", "TGA", "ZIM"], pool: null }, // not (yet) lettered
+      ],
+    },
+  ],
+};
+const poolRow = (id, key, home, away) => ({ id, date: "2027-10-02T10:45:00.000Z", home: { code: home }, away: { code: away }, comp: { key, kind: "competition" } });
+
+test("withPools tags a World Cup row with its home side's pool, and nothing else", () => {
+  const input = [
+    poolRow("espn-1", "rwc-2027", "NZL", "CHI"),
+    poolRow("espn-2", "rwc-2027", "ENG", "TGA"), // group has no letter -> no field
+    poolRow("seed-6n", "6n-2027", "IRE", "ENG"), // table competition -> no field
+    poolRow("espn-3", "test", "NZL", "AUS"),
+  ];
+  const before = JSON.stringify(input);
+  const out = withPools(input, POOLS_REGISTRY);
+  assert.equal(out[0].pool, "A");
+  assert.ok(!("pool" in out[1]));
+  assert.ok(!("pool" in out[2]));
+  assert.ok(!("pool" in out[3]));
+  assert.equal(JSON.stringify(input), before, "input not mutated");
+  assert.notEqual(out[0], input[0], "a tagged row is a new object");
+  assert.equal(out[2], input[2], "an untagged row passes through");
+});
+
+test("withPools reads the letter from `pool`, never from a group's `name`", () => {
+  const registry = {
+    competitions: [{ key: "rwc-2027", structure: "pools", groups: [{ name: "A", teams: ["AUS", "NZL"] }] }],
+  };
+  const input = [poolRow("espn-1", "rwc-2027", "NZL", "AUS")];
+  assert.ok(!("pool" in withPools(input, registry)[0]));
+});
+
+test("withPools with no registry changes nothing", () => {
+  const input = [poolRow("espn-1", "rwc-2027", "NZL", "CHI")];
+  assert.deepEqual(withPools(input, null), input);
 });
 
 // --- ESPN's 0-0 placeholder (PNC 2026 final, 2026-09-19) --------------------
