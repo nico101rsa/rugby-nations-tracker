@@ -6,6 +6,7 @@ import {
   defaultCompetition,
   statusFor,
   entryFor,
+  namePools,
   sliceRange,
   yearsBetween,
   inWindow,
@@ -285,10 +286,12 @@ test("an unrecognised team leaves both conference names null rather than guessin
 });
 
 test("pool groups carry no invented letters", () => {
+  // None of these three sets is a drawn RWC 2027 pool (each mixes two pools),
+  // so nothing may name them — letters only come from an exact draw match.
   const pools = [
-    [10, 25, 14, 289211],
-    [6, 289243, 289268, 8],
-    [1, 16, 4, 289356],
+    [10, 25, 14, 8], // ARG CAN FIJ + NZL (Pool C has ESP, not NZL)
+    [6, 289243, 289268, 289211], // AUS CHI HKG + ESP
+    [1, 16, 4, 12], // ENG TGA WAL + ROU (Pool F has ZIM)
   ];
   const events = [];
   let d = 0;
@@ -301,6 +304,70 @@ test("pool groups carry no invented letters", () => {
   assert.equal(e.structure, "pools");
   assert.equal(e.groups.length, 3);
   assert.deepEqual(new Set(e.groups.map((g) => g.name)), new Set([null]));
+});
+
+// --- pool letters from the official draw (competition-rules.mjs) ----------
+// competitions.json's six rwc-2027 groups in registry order (earliest kickoff).
+const RWC_2027_GROUPS = () => [
+  { name: null, teams: ["AUS", "HKG", "CHI", "NZL"] },
+  { name: null, teams: ["WAL", "ENG", "TGA", "ZIM"] },
+  { name: null, teams: ["FRA", "USA", "SAM", "JPN"] },
+  { name: null, teams: ["RSA", "ROU", "GEO", "ITA"] },
+  { name: null, teams: ["SCO", "URU", "POR", "IRE"] },
+  { name: null, teams: ["FIJ", "ARG", "CAN", "ESP"] },
+];
+
+test("namePools names the six RWC 2027 pools A, F, E, B, D, C in registry order", () => {
+  const groups = namePools("rwc-2027", RWC_2027_GROUPS());
+  assert.deepEqual(groups.map((g) => g.name), ["A", "F", "E", "B", "D", "C"]);
+  // Order and members untouched.
+  assert.deepEqual(groups.map((g) => g.teams), RWC_2027_GROUPS().map((g) => g.teams));
+});
+
+test("namePools leaves a group null when its team set differs by one code", () => {
+  const groups = RWC_2027_GROUPS();
+  groups[0].teams = ["AUS", "HKG", "CHI", "FIJ"]; // NZL swapped out
+  namePools("rwc-2027", groups);
+  assert.equal(groups[0].name, null);
+  assert.equal(groups[1].name, "F");
+});
+
+test("namePools needs the exact size: a 3-team or 5-team group stays null", () => {
+  const three = [{ name: null, teams: ["NZL", "AUS", "CHI"] }];
+  const five = [{ name: null, teams: ["NZL", "AUS", "CHI", "HKG", "FIJ"] }];
+  assert.equal(namePools("rwc-2027", three)[0].name, null);
+  assert.equal(namePools("rwc-2027", five)[0].name, null);
+});
+
+test("namePools leaves competitions with no recorded draw untouched", () => {
+  const groups = RWC_2027_GROUPS();
+  namePools("rwc-2031", groups);
+  assert.deepEqual(groups.map((g) => g.name), [null, null, null, null, null, null]);
+  const conf = [{ name: "North", teams: ["ENG"] }];
+  namePools("rnc-2026", conf);
+  assert.equal(conf[0].name, "North");
+});
+
+test("entryFor names drawn pools for rwc-2027 and only for it", () => {
+  const ids = Object.fromEntries(Object.entries({
+    1: "ENG", 2: "SCO", 3: "IRE", 4: "WAL", 5: "RSA", 6: "AUS", 8: "NZL", 9: "FRA", 10: "ARG", 14: "FIJ",
+    20: "ITA", 23: "JPN", 11: "USA", 12: "ROU", 15: "SAM", 16: "TGA", 25: "CAN", 27: "POR", 29: "URU",
+    81: "GEO", 289211: "ESP", 289243: "CHI", 289268: "HKG", 289356: "ZIM",
+  }).map(([id, c]) => [c, Number(id)]));
+  const events = [];
+  let d = 0;
+  for (const g of RWC_2027_GROUPS()) {
+    const p = g.teams.map((c) => ids[c]);
+    for (let i = 0; i < p.length; i++) {
+      for (let j = i + 1; j < p.length; j++) events.push(espnEvent(dayAfter("2027-10-01", d++), p[i], p[j]));
+    }
+  }
+  const e = entryFor(META, 2027, events, "2026-10-12");
+  assert.equal(e.structure, "pools");
+  assert.deepEqual(e.groups.map((g) => g.name), ["A", "F", "E", "B", "D", "C"]);
+  // The same draw under a different season is not the 2027 draw.
+  const later = entryFor(META, 2031, events.map((ev) => ({ ...ev, date: ev.date.replace("2027", "2031") })), "2026-10-12");
+  assert.deepEqual(new Set(later.groups.map((g) => g.name)), new Set([null]));
 });
 
 // --- side competitions (the Pacific Nations Cup) ----------------------------

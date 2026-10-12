@@ -20,13 +20,18 @@
 // published field — dates, structure, team set — is derived from the fixture
 // records themselves.
 //
-// No pool/group LETTERS are emitted. ESPN carries none (`notes` is empty on
-// every RWC event) and inventing "Pool A" would be a fabricated claim about
-// the official draw. Groups come out ordered by earliest kickoff with
-// `name: null`; naming them is the consuming tab's problem, not ours.
+// Pool LETTERS never come from ESPN: it carries none (`notes` is empty on
+// every RWC event). They come from the official draw (Sydney, 3 Dec 2025),
+// held as data in competition-rules.mjs POOL_NAMES with its source, and a
+// group is named only when its team set equals a drawn pool EXACTLY (size and
+// membership). A vendor team-set change therefore drops the letter to null
+// rather than mislabelling a pool, and a competition with no drawn pools
+// keeps `name: null`. Groups stay ordered by earliest kickoff (RWC 2027:
+// A, F, E, B, D, C), whatever their letters.
 
 import { writeFile } from "node:fs/promises";
 import { SEEDS, seededCompetition } from "./seed-competitions.mjs";
+import { POOL_NAMES } from "./competition-rules.mjs";
 
 // The competitions the app tracks as competitions. "International Test Match"
 // (league 289234) is deliberately absent — it is a bucket of one-off tests
@@ -315,7 +320,25 @@ export function entryFor(meta, season, events, today) {
   if (meta.headline === false) entry.headline = false;
   entry.status = statusFor(entry, today);
   if (entry.structure === "conference" && entry.groups) nameConferences(entry.groups);
+  if (entry.structure === "pools" && entry.groups) namePools(entry.key, entry.groups);
   return entry;
+}
+
+// Name each pool from the official draw (competition-rules.mjs POOL_NAMES)
+// when its team set equals a drawn pool exactly — same size, same members.
+// Anything else keeps `name: null`: a group one team out, a 3-team group, or
+// a competition with no recorded draw. Mutates and returns `groups`.
+export function namePools(key, groups) {
+  const drawn = POOL_NAMES[key];
+  if (!drawn || !Array.isArray(groups)) return groups;
+  for (const g of groups) {
+    const set = new Set(g.teams ?? []);
+    const hit = Object.entries(drawn).find(
+      ([, teams]) => teams.length === set.size && teams.every((t) => set.has(t)),
+    );
+    g.name = hit ? hit[0] : null;
+  }
+  return groups;
 }
 
 // Name the two conference sides only when every team in a side agrees on a

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { buildFixtures, compFor, roundLookup, mergeSources, fetchSeriesScores, fetchLiveStates, isPlaceholderFinal, withHandFinals, HAND_FINALS } from "./build-fixtures.mjs";
+import { buildFixtures, compFor, roundLookup, mergeSources, fetchSeriesScores, fetchLiveStates, isPlaceholderFinal, withHandFinals, HAND_FINALS, withPools } from "./build-fixtures.mjs";
 
 const ref = (id) => ({ $ref: `http://sports.core.api.espn.com/v2/sports/rugby/leagues/1/seasons/2026/teams/${id}?lang=en` });
 const ev = (id, iso, homeId, awayId, extra = {}) => ({
@@ -372,4 +372,43 @@ test("hand finals lay over the fetched map and win, and carry the PNC 2026 final
   assert.equal(out[0].homeScore, 20);
   assert.equal(out[0].awayScore, 15);
   assert.equal(out[0].status, undefined);
+});
+
+// --- pool letters on World Cup rows (withPools) ------------------------------
+
+const POOLS_REGISTRY = {
+  competitions: [
+    { key: "6n-2027", structure: "table", groups: null, teams: ["ENG", "FRA", "IRE", "ITA", "SCO", "WAL"] },
+    {
+      key: "rwc-2027", structure: "pools",
+      groups: [
+        { name: "A", teams: ["AUS", "HKG", "CHI", "NZL"] },
+        { name: null, teams: ["WAL", "ENG", "TGA", "ZIM"] }, // not (yet) named
+      ],
+    },
+  ],
+};
+const poolRow = (id, key, home, away) => ({ id, date: "2027-10-02T10:45:00.000Z", home: { code: home }, away: { code: away }, comp: { key, kind: "competition" } });
+
+test("withPools tags a World Cup row with its home side's pool, and nothing else", () => {
+  const input = [
+    poolRow("espn-1", "rwc-2027", "NZL", "CHI"),
+    poolRow("espn-2", "rwc-2027", "ENG", "TGA"), // group has no name -> no field
+    poolRow("seed-6n", "6n-2027", "IRE", "ENG"), // table competition -> no field
+    poolRow("espn-3", "test", "NZL", "AUS"),
+  ];
+  const before = JSON.stringify(input);
+  const out = withPools(input, POOLS_REGISTRY);
+  assert.equal(out[0].pool, "A");
+  assert.ok(!("pool" in out[1]));
+  assert.ok(!("pool" in out[2]));
+  assert.ok(!("pool" in out[3]));
+  assert.equal(JSON.stringify(input), before, "input not mutated");
+  assert.notEqual(out[0], input[0], "a tagged row is a new object");
+  assert.equal(out[2], input[2], "an untagged row passes through");
+});
+
+test("withPools with no registry changes nothing", () => {
+  const input = [poolRow("espn-1", "rwc-2027", "NZL", "CHI")];
+  assert.deepEqual(withPools(input, null), input);
 });
