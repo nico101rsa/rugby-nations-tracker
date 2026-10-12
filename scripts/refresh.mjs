@@ -137,12 +137,17 @@ export async function runLiveBurst({
 }
 
 async function mainRun() {
+  // SCHEDULE plus any confirmed Nations Championship kickoff fixtures.json
+  // carries that SCHEDULE doesn't (finals weekend, once ESPN publishes it) —
+  // a local file read, no vendor call. See scheduleKickoffs().
+  const schedule = scheduleKickoffs();
   const decision = decideMode({
     now: new Date(),
-    schedule: scheduleKickoffs(),
+    schedule,
     remaining: null, // first run of the process has no prior header; guard applies next time
   });
-  console.log(`[refresh] mode=${decision.mode} — ${decision.reason} — dates=${decision.dates.join(",") || "none"}`);
+  const confirmed = schedule.filter((m) => m.timeConfirmed).length;
+  console.log(`[refresh] mode=${decision.mode} — ${decision.reason} — dates=${decision.dates.join(",") || "none"} — schedule: ${schedule.length} kickoffs, ${confirmed} confirmed`);
 
   // NZ-tour match days: one api-sports request after the final whistle to
   // learn coverage + auto-fill the score (scripts/probe-tour.mjs — its own

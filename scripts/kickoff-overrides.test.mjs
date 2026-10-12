@@ -103,7 +103,7 @@ test("fixtures.json row: 05:00Z becomes 04:45Z with timeTBC false, input untouch
 });
 
 test("nations.json row: api-sports ids 461 v 465 at '+00:00' move via keyOf.nations", () => {
-  assert.equal(API_SPORTS_TEAMS.AUS, 461);
+  assert.equal(API_SPORTS_TEAMS.AUS.id, 461);
   assert.equal(API_SPORTS_CODE_BY_ID[465], "NZL");
   const row = {
     id: 53213, date: "2026-10-17T05:00:00+00:00", week: null,
