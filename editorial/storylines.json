@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-13T01:43:06.195Z",
+  "updatedAt": "2026-10-13T20:00:27.971Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 210,
+  "count": 214,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -3809,7 +3809,8 @@
       ],
       "firstSeen": "2026-10-09",
       "lastSeen": "2026-10-09",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-14"
     },
     {
       "id": "taulupe-faletau-s-return-nin60p",
@@ -4562,7 +4563,7 @@
         }
       ],
       "firstSeen": "2026-10-12",
-      "lastSeen": "2026-10-13",
+      "lastSeen": "2026-10-14",
       "uses": 0
     },
     {
@@ -4649,7 +4650,7 @@
         }
       ],
       "firstSeen": "2026-10-13",
-      "lastSeen": "2026-10-13",
+      "lastSeen": "2026-10-14",
       "uses": 0
     },
     {
@@ -4863,6 +4864,110 @@
       ],
       "firstSeen": "2026-10-13",
       "lastSeen": "2026-10-13",
+      "uses": 0
+    },
+    {
+      "id": "the-bidding-war-between-1hgb9u2",
+      "subject": "The bidding war between South African clubs for Malcolm Marx",
+      "teams": [
+        467
+      ],
+      "resolution": "until Malcolm Marx confirms which club he will sign with",
+      "sources": [
+        {
+          "title": "Another SA side joins Marx race",
+          "link": "https://www.sarugbymag.co.za/another-sa-side-joins-marx-race/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Bulls face competition for Malcolm Marx signature amid doubts over Springboks Rugby World Cup winner's future",
+          "link": "https://www.planetrugby.com/news/bulls-face-competition-for-malcolm-marx-signature-amid-doubts-over-springboks-rugby-world-cup-winners-future",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "uses": 0
+    },
+    {
+      "id": "mark-nawaqanitawase-s-potential-x1641w",
+      "subject": "Mark Nawaqanitawase’s potential change of international allegiance to Fiji",
+      "teams": [
+        28,
+        461
+      ],
+      "resolution": "until Mark Nawaqanitawase officially declares his availability for Fiji or commits to the Wallabies",
+      "sources": [
+        {
+          "title": "Mark Nawaqanitawase's Wallabies future thrown into doubt as he considers switch of allegiance at international level",
+          "link": "https://www.planetrugby.com/news/mark-nawaqanitawases-wallabies-future-thrown-into-doubt-as-he-considers-switch-of-allegiance-at-international-level",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "League star to fly for Jake's Fijians?",
+          "link": "https://www.sarugbymag.co.za/league-star-to-fly-for-jakes-fijians/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "uses": 0
+    },
+    {
+      "id": "the-legal-challenge-by-18pczv",
+      "subject": "The legal challenge by rugby players against World Rugby regarding brain injuries",
+      "teams": [
+        386,
+        387,
+        388,
+        389,
+        390,
+        391,
+        460,
+        461,
+        463,
+        465,
+        467
+      ],
+      "resolution": "until the claimants settle the legal fees or the court case reaches a conclusion",
+      "sources": [
+        {
+          "title": "Rugby’s brain injury claimants face £2.8m legal bill to continue case",
+          "link": "https://www.theguardian.com/sport/2026/oct/02/rugby-union-players-liable-for-28m-in-legal-fees-to-brain-injury-case-concussion",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
+      "uses": 0
+    },
+    {
+      "id": "louis-rees-zammit-s-1gu2qna",
+      "subject": "Louis Rees-Zammit’s campaign to ban artificial pitches in the Premiership",
+      "teams": [
+        386,
+        391
+      ],
+      "resolution": "until Premiership Rugby makes a formal decision on the future of artificial surfaces",
+      "sources": [
+        {
+          "title": "End use of artificial pitches - Rees-Zammit",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c680z7dr7l93o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Louis Rees-Zammit demands end to artificial Prem pitches after leg burns at Saracens",
+          "link": "https://www.theguardian.com/sport/2026/oct/13/rugby-union-louis-rees-zammit-end-to-artificial-prem-pitches-leg-burns-at-saracens",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Rees-Lightning blasts 4G surfaces",
+          "link": "https://www.sarugbymag.co.za/lrz-blasts-4g-surfaces/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-14",
+      "lastSeen": "2026-10-14",
       "uses": 0
     }
   ]

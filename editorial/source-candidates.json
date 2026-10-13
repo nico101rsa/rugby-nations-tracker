@@ -24,6 +24,10 @@
         {
           "date": "2026-10-13",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-14",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -49,6 +53,10 @@
         },
         {
           "date": "2026-10-13",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-14",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -77,6 +85,10 @@
         },
         {
           "date": "2026-10-13",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-14",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -127,6 +139,16 @@
             "Ireland": 5,
             "Japan": 1,
             "South Africa": 1
+          }
+        },
+        {
+          "date": "2026-10-14",
+          "feedUrl": "https://www.the42.ie/feed/",
+          "items": 40,
+          "hits": {
+            "Fiji": 1,
+            "Ireland": 12,
+            "South Africa": 2
           }
         }
       ],
@@ -185,6 +207,21 @@
             "New Zealand": 1,
             "South Africa": 2
           }
+        },
+        {
+          "date": "2026-10-14",
+          "feedUrl": "https://www.rte.ie/feeds/rss/?index=/sport/rugby/",
+          "items": 50,
+          "hits": {
+            "Fiji": 1,
+            "England": 1,
+            "Ireland": 14,
+            "Argentina": 1,
+            "Australia": 2,
+            "Japan": 4,
+            "New Zealand": 1,
+            "South Africa": 2
+          }
         }
       ],
       "decided": "2026-10-11"
@@ -208,6 +245,10 @@
         {
           "date": "2026-10-13",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-14",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -220,7 +261,7 @@
       ],
       "why": "Italy's shortlist held only three low-score items, none about the team's current campaign, and the union page would cover squad and Round 4 news.",
       "proposed": "2026-10-12",
-      "status": "proposed",
+      "status": "ready",
       "feedUrl": "https://www.federugby.it/feed/",
       "probes": [
         {
@@ -238,8 +279,17 @@
           "hits": {
             "Italy": 1
           }
+        },
+        {
+          "date": "2026-10-14",
+          "feedUrl": "https://www.federugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "Italy": 1
+          }
         }
-      ]
+      ],
+      "decided": "2026-10-14"
     },
     {
       "outlet": "Rugby World",
@@ -262,6 +312,22 @@
           "hits": {
             "England": 2,
             "Ireland": 1,
+            "Italy": 2,
+            "Scotland": 2,
+            "Wales": 2,
+            "Australia": 4,
+            "New Zealand": 1,
+            "South Africa": 3
+          }
+        },
+        {
+          "date": "2026-10-14",
+          "feedUrl": "https://www.rugbyworld.com/feed",
+          "items": 30,
+          "hits": {
+            "England": 2,
+            "France": 1,
+            "Ireland": 3,
             "Italy": 2,
             "Scotland": 2,
             "Wales": 2,
