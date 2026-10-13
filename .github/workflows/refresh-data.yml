@@ -111,11 +111,10 @@ jobs:
           git add nations.json public/nations.json scripts/.cache-games.json scripts/match-tries.json scripts/tour-results.json fixtures.json calendar standings.json scripts/match-tries-espn.json
           git diff --cached --quiet && echo "No data changes" && exit 0
           git commit -m "Data refresh $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
-          # Retry after a rebase rather than losing a push race. This job runs
-          # every 15 min (every 10 on Saturdays) and shares main with the
-          # team-events, rankings, news-harvest and digest jobs, so a race is
-          # routine — 2026-07-25 08:41 AEST failed on exactly this, rejected
-          # non-fast-forward, and emailed a failure for a refresh that was
-          # otherwise fine. Every other committing workflow in this repo
-          # already had the retry; this one was the outlier.
-          git push || (git pull --rebase --autostash && git push)
+          # Shares main with the team-events, rankings, news-harvest and
+          # digest jobs, so a lost push race is routine. The same retry the
+          # bursts use (scripts/git-push-retry.mjs); a CONFLICTING rebase is
+          # aborted and exits green, because the next run rebuilds and
+          # republishes everything here. That conflict was the Friday storm
+          # of failure emails (36 runs on 9–10 Oct 2026; scripts/push-data.mjs).
+          node scripts/push-data.mjs

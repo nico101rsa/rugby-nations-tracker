@@ -127,3 +127,24 @@ test("real git: after a conflict the next pass publishes on top of the other wri
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+test("pushOutcome tells a conflict from a lost race, and push-data exits red only on the lost race", async () => {
+  const { pushOutcome } = await import("./git-push-retry.mjs");
+  const { exitCodeFor } = await import("./push-data.mjs");
+  const conflict = (cmd) => {
+    if (cmd === "git push") throw new Error("failed to push some refs");
+    if (cmd.startsWith("git pull")) throw new Error("CONFLICT");
+  };
+  const quiet = () => {};
+  assert.equal(pushOutcome({ run: () => {}, log: quiet }), "pushed");
+  assert.equal(pushOutcome({ run: conflict, log: quiet }), "dropped");
+  assert.equal(pushOutcome({ run: (c) => { if (c.startsWith("git reset")) throw new Error("refused"); conflict(c); }, log: quiet }), "kept");
+  assert.equal(pushOutcome({ run: (c) => { if (c === "git push") throw new Error("rejected"); }, log: quiet }), "lost");
+  assert.deepEqual(["pushed", "dropped", "kept", "lost"].map(exitCodeFor), [0, 0, 0, 1]);
+});
+
+test("refresh-data's final push goes through push-data, not a bare rebase that exits red on a conflict", () => {
+  const yml = readFileSync(new URL("../.github/workflows/refresh-data.yml", import.meta.url), "utf8");
+  assert.match(yml, /node scripts\/push-data\.mjs/);
+  assert.doesNotMatch(yml, /git pull --rebase --autostash && git push/);
+});

@@ -31,7 +31,17 @@ export const PUSH_ATTEMPTS = 4;
 // uncommitted file another step wrote (refresh.mjs runs before the fixtures
 // burst in the same job) survives unless upstream changed it too, in which
 // case git refuses and the commit simply stays local, as before.
-export function pushWithRetries({
+export function pushWithRetries(opts) {
+  return pushOutcome(opts) === "pushed";
+}
+
+// The same push, saying how it ended, for a caller that must tell a conflict
+// from a real failure: "pushed"; "dropped" (a conflicting rebase was aborted
+// and this pass's commit dropped) or "kept" (aborted, commit left local)
+// when another writer just landed the same file; "lost" when every attempt
+// lost a race. The final commit step of refresh-data.yml exits green on the
+// two conflict outcomes and red only on "lost" (scripts/push-data.mjs).
+export function pushOutcome({
   run = (cmd) => execSync(cmd),
   attempts = PUSH_ATTEMPTS,
   log = console.warn,
@@ -39,7 +49,7 @@ export function pushWithRetries({
   for (let attempt = 1; attempt <= attempts; attempt++) {
     try {
       run("git push");
-      return true;
+      return "pushed";
     } catch {
       if (attempt === attempts) break;
       // Rebase onto whoever beat us, then try again. If the rebase itself
@@ -51,17 +61,18 @@ export function pushWithRetries({
           try {
             run("git reset --keep @{u}");
             log("[git] rebase conflicted; aborted it and dropped this pass's commit — the next pass rebuilds on top of main");
+            return "dropped";
           } catch {
             log("[git] rebase conflicted; aborted it, commit stays local for the next pass");
+            return "kept";
           }
-          return false;
         }
         /* not a conflict (a fetch or race failure): next attempt */
       }
     }
   }
   log(`[git] push lost ${attempts} races; commit stays local for the next pass`);
-  return false;
+  return "lost";
 }
 
 // True when a rebase was in progress and is now aborted (the checkout is back
