@@ -630,7 +630,9 @@ const argEngSummary = (opts) => ({ header: { competitions: [{
 // The vendor's incidents for the same plays, newest first as it lists them.
 // `penaltyTry` says how the vendor sent the penalty try:
 //   "try"        — a plain try whose own score moves Argentina 10 -> 17;
-//   "tryFive"    — a plain try with a 5-point score step (no evidence at all);
+//   "tryFive"    — a plain try with no player and a 5-point score step: what
+//                  the 13 Oct run actually logged (55' goal:try home 15-19
+//                  (no player); the list ends on 22-31);
 //   "penaltyTry" — labelled right, but Piccardo's conversion missing.
 // All three sum Argentina to 22, the run's "home 22/24".
 const VENDOR_CLS = { try: "try", conversion: "twoPoints", "penalty goal": "threePoints" };
@@ -756,20 +758,63 @@ test("#143 ESPN path: no row for the penalty try, the score carries it -> publis
   assert.ok(lines.some((l) => /603992 for match 53230: the running score shows 1 penalty try\(s\) with no row \(home 49'\); with them it reconciles/.test(l)), lines.join("\n"));
 });
 
-test("#143 negative: when neither source's score shows the penalty try the match stays held, reasons as in the issue, the whole match logged", async () => {
+test("#143 the 13 Oct run: the vendor credits the penalty try as a 5-point try with no player, ESPN has no trace -> the vendor list re-read publishes 24-31", async () => {
   const { result: { stats, failures }, lines } = await quietly(() =>
     argEngRun({ vendor: argEngVendor("tryFive"), summary: argEngSummary({ scoreHasPenaltyTry: false }) }));
+  assert.deepEqual(failures, []);
   const m = stats.matches[0];
-  assert.equal(m.reconciled, false);
-  assert.deepEqual(m.scoring, []);
-  assert.equal(failures[0].reason, "did not reconcile: home 22/24, away 31/31; ESPN event 603992 did not reconcile: home 17/24, away 31/31");
+  assert.equal(m.reconciled, true);
+  assert.equal(m.source, undefined); // the vendor's own list, re-read
+  assert.deepEqual(m.scoring.filter((s) => s.type === "penaltyTry"), [{ min: 49, team: "home", type: "penaltyTry", player: null, after: [15, 19] }]);
+  assert.ok(!m.scoring.some((s) => "fivePoint" in s));
+  assert.equal(reconcile(m.scoring, 24, 31).ok, true);
+  assert.equal(m.cards.length, 7);
+  assert.deepEqual(stats.aggregates.teamTotals.find((t) => t.team === "Argentina"), ARG_TOTALS);
+  assert.deepEqual(stats.aggregates.teamTotals.find((t) => t.team === "England"), ENG_TOTALS);
+  assert.deepEqual(stats.aggregates.discipline, [{ team: "England", yellow: 4, red: 0 }, { team: "Argentina", yellow: 3, red: 0 }]);
+  // both lists are still logged whole before the re-read
   const espnLine = lines.find((l) => l.startsWith("ESPN event 603992 rows for match 53230 (60): "));
-  assert.ok(espnLine, lines.join("\n"));
-  assert.match(espnLine, /^ESPN event 603992 rows for match 53230 \(60\): 4' try t1 0-5 Tommy Freeman; /);
-  assert.match(espnLine, /; 80' conversion t10 17-31 Tomas Albornoz$/); // the end of the match is in the log
+  assert.match(espnLine, /; 80' conversion t10 17-31 Tomas Albornoz$/);
   const vendorLine = lines.find((l) => l.startsWith("vendor incidents for match 53230 "));
   assert.match(vendorLine, /49' goal:try home 15-19 \(no player\)/);
-  assert.ok(!lines.some((l) => /rows not recognised/.test(l)));
+  assert.ok(lines.some((l) => /the vendor reconciles reading the try\(s\) as penalty try \(home 49'\)/.test(l)), lines.join("\n"));
+});
+
+test("#143 negative: the 5-point reading waits when ESPN is unreachable, and never fires on a try with a scorer", async () => {
+  const down = await quietly(() => argEngRun({ vendor: argEngVendor("tryFive"), summary: "down" }));
+  assert.equal(down.result.stats.matches[0].reconciled, false);
+  assert.match(down.result.failures[0].reason, /^did not reconcile: home 22\/24, away 31\/31; ESPN: HTTP 503 for /);
+  const named = argEngVendor("tryFive");
+  for (const inc of named.data.incidents) if (inc.incidentClass === "try" && !inc.player) inc.player = { name: "Somebody" };
+  const { result: { stats, failures } } = await quietly(() =>
+    argEngRun({ vendor: named, summary: argEngSummary({ scoreHasPenaltyTry: false }) }));
+  assert.equal(stats.matches[0].reconciled, false);
+  assert.equal(failures[0].reason, "did not reconcile: home 22/24, away 31/31; ESPN event 603992 did not reconcile: home 17/24, away 31/31");
+});
+
+test("vendorPenaltyTries 5-point reading: only with finals, no player, and the side's last running score short by 2 per try", () => {
+  const five = [
+    { min: 10, team: "home", type: "try", player: null, after: [5, 0] },
+    { min: 30, team: "away", type: "penalty", player: "K", after: [5, 3] },
+  ];
+  // the vendor's score ends 5-3; the real final 7-3: a penalty try counted as 5
+  assert.deepEqual(vendorPenaltyTries(five, { home: 7, away: 3 }),
+    [{ min: 10, team: "home", type: "penaltyTry", player: null, after: [5, 0] }, five[1]]);
+  assert.equal(vendorPenaltyTries(five), null); // no finals: never tried
+  assert.equal(vendorPenaltyTries(five, { home: 5, away: 3 }), null); // the score already ends right
+  // a lost conversion keeps the true running score, so the list ends on the final: no 5-point reading
+  assert.equal(vendorPenaltyTries([
+    { min: 10, team: "home", type: "try", player: null, after: [5, 0] },
+    { min: 20, team: "home", type: "penalty", player: "K", after: [10, 0] },
+  ], { home: 10, away: 0 }), null);
+  assert.equal(vendorPenaltyTries([{ ...five[0], player: "X" }, five[1]], { home: 7, away: 3 }), null); // a scorer: an ordinary try
+  assert.equal(vendorPenaltyTries([five[0], { min: 11, team: "home", type: "conversion", player: "K", after: [7, 0] }], { home: 9, away: 0 }), null); // converted
+  // a 7-point reading in the same list is unaffected by a 5-point one that fails
+  const mixed = vendorPenaltyTries([
+    { min: 10, team: "home", type: "try", player: null, after: [5, 0] },
+    { min: 20, team: "away", type: "try", player: "X", after: [5, 7] },
+  ], { home: 5, away: 7 });
+  assert.deepEqual(mixed.map((x) => x.type), ["try", "penaltyTry"]);
 });
 
 test("#143 a vendor list that reconciles as labelled is never re-read, even with a 7-point try in it", async () => {

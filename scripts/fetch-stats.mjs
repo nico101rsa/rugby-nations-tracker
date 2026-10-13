@@ -100,28 +100,58 @@ export function penaltyTryConverted(scoring = []) {
 //     the step proves nothing;
 //   - the scoring event just after it is a conversion by the same side: a
 //     penalty try is never converted (penaltyTryConverted).
+//
+// The vendor can also credit a penalty try as 5 (issue #143, the 13 Oct run:
+// Argentina's 55' try, no player, 10 -> 15, the list ending on 22 of 24).
+// A 5-point step is what every ordinary try looks like, so that reading
+// needs two more things the ordinary try doesn't have, and the final:
+//   - no player: a penalty try is awarded to the team, and the vendor sent
+//     every other try in the match with its scorer;
+//   - the vendor's own running score for that side ends exactly 2 short of
+//     the final for each such try. A LOST CONVERSION does not do that: the
+//     vendor drops the incident but keeps the true score (the #48 class), so
+//     its last running score still equals the final.
+// Without `finals` the 5-point reading is never tried.
 // Returns the retyped list, or null when no try reads that way. Penalty
 // tries credit no player, as buildAggregates expects.
-export function vendorPenaltyTries(scoring = []) {
+export function vendorPenaltyTries(scoring = [], finals = null) {
+  const scoreOf = (s) => Array.isArray(s.after) && s.after.every((x) => typeof x === "number" && Number.isFinite(x)) ? s.after : null;
   let prev = [0, 0];
   let changed = false;
+  const fives = { home: 0, away: 0 };
   const out = scoring.map((s, k) => {
-    const after = Array.isArray(s.after) && s.after.every((x) => typeof x === "number" && Number.isFinite(x)) ? s.after : null;
+    const after = scoreOf(s);
     let next = s;
     if (after && prev && s.type === "try") {
       const i = s.team === "home" ? 0 : 1;
-      const sevenAlone = after[i] - prev[i] === 7 && after[1 - i] === prev[1 - i];
+      const step = after[i] - prev[i];
+      const alone = after[1 - i] === prev[1 - i];
       const lostConversion = sameSide(scoring[k - 1], s, "try");
       const converted = sameSide(scoring[k + 1], s, "conversion");
-      if (sevenAlone && !lostConversion && !converted) {
-        next = { ...s, type: "penaltyTry", player: null };
+      const five = step === 5 && alone && s.player == null && finals != null;
+      if (((step === 7 && alone) || five) && !lostConversion && !converted) {
+        next = { ...s, type: "penaltyTry", player: null, ...(five ? { fivePoint: true } : {}) };
+        if (five) fives[s.team]++;
         changed = true;
       }
     }
     prev = after; // an incident without a score breaks the chain until the next one with it
     return next;
   });
-  return changed ? out : null;
+  if (!changed) return null;
+  // A 5-point reading stands only if the vendor's last running score for that
+  // side is short of the final by exactly 2 per such try; otherwise those
+  // tries go back to plain tries (a 7-point reading is unaffected).
+  for (const team of ["home", "away"]) {
+    if (!fives[team]) continue;
+    const i = team === "home" ? 0 : 1;
+    const last = [...scoring].reverse().map(scoreOf).find(Boolean);
+    if (!(last && last[i] === finals[team] - 2 * fives[team])) {
+      for (let k = 0; k < out.length; k++) if (out[k].fivePoint && out[k].team === team) out[k] = scoring[k];
+    }
+  }
+  const final = out.map(({ fivePoint, ...rest }) => rest);
+  return final.some((x, k) => x.type !== scoring[k].type) ? final : null;
 }
 
 // ESPN, read but not reconciled, can still contradict a vendor penalty try:
@@ -596,16 +626,16 @@ export async function runPipeline({ nations, prevStats, fetchJson = defaultFetch
           // answered and could not reconcile either — ESPN unreachable holds
           // the match for the next run instead, since a published match is
           // never fetched again — and never where ESPN shows a converted try.
-          const retyped = espnAnswered && !unknown.length ? vendorPenaltyTries(scoring) : null;
+          const retyped = espnAnswered && !unknown.length ? vendorPenaltyTries(scoring, { home: r.home.score, away: r.away.score }) : null;
           const added = retyped ? retyped.filter((x, k) => x.type !== scoring[k].type) : [];
           const reread = retyped && reconcile(retyped, r.home.score, r.away.score);
           const against = added.filter((pt) => espnSaysConverted(pt, espn.scoring));
           const where = added.map((x) => `${x.team} ${x.min}'`).join(", ");
           if (reread?.ok && against.length) {
-            console.log(`match ${r.id} (${r.home.name} v ${r.away.name}): the vendor reconciles reading a 7-point try as a penalty try (${where}), but ESPN lists a converted try there; held`);
+            console.log(`match ${r.id} (${r.home.name} v ${r.away.name}): the vendor reconciles reading a try as a penalty try (${where}), but ESPN lists a converted try there; held`);
           }
           if (!reread?.ok || against.length) throw new Error(`${vendorReason}; ${espn.reason}`);
-          console.log(`match ${r.id} (${r.home.name} v ${r.away.name}): vendor ${vendorReason} as labelled; ${espn.reason}; the vendor reconciles reading the 7-point try(s) as penalty try (${where})`);
+          console.log(`match ${r.id} (${r.home.name} v ${r.away.name}): vendor ${vendorReason} as labelled; ${espn.reason}; the vendor reconciles reading the try(s) as penalty try (${where})`);
           Object.assign(entry, { reconciled: true, scoring: retyped, cards });
         }
       }
