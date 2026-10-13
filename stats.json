@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T02:09:51.134Z",
+  "updatedAt": "2026-10-13T23:47:25.327Z",
   "source": "aggregated",
   "matches": [
     {
@@ -3387,9 +3387,193 @@
         "score": 31
       },
       "eventId": 16098059,
-      "reconciled": false,
-      "scoring": [],
-      "cards": []
+      "reconciled": true,
+      "scoring": [
+        {
+          "min": 4,
+          "team": "away",
+          "type": "try",
+          "player": "Tommy Freeman",
+          "after": [
+            0,
+            5
+          ]
+        },
+        {
+          "min": 24,
+          "team": "away",
+          "type": "try",
+          "player": "Ben Earl",
+          "after": [
+            0,
+            10
+          ]
+        },
+        {
+          "min": 25,
+          "team": "away",
+          "type": "conversion",
+          "player": "Fin Smith",
+          "after": [
+            0,
+            12
+          ]
+        },
+        {
+          "min": 30,
+          "team": "home",
+          "type": "penalty",
+          "player": "Tomás Albornoz",
+          "after": [
+            3,
+            12
+          ]
+        },
+        {
+          "min": 33,
+          "team": "away",
+          "type": "try",
+          "player": "Ben Earl",
+          "after": [
+            3,
+            17
+          ]
+        },
+        {
+          "min": 33,
+          "team": "away",
+          "type": "conversion",
+          "player": "Fin Smith",
+          "after": [
+            3,
+            19
+          ]
+        },
+        {
+          "min": 43,
+          "team": "home",
+          "type": "try",
+          "player": "Mateo Carreras",
+          "after": [
+            8,
+            19
+          ]
+        },
+        {
+          "min": 44,
+          "team": "home",
+          "type": "conversion",
+          "player": "Tomás Albornoz",
+          "after": [
+            10,
+            19
+          ]
+        },
+        {
+          "min": 55,
+          "team": "home",
+          "type": "penaltyTry",
+          "player": null,
+          "after": [
+            15,
+            19
+          ]
+        },
+        {
+          "min": 62,
+          "team": "away",
+          "type": "try",
+          "player": "Marcus Smith",
+          "after": [
+            15,
+            24
+          ]
+        },
+        {
+          "min": 63,
+          "team": "away",
+          "type": "conversion",
+          "player": "Fin Smith",
+          "after": [
+            15,
+            26
+          ]
+        },
+        {
+          "min": 69,
+          "team": "away",
+          "type": "try",
+          "player": "Immanuel Feyi-Waboso",
+          "after": [
+            15,
+            31
+          ]
+        },
+        {
+          "min": 80,
+          "team": "home",
+          "type": "try",
+          "player": "Justo Piccardo",
+          "after": [
+            20,
+            31
+          ]
+        },
+        {
+          "min": 80,
+          "team": "home",
+          "type": "conversion",
+          "player": "Tomás Albornoz",
+          "after": [
+            22,
+            31
+          ]
+        }
+      ],
+      "cards": [
+        {
+          "min": 24,
+          "team": "home",
+          "type": "yellow",
+          "player": "Mateo Carreras"
+        },
+        {
+          "min": 51,
+          "team": "away",
+          "type": "yellow",
+          "player": "Jack Van Poortvliet"
+        },
+        {
+          "min": 55,
+          "team": "away",
+          "type": "yellow",
+          "player": "Alex Coles"
+        },
+        {
+          "min": 59,
+          "team": "home",
+          "type": "yellow",
+          "player": "Joaquín Oviedo"
+        },
+        {
+          "min": 62,
+          "team": "home",
+          "type": "yellow",
+          "player": "Santiago Carreras"
+        },
+        {
+          "min": 73,
+          "team": "away",
+          "type": "yellow",
+          "player": "Henry Pollock"
+        },
+        {
+          "min": 77,
+          "team": "away",
+          "type": "yellow",
+          "player": "Emmanuel Iyogun"
+        }
+      ]
     }
   ],
   "aggregates": {
@@ -3435,6 +3619,11 @@
         "tries": 2
       },
       {
+        "player": "Ben Earl",
+        "team": "England",
+        "tries": 2
+      },
+      {
         "player": "Brandon Paenga-Amosa",
         "team": "Australia",
         "tries": 2
@@ -3455,6 +3644,11 @@
         "tries": 2
       },
       {
+        "player": "Immanuel Feyi-Waboso",
+        "team": "England",
+        "tries": 2
+      },
+      {
         "player": "Jac Morgan",
         "team": "Wales",
         "tries": 2
@@ -3465,6 +3659,11 @@
         "tries": 2
       },
       {
+        "player": "Justo Piccardo",
+        "team": "Argentina",
+        "tries": 2
+      },
+      {
         "player": "Kurt-Lee Arendse",
         "team": "South Africa",
         "tries": 2
@@ -3472,6 +3671,11 @@
       {
         "player": "Kyle Rowe",
         "team": "Scotland",
+        "tries": 2
+      },
+      {
+        "player": "Marcus Smith",
+        "team": "England",
         "tries": 2
       },
       {
@@ -3715,11 +3919,6 @@
         "tries": 1
       },
       {
-        "player": "Immanuel Feyi-Waboso",
-        "team": "England",
-        "tries": 1
-      },
-      {
         "player": "Jack Conan",
         "team": "Ireland",
         "tries": 1
@@ -3780,11 +3979,6 @@
         "tries": 1
       },
       {
-        "player": "Justo Piccardo",
-        "team": "Argentina",
-        "tries": 1
-      },
-      {
         "player": "Kippei Ishida",
         "team": "Japan",
         "tries": 1
@@ -3815,8 +4009,8 @@
         "tries": 1
       },
       {
-        "player": "Marcus Smith",
-        "team": "England",
+        "player": "Mateo Carreras",
+        "team": "Argentina",
         "tries": 1
       },
       {
@@ -3975,6 +4169,11 @@
         "tries": 1
       },
       {
+        "player": "Tommy Freeman",
+        "team": "England",
+        "tries": 1
+      },
+      {
         "player": "Tupou Vaa'i",
         "team": "New Zealand",
         "tries": 1
@@ -4019,30 +4218,30 @@
         "d": 0
       },
       {
-        "player": "Will Jordan",
-        "team": "New Zealand",
-        "points": 30,
-        "t": 6,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
         "player": "Fin Smith",
         "team": "England",
-        "points": 24,
+        "points": 30,
         "t": 0,
-        "c": 12,
+        "c": 15,
         "p": 0,
         "d": 0
       },
       {
         "player": "Tomás Albornoz",
         "team": "Argentina",
-        "points": 23,
+        "points": 30,
         "t": 0,
-        "c": 10,
-        "p": 1,
+        "c": 12,
+        "p": 2,
+        "d": 0
+      },
+      {
+        "player": "Will Jordan",
+        "team": "New Zealand",
+        "points": 30,
+        "t": 6,
+        "c": 0,
+        "p": 0,
         "d": 0
       },
       {
@@ -4154,6 +4353,15 @@
         "d": 0
       },
       {
+        "player": "Ben Earl",
+        "team": "England",
+        "points": 10,
+        "t": 2,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Brandon Paenga-Amosa",
         "team": "Australia",
         "points": 10,
@@ -4199,6 +4407,15 @@
         "d": 0
       },
       {
+        "player": "Immanuel Feyi-Waboso",
+        "team": "England",
+        "points": 10,
+        "t": 2,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Jac Morgan",
         "team": "Wales",
         "points": 10,
@@ -4217,6 +4434,15 @@
         "d": 0
       },
       {
+        "player": "Justo Piccardo",
+        "team": "Argentina",
+        "points": 10,
+        "t": 2,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Kurt-Lee Arendse",
         "team": "South Africa",
         "points": 10,
@@ -4228,6 +4454,15 @@
       {
         "player": "Kyle Rowe",
         "team": "Scotland",
+        "points": 10,
+        "t": 2,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Marcus Smith",
+        "team": "England",
         "points": 10,
         "t": 2,
         "c": 0,
@@ -4748,15 +4983,6 @@
         "d": 0
       },
       {
-        "player": "Immanuel Feyi-Waboso",
-        "team": "England",
-        "points": 5,
-        "t": 1,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
         "player": "Jack Conan",
         "team": "Ireland",
         "points": 5,
@@ -4865,15 +5091,6 @@
         "d": 0
       },
       {
-        "player": "Justo Piccardo",
-        "team": "Argentina",
-        "points": 5,
-        "t": 1,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
         "player": "Kippei Ishida",
         "team": "Japan",
         "points": 5,
@@ -4928,8 +5145,8 @@
         "d": 0
       },
       {
-        "player": "Marcus Smith",
-        "team": "England",
+        "player": "Mateo Carreras",
+        "team": "Argentina",
         "points": 5,
         "t": 1,
         "c": 0,
@@ -5189,6 +5406,15 @@
         "d": 0
       },
       {
+        "player": "Tommy Freeman",
+        "team": "England",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Tupou Vaa'i",
         "team": "New Zealand",
         "points": 5,
@@ -5254,6 +5480,16 @@
     ],
     "discipline": [
       {
+        "team": "England",
+        "yellow": 6,
+        "red": 0
+      },
+      {
+        "team": "Argentina",
+        "yellow": 4,
+        "red": 0
+      },
+      {
         "team": "Fiji",
         "yellow": 2,
         "red": 1
@@ -5274,11 +5510,6 @@
         "red": 0
       },
       {
-        "team": "England",
-        "yellow": 2,
-        "red": 0
-      },
-      {
         "team": "Japan",
         "yellow": 2,
         "red": 0
@@ -5291,11 +5522,6 @@
       {
         "team": "South Africa",
         "yellow": 2,
-        "red": 0
-      },
-      {
-        "team": "Argentina",
-        "yellow": 1,
         "red": 0
       },
       {
@@ -5322,6 +5548,14 @@
         "pens": 0,
         "drops": 0,
         "pointsFor": 130
+      },
+      {
+        "team": "England",
+        "tries": 19,
+        "cons": 15,
+        "pens": 0,
+        "drops": 0,
+        "pointsFor": 125
       },
       {
         "team": "New Zealand",
@@ -5356,12 +5590,12 @@
         "pointsFor": 108
       },
       {
-        "team": "England",
-        "tries": 14,
+        "team": "Argentina",
+        "tries": 13,
         "cons": 12,
-        "pens": 0,
+        "pens": 2,
         "drops": 0,
-        "pointsFor": 94
+        "pointsFor": 97
       },
       {
         "team": "Ireland",
@@ -5370,14 +5604,6 @@
         "pens": 1,
         "drops": 0,
         "pointsFor": 90
-      },
-      {
-        "team": "Argentina",
-        "tries": 10,
-        "cons": 10,
-        "pens": 1,
-        "drops": 0,
-        "pointsFor": 73
       },
       {
         "team": "Japan",
