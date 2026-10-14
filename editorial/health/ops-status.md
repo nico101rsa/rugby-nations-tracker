@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- Scotland — same lead story since Mon 12 Oct, first run as "Scotland win three of last five, beat Fiji 33-17 in July" — the novelty gate did NOT flag the latest edition
+- Argentina — same lead story since Tue 13 Oct, first run as "Mario Ledesma rejoins Pumas as forwards coach until 2027 World Cup" — the novelty gate flagged the latest edition and published anyway
 
 **Model ladder**
 
@@ -30,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Wed 14 Oct 2026, 12:12 AEDT — repeat leads: Argentina
 - Tue 13 Oct 2026, 14:01 AEDT — repeat leads: Scotland
 - Mon 12 Oct 2026, 12:18 AEDT — repeat leads: Ireland
 - Sun 11 Oct 2026, 11:59 AEDT — repeat leads: Argentina
