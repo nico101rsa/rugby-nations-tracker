@@ -1,15 +1,15 @@
 {
-  "updatedAt": "2026-10-14T07:35:54.236Z",
+  "updatedAt": "2026-10-14T13:41:51.130Z",
   "retentionHours": 72,
   "sources": [
     {
       "id": "planetrugby",
-      "items": 13,
+      "items": 12,
       "ok": true
     },
     {
       "id": "bbc",
-      "items": 52,
+      "items": 51,
       "ok": true
     },
     {
@@ -24,8 +24,9 @@
     },
     {
       "id": "rugbyasia247",
-      "items": 10,
-      "ok": true
+      "items": 0,
+      "ok": false,
+      "error": "HTTP 503"
     },
     {
       "id": "fbcnews",
@@ -35,174 +36,9 @@
     }
   ],
   "counts": {
-    "items": 188
+    "items": 193
   },
   "items": [
-    {
-      "title": "Stormers player ratings: 'Masterful' Sacha Feinberg-Mngomezulu stars while props enjoy 'field day' against Sharks",
-      "link": "https://www.planetrugby.com/news/stormers-player-ratings-masterful-sacha-feinberg-mngomezulu-stars-while-props-enjoy-field-day-against-sharks",
-      "desc": "Following a 39-22 win over the Sharks in the United Rugby Championship clash in Cape Town, here's our player ratings for the Stormers.",
-      "date": "Sun, 11 Oct 2026 07:31:39 +0000",
-      "feedId": "planetrugby",
-      "feedName": "Planet Rugby",
-      "position": 0,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-12T05:53:43.536Z"
-    },
-    {
-      "title": "Sharks player ratings: 'Game to forget' for Springbok as 'wheels come off' scrum against Stormers",
-      "link": "https://www.planetrugby.com/news/sharks-player-ratings-game-to-forget-for-springbok-as-wheels-come-off-scrum-against-stormers",
-      "desc": "Following a 39-22 loss to the Stormers in the United Rugby Championship clash in Cape Town, here's our player ratings for the Sharks.",
-      "date": "Sun, 11 Oct 2026 07:23:12 +0000",
-      "feedId": "planetrugby",
-      "feedName": "Planet Rugby",
-      "position": 1,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-12T05:53:43.536Z"
-    },
-    {
-      "title": "Fight for Wales spots heats up as under-threat regions win",
-      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c69vzm2pxznxo?at_medium=RSS&at_campaign=rss",
-      "desc": "The talking points from round three of URC as Ospreys and Scarlets get off the mark and players try to impress Wales boss Steve Tandy.",
-      "date": "Sun, 11 Oct 2026 05:01:23 GMT",
-      "feedId": "bbc",
-      "feedName": "BBC Rugby Union",
-      "position": 1,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
-    },
-    {
-      "title": "From ruin to a (Red) Bull market - how Prem became hot property",
-      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmg49dvg2gp7o?at_medium=RSS&at_campaign=rss",
-      "desc": "Prem Rugby seemed on the brink of disaster after Worcester, Wasps and London Irish went bust, but there is renewed confidence and fresh money in the league.",
-      "date": "Thu, 24 Sep 2026 11:24:08 GMT",
-      "feedId": "bbc",
-      "feedName": "BBC Rugby Union",
-      "position": 34,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
-    },
-    {
-      "title": "Committed Sale beat non-vintage Saracens despite Vermeulen red card",
-      "link": "https://www.theguardian.com/sport/2026/oct/04/saracens-sale-prem-rugby-match-report",
-      "desc": "<ul><li><p>Saracens 17-21 Sale</p></li><li><p>Jibulu, O’Flaherty and Bamber score Sale’s tries</p></li></ul><p>It doesn’t always require a qualified ‘wine consultant’ to identify a non-vintage performance. Brendan Venter, whose ever-changing job title at Saracens has been a subject of debate all week, will certainly not be cracking open the special reserve when he rewatches this game, ultimately most notable for Sale’s perseverance, physicality and resilience after being reduced to 13 players at one stage in the first quarter.</p><p>Committed and cussed from start to finish, Sale deserved this unexpected success over hosts who seldom made it beyond second gear despite having a liberal sprinkling of England internationals in their pack. Tries for Nathan Jibulu, Tom O’Flaherty and Ben Bamber, underpinned by the experience of George Ford, Tom Curry and Courtney Lawes, represented a major upgrade on their opening weekend home loss to Bristol.</p> <a href=\"https://www.theguardian.com/sport/2026/oct/04/saracens-sale-prem-rugby-match-report\">Continue reading...</a>",
-      "date": "Sun, 04 Oct 2026 16:37:24 GMT",
-      "feedId": "guardian",
-      "feedName": "Guardian Rugby Union",
-      "position": 12,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
-    },
-    {
-      "title": "Newcastle have wings clipped by Leicester but look to play long game",
-      "link": "https://www.theguardian.com/sport/2026/oct/04/newcastle-have-their-wings-clipped-by-tigers-but-look-to-play-the-long-game",
-      "desc": "<p>Investment from Red Bull and scrapping of relegation give breathing-space for English rugby union’s northern light to develop a playing style ‘that doesn’t send people to sleep’</p><p>One of the key features of grown-up team sports the world over – in other words, all of them apart from football – is the separation of the professional game from the amateur. This means that at some point in the hierarchy there is a level from which a team cannot be relegated.</p><p>Rugby union in England is in the midst of a long, torturous attempt to join the grown-ups, which is not easy given the total dominance in the prevailing culture of football, but it has recently taken the most politically charged step away from the madhouse by closing its top tier. This leaves only rugby in France still rooted in the ways of football.</p> <a href=\"https://www.theguardian.com/sport/2026/oct/04/newcastle-have-their-wings-clipped-by-tigers-but-look-to-play-the-long-game\">Continue reading...</a>",
-      "date": "Sun, 04 Oct 2026 11:30:23 GMT",
-      "feedId": "guardian",
-      "feedName": "Guardian Rugby Union",
-      "position": 13,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
-    },
-    {
-      "title": "Another SA side joins Marx race",
-      "link": "https://www.sarugbymag.co.za/another-sa-side-joins-marx-race/",
-      "desc": "The Bulls face competition from a fellow South African club in their pursuit of Springbok hooker Malcolm Marx.\nThe post Another SA side joins Marx race appeared first on SA Rugby magazine.",
-      "date": "Sun, 11 Oct 2026 05:10:06 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 0,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-12T05:53:43.536Z"
-    },
-    {
-      "title": "Sharks could tear up Bok's contract",
-      "link": "https://www.sarugbymag.co.za/sharks-tear-boks-contract/",
-      "desc": "Bongi Mbonambi’s Sharks career is hanging in the balance as the Springbok hooker awaits a disciplinary ruling over alleged misconduct.\nThe post Sharks could tear up Bok's contract appeared first on SA Rugby magazine.",
-      "date": "Sun, 11 Oct 2026 04:46:30 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 1,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-12T05:53:43.536Z"
-    },
-    {
-      "title": "Stormers heavy heading to Bulls",
-      "link": "https://www.sarugbymag.co.za/stormers-heavy-bulls/",
-      "desc": "The Bulls have turned to the Stormers to bolster their tighthead prop stocks due to a mini injury crisis.\nThe post Stormers heavy heading to Bulls appeared first on SA Rugby magazine.",
-      "date": "Sun, 11 Oct 2026 04:30:07 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 2,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-11T23:40:17.560Z"
-    },
-    {
-      "title": "'Seabelo’s flick-flack made it a special day'",
-      "link": "https://www.sarugbymag.co.za/seabelos-flick-flack-made-special-day/",
-      "desc": "Skipper Ruhan Nel feels the Stormers successfully blended elements of the Men in Black era with their current game to produce “something beautiful” for Capetonians.\nThe post 'Seabelo’s flick-flack made it a special day' appeared first on SA Rugby magazine.",
-      "date": "Sun, 11 Oct 2026 04:15:29 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 3,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-11T23:40:17.560Z"
-    },
-    {
-      "title": "Cash: It felt like playing 12 Boks",
-      "link": "https://www.sarugbymag.co.za/cash-it-felt-like-playing-12-boks/",
-      "desc": "Lions coach Ivan van Rooyen has praised the Bulls’ exceptional display but admits his side has plenty to fix after a 57-15 hammering at Loftus Versfeld on Saturday.\nThe post Cash: It felt like playing 12 Boks appeared first on SA Rugby magazine.",
-      "date": "Sun, 11 Oct 2026 04:10:22 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 4,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-11T23:40:17.560Z"
-    },
-    {
-      "title": "Dayimani metamorphosising into a Bok?",
-      "link": "https://www.sarugbymag.co.za/dayimani-metamorphosising-bok/",
-      "desc": "The versatile Hacjivah Dayimani’s newfound stopping power and leadership should place him in any team’s selection picture, according to Stormers boss John Dobson.\nThe post Dayimani metamorphosising into a Bok? appeared first on SA Rugby magazine.",
-      "date": "Sun, 11 Oct 2026 04:00:27 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 5,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-11T23:40:17.560Z"
-    },
-    {
-      "title": "Another Puma heads abroad",
-      "link": "https://www.sarugbymag.co.za/another-puma-heads-abroad/",
-      "desc": "The Pumas have lost a fourth member of their Currie Cup squad to a UK club.\nThe post Another Puma heads abroad appeared first on SA Rugby magazine.",
-      "date": "Sun, 11 Oct 2026 03:57:18 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 6,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-11T23:40:17.560Z"
-    },
-    {
-      "title": "All Blacks rout puts Boks in perspective",
-      "link": "https://www.sarugbymag.co.za/blacks-rout-puts-boks-perspective/",
-      "desc": "The All Blacks' demolition of the Wallabies at Eden Park highlighted the gulf between Rassie Erasmus' first-choice Springboks and the side beaten in Perth, writes @mark_keohane\nThe post All Blacks rout puts Boks in perspective appeared first on SA Rugby magazine.",
-      "date": "Sun, 11 Oct 2026 03:55:37 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 7,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-11T23:40:17.560Z"
-    },
-    {
-      "title": "Preview – Ireland vs Japan – October 2026",
-      "link": "https://www.rugbyasia247.com/preview-ireland-vs-japan-october-2026/",
-      "desc": "Japan Sakura XV and Ireland will go at it again, although not as part of the WXV Global Series 2026, as the teams play on Saturday 3 October at Virgin Media Park, Tramore Rd, Cork. Photo Credit – IRFU Following [&#8230;]\nThe post Preview – Ireland vs Japan – October 2026 appeared first on RugbyAsia247.",
-      "date": "Thu, 01 Oct 2026 12:23:28 +0000",
-      "feedId": "rugbyasia247",
-      "feedName": "Rugby Asia 247",
-      "position": 9,
-      "firstSeen": "2026-10-11T08:47:34.283Z",
-      "lastSeen": "2026-10-12T05:53:43.536Z"
-    },
     {
       "title": "Springboks' double World Cup winner in trouble at the Sharks due to ill-discipline – report",
       "link": "https://www.planetrugby.com/news/springboks-double-world-cup-winner-in-trouble-at-the-sharks-due-to-ill-discipline-report",
@@ -300,7 +136,7 @@
       "feedName": "BBC Rugby Union",
       "position": 31,
       "firstSeen": "2026-10-11T15:38:27.209Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Watch now on BBC iPlayer",
@@ -311,7 +147,7 @@
       "feedName": "BBC Rugby Union",
       "position": 39,
       "firstSeen": "2026-10-11T15:38:27.209Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Nations Championship highlights: South Africa 43-0 Wales",
@@ -322,7 +158,7 @@
       "feedName": "BBC Rugby Union",
       "position": 45,
       "firstSeen": "2026-10-11T15:38:27.209Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Highlights: New Zealand crush Ireland at Eden Park",
@@ -333,7 +169,7 @@
       "feedName": "BBC Rugby Union",
       "position": 46,
       "firstSeen": "2026-10-11T15:38:27.209Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Pollock scores hat-trick as 11-try England thrash Fiji",
@@ -344,7 +180,7 @@
       "feedName": "BBC Rugby Union",
       "position": 47,
       "firstSeen": "2026-10-11T15:38:27.209Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Argentina too strong as they halt Wales' mini-revival",
@@ -355,7 +191,7 @@
       "feedName": "BBC Rugby Union",
       "position": 48,
       "firstSeen": "2026-10-11T15:38:27.209Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Wallabies back Joseph-Aukuso Suaalii on wing for first Bledisloe Cup Test against All Blacks",
@@ -366,7 +202,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 8,
       "firstSeen": "2026-10-11T15:38:27.209Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Kirifi recalled as All Blacks hit by more injuries",
@@ -432,7 +268,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-11T20:14:40.095Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Wade scores 100th Prem try as Newcastle lose to Exeter",
@@ -443,7 +279,7 @@
       "feedName": "BBC Rugby Union",
       "position": 1,
       "firstSeen": "2026-10-11T20:14:40.095Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Davies urged to reverse retirement for World Cup",
@@ -454,7 +290,7 @@
       "feedName": "BBC Rugby Union",
       "position": 2,
       "firstSeen": "2026-10-11T20:14:40.095Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Ulster playing games like training sessions - Murphy",
@@ -531,7 +367,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-11T20:14:40.095Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "State of the URC: Bulls, Stormers flex muscles",
@@ -608,7 +444,7 @@
       "feedName": "BBC Rugby Union",
       "position": 34,
       "firstSeen": "2026-10-12T05:53:43.536Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Is Prem rugby union turning into basketball? Nailbiters supply case for defence",
@@ -619,7 +455,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 8,
       "firstSeen": "2026-10-12T05:53:43.536Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Only the best for Dobbo to beat Bristol",
@@ -817,7 +653,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-12T15:19:43.453Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Exeter examine extent of Feyi-Waboso injury",
@@ -839,7 +675,7 @@
       "feedName": "BBC Rugby Union",
       "position": 2,
       "firstSeen": "2026-10-12T15:19:43.453Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Wade set to break Prem try-scoring record",
@@ -850,7 +686,7 @@
       "feedName": "BBC Rugby Union",
       "position": 3,
       "firstSeen": "2026-10-12T15:19:43.453Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "WXV Global Series highlights: Wales 50-19 South Africa",
@@ -861,7 +697,7 @@
       "feedName": "BBC Rugby Union",
       "position": 31,
       "firstSeen": "2026-10-12T15:19:43.453Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Mumbai, Mie, Madrid - GB part-time stars' search for sevens",
@@ -883,7 +719,7 @@
       "feedName": "BBC Rugby Union",
       "position": 42,
       "firstSeen": "2026-10-12T15:19:43.453Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Rugby Union Weekly",
@@ -894,7 +730,7 @@
       "feedName": "BBC Rugby Union",
       "position": 44,
       "firstSeen": "2026-10-12T15:19:43.453Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Damilola Taylor's shocking murder revisited 26 years on",
@@ -916,7 +752,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 7,
       "firstSeen": "2026-10-12T15:19:43.453Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Cash takes Rassie’s words to heart",
@@ -1059,7 +895,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-12T22:57:08.254Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Rugby Union Weekly",
@@ -1070,7 +906,7 @@
       "feedName": "BBC Rugby Union",
       "position": 4,
       "firstSeen": "2026-10-12T22:57:08.254Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "England's 39-match winning streak halted by thrilling draw with Canada",
@@ -1081,7 +917,7 @@
       "feedName": "BBC Rugby Union",
       "position": 30,
       "firstSeen": "2026-10-12T22:57:08.254Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "England's second-half response crushes Australia",
@@ -1092,7 +928,7 @@
       "feedName": "BBC Rugby Union",
       "position": 32,
       "firstSeen": "2026-10-12T22:57:08.254Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Saracens sack player who sparked Stokes captaincy crisis after latest incident",
@@ -1103,7 +939,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-12T22:57:08.254Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Sports quiz of the week: winners, losers, prodigies, heroes, villains and rivals",
@@ -1180,7 +1016,7 @@
       "feedName": "BBC Rugby Union",
       "position": 20,
       "firstSeen": "2026-10-13T03:32:16.522Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Wafer ruled out of Ireland's South Africa Tests",
@@ -1202,7 +1038,7 @@
       "feedName": "BBC Rugby Union",
       "position": 28,
       "firstSeen": "2026-10-13T03:32:16.522Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Late try seals dramatic win for England over New Zealand",
@@ -1213,7 +1049,7 @@
       "feedName": "BBC Rugby Union",
       "position": 29,
       "firstSeen": "2026-10-13T03:32:16.522Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Title, ring and IVF eye opener - Evans' whirlwind year",
@@ -1224,7 +1060,7 @@
       "feedName": "BBC Rugby Union",
       "position": 38,
       "firstSeen": "2026-10-13T03:32:16.522Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Boks power & All Blacks of old - what did we learn from series?",
@@ -1235,7 +1071,7 @@
       "feedName": "BBC Rugby Union",
       "position": 39,
       "firstSeen": "2026-10-13T03:32:16.522Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Rugby Union Weekly",
@@ -1246,7 +1082,7 @@
       "feedName": "BBC Rugby Union",
       "position": 43,
       "firstSeen": "2026-10-13T03:32:16.522Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Rugby Union Weekly",
@@ -1257,7 +1093,7 @@
       "feedName": "BBC Rugby Union",
       "position": 45,
       "firstSeen": "2026-10-13T03:32:16.522Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Rugby Union Weekly",
@@ -1268,7 +1104,7 @@
       "feedName": "BBC Rugby Union",
       "position": 46,
       "firstSeen": "2026-10-13T03:32:16.522Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "The Spurs of Prem Rugby: how Harlequins lost their swagger",
@@ -1279,7 +1115,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 6,
       "firstSeen": "2026-10-13T03:32:16.522Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "‘I don’t think anyone really saw it coming. I didn’t’: meet Bristol’s World Cup hopeful Fitz Harding",
@@ -1290,7 +1126,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 7,
       "firstSeen": "2026-10-13T03:32:16.522Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "The Breakdown | From France to Old Reigatians: the most inspiring sides in rugby history",
@@ -1301,7 +1137,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 13,
       "firstSeen": "2026-10-13T03:32:16.522Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Bath go top with Finn Russell to the fore in thrilling derby victory against Exeter",
@@ -1466,7 +1302,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-13T11:45:11.855Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "England prop Iyogun signs new Northampton contract",
@@ -1477,7 +1313,7 @@
       "feedName": "BBC Rugby Union",
       "position": 1,
       "firstSeen": "2026-10-13T11:45:11.855Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Tears, family and 'being boring' - Stockdale's milestone moment",
@@ -1488,7 +1324,7 @@
       "feedName": "BBC Rugby Union",
       "position": 3,
       "firstSeen": "2026-10-13T11:45:11.855Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Baxter hopes to bring Exeter fans back to Sandy Park",
@@ -1499,7 +1335,7 @@
       "feedName": "BBC Rugby Union",
       "position": 4,
       "firstSeen": "2026-10-13T11:45:11.855Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Glasgow overpower Connacht to maintain unbeaten start",
@@ -1532,7 +1368,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-13T11:45:11.855Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Giliomee learning from the best",
@@ -1642,7 +1478,7 @@
       "feedName": "Planet Rugby",
       "position": 0,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "England latest: Winners and losers as bolters 'emerge from the woodwork' while Steve Borthwick presented with 'different picture' by 'big boppers'",
@@ -1653,7 +1489,7 @@
       "feedName": "Planet Rugby",
       "position": 1,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "World Cup winner looks UNRECOGNISABLE in new pics as bodybuilding career peaks",
@@ -1664,7 +1500,7 @@
       "feedName": "Planet Rugby",
       "position": 2,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Lawrence Dallaglio forced to sell World Cup winner's medal for astonishingly low amount as 13 pieces of memorabilia parted with",
@@ -1686,7 +1522,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Leicester sign Samoa hooker Asiata",
@@ -1697,7 +1533,7 @@
       "feedName": "BBC Rugby Union",
       "position": 1,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Ex-England hooker Singleton joins Glasgow a year after cardiac event",
@@ -1708,7 +1544,7 @@
       "feedName": "BBC Rugby Union",
       "position": 3,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Wales and Ospreys suffer lengthy Hardy injury blow",
@@ -1719,7 +1555,7 @@
       "feedName": "BBC Rugby Union",
       "position": 4,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Peel relishing Scarlets' Euro reunion with Jones",
@@ -1730,7 +1566,7 @@
       "feedName": "BBC Rugby Union",
       "position": 6,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Dragons suffer Woodman bicep injury blow",
@@ -1741,7 +1577,7 @@
       "feedName": "BBC Rugby Union",
       "position": 8,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Ospreylia: How Welsh club turned to a land down under",
@@ -1752,7 +1588,7 @@
       "feedName": "BBC Rugby Union",
       "position": 38,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Louis Rees-Zammit demands end to artificial Prem pitches after leg burns at Saracens",
@@ -1763,7 +1599,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "New Zealand 50-19 Australia: Bledisloe Cup rugby union international – as it happened",
@@ -1774,7 +1610,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 6,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Louis Rees-Zammit scores two tries as Bristol defeat champions Northampton",
@@ -1785,7 +1621,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 18,
       "firstSeen": "2026-10-13T19:14:52.131Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "‘We need to see a SA team in the final’",
@@ -1873,7 +1709,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-13T23:16:28.371Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Northampton outgun Bath in 119-point thriller",
@@ -1884,7 +1720,7 @@
       "feedName": "BBC Rugby Union",
       "position": 19,
       "firstSeen": "2026-10-13T23:16:28.371Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Edinburgh top URC after bonus-point win over Zebre",
@@ -1895,7 +1731,7 @@
       "feedName": "BBC Rugby Union",
       "position": 22,
       "firstSeen": "2026-10-13T23:16:28.371Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "All Blacks power past Australia to retain Bledisloe Cup",
@@ -1906,7 +1742,7 @@
       "feedName": "BBC Rugby Union",
       "position": 24,
       "firstSeen": "2026-10-13T23:16:28.371Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Sleightholme hat-trick fires up Northampton in 11-try blast of Bath",
@@ -1917,7 +1753,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 5,
       "firstSeen": "2026-10-13T23:16:28.371Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Wallabies blown away by All Blacks blitz as Bledisloe Cup misery extends to 24th year",
@@ -1928,7 +1764,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 7,
       "firstSeen": "2026-10-13T23:16:28.371Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Leinster stroll past Cardiff for happy homecoming",
@@ -1939,7 +1775,7 @@
       "feedName": "BBC Rugby Union",
       "position": 23,
       "firstSeen": "2026-10-14T01:55:44.489Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Costelow kick seals Scarlets' first league win",
@@ -1961,7 +1797,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 4,
       "firstSeen": "2026-10-14T01:55:44.489Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Springboks and All Blacks sell out Twickenham Nations Championship finale ticket quota",
@@ -1972,7 +1808,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 14,
       "firstSeen": "2026-10-14T01:55:44.489Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Opinion: Bongi Mbonambi's disciplinary process proves the Sharks are turning a corner under JP Pietersen",
@@ -1983,7 +1819,7 @@
       "feedName": "Planet Rugby",
       "position": 0,
       "firstSeen": "2026-10-14T07:35:54.236Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Will Saints reign again or new winners rise? - Prem Rugby club guide",
@@ -1994,7 +1830,7 @@
       "feedName": "BBC Rugby Union",
       "position": 37,
       "firstSeen": "2026-10-14T07:35:54.236Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Saracens’ Brendan Venter takes aim at ‘autocratic’ Prem over media duties",
@@ -2005,7 +1841,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 13,
       "firstSeen": "2026-10-14T07:35:54.236Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Beaver backs RGR duo for top award",
@@ -2016,7 +1852,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 0,
       "firstSeen": "2026-10-14T07:35:54.236Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Big TMO shake-up for Champions Cup",
@@ -2027,7 +1863,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 1,
       "firstSeen": "2026-10-14T07:35:54.236Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Stormers wary of ‘British Bulldog’",
@@ -2038,7 +1874,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 2,
       "firstSeen": "2026-10-14T07:35:54.236Z",
-      "lastSeen": "2026-10-14T07:35:54.236Z"
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     },
     {
       "title": "Former England heavy gets jacked",
@@ -2105,6 +1941,226 @@
       "position": 3,
       "firstSeen": "2026-10-14T07:35:54.236Z",
       "lastSeen": "2026-10-14T07:35:54.236Z"
+    },
+    {
+      "title": "URC boss addresses the lack of top South African referees: 'You have to bide your time'",
+      "link": "https://www.planetrugby.com/news/urc-boss-addresses-the-lack-of-top-south-african-referees-you-have-to-bide-your-time",
+      "desc": "Jaco Peyper retired from refereeing after the 2023 Rugby World Cup and is South Africa's most recent high-profile international ref.",
+      "date": "Wed, 14 Oct 2026 13:22:53 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 0,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Investec Champions Cup, Round One: Match officials, kick-off times and how to watch details confirmed",
+      "link": "https://www.planetrugby.com/news/investec-champions-cup-round-one-match-officials-kick-off-times-and-how-to-watch-details-confirmed",
+      "desc": "The full list of match officials for this weekend's Investec Champions Cup fixtures has been confirmed.",
+      "date": "Wed, 14 Oct 2026 11:27:18 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 1,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Springboks legend's theory for Wallabies struggles against All Blacks: 'It's a mentality that they can't beat New Zealand'",
+      "link": "https://www.planetrugby.com/news/springboks-legends-theory-for-wallabies-struggles-against-all-blacks-its-a-mentality-that-they-cant-beat-new-zealand",
+      "desc": "Victor Matfield believes that the Wallabies have a mental block when it comes to the All Blacks.",
+      "date": "Wed, 14 Oct 2026 11:00:11 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 2,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "SA Rugby gives full support to milestone brain health symposium in Cape Town",
+      "link": "https://www.planetrugby.com/news/sa-rugby-gives-full-support-to-milestone-brain-health-symposium-in-cape-town",
+      "desc": "SA Rugby has given its support to the International Concussion in Sport Group's Athlete Brain Health Symposium which will be held in Cape Town on November 25 and 26.",
+      "date": "Wed, 14 Oct 2026 10:47:29 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 3,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Rugby Transfers: PREM Rugby side bolster ranks with Samoan international as Wallaby makes immediate Top 14 exit",
+      "link": "https://www.planetrugby.com/news/rugby-transfers-prem-rugby-side-bolster-ranks-with-samoan-international-as-wallaby-makes-immediate-top-14-exit",
+      "desc": "Check out the latest round-up of rugby transfers from across the globe.",
+      "date": "Wed, 14 Oct 2026 10:09:09 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 4,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "British and Irish Lions reveal opponents for historic first women's Test",
+      "link": "https://www.planetrugby.com/news/british-and-irish-lions-reveal-opponents-for-historic-first-womens-test",
+      "desc": "The British and Irish Lions Women's will begin their series on home soil, before heading to New Zealand to face the Black Ferns.",
+      "date": "Wed, 14 Oct 2026 09:29:53 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 5,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Justin Marshall makes bold 'best in the world' claim about Wallabies' 'absolute machine'",
+      "link": "https://www.planetrugby.com/news/justin-marshall-makes-bold-best-in-the-world-claim-about-wallabies-absolute-machine",
+      "desc": "Legendary All Blacks scrum-half Justin Marshall has praised one of the Wallabies' stalwarts, saying he rates him as the best player in his position in the world at the moment.",
+      "date": "Wed, 14 Oct 2026 08:57:31 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 6,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Immanuel Feyi-Waboso subject to 'ongoing conversations' with England and Exeter Chiefs after latest injury scare as prognosis revealed",
+      "link": "https://www.planetrugby.com/news/immanuel-feyi-waboso-subject-to-ongoing-conversations-with-england-and-exeter-chiefs-after-latest-injury-scare-as-prognosis-revealed",
+      "desc": "The Exeter Chiefs winger suffered a hamstring injury in their win over Newcastle Red Bulls.",
+      "date": "Wed, 14 Oct 2026 08:56:01 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 7,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Lions women to face France in history-making first game",
+      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwly01vdjpvzo?at_medium=RSS&at_campaign=rss",
+      "desc": "The British and Irish Lions are to take on France at Cardiff's Principality Stadium before their historic three-Test 2027 tour to New Zealand.",
+      "date": "Wed, 14 Oct 2026 09:00:24 GMT",
+      "feedId": "bbc",
+      "feedName": "BBC Rugby Union",
+      "position": 0,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Winger Feyi-Waboso should be fit for England",
+      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq78p72g1nd4o?at_medium=RSS&at_campaign=rss",
+      "desc": "England winger Immanuel Feyi-Waboso should be fit to feature in next month's Nations Championship matches.",
+      "date": "Wed, 14 Oct 2026 09:27:21 GMT",
+      "feedId": "bbc",
+      "feedName": "BBC Rugby Union",
+      "position": 1,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Sale winger Roebuck signs deal to end of 2028-29",
+      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cw8dz1py8zy6o?at_medium=RSS&at_campaign=rss",
+      "desc": "Sale Sharks winger Tom Roebuck signs a new deal to remain with the Prem club for a further two years.",
+      "date": "Wed, 14 Oct 2026 11:55:56 GMT",
+      "feedId": "bbc",
+      "feedName": "BBC Rugby Union",
+      "position": 4,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Cornish Pirates seek to understand away day woes",
+      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cvp8gj80ljd5o?at_medium=RSS&at_campaign=rss",
+      "desc": "Cornish Pirates coach Joe Walsh says the club is trying to understand their poor away form.",
+      "date": "Wed, 14 Oct 2026 10:49:27 GMT",
+      "feedId": "bbc",
+      "feedName": "BBC Rugby Union",
+      "position": 8,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "England boosted with Feyi-Waboso on track for Nations Championship",
+      "link": "https://www.theguardian.com/sport/2026/oct/14/feyi-waboso-england-nations-championship-test-australia-rugby-union",
+      "desc": "<ul><li><p>Tweaked hamstring to keep Exeter wing out at Toulouse</p></li><li><p>Genge and Lawes want England restrictions lifted</p></li></ul><p>England’s game-breaking winger Manny Feyi-Waboso should be fit for international duty next month despite tweaking a hamstring playing for <a href=\"https://www.theguardian.com/sport/2026/oct/11/exeter-newcastle-prem-rugby-union-match-report\">Exeter against Newcastle</a> on Sunday. Initial scans have not revealed any major damage and Rob Baxter, the Chiefs’ director of rugby, is hopeful the 23-year-old will be back in action before too long.</p><p>Medical staff from Exeter and England have looked at Feyi-Waboso’s scan and the player will be unavailable for his club’s opening Champions Cup pool fixture at Toulouse on Saturday. The early indications are said to be positive, however, and he is on track to feature in England’s opening Nations Championship Test against Australia on 8 November.</p> <a href=\"https://www.theguardian.com/sport/2026/oct/14/feyi-waboso-england-nations-championship-test-australia-rugby-union\">Continue reading...</a>",
+      "date": "Wed, 14 Oct 2026 10:04:38 GMT",
+      "feedId": "guardian",
+      "feedName": "Guardian Rugby Union",
+      "position": 0,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Gaza chasing that star on his chest",
+      "link": "https://www.sarugbymag.co.za/gaza-chasing-star-chest/",
+      "desc": "Damian Willemse is excited to be back in Investec Champions Cup action at Cape Town Stadium this week, and help the Stormers go the full distance this season.\nThe post Gaza chasing that star on his chest appeared first on SA Rugby magazine.",
+      "date": "Wed, 14 Oct 2026 13:24:54 +0000",
+      "feedId": "sarugbymag",
+      "feedName": "SA Rugby Magazine",
+      "position": 0,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Nico: We're ready to do it the Lions way",
+      "link": "https://www.sarugbymag.co.za/nico-ready-lions-way/",
+      "desc": "Scrumhalf Nico Steyn says the Lions are keen to rediscover their attacking identity in Saturday's Investec Champions Cup opener against two-time champions La Rochelle.\nThe post Nico: We're ready to do it the Lions way appeared first on SA Rugby magazine.",
+      "date": "Wed, 14 Oct 2026 12:28:43 +0000",
+      "feedId": "sarugbymag",
+      "feedName": "SA Rugby Magazine",
+      "position": 1,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Lions out to silence French crowd",
+      "link": "https://www.sarugbymag.co.za/lions-out-to-silence-french-crowd/",
+      "desc": "Lions backline coach Ricardo Loubscher says the Investec Champions Cup debutants must start well against La Rochelle on Saturday.\nThe post Lions out to silence French crowd appeared first on SA Rugby magazine.",
+      "date": "Wed, 14 Oct 2026 12:22:03 +0000",
+      "feedId": "sarugbymag",
+      "feedName": "SA Rugby Magazine",
+      "position": 2,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Crocked Sharks rest Boks for Euro trip",
+      "link": "https://www.sarugbymag.co.za/crocked-sharks-rest-boks-euro-trip/",
+      "desc": "Head coach JP Pietersen has named a 28-man squad for the Sharks’ EPCR Challenge Cup and URC fixtures overseas while providing an injury update on several players.\nThe post Crocked Sharks rest Boks for Euro trip appeared first on SA Rugby magazine.",
+      "date": "Wed, 14 Oct 2026 08:33:14 +0000",
+      "feedId": "sarugbymag",
+      "feedName": "SA Rugby Magazine",
+      "position": 3,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "La Rochelle ready for Lions challenge",
+      "link": "https://www.sarugbymag.co.za/fiery-la-rochelle-ready-lions-challenge/",
+      "desc": "Lock Theo McFarland says the Lions must expect a confident La Rochelle when the teams meet in their Investec Champions Cup opener at Stade Marcel-Deflandre on Saturday.\nThe post La Rochelle ready for Lions challenge appeared first on SA Rugby magazine.",
+      "date": "Wed, 14 Oct 2026 08:30:44 +0000",
+      "feedId": "sarugbymag",
+      "feedName": "SA Rugby Magazine",
+      "position": 4,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Schalk: If you lose at home, you’re done",
+      "link": "https://www.sarugbymag.co.za/schalk-lose-home-youre-done/",
+      "desc": "Schalk Brits backs the South African clubs to push for the Investec Champions Cup title this season, but only off the back of winning momentum in the Republic.\nThe post Schalk: If you lose at home, you’re done appeared first on SA Rugby magazine.",
+      "date": "Wed, 14 Oct 2026 07:57:03 +0000",
+      "feedId": "sarugbymag",
+      "feedName": "SA Rugby Magazine",
+      "position": 5,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
+    },
+    {
+      "title": "Marshy: Wiese not as good as Wilson",
+      "link": "https://www.sarugbymag.co.za/marshy-wiese-not-good-wilson/",
+      "desc": "Justin Marshall claims Springbok powerhouse Jasper Wiese is still a work in progress and lacks the full 80-minute presence of Wallabies No 8 Harry Wilson.\nThe post Marshy: Wiese not as good as Wilson appeared first on SA Rugby magazine.",
+      "date": "Wed, 14 Oct 2026 07:55:07 +0000",
+      "feedId": "sarugbymag",
+      "feedName": "SA Rugby Magazine",
+      "position": 6,
+      "firstSeen": "2026-10-14T13:41:51.130Z",
+      "lastSeen": "2026-10-14T13:41:51.130Z"
     }
   ]
 }
