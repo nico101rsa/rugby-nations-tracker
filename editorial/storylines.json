@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-14T20:00:33.697Z",
+  "updatedAt": "2026-10-14T22:48:51.308Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 213,
+  "count": 218,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -4450,12 +4450,17 @@
     },
     {
       "id": "christian-wade-s-chase-s998v2",
-      "subject": "Christian Wade's pursuit of the all-time Premiership try-scoring record",
+      "subject": "Christian Wade's pursuit of the Premiership Rugby all-time try-scoring record",
       "teams": [
         386
       ],
       "resolution": "until Christian Wade scores his 102nd Premiership try to surpass the current record",
       "sources": [
+        {
+          "title": "Rugby Union Weekly",
+          "link": "https://www.bbc.co.uk/sounds/play/p0pgb7h1?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
         {
           "title": "Wade scores 100th Prem try as Newcastle lose to Exeter",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c32l49evnq5vo?at_medium=RSS&at_campaign=rss",
@@ -4468,7 +4473,7 @@
         }
       ],
       "firstSeen": "2026-10-13",
-      "lastSeen": "2026-10-14",
+      "lastSeen": "2026-10-15",
       "uses": 0
     },
     {
@@ -4771,7 +4776,7 @@
         }
       ],
       "firstSeen": "2026-10-14",
-      "lastSeen": "2026-10-14",
+      "lastSeen": "2026-10-15",
       "uses": 0
     },
     {
@@ -4876,7 +4881,7 @@
     },
     {
       "id": "malcolm-marx-s-club-1ewhgjl",
-      "subject": "Malcolm Marx's club future amid interest from the Bulls",
+      "subject": "Malcolm Marx's club future and potential move to the Bulls",
       "teams": [
         467
       ],
@@ -4904,6 +4909,107 @@
           "title": "'We're paid peanuts' – England stars urge Prem rugby to make salary market public",
           "link": "https://www.planetrugby.com/news/were-paid-peanuts-england-stars-urge-prem-rugby-to-make-salary-market-public",
           "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-15",
+      "lastSeen": "2026-10-15",
+      "uses": 0
+    },
+    {
+      "id": "taulupe-faletau-s-return-ctkkpt",
+      "subject": "Taulupe Faletau's return to fitness for Wales' Nations Championship campaign",
+      "teams": [
+        391
+      ],
+      "resolution": "until Faletau returns to competitive action for club or country",
+      "sources": [
+        {
+          "title": "Wales centre Thomas to miss Nations Championship restart",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmx2dqn95levo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-15",
+      "lastSeen": "2026-10-15",
+      "uses": 0
+    },
+    {
+      "id": "the-campaign-for-public-b66spa",
+      "subject": "The campaign for public salary transparency in Premiership Rugby led by Ellis Genge and Courtney Lawes",
+      "teams": [
+        386
+      ],
+      "resolution": "until Premiership Rugby or the RFU issues a formal decision on the public disclosure of player wages",
+      "sources": [
+        {
+          "title": "'We're paid peanuts' – England stars urge Prem rugby to make salary market public",
+          "link": "https://www.planetrugby.com/news/were-paid-peanuts-england-stars-urge-prem-rugby-to-make-salary-market-public",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-15",
+      "lastSeen": "2026-10-15",
+      "uses": 0
+    },
+    {
+      "id": "the-selection-battle-for-1x2mvfn",
+      "subject": "The selection battle for the All Blacks' starting fly-half jersey",
+      "teams": [
+        465
+      ],
+      "resolution": "until Dave Rennie names a settled starting fly-half for the remainder of the Nations Championship",
+      "sources": [
+        {
+          "title": "Justin Marshall: Damian McKenzie made a 'statement' as Ruben Love and Richie Mo'unga face All Blacks fly-half competition",
+          "link": "https://www.planetrugby.com/news/justin-marshall-damian-mckenzie-made-a-statement-as-ruben-love-and-richie-mounga-face-all-blacks-fly-half-competition",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "All Blacks: Kieran Read bemoans omission of 'world-class player' while Justin Marshall is 'baffled' by make-up of bench",
+          "link": "https://www.planetrugby.com/news/all-blacks-kieran-read-bemoans-omission-of-world-class-player-while-justin-marshall-is-baffled-by-make-up-of-bench",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-15",
+      "lastSeen": "2026-10-15",
+      "uses": 0
+    },
+    {
+      "id": "france-s-mounting-injury-j9zl9e",
+      "subject": "France's mounting injury list ahead of their Test against South Africa",
+      "teams": [
+        387,
+        467
+      ],
+      "resolution": "until the French squad is finalized for the Nations Championship match against the Springboks",
+      "sources": [
+        {
+          "title": "Les Bleus dealt fresh blow ahead of Bok brawl",
+          "link": "https://www.sarugbymag.co.za/les-bleus-dealt-fresh-blow-ahead-bok-brawl/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-15",
+      "lastSeen": "2026-10-15",
+      "uses": 0
+    },
+    {
+      "id": "joseph-aukuso-suaalii-s-196xlzq",
+      "subject": "Joseph-Aukuso Suaalii's long-term positional fit in the Wallabies backline",
+      "teams": [
+        461
+      ],
+      "resolution": "until Les Kiss confirms a permanent starting position for Suaalii during the Nations Championship tour",
+      "sources": [
+        {
+          "title": "Joseph-Aukuso Suaalii gives blunt verdict on Wallabies positional switch – 'It's a different part of my journey'",
+          "link": "https://www.planetrugby.com/news/joseph-aukuso-suaalii-gives-blunt-verdict-on-wallabies-positional-switch-its-a-different-part-of-my-journey",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Wallabies back Joseph-Aukuso Suaalii on wing for first Bledisloe Cup Test against All Blacks",
+          "link": "https://www.theguardian.com/sport/2026/oct/08/wallabies-all-blacks-bledisloe-cup-first-test-isaac-henry-suaalii",
+          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-10-15",
