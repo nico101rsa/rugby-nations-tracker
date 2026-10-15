@@ -476,6 +476,32 @@
         }
       ],
       "decided": "2026-10-16"
+    },
+    {
+      "outlet": "Americas Rugby News",
+      "host": "americasrugbynews.com",
+      "homepage": "https://americasrugbynews.com",
+      "teams": [
+        "Argentina"
+      ],
+      "why": "Argentina's shortlist held only low-scoring background items, and this English-language site covers Los Pumas and South American rugby regularly.",
+      "proposed": "2026-10-16",
+      "status": "ready",
+      "feedUrl": "https://www.americasrugbynews.com/feed/",
+      "probes": [
+        {
+          "date": "2026-10-16",
+          "feedUrl": "https://www.americasrugbynews.com/feed/",
+          "items": 10,
+          "hits": {
+            "France": 1,
+            "Argentina": 3,
+            "Australia": 2,
+            "New Zealand": 1
+          }
+        }
+      ],
+      "decided": "2026-10-16"
     }
   ]
 }

@@ -12,6 +12,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: https://www.federugby.it/feed/; probes: 5; stories about tracked teams: Italy 4, Argentina 2
 - **Rugby World** (rugbyworld.com) — proposed 2026-10-13 for France, Argentina, Japan: France, Argentina and Japan had no NEW national-team stories today, and this magazine's news desk covers all the major nations in English.
   - feed: https://www.rugbyworld.com/feed; probes: 4; stories about tracked teams: Australia 19, South Africa 12, Ireland 10, England 9, Italy 8, Scotland 8, Wales 8, New Zealand 7, France 3
+- **Americas Rugby News** (americasrugbynews.com) — proposed 2026-10-16 for Argentina: Argentina's shortlist held only low-scoring background items, and this English-language site covers Los Pumas and South American rugby regularly.
+  - feed: https://www.americasrugbynews.com/feed/; probes: 1; stories about tracked teams: Argentina 3, Australia 2, France 1, New Zealand 1
 
 ## Being probed
 

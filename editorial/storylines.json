@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-15T20:00:33.521Z",
+  "updatedAt": "2026-10-15T22:45:48.864Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 211,
+  "count": 212,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -2967,7 +2967,8 @@
       ],
       "firstSeen": "2026-10-08",
       "lastSeen": "2026-10-11",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-16"
     },
     {
       "id": "richie-mo-unga-s-3vdndj",
@@ -4864,6 +4865,34 @@
           "title": "Les Bleus dealt fresh blow ahead of Bok brawl",
           "link": "https://www.sarugbymag.co.za/les-bleus-dealt-fresh-blow-ahead-bok-brawl/",
           "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-16",
+      "lastSeen": "2026-10-16",
+      "uses": 0
+    },
+    {
+      "id": "richie-mo-unga-s-1hnt5w1",
+      "subject": "Richie Mo'unga's injury update and Dave Rennie's New Zealand fly-half selection choice",
+      "teams": [
+        465
+      ],
+      "resolution": "until Dave Rennie names his starting fly-half following Richie Mo'unga's return to full fitness",
+      "sources": [
+        {
+          "title": "Justin Marshall: Damian McKenzie made a 'statement' as Ruben Love and Richie Mo'unga face All Blacks fly-half competition",
+          "link": "https://www.planetrugby.com/news/justin-marshall-damian-mckenzie-made-a-statement-as-ruben-love-and-richie-mounga-face-all-blacks-fly-half-competition",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "All Blacks team: Five takeaways as Damian McKenzie could leave Dave Rennie with 'no other option' with repeat Bledisloe display",
+          "link": "https://www.planetrugby.com/news/all-blacks-team-five-takeaways-as-damian-mckenzie-could-leave-dave-rennie-with-no-other-option-with-repeat-bledisloe-display",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Dave Rennie issues concerning Richie Mo'unga update as All Blacks handed selection dilemma",
+          "link": "https://www.planetrugby.com/news/dave-rennie-issues-concerning-richie-mounga-update-as-all-blacks-handed-selection-dilemma",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-10-16",
