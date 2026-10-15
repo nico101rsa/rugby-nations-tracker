@@ -1,20 +1,13 @@
 {
  "about": "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: routine findings land here instead of notifying anyone, and the Claude weekly review reads it. state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); `page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
- "state": "attention",
+ "state": "ok",
  "paging": [],
  "page": null,
  "overdue": [],
  "unknown": [],
  "heals": {},
  "signals": {
-  "repeatLeads": [
-   {
-    "team": "Argentina",
-    "since": "2026-10-13",
-    "heading": "Mario Ledesma rejoins Pumas as forwards coach until 2027 World Cup",
-    "flagged": true
-   }
-  ],
+  "repeatLeads": [],
   "ladderLastRung": null,
   "squadGaps": []
  },
@@ -58,6 +51,10 @@
   {
    "at": "2026-10-14T01:12:01.474Z",
    "summary": "repeat leads: Argentina"
+  },
+  {
+   "at": "2026-10-15T00:30:35.358Z",
+   "summary": "all clear"
   }
  ]
 }
