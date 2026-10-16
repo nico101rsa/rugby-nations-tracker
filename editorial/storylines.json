@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-16T20:00:57.446Z",
+  "updatedAt": "2026-10-16T22:18:41.591Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 212,
+  "count": 213,
   "storylines": [
     {
       "id": "henry-pollock-s-contract-1t0lhun",
@@ -2783,7 +2783,8 @@
       ],
       "firstSeen": "2026-10-07",
       "lastSeen": "2026-10-07",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-17"
     },
     {
       "id": "saracens-internal-cultural-and-cj7s7w",
@@ -3934,12 +3935,17 @@
     },
     {
       "id": "richie-mo-unga-s-281ojw",
-      "subject": "Richie Mo'unga's fly-half injury status and return timeline for New Zealand",
+      "subject": "Richie Mo'unga's injury status and Dave Rennie's fly-half selection decision for New Zealand",
       "teams": [
         465
       ],
       "resolution": "until New Zealand Rugby provides an official update on Richie Mo'unga's injury recovery timeline",
       "sources": [
+        {
+          "title": "Dave Rennie issues concerning Richie Mo'unga update as All Blacks handed selection dilemma",
+          "link": "https://www.planetrugby.com/news/dave-rennie-issues-concerning-richie-mounga-update-as-all-blacks-handed-selection-dilemma",
+          "feedName": "Planet Rugby"
+        },
         {
           "title": "All Blacks team: Dave Rennie makes big fly-half call after Richie Mo'unga injury while former captain returns for Bledisloe Cup opener",
           "link": "https://www.planetrugby.com/news/all-blacks-team-dave-rennie-makes-big-fly-half-call-after-richie-mounga-injury-while-former-captain-returns",
@@ -3949,15 +3955,10 @@
           "title": "Dave Rennie issues Richie Mo'unga update after 'hardest' All Blacks team selection",
           "link": "https://www.planetrugby.com/news/dave-rennie-issues-richie-mounga-update-after-hardest-all-blacks-team-selection",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "All Blacks back DMac at 10",
-          "link": "https://www.sarugbymag.co.za/all-blacks-back-dmac-at-10/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-10-11",
-      "lastSeen": "2026-10-11",
+      "lastSeen": "2026-10-17",
       "uses": 0
     },
     {
@@ -4132,7 +4133,7 @@
     },
     {
       "id": "immanuel-feyi-waboso-s-mnftnw",
-      "subject": "Immanuel Feyi-Waboso's hamstring injury and availability for England's Nations Championship matches",
+      "subject": "Immanuel Feyi-Waboso's hamstring injury recovery and fitness for England's Nations Championship fixtures",
       "teams": [
         386,
         467
@@ -4427,7 +4428,8 @@
       ],
       "firstSeen": "2026-10-14",
       "lastSeen": "2026-10-17",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-17"
     },
     {
       "id": "louis-rees-zammit-s-1gu2qna",
@@ -4747,7 +4749,7 @@
         }
       ],
       "firstSeen": "2026-10-16",
-      "lastSeen": "2026-10-16",
+      "lastSeen": "2026-10-17",
       "uses": 0
     },
     {
@@ -4765,7 +4767,7 @@
         }
       ],
       "firstSeen": "2026-10-16",
-      "lastSeen": "2026-10-16",
+      "lastSeen": "2026-10-17",
       "uses": 0
     },
     {
@@ -4868,6 +4870,29 @@
           "title": "Jake turns to trusted Bok ally",
           "link": "https://www.sarugbymag.co.za/jake-eyes-trusted-bok-ally/",
           "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-17",
+      "lastSeen": "2026-10-17",
+      "uses": 0
+    },
+    {
+      "id": "frans-malherbe-s-return-no3w69",
+      "subject": "Frans Malherbe's return from a 19-month injury lay-off and future club destination",
+      "teams": [
+        467
+      ],
+      "resolution": "until Frans Malherbe makes his return to playing in a competitive match",
+      "sources": [
+        {
+          "title": "Frans gives update on his future",
+          "link": "https://www.sarugbymag.co.za/frans-gives-update-future/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Springboks: Frans Malherbe issues 'hopeful' update after 19-month-long absence",
+          "link": "https://www.planetrugby.com/news/springboks-frans-malherbe-issues-hopeful-update-after-19-month-long-absence",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-10-17",
