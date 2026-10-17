@@ -227,6 +227,17 @@
             "Japan": 1,
             "New Zealand": 1
           }
+        },
+        {
+          "date": "2026-10-18",
+          "feedUrl": "https://www.the42.ie/feed/",
+          "items": 40,
+          "hits": {
+            "France": 1,
+            "Ireland": 2,
+            "Australia": 1,
+            "New Zealand": 1
+          }
         }
       ],
       "decided": "2026-10-11"
@@ -346,6 +357,21 @@
             "New Zealand": 1,
             "South Africa": 2
           }
+        },
+        {
+          "date": "2026-10-18",
+          "feedUrl": "https://www.rte.ie/feeds/rss/?index=/sport/rugby/",
+          "items": 50,
+          "hits": {
+            "Fiji": 1,
+            "France": 3,
+            "Ireland": 10,
+            "Argentina": 1,
+            "Australia": 2,
+            "Japan": 3,
+            "New Zealand": 1,
+            "South Africa": 2
+          }
         }
       ],
       "decided": "2026-10-11"
@@ -359,7 +385,7 @@
       ],
       "why": "Scotland's edition fell to a data note with nothing above salience, and the union's own news page would give squad and fixture items the spine misses.",
       "proposed": "2026-10-12",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -385,8 +411,13 @@
         {
           "date": "2026-10-17",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-18",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-10-18"
     },
     {
       "outlet": "Federazione Italiana Rugby",
@@ -443,6 +474,14 @@
         },
         {
           "date": "2026-10-17",
+          "feedUrl": "https://www.federugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "Argentina": 1
+          }
+        },
+        {
+          "date": "2026-10-18",
           "feedUrl": "https://www.federugby.it/feed/",
           "items": 10,
           "hits": {
@@ -544,6 +583,22 @@
             "New Zealand": 3,
             "South Africa": 3
           }
+        },
+        {
+          "date": "2026-10-18",
+          "feedUrl": "https://www.rugbyworld.com/feed",
+          "items": 30,
+          "hits": {
+            "England": 3,
+            "France": 2,
+            "Ireland": 3,
+            "Italy": 2,
+            "Scotland": 2,
+            "Wales": 2,
+            "Australia": 7,
+            "New Zealand": 4,
+            "South Africa": 2
+          }
         }
       ],
       "decided": "2026-10-16"
@@ -580,6 +635,16 @@
             "Argentina": 3,
             "Australia": 2,
             "New Zealand": 1
+          }
+        },
+        {
+          "date": "2026-10-18",
+          "feedUrl": "https://www.americasrugbynews.com/feed/",
+          "items": 10,
+          "hits": {
+            "France": 1,
+            "Argentina": 2,
+            "Australia": 1
           }
         }
       ],
