@@ -697,6 +697,29 @@
           }
         }
       ]
+    },
+    {
+      "outlet": "WalesOnline",
+      "host": "walesonline.co.uk",
+      "homepage": "https://www.walesonline.co.uk/",
+      "teams": [
+        "Wales"
+      ],
+      "why": "Wales had no fresh coverage today and its shortlist was all background; WalesOnline's rugby desk covers the national side daily.",
+      "proposed": "2026-10-18",
+      "status": "proposed",
+      "feedUrl": "https://www.walesonline.co.uk/rss.xml",
+      "probes": [
+        {
+          "date": "2026-10-18",
+          "feedUrl": "https://www.walesonline.co.uk/rss.xml",
+          "items": 25,
+          "hits": {
+            "England": 1,
+            "Wales": 2
+          }
+        }
+      ]
     }
   ]
 }
