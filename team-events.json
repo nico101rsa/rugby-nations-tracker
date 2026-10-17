@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-16T05:17:13.168Z",
+ "updatedAt": "2026-10-17T14:10:46.930Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -18,20 +18,6 @@
  "teams": {
   "NZL": {
    "last": [
-    {
-     "id": 16098058,
-     "date": "2026-07-18T07:10:00.000Z",
-     "league": "Nations Championship, Group Stage",
-     "opponent": "Ireland",
-     "opponentCode": "IRE",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 40,
-     "them": 21,
-     "result": "W",
-     "tries": 6,
-     "cards": 1
-    },
     {
      "id": 16699674,
      "date": "2026-08-07T17:00:00.000Z",
@@ -157,23 +143,24 @@
      "result": "W",
      "tries": 7,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 17322934,
-     "date": "2026-10-17T04:45:00.000Z",
+     "date": "2026-10-17T05:00:00.000Z",
      "league": "International Friendlies",
      "opponent": "Australia",
      "opponentCode": "AUS",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Accor Stadium, Sydney",
-     "timeTBC": false
-    },
+     "us": 43,
+     "them": 21,
+     "result": "W",
+     "tries": null,
+     "cards": null,
+     "mirroredFrom": "AUS"
+    }
+   ],
+   "next": [
     {
      "id": 16098061,
      "date": "2026-11-07T14:10:00.000Z",
@@ -220,6 +207,18 @@
      "opponent": "Chile",
      "opponentCode": null,
      "tracked": false,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248078,
+     "date": "2027-10-09T06:10:00.000Z",
+     "league": "World Cup, Pool A",
+     "opponent": "Australia",
+     "opponentCode": "AUS",
+     "tracked": true,
      "homeAway": "H",
      "us": null,
      "them": null,
@@ -822,20 +821,6 @@
   "AUS": {
    "last": [
     {
-     "id": 14884335,
-     "date": "2025-11-22T20:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "France",
-     "opponentCode": "FRA",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 33,
-     "them": 48,
-     "result": "L",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 16098050,
      "date": "2026-07-04T10:10:00.000Z",
      "league": "Nations Championship, Group Stage",
@@ -960,23 +945,23 @@
      "result": "L",
      "tries": 3,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 17322934,
-     "date": "2026-10-17T04:45:00.000Z",
+     "date": "2026-10-17T05:00:00.000Z",
      "league": "International Friendlies",
      "opponent": "New Zealand",
      "opponentCode": "NZL",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Accor Stadium, Sydney",
-     "timeTBC": false
-    },
+     "us": 21,
+     "them": 43,
+     "result": "L",
+     "tries": 3,
+     "cards": 1
+    }
+   ],
+   "next": [
     {
      "id": 16098047,
      "date": "2026-11-08T15:10:00.000Z",
@@ -1024,6 +1009,18 @@
      "opponentCode": null,
      "tracked": false,
      "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248078,
+     "date": "2027-10-09T06:10:00.000Z",
+     "league": "World Cup, Pool A",
+     "opponent": "New Zealand",
+     "opponentCode": "NZL",
+     "tracked": true,
+     "homeAway": "A",
      "us": null,
      "them": null,
      "result": null
