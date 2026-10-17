@@ -649,6 +649,30 @@
         }
       ],
       "decided": "2026-10-16"
+    },
+    {
+      "outlet": "Daily Record",
+      "host": "dailyrecord.co.uk",
+      "homepage": "https://www.dailyrecord.co.uk",
+      "teams": [
+        "Scotland"
+      ],
+      "why": "Scotland's pool held only the women's Australia game, so a free national-paper rugby desk could supply men's Scotland stories.",
+      "proposed": "2026-10-18",
+      "status": "ready",
+      "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
+      "probes": [
+        {
+          "date": "2026-10-18",
+          "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
+          "items": 25,
+          "hits": {
+            "Scotland": 4,
+            "Australia": 1
+          }
+        }
+      ],
+      "decided": "2026-10-18"
     }
   ]
 }

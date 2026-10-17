@@ -14,6 +14,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: https://www.rugbyworld.com/feed; probes: 6; stories about tracked teams: Australia 32, South Africa 17, Ireland 16, England 15, New Zealand 14, Italy 12, Scotland 12, Wales 12, France 7
 - **Americas Rugby News** (americasrugbynews.com) — proposed 2026-10-16 for Argentina: Argentina's shortlist held only low-scoring background items, and this English-language site covers Los Pumas and South American rugby regularly.
   - feed: https://www.americasrugbynews.com/feed/; probes: 3; stories about tracked teams: Argentina 8, Australia 5, France 3, New Zealand 2
+- **Daily Record** (dailyrecord.co.uk) — proposed 2026-10-18 for Scotland: Scotland's pool held only the women's Australia game, so a free national-paper rugby desk could supply men's Scotland stories.
+  - feed: https://www.dailyrecord.co.uk/rss.xml; probes: 1; stories about tracked teams: Scotland 4, Australia 1
 
 ## Being probed
 
