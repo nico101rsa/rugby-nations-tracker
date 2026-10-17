@@ -1,13 +1,20 @@
 {
  "about": "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: routine findings land here instead of notifying anyone, and the Claude weekly review reads it. state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); `page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
- "state": "ok",
+ "state": "attention",
  "paging": [],
  "page": null,
  "overdue": [],
  "unknown": [],
  "heals": {},
  "signals": {
-  "repeatLeads": [],
+  "repeatLeads": [
+   {
+    "team": "Scotland",
+    "since": "2026-10-16",
+    "heading": "Scotland's 33-17 win over Fiji was their latest result, in July",
+    "flagged": false
+   }
+  ],
   "ladderLastRung": null,
   "squadGaps": []
  },
@@ -55,6 +62,10 @@
   {
    "at": "2026-10-15T00:30:35.358Z",
    "summary": "all clear"
+  },
+  {
+   "at": "2026-10-17T00:26:46.299Z",
+   "summary": "repeat leads: Scotland"
   }
  ]
 }
