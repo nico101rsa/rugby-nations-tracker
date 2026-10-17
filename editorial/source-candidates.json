@@ -673,6 +673,30 @@
         }
       ],
       "decided": "2026-10-18"
+    },
+    {
+      "outlet": "Welsh Rugby Union (official news)",
+      "host": "wru.wales",
+      "homepage": "https://www.wru.wales",
+      "teams": [
+        "Wales"
+      ],
+      "why": "Wales had only BACKGROUND items and a vague injury storyline today; the union's own news page would carry squad and injury announcements.",
+      "proposed": "2026-10-18",
+      "status": "proposed",
+      "feedUrl": "https://www.wru.wales/feed",
+      "probes": [
+        {
+          "date": "2026-10-18",
+          "feedUrl": "https://www.wru.wales/feed",
+          "items": 10,
+          "hits": {
+            "Italy": 1,
+            "Scotland": 1,
+            "Wales": 2
+          }
+        }
+      ]
     }
   ]
 }

@@ -19,7 +19,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 ## Being probed
 
-- Nothing proposed.
+- **Welsh Rugby Union (official news)** (wru.wales) — proposed 2026-10-18 for Wales: Wales had only BACKGROUND items and a vague injury storyline today; the union's own news page would carry squad and injury announcements.
+  - feed: https://www.wru.wales/feed; probes: 1; stories about tracked teams: Wales 2, Italy 1, Scotland 1
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
