@@ -805,6 +805,50 @@
         }
       ],
       "decided": "2026-10-19"
+    },
+    {
+      "outlet": "The Japan Times",
+      "host": "japantimes.co.jp",
+      "homepage": "https://www.japantimes.co.jp",
+      "teams": [
+        "Japan"
+      ],
+      "why": "Japan had only background items today, and the Japan Times has a sports desk that covers the national side regularly in English.",
+      "proposed": "2026-10-19",
+      "status": "ready",
+      "feedUrl": "https://www.japantimes.co.jp/feed",
+      "probes": [
+        {
+          "date": "2026-10-19",
+          "feedUrl": "https://www.japantimes.co.jp/feed",
+          "items": 30,
+          "hits": {
+            "Scotland": 1,
+            "Japan": 6
+          }
+        }
+      ],
+      "decided": "2026-10-19"
+    },
+    {
+      "outlet": "Sky Sports Rugby Union",
+      "host": "skysports.com",
+      "homepage": "https://www.skysports.com/rugby-union",
+      "teams": [
+        "Italy",
+        "Scotland",
+        "Wales"
+      ],
+      "why": "Italy, Scotland and Wales had nothing above the salience bar, and Sky's rugby section carries squad and injury news for the Six Nations sides.",
+      "proposed": "2026-10-19",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-10-19",
+          "error": "no feed found (8 tried)"
+        }
+      ]
     }
   ]
 }

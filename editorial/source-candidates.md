@@ -16,10 +16,13 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: https://www.wru.wales/feed; probes: 2; stories about tracked teams: Wales 4, Italy 2, Scotland 2, England 1
 - **WalesOnline** (walesonline.co.uk) — proposed 2026-10-18 for Wales: Wales had no fresh coverage today and its shortlist was all background; WalesOnline's rugby desk covers the national side daily.
   - feed: https://www.walesonline.co.uk/rss.xml; probes: 2; stories about tracked teams: Wales 7, England 1, Scotland 1
+- **The Japan Times** (japantimes.co.jp) — proposed 2026-10-19 for Japan: Japan had only background items today, and the Japan Times has a sports desk that covers the national side regularly in English.
+  - feed: https://www.japantimes.co.jp/feed; probes: 1; stories about tracked teams: Japan 6, Scotland 1
 
 ## Being probed
 
-- Nothing proposed.
+- **Sky Sports Rugby Union** (skysports.com) — proposed 2026-10-19 for Italy, Scotland, Wales: Italy, Scotland and Wales had nothing above the salience bar, and Sky's rugby section carries squad and injury news for the Six Nations sides.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
