@@ -4,7 +4,7 @@ _The silent ops log, written by the daily watchdog (`scripts/watchdog.mjs`) only
 _Nothing here notifies anyone except state **PAGING**. The Claude weekly review reads this file with the newest weekly report in this folder._
 _All times Sydney time._
 
-**State: ATTENTION — something is off, nothing has paged. Triage in the weekly review.**
+**State: OK — every watched job is current and no editorial signal is up.**
 
 ## Paging Nico
 
@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- Scotland — same lead story since Fri 16 Oct, first run as "Scotland's 33-17 win over Fiji was their latest result, in July" — the novelty gate did NOT flag the latest edition
+- None — every briefing moved on.
 
 **Model ladder**
 
@@ -30,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Sun 18 Oct 2026, 11:00 AEDT — all clear
 - Sat 17 Oct 2026, 11:26 AEDT — repeat leads: Scotland
 - Thu 15 Oct 2026, 11:30 AEDT — all clear
 - Wed 14 Oct 2026, 12:12 AEDT — repeat leads: Argentina
