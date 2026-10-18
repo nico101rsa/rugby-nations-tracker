@@ -141,7 +141,7 @@
       ],
       "why": "Ireland's men's shortlist was only club matches and opinion; The42 has a dedicated rugby desk covering the national team.",
       "proposed": "2026-10-11",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.the42.ie/feed/",
       "probes": [
         {
@@ -238,6 +238,15 @@
             "Australia": 1,
             "New Zealand": 1
           }
+        },
+        {
+          "date": "2026-10-19",
+          "feedUrl": "https://www.the42.ie/feed/",
+          "items": 40,
+          "hits": {
+            "France": 2,
+            "Ireland": 3
+          }
         }
       ],
       "decided": "2026-10-11"
@@ -251,7 +260,7 @@
       ],
       "why": "The state broadcaster's rugby pages carry regular men's Ireland team news that the current spine missed today.",
       "proposed": "2026-10-11",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.rte.ie/feeds/rss/?index=/sport/rugby/",
       "probes": [
         {
@@ -372,6 +381,20 @@
             "New Zealand": 1,
             "South Africa": 2
           }
+        },
+        {
+          "date": "2026-10-19",
+          "feedUrl": "https://www.rte.ie/feeds/rss/?index=/sport/rugby/",
+          "items": 50,
+          "hits": {
+            "Fiji": 1,
+            "France": 3,
+            "Ireland": 6,
+            "Argentina": 1,
+            "Australia": 2,
+            "New Zealand": 1,
+            "South Africa": 2
+          }
         }
       ],
       "decided": "2026-10-11"
@@ -487,6 +510,12 @@
           "hits": {
             "Argentina": 1
           }
+        },
+        {
+          "date": "2026-10-19",
+          "feedUrl": "https://www.federugby.it/feed/",
+          "items": 10,
+          "hits": {}
         }
       ],
       "decided": "2026-10-14"
@@ -599,6 +628,23 @@
             "New Zealand": 4,
             "South Africa": 2
           }
+        },
+        {
+          "date": "2026-10-19",
+          "feedUrl": "https://www.rugbyworld.com/feed",
+          "items": 30,
+          "hits": {
+            "Fiji": 1,
+            "England": 4,
+            "France": 3,
+            "Ireland": 4,
+            "Italy": 2,
+            "Scotland": 1,
+            "Wales": 2,
+            "Australia": 8,
+            "New Zealand": 5,
+            "South Africa": 2
+          }
         }
       ],
       "decided": "2026-10-16"
@@ -646,6 +692,15 @@
             "Argentina": 2,
             "Australia": 1
           }
+        },
+        {
+          "date": "2026-10-19",
+          "feedUrl": "https://www.americasrugbynews.com/feed/",
+          "items": 10,
+          "hits": {
+            "France": 1,
+            "Australia": 1
+          }
         }
       ],
       "decided": "2026-10-16"
@@ -670,6 +725,14 @@
             "Scotland": 4,
             "Australia": 1
           }
+        },
+        {
+          "date": "2026-10-19",
+          "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
+          "items": 25,
+          "hits": {
+            "Scotland": 4
+          }
         }
       ],
       "decided": "2026-10-18"
@@ -683,7 +746,7 @@
       ],
       "why": "Wales had only BACKGROUND items and a vague injury storyline today; the union's own news page would carry squad and injury announcements.",
       "proposed": "2026-10-18",
-      "status": "proposed",
+      "status": "ready",
       "feedUrl": "https://www.wru.wales/feed",
       "probes": [
         {
@@ -695,8 +758,20 @@
             "Scotland": 1,
             "Wales": 2
           }
+        },
+        {
+          "date": "2026-10-19",
+          "feedUrl": "https://www.wru.wales/feed",
+          "items": 10,
+          "hits": {
+            "England": 1,
+            "Italy": 1,
+            "Scotland": 1,
+            "Wales": 2
+          }
         }
-      ]
+      ],
+      "decided": "2026-10-19"
     },
     {
       "outlet": "WalesOnline",
@@ -707,7 +782,7 @@
       ],
       "why": "Wales had no fresh coverage today and its shortlist was all background; WalesOnline's rugby desk covers the national side daily.",
       "proposed": "2026-10-18",
-      "status": "proposed",
+      "status": "ready",
       "feedUrl": "https://www.walesonline.co.uk/rss.xml",
       "probes": [
         {
@@ -718,8 +793,18 @@
             "England": 1,
             "Wales": 2
           }
+        },
+        {
+          "date": "2026-10-19",
+          "feedUrl": "https://www.walesonline.co.uk/rss.xml",
+          "items": 25,
+          "hits": {
+            "Scotland": 1,
+            "Wales": 5
+          }
         }
-      ]
+      ],
+      "decided": "2026-10-19"
     }
   ]
 }
