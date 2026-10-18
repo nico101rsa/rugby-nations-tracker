@@ -382,5 +382,19 @@ test("FEEDS: FBC News is in the spine for Fiji, with a rugby topic filter", () =
   assert.equal(fbc.topic.test("Flying Fijians name squad for November"), true);
   assert.equal(fbc.topic.test("Drua sign two props for next season"), true);
   assert.equal(fbc.topic.test("Fiji records budget surplus"), false);
-  assert.equal(FEEDS.filter((f) => f.topic).length, 1, "only the general-news site needs a topic");
+  assert.deepEqual(FEEDS.filter((f) => f.topic).map((f) => f.id), ["fbcnews", "the42"], "only the general-news sites need a topic");
+});
+
+test("FEEDS: The42 and RTÉ Sport are in the spine for Ireland; The42's whole-site feed keeps rugby only", () => {
+  const the42 = FEEDS.find((f) => f.id === "the42");
+  const rte = FEEDS.find((f) => f.id === "rte");
+  assert.equal(new URL(the42.url).hostname.replace(/^www\./, ""), "the42.ie");
+  assert.equal(new URL(rte.url).hostname.replace(/^www\./, ""), "rte.ie");
+  assert.equal(rte.topic, undefined, "RTÉ's feed is already its rugby section");
+  assert.equal(the42.topic.test("Andy Farrell names Ireland squad for November"), true);
+  assert.equal(the42.topic.test("Leinster's Lowe ruled out of Champions Cup opener"), true);
+  assert.equal(the42.topic.test("Ireland rugby: three things we learned"), true);
+  assert.equal(the42.topic.test("Ireland's footballers draw with Portugal in World Cup qualifier"), false);
+  assert.equal(the42.topic.test("Kerry name All-Ireland final team"), false);
+  assert.ok(mentionsTeam("Andy Farrell names Ireland squad for November", TEAM_ALIASES[388]));
 });

@@ -45,6 +45,19 @@ export const FEEDS = [
     // the general feed safe.
     topic: /\b(rugby|drua|flying fijians|fijiana|sevens|7s|test match|world cup|super rugby|pacific nations)\b/i,
   },
+  // Ireland, adopted by Nico on 18 Oct 2026 (data #155): the 13 Oct review
+  // found Ireland's shortlist was club matches and opinion. Both were probed
+  // daily from 11 Oct (editorial/source-candidates.md): The42 carried 5-12
+  // Ireland stories a day in 40 items, RTÉ 47 in the week. RTÉ's feed is its
+  // rugby section. The42's is the whole site (GAA, soccer, boxing all say
+  // "Ireland"), so it gets a rugby topic like FBC News.
+  {
+    id: "the42",
+    name: "The42",
+    url: "https://www.the42.ie/feed/",
+    topic: /\b(rugby|six nations|nations championship|urc|champions cup|leinster|munster|ulster|connacht|andy farrell|lions|scrum|lineout|try|tries)\b/i,
+  },
+  { id: "rte", name: "RTÉ Sport Rugby", url: "https://www.rte.ie/feeds/rss/?index=/sport/rugby/" },
 ];
 
 // Aliases decide whether a feed item is ABOUT a team. Coaches and nicknames are
