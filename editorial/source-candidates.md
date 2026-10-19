@@ -1,28 +1,28 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-10-19._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-10-20._
 
 ## Ready — carried stories about the team they were proposed for
 
 - **Federazione Italiana Rugby** (federugby.it) — proposed 2026-10-12 for Italy: Italy's shortlist held only three low-score items, none about the team's current campaign, and the union page would cover squad and Round 4 news.
-  - feed: https://www.federugby.it/feed/; probes: 8; stories about tracked teams: Italy 4, Argentina 4
+  - feed: https://www.federugby.it/feed/; probes: 9; stories about tracked teams: Italy 4, Argentina 4
 - **Rugby World** (rugbyworld.com) — proposed 2026-10-13 for France, Argentina, Japan: France, Argentina and Japan had no NEW national-team stories today, and this magazine's news desk covers all the major nations in English.
-  - feed: https://www.rugbyworld.com/feed; probes: 7; stories about tracked teams: Australia 40, Ireland 20, England 19, New Zealand 19, South Africa 19, Italy 14, Wales 14, Scotland 13, France 10, Fiji 1
+  - feed: https://www.rugbyworld.com/feed; probes: 8; stories about tracked teams: Australia 48, Ireland 24, New Zealand 24, England 23, South Africa 21, Italy 16, Wales 16, Scotland 14, France 13, Fiji 2
 - **Americas Rugby News** (americasrugbynews.com) — proposed 2026-10-16 for Argentina: Argentina's shortlist held only low-scoring background items, and this English-language site covers Los Pumas and South American rugby regularly.
-  - feed: https://www.americasrugbynews.com/feed/; probes: 4; stories about tracked teams: Argentina 8, Australia 6, France 4, New Zealand 2
+  - feed: https://www.americasrugbynews.com/feed/; probes: 5; stories about tracked teams: Argentina 8, Australia 7, France 5, New Zealand 2, England 1
 - **Daily Record** (dailyrecord.co.uk) — proposed 2026-10-18 for Scotland: Scotland's pool held only the women's Australia game, so a free national-paper rugby desk could supply men's Scotland stories.
-  - feed: https://www.dailyrecord.co.uk/rss.xml; probes: 2; stories about tracked teams: Scotland 8, Australia 1
+  - feed: https://www.dailyrecord.co.uk/rss.xml; probes: 3; stories about tracked teams: Scotland 11, Australia 1, England 1, France 1, Ireland 1, Italy 1
 - **Welsh Rugby Union (official news)** (wru.wales) — proposed 2026-10-18 for Wales: Wales had only BACKGROUND items and a vague injury storyline today; the union's own news page would carry squad and injury announcements.
-  - feed: https://www.wru.wales/feed; probes: 2; stories about tracked teams: Wales 4, Italy 2, Scotland 2, England 1
+  - feed: https://www.wru.wales/feed; probes: 3; stories about tracked teams: Wales 7, Italy 2, Scotland 2, England 2
 - **WalesOnline** (walesonline.co.uk) — proposed 2026-10-18 for Wales: Wales had no fresh coverage today and its shortlist was all background; WalesOnline's rugby desk covers the national side daily.
-  - feed: https://www.walesonline.co.uk/rss.xml; probes: 2; stories about tracked teams: Wales 7, England 1, Scotland 1
+  - feed: https://www.walesonline.co.uk/rss.xml; probes: 3; stories about tracked teams: Wales 18, England 1, Scotland 1
 - **The Japan Times** (japantimes.co.jp) — proposed 2026-10-19 for Japan: Japan had only background items today, and the Japan Times has a sports desk that covers the national side regularly in English.
-  - feed: https://www.japantimes.co.jp/feed; probes: 1; stories about tracked teams: Japan 6, Scotland 1
+  - feed: https://www.japantimes.co.jp/feed; probes: 2; stories about tracked teams: Japan 19, Scotland 1, Australia 1
 
 ## Being probed
 
 - **Sky Sports Rugby Union** (skysports.com) — proposed 2026-10-19 for Italy, Scotland, Wales: Italy, Scotland and Wales had nothing above the salience bar, and Sky's rugby section carries squad and injury news for the Six Nations sides.
-  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
