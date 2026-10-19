@@ -20,6 +20,8 @@ import {
   sameHeadline,
   FEEDS,
   RUGBY_LEAGUE,
+  isRugbyLeague,
+  dropLeague,
 } from "./news-sources.mjs";
 
 const NOW = new Date("2026-07-20T10:00:00Z");
@@ -444,4 +446,46 @@ test("RUGBY_LEAGUE: the league markers, and what it leaves alone", () => {
     "Rugby World Cup 2027: what we know so far", "Kiwis edge it", "Racing 92 star returns to NRL"]) {
     assert.equal(RUGBY_LEAGUE.test(t), false, t);
   }
+});
+
+// dropLeague is the one filter on every path into a writer prompt: the
+// shortlist, the search widener (generate-digests' fetchTeamNews, which also
+// feeds the storyline re-check) and storyline extraction. Real items from the
+// run records unless marked.
+const bing = (article) =>
+  `http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6ad542de0c4249458d02ead7f98fec2f&url=${encodeURIComponent(article)}&c=1&mkt=en-us`;
+test("dropLeague: league titles, league publishers, and the code-switch exemption", () => {
+  const league = [
+    // The official tournament tag is RLWC2026; \bRLWC\b misses it (synthetic title).
+    { title: "Fiji Bati name RLWC2026 squad", link: "https://example.test/x" },
+    // Women's league sides (Fiji #2 on 8 Oct, nrl.com).
+    { title: "All in the family for young gun Laing after Fiji Bulikula call-up", link: "https://www.nrl.com/news/2026/10/08/all-in-the-family-for-young-gun-laing/" },
+    { title: "Kiwi Ferns edge Jillaroos in thriller", link: "https://example.test/x" },
+    // No union World Cup in 2026 (5 Sep, no link kept).
+    { title: "Fiji names powerful 2026 World Cup squad packed with NRL stars", link: "" },
+    // No marker in the title; the publisher is nrl.com (New Zealand #2, 14 Oct).
+    { title: "'Best in the world': New Zealand pack eye statement victory", link: "https://www.nrl.com/news/2026/10/14/best-in-the-world-new-zealand-pack/" },
+    // The Fiji lead on 6 Oct, through Bing, from loverugbyleague.com.
+    { title: "New Warrington recruit among 4 Super League stars in Fiji squad", link: bing("https://www.loverugbyleague.com/post/fiji-world-cup-squad-05-10-2026") },
+    // A /rugby-league/ section (Wales, 18 Oct).
+    { title: "England score 70 in emphatic win over Wales", link: "https://www.bbc.com/sport/rugby-league/live/cvy0zje32k35t" },
+    // A league side or competition beats a union name in the same title (synthetic).
+    { title: "Former Wallabies wing stars as Kangaroos beat Fiji", link: "https://example.test/x" },
+    { title: "Fiji rugby league captain retires after stroke", link: "https://example.test/x" },
+  ];
+  const union = [
+    // Code-switch stories: "rugby league" named, with a union side or body.
+    { title: "Les Kiss reveals whether Zac Lomax will still be considered for Wallabies selection after confirmation of rugby league return", link: "https://www.planetrugby.com/news/les-kiss-reveals-zac-lomax" },
+    { title: "Five Welsh-qualified rugby league stars identified as WRU targets new recruits", link: "https://example.test/x" },
+    { title: "Japan Rugby League One Amends Proposed Player Categories", link: "https://example.test/x" },
+    { title: "New Zealand avoid World Cup scare as All Blacks tune up", link: bing("https://www.planetrugby.com/news/all-blacks-tune-up") },
+    { title: "Rugby World Cup 2027: what we know so far", link: "not a url" },
+  ];
+  for (const i of league) assert.equal(isRugbyLeague(i), true, i.title);
+  for (const i of union) assert.equal(isRugbyLeague(i), false, i.title);
+  assert.deepEqual(dropLeague([...league, ...union]).map((i) => i.title), union.map((i) => i.title));
+  assert.deepEqual(dropLeague(null), []);
+  // buildShortlist goes through it, publisher test included.
+  assert.deepEqual(buildShortlist([item(league[4].title, { link: league[4].link })], 465, NOW), []);
+  assert.equal(buildShortlist([item(union[0].title, { link: union[0].link })], 461, NOW).length, 1);
 });

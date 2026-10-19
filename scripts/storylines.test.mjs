@@ -22,6 +22,17 @@ test("extractionCandidates keeps open threads and bars match reports", () => {
   assert.ok(kept.every((i) => !/player ratings|as it happened/i.test(i.title)));
 });
 
+// A stored storyline reaches the writer with no shortlist in between, so a
+// league thread must never be extracted (19 Oct 2026: a Rugby League World Cup
+// game led the New Zealand edition as All Blacks news).
+test("extractionCandidates bars rugby league", () => {
+  const league = [
+    { title: "Fiji Bati name RLWC2026 squad", link: "https://a/5", desc: "", feedName: "FBC News" },
+    { title: "New Zealand pack eye statement victory", link: "https://www.nrl.com/news/2026/10/14/x/", desc: "", feedName: "search" },
+  ];
+  assert.deepEqual(extractionCandidates([...ITEMS, ...league]).map((i) => i.link), ["https://a/1", "https://a/2"]);
+});
+
 test("extractionCandidates survives a null pool and untitled items", () => {
   assert.deepEqual(extractionCandidates(null), []);
   assert.deepEqual(extractionCandidates([{ desc: "no title" }, null]), []);

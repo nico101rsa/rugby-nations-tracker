@@ -20,7 +20,7 @@
 // Everything in this module is pure. The extraction call and the re-check
 // search live in generate-digests.mjs.
 
-import { isMatchReport, titleSimilarity, TEAM_ALIASES } from "./news-sources.mjs";
+import { dropLeague, isMatchReport, titleSimilarity, TEAM_ALIASES } from "./news-sources.mjs";
 
 // Housekeeping floor only. A Storyline older than this is dropped from the file
 // to stop it growing without bound — NOT because age proves it resolved. The
@@ -49,8 +49,12 @@ export function ageDays(iso, now) {
 // day back to re-narrating a game the reader watched. This is the same demotion
 // the salience layer applies, but here it is a hard exclusion rather than a
 // weight: a match report has no open question in it by definition.
+//
+// Rugby league is barred too (dropLeague): a stored storyline reaches the
+// writer with no shortlist in between, so a league thread extracted here
+// ("Fiji Bati name RLWC squad") could lead a quiet day.
 export function extractionCandidates(items) {
-  return (items || []).filter((i) => i?.title && !isMatchReport(i.title));
+  return dropLeague((items || []).filter((i) => i?.title && !isMatchReport(i.title)));
 }
 
 // ONE extraction call covers all twelve teams — the pool is a single shared

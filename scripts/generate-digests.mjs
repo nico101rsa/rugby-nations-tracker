@@ -15,7 +15,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join, resolve, relative, isAbsolute, sep } from "node:path";
-import { FEEDS, RUGBY_LEAGUE, buildShortlist, isQuiet, renderShortlist } from "./news-sources.mjs";
+import { FEEDS, buildShortlist, dropLeague, isQuiet, renderShortlist } from "./news-sources.mjs";
 import { ROLES, REQUEST_TIMEOUT_MS, modelPlan, buildCallers, describePlan } from "./model-router.mjs";
 import { readCandidates, addCandidates, renderCandidatesForReview } from "./source-candidates.mjs";
 import {
@@ -128,12 +128,14 @@ once a day. Today is {DAY_NAME} {DATE_LONG}.
    ("England women end 39-match run…", "the Red Roses", "France U20"). An
    unlabelled women's or U20 story misinforms the reader and fails
    fact-check. Prefer a men's story when one of comparable weight exists.
-   **Rugby league is a different sport and never your story.** A Rugby League
-   World Cup, NRL, Kangaroos or Kumuls story presented as union is a material
-   error, even when the headline only says "New Zealand" or "Fiji". There is
-   no men's union World Cup match before Fri 1 Oct 2027, so a 2026 "World
-   Cup" match involving a men's national side is rugby league and never a
-   lead.
+   **Rugby league is a different sport and never your story**, labelled as
+   league or not. A Rugby League World Cup, NRL, Kangaroos, Kumuls, Kiwi
+   Ferns or Jillaroos story presented as union is a material error, even
+   when the headline only says "New Zealand" or "Fiji". There is no union
+   World Cup, men's or women's, in 2026 (the women's tournament was in
+   August and September 2025; the men's opens Fri 1 Oct 2027), so a story
+   about a World Cup played in 2026 (a match, squad, debut or place in it)
+   is rugby league and never a lead.
 
 ## Format — ONE section: heading + one paragraph
 
@@ -1031,10 +1033,10 @@ async function fetchTeamNews(teamName) {
   // The widener is best-effort. An empty Bing response is no longer fatal —
   // the spine pool carries the edition. It WAS fatal when Bing was the only
   // source (it cost NZ its edition on 2026-07-11).
-  // League headlines are dropped here as well as in buildShortlist, because
+  // League stories are dropped here as well as in buildShortlist, because
   // the storyline rung's re-check search hands these items to the writer
   // without a shortlist.
-  return items.filter((item) => !RUGBY_LEAGUE.test(item.title)).slice(0, NEWS_ITEMS).map((item, n) => ({
+  return dropLeague(items).slice(0, NEWS_ITEMS).map((item, n) => ({
     title: item.title,
     link: item.link,
     desc: item.desc,
@@ -1273,11 +1275,13 @@ misinformed for you to flag it. Material errors:
   internationals by default, so "England drew with Canada" for a Red Roses
   match misinforms the reader (check the pack: if the sources say Red
   Roses, women, WXV, Black Ferns, Wallaroos or U20, the draft must too);
-- a rugby league story (Rugby League World Cup, NRL, Kangaroos, Kumuls)
-  presented as union. The app is rugby union only, so this fails even when
-  the pack reports the story accurately. There is no men's union World Cup
-  match before Fri 1 Oct 2027, so a 2026 "World Cup" match involving a men's
-  national side is rugby league and never a lead;
+- a rugby league story (Rugby League World Cup, NRL, Kangaroos, Kumuls,
+  Kiwi Ferns, Jillaroos), labelled as league or not. The app is rugby union
+  only, so this fails even when the pack reports the story accurately and
+  the draft says it is league. There is no union World Cup, men's or
+  women's, in 2026 (the women's tournament was in August and September 2025;
+  the men's opens Fri 1 Oct 2027), so a story about a World Cup played in
+  2026 (a match, squad, debut or place in it) is rugby league;
 - a \`teamsheet\` entry (name or jersey number) that does not match an explicit
   numbered lineup printed in the pack, or a teamsheet included when the pack
   prints no numbered lineup at all (each wrong name/number is one issue).
