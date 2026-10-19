@@ -1102,3 +1102,26 @@ test("buildParams: a pool round reads as it always did", () => {
   assert.ok(fillTemplate(TEMPLATE, a).includes("- Next fixture: England v Australia, Round 4, kickoff 2026-11-08T15:10:00+00:00."));
   assert.equal(buildParams(data, 386, new Date("2026-10-12T04:30:00Z")).LAST_RESULT, "no completed match yet this season");
 });
+
+// 19 Oct 2026: the New Zealand edition led with a Rugby League World Cup win
+// over Fiji, from a search headline that named no league word, and called its
+// source "a search-results headline". The shortlist filter can't catch that
+// title, so both prompts carry the rule.
+test("writer and fact-check prompts both rule out rugby league presented as union", () => {
+  const params = { MASTHEAD: "Black Watch", TEAM_NAME: "New Zealand", DAY_NAME: "Monday", DATE_LONG: "19 October 2026",
+    HOME_TEAM: "Ireland", AWAY_TEAM: "New Zealand", ROUND: "Round 4", RANK: "2", P: "3", W: "2", D: "0", L: "1",
+    PF: "90", PA: "70", PD: "+20", LAST_RESULT: "beat Australia 43-21" };
+  const flat = (s) => s.replace(/\s+/g, " ");
+  const writer = flat(TEMPLATE);
+  const checker = flat(buildFactCheckPrompt(params, goodDigest(), "pack"));
+  for (const prompt of [writer, checker]) {
+    assert.ok(prompt.includes("a rugby league story") || prompt.includes("Rugby league is a different sport"));
+    assert.ok(prompt.includes("Rugby League World Cup, NRL, Kangaroos"));
+    assert.ok(prompt.includes("presented as union"));
+    assert.ok(prompt.includes("no men's union World Cup match before Fri 1 Oct 2027"));
+    assert.ok(prompt.includes('a 2026 "World Cup" match involving a men\'s national side is rugby league and never a lead'));
+  }
+  assert.ok(checker.includes("The one exception is the rugby league rule above"), "the pack-is-authority rule yields to it");
+  assert.ok(writer.includes("Never describe how the material was gathered"));
+  assert.ok(writer.includes("search-results headline"));
+});

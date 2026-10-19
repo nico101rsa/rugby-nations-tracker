@@ -15,7 +15,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join, resolve, relative, isAbsolute, sep } from "node:path";
-import { FEEDS, buildShortlist, isQuiet, renderShortlist } from "./news-sources.mjs";
+import { FEEDS, RUGBY_LEAGUE, buildShortlist, isQuiet, renderShortlist } from "./news-sources.mjs";
 import { ROLES, REQUEST_TIMEOUT_MS, modelPlan, buildCallers, describePlan } from "./model-router.mjs";
 import { readCandidates, addCandidates, renderCandidatesForReview } from "./source-candidates.mjs";
 import {
@@ -128,6 +128,12 @@ once a day. Today is {DAY_NAME} {DATE_LONG}.
    ("England women end 39-match run…", "the Red Roses", "France U20"). An
    unlabelled women's or U20 story misinforms the reader and fails
    fact-check. Prefer a men's story when one of comparable weight exists.
+   **Rugby league is a different sport and never your story.** A Rugby League
+   World Cup, NRL, Kangaroos or Kumuls story presented as union is a material
+   error, even when the headline only says "New Zealand" or "Fiji". There is
+   no men's union World Cup match before Fri 1 Oct 2027, so a 2026 "World
+   Cup" match involving a men's national side is rugby league and never a
+   lead.
 
 ## Format — ONE section: heading + one paragraph
 
@@ -165,8 +171,10 @@ one a fan would text a mate about.
 - **The reader never sees your inputs.** Never describe the press pack, the
   shortlist, the sources' freshness or your own process in the copy ("today's
   pack contains no fresh team news", "this is a backwards look", "according
-  to the shortlist"). Write the story as a desk would print it; if it is an
-  older story, date it plainly ("July's 73-8 defeat") and move on. A kicker
+  to the shortlist"). Never describe how the material was gathered either
+  ("according to a search-results headline"). Write the story as a desk
+  would print it; if it is an older story, date it plainly ("July's 73-8
+  defeat") and move on. A kicker
   like "Background check" that labels your process rather than the story has
   failed.
 - Standings claims stay **edition-relative** ("goes into the weekend top of
@@ -1023,7 +1031,10 @@ async function fetchTeamNews(teamName) {
   // The widener is best-effort. An empty Bing response is no longer fatal —
   // the spine pool carries the edition. It WAS fatal when Bing was the only
   // source (it cost NZ its edition on 2026-07-11).
-  return items.slice(0, NEWS_ITEMS).map((item, n) => ({
+  // League headlines are dropped here as well as in buildShortlist, because
+  // the storyline rung's re-check search hands these items to the writer
+  // without a shortlist.
+  return items.filter((item) => !RUGBY_LEAGUE.test(item.title)).slice(0, NEWS_ITEMS).map((item, n) => ({
     title: item.title,
     link: item.link,
     desc: item.desc,
@@ -1262,6 +1273,11 @@ misinformed for you to flag it. Material errors:
   internationals by default, so "England drew with Canada" for a Red Roses
   match misinforms the reader (check the pack: if the sources say Red
   Roses, women, WXV, Black Ferns, Wallaroos or U20, the draft must too);
+- a rugby league story (Rugby League World Cup, NRL, Kangaroos, Kumuls)
+  presented as union. The app is rugby union only, so this fails even when
+  the pack reports the story accurately. There is no men's union World Cup
+  match before Fri 1 Oct 2027, so a 2026 "World Cup" match involving a men's
+  national side is rugby league and never a lead;
 - a \`teamsheet\` entry (name or jersey number) that does not match an explicit
   numbered lineup printed in the pack, or a teamsheet included when the pack
   prints no numbered lineup at all (each wrong name/number is one issue).
@@ -1293,7 +1309,8 @@ disputed jersey.
 One more rule: **the source pack is the authority.** If the draft accurately
 reflects what the pack says, it passes — even if you suspect the pack itself
 is wrong about the real world. You are checking draft-against-pack, not
-pack-against-reality.
+pack-against-reality. The one exception is the rugby league rule above: a
+league story fails however faithfully the draft reflects the pack.
 
 ## Output — strict JSON, nothing else
 {"issues": [{"kicker": "<section kicker>", "claim": "<the claim>", "problem": "<what is wrong>", "fix": "<corrected wording, or 'cut'>", "severity": "material" | "minor"}]}

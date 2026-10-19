@@ -89,6 +89,19 @@ const ALIAS_VETO = [
   [/england\s*(u20|under-20|women)/i, "England"],
 ];
 
+// Rugby league is a different sport that shares the nations' names. On
+// 19 Oct 2026 the New Zealand edition led with a Rugby League World Cup win
+// over Fiji as All Blacks news; league titles had reached shortlists on seven
+// days that month. Tested on the TITLE only, like aboutness: a union story's
+// description can say "Australian Rugby League Commission" (NZR's Chiefs-name
+// case). "Rugby League One" is Japan's top UNION competition, so it is
+// excepted. Bare "Kiwis" (union headlines use it for New Zealanders) and bare
+// "NRL" (union stories about code-switchers) are deliberately left out. A
+// league headline with none of these words ("New Zealand avoid massive World
+// Cup shock against Fiji") gets through; the writer and fact-check prompts
+// carry the rule for that case (generate-digests.mjs).
+export const RUGBY_LEAGUE = /\b(rugby league(?!\s+one\b)|league world cup|RLWC|kangaroos|kumuls|toa samoa|mate ma.a|state of origin)\b/i;
+
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 // Word-boundary alias match. \b is wrong for accented aliases (Galthié) because
@@ -337,7 +350,8 @@ export function buildShortlist(items, teamId, now, size = SHORTLIST_SIZE) {
   // new bash brothers", Italy on "Why is there no rugby culture in Germany?".
   // A team named in passing in a summary is mentioned, not covered. Headlines
   // name who the story is about — that is what a headline is for.
-  const mine = items.filter((i) => mentionsTeam(i.title, aliases));
+  // A rugby league headline is never a union team's story (RUGBY_LEAGUE).
+  const mine = items.filter((i) => mentionsTeam(i.title, aliases) && !RUGBY_LEAGUE.test(i.title));
   const scored = clusterStories(mine).map((s) => {
     const matchReport = isMatchReport(s.title);
     const subject = subjectWeight(s.title, aliases);

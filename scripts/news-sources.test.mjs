@@ -19,6 +19,7 @@ import {
   subjectWeight,
   sameHeadline,
   FEEDS,
+  RUGBY_LEAGUE,
 } from "./news-sources.mjs";
 
 const NOW = new Date("2026-07-20T10:00:00Z");
@@ -397,4 +398,50 @@ test("FEEDS: The42 and RTÉ Sport are in the spine for Ireland; The42's whole-si
   assert.equal(the42.topic.test("Ireland's footballers draw with Portugal in World Cup qualifier"), false);
   assert.equal(the42.topic.test("Kerry name All-Ireland final team"), false);
   assert.ok(mentionsTeam("Andy Farrell names Ireland squad for November", TEAM_ALIASES[388]));
+});
+
+// 19 Oct 2026: the New Zealand edition led with a Rugby League World Cup game
+// as All Blacks news. Real titles from that day's shortlists and the pool.
+test("buildShortlist: rugby league headlines never reach a union team's shortlist", () => {
+  const league = [
+    [28, "How to watch Fiji vs Cook Islands for FREE: Live streams for Rugby League World Cup 2026 game"],
+    [28, "New Zealand narrowly escape with win over impressive Rugby League World Cup debutants Fiji"],
+    [465, "New Zealand narrowly escape with win over impressive Rugby League World Cup debutants Fiji"],
+    [28, "Prop ready to do Fiji proud at RLWC"],
+    [465, "What time do the Kangaroos play New Zealand? Start time, TV channel, live stream details for 2026 Rugby League World Cup match"],
+  ];
+  for (const [teamId, title] of league) {
+    assert.ok(mentionsTeam(title, TEAM_ALIASES[teamId]), `${title} names team ${teamId}`);
+    assert.deepEqual(buildShortlist([item(title)], teamId, NOW), [], `${title} is rugby league`);
+  }
+});
+
+test("buildShortlist: union stories that brush against league are kept", () => {
+  const union = [
+    // Title only: the description says "Australian Rugby League Commission".
+    [465, item("New Zealand Rugby dealt early setback in legal action against ARLC over Chiefs name", {
+      desc: "New Zealand Rugby suffered a major setback when its application for an interim injunction against the Australian Rugby League Commission regarding the usage of the Chiefs name was turned down in court",
+    })],
+    // Bare "Kiwis" is union shorthand for New Zealanders.
+    [460, item("Reado: Pumas show Kiwis 'edge' over Boks")],
+    [467, item("Kiwis brace for Springbok bench as Rennie names side")],
+    // Bare "NRL": a union story about a code-switcher.
+    [461, item("Wallabies veteran relishing 'freak' Mark Nawaqanitawase's return after sensational NRL stint")],
+    // Japan Rugby League One is the top UNION competition in Japan.
+    [463, item("Japan Rugby League One Amends Proposed Player Categories – Outlines Updated Eligibility for 2026-2027 Season")],
+  ];
+  for (const [teamId, story] of union) {
+    assert.equal(buildShortlist([story], teamId, NOW).length, 1, `${story.title} is a union story`);
+  }
+});
+
+test("RUGBY_LEAGUE: the league markers, and what it leaves alone", () => {
+  for (const t of ["Toa Samoa stun England", "Mate Ma'a Tonga name squad", "Mate Ma’a Tonga name squad",
+    "PNG Kumuls fall short", "State of Origin III preview", "Women's Rugby League World Cup: England score 70"]) {
+    assert.equal(RUGBY_LEAGUE.test(t), true, t);
+  }
+  for (const t of ["NTT Japan Rugby League One Division One 2026-2027 Fixtures Released",
+    "Rugby World Cup 2027: what we know so far", "Kiwis edge it", "Racing 92 star returns to NRL"]) {
+    assert.equal(RUGBY_LEAGUE.test(t), false, t);
+  }
 });
