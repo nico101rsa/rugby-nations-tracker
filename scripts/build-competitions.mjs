@@ -67,8 +67,17 @@ import { POOL_NAMES } from "./competition-rules.mjs";
 //               and the 2026 edition sits under season 2027), so the key and
 //               label come from the year of the first fixture instead. The
 //               ESPN season number is still what the fetch is keyed on.
+//   knownEnd    { <published season>: "YYYY-MM-DD" } — the last day of a
+//               season known before ESPN lists its last games. entryFor only
+//               ever EXTENDS endDate to it, never shortens it, so it stops
+//               mattering once the fixtures reach that day. Added for the
+//               Nations Championship 2026, whose finals weekend (27–29 Nov at
+//               Twickenham) ESPN had not listed on 19 Oct: endDate read
+//               21 Nov, the last pool game, so from Sun 22 Nov 11:00 Sydney
+//               time the app would have called it FINAL / FINISHED with the
+//               finals still to play.
 export const REGISTERED = [
-  { prefix: "rnc", short: "RNC", name: "Nations Championship", espnLeagueId: 17567 },
+  { prefix: "rnc", short: "RNC", name: "Nations Championship", espnLeagueId: 17567, knownEnd: { 2026: "2026-11-29" } },
   { prefix: "6n", short: "6N", name: "Six Nations", espnLeagueId: 180659 },
   { prefix: "trc", short: "TRC", name: "The Rugby Championship", espnLeagueId: 244293 },
   { prefix: "rwc", short: "RWC", name: "Rugby World Cup", espnLeagueId: 164205 },
@@ -310,6 +319,12 @@ export function entryFor(meta, season, events, today) {
   // vendor's number until fixtures exist to read the year from.
   const published = meta.seasonFromFixtures && dates[0] ? Number(dates[0].slice(0, 4)) : season;
   const yy = String(published).slice(2);
+  // The later of the last fixture and the season's known last day (REGISTERED
+  // `knownEnd`), so a season ESPN has only partly listed doesn't read as over.
+  // Only once there are fixtures: an announced season stays dateless.
+  const lastFixture = dates.at(-1) ?? null;
+  const knownEnd = meta.knownEnd?.[published] ?? null;
+  const endDate = lastFixture && knownEnd && knownEnd > lastFixture ? knownEnd : lastFixture;
 
   const entry = {
     key: `${meta.prefix}-${published}`,
@@ -318,7 +333,7 @@ export function entryFor(meta, season, events, today) {
     espnLeagueId: meta.espnLeagueId,
     season: published,
     startDate: dates[0] ?? null,
-    endDate: dates.at(-1) ?? null,
+    endDate,
     structure: matches.length ? structure : null,
     groups: groups && groups.map((g) => ({ ...g, teams: g.teams.map((id) => teams.get(id) ?? id) })),
     teams: [...teams.values()].sort(),

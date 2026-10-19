@@ -39,12 +39,6 @@ import { ESPN_TEAM_IDS, UNTRACKED_CODES } from "./fetch-espn-fixtures.mjs";
 import { API_SPORTS_CODE_BY_ID } from "./static-fixtures.mjs";
 
 export const KICKOFF_OVERRIDES = {
-  "2026-10-17 AUS-NZL": {
-    // Sat 17 Oct, 3:45pm AEDT (Sydney is on daylight time from 4 Oct).
-    date: "2026-10-17T04:45:00.000Z",
-    vendor: "2026-10-17T05:00:00.000Z", // what ESPN and SportsAPI said when the row was written
-    note: "AUS v NZL Bledisloe, Accor Stadium, Sydney — the stadium publishes 3:45pm AEDT; ESPN 4:00pm",
-  },
 };
 
 export { ESPN_TEAM_IDS, UNTRACKED_CODES };

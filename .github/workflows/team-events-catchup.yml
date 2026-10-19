@@ -12,9 +12,11 @@ name: Team events catch-up
 # Every 3h across 05:00-14:00 UTC, which brackets the AP and early-European
 # kickoffs the two scheduled runs miss; evening NH games stay with the 19:00
 # UTC Saturday and 01:00 UTC daily runs (no point paying twice). It starts at
-# 05:00 rather than 02:00 because the full 01:00 run takes ~3.5h to walk its
-# paced calls (2026-08-15: committed 04:49 UTC) — an earlier tick would only
-# sit in the queue behind it and then find nothing to do.
+# 05:00 rather than 02:00 because the full 01:00 run took ~3.5h to walk its
+# paced calls when this was written (2026-08-15: committed 04:49 UTC) — an
+# earlier tick would only sit in the queue behind it and then find nothing to
+# do. The run itself now takes about 4 minutes; what delays it is GitHub, which
+# has started it 4-6 hours late through October 2026 (about 05:00-07:10 UTC).
 #
 # Quota: the due check is pure local JSON, so a run with nothing to publish
 # makes NO vendor call at all — most of these are free no-ops. When a game IS

@@ -13,6 +13,7 @@ import {
   inWindow,
   TAIL_DAYS,
   MAX_RANGE_DAYS,
+  REGISTERED,
 } from "./build-competitions.mjs";
 
 // Round robin among `teams`, one game a day from 2026-01-01.
@@ -474,4 +475,36 @@ test("a side competition never becomes the app's default, even mid-tournament", 
   assert.equal(defaultCompetition(comps, "2026-09-25").key, "rnc-2026"); // inside the PNC tail
   // Even with nothing else on, a side comp is not promoted.
   assert.equal(defaultCompetition([comps[1]], "2026-09-12"), null);
+});
+
+// 19 Oct 2026: ESPN listed the 36 pool games and no finals, so rnc-2026 ended
+// on 21 Nov and the app would have read FINAL / FINISHED from Sun 22 Nov 11:00
+// Sydney time, a week before finals weekend (27–29 Nov).
+test("knownEnd keeps the Nations Championship 2026 open until finals weekend, and only ever extends", () => {
+  const rnc = REGISTERED.find((m) => m.prefix === "rnc");
+  assert.equal(rnc.knownEnd?.[2026], "2026-11-29");
+  const north = [1, 2, 3, 4, 9, 20];
+  const south = [5, 6, 8, 10, 14, 23];
+  const pool = [];
+  let d = 0;
+  for (const x of north) for (const y of south) pool.push(espnEvent(dayAfter("2026-07-04", d++), x, y));
+  pool.push(espnEvent("2026-11-21", 1, 5));
+
+  const e = entryFor(rnc, 2026, pool, "2026-11-22");
+  assert.equal(e.startDate, "2026-07-04");
+  assert.equal(e.endDate, "2026-11-29", "the pool stage's last day is not the season's");
+  assert.equal(e.status, "live", "Sun 22 Nov is not the end");
+  assert.equal(entryFor(rnc, 2026, pool, "2026-11-30").status, "complete");
+  const [chained] = chainDefaults([e]);
+  assert.equal(chained.defaultUntil, "2026-12-13", "the 14-day tail runs from 29 Nov");
+
+  // Once ESPN lists the finals the fixtures carry the date themselves.
+  assert.equal(entryFor(rnc, 2026, [...pool, espnEvent("2026-11-29", 1, 5)], "2026-11-22").endDate, "2026-11-29");
+  // A later fixture always wins: knownEnd never shortens a season.
+  assert.equal(entryFor(rnc, 2026, [...pool, espnEvent("2026-12-05", 1, 5)], "2026-11-22").endDate, "2026-12-05");
+  // Another season, and a season with nothing listed, are untouched.
+  const next = pool.map((ev) => ({ ...ev, date: ev.date.replace("2026", "2028") }));
+  assert.equal(entryFor(rnc, 2028, next, "2026-11-22").endDate, "2028-11-21");
+  assert.equal(entryFor(rnc, 2026, [], "2026-11-22").endDate, null);
+  assert.equal(entryFor(rnc, 2026, [], "2026-11-22").status, "announced");
 });

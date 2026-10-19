@@ -1102,3 +1102,32 @@ test("buildParams: a pool round reads as it always did", () => {
   assert.ok(fillTemplate(TEMPLATE, a).includes("- Next fixture: England v Australia, Round 4, kickoff 2026-11-08T15:10:00+00:00."));
   assert.equal(buildParams(data, 386, new Date("2026-10-12T04:30:00Z")).LAST_RESULT, "no completed match yet this season");
 });
+
+// 19 Oct 2026: the New Zealand edition led with a Rugby League World Cup win
+// over Fiji, from a search headline that named no league word, and called its
+// source "a search-results headline". The shortlist filter can't catch that
+// title, so both prompts carry the rule. The game was most likely the WOMEN'S
+// tournament (Fiji's women are the debutants), so the rule covers both, and a
+// league story labelled as league still fails: the app is union only.
+test("writer and fact-check prompts both rule out rugby league, labelled or not", () => {
+  const params = { MASTHEAD: "Black Watch", TEAM_NAME: "New Zealand", DAY_NAME: "Monday", DATE_LONG: "19 October 2026",
+    HOME_TEAM: "Ireland", AWAY_TEAM: "New Zealand", ROUND: "Round 4", RANK: "2", P: "3", W: "2", D: "0", L: "1",
+    PF: "90", PA: "70", PD: "+20", LAST_RESULT: "beat Australia 43-21" };
+  const flat = (s) => s.replace(/\s+/g, " ");
+  const writer = flat(TEMPLATE);
+  const checker = flat(buildFactCheckPrompt(params, goodDigest(), "pack"));
+  for (const prompt of [writer, checker]) {
+    assert.ok(prompt.includes("a rugby league story") || prompt.includes("Rugby league is a different sport"));
+    assert.ok(prompt.includes("Rugby League World Cup, NRL, Kangaroos, Kumuls"));
+    assert.ok(prompt.includes("Kiwi Ferns"), "the women's league sides are named");
+    assert.ok(prompt.includes("labelled as league or not"));
+    assert.ok(prompt.includes("There is no union World Cup, men's or women's, in 2026"));
+    assert.ok(prompt.includes("the men's opens Fri 1 Oct 2027"));
+    assert.ok(prompt.includes("a story about a World Cup played in 2026 (a match, squad, debut or place in it) is rugby league"));
+  }
+  assert.ok(writer.includes("is rugby league and never a lead"));
+  assert.ok(checker.includes("even when the pack reports the story accurately and the draft says it is league"));
+  assert.ok(checker.includes("The one exception is the rugby league rule above"), "the pack-is-authority rule yields to it");
+  assert.ok(writer.includes("Never describe how the material was gathered"));
+  assert.ok(writer.includes("search-results headline"));
+});

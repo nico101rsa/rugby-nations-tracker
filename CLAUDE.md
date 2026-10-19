@@ -65,10 +65,13 @@ in the repo: nations.json for the Nations Championship (pool stage only —
 finals weekend repeats pairings and is excluded), fixtures.json for every
 ESPN-scored competition, and the two try caches (`scripts/match-tries.json` by
 api-sports id; `scripts/match-tries-espn.json` by fixture id, filled by
-`scripts/espn-tries.mjs`). Both scripts run in team-events (daily 12:00 Sydney
-time in AEDT, 11:00 in AEST, plus Sun 06:00 Sydney time in AEDT), on every
-refresh-data tick and on every 3-minute fixtures-burst pass, so a result moves
-its table on the pass that lands the score. Zero api-sports or SportsAPI Pro
+`scripts/espn-tries.mjs`). Both scripts run in team-events (cron daily 12:00
+Sydney time in AEDT, 11:00 in AEST, plus Sun 06:00 Sydney time in AEDT; through
+October 2026 GitHub started the daily run 4–6 hours late, at about
+16:00–18:00 Sydney time, and the Saturday run 2–3.5 hours late, at about Sun
+08:00–09:30 Sydney time), on every refresh-data tick and on every
+3-minute fixtures-burst pass, so a result moves its table on the pass that
+lands the score. Zero api-sports or SportsAPI Pro
 calls; ESPN only for a newly finished game's try counts, and the frequent
 callers pass `--recent` so a game ESPN has no counts for is re-asked only
 within six hours of kickoff (the daily run takes the backlog). The file is
@@ -104,9 +107,11 @@ support page links all 13 at `index.html#calendars`).
 kickoff corrections (the command-line run applies them too), never from
 nations.json, which carries only the Nations Championship — and
 `build-fixtures.mjs` calls it right after every fixtures.json write. So they
-follow every rebuild at zero vendor calls: the daily team-events run (12:00
-Sydney time in AEDT, 11:00 in AEST), its Saturday run (Sun 06:00 Sydney time in
-AEDT), every refresh-data tick that `fixtures-refresh-due` calls due, each 3-min
+follow every rebuild at zero vendor calls: the daily team-events run (cron
+12:00 Sydney time in AEDT, 11:00 in AEST; in practice about 16:00–18:00 Sydney
+time through October 2026), its Saturday run (cron Sun 06:00 Sydney time in
+AEDT; in practice about 08:00–09:30 Sydney time), every refresh-data tick that
+`fixtures-refresh-due` calls due, each 3-min
 burst pass, and the push-triggered rebuild (below). There is deliberately no
 calendar workflow of its own: the bots commit with GITHUB_TOKEN, and those
 commits never trigger `on: push`, so a workflow keyed on fixtures.json changing
@@ -172,10 +177,13 @@ installed copy with no build.
   before `publishFixtures` corrected them, so the Bledisloe (Sat 17 Oct, 15:45
   Sydney time) would have burst from 15:30 but fetched no live score until
   16:00. A new decision about kickoff goes through the same function.
-- **When a row lands:** at the next fixtures rebuild (daily 12:00 Sydney time,
-  Sun 06:00 Sydney time, any live-window tick), or about two minutes after the
-  merge through **Actions → "Rebuild fixtures & calendars"**
-  (`fixtures-rebuild.yml`). That workflow fires on any push to main that
+- **When a row lands:** at the next fixtures rebuild (cron daily 12:00 Sydney
+  time and Sun 06:00 Sydney time, though through October 2026 GitHub started
+  the daily run 4–6 hours late, at about 16:00–18:00 Sydney time, and the
+  Saturday run 2–3.5 hours late, at about Sun 08:00–09:30 Sydney time; or any
+  live-window tick), or about two minutes after the merge through
+  **Actions → "Rebuild fixtures & calendars"** (`fixtures-rebuild.yml`), the
+  route for anything urgent. That workflow fires on any push to main that
   touches the override table, the calendar builder or the competition seeds,
   and can be run by hand; it is keyless. Don't dispatch "Team events" to
   publish a row early: that is ~25 SportsAPI Pro calls. nations.json and

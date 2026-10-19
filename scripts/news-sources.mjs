@@ -16,6 +16,8 @@
 // ranked shortlist of five it picks like an editor. Code ranks, the model
 // recognises what is a story.
 
+import { unwrapRedirect } from "./novelty.mjs";
+
 // The spine: publisher feeds pulled once for all 12 teams, filtered by mention.
 // Roster held small deliberately — a spine concentrates the product on outlets
 // we have no relationship with, so no single one should dominate. Verified live
@@ -88,6 +90,62 @@ const ALIAS_VETO = [
   [/wales\s*(u20|under-20|women)/i, "Wales"],
   [/england\s*(u20|under-20|women)/i, "England"],
 ];
+
+// Rugby league is a different sport that shares the nations' names. On
+// 19 Oct 2026 the New Zealand edition led with a Rugby League World Cup win
+// over Fiji as All Blacks news; league titles had reached shortlists on 14 of
+// the 19 October run days, and England (1 Sep) and Fiji (6 Oct) had already
+// led with league stories. Tested on the TITLE only, like aboutness: a union
+// story's description can say "Australian Rugby League Commission" (NZR's
+// Chiefs-name case). "Rugby League One" is Japan's top UNION competition, so
+// it is excepted. Bare "Kiwis" (union headlines use it for New Zealanders) and
+// bare "NRL" (union stories about code-switchers) are deliberately left out.
+// There is no union World Cup in 2026 (the women's was Aug-Sep 2025, the
+// men's opens Fri 1 Oct 2027), so a "2026 World Cup" is league's. A league
+// headline with none of these words ("New Zealand avoid massive World Cup
+// shock against Fiji") gets through; the writer and fact-check prompts carry
+// the rule for that case (generate-digests.mjs).
+//
+// Two strengths. A league competition or side (LEAGUE_MARKERS) is league
+// whatever else the title says. The code merely named ("rugby league") is
+// also how a union story about a code-switcher reads ("Les Kiss reveals
+// whether Zac Lomax will still be considered for Wallabies selection after
+// confirmation of rugby league return"), so that one yields to a union side or
+// body in the same title (UNION_MARKERS). Over all 91 run records to 19 Oct
+// the exemption keeps exactly those union stories and no league one.
+const LEAGUE_MARKERS = /\b(league world cup|RLWC\w*|kangaroos|kumuls|toa samoa|mate ma.a|state of origin|kiwi ferns|jillaroos|bulikula|fiji bati|2026 world cup|world cup 2026)\b/i;
+const LEAGUE_NAMED = /\brugby league\b(?!\s+one\b)/i;
+const UNION_MARKERS = /\b(wallabies|all blacks|springboks?|boks|pumas|wru|rfu|irfu|sru|fru|union|six nations|nations championship)\b/i;
+// Any league word in a title, before the union exemption.
+export const RUGBY_LEAGUE = new RegExp(`${LEAGUE_NAMED.source}|${LEAGUE_MARKERS.source}`, "i");
+
+// A league publisher or section: nrl.com, loverugbyleague.com, or any site's
+// /rugby-league/ path (BBC, Sporting News, Fiji Sun). Bing items are unwrapped
+// to the article first. These catch the league stories whose titles carry no
+// marker ("'Best in the world': New Zealand pack eye statement victory",
+// nrl.com, New Zealand's shortlist on 14 Oct).
+function leaguePublisher(link) {
+  try {
+    const u = new URL(unwrapRedirect(link));
+    return /(^|\.)nrl\.com$/i.test(u.hostname) || /loverugbyleague/i.test(u.hostname) || /\/rugby-league\//i.test(u.pathname);
+  } catch {
+    return false;
+  }
+}
+
+// Is this feed item ({title, link}) a rugby league story?
+export function isRugbyLeague(item) {
+  const title = item?.title || "";
+  if (LEAGUE_MARKERS.test(title)) return true;
+  if (LEAGUE_NAMED.test(title) && !UNION_MARKERS.test(title)) return true;
+  return leaguePublisher(item?.link);
+}
+
+// The one league filter, for every path into a writer prompt: the shortlist,
+// the search widener (and so the storyline re-check) and storyline extraction.
+export function dropLeague(items) {
+  return (items || []).filter((i) => !isRugbyLeague(i));
+}
 
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -337,7 +395,8 @@ export function buildShortlist(items, teamId, now, size = SHORTLIST_SIZE) {
   // new bash brothers", Italy on "Why is there no rugby culture in Germany?".
   // A team named in passing in a summary is mentioned, not covered. Headlines
   // name who the story is about — that is what a headline is for.
-  const mine = items.filter((i) => mentionsTeam(i.title, aliases));
+  // A rugby league story is never a union team's story (isRugbyLeague).
+  const mine = dropLeague(items).filter((i) => mentionsTeam(i.title, aliases));
   const scored = clusterStories(mine).map((s) => {
     const matchReport = isMatchReport(s.title);
     const subject = subjectWeight(s.title, aliases);
