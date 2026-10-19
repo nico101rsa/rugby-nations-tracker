@@ -21,9 +21,9 @@
   <p class="meta">Last updated 19 October 2026</p>
 
   <p>Rugby Nations Tracker has no accounts and no advertising. It never asks
-  for your name, email address or contact details. It does send a small amount
-  of anonymous usage information, described below, so the developer can see
-  which parts of the app people use. None of it is linked to you.</p>
+  for, or sends, your name, email address or contact details. It does send a
+  small amount of anonymous usage information, described below, so the
+  developer can see which parts of the app people use.</p>
 
   <h2>Anonymous usage analytics</h2>
   <p>The app uses <a href="https://aptabase.com">Aptabase</a>, a
@@ -47,11 +47,15 @@
     tapping "Add … fixtures to your calendar" on a team's page, with which
     team, so the developer can see how often the calendar link is used. The
     note is sent when you tap; iOS does not tell the app whether you go on to
-    subscribe. Like every other note, it also carries the anonymous details
-    below, and it is not linked to you.</li>
+    subscribe. Like every other note, it also carries the details
+    below.</li>
     <li>from the version after 1.3.9, leaving the app (sending it to the
     background), with how many seconds the visit lasted, so the developer can
     see whether people stay longer as the app improves.</li>
+    <li>from the version after 1.3.9, answering the question about counting
+    this phone, or changing the answer on the About screen, with the answer
+    (yes or no) and where it was given, so the developer can see what share
+    of people say yes. A "no" note carries no install number.</li>
   </ul>
   <p>Each note also carries the app's version number, your device's language
   setting (for example "en-AU"), a flag that marks the developer's own testing
@@ -60,31 +64,48 @@
   replaced after an hour of inactivity, so it cannot follow you from day to
   day. Your iOS version is read from the standard information every web
   request carries.</p>
-  <p>From the version after 1.3.9, each note also carries a random install
-  number. The app makes it on your phone the first time it runs and keeps it
-  in the app's own storage, so the developer can count how many phones use
-  the app and how many come back from one week to the next. It is not Apple's
-  advertising identifier, it is not shared with any other app or website, it
-  is never linked to your name or account (there is no account), and deleting
-  the app deletes it. A reinstall makes a new one.</p>
+  <p>From the version after 1.3.9, the app asks you once whether it may count
+  this phone: when you first set it up, or, if you already use the app, when
+  you first open the new version. Only if you say yes does it make a
+  random install number on your phone, keep it in the app's own storage and
+  add it to each note, so the developer can count how many phones use the app
+  and how many come back from one week to the next. Until you answer, and if
+  you say no, no install number is made and the notes carry none. You can
+  change your answer any time with the "Count this phone for return visits"
+  switch on the About screen (the round "i" button). Turning it off deletes
+  the number from your phone straight away and later notes go without one
+  (notes already sent are not changed); turning it back on makes a new
+  number, never the old one. It is not Apple's advertising identifier, it is
+  not shared with any other app or website, and it is never linked to your
+  name or account (there is no account). Deleting the app deletes it, and a
+  reinstall asks again.</p>
   <p>Aptabase uses your IP address when a note arrives to work out an
   approximate country and region, and to count daily users with a one-way code
   whose secret changes every day. It does not store your IP address, and the
   app collects no advertising identifier; the only device-level number is the
-  random install number above. The developer looks at these notes only as
-  totals: in Aptabase's dashboard, and in a daily count that downloads the
-  anonymous notes from Aptabase, adds them up (for example, how many phones
-  opened the Standings tab this week, how many follow Japan, or how long a
-  visit lasts) and keeps only the totals. The downloaded notes themselves are
-  deleted as soon as they are counted. This information is
+  random install number above, and only if you said yes. The developer looks
+  at these notes only as totals: in Aptabase's dashboard, and in a daily count
+  that downloads the anonymous notes from Aptabase, adds them up (for example,
+  how often the Standings tab was opened this week, how many follow Japan, or
+  how long a visit lasts) and keeps only the totals. The developer uses the
+  install number only to count how many phones use the app each week and how
+  many of them come back (and to leave Apple's review devices out of the
+  totals), and keeps only those totals. The downloaded notes
+  themselves are deleted as soon as they are counted. This information is
   never sold, never used for advertising, and never used to track you across
-  other apps or websites. See
+  other apps or websites.</p>
+  <p>Aptabase processes the notes for the developer and keeps them for up to
+  five years. Where the law requires a legal basis for the install number, it
+  is your consent, which you can withdraw at any time with the switch on the
+  About screen. See
   <a href="https://aptabase.com/legal/privacy">Aptabase's privacy policy</a>
   for how it handles this data.</p>
   <p>The teams you follow are stored on your device. Apart from the anonymous
-  notes above, they are not sent anywhere. There is currently no in-app switch
-  to turn analytics off; if you have questions about it, use the contact
-  address below.</p>
+  notes above, they are not sent anywhere. From the version after 1.3.9, the
+  switch on the About screen controls only the install number. The usage
+  notes themselves are sent either way (with no install number while the
+  switch is off), and there is no switch to stop them; if you have questions
+  about them, use the contact address below.</p>
 
   <h2>Match data</h2>
   <p>When you use the app, match fixtures, results and standings are fetched
