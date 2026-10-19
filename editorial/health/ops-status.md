@@ -4,7 +4,7 @@ _The silent ops log, written by the daily watchdog (`scripts/watchdog.mjs`) only
 _Nothing here notifies anyone except state **PAGING**. The Claude weekly review reads this file with the newest weekly report in this folder._
 _All times Sydney time._
 
-**State: OK — every watched job is current and no editorial signal is up.**
+**State: ATTENTION — something is off, nothing has paged. Triage in the weekly review.**
 
 ## Paging Nico
 
@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- None — every briefing moved on.
+- Italy — same lead story since Sun 18 Oct, first run as "Italy still winless after three Nations Championship matches, conceding 131 points" — the novelty gate did NOT flag the latest edition
 
 **Model ladder**
 
@@ -30,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Mon 19 Oct 2026, 11:11 AEDT — repeat leads: Italy
 - Sun 18 Oct 2026, 11:00 AEDT — all clear
 - Sat 17 Oct 2026, 11:26 AEDT — repeat leads: Scotland
 - Thu 15 Oct 2026, 11:30 AEDT — all clear
