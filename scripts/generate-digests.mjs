@@ -300,11 +300,35 @@ export function roundLabel(game, { results = [], log = [] } = {}) {
   return week || null;
 }
 
-function lastResultFor(results, teamId, log) {
+// nations.json carries only the Nations Championship, so on its own this read
+// a team's last championship game as its last result: Japan's 18 Oct 2026
+// data edition said "Their last result was a 15-42 defeat to France", after
+// two Australia tests and a 20-15 win over Fiji (app #318). The team-events
+// archive holds every test a team played, so the later of the two wins; a
+// championship game keeps its round label.
+const ARCHIVE_SAME_GAME_MS = 6 * 3600 * 1000;
+function lastArchiveGame(games) {
+  const list = Array.isArray(games) ? games : games && typeof games === "object" ? Object.values(games) : [];
+  return list
+    .filter((g) => g && Number.isFinite(Date.parse(g.date)) && Number.isFinite(g.us) && Number.isFinite(g.them) && g.opponent)
+    .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))[0] ?? null;
+}
+function competitionLabel(league) {
+  const name = typeof league === "string" ? league.split(",")[0].trim() : "";
+  return name && !/friendl/i.test(name) ? name : null;
+}
+
+function lastResultFor(results, teamId, log, archiveGames = null) {
   const r = (Array.isArray(results) ? results : [])
     .filter((g) => g?.home?.id === teamId || g?.away?.id === teamId)
     .filter((g) => g?.status?.short === "FT")
     .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))[0];
+  const a = lastArchiveGame(archiveGames);
+  if (a && (!r || Date.parse(a.date) > Date.parse(r.date) + ARCHIVE_SAME_GAME_MS)) {
+    const verb = a.us > a.them ? "beat" : a.us < a.them ? "lost to" : "drew with";
+    const label = competitionLabel(a.league);
+    return `${verb} ${a.opponent} ${a.us}-${a.them}${label ? ` (${label})` : ""}`;
+  }
   if (!r) return "no completed match yet this season";
   const home = r.home.id === teamId;
   const us = home ? r.home : r.away;
@@ -314,7 +338,7 @@ function lastResultFor(results, teamId, log) {
   return `${verb} ${them.name} ${us.score}-${them.score}${label ? ` (${label})` : ""}`;
 }
 
-export function buildParams(data, teamId, now = new Date()) {
+export function buildParams(data, teamId, now = new Date(), archiveGames = null) {
   const team = TEAMS[teamId];
   const fixture = nextFixtureFor(data?.fixtures, teamId, now);
   const row = (data?.log || []).find((l) => l.id === teamId) || {};
@@ -333,7 +357,7 @@ export function buildParams(data, teamId, now = new Date()) {
     P: String(row.P ?? 0), W: String(row.W ?? 0), D: String(row.D ?? 0), L: String(row.L ?? 0),
     PF: String(row.PF ?? 0), PA: String(row.PA ?? 0),
     PD: pd > 0 ? `+${pd}` : String(pd),
-    LAST_RESULT: lastResultFor(data?.results, teamId, data?.log),
+    LAST_RESULT: lastResultFor(data?.results, teamId, data?.log, archiveGames),
   };
 }
 
@@ -1350,7 +1374,7 @@ export function parseVerdict(raw) {
 // replays the recorded prompt on a paid model; main() passes a trace only when
 // DIGEST_PROMPTS_DIR is set.
 export async function generateEdition(calls, data, teamId, now, editorNotes, checkerNotes = "", pool = [], ladderCtx = null, recentRuns = [], trace = null) {
-  const params = buildParams(data, teamId, now);
+  const params = buildParams(data, teamId, now, ladderCtx?.archive?.games?.[TEAMS[teamId]?.code]);
   const { pack, shortlist, quiet, ladder, articleCount, poolCount, widenedCount } =
     await buildSourcePack(teamId, params.TEAM_NAME, now, pool, ladderCtx ? () => resolveLadder(ladderCtx, teamId, params, now) : null);
   const notesBlock = editorNotes

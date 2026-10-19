@@ -1067,6 +1067,28 @@ test("buildParams: the last result and the next fixture carry the finals wording
   assert.ok(buildFactCheckPrompt(q, goodDigest()).includes("- Next fixture: England v South Africa, Grand final."));
 });
 
+test("buildParams: a test after the last championship game is the last result (app #318, Japan 18 Oct)", () => {
+  const data = {
+    log: finalLog(3),
+    results: [game(53230, "2026-07-18T19:10:00+00:00", "3", 463, 2, 15, 42)],
+    fixtures: [game(7001, "2026-11-08T03:40:00+00:00", "4", 464, 463)],
+  };
+  const archive = {
+    a: { id: 1, date: "2026-07-18T19:10:00.000Z", league: "Nations Championship", opponent: "France", us: 15, them: 42 },
+    b: { id: 2, date: "2026-08-15T09:45:00.000Z", league: "International Friendlies", opponent: "Australia", us: 17, them: 56 },
+    c: { id: 3, date: "2026-09-19T10:05:00.000Z", league: "Pacific Nations Cup, Knockout Stage", opponent: "Fiji", us: 20, them: 15 },
+  };
+  const now = new Date("2026-10-18T04:30:00Z");
+  assert.equal(buildParams(data, 463, now, archive).LAST_RESULT, "beat Fiji 20-15 (Pacific Nations Cup)");
+  // a friendly carries no label; an array works as well as the archive's object
+  assert.equal(buildParams(data, 463, now, [archive.a, archive.b]).LAST_RESULT, "lost to Australia 17-56");
+  // the championship game itself in the archive keeps the round label
+  const p = buildParams(data, 463, now, [archive.a]).LAST_RESULT;
+  assert.match(p, /^lost to .+ 15-42 \(Round 3\)$/);
+  // no archive: as before
+  assert.match(buildParams(data, 463, now).LAST_RESULT, /\(Round 3\)$/);
+});
+
 test("buildParams: a pool round reads as it always did", () => {
   const data = {
     log: finalLog(3),
