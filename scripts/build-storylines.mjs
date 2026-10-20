@@ -13,7 +13,9 @@
 //   1. A FACT PACK per fixture, from the repo only: fixtures.json (comp, venue,
 //      kickoff in Sydney time), team-events.json + team-events-archive.json
 //      (each side's form and every previous meeting the repo holds),
-//      rankings.json, nations.json's log for an rnc-* game, and the news:
+//      rankings.json (each side's rank, how it got there, and what every
+//      result would do to it: rankings-stakes.mjs does the arithmetic so
+//      the writer never does), nations.json's log for an rnc-* game, and the news:
 //      editorial/news-pool.json items whose TITLE names either team, plus the
 //      digests' search widener (fetchTeamNews, one query per fixture). Rugby
 //      league is dropped (dropLeague), so are women's / age-grade / sevens
@@ -48,6 +50,7 @@ import { TEAM_ALIASES, dropLeague, mentionsTeam, titleSimilarity } from "./news-
 import { unwrapRedirect } from "./novelty.mjs";
 import { correctedKickoffMs } from "./kickoff-overrides.mjs";
 import { applyHostOverrides } from "./host-overrides.mjs";
+import { stakesFor, rankTrajectory, renderStakes, renderTrajectory, ordinal } from "./rankings-stakes.mjs";
 import { bannedCopyIn, words } from "./copy-rules.mjs";
 import { ROLES, REQUEST_TIMEOUT_MS, modelPlan, buildCallers, describePlan } from "./model-router.mjs";
 import {
@@ -78,9 +81,10 @@ export const MAX_GENERATE = 12; // a run's ceiling on stories written
 const DAY = 86_400_000;
 const HOUR = 3_600_000;
 
-// api-sports id -> code, and code -> id, from the digests' team table.
+// api-sports id -> code, code -> id and code -> name, from the digests' team table.
 const CODE_TO_ID = Object.fromEntries(Object.entries(TEAMS).map(([id, t]) => [t.code, Number(id)]));
 const ID_TO_CODE = Object.fromEntries(Object.entries(TEAMS).map(([id, t]) => [Number(id), t.code]));
+const CODE_TO_NAME = Object.fromEntries(Object.values(TEAMS).map((t) => [t.code, t.name]));
 
 export const sha256 = (s) => createHash("sha256").update(String(s)).digest("hex");
 
@@ -137,10 +141,11 @@ export function teamForm(teamEvents, code, beforeMs) {
   const results = last.slice(0, FORM_GAMES).map((g) => ({
     date: utcDay(g.date),
     opponent: g.opponent,
-    side: g.homeAway === "H" ? "home" : "away",
+    side: g.neutral === true ? "neutral venue" : g.homeAway === "H" ? "home" : "away",
     score: `${g.us}–${g.them}`,
     result: g.result,
     league: g.league ?? null,
+    tries: Number.isInteger(g.tries) ? g.tries : null,
   }));
   let streak = null;
   if (last.length) {
@@ -165,7 +170,9 @@ export function teamForm(teamEvents, code, beforeMs) {
 // Every previous meeting the repo holds, from either side's last-10 and the
 // archive, one row per game (deduped by UTC day), newest first, written from
 // the host's side. `hosted` is the team-events homeAway; host-overrides.mjs
-// corrects the vendor where it lists the wrong home side.
+// corrects the vendor where it lists the wrong home side, and marks a final
+// on neutral ground (`neutral`, with the venue) so it is told as neither
+// side's home game.
 export function previousMeetings({ teamEvents, archive, home, away, names, beforeMs }) {
   const rows = [];
   const add = (code, g) => {
@@ -191,8 +198,9 @@ export function previousMeetings({ teamEvents, archive, home, away, names, befor
     byDay.set(day, {
       date: day,
       league: g.league ?? null,
-      host: names[hostCode],
-      visitor: names[visitorCode],
+      neutral: g.neutral === true,
+      host: g.neutral === true ? null : names[hostCode],
+      visitor: g.neutral === true ? null : names[visitorCode],
       score: `${names[hostCode]} ${hostScore}–${visitorScore} ${names[visitorCode]}`,
       winner: hostScore === visitorScore ? null : names[hostScore > visitorScore ? hostCode : visitorCode],
       ...(g.venue ? { venue: g.venue } : {}),
@@ -227,6 +235,18 @@ export function logFor(nations, comp, home, away) {
     }
   }
   return Object.keys(rows).length ? rows : null;
+}
+
+// The whole Nations Championship table, only for an rnc-* game, so "what's
+// at stake" can say who a win catches. Six pool rounds, then a finals
+// weekend that pairs the table's neighbours (1st v 2nd and so on).
+export const RNC_POOL_ROUNDS = 6;
+export function logTable(nations, comp) {
+  if (!String(comp?.key ?? "").startsWith("rnc-")) return null;
+  const rows = (nations?.log ?? [])
+    .map((row) => ({ rank: row.rank, code: ID_TO_CODE[row.id] ?? null, team: row.team, P: row.P, W: row.W, D: row.D, L: row.L, PD: row.PD, Pts: row.Pts }))
+    .sort((a, b) => a.rank - b.rank);
+  return rows.length ? rows : null;
 }
 
 // Women's, age-grade, sevens and other non-test headlines. The app is men's
@@ -303,7 +323,10 @@ export function buildPack(fixture, { teamEvents, archive, rankings, nations, new
       ...(fixture.series ? { series: fixture.series } : {}),
     },
     rankings: rankingsFor(rankings, home, away),
+    stakes: stakesFor(rankings, home, away, { worldCup: String(fixture.comp?.key ?? "").startsWith("rwc-") }),
+    trajectory: { [home]: rankTrajectory(rankings, home), [away]: rankTrajectory(rankings, away) },
     log: logFor(nations, fixture.comp, home, away),
+    table: logTable(nations, fixture.comp),
     form: {
       [home]: fixture.home.tracked ? teamForm(teamEvents, home, kickoffMs) : null,
       [away]: fixture.away.tracked ? teamForm(teamEvents, away, kickoffMs) : null,
@@ -346,8 +369,12 @@ export function renderPack(pack, bodies = []) {
   if (f.venue) L.push(`- Venue: ${f.venue}.`);
   if (f.comp) L.push(`- Competition: ${f.comp.kind === "test" ? "a one-off test" : f.comp.label}${f.series ? ` (game ${f.series.game} of ${f.series.of})` : ""}.`);
   if (pack.rankings) {
-    const r = (c) => pack.rankings[c] ? `${nm[c]} ${ordinal(pack.rankings[c].rank)} (${pack.rankings[c].points} pts)` : `${nm[c]} unranked in our table`;
-    L.push(`- World Rugby rankings${pack.rankings.asOf ? ` (as of ${pack.rankings.asOf})` : ""}: ${r(H)}, ${r(A)}.`);
+    const r = (c) => {
+      if (!pack.rankings[c]) return `${nm[c]} unranked in our table`;
+      const tr = pack.trajectory?.[c] ? renderTrajectory(pack.trajectory[c]) : null;
+      return `${nm[c]} ${tr ?? `${ordinal(pack.rankings[c].rank)} (${pack.rankings[c].points} pts)`}`;
+    };
+    L.push(`- World Rugby rankings${pack.rankings.asOf ? ` (as of ${pack.rankings.asOf})` : ""}: ${r(H)}; ${r(A)}.`);
   }
   if (pack.log) {
     for (const c of [H, A]) {
@@ -355,20 +382,50 @@ export function renderPack(pack, bodies = []) {
       if (x) L.push(`- Nations Championship log: ${nm[c]} ${ordinal(x.rank)} of 12, P${x.P} W${x.W} D${x.D} L${x.L}, ${x.Pts} pts, PD ${x.PD}.`);
     }
   }
+  if (pack.stakes) {
+    L.push("");
+    L.push(`## Rankings at stake (trusted; computed from the table with World Rugby's formula — use these numbers as they are)`);
+    L.push(`Assumes no other result moves either side first. A side that falls below the lowest nation in this table could also be passed by nations the app does not track, so its new rank reads "at best".`);
+    L.push(...renderStakes(pack.stakes, { ...CODE_TO_NAME, ...nm }));
+  }
+  if (pack.table) {
+    const played = Math.max(0, ...pack.table.map((r) => r.P ?? 0));
+    L.push("");
+    L.push(`## Nations Championship table (trusted; after ${played} of ${RNC_POOL_ROUNDS} pool rounds, then a finals weekend pairing 1st v 2nd, 3rd v 4th and so on)`);
+    for (const r of pack.table) {
+      const mark = r.code === H || r.code === A ? " ←" : "";
+      L.push(`- ${r.rank}. ${r.team}: P${r.P} W${r.W} D${r.D} L${r.L}, PD ${r.PD}, ${r.Pts} pts${mark}`);
+    }
+    for (const c of [H, A]) {
+      const me = pack.table.find((r) => r.code === c);
+      if (!me) continue;
+      const above = pack.table.find((r) => r.rank === me.rank - 1);
+      const below = pack.table.find((r) => r.rank === me.rank + 1);
+      const parts = [];
+      if (above) parts.push(`${above.Pts - me.Pts} point${above.Pts - me.Pts === 1 ? "" : "s"} behind ${above.team} (${ordinal(above.rank)})`);
+      if (below) parts.push(`${me.Pts - below.Pts} point${me.Pts - below.Pts === 1 ? "" : "s"} ahead of ${below.team} (${ordinal(below.rank)})`);
+      if (parts.length) L.push(`- ${nm[c]}: ${parts.join(", ")}. A win is 4 points, a draw 2, plus a bonus point for four tries or a loss by seven or fewer.`);
+    }
+  }
   L.push("");
   L.push(`## Previous meetings held in the app (trusted; NOT a complete head-to-head)`);
   if (pack.meetings.length) {
-    for (const m of pack.meetings) L.push(`- ${m.date}: ${m.score}${m.league ? ` (${m.league})` : ""}${m.venue ? `, ${m.venue}` : ""}; ${m.host} were at home.`);
+    pack.meetings.forEach((m, i) => {
+      const weeks = i === 0 ? Math.round((Date.parse(pack.fixture.kickoff) - Date.parse(m.date)) / (7 * DAY)) : null;
+      const ago = weeks != null && weeks >= 1 && weeks <= 52 ? ` (${weeks} week${weeks === 1 ? "" : "s"} before this game)` : "";
+      const where = m.neutral ? `; neutral venue${m.venue ? ` (${m.venue})` : ""}, neither side at home` : `${m.venue ? `, ${m.venue}` : ""}; ${m.host} were at home`;
+      L.push(`- ${m.date}${ago}: ${m.score}${m.league ? ` (${m.league})` : ""}${where}.`);
+    });
   } else L.push("- none in the app's records");
   L.push("");
-  L.push(`## Form (trusted; counted for you, do not recount)`);
+  L.push(`## Form (trusted and complete for the dates it covers; counted for you, do not recount)`);
   for (const c of [H, A]) {
     const fm = pack.form[c];
     if (!fm) { L.push(`- ${nm[c]}: no form data (not a tracked nation)`); continue; }
     const s = streakText(fm.streak);
     const y = fm.year.played ? `; ${fm.year.year} so far: won ${fm.year.W} of ${fm.year.played}${fm.yearComplete ? "" : " (of the games on record; may be incomplete)"}` : "";
     L.push(`- ${nm[c]}: ${s}${y}. Most recent first:`);
-    for (const g of fm.results) L.push(`  - ${g.date} ${g.result} ${g.score} v ${g.opponent} (${g.side}${g.league ? `, ${g.league}` : ""})`);
+    for (const g of fm.results) L.push(`  - ${g.date} ${g.result} ${g.score} v ${g.opponent} (${g.side}${g.league ? `, ${g.league}` : ""}${g.tries != null ? `, ${g.tries} ${g.tries === 1 ? "try" : "tries"}` : ""})`);
   }
   L.push("");
   L.push(`## After this game (trusted)`);
@@ -399,12 +456,6 @@ export function streakText(streak) {
   return `${streak.complete ? "" : "at least "}${streak.games} straight ${word[1]}`;
 }
 
-function ordinal(n) {
-  const s = ["th", "st", "nd", "rd"];
-  const v = n % 100;
-  return `${n}${s[(v - 20) % 10] || s[v] || s[0]}`;
-}
-
 // ---- prompts -------------------------------------------------------------------
 
 // The shape and tone of the story Nico approved (20 Oct 2026), with its facts
@@ -417,7 +468,7 @@ const SAMPLE = `{"headline": "<Coach>'s <Team> debut: a <City> rematch five week
   "Then came <date of last meeting>, on this same ground: <the decisive moment, from a news item> and <Team A> won <score>.",
   "This is <Coach>'s first test as <Team B> coach, with <selection news from a CURRENT item>.",
   "Form favours <Team A>: three straight wins. <Team B> have won 1 of 5 this year.",
-  "<Spice angle>, ranking at stake: 9th v 10th."
+  "<What the result changes, from the computed lines: win and Team B go 9th; lose and Team A drop out of the top 12>."
  ],
  "sources": [2, 3]}`;
 
@@ -430,14 +481,21 @@ words.
 ${packText}
 
 ## What to write
-A headline (at most ${HEADLINE_MAX} characters) and ${BEATS_MIN} to ${BEATS_MAX} beats, one or two sentences each,
+A headline (at most ${HEADLINE_MAX} characters) that hooks a neutral — the debut,
+the rematch, the streak on the line, the ranking swing — never a label like
+"Japan v Fiji preview". Then ${BEATS_MIN} to ${BEATS_MAX} beats, one or two sentences each,
 ${MAX_WORDS} words at most in all. Cover, in whatever order reads best, as many of
 these as the pack supports:
 - the history between the teams;
 - the last meeting and the recent form;
-- what's at stake (rankings, the competition, a series, what comes next);
+- what's at stake: what the result CHANGES — a ranking place gained or lost,
+  a swap, a drop out of the top 12, a table position, a series, what comes
+  next. Take the numbers from "Rankings at stake" as they are; "they are 9th
+  and 10th" on its own is not a stake;
 - team and coaching news (CURRENT items only);
-- one spice angle: a rematch, a debut, a milestone, a grudge.
+- one spice angle: a rematch, a debut, a milestone, a grudge, a streak.
+Lead with the angle a fan would mention first. Be specific: a score, a date,
+a name beats an adjective.
 
 ## Rules — every one is checked
 - The pack above is your ONLY source. Every fact must trace to it. No outside
@@ -445,6 +503,13 @@ these as the pack supports:
 - The previous meetings above are only the games the app holds. Never state a
   head-to-head total, a "first win since", or an all-time record unless a news
   item in the pack states it, and then say it as the item does.
+- Each side's Form list is complete for the dates it covers. A news item that
+  reports a result for either team on a date the list does not show is about
+  a different team (women's, age-grade, sevens or league): ignore it.
+- A meeting marked "neutral venue" was hosted by neither side; never place it
+  in either country.
+- Rankings arithmetic comes only from "Rankings at stake"; never recompute,
+  round differently, or state a rank the lines do not give.
 - Never present a BACKGROUND item as current. Use it only as dated history.
   Do not call anything "this week", "latest" or "new" unless it is CURRENT.
 - Quotation marks only around words that appear inside quotation marks in the
@@ -491,6 +556,11 @@ Material errors:
 - a head-to-head total, all-time record or "first since" claim that no news
   item in the pack states (the app's list of previous meetings is not
   complete, so it can never support a total);
+- a result, score or opponent for either team that the Form list (complete
+  for the dates it covers) does not show — that news item is about another
+  team — or a meeting marked "neutral venue" placed in either country;
+- a ranking, points total or rank change that differs from "Rankings at
+  stake", or a rank the lines give only "at best" stated as settled;
 - words inside quotation marks that are not character-for-character in the pack;
 - a rumour or expectation asserted as settled fact;
 - STALENESS: a BACKGROUND item (older than ${BACKGROUND_DAYS} days) presented as current
@@ -541,22 +611,32 @@ export function validateStory(raw, news = []) {
 
 // Write, check, at most one revision, check again. Throws when no draft
 // survives; the caller keeps the previous story for the game, if any.
-export async function writeStory(calls, pack, packText) {
+// `trace`, when given, is filled in as it goes (draft, gate, check, revision,
+// gate, check): record only, read by the shadow run (storyline-shadow.mjs),
+// and filled even when the story then fails.
+export async function writeStory(calls, pack, packText, { trace = null } = {}) {
   if (!calls.writer || !calls.checker) throw new Error("no writer/checker model available");
+  const note = (step, data) => trace?.push({ step, ...data });
   let raw = extractJson(await calls.writer(buildWriterPrompt(packText)));
+  note("draft", { raw });
   let v = validateStory(raw, pack.news);
+  note("gate", v.ok ? { ok: true } : { ok: false, errors: v.errors });
   let issues = [];
   if (v.ok) {
     const verdict = parseVerdict(extractJson(await calls.checker(buildCheckerPrompt(packText, v.story))));
+    note("check", verdict);
     if (verdict.verdict === "pass") return { ...v.story, revised: false };
     issues = verdict.issues;
   } else {
     issues = v.errors.map((e) => ({ claim: "format", problem: e }));
   }
   raw = extractJson(await calls.writer(buildWriterPrompt(packText, { revision: issues, previousDraft: raw })));
+  note("revision", { raw });
   v = validateStory(raw, pack.news);
+  note("gate", v.ok ? { ok: true } : { ok: false, errors: v.errors });
   if (!v.ok) throw new Error(`revision failed the shape gate: ${v.errors.join("; ")}`);
   const verdict = parseVerdict(extractJson(await calls.checker(buildCheckerPrompt(packText, v.story))));
+  note("check", verdict);
   if (verdict.verdict !== "pass") {
     throw new Error(`fact-check failed twice: ${verdict.issues.map((i) => i.problem).join(" | ").slice(0, 300)}`);
   }
@@ -593,7 +673,7 @@ const storyOut = (pack, s, hashes, model, now) => ({
 // means no model key: nothing new is written, played games are still dropped.
 export async function buildStorylines({
   fixtures, teamEvents, archive, rankings, nations, pool = [], previous = null,
-  now = Date.now(), widen = async () => [], bodies = async () => [], write = null,
+  now = Date.now(), days = WINDOW_DAYS, widen = async () => [], bodies = async () => [], write = null,
   maxGenerate = MAX_GENERATE, log = console.log,
 }) {
   const prevStories = previous?.stories ?? {};
@@ -602,7 +682,7 @@ export async function buildStorylines({
   const data = { teamEvents, archive, rankings, nations, now };
   let budget = maxGenerate;
 
-  for (const f of upcomingFixtures(fixtures, now)) {
+  for (const f of upcomingFixtures(fixtures, now, days)) {
     const label = `${f.home.code} v ${f.away.code} (${f.id})`;
     const prev = prevStories[f.id] ?? null;
     let pack = buildPack(f, { ...data, newsItems: pool });
@@ -661,7 +741,7 @@ export function storylinesFile(stories, now) {
 }
 
 // Article text for the top CURRENT items, fetched only for a story being written.
-async function fetchBodies(news) {
+export async function fetchBodies(news) {
   const out = [];
   for (const [i, n] of news.entries()) {
     if (out.length >= MAX_BODIES) break;
@@ -680,20 +760,20 @@ async function fetchBodies(news) {
 
 const readJson = (p) => readFile(p, "utf8").then(JSON.parse).catch(() => null);
 
-export async function main({ dryRun = false, only = null } = {}) {
-  const now = Date.now();
+// The committed inputs, with the hand-confirmed hosts laid over team-events
+// and the archive as the team-events writers do, so a meeting reads the right
+// home side (or neutral ground) even before the next team-events run has
+// rewritten the file. Quiet: those writers log it. Shared with the shadow run.
+export async function loadInputs(root = ROOT) {
   const [fixturesFile, teamEvents, archive, rankings, nations, poolFile, previous] = await Promise.all([
-    readJson(join(ROOT, "fixtures.json")),
-    readJson(join(ROOT, "team-events.json")),
-    readJson(join(ROOT, "team-events-archive.json")),
-    readJson(join(ROOT, "rankings.json")),
-    readJson(join(ROOT, "nations.json")),
-    readJson(join(ROOT, "editorial", "news-pool.json")),
-    readJson(OUT_FILE),
+    readJson(join(root, "fixtures.json")),
+    readJson(join(root, "team-events.json")),
+    readJson(join(root, "team-events-archive.json")),
+    readJson(join(root, "rankings.json")),
+    readJson(join(root, "nations.json")),
+    readJson(join(root, "editorial", "news-pool.json")),
+    readJson(join(root, "storylines.json")),
   ]);
-  // The hand-confirmed hosts, laid over the committed files as the team-events
-  // writers do, so a meeting reads the right home side even before the next
-  // team-events run has rewritten the file. Quiet: those writers log it.
   const quiet = () => {};
   if (teamEvents?.teams) teamEvents.teams = applyHostOverrides(teamEvents.teams, { log: quiet });
   if (archive?.games) {
@@ -701,10 +781,30 @@ export async function main({ dryRun = false, only = null } = {}) {
     const fixed = applyHostOverrides(asTeams, { log: quiet });
     archive.games = Object.fromEntries(Object.entries(fixed).map(([c, t]) => [c, Object.fromEntries(t.last.map((g) => [String(g.id), g]))]));
   }
-  const pool = poolFile?.items ?? [];
-  let fixtures = fixturesFile?.fixtures ?? [];
-  if (only) fixtures = fixtures.filter((f) => f.id === only || `${f.home?.code}-${f.away?.code}` === only);
-  console.log(`storylines: ${upcomingFixtures(fixtures, now).length} fixtures in the next ${WINDOW_DAYS} days, news pool ${pool.length} items`);
+  return { fixtures: fixturesFile?.fixtures ?? [], teamEvents, archive, rankings, nations, pool: poolFile?.items ?? [], previous };
+}
+
+// The storyline writer can run on its own model: the repository variable
+// STORYLINE_WRITER_MODEL, when set, replaces DIGEST_WRITER_MODEL for this
+// script only (the checker stays the digests'). Set after the shadow run of
+// 21 Oct 2026 decides what a storyline is worth; unset, the writer role's
+// default applies.
+export const storylineEnv = (env = process.env) =>
+  env.STORYLINE_WRITER_MODEL?.trim() ? { ...env, DIGEST_WRITER_MODEL: env.STORYLINE_WRITER_MODEL.trim() } : env;
+
+// Narrow a fixture list to one game by fixtures.json id or HOME-AWAY codes.
+export const onlyFixture = (fixtures, only) =>
+  only ? fixtures.filter((f) => f.id === only || `${f.home?.code}-${f.away?.code}` === only) : fixtures;
+
+// `force` ignores the cache and rewrites every game in the window (a hand run
+// after a prompt or pack change); `days` widens the window for that run only.
+export async function main({ dryRun = false, only = null, force = false, days = WINDOW_DAYS } = {}) {
+  const now = Date.now();
+  const loaded = await loadInputs();
+  const { teamEvents, archive, rankings, nations, pool } = loaded;
+  const previous = force ? null : loaded.previous;
+  const fixtures = onlyFixture(loaded.fixtures, only);
+  console.log(`storylines: ${upcomingFixtures(fixtures, now, days).length} fixtures in the next ${days} days, news pool ${pool.length} items${force ? " (forced rewrite)" : ""}`);
 
   const geminiKey = process.env.GEMINI_API_KEY;
   const anthropicKey = process.env.ANTHROPIC_API_KEY;
@@ -718,7 +818,7 @@ export async function main({ dryRun = false, only = null } = {}) {
       throw new Error("dry run");
     };
   } else if (geminiKey || anthropicKey) {
-    ({ plan } = modelPlan(process.env, { gemini: !!geminiKey, anthropic: !!anthropicKey }));
+    ({ plan } = modelPlan(storylineEnv(process.env), { gemini: !!geminiKey, anthropic: !!anthropicKey }));
     let client = null;
     if (ROLES.some((r) => plan[r] && plan[r] !== "gemini")) {
       const { default: Anthropic } = await import("@anthropic-ai/sdk");
@@ -739,7 +839,7 @@ export async function main({ dryRun = false, only = null } = {}) {
   }
 
   const { stories, report } = await buildStorylines({
-    fixtures, teamEvents, archive, rankings, nations, pool, previous, now,
+    fixtures, teamEvents, archive, rankings, nations, pool, previous, now, days,
     widen: (f) => fetchTeamNews(`${f.home.name} ${f.away.name}`),
     bodies: fetchBodies,
     write,
@@ -758,12 +858,13 @@ export async function main({ dryRun = false, only = null } = {}) {
 
   if (dryRun) return { stories, report };
   // Only on change. An absent file with nothing to say stays absent.
-  if (sameStories(stories, previous?.stories ?? {}) && (previous || !Object.keys(stories).length)) {
+  const before = loaded.previous?.stories ?? {};
+  if (sameStories(stories, before) && (loaded.previous || !Object.keys(stories).length)) {
     console.log("storylines.json unchanged — not written");
     return { stories, report, written: false };
   }
   // `only` narrows a hand run; never let it drop every other game's story.
-  const merged = only ? { ...(previous?.stories ?? {}), ...stories } : stories;
+  const merged = only ? { ...before, ...stories } : stories;
   await writeFile(OUT_FILE, JSON.stringify(storylinesFile(merged, now), null, 1) + "\n");
   console.log(`storylines.json written — ${Object.keys(merged).length} stories`);
   return { stories: merged, report, written: true };
@@ -774,7 +875,12 @@ if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) 
     const i = process.argv.indexOf(name);
     return i > -1 ? process.argv[i + 1] : null;
   };
-  main({ dryRun: process.argv.includes("--dry-run"), only: arg("--fixture") }).catch((e) => {
+  main({
+    dryRun: process.argv.includes("--dry-run"),
+    only: arg("--fixture"),
+    force: process.argv.includes("--force"),
+    days: Number(arg("--days")) || WINDOW_DAYS,
+  }).catch((e) => {
     // Log-only by design: a storyline problem must never fail the digests.
     console.error(`storylines skipped: ${e.stack ?? e}`);
   });

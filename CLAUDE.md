@@ -257,9 +257,41 @@ AEDT), on the same keys and `DIGEST_WRITER_MODEL` / `DIGEST_CHECKER_MODEL`.
   age-grade and sevens items are dropped; an item over 10 days old is
   BACKGROUND and may only be told as dated history. The checker fails a
   BACKGROUND item told as current, an unsourced head-to-head total (the
-  app's meetings list is not complete), an invented quote, and league (the
-  digest checker's own `LEAGUE_CHECK_RULE`). One revision, then the old
-  story stays.
+  app's meetings list is not complete), a result the form list doesn't show
+  (that item is another team's: the 3 Oct "Ireland beat Japan" was the
+  women's game), an invented quote, and league (the digest checker's own
+  `LEAGUE_CHECK_RULE`). One revision, then the old story stays.
+- **The arithmetic is done for the writer.** `scripts/rankings-stakes.mjs`
+  turns rankings.json into "Rankings at stake": what each result does to
+  both sides' points and places (a win by 15 or fewer, by 16+, a draw), each
+  side's rank history, and for an `rnc-*` game the whole table with the gaps
+  to the neighbours. The exchange formula was fitted to rankings.json's own
+  history (five clean weeks of 2026, residual ≤ 0.006) and **carries no home
+  advantage**, whatever the explainers say; `rankings-stakes.test.mjs` pins
+  those real weeks, so a formula change fails a test before it misleads a
+  reader. A rank is stated only where the table settles it: a side falling
+  below the twelve's lowest nation reads "12th at best", because nations the
+  app doesn't track may sit in between. The writer and checker are told to
+  use the lines as printed and never recompute. Rights: a projection from the
+  published table under a public formula, in prose; the same exposure class
+  as the table itself (app repo `docs/DATA_RIGHTS.md`, 2026-10-01 entry).
+- **Neutral grounds.** `scripts/host-overrides.mjs` rows can mark a game
+  `neutral` with its venue (the 2025 PNC final in Salt Lake City; the vendor
+  listed Japan at home and the first published story said Fiji won "in
+  Japan"). The pack then says "neutral venue, neither side at home".
+- **Choosing the writer.** `scripts/storyline-shadow.mjs` writes every
+  upcoming fixture on several models from the same packs, with production's
+  checker on each draft, and records drafts, verdicts, tokens, cost and time
+  to `editorial/shadow-storylines/<stamp>.{json,md}` (public; never the
+  article text). Run it from Actions → "Storyline shadow (model comparison)"
+  (inputs: models, days, fixture, cap) or, from a cloud session that can't
+  dispatch, by pushing a change to the harness on a `claude/*` branch — the
+  workflow runs once and commits the records to that branch. About US$3–5
+  for seven fixtures on gemini / Haiku 5.5 / Sonnet 5.5 / Opus 5.5 / Fable
+  5.1, capped at US$8 by default. The repository variable
+  `STORYLINE_WRITER_MODEL` sets the production writer for this step alone
+  (unset: the digests' writer). `node scripts/build-storylines.mjs --force
+  [--days N] [--fixture JPN-FIJ]` rewrites by hand after a prompt change.
 - **Cost.** Cached by pack hash: nothing is called while a game's facts are
   unchanged and its story is under 18 hours old; then the search runs and
   the story is rewritten only if the news list moved. A new result, ranking

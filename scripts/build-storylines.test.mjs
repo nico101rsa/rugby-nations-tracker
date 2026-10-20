@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {
   upcomingFixtures, sydneyKickoff, teamForm, previousMeetings, newsFor, buildPack, packHashes,
   renderPack, buildWriterPrompt, buildCheckerPrompt, validateStory, writeStory, decide,
-  buildStorylines, sameStories, storylinesFile, streakText, logFor,
+  buildStorylines, sameStories, storylinesFile, streakText, logFor, logTable, storylineEnv,
   SCHEMA_VERSION, HEADLINE_MAX, NEWS_REFRESH_HOURS,
 } from "./build-storylines.mjs";
 import { LEAGUE_CHECK_RULE } from "./generate-digests.mjs";
@@ -43,7 +43,8 @@ const teamEvents = {
     },
     FIJ: {
       last: [
-        g(4, "2025-09-21T01:35:00.000Z", "Japan", "JPN", "A", 33, 27),
+        // the 2025 final in Salt Lake City, as host-overrides.mjs marks it
+        { ...g(4, "2025-09-21T01:35:00.000Z", "Japan", "JPN", "A", 33, 27), neutral: true, venue: "America First Field, Salt Lake City" },
         g(5, "2026-07-11T13:10:00.000Z", "England", "ENG", "H", 8, 73, "Nations Championship, Group Stage"),
         g(6, "2026-09-12T07:00:00.000Z", "Canada", null, "H", 45, 29),
         g(17085293, "2026-09-19T10:05:00.000Z", "Japan", "JPN", "A", 15, 20),
@@ -107,6 +108,21 @@ test("meetings: one row per game from either side, host's view, newest first, ar
   assert.deepEqual(m.map((x) => x.score), ["Japan 20–15 Fiji", "Japan 27–33 Fiji", "Fiji 41–17 Japan"]);
   assert.equal(m[0].host, "Japan");
   assert.equal(m[1].winner, "Fiji");
+  assert.deepEqual([m[1].neutral, m[1].host, m[1].venue], [true, null, "America First Field, Salt Lake City"], "a neutral final has no host");
+  assert.equal(m[2].neutral, false);
+});
+
+test("logTable: the whole Nations Championship table, ranked, only for an rnc-* game", () => {
+  const nations = { log: [{ rank: 2, id: 28, team: "Fiji", P: 3, W: 2, D: 0, L: 1, PD: 10, Pts: 9 }, { rank: 1, id: 463, team: "Japan", P: 3, W: 3, D: 0, L: 0, PD: 36, Pts: 14 }, { rank: 3, id: 391, team: "Wales", P: 3, W: 1, D: 0, L: 2, PD: -20, Pts: 5 }] };
+  assert.equal(logTable(nations, { key: "test" }), null);
+  const t = logTable(nations, { key: "rnc-2026" });
+  assert.deepEqual(t.map((r) => [r.rank, r.code, r.Pts]), [[1, "JPN", 14], [2, "FIJ", 9], [3, "WAL", 5]]);
+  const pack = buildPack(fixture({ comp: { key: "rnc-2026", label: "Nations Championship", kind: "competition" } }), { teamEvents, rankings, nations, newsItems: [], now: NOW });
+  const text = renderPack(pack);
+  assert.match(text, /## Nations Championship table \(trusted; after 3 of 6 pool rounds/);
+  assert.match(text, /- 1\. Japan: P3 W3 D0 L0, PD 36, 14 pts ←/);
+  assert.match(text, /- Fiji: 5 points behind Japan \(1st\), 4 points ahead of Wales \(3rd\)\. A win is 4 points/);
+  assert.match(text, /- Japan: 5 points ahead of Fiji \(2nd\)\./);
 });
 
 test("news: title-matched, league and women's dropped, old items marked BACKGROUND, both-team items first", () => {
@@ -137,10 +153,26 @@ test("pack: fixture, rankings, form, meetings, next, news; rendered with CURRENT
   assert.equal(pack.meetings.length, 2);
   const text = renderPack(pack);
   assert.match(text, /Japan are the home side/);
-  assert.match(text, /Japan 9th \(77\.28 pts\), Fiji 10th/);
+  assert.match(text, /Japan 9th \(77\.28 pts\); Fiji 10th \(76\.81 pts\)\./);
   assert.match(text, /NOT a complete head-to-head/);
   assert.match(text, /\] CURRENT 2026-10-13 · Outlet · World Cup-winning coach White/);
   assert.match(text, /\] BACKGROUND 2026-07-11/);
+  // the stakes, computed; this two-team table settles no rank, so only the order between the sides is stated
+  assert.match(text, /## Rankings at stake \(trusted; computed/);
+  assert.match(text, /- Fiji win by 15 or fewer: Fiji \+1\.05 to 77\.86 \(above Japan\); Japan −1\.05 to 76\.23 \(below Fiji\)\./);
+  assert.match(text, /- Draw: Japan −0\.05 to 77\.23 \(order unchanged\); Fiji \+0\.05 to 76\.86 \(order unchanged\)\./);
+  assert.equal(pack.stakes.scenarios.length, 5);
+  // a full table gives ranks and names the nations passed
+  const full = { asOf: "19 October 2026", rankings: { RSA: { rank: 1, points: 93.09 }, NZL: { rank: 2, points: 92.27 }, IRE: { rank: 3, points: 88.08 }, FRA: { rank: 4, points: 87.43 }, ENG: { rank: 5, points: 85.68 }, SCO: { rank: 6, points: 84.78 }, AUS: { rank: 7, points: 84.43 }, ARG: { rank: 8, points: 82.24 }, JPN: { rank: 9, points: 77.28 }, FIJ: { rank: 10, points: 76.81 }, WAL: { rank: 11, points: 76.38 }, ITA: { rank: 12, points: 76.3 } } };
+  const fullText = renderPack(buildPack(fixture(), { teamEvents, rankings: full, newsItems: [], now: NOW }));
+  assert.match(fullText, /- Fiji win by 15 or fewer: Fiji \+1\.05 to 77\.86 \(up to 9th, above Japan\); Japan −1\.05 to 76\.23 \(below Fiji, Wales and Italy; 12th at best\)\./);
+  // meetings: weeks before the game on the latest, neutral ground named as such
+  assert.match(text, /- 2026-09-19 \(5 weeks before this game\): Japan 20–15 Fiji .*; Japan were at home\./);
+  assert.match(text, /- 2025-09-21: Japan 27–33 Fiji .*; neutral venue \(America First Field, Salt Lake City\), neither side at home\./);
+  assert.match(text, /2025-09-21 W 33–27 v Japan \(neutral venue, Pacific/);
+  // a rank history renders where rankings.json carries one
+  const withHistory = { ...rankings, history: [{ asOf: "14 September 2026", rankings: { JPN: { rank: 12, points: 76.09 }, FIJ: { rank: 9, points: 78 } } }] };
+  assert.match(renderPack(buildPack(fixture(), { teamEvents, rankings: withHistory, newsItems: [], now: NOW })), /Japan 9th \(77\.28 pts\), 9th since 19 October 2026 \(12th before that\), range since 14 September 2026: 9th–12th; Fiji 10th/);
 });
 
 test("hashes: the facts hash ignores news; the pack hash moves with a new item and not with a reworded snippet", () => {
@@ -164,11 +196,43 @@ test("prompts: pack-only, no head-to-head unless sourced, staleness and the shar
   assert.match(w, /ONLY source/);
   assert.match(w, /Never state a\s+head-to-head total/);
   assert.match(w, /Never present a BACKGROUND item as current/);
+  assert.match(w, /Form list is complete for the dates it covers/, "a result the form list lacks is another team's");
+  assert.match(w, /"neutral venue" was hosted by neither side/);
+  assert.match(w, /Rankings arithmetic comes only from "Rankings at stake"/);
+  assert.match(w, /what the result CHANGES/);
   assert.ok(!/17 wins/.test(w), "the approved sample's real facts are not in the prompt");
+  assert.ok(!/17-5/.test(w), "nor the head-to-head the first sample carried");
   const c = buildCheckerPrompt("PACK", { headline: "h", beats: [] });
   assert.ok(c.includes(LEAGUE_CHECK_RULE), "same league rule text as the digest checker");
   assert.match(c, /STALENESS/);
   assert.match(c, /head-to-head total/);
+  assert.match(c, /Form list \(complete\s+for the dates it covers\) does not show/);
+  assert.match(c, /differs from "Rankings at\s+stake"/);
+});
+
+test("storylineEnv: STORYLINE_WRITER_MODEL replaces the digests' writer for this script only", () => {
+  assert.equal(storylineEnv({ DIGEST_WRITER_MODEL: "claude-haiku-5-5" }).DIGEST_WRITER_MODEL, "claude-haiku-5-5");
+  assert.equal(storylineEnv({ DIGEST_WRITER_MODEL: "claude-haiku-5-5", STORYLINE_WRITER_MODEL: "  " }).DIGEST_WRITER_MODEL, "claude-haiku-5-5", "blank = unset");
+  const env = storylineEnv({ DIGEST_WRITER_MODEL: "claude-haiku-5-5", DIGEST_CHECKER_MODEL: "x", STORYLINE_WRITER_MODEL: "claude-sonnet-5-5" });
+  assert.deepEqual([env.DIGEST_WRITER_MODEL, env.DIGEST_CHECKER_MODEL], ["claude-sonnet-5-5", "x"]);
+});
+
+test("writeStory: the trace records draft, gate, verdicts and the revision, and changes nothing", async () => {
+  const draft = { headline: "h", beats: ["a", "b", "c", "d"], sources: [] };
+  const answers = [JSON.stringify(draft), JSON.stringify({ issues: [{ claim: "a", problem: "wrong", severity: "material" }] }), JSON.stringify({ ...draft, headline: "h2" }), JSON.stringify({ issues: [] })];
+  let i = 0;
+  const call = async () => answers[i++];
+  const trace = [];
+  const s = await writeStory({ writer: call, checker: call }, { news: [] }, "PACK", { trace });
+  assert.deepEqual([s.headline, s.revised], ["h2", true]);
+  assert.deepEqual(trace.map((t) => t.step), ["draft", "gate", "check", "revision", "gate", "check"]);
+  assert.equal(trace[0].raw.headline, "h");
+  assert.equal(trace[2].verdict, "fail");
+  assert.equal(trace[2].issues.length, 1);
+  assert.equal(trace[5].verdict, "pass");
+  i = 0;
+  const plain = await writeStory({ writer: call, checker: call }, { news: [] }, "PACK");
+  assert.equal(plain.headline, "h2", "no trace, same result");
 });
 
 const okStory = {

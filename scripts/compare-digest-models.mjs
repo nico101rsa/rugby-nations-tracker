@@ -27,6 +27,11 @@ export const MODELS = [
   { id: "claude-sonnet-5-5", in: 2, out: 10 },
   { id: "claude-opus-4-8", in: 5, out: 25 },
   { id: "claude-fable-5", in: 10, out: 50 },
+  // 2026-10-21: the current Opus and Fable at list price (Opus 5.5 is cheaper
+  // than 4.8; Fable 5.1 matches Fable 5), for the storyline shadow run
+  // (storyline-shadow.mjs).
+  { id: "claude-opus-5-5", in: 4, out: 20 },
+  { id: "claude-fable-5-1", in: 10, out: 50 },
 ];
 
 // The Sonnet entry: the shadow test's writer unless vars.SHADOW_MODEL says otherwise.

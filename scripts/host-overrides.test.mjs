@@ -59,14 +59,32 @@ test("vendor guard: once the vendor lists the host itself, the row does nothing"
 });
 
 test("other games and other days are untouched", () => {
-  const row = { id: 1, date: "2025-09-21T01:35:00.000Z", opponent: "Japan", opponentCode: "JPN", homeAway: "A", us: 33, them: 27 };
+  const row = { id: 1, date: "2025-09-14T01:35:00.000Z", opponent: "Japan", opponentCode: "JPN", homeAway: "A", us: 33, them: 27 };
   assert.equal(overrideHost(row, "FIJ"), row);
 });
 
-test("table rules: every key is '<UTC day> HOME-AWAY' and its host is one of the two sides", () => {
+// The 2025 PNC final in Salt Lake City, as the vendor serves it: Japan home.
+test("neutral: the row marks both sides' copies neutral with the venue, homeAway untouched, idempotent", () => {
+  const jpn = { id: 2, date: "2025-09-21T01:35:00.000Z", opponent: "Fiji", opponentCode: "FIJ", homeAway: "H", us: 27, them: 33 };
+  const fij = { id: 2, date: "2025-09-21T01:35:00.000Z", opponent: "Japan", opponentCode: "JPN", homeAway: "A", us: 33, them: 27 };
+  const lines = [];
+  const out = applyHostOverrides({ JPN: { last: [jpn], next: [] }, FIJ: { last: [fij], next: [] } }, { log: (l) => lines.push(l) });
+  assert.deepEqual(out.JPN.last[0], { ...jpn, neutral: true, venue: "America First Field, Salt Lake City" });
+  assert.deepEqual(out.FIJ.last[0], { ...fij, neutral: true, venue: "America First Field, Salt Lake City" });
+  assert.equal(out.JPN.last[0].homeAway, "H", "the vendor's side stays; the app's badge has no neutral state");
+  assert.match(lines[0], /host override applied: JPN 2025-09-21 JPN-FIJ → neutral/);
+  const twice = applyHostOverrides(out, { log: quiet });
+  assert.equal(twice.JPN, out.JPN, "already marked → same object");
+});
+
+test("table rules: every key is '<UTC day> HOME-AWAY'; a row names a host from the two sides, or is neutral", () => {
   for (const [key, o] of Object.entries(HOST_OVERRIDES)) {
     const m = key.match(/^(\d{4}-\d{2}-\d{2}) ([A-Z]{3})-([A-Z]{3})$/);
     assert.ok(m, `bad key ${key}`);
+    if (o.neutral) {
+      assert.equal(o.host, undefined, `${key}: a neutral row names no host`);
+      continue;
+    }
     assert.ok([m[2], m[3]].includes(o.host), `${key}: host ${o.host} plays in neither side`);
     assert.notEqual(o.host, m[2], `${key}: host already the vendor's home side — a no-op row`);
   }
