@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-20T20:00:56.473Z",
+  "updatedAt": "2026-10-20T20:56:48.571Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 203,
+  "count": 205,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -4256,7 +4256,7 @@
         }
       ],
       "firstSeen": "2026-10-20",
-      "lastSeen": "2026-10-20",
+      "lastSeen": "2026-10-21",
       "uses": 0
     },
     {
@@ -4605,12 +4605,17 @@
     },
     {
       "id": "kwagga-smith-s-anticipated-1b6w5uy",
-      "subject": "Kwagga Smith's anticipated transfer to the Bulls following his Japan exit",
+      "subject": "Kwagga Smith's prospective transfer to the Bulls following Japan departure",
       "teams": [
         467
       ],
       "resolution": "until the Bulls officially announce his signing and registration",
       "sources": [
+        {
+          "title": "Springboks star's contract 'terminated' at Japanese club amid reports of South African return",
+          "link": "https://www.planetrugby.com/news/springboks-kwagga-smith-leaves-japanese-club-amid-sa-return-rumours",
+          "feedName": "Planet Rugby"
+        },
         {
           "title": "Kwagga clears path for Bulls move",
           "link": "https://www.sarugbymag.co.za/kwagga-clears-path-bulls-move/",
@@ -4632,6 +4637,42 @@
         {
           "title": "Cheetahs face anxious Faf wait",
           "link": "https://www.sarugbymag.co.za/cheetahs-face-anxious-faf-wait/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-21",
+      "lastSeen": "2026-10-21",
+      "uses": 0
+    },
+    {
+      "id": "faf-de-klerk-s-1ivzbn5",
+      "subject": "Faf de Klerk's ankle injury scan results following Cheetahs match",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Cheetahs or South Africa confirm the results of Faf de Klerk's ankle scans",
+      "sources": [
+        {
+          "title": "Cheetahs face anxious Faf wait",
+          "link": "https://www.sarugbymag.co.za/cheetahs-face-anxious-faf-wait/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-21",
+      "lastSeen": "2026-10-21",
+      "uses": 0
+    },
+    {
+      "id": "springbok-women-s-captaincy-p32t1t",
+      "subject": "Springbok Women's captaincy appointment for remaining WXV Tests",
+      "teams": [
+        467
+      ],
+      "resolution": "until South Africa Women officially name their new captain for the final WXV Global Series games",
+      "sources": [
+        {
+          "title": "Bok Women elect new skipper",
+          "link": "https://www.sarugbymag.co.za/bok-women-elect-new-skipper/",
           "feedName": "SA Rugby Magazine"
         }
       ],

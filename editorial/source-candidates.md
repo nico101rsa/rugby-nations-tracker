@@ -23,6 +23,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 - **Sky Sports Rugby Union** (skysports.com) — proposed 2026-10-19 for Italy, Scotland, Wales: Italy, Scotland and Wales had nothing above the salience bar, and Sky's rugby section carries squad and injury news for the Six Nations sides.
   - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
+- **The Fiji Times** (fijitimes.com.fj) — proposed 2026-10-21 for Fiji: Fiji's shortlist was all background items, and a national daily's rugby desk would add fresh men's coverage of the Jake White era beyond FBC News.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
