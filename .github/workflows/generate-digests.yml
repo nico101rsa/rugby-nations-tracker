@@ -74,6 +74,27 @@ jobs:
           if [ -n "$ANTHROPIC_API_KEY" ]; then npm install --no-save @anthropic-ai/sdk; fi
           node scripts/generate-digests.mjs
 
+      # Fixture storylines (scripts/build-storylines.mjs -> storylines.json at
+      # the site root): a headline and 4-6 beats for every unplayed game with a
+      # tracked side in the next 14 days, written by the writer role and
+      # fact-checked by the checker role from a pack of repo data plus the news
+      # pool and one search per fixture. Cached by pack hash, so an unchanged
+      # game costs nothing; a few cents a day at most. Log-only: a failure here
+      # never costs the digests (continue-on-error, and the script itself
+      # exits 0).
+      - name: Fixture storylines (writer + fact-check; log-only)
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DIGEST_WRITER_MODEL: ${{ vars.DIGEST_WRITER_MODEL }}
+          DIGEST_CHECKER_MODEL: ${{ vars.DIGEST_CHECKER_MODEL }}
+        run: |
+          if [ -n "$ANTHROPIC_API_KEY" ] && ! node -e "require.resolve('@anthropic-ai/sdk')" 2>/dev/null; then
+            npm install --no-save @anthropic-ai/sdk
+          fi
+          node scripts/build-storylines.mjs
+
       # News-source candidates the review proposed (editorial/source-candidates
       # .{json,md}): find each outlet's feed and count its stories about the
       # tracked teams. No model calls, a dozen fetches at most, never fails the
@@ -105,7 +126,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add nations.json public/nations.json editorial/
+          git add nations.json public/nations.json editorial/ storylines.json
           git diff --cached --quiet && echo "No digest changes" && exit 0
           git commit -m "Daily digests $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
           if git push; then exit 0; fi
@@ -114,6 +135,8 @@ jobs:
           # origin: keep their fresh scores, re-apply our digests block and
           # editorial output (only digest runs write editorial/).
           cp public/nations.json /tmp/digests-ours.json
+          # The root storylines.json is authored here and nowhere else.
+          cp storylines.json /tmp/storylines-ours.json 2>/dev/null || true
           # Snapshot only what THIS workflow authors. The news pool is written
           # hourly by harvest-news.yml, so restoring the whole editorial/ dir
           # wholesale would silently revert any harvest that landed during the
@@ -149,6 +172,7 @@ jobs:
           # Copy our own output back over origin's tree, leaving origin's
           # news-pool.json (and anything else we do not author) intact.
           cp -R /tmp/editorial-ours/. editorial/
-          git add nations.json public/nations.json editorial/
+          cp /tmp/storylines-ours.json storylines.json 2>/dev/null || true
+          git add nations.json public/nations.json editorial/ storylines.json
           git commit -m "Daily digests $(TZ=Australia/Sydney date '+%F %H:%M %Z') (reapplied over live refresh)"
           git push || (git pull --rebase --autostash && git push)

@@ -772,7 +772,7 @@ export function htmlToText(html) {
 
 const UA = { "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)" };
 
-async function fetchWithTimeout(url, ms = 8000) {
+export async function fetchWithTimeout(url, ms = 8000) {
   const ctl = new AbortController();
   const t = setTimeout(() => ctl.abort(), ms);
   try {
@@ -1006,7 +1006,9 @@ export async function fetchEspnTeamsheet(teamName, fixtureDateISO) {
 // hunted numbered lineups for a feature that is switched off
 // (PUBLISH_TEAMSHEETS). That is why the 2026-07-20 Bok edition led with the log
 // table while the press led with Erasmus on Feinberg-Mngomezulu's fitness.
-async function fetchTeamNews(teamName) {
+// Exported for build-storylines.mjs, which widens each fixture's pack with the
+// same search (its argument is then a query, as in resolveLadder's re-check).
+export async function fetchTeamNews(teamName) {
   const queries = [`${teamName} rugby news`];
   const seen = new Set();
   const items = [];
@@ -1145,7 +1147,7 @@ ${bodies.join("\n\n")}`;
 // one bounded revision loop. Worst case 4 calls/team = 48/day, well inside the
 // free quota; a ~7s pause between calls respects the free-tier RPM cap.
 
-const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.5-flash";
+export const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.5-flash";
 const GEMINI_URL = (model) =>
   `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`;
 const GEMINI_PAUSE_MS = 7000;
@@ -1207,7 +1209,7 @@ export function resetGeminiUsage() {
   geminiTally.clear();
 }
 
-async function geminiCall(apiKey, prompt) {
+export async function geminiCall(apiKey, prompt) {
   const waits = [15000, 45000];
   let lastErr;
   for (let mi = geminiStickyIdx; mi < GEMINI_FALLBACKS.length; mi++) {
@@ -1237,6 +1239,16 @@ async function geminiCall(apiKey, prompt) {
   }
   throw lastErr;
 }
+
+// The checker's rugby-league bullet, shared with the fixture storylines'
+// checker (build-storylines.mjs) so the two can never drift apart.
+export const LEAGUE_CHECK_RULE = `- a rugby league story (Rugby League World Cup, NRL, Kangaroos, Kumuls,
+  Kiwi Ferns, Jillaroos), labelled as league or not. The app is rugby union
+  only, so this fails even when the pack reports the story accurately and
+  the draft says it is league. There is no union World Cup, men's or
+  women's, in 2026 (the women's tournament was in August and September 2025;
+  the men's opens Fri 1 Oct 2027), so a story about a World Cup played in
+  2026 (a match, squad, debut or place in it) is rugby league;`;
 
 // The checker gets the same trusted data and source pack the writer had, in a
 // fresh context — its job is to catch claims the pack doesn't actually support.
@@ -1275,13 +1287,7 @@ misinformed for you to flag it. Material errors:
   internationals by default, so "England drew with Canada" for a Red Roses
   match misinforms the reader (check the pack: if the sources say Red
   Roses, women, WXV, Black Ferns, Wallaroos or U20, the draft must too);
-- a rugby league story (Rugby League World Cup, NRL, Kangaroos, Kumuls,
-  Kiwi Ferns, Jillaroos), labelled as league or not. The app is rugby union
-  only, so this fails even when the pack reports the story accurately and
-  the draft says it is league. There is no union World Cup, men's or
-  women's, in 2026 (the women's tournament was in August and September 2025;
-  the men's opens Fri 1 Oct 2027), so a story about a World Cup played in
-  2026 (a match, squad, debut or place in it) is rugby league;
+${LEAGUE_CHECK_RULE}
 - a \`teamsheet\` entry (name or jersey number) that does not match an explicit
   numbered lineup printed in the pack, or a teamsheet included when the pack
   prints no numbered lineup at all (each wrong name/number is one issue).
