@@ -85,3 +85,13 @@ Opus 5.5 stays the writer: US$0.086 a story in this run with four length
 revisions, about US$0.06 without them. Sonnet 5.5 at US$0.051 (US$0.03
 without its six) was accurate and stakes-led, and the frugal choice if the
 bill ever matters.
+
+## 21 Oct 2026 — `2026-10-21-0751`, production as it now runs
+
+Opus 5.5 alone on the same seven fixtures with the 170-stated, 200-enforced
+gap: first drafts of 163–185 words, 6 of 7 passed first time, 7 of 7
+published, US$0.455 — US$0.065 a story, 23 seconds each. The one revision
+was a real catch: the checker failed a headline calling Fiji "winless" in
+2026 (they beat Canada 45–29 on 12 September), and the rewrite passed. That
+is the writer, the prompt and the checker `generate-digests.yml` runs from
+this day.
