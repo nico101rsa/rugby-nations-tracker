@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import {
   upcomingFixtures, sydneyKickoff, teamForm, previousMeetings, newsFor, buildPack, packHashes,
   renderPack, buildWriterPrompt, buildCheckerPrompt, validateStory, writeStory, decide,
-  buildStorylines, sameStories, storylinesFile, streakText, logFor, logTable, storylineEnv,
-  SCHEMA_VERSION, HEADLINE_MAX, NEWS_REFRESH_HOURS,
+  buildStorylines, sameStories, storylinesFile, streakText, logFor, logTable, storylineEnv, stripCitations,
+  SCHEMA_VERSION, HEADLINE_MAX, NEWS_REFRESH_HOURS, STORYLINE_DEFAULT_WRITER,
 } from "./build-storylines.mjs";
 import { LEAGUE_CHECK_RULE } from "./generate-digests.mjs";
 
@@ -34,7 +34,8 @@ const teamEvents = {
         g(1, "2026-08-15T05:15:00.000Z", "Australia", "AUS", "A", 17, 56, "International Friendlies"),
         g(2, "2026-09-05T05:50:00.000Z", "Canada", null, "H", 57, 12, "International Friendlies"),
         g(3, "2026-09-12T10:05:00.000Z", "USA", null, "H", 63, 14),
-        g(17085293, "2026-09-19T10:05:00.000Z", "Fiji", "FIJ", "H", 20, 15),
+        // the 2026 final, same ground as the fixture under test
+        { ...g(17085293, "2026-09-19T10:05:00.000Z", "Fiji", "FIJ", "H", 20, 15), venue: "Prince Chichibu Memorial Stadium, Tokyo", stage: "final" },
       ],
       next: [
         { id: "espn-604593", date: "2026-10-24T05:50Z", opponent: "Fiji", opponentCode: "FIJ", homeAway: "H", us: null, them: null },
@@ -44,7 +45,7 @@ const teamEvents = {
     FIJ: {
       last: [
         // the 2025 final in Salt Lake City, as host-overrides.mjs marks it
-        { ...g(4, "2025-09-21T01:35:00.000Z", "Japan", "JPN", "A", 33, 27), neutral: true, venue: "America First Field, Salt Lake City" },
+        { ...g(4, "2025-09-21T01:35:00.000Z", "Japan", "JPN", "A", 33, 27), neutral: true, venue: "America First Field, Salt Lake City", stage: "final" },
         g(5, "2026-07-11T13:10:00.000Z", "England", "ENG", "H", 8, 73, "Nations Championship, Group Stage"),
         g(6, "2026-09-12T07:00:00.000Z", "Canada", null, "H", 45, 29),
         g(17085293, "2026-09-19T10:05:00.000Z", "Japan", "JPN", "A", 15, 20),
@@ -166,9 +167,9 @@ test("pack: fixture, rankings, form, meetings, next, news; rendered with CURRENT
   const full = { asOf: "19 October 2026", rankings: { RSA: { rank: 1, points: 93.09 }, NZL: { rank: 2, points: 92.27 }, IRE: { rank: 3, points: 88.08 }, FRA: { rank: 4, points: 87.43 }, ENG: { rank: 5, points: 85.68 }, SCO: { rank: 6, points: 84.78 }, AUS: { rank: 7, points: 84.43 }, ARG: { rank: 8, points: 82.24 }, JPN: { rank: 9, points: 77.28 }, FIJ: { rank: 10, points: 76.81 }, WAL: { rank: 11, points: 76.38 }, ITA: { rank: 12, points: 76.3 } } };
   const fullText = renderPack(buildPack(fixture(), { teamEvents, rankings: full, newsItems: [], now: NOW }));
   assert.match(fullText, /- Fiji win by 15 or fewer: Fiji \+1\.05 to 77\.86 \(up to 9th, above Japan\); Japan −1\.05 to 76\.23 \(below Fiji, Wales and Italy; 12th at best\)\./);
-  // meetings: weeks before the game on the latest, neutral ground named as such
-  assert.match(text, /- 2026-09-19 \(5 weeks before this game\): Japan 20–15 Fiji .*; Japan were at home\./);
-  assert.match(text, /- 2025-09-21: Japan 27–33 Fiji .*; neutral venue \(America First Field, Salt Lake City\), neither side at home\./);
+  // meetings: weeks before the game on the latest, the stage, the same ground; neutral ground named as such
+  assert.match(text, /- 2026-09-19 \(5 weeks before this game\): Japan 20–15 Fiji \(Pacific Nations Cup, Knockout Stage, the final\), Prince Chichibu Memorial Stadium, Tokyo; Japan were at home — the same ground as this game\./);
+  assert.match(text, /- 2025-09-21: Japan 27–33 Fiji \(Pacific Nations Cup, Knockout Stage, the final\); neutral venue \(America First Field, Salt Lake City\), neither side at home\./);
   assert.match(text, /2025-09-21 W 33–27 v Japan \(neutral venue, Pacific/);
   // a rank history renders where rankings.json carries one
   const withHistory = { ...rankings, history: [{ asOf: "14 September 2026", rankings: { JPN: { rank: 12, points: 76.09 }, FIJ: { rank: 9, points: 78 } } }] };
@@ -210,11 +211,26 @@ test("prompts: pack-only, no head-to-head unless sourced, staleness and the shar
   assert.match(c, /differs from "Rankings at\s+stake"/);
 });
 
-test("storylineEnv: STORYLINE_WRITER_MODEL replaces the digests' writer for this script only", () => {
-  assert.equal(storylineEnv({ DIGEST_WRITER_MODEL: "claude-haiku-5-5" }).DIGEST_WRITER_MODEL, "claude-haiku-5-5");
-  assert.equal(storylineEnv({ DIGEST_WRITER_MODEL: "claude-haiku-5-5", STORYLINE_WRITER_MODEL: "  " }).DIGEST_WRITER_MODEL, "claude-haiku-5-5", "blank = unset");
+test("storylineEnv: the storyline writer is Opus 5.5 unless STORYLINE_WRITER_MODEL says otherwise; the checker is the digests'", () => {
+  assert.equal(STORYLINE_DEFAULT_WRITER, "claude-opus-5-5");
+  assert.equal(storylineEnv({ DIGEST_WRITER_MODEL: "claude-haiku-5-5" }).DIGEST_WRITER_MODEL, "claude-opus-5-5", "the digests' writer does not carry over");
+  assert.equal(storylineEnv({ DIGEST_WRITER_MODEL: "claude-haiku-5-5", STORYLINE_WRITER_MODEL: "  " }).DIGEST_WRITER_MODEL, "claude-opus-5-5", "blank = unset");
   const env = storylineEnv({ DIGEST_WRITER_MODEL: "claude-haiku-5-5", DIGEST_CHECKER_MODEL: "x", STORYLINE_WRITER_MODEL: "claude-sonnet-5-5" });
   assert.deepEqual([env.DIGEST_WRITER_MODEL, env.DIGEST_CHECKER_MODEL], ["claude-sonnet-5-5", "x"]);
+  assert.equal(storylineEnv({ STORYLINE_WRITER_MODEL: "gemini" }).DIGEST_WRITER_MODEL, "gemini");
+});
+
+test("validateStory: citation marks are stripped, copy about the app or its records fails the gate", () => {
+  const story = { headline: "Scotland host the All Blacks [2]", beats: ["Josh Kerr delivers the match ball [2].", "Barrett is in form [8][12].", "Five of eight in 2026 [1, 3].", "Any win lifts them to 5th."], sources: [2] };
+  const v = validateStory(story, [item("a", ""), item("b", "")]);
+  assert.equal(v.ok, true, v.errors);
+  assert.equal(v.story.headline, "Scotland host the All Blacks");
+  assert.deepEqual(v.story.beats, ["Josh Kerr delivers the match ball.", "Barrett is in form.", "Five of eight in 2026.", "Any win lifts them to 5th."]);
+  assert.equal(stripCitations("a win [12] here"), "a win here");
+  const meta = validateStory({ ...story, beats: ["The only meeting the app holds was in 2025.", "b", "c", "d"] }, []);
+  assert.equal(meta.ok, false);
+  assert.match(meta.errors[0], /mentions the app or its records \("the app"\)/);
+  assert.equal(validateStory({ ...story, beats: ["Their last meeting, on 15 November 2025, went 24–23.", "b", "c", "d"] }, []).ok, true);
 });
 
 test("writeStory: the trace records draft, gate, verdicts and the revision, and changes nothing", async () => {

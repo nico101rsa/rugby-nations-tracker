@@ -215,7 +215,9 @@ installed copy with no build.
 `editorial/shadow/`): **Haiku 5.5** writes and fact-checks every edition and the
 roundup, **Sonnet 5.5** does the post-run review, and Gemini's free ladder is
 the fallback for every paid call plus the home of the two housekeeping calls
-(storyline extraction, checker tuning). About US$0.16 a run (12 Oct: Haiku
+(storyline extraction, checker tuning). The fixture storylines are the one
+exception: **Opus 5.5** writes them (the storyline shadow run of 2026-10-21,
+"Storylines" below), with the same Haiku checker. About US$0.16 a run (12 Oct: Haiku
 US$0.05 over 28 calls, the one Sonnet review US$0.11), so about US$7–8 a month
 with the Saturday extra runs, against the US$12–24 budgeted; the run report's `model.anthropic` block and
 the Actions log carry the real spend per model (the block is rewritten after
@@ -248,7 +250,10 @@ with `editorial/storylines.json`, the digests' quiet-day backlog.
 `scripts/build-storylines.mjs` builds it as a step of `generate-digests.yml`,
 after the editions (cron 07:00 Sydney time in AEDT, 06:00 in AEST, plus the
 Saturday extras at 19:00 and 23:00 Sat and 04:00 and 09:00 Sun Sydney time in
-AEDT), on the same keys and `DIGEST_WRITER_MODEL` / `DIGEST_CHECKER_MODEL`.
+AEDT), on the same keys. The writer is **Opus 5.5** (since the shadow run of
+21 Oct 2026, below; the repository variable `STORYLINE_WRITER_MODEL`
+overrides it for this step alone); the checker is the digests'
+(`DIGEST_CHECKER_MODEL`, Haiku 5.5).
 
 - **Pack only.** The writer sees a fact pack from repo data (fixtures.json,
   team-events.json + archive, rankings.json, nations.json's log for `rnc-*`)
@@ -275,29 +280,45 @@ AEDT), on the same keys and `DIGEST_WRITER_MODEL` / `DIGEST_CHECKER_MODEL`.
   use the lines as printed and never recompute. Rights: a projection from the
   published table under a public formula, in prose; the same exposure class
   as the table itself (app repo `docs/DATA_RIGHTS.md`, 2026-10-01 entry).
-- **Neutral grounds.** `scripts/host-overrides.mjs` rows can mark a game
-  `neutral` with its venue (the 2025 PNC final in Salt Lake City; the vendor
+- **Neutral grounds, venues and finals.** `scripts/host-overrides.mjs` rows
+  can mark a game `neutral` (the 2025 PNC final in Salt Lake City; the vendor
   listed Japan at home and the first published story said Fiji won "in
-  Japan"). The pack then says "neutral venue, neither side at home".
-- **Choosing the writer.** `scripts/storyline-shadow.mjs` writes every
-  upcoming fixture on several models from the same packs, with production's
-  checker on each draft, and records drafts, verdicts, tokens, cost and time
-  to `editorial/shadow-storylines/<stamp>.{json,md}` (public; never the
-  article text). Run it from Actions → "Storyline shadow (model comparison)"
-  (inputs: models, days, fixture, cap) or, from a cloud session that can't
-  dispatch, by pushing a change to the harness on a `claude/*` branch — the
-  workflow runs once and commits the records to that branch. About US$3–5
-  for seven fixtures on gemini / Haiku 5.5 / Sonnet 5.5 / Opus 5.5 / Fable
-  5.1, capped at US$8 by default. The repository variable
-  `STORYLINE_WRITER_MODEL` sets the production writer for this step alone
-  (unset: the digests' writer). `node scripts/build-storylines.mjs --force
-  [--days N] [--fixture JPN-FIJ]` rewrites by hand after a prompt change.
+  Japan") and carry a `venue` and a `stage` ("final": the vendor's league
+  name says only "Knockout Stage"). The pack then says "neutral venue,
+  neither side at home", names the ground, and flags "the same ground as
+  this game" when the venues match.
+- **The shadow run (21 Oct 2026) and the writer.** `scripts/storyline-
+  shadow.mjs` wrote the seven upcoming fixtures on Gemini (free), Haiku 5.5,
+  Sonnet 5.5, Opus 5.5 and Fable 5.1 from the same packs, with the Haiku
+  checker on every draft: 35 stories, US$2.78, records and the method in
+  `editorial/shadow-storylines/`. Opus 5.5 was the only writer with no
+  material error on any first draft (7 of 7 published) and read best; Sonnet
+  5.5 was accurate and plainer at half the price; Haiku read like the
+  spreadsheet it came from and failed twice; Gemini invented a venue and an
+  injury and failed twice; Fable 5.1 wrote the best single lines at four
+  times Opus's price, failed twice and leaked "[2]" citation marks. The run
+  also exposed four harness faults, fixed the same day: a 190-word cap every
+  paid model overshot (17 of 35 first drafts revised on length alone; now
+  150 asked, 200 allowed), a checker that called a winner-first scoreline
+  ("a 40–21 defeat") reversed, a checker shown source URLs it could not see
+  in the pack (it called them invented; it now sees the copy only), and copy
+  about "the only meeting the app holds" (now a gate failure). Rerun it from
+  Actions → "Storyline shadow (model comparison)" (inputs: models, days,
+  fixture, cap) or, from a cloud session that can't dispatch, by pushing a
+  change to the harness on a `claude/*` branch with the inputs as commit
+  trailers (`Shadow-Models:`, `Shadow-Days:`, `Shadow-Cap:`,
+  `Shadow-Fixture:`); the workflow runs once and commits the records to that
+  branch. Capped at US$8 by default. `node scripts/build-storylines.mjs
+  --force [--days N] [--fixture JPN-FIJ]` rewrites by hand after a prompt
+  change.
 - **Cost.** Cached by pack hash: nothing is called while a game's facts are
   unchanged and its story is under 18 hours old; then the search runs and
   the story is rewritten only if the news list moved. A new result, ranking
-  or kickoff rewrites at once; at most 12 stories a run. About US$0.003–0.006
-  a story on Haiku 5.5, so roughly US$0.01–0.03 a day, ceiling ~US$0.07 a
-  run; the Actions log prints `storylines spend`.
+  or kickoff rewrites at once; at most 12 stories a run. On Opus 5.5 about
+  US$0.06 a story including the Haiku check (US$0.10 with a revision), so
+  roughly US$0.10–0.50 a day in a test window, nothing between windows,
+  ceiling ~US$1 a run; a November-sized month is about US$10–15. The Actions
+  log prints `storylines spend`. Sonnet 5.5 halves it, Haiku 5.5 is a tenth.
 - **Silent tier.** The step is continue-on-error and the script exits 0
   (`storylines skipped: …` in the log). The file is written only when a story
   changes or a game leaves the window; never hand-edit it, fix the input.

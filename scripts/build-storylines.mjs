@@ -21,8 +21,9 @@
 //      league is dropped (dropLeague), so are women's / age-grade / sevens
 //      headlines, and anything published more than BACKGROUND_DAYS ago is
 //      marked BACKGROUND: history, never news.
-//   2. The WRITER role (model-router.mjs: Haiku 5.5, Gemini fallback) writes
-//      the story from the pack only and names the news items it used.
+//   2. The WRITER (Opus 5.5 by default since the shadow run of 21 Oct 2026,
+//      STORYLINE_WRITER_MODEL to override; Gemini fallback) writes the story
+//      from the pack only and names the news items it used.
 //   3. The CHECKER role fact-checks the draft against the same pack, with the
 //      digests' rules (only material errors fail; the league rule is the same
 //      text, LEAGUE_CHECK_RULE) plus two of its own: a BACKGROUND item told
@@ -68,7 +69,12 @@ export const NEWS_REFRESH_HOURS = 18;
 export const HEADLINE_MAX = 60;
 export const BEATS_MIN = 4;
 export const BEATS_MAX = 6;
-export const MAX_WORDS = 190; // the approved sample is ~140
+// The approved sample is ~140 words. The shadow run of 21 Oct 2026 showed
+// every paid model landing at 191–236 on the richer pack, so 17 of 35 first
+// drafts failed on length alone and paid for a revision; the prompt now asks
+// for about 150 and the gate allows 200.
+export const MAX_WORDS = 200;
+export const TARGET_WORDS = 150;
 const BEAT_MAX_CHARS = 320;
 const MAX_NEWS = 12;
 const MAX_BACKGROUND = 4;
@@ -198,6 +204,7 @@ export function previousMeetings({ teamEvents, archive, home, away, names, befor
     byDay.set(day, {
       date: day,
       league: g.league ?? null,
+      ...(g.stage ? { stage: g.stage } : {}),
       neutral: g.neutral === true,
       host: g.neutral === true ? null : names[hostCode],
       visitor: g.neutral === true ? null : names[visitorCode],
@@ -414,7 +421,9 @@ export function renderPack(pack, bodies = []) {
       const weeks = i === 0 ? Math.round((Date.parse(pack.fixture.kickoff) - Date.parse(m.date)) / (7 * DAY)) : null;
       const ago = weeks != null && weeks >= 1 && weeks <= 52 ? ` (${weeks} week${weeks === 1 ? "" : "s"} before this game)` : "";
       const where = m.neutral ? `; neutral venue${m.venue ? ` (${m.venue})` : ""}, neither side at home` : `${m.venue ? `, ${m.venue}` : ""}; ${m.host} were at home`;
-      L.push(`- ${m.date}${ago}: ${m.score}${m.league ? ` (${m.league})` : ""}${where}.`);
+      const same = !m.neutral && m.venue && f.venue && m.venue === f.venue ? " — the same ground as this game" : "";
+      const comp = m.league ? ` (${m.league}${m.stage ? `, the ${m.stage}` : ""})` : m.stage ? ` (the ${m.stage})` : "";
+      L.push(`- ${m.date}${ago}: ${m.score}${comp}${where}${same}.`);
     });
   } else L.push("- none in the app's records");
   L.push("");
@@ -475,7 +484,7 @@ const SAMPLE = `{"headline": "<Coach>'s <Team> debut: a <City> rematch five week
 export function buildWriterPrompt(packText, { revision = null, previousDraft = null } = {}) {
   return `You write the pre-match STORYLINE for one fixture in Rugby Nations Tracker,
 an iOS app for men's international rugby union. The reader is a knowledgeable
-fan scrolling the Fixtures list. Give them the story of this game in about 140
+fan scrolling the Fixtures list. Give them the story of this game in about ${TARGET_WORDS}
 words.
 
 ${packText}
@@ -510,6 +519,9 @@ a name beats an adjective.
   in either country.
 - Rankings arithmetic comes only from "Rankings at stake"; never recompute,
   round differently, or state a rank the lines do not give.
+- Never mention the app, the pack, its records or what they hold: write
+  "their last meeting, on 15 November 2025", not "the only meeting the app
+  holds". The reader sees only your words.
 - Never present a BACKGROUND item as current. Use it only as dated history.
   Do not call anything "this week", "latest" or "new" unless it is CURRENT.
 - Quotation marks only around words that appear inside quotation marks in the
@@ -571,10 +583,14 @@ ${LEAGUE_CHECK_RULE}
 
 Do NOT flag: accurate paraphrase or compression, opinion and colour,
 incompleteness, or anything you would call "technically true but could be
-closer to the source". Trusted app data needs no corroboration from a news
-item. If ANY pack item supports a claim, it passes. The pack is the
-authority: you check draft-against-pack, not pack-against-reality (except the
-league rule, which fails however faithfully the draft reflects the pack).
+closer to the source". A scoreline written winner-first with the result
+word present ("a 40–21 defeat to New Zealand", "lost 42–38 to Australia") is
+the same result as 21–40 or 38–42, not a reversed score. Trusted app data
+needs no corroboration from a news item. If ANY pack item supports a claim,
+it passes. The pack is the authority: you check draft-against-pack, not
+pack-against-reality (except the league rule, which fails however faithfully
+the draft reflects the pack). The draft's cited sources are checked by code
+and are not shown to you.
 
 ## Output — strict JSON, nothing else
 {"issues": [{"claim": "<the claim>", "problem": "<what is wrong>", "fix": "<corrected wording, or 'cut'>", "severity": "material" | "minor"}]}
@@ -583,14 +599,23 @@ When unsure, the severity is "minor". Empty issues array if the draft is clean.`
 
 // ---- validation ----------------------------------------------------------------
 
+// Citation marks a writer leaves in the copy ("match ball [2]", "[8][12]").
+// The sources field carries the citations; a reader should never see these.
+export const stripCitations = (s) => s.replace(/\s*\[\d{1,2}(?:\s*,\s*\d{1,2})*\](?:\s*\[\d{1,2}\])*/g, "").replace(/\s{2,}/g, " ").trim();
+
+// Copy about the pack itself. Every model in the shadow run of 21 Oct 2026
+// wrote at least one "the only meeting the app holds"; the reader sees only
+// the story, so the qualifier is noise.
+const META_COPY = /\b(?:the|this|our) (?:app|pack)\b|\bapp(?:'s)? (?:holds|lists|records)\b|\bon record\b|\bthe records\b/i;
+
 // Shape and copy gate. Returns a clean { headline, beats, sources } with the
 // cited item numbers turned into {title, url} from the pack, so a source can
 // never be a URL the model made up.
 export function validateStory(raw, news = []) {
   const errors = [];
   if (!raw || typeof raw !== "object") return { ok: false, errors: ["not an object"] };
-  const headline = typeof raw.headline === "string" ? raw.headline.trim() : "";
-  const beats = Array.isArray(raw.beats) ? raw.beats.filter((b) => typeof b === "string").map((b) => b.trim()).filter(Boolean) : [];
+  const headline = typeof raw.headline === "string" ? stripCitations(raw.headline) : "";
+  const beats = Array.isArray(raw.beats) ? raw.beats.filter((b) => typeof b === "string").map(stripCitations).filter(Boolean) : [];
   if (!headline) errors.push("no headline");
   if (headline.length > HEADLINE_MAX) errors.push(`headline ${headline.length} chars > ${HEADLINE_MAX}`);
   if (beats.length < BEATS_MIN || beats.length > BEATS_MAX) errors.push(`${beats.length} beats, want ${BEATS_MIN}-${BEATS_MAX}`);
@@ -601,6 +626,8 @@ export function validateStory(raw, news = []) {
     const bad = bannedCopyIn(t);
     if (bad) { errors.push(`banned copy: ${bad}`); break; }
   }
+  const meta = [headline, ...beats].find((t) => META_COPY.test(t));
+  if (meta) errors.push(`mentions the app or its records ("${meta.match(META_COPY)[0]}"): say "their last meeting" instead`);
   const idx = [...new Set((Array.isArray(raw.sources) ? raw.sources : []).map(Number))]
     .filter((n) => Number.isInteger(n) && n >= 1 && n <= news.length);
   const sources = idx.map((n) => ({ title: news[n - 1].title, url: news[n - 1].url }));
@@ -621,9 +648,12 @@ export async function writeStory(calls, pack, packText, { trace = null } = {}) {
   note("draft", { raw });
   let v = validateStory(raw, pack.news);
   note("gate", v.ok ? { ok: true } : { ok: false, errors: v.errors });
+  // The checker reads the copy only: the sources are already code-checked,
+  // and a URL it cannot see in the pack text reads to it as invented.
+  const copyOf = (story) => ({ headline: story.headline, beats: story.beats });
   let issues = [];
   if (v.ok) {
-    const verdict = parseVerdict(extractJson(await calls.checker(buildCheckerPrompt(packText, v.story))));
+    const verdict = parseVerdict(extractJson(await calls.checker(buildCheckerPrompt(packText, copyOf(v.story)))));
     note("check", verdict);
     if (verdict.verdict === "pass") return { ...v.story, revised: false };
     issues = verdict.issues;
@@ -635,7 +665,7 @@ export async function writeStory(calls, pack, packText, { trace = null } = {}) {
   v = validateStory(raw, pack.news);
   note("gate", v.ok ? { ok: true } : { ok: false, errors: v.errors });
   if (!v.ok) throw new Error(`revision failed the shape gate: ${v.errors.join("; ")}`);
-  const verdict = parseVerdict(extractJson(await calls.checker(buildCheckerPrompt(packText, v.story))));
+  const verdict = parseVerdict(extractJson(await calls.checker(buildCheckerPrompt(packText, copyOf(v.story)))));
   note("check", verdict);
   if (verdict.verdict !== "pass") {
     throw new Error(`fact-check failed twice: ${verdict.issues.map((i) => i.problem).join(" | ").slice(0, 300)}`);
@@ -784,13 +814,21 @@ export async function loadInputs(root = ROOT) {
   return { fixtures: fixturesFile?.fixtures ?? [], teamEvents, archive, rankings, nations, pool: poolFile?.items ?? [], previous };
 }
 
-// The storyline writer can run on its own model: the repository variable
-// STORYLINE_WRITER_MODEL, when set, replaces DIGEST_WRITER_MODEL for this
-// script only (the checker stays the digests'). Set after the shadow run of
-// 21 Oct 2026 decides what a storyline is worth; unset, the writer role's
-// default applies.
+// The storyline writer runs on its own model. The shadow run of 21 Oct 2026
+// (editorial/shadow-storylines/2026-10-21-0725.md) put the same seven packs
+// through Gemini, Haiku 5.5, Sonnet 5.5, Opus 5.5 and Fable 5.1: Opus 5.5
+// was the only writer with no material error on any first draft and read
+// best, at about US$0.06 a story once the length gate was fixed — a few
+// dollars in a test month. Haiku's drafts read like the spreadsheet they
+// came from; Fable wrote the best single lines at four times Opus's price
+// and leaked citation marks. The repository variable STORYLINE_WRITER_MODEL
+// overrides this default for this script only (the checker stays the
+// digests'); it takes any model priced in compare-digest-models.mjs, or
+// "gemini". No Anthropic key: the router moves it to Gemini as it does the
+// digests.
+export const STORYLINE_DEFAULT_WRITER = "claude-opus-5-5";
 export const storylineEnv = (env = process.env) =>
-  env.STORYLINE_WRITER_MODEL?.trim() ? { ...env, DIGEST_WRITER_MODEL: env.STORYLINE_WRITER_MODEL.trim() } : env;
+  ({ ...env, DIGEST_WRITER_MODEL: env.STORYLINE_WRITER_MODEL?.trim() || STORYLINE_DEFAULT_WRITER });
 
 // Narrow a fixture list to one game by fixtures.json id or HOME-AWAY codes.
 export const onlyFixture = (fixtures, only) =>

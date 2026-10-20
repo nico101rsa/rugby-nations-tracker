@@ -81,10 +81,11 @@ jobs:
       # pool and one search per fixture. Cached by pack hash, so an unchanged
       # game costs nothing; a few cents a day at most. Log-only: a failure here
       # never costs the digests (continue-on-error, and the script itself
-      # exits 0). STORYLINE_WRITER_MODEL, when set, is the writer for this
-      # step only (the shadow run of 21 Oct 2026 compared the candidates:
-      # editorial/shadow-storylines/).
-      - name: Fixture storylines (writer + fact-check; log-only)
+      # exits 0). The writer is Opus 5.5 (the shadow run of 21 Oct 2026
+      # compared the candidates: editorial/shadow-storylines/);
+      # STORYLINE_WRITER_MODEL, when set, replaces it for this step only.
+      # The checker is the digests' (Haiku 5.5).
+      - name: Fixture storylines (Opus 5.5 writer + Haiku fact-check; log-only)
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}

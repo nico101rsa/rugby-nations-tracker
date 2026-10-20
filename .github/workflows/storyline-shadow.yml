@@ -25,7 +25,10 @@ on:
   # session has: it cannot dispatch a workflow (GitHub answers 403) but it
   # can push. The results commit back to the same branch with GITHUB_TOKEN,
   # which never triggers a push workflow, so the run cannot loop. Pushes to
-  # main never run it; use the dispatch.
+  # main never run it; use the dispatch. A push carries its inputs as commit
+  # trailers on the head commit (Shadow-Models:, Shadow-Days:, Shadow-Cap:,
+  # Shadow-Fixture:), the same values the dispatch form takes; absent, the
+  # defaults apply.
   push:
     branches: ["claude/**"]
     paths:
@@ -70,8 +73,14 @@ jobs:
             echo "::error::ANTHROPIC_API_KEY secret not set — nothing to compare"
             exit 1
           fi
+          # On a push, the head commit's trailers stand in for the dispatch inputs.
+          trailer() { git log -1 --pretty=%B | sed -n "s/^$1:[[:space:]]*//p" | tail -1; }
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then
+            IN_MODELS="$(trailer Shadow-Models)"; IN_DAYS="$(trailer Shadow-Days)"; IN_CAP="$(trailer Shadow-Cap)"; IN_FIXTURE="$(trailer Shadow-Fixture)"
+          fi
           ARGS="--models ${IN_MODELS:-gemini,claude-haiku-5-5,claude-sonnet-5-5,claude-opus-5-5,claude-fable-5-1} --days ${IN_DAYS:-20} --cap ${IN_CAP:-8}"
           if [ -n "$IN_FIXTURE" ]; then ARGS="$ARGS --fixture $IN_FIXTURE"; fi
+          echo "running: node scripts/storyline-shadow.mjs $ARGS"
           node scripts/storyline-shadow.mjs $ARGS
 
       - name: Commit the records to this branch

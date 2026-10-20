@@ -264,7 +264,10 @@ export function renderMarkdown(doc) {
       }
       const verdict = res.ok ? (res.revised ? "passed after one revision" : "passed first time") : `FAILED: ${res.error}`;
       const check = res.check1 ? `first check: ${res.check1.verdict}${res.check1.material ? ` (${res.check1.material} material)` : ""}` : "no first check";
-      L.push(`### ${w.id} — ${verdict} · ${check} · ${usd(res.costUSD)} · ${res.seconds} s · writer tokens ${res.usage.writerInput} in / ${res.usage.writerOutput} out`);
+      // Why the revision happened matters as much as that it did: the first
+      // run's revisions were mostly length, not facts.
+      const gate = res.gate && !res.gate.ok ? ` · first draft failed the gate: ${res.gate.errors.join("; ")}` : "";
+      L.push(`### ${w.id} — ${verdict} · ${check}${gate} · ${usd(res.costUSD)} · ${res.seconds} s · writer tokens ${res.usage.writerInput} in / ${res.usage.writerOutput} out`);
       L.push("");
       const story = res.final ?? res.draft;
       if (story) {
