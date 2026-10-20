@@ -748,15 +748,18 @@ export async function writeStory(calls, pack, packText, { trace = null, voice = 
 // ---- the run -------------------------------------------------------------------
 
 // keep (no call at all), check (widen the news, then compare pack hashes) or
-// write. `prev` is the stored story for this fixture id.
-export function decide(prev, factsHash, now, refreshHours = NEWS_REFRESH_HOURS) {
+// write. `prev` is the stored story for this fixture id. A story written
+// under another brief (`voice`) is rewritten: a brief change is a reason to
+// rewrite, bounded by the run's cap like any other.
+export function decide(prev, factsHash, now, refreshHours = NEWS_REFRESH_HOURS, voice = STORYLINE_DEFAULT_VOICE) {
   if (!prev) return "write";
   if (prev.factsHash !== factsHash) return "write";
+  if ((prev.voice ?? "preview") !== voice) return "write";
   const age = now - Date.parse(prev.generatedAt ?? "");
   return Number.isFinite(age) && age < refreshHours * HOUR ? "keep" : "check";
 }
 
-const storyOut = (pack, s, hashes, model, now) => ({
+const storyOut = (pack, s, hashes, model, now, voice) => ({
   home: pack.fixture.home.code,
   away: pack.fixture.away.code,
   kickoff: pack.fixture.kickoff,
@@ -765,6 +768,7 @@ const storyOut = (pack, s, hashes, model, now) => ({
   sources: s.sources,
   generatedAt: new Date(now).toISOString(),
   model,
+  voice,
   factsHash: hashes.factsHash,
   packHash: hashes.packHash,
 });
@@ -775,7 +779,8 @@ const storyOut = (pack, s, hashes, model, now) => ({
 // means no model key: nothing new is written, played games are still dropped.
 export async function buildStorylines({
   fixtures, teamEvents, archive, rankings, nations, pool = [], previous = null,
-  now = Date.now(), days = WINDOW_DAYS, widen = async () => [], bodies = async () => [], write = null,
+  now = Date.now(), days = WINDOW_DAYS, voice = STORYLINE_DEFAULT_VOICE,
+  widen = async () => [], bodies = async () => [], write = null,
   maxGenerate = MAX_GENERATE, log = console.log,
 }) {
   const prevStories = previous?.stories ?? {};
@@ -789,7 +794,7 @@ export async function buildStorylines({
     const prev = prevStories[f.id] ?? null;
     let pack = buildPack(f, { ...data, newsItems: pool });
     const { factsHash } = packHashes(pack);
-    const action = decide(prev, factsHash, now);
+    const action = decide(prev, factsHash, now, NEWS_REFRESH_HOURS, voice);
     if (action === "keep") {
       stories[f.id] = prev;
       report.kept.push(label);
@@ -822,7 +827,7 @@ export async function buildStorylines({
         // snippets alone are a fine pack
       }
       const s = await write(pack, renderPack(pack, texts));
-      stories[f.id] = storyOut(pack, s, hashes, s.model, now);
+      stories[f.id] = storyOut(pack, s, hashes, s.model, now, voice);
       report.written.push(`${label}${s.revised ? " (revised)" : ""}`);
     } catch (e) {
       if (prev) stories[f.id] = prev;
@@ -914,7 +919,8 @@ export async function main({ dryRun = false, only = null, force = false, days = 
   const { teamEvents, archive, rankings, nations, pool } = loaded;
   const previous = force ? null : loaded.previous;
   const fixtures = onlyFixture(loaded.fixtures, only);
-  console.log(`storylines: ${upcomingFixtures(fixtures, now, days).length} fixtures in the next ${days} days, news pool ${pool.length} items${force ? " (forced rewrite)" : ""}`);
+  const voice = VOICES.includes(process.env.STORYLINE_VOICE) ? process.env.STORYLINE_VOICE : STORYLINE_DEFAULT_VOICE;
+  console.log(`storylines: ${upcomingFixtures(fixtures, now, days).length} fixtures in the next ${days} days, news pool ${pool.length} items, voice ${voice}${force ? " (forced rewrite)" : ""}`);
 
   const geminiKey = process.env.GEMINI_API_KEY;
   const anthropicKey = process.env.ANTHROPIC_API_KEY;
@@ -937,7 +943,6 @@ export async function main({ dryRun = false, only = null, force = false, days = 
     const built = await buildCallers({ plan, geminiCall: geminiKey ? (p) => geminiCall(geminiKey, p) : null, client });
     tally = built.tally;
     const { calls } = built;
-    const voice = VOICES.includes(process.env.STORYLINE_VOICE) ? process.env.STORYLINE_VOICE : STORYLINE_DEFAULT_VOICE;
     console.log(`storylines models: writer=${plan.writer}, checker=${plan.checker}${geminiKey ? ` (gemini ladder from ${GEMINI_MODEL}${client ? ", as fallback" : ""})` : ""} — ${describePlan(plan)}; voice=${voice}`);
     write = async (pack, packText) => {
       const before = tally.summary().fellBack;
@@ -950,7 +955,7 @@ export async function main({ dryRun = false, only = null, force = false, days = 
   }
 
   const { stories, report } = await buildStorylines({
-    fixtures, teamEvents, archive, rankings, nations, pool, previous, now, days,
+    fixtures, teamEvents, archive, rankings, nations, pool, previous, now, days, voice,
     widen: (f) => fetchTeamNews(`${f.home.name} ${f.away.name}`),
     bodies: fetchBodies,
     write,

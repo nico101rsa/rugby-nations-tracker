@@ -356,12 +356,17 @@ test("writeStory: fails twice → throws (the caller keeps any previous story)",
 
 // ---- cache and the run ------------------------------------------------------------
 
-test("decide: write when new or facts moved; keep while fresh; check news once stale", () => {
-  const prev = { factsHash: "f", packHash: "p", generatedAt: new Date(NOW - 2 * 3600e3).toISOString() };
+test("decide: write when new, facts moved or the brief changed; keep while fresh; check news once stale", () => {
+  const prev = { factsHash: "f", packHash: "p", generatedAt: new Date(NOW - 2 * 3600e3).toISOString(), voice: "dry" };
   assert.equal(decide(null, "f", NOW), "write");
   assert.equal(decide(prev, "g", NOW), "write");
   assert.equal(decide(prev, "f", NOW), "keep");
   assert.equal(decide({ ...prev, generatedAt: new Date(NOW - (NEWS_REFRESH_HOURS + 1) * 3600e3).toISOString() }, "f", NOW), "check");
+  // a story written under another brief is rewritten; one with no brief recorded was the preview's
+  assert.equal(decide({ ...prev, voice: "preview" }, "f", NOW), "write");
+  const { voice, ...unbriefed } = prev;
+  assert.equal(decide(unbriefed, "f", NOW), "write");
+  assert.equal(decide(unbriefed, "f", NOW, NEWS_REFRESH_HOURS, "preview"), "keep");
 });
 
 const runArgs = (over = {}) => ({
@@ -378,7 +383,8 @@ test("buildStorylines: writes the story with the output shape, drops played game
   assert.deepEqual(Object.keys(stories), ["espn-604593"]);
   assert.deepEqual(report.dropped, ["gone"]);
   const s = stories["espn-604593"];
-  assert.deepEqual(Object.keys(s).sort(), ["away", "beats", "factsHash", "generatedAt", "headline", "home", "kickoff", "model", "packHash", "sources"].sort());
+  assert.deepEqual(Object.keys(s).sort(), ["away", "beats", "factsHash", "generatedAt", "headline", "home", "kickoff", "model", "packHash", "sources", "voice"].sort());
+  assert.equal(s.voice, "dry", "the brief it was written under");
   assert.equal(s.home, "JPN");
   assert.equal(s.kickoff, "2026-10-24T05:50:00.000Z");
   assert.equal(s.generatedAt, new Date(NOW).toISOString());

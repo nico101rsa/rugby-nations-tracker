@@ -86,12 +86,48 @@ revisions, about US$0.06 without them. Sonnet 5.5 at US$0.051 (US$0.03
 without its six) was accurate and stakes-led, and the frugal choice if the
 bill ever matters.
 
-## 21 Oct 2026 — `2026-10-21-0751`, production as it now runs
+## 21 Oct 2026 — `2026-10-21-1027` and the blind round: the dry brief
+
+Nico's read of the morning's runs: accurate, but wire-service previews —
+the same skeleton every game and no line worth repeating — and the register
+he wants is dry and knowledgeable with a touch of wit. A second brief for
+the same pack and the same rules ("dry": find the one angle first, a stated
+voice, places in words rather than rating points, the people in the pack,
+three to five beats with room to turn) was written and run on Opus 5.5 and
+Fable 5.1 over the same seven fixtures: 14 stories, US$1.69, both 7 of 7
+with no material error (Opus 7 first time; Fable one length revision).
+
+Two judges, Claude Opus 5.5 and Claude Sonnet 5.5 in separate sessions,
+then scored the three versions of each game — Opus on the preview brief
+(`2026-10-21-0751`), Opus dry and Fable dry — labelled A, B and C in a
+shuffled order per game with no model or brief named, on hook, voice,
+specificity and cliché (1–5) and overall (1–10). `2026-10-21-blind.json`
+holds the key, every score and the judges' notes.
+
+| Version | Hook | Voice | Specificity | Cliché | Overall /10 | Games won |
+|---|---|---|---|---|---|---|
+| Opus 5.5, preview brief | 2.4 | 2.0 | 2.9 | 2.4 | 3.9 | 0 |
+| Opus 5.5, dry brief | 3.4 | 3.6 | 3.7 | 3.9 | 6.3 | 4 |
+| Fable 5.1, dry brief | 3.2 | 3.4 | 3.7 | 3.6 | 6.1 | 3 |
+
+The judges agreed on the best version in all seven games, and the preview
+brief won none. Between the two dry versions the writers were a coin toss
+at three times the price, so **production runs the dry brief on Opus 5.5**
+(`STORYLINE_DEFAULT_VOICE`; the repository variable `STORYLINE_VOICE=preview`
+brings the checklist back, and a story written under the other brief is
+rewritten at the next run). What the judges still marked down in the dry
+versions, for the next iteration: a first beat that restates the headline, a
+rankings beat that covers three outcomes instead of one, and the odd wire
+tic ("Fifty-two weeks after"). One caveat: the judges are the writers'
+relatives, and a model may favour its own prose; the agreement between two
+of them and the size of the gap are the reasons to trust the order.
+
+## 21 Oct 2026 — `2026-10-21-0751`, the preview brief at its best
 
 Opus 5.5 alone on the same seven fixtures with the 170-stated, 200-enforced
 gap: first drafts of 163–185 words, 6 of 7 passed first time, 7 of 7
 published, US$0.455 — US$0.065 a story, 23 seconds each. The one revision
 was a real catch: the checker failed a headline calling Fiji "winless" in
-2026 (they beat Canada 45–29 on 12 September), and the rewrite passed. That
-is the writer, the prompt and the checker `generate-digests.yml` runs from
-this day.
+2026 (they beat Canada 45–29 on 12 September), and the rewrite passed. This
+was production for a morning; the blind round above replaced the brief the
+same day, keeping the writer, the gate and the checker.

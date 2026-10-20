@@ -250,10 +250,11 @@ with `editorial/storylines.json`, the digests' quiet-day backlog.
 `scripts/build-storylines.mjs` builds it as a step of `generate-digests.yml`,
 after the editions (cron 07:00 Sydney time in AEDT, 06:00 in AEST, plus the
 Saturday extras at 19:00 and 23:00 Sat and 04:00 and 09:00 Sun Sydney time in
-AEDT), on the same keys. The writer is **Opus 5.5** (since the shadow run of
-21 Oct 2026, below; the repository variable `STORYLINE_WRITER_MODEL`
-overrides it for this step alone); the checker is the digests'
-(`DIGEST_CHECKER_MODEL`, Haiku 5.5).
+AEDT), on the same keys. The writer is **Opus 5.5 on the "dry" brief**
+(both since the shadow runs of 21 Oct 2026, below; the repository variables
+`STORYLINE_WRITER_MODEL` and `STORYLINE_VOICE=preview` override them for
+this step alone); the checker is the digests' (`DIGEST_CHECKER_MODEL`,
+Haiku 5.5).
 
 - **Pack only.** The writer sees a fact pack from repo data (fixtures.json,
   team-events.json + archive, rankings.json, nations.json's log for `rnc-*`)
@@ -304,13 +305,27 @@ overrides it for this step alone); the checker is the digests'
   in the pack (it called them invented; it now sees the copy only), and copy
   about "the only meeting the app holds" (now a gate failure). Rerun it from
   Actions → "Storyline shadow (model comparison)" (inputs: models, days,
-  fixture, cap) or, from a cloud session that can't dispatch, by pushing a
-  change to the harness on a `claude/*` branch with the inputs as commit
-  trailers (`Shadow-Models:`, `Shadow-Days:`, `Shadow-Cap:`,
-  `Shadow-Fixture:`); the workflow runs once and commits the records to that
-  branch. Capped at US$8 by default. `node scripts/build-storylines.mjs
-  --force [--days N] [--fixture JPN-FIJ]` rewrites by hand after a prompt
-  change.
+  fixture, cap, voice) or, from a cloud session that can't dispatch, by
+  pushing a change to the harness on a `claude/*` branch with the inputs as
+  commit trailers (`Shadow-Models:`, `Shadow-Days:`, `Shadow-Cap:`,
+  `Shadow-Fixture:`, `Shadow-Voice:`); the workflow runs once and commits
+  the records to that branch. Capped at US$8 by default. `node
+  scripts/build-storylines.mjs --force [--days N] [--fixture JPN-FIJ]`
+  rewrites by hand after a prompt change.
+- **The brief (the "voice").** Nico read the morning's stories as accurate
+  wire-service previews and asked for "the dry wit", so `build-storylines.mjs`
+  carries two briefs for the same pack and rules: `preview` (the checklist
+  he approved on 20 Oct: history, form, stakes, news, a spice angle, 4–6
+  beats) and `dry` (find the one angle first; the friend who knows the game,
+  dry, exact, a touch of wit, never a hype man; places in words, never
+  rating points — the gate refuses "85.56"; the people in the pack; 3–5
+  beats). Two blind judges scored the same seven games three ways
+  (`editorial/shadow-storylines/README.md`, the blind round): the preview
+  brief 3.9/10, Opus on the dry brief 6.3, Fable on it 6.1, agreeing on the
+  winner in all seven games; the preview won none. The dry brief is the
+  default, a story written under the other brief is rewritten at the next
+  run, and the same harness grades a new brief in fifteen minutes: write
+  it as a third voice, push with `Shadow-Voice:`, and judge blind.
 - **Cost.** Cached by pack hash: nothing is called while a game's facts are
   unchanged and its story is under 18 hours old; then the search runs and
   the story is rewritten only if the news list moved. A new result, ranking
