@@ -478,10 +478,12 @@ export function streakText(streak) {
 // same skeleton every game, a fact per beat and no line worth repeating — so
 // "dry" (Nico, 21 Oct: "the dry wit") asks for one angle, a stated voice,
 // places in words rather than rating points, the people in the pack, and
-// three to five beats with room to turn. STORYLINE_VOICE picks the
-// production brief; the shadow harness takes --voice.
+// three to five beats with room to turn. It is production's brief since the
+// blind round of 21 Oct (editorial/shadow-storylines/README.md); the
+// repository variable STORYLINE_VOICE picks the other, and the shadow
+// harness takes --voice.
 export const VOICES = ["preview", "dry"];
-export const STORYLINE_DEFAULT_VOICE = "preview";
+export const STORYLINE_DEFAULT_VOICE = "dry";
 
 // The shape and tone of each brief's approved story, with its facts swapped
 // for placeholders. The approved preview was about Japan v Fiji itself, so

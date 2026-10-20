@@ -200,14 +200,18 @@ test("prompts: pack-only, no head-to-head unless sourced, staleness and the shar
   assert.match(w, /Form list is complete for the dates it covers/, "a result the form list lacks is another team's");
   assert.match(w, /"neutral venue" was hosted by neither side/);
   assert.match(w, /Rankings arithmetic comes only from "Rankings at stake"/);
-  assert.match(w, /what the result CHANGES/);
+  assert.match(buildWriterPrompt("PACK", { voice: "preview" }), /what the result CHANGES/);
   assert.match(w, /about 150\s+words/, "the target");
   assert.match(w, /170 words at most/, "the stated ceiling sits under the enforced one");
   assert.ok(!/200 words/.test(w), "the enforced ceiling is not the writer's business");
-  assert.match(w, /## What to write\nA headline/, "the default brief is the preview");
-  assert.ok(!/## The voice/.test(w));
+  assert.match(w, /## The voice/, "the default brief is the dry one");
+  const p = buildWriterPrompt("PACK", { voice: "preview" });
+  assert.match(p, /## What to write\nA headline/, "the preview brief is the checklist");
+  assert.ok(!/## The voice/.test(p));
+  assert.match(p, /rematch five weeks on/, "the preview sample");
   // the dry brief: one angle, a voice, places not points, the same rules and gate
   const d = buildWriterPrompt("PACK", { voice: "dry" });
+  assert.equal(d, w);
   assert.match(d, /## The voice\nYou are the friend who knows the game: dry, exact, a touch of wit/);
   assert.match(d, /First find the one angle/);
   assert.match(d, /never rating points or\s+decimals/);
@@ -218,7 +222,7 @@ test("prompts: pack-only, no head-to-head unless sourced, staleness and the shar
   assert.match(d, /Say the obvious plainly/);
   assert.match(d, /the one that got away/, "the dry sample");
   assert.ok(!/17-5/.test(d) && !/Salt Lake/.test(d), "no real facts in the sample");
-  assert.equal(buildWriterPrompt("PACK", { voice: "shouty" }), w, "an unknown voice is the default");
+  assert.equal(buildWriterPrompt("PACK", { voice: "shouty" }), w, "an unknown voice is the default (dry)");
   assert.match(buildWriterPrompt("PACK", { voice: "dry", revision: [{ claim: "x", problem: "y" }], previousDraft: {} }), /## Revise your draft/);
   assert.match(buildCheckerPrompt("PACK", { headline: "h", beats: [] }), /Colour, understatement and dry phrasing are not claims/);
   assert.match(buildWriterPrompt("PACK", { revision: [{ claim: "format", problem: "232 words > 200" }], previousDraft: {} }), /232 words > 200/, "a revision hears the real count");
@@ -256,11 +260,11 @@ test("validateStory: citation marks are stripped, copy about the app or its reco
   // the dry brief's gate: three beats are enough, rating points are not copy
   const three = { headline: "h", beats: ["a", "b", "c"], sources: [] };
   assert.equal(validateStory(three, [], { voice: "dry" }).ok, true);
-  assert.equal(validateStory(three, []).ok, true, "three beats pass the preview gate too");
-  const pts = validateStory({ ...three, beats: ["A win lifts them to 85.56, above England.", "b", "c"] }, [], { voice: "dry" });
-  assert.equal(pts.ok, false);
+  assert.equal(validateStory(three, [], { voice: "preview" }).ok, true, "three beats pass the preview gate too");
+  const pts = validateStory({ ...three, beats: ["A win lifts them to 85.56, above England.", "b", "c"] }, []);
+  assert.equal(pts.ok, false, "the default gate is the dry one");
   assert.match(pts.errors[0], /rating points in the copy \("85\.56"\)/);
-  assert.equal(validateStory({ ...three, beats: ["A win lifts them to 85.56, above England.", "b", "c"] }, []).ok, true, "the preview brief may print them");
+  assert.equal(validateStory({ ...three, beats: ["A win lifts them to 85.56, above England.", "b", "c"] }, [], { voice: "preview" }).ok, true, "the preview brief may print them");
   assert.equal(validateStory({ ...three, beats: ["They won 24–23 on 15 November 2025.", "b", "c"] }, [], { voice: "dry" }).ok, true, "scores and dates are not rating points");
 });
 
