@@ -67,7 +67,7 @@ export const WINDOW_DAYS = 14;
 export const BACKGROUND_DAYS = 10;
 export const NEWS_REFRESH_HOURS = 18;
 export const HEADLINE_MAX = 60;
-export const BEATS_MIN = 4;
+export const BEATS_MIN = 3; // the dry brief asks for 3–5; the preview for 4–6
 export const BEATS_MAX = 6;
 // The approved sample is ~140 words. Writers write to the ceiling they are
 // given and overshoot it: in the shadow runs of 21 Oct 2026 the first drafts
@@ -471,11 +471,24 @@ export function streakText(streak) {
 
 // ---- prompts -------------------------------------------------------------------
 
-// The shape and tone of the story Nico approved (20 Oct 2026), with its facts
-// swapped for placeholders. The approved story was about Japan v Fiji itself,
-// so its real facts in the prompt would invite the writer to copy claims (a
-// 17-5 head-to-head) that no pack supports.
-const SAMPLE = `{"headline": "<Coach>'s <Team> debut: a <City> rematch five weeks on",
+// Two briefs for the same pack and the same rules. "preview" is the shape
+// Nico approved on 20 Oct 2026: five or six beats that cover history, form,
+// stakes, news and a spice angle. The shadow runs of 21 Oct showed every
+// writer turning that checklist into a wire-service preview — accurate,
+// same skeleton every game, a fact per beat and no line worth repeating — so
+// "dry" (Nico, 21 Oct: "the dry wit") asks for one angle, a stated voice,
+// places in words rather than rating points, the people in the pack, and
+// three to five beats with room to turn. STORYLINE_VOICE picks the
+// production brief; the shadow harness takes --voice.
+export const VOICES = ["preview", "dry"];
+export const STORYLINE_DEFAULT_VOICE = "preview";
+
+// The shape and tone of each brief's approved story, with its facts swapped
+// for placeholders. The approved preview was about Japan v Fiji itself, so
+// its real facts in the prompt would invite the writer to copy claims (a 17-5
+// head-to-head) that no pack supports.
+const SAMPLES = {
+  preview: `{"headline": "<Coach>'s <Team> debut: a <City> rematch five weeks on",
  "beats": [
   "<Team B> own this fixture: <head-to-head total, ONLY if a news item states it>, and they beat <Team A> in <the two finals the pack lists>.",
   "Then came <date of last meeting>, on this same ground: <the decisive moment, from a news item> and <Team A> won <score>.",
@@ -483,17 +496,19 @@ const SAMPLE = `{"headline": "<Coach>'s <Team> debut: a <City> rematch five week
   "Form favours <Team A>: three straight wins. <Team B> have won 1 of 5 this year.",
   "<What the result changes, from the computed lines: win and Team B go 9th; lose and Team A drop out of the top 12>."
  ],
- "sources": [2, 3]}`;
+ "sources": [2, 3]}`,
+  dry: `{"headline": "<Coach>'s first <Team B> game is the one that got away",
+ "beats": [
+  "Five weeks ago on this ground <Team A> beat <Team B> <score> for the <competition> title. <Team B> have since appointed <Coach>, a World Cup winner, and been handed the same opponent for his first day.",
+  "The rankings sharpen it. <Team B> win and they go above <Team A>; <Team A> lose and they drop out of the top twelve.",
+  "Form says <Team A>: three straight wins, <the two scores>. <Team B> have won once this year, and <Coach> says he wants them to play like <Team B> \\"<a quote the pack carries>\\".",
+  "A fortnight later both are in Europe, <Team A> at <X> and <Team B> at <Y>."
+ ],
+ "sources": [2, 3]}`,
+};
 
-export function buildWriterPrompt(packText, { revision = null, previousDraft = null } = {}) {
-  return `You write the pre-match STORYLINE for one fixture in Rugby Nations Tracker,
-an iOS app for men's international rugby union. The reader is a knowledgeable
-fan scrolling the Fixtures list. Give them the story of this game in about ${TARGET_WORDS}
-words.
-
-${packText}
-
-## What to write
+const BRIEFS = {
+  preview: `## What to write
 A headline (at most ${HEADLINE_MAX} characters) that hooks a neutral — the debut,
 the rematch, the streak on the line, the ranking swing — never a label like
 "Japan v Fiji preview". Then ${BEATS_MIN} to ${BEATS_MAX} beats, one or two sentences each,
@@ -508,7 +523,41 @@ whatever order reads best, as many of these as the pack supports:
 - team and coaching news (CURRENT items only);
 - one spice angle: a rematch, a debut, a milestone, a grudge, a streak.
 Lead with the angle a fan would mention first. Be specific: a score, a date,
-a name beats an adjective.
+a name beats an adjective.`,
+  dry: `## The voice
+You are the friend who knows the game: dry, exact, a touch of wit, never a
+cheerleader and never a hype man. Short sentences, one idea each. Wit comes
+from putting two true things next to each other, or from understatement,
+never from a joke that needs a fact the pack does not hold. No exclamation
+marks. None of: massive, huge, mouth-watering, knife-edge, clash, showdown,
+blockbuster, "fans will", "all eyes". Never tell the reader something is
+interesting; put it where it lands.
+
+## What to write
+First find the one angle a fan would mention first — the debut, the revenge,
+the ranking cliff, the streak nobody saw coming — and build the story on it.
+Then:
+- a headline of at most ${HEADLINE_MAX} characters that carries the angle in plain
+  words: a line, not a label; no "preview", no question;
+- ${BEATS_MIN} to 5 beats of one to three sentences, ${PROMPT_MAX_WORDS} words at most in
+  all. The angle leads. After it, only beats that earn their place, in any
+  order: what the result changes (one beat at most, in places and words —
+  "a place above England", "out of the top twelve" — never rating points or
+  decimals); the last meeting and the form (scores are facts: say them); the
+  people (a name, an age, a cap count, a quote the pack carries); what comes
+  next. A beat that only restates a table line is cut.`,
+};
+
+export function buildWriterPrompt(packText, { revision = null, previousDraft = null, voice = STORYLINE_DEFAULT_VOICE } = {}) {
+  const v = VOICES.includes(voice) ? voice : STORYLINE_DEFAULT_VOICE;
+  return `You write the pre-match STORYLINE for one fixture in Rugby Nations Tracker,
+an iOS app for men's international rugby union. The reader is a knowledgeable
+fan scrolling the Fixtures list. Give them the story of this game in about ${TARGET_WORDS}
+words.
+
+${packText}
+
+${BRIEFS[v]}
 
 ## Rules — every one is checked
 - The pack above is your ONLY source. Every fact must trace to it. No outside
@@ -526,6 +575,9 @@ a name beats an adjective.
 - Never mention the app, the pack, its records or what they hold: write
   "their last meeting, on 15 November 2025", not "the only meeting the app
   holds". The reader sees only your words.
+- Say the obvious plainly: a home game was at home, a meeting the pack marks
+  "the final" was the final, a ground the pack names can be named. Invent
+  nothing the pack does not carry or make obvious.
 - Never present a BACKGROUND item as current. Use it only as dated history.
   Do not call anything "this week", "latest" or "new" unless it is CURRENT.
 - Quotation marks only around words that appear inside quotation marks in the
@@ -543,7 +595,7 @@ a name beats an adjective.
 
 Tone and length target (an approved story with its facts replaced by
 <placeholders>; fill nothing in from it):
-${SAMPLE}${revision ? `
+${SAMPLES[v]}${revision ? `
 
 ## Revise your draft
 The fact-checker found these material problems. Fix every one (cut the claim
@@ -592,7 +644,11 @@ word present ("a 40–21 defeat to New Zealand", "lost 42–38 to Australia") is
 the same result as 21–40 or 38–42, not a reversed score. A clipped
 conditional ("Win in London and the Wallabies leapfrog England", "Wallabies
 win and they go 5th") means "if they win"; it is not a result reported as
-settled. Trusted app data
+settled. Colour, understatement and dry phrasing are not claims. A computed
+ranking line given in words or rounded ("a place above England", "out of the
+top twelve") is the same fact as its decimals. The obvious reading of the
+pack is not an invention: a home game at the ground the pack names, a
+meeting the pack marks "the final" called a final. Trusted app data
 needs no corroboration from a news item. If ANY pack item supports a claim,
 it passes. The pack is the authority: you check draft-against-pack, not
 pack-against-reality (except the league rule, which fails however faithfully
@@ -615,10 +671,13 @@ export const stripCitations = (s) => s.replace(/\s*\[\d{1,2}(?:\s*,\s*\d{1,2})*\
 // the story, so the qualifier is noise.
 const META_COPY = /\b(?:the|this|our) (?:app|pack)\b|\bapp(?:'s)? (?:holds|lists|records)\b|\bon record\b|\bthe records\b/i;
 
+// Rating points in copy ("85.56"): the dry brief says places and words only.
+const RATING_POINTS = /\b\d{2,3}\.\d{1,2}\b/;
+
 // Shape and copy gate. Returns a clean { headline, beats, sources } with the
 // cited item numbers turned into {title, url} from the pack, so a source can
 // never be a URL the model made up.
-export function validateStory(raw, news = []) {
+export function validateStory(raw, news = [], { voice = STORYLINE_DEFAULT_VOICE } = {}) {
   const errors = [];
   if (!raw || typeof raw !== "object") return { ok: false, errors: ["not an object"] };
   const headline = typeof raw.headline === "string" ? stripCitations(raw.headline) : "";
@@ -635,6 +694,10 @@ export function validateStory(raw, news = []) {
   }
   const meta = [headline, ...beats].find((t) => META_COPY.test(t));
   if (meta) errors.push(`mentions the app or its records ("${meta.match(META_COPY)[0]}"): say "their last meeting" instead`);
+  if (voice === "dry") {
+    const pts = [headline, ...beats].find((t) => RATING_POINTS.test(t));
+    if (pts) errors.push(`rating points in the copy ("${pts.match(RATING_POINTS)[0]}"): places and words only`);
+  }
   const idx = [...new Set((Array.isArray(raw.sources) ? raw.sources : []).map(Number))]
     .filter((n) => Number.isInteger(n) && n >= 1 && n <= news.length);
   const sources = idx.map((n) => ({ title: news[n - 1].title, url: news[n - 1].url }));
@@ -648,12 +711,12 @@ export function validateStory(raw, news = []) {
 // `trace`, when given, is filled in as it goes (draft, gate, check, revision,
 // gate, check): record only, read by the shadow run (storyline-shadow.mjs),
 // and filled even when the story then fails.
-export async function writeStory(calls, pack, packText, { trace = null } = {}) {
+export async function writeStory(calls, pack, packText, { trace = null, voice = STORYLINE_DEFAULT_VOICE } = {}) {
   if (!calls.writer || !calls.checker) throw new Error("no writer/checker model available");
   const note = (step, data) => trace?.push({ step, ...data });
-  let raw = extractJson(await calls.writer(buildWriterPrompt(packText)));
+  let raw = extractJson(await calls.writer(buildWriterPrompt(packText, { voice })));
   note("draft", { raw });
-  let v = validateStory(raw, pack.news);
+  let v = validateStory(raw, pack.news, { voice });
   note("gate", v.ok ? { ok: true } : { ok: false, errors: v.errors });
   // The checker reads the copy only: the sources are already code-checked,
   // and a URL it cannot see in the pack text reads to it as invented.
@@ -667,9 +730,9 @@ export async function writeStory(calls, pack, packText, { trace = null } = {}) {
   } else {
     issues = v.errors.map((e) => ({ claim: "format", problem: e }));
   }
-  raw = extractJson(await calls.writer(buildWriterPrompt(packText, { revision: issues, previousDraft: raw })));
+  raw = extractJson(await calls.writer(buildWriterPrompt(packText, { revision: issues, previousDraft: raw, voice })));
   note("revision", { raw });
-  v = validateStory(raw, pack.news);
+  v = validateStory(raw, pack.news, { voice });
   note("gate", v.ok ? { ok: true } : { ok: false, errors: v.errors });
   if (!v.ok) throw new Error(`revision failed the shape gate: ${v.errors.join("; ")}`);
   const verdict = parseVerdict(extractJson(await calls.checker(buildCheckerPrompt(packText, copyOf(v.story)))));
@@ -872,10 +935,11 @@ export async function main({ dryRun = false, only = null, force = false, days = 
     const built = await buildCallers({ plan, geminiCall: geminiKey ? (p) => geminiCall(geminiKey, p) : null, client });
     tally = built.tally;
     const { calls } = built;
-    console.log(`storylines models: writer=${plan.writer}, checker=${plan.checker}${geminiKey ? ` (gemini ladder from ${GEMINI_MODEL}${client ? ", as fallback" : ""})` : ""} — ${describePlan(plan)}`);
+    const voice = VOICES.includes(process.env.STORYLINE_VOICE) ? process.env.STORYLINE_VOICE : STORYLINE_DEFAULT_VOICE;
+    console.log(`storylines models: writer=${plan.writer}, checker=${plan.checker}${geminiKey ? ` (gemini ladder from ${GEMINI_MODEL}${client ? ", as fallback" : ""})` : ""} — ${describePlan(plan)}; voice=${voice}`);
     write = async (pack, packText) => {
       const before = tally.summary().fellBack;
-      const s = await writeStory(calls, pack, packText);
+      const s = await writeStory(calls, pack, packText, { voice });
       const model = plan.writer === "gemini" || tally.summary().fellBack > before ? "gemini" : plan.writer;
       return { ...s, model };
     };

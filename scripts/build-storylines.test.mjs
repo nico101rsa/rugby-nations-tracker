@@ -204,6 +204,23 @@ test("prompts: pack-only, no head-to-head unless sourced, staleness and the shar
   assert.match(w, /about 150\s+words/, "the target");
   assert.match(w, /170 words at most/, "the stated ceiling sits under the enforced one");
   assert.ok(!/200 words/.test(w), "the enforced ceiling is not the writer's business");
+  assert.match(w, /## What to write\nA headline/, "the default brief is the preview");
+  assert.ok(!/## The voice/.test(w));
+  // the dry brief: one angle, a voice, places not points, the same rules and gate
+  const d = buildWriterPrompt("PACK", { voice: "dry" });
+  assert.match(d, /## The voice\nYou are the friend who knows the game: dry, exact, a touch of wit/);
+  assert.match(d, /First find the one angle/);
+  assert.match(d, /never rating points or\s+decimals/);
+  assert.match(d, /No exclamation\s+marks/);
+  assert.match(d, /3 to 5 beats/);
+  assert.match(d, /170 words at most/);
+  assert.match(d, /ONLY source/, "the rules are shared");
+  assert.match(d, /Say the obvious plainly/);
+  assert.match(d, /the one that got away/, "the dry sample");
+  assert.ok(!/17-5/.test(d) && !/Salt Lake/.test(d), "no real facts in the sample");
+  assert.equal(buildWriterPrompt("PACK", { voice: "shouty" }), w, "an unknown voice is the default");
+  assert.match(buildWriterPrompt("PACK", { voice: "dry", revision: [{ claim: "x", problem: "y" }], previousDraft: {} }), /## Revise your draft/);
+  assert.match(buildCheckerPrompt("PACK", { headline: "h", beats: [] }), /Colour, understatement and dry phrasing are not claims/);
   assert.match(buildWriterPrompt("PACK", { revision: [{ claim: "format", problem: "232 words > 200" }], previousDraft: {} }), /232 words > 200/, "a revision hears the real count");
   assert.match(buildCheckerPrompt("PACK", { headline: "h", beats: [] }), /clipped\s+conditional/);
   assert.ok(!/17 wins/.test(w), "the approved sample's real facts are not in the prompt");
@@ -236,6 +253,28 @@ test("validateStory: citation marks are stripped, copy about the app or its reco
   assert.equal(meta.ok, false);
   assert.match(meta.errors[0], /mentions the app or its records \("the app"\)/);
   assert.equal(validateStory({ ...story, beats: ["Their last meeting, on 15 November 2025, went 24–23.", "b", "c", "d"] }, []).ok, true);
+  // the dry brief's gate: three beats are enough, rating points are not copy
+  const three = { headline: "h", beats: ["a", "b", "c"], sources: [] };
+  assert.equal(validateStory(three, [], { voice: "dry" }).ok, true);
+  assert.equal(validateStory(three, []).ok, true, "three beats pass the preview gate too");
+  const pts = validateStory({ ...three, beats: ["A win lifts them to 85.56, above England.", "b", "c"] }, [], { voice: "dry" });
+  assert.equal(pts.ok, false);
+  assert.match(pts.errors[0], /rating points in the copy \("85\.56"\)/);
+  assert.equal(validateStory({ ...three, beats: ["A win lifts them to 85.56, above England.", "b", "c"] }, []).ok, true, "the preview brief may print them");
+  assert.equal(validateStory({ ...three, beats: ["They won 24–23 on 15 November 2025.", "b", "c"] }, [], { voice: "dry" }).ok, true, "scores and dates are not rating points");
+});
+
+test("writeStory: the voice reaches the writer prompt, draft and revision alike", async () => {
+  const prompts = [];
+  const draft = { headline: "h", beats: ["a", "b", "c"], sources: [] };
+  const answers = [JSON.stringify(draft), JSON.stringify({ issues: [{ claim: "a", problem: "wrong", severity: "material" }] }), JSON.stringify({ ...draft, headline: "h2" }), JSON.stringify({ issues: [] })];
+  let i = 0;
+  const writer = async (p) => { prompts.push(p); return answers[i++]; };
+  const checker = async () => answers[i++];
+  const s = await writeStory({ writer, checker }, { news: [] }, "PACK", { voice: "dry" });
+  assert.equal(s.headline, "h2");
+  assert.equal(prompts.length, 2);
+  assert.ok(prompts.every((p) => /## The voice/.test(p)), "both writer calls carry the dry brief");
 });
 
 test("writeStory: the trace records draft, gate, verdicts and the revision, and changes nothing", async () => {
@@ -274,7 +313,7 @@ test("validateStory: shape gate, sources mapped from the pack's own items only",
   assert.ok(v.ok, v.errors?.join());
   assert.deepEqual(v.story.sources, [{ title: "B", url: "https://b" }]);
   assert.ok(!validateStory({ ...okStory, headline: "x".repeat(HEADLINE_MAX + 1) }, news).ok);
-  assert.ok(!validateStory({ ...okStory, beats: okStory.beats.slice(0, 3) }, news).ok);
+  assert.ok(!validateStory({ ...okStory, beats: okStory.beats.slice(0, 2) }, news).ok, "two beats is not a story");
   assert.ok(!validateStory({ ...okStory, beats: [...okStory.beats, "a", "b"] }, news).ok);
   assert.ok(!validateStory({ ...okStory, beats: [...okStory.beats.slice(0, 4), "Kick-off is at 4:50 pm."] }, news).ok, "clock time banned");
 });

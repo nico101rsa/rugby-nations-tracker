@@ -93,6 +93,9 @@ jobs:
           DIGEST_WRITER_MODEL: ${{ vars.DIGEST_WRITER_MODEL }}
           DIGEST_CHECKER_MODEL: ${{ vars.DIGEST_CHECKER_MODEL }}
           STORYLINE_WRITER_MODEL: ${{ vars.STORYLINE_WRITER_MODEL }}
+          # The brief: preview (the checklist) or dry (one angle, dry wit).
+          # Unset, the script's default applies.
+          STORYLINE_VOICE: ${{ vars.STORYLINE_VOICE }}
         run: |
           if [ -n "$ANTHROPIC_API_KEY" ] && ! node -e "require.resolve('@anthropic-ai/sdk')" 2>/dev/null; then
             npm install --no-save @anthropic-ai/sdk

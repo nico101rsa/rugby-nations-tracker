@@ -35,7 +35,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
   loadInputs, onlyFixture, upcomingFixtures, buildPack, packHashes, renderPack, writeStory, fetchBodies, sha256,
-  WINDOW_DAYS,
+  WINDOW_DAYS, VOICES, STORYLINE_DEFAULT_VOICE,
 } from "./build-storylines.mjs";
 import { MAX_TOKENS, REQUEST_TIMEOUT_MS, modelPlan, createAnthropicCaller, createTally, priceFor } from "./model-router.mjs";
 import { fetchTeamNews, geminiCall, GEMINI_MODEL } from "./generate-digests.mjs";
@@ -116,7 +116,7 @@ export function foldTrace(trace) {
 
 // One writer on one fixture: production's writeStory with that writer and the
 // run's checker, traced and timed.
-export async function shadowStory({ writer, checker, pack, packText, now = () => Date.now() }) {
+export async function shadowStory({ writer, checker, pack, packText, voice = STORYLINE_DEFAULT_VOICE, now = () => Date.now() }) {
   const w = writer.make();
   const c = checker.make();
   const trace = [];
@@ -124,7 +124,7 @@ export async function shadowStory({ writer, checker, pack, packText, now = () =>
   let final = null;
   let error = null;
   try {
-    const s = await writeStory({ writer: w.call, checker: c.call }, pack, packText, { trace });
+    const s = await writeStory({ writer: w.call, checker: c.call }, pack, packText, { trace, voice });
     final = { headline: s.headline, beats: s.beats, sources: s.sources, revised: s.revised };
   } catch (e) {
     error = String(e?.message ?? e).slice(0, 300);
@@ -158,7 +158,7 @@ export async function shadowStory({ writer, checker, pack, packText, now = () =>
 
 // Every writer on every fixture, fixture by fixture (the writers of one
 // fixture in parallel), under the cap. `packs` is [{ fixture, pack, packText }].
-export async function runShadow({ packs, writers, checker, cap = DEFAULT_CAP_USD, log = console.log, now = () => Date.now() }) {
+export async function runShadow({ packs, writers, checker, voice = STORYLINE_DEFAULT_VOICE, cap = DEFAULT_CAP_USD, log = console.log, now = () => Date.now() }) {
   const results = [];
   const skipped = [];
   let spent = 0;
@@ -178,7 +178,7 @@ export async function runShadow({ packs, writers, checker, cap = DEFAULT_CAP_USD
         continue;
       }
       reserved += worst;
-      running.push(shadowStory({ writer, checker, pack, packText, now }));
+      running.push(shadowStory({ writer, checker, pack, packText, voice, now }));
     }
     const done = await Promise.all(running);
     for (const r of done) {
@@ -234,7 +234,7 @@ export function renderMarkdown(doc) {
   L.push("");
   L.push(`> ${NOTICE}`);
   L.push("");
-  L.push(`Writers: ${doc.writers.map((w) => w.id).join(", ")}. Checker: ${doc.checker}. Window: ${doc.days} days, ${doc.fixtures.length} fixture${doc.fixtures.length === 1 ? "" : "s"}. Cap ${usd(doc.capUSD)}; spent ${usd(doc.spentUSD)}.`);
+  L.push(`Writers: ${doc.writers.map((w) => w.id).join(", ")}. Checker: ${doc.checker}. Voice: ${doc.voice ?? "preview"}. Window: ${doc.days} days, ${doc.fixtures.length} fixture${doc.fixtures.length === 1 ? "" : "s"}. Cap ${usd(doc.capUSD)}; spent ${usd(doc.spentUSD)}.`);
   L.push("");
   L.push("## Totals");
   L.push("");
@@ -310,6 +310,9 @@ export async function main(argv = process.argv) {
   const cap = Number(arg("--cap", argv)) || DEFAULT_CAP_USD;
   const only = arg("--fixture", argv);
   const outDir = arg("--out", argv) ?? OUT_DIR;
+  const voiceArg = arg("--voice", argv);
+  if (voiceArg && !VOICES.includes(voiceArg)) throw new Error(`--voice must be one of ${VOICES.join(", ")}`);
+  const voice = voiceArg ?? STORYLINE_DEFAULT_VOICE;
 
   const geminiKey = process.env.GEMINI_API_KEY || null;
   const anthropicKey = process.env.ANTHROPIC_API_KEY || null;
@@ -336,7 +339,7 @@ export async function main(argv = process.argv) {
 
   const loaded = await loadInputs();
   const fixtures = upcomingFixtures(onlyFixture(loaded.fixtures, only), now, days);
-  console.log(`storyline shadow: ${fixtures.length} fixture(s) in the next ${days} days; writers ${writerIds.join(", ")}; checker ${checkerId}${checkerId === "gemini" ? ` (${GEMINI_MODEL} ladder)` : ""}; cap US$${cap}`);
+  console.log(`storyline shadow: ${fixtures.length} fixture(s) in the next ${days} days; writers ${writerIds.join(", ")}; checker ${checkerId}${checkerId === "gemini" ? ` (${GEMINI_MODEL} ladder)` : ""}; voice ${voice}; cap US$${cap}`);
 
   const packs = [];
   for (const fixture of fixtures) {
@@ -358,7 +361,7 @@ export async function main(argv = process.argv) {
     console.log(`  ${fixture.home.code} v ${fixture.away.code}: ${pack.news.length} news items (${pack.news.filter((n) => !n.background).length} current), ${bodies.length} article bodies, prompt ${packText.length} chars`);
   }
 
-  const { results, skipped, spentUSD } = await runShadow({ packs, writers, checker, cap });
+  const { results, skipped, spentUSD } = await runShadow({ packs, writers, checker, voice, cap });
   const usable = writers.filter((w) => !w.error);
   const totals = totalsOf(results, usable);
   const doc = {
@@ -367,6 +370,7 @@ export async function main(argv = process.argv) {
     startedSydney: sydneyLabel(now),
     writers: usable.map((w) => ({ id: w.id, price: w.price })),
     checker: checkerId,
+    voice,
     days,
     capUSD: cap,
     spentUSD,
