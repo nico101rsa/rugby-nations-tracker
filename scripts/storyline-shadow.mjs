@@ -39,6 +39,7 @@ import {
 } from "./build-storylines.mjs";
 import { MAX_TOKENS, REQUEST_TIMEOUT_MS, modelPlan, createAnthropicCaller, createTally, priceFor } from "./model-router.mjs";
 import { fetchTeamNews, geminiCall, GEMINI_MODEL } from "./generate-digests.mjs";
+import { words } from "./copy-rules.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 export const OUT_DIR = join(ROOT, "editorial", "shadow-storylines");
@@ -265,9 +266,11 @@ export function renderMarkdown(doc) {
       const verdict = res.ok ? (res.revised ? "passed after one revision" : "passed first time") : `FAILED: ${res.error}`;
       const check = res.check1 ? `first check: ${res.check1.verdict}${res.check1.material ? ` (${res.check1.material} material)` : ""}` : "no first check";
       // Why the revision happened matters as much as that it did: the first
-      // run's revisions were mostly length, not facts.
+      // run's revisions were mostly length, not facts, so the first draft's
+      // word count is in the header too.
       const gate = res.gate && !res.gate.ok ? ` · first draft failed the gate: ${res.gate.errors.join("; ")}` : "";
-      L.push(`### ${w.id} — ${verdict} · ${check}${gate} · ${usd(res.costUSD)} · ${res.seconds} s · writer tokens ${res.usage.writerInput} in / ${res.usage.writerOutput} out`);
+      const draftWords = res.draft ? ` · first draft ${words([res.draft.headline ?? "", ...(res.draft.beats ?? [])].join(" "))} words` : "";
+      L.push(`### ${w.id} — ${verdict} · ${check}${gate}${draftWords} · ${usd(res.costUSD)} · ${res.seconds} s · writer tokens ${res.usage.writerInput} in / ${res.usage.writerOutput} out`);
       L.push("");
       const story = res.final ?? res.draft;
       if (story) {

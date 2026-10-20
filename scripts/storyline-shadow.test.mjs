@@ -150,7 +150,7 @@ test("totalsOf, packRecord and renderMarkdown: the record a reader sees", async 
   assert.ok(md.includes(NOTICE));
   assert.match(md, /\| w1 \| 1 \| 1 \| 0 \| 1 \| 0 \| 1 \|/);
   assert.match(md, /## 1\. Japan v Fiji — Sat 24 Oct 2026, 4:50 pm Sydney time/);
-  assert.match(md, /### w2 — passed after one revision · first check: fail \(1 material\)/);
+  assert.match(md, /### w2 — passed after one revision · first check: fail \(1 material\) · first draft \d+ words/);
   assert.match(md, /\*\*White's Fiji debut in Tokyo\*\*/);
   assert.match(md, /First draft headline: \*\*Fiji own this fixture 17-5\*\*/);
   assert.match(md, /"17-5": no item states a head-to-head total \(fix: cut\)/);

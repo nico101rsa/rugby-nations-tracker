@@ -69,12 +69,16 @@ export const NEWS_REFRESH_HOURS = 18;
 export const HEADLINE_MAX = 60;
 export const BEATS_MIN = 4;
 export const BEATS_MAX = 6;
-// The approved sample is ~140 words. The shadow run of 21 Oct 2026 showed
-// every paid model landing at 191–236 on the richer pack, so 17 of 35 first
-// drafts failed on length alone and paid for a revision; the prompt now asks
-// for about 150 and the gate allows 200.
+// The approved sample is ~140 words. Writers write to the ceiling they are
+// given and overshoot it: in the shadow runs of 21 Oct 2026 the first drafts
+// ran 191–236 words against a stated 190, then 203–232 against a stated 200
+// with "about 150" asked, so 17 of 35 and then 10 of 14 paid for a revision
+// on length alone. The prompt therefore states PROMPT_MAX_WORDS and the gate
+// enforces MAX_WORDS: the overshoot lands inside the gate and the second
+// call is saved. A revision is told the real count against the real gate.
 export const MAX_WORDS = 200;
 export const TARGET_WORDS = 150;
+export const PROMPT_MAX_WORDS = 170;
 const BEAT_MAX_CHARS = 320;
 const MAX_NEWS = 12;
 const MAX_BACKGROUND = 4;
@@ -493,8 +497,8 @@ ${packText}
 A headline (at most ${HEADLINE_MAX} characters) that hooks a neutral — the debut,
 the rematch, the streak on the line, the ranking swing — never a label like
 "Japan v Fiji preview". Then ${BEATS_MIN} to ${BEATS_MAX} beats, one or two sentences each,
-${MAX_WORDS} words at most in all. Cover, in whatever order reads best, as many of
-these as the pack supports:
+${PROMPT_MAX_WORDS} words at most in all — a tight story beats a complete one. Cover, in
+whatever order reads best, as many of these as the pack supports:
 - the history between the teams;
 - the last meeting and the recent form;
 - what's at stake: what the result CHANGES — a ranking place gained or lost,
@@ -585,7 +589,10 @@ Do NOT flag: accurate paraphrase or compression, opinion and colour,
 incompleteness, or anything you would call "technically true but could be
 closer to the source". A scoreline written winner-first with the result
 word present ("a 40–21 defeat to New Zealand", "lost 42–38 to Australia") is
-the same result as 21–40 or 38–42, not a reversed score. Trusted app data
+the same result as 21–40 or 38–42, not a reversed score. A clipped
+conditional ("Win in London and the Wallabies leapfrog England", "Wallabies
+win and they go 5th") means "if they win"; it is not a result reported as
+settled. Trusted app data
 needs no corroboration from a news item. If ANY pack item supports a claim,
 it passes. The pack is the authority: you check draft-against-pack, not
 pack-against-reality (except the league rule, which fails however faithfully

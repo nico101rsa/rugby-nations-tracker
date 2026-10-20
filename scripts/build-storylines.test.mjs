@@ -201,6 +201,11 @@ test("prompts: pack-only, no head-to-head unless sourced, staleness and the shar
   assert.match(w, /"neutral venue" was hosted by neither side/);
   assert.match(w, /Rankings arithmetic comes only from "Rankings at stake"/);
   assert.match(w, /what the result CHANGES/);
+  assert.match(w, /about 150\s+words/, "the target");
+  assert.match(w, /170 words at most/, "the stated ceiling sits under the enforced one");
+  assert.ok(!/200 words/.test(w), "the enforced ceiling is not the writer's business");
+  assert.match(buildWriterPrompt("PACK", { revision: [{ claim: "format", problem: "232 words > 200" }], previousDraft: {} }), /232 words > 200/, "a revision hears the real count");
+  assert.match(buildCheckerPrompt("PACK", { headline: "h", beats: [] }), /clipped\s+conditional/);
   assert.ok(!/17 wins/.test(w), "the approved sample's real facts are not in the prompt");
   assert.ok(!/17-5/.test(w), "nor the head-to-head the first sample carried");
   const c = buildCheckerPrompt("PACK", { headline: "h", beats: [] });

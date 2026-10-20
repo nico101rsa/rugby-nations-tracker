@@ -68,5 +68,20 @@ a test month.
 4. "The only meeting the app holds" and its kin leaked into every writer's
    copy. The gate now fails any mention of the app or its records.
 
-A confirmation run on Sonnet 5.5 and Opus 5.5 with the fixes follows as
-`2026-10-21-<later>`.
+## 21 Oct 2026 — `2026-10-21-0744`, the confirmation
+
+The same seven fixtures on Sonnet 5.5 and Opus 5.5 with faults 2–4 fixed:
+14 stories, US$0.96, five minutes. Both 7 of 7 published with no material
+error on any first draft; Opus 3 first time, Sonnet 1. The remaining
+revisions were length again — first drafts of 203–232 words against a
+stated cap of 200 with "about 150" asked. Writers write to the ceiling they
+are given and overshoot it, so from this run the prompt states 170 and the
+gate enforces 200; the overshoot lands inside the gate and the second call
+is saved. One checker misread was also fixed: a clipped conditional headline
+("Wallabies win and they leapfrog England into 5th") taken as a result
+reported before the game.
+
+Opus 5.5 stays the writer: US$0.086 a story in this run with four length
+revisions, about US$0.06 without them. Sonnet 5.5 at US$0.051 (US$0.03
+without its six) was accurate and stakes-led, and the frugal choice if the
+bill ever matters.
