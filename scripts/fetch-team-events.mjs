@@ -19,6 +19,7 @@
 
 import { mergeNext } from "./fetch-espn-fixtures.mjs";
 import { applyKickoffOverrides, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
+import { applyHostOverrides } from "./host-overrides.mjs";
 
 const TRACKED_NAMES = {
   England: "ENG", France: "FRA", Ireland: "IRE", Italy: "ITA",
@@ -424,8 +425,10 @@ async function main() {
     teamIds,
     // Layer over the previous file so a team the vendor skipped keeps its
     // entry instead of disappearing from the Team page.
-    // Then rebuild any tracked-vs-tracked result that reached only one side.
-    teams: mirrorMissingResults(mergeRefreshed(prev?.teams, fresh)),
+    // Then rebuild any tracked-vs-tracked result that reached only one side,
+    // and put the hand-confirmed hosts over the vendor's home side
+    // (host-overrides.mjs: the 2026 PNC final read Japan "A" in Tokyo).
+    teams: applyHostOverrides(mirrorMissingResults(mergeRefreshed(prev?.teams, fresh))),
   };
   await writeFile("team-events.json", JSON.stringify(out, null, 1) + "\n");
   const counts = Object.entries(out.teams).map(([c, t]) => `${c}:${t.last.length}/${t.next.length}`).join(" ");

@@ -237,6 +237,41 @@ outlet to `scripts/news-sources.mjs` except a person: this repo is public and
 the spine carries publishers' text. The weekly review puts the ready ones to
 Nico.
 
+## Storylines (fixture previews)
+
+`storylines.json` at the root holds a pre-match story for every unplayed
+fixtures.json game with a tracked side kicking off in the next 14 days: a
+headline (≤60 characters) and 4–6 beats (history, last meeting and form,
+what's at stake, team and coaching news, one spice angle), keyed by the
+fixtures.json id, with the `sources` (title + url) it used. Not to be confused
+with `editorial/storylines.json`, the digests' quiet-day backlog.
+`scripts/build-storylines.mjs` builds it as a step of `generate-digests.yml`,
+after the editions (cron 07:00 Sydney time in AEDT, 06:00 in AEST, plus the
+Saturday extras at 19:00 and 23:00 Sat and 04:00 and 09:00 Sun Sydney time in
+AEDT), on the same keys and `DIGEST_WRITER_MODEL` / `DIGEST_CHECKER_MODEL`.
+
+- **Pack only.** The writer sees a fact pack from repo data (fixtures.json,
+  team-events.json + archive, rankings.json, nations.json's log for `rnc-*`)
+  plus news-pool.json items whose title names a team and one search per
+  fixture (`fetchTeamNews`, the digests' widener). League, women's,
+  age-grade and sevens items are dropped; an item over 10 days old is
+  BACKGROUND and may only be told as dated history. The checker fails a
+  BACKGROUND item told as current, an unsourced head-to-head total (the
+  app's meetings list is not complete), an invented quote, and league (the
+  digest checker's own `LEAGUE_CHECK_RULE`). One revision, then the old
+  story stays.
+- **Cost.** Cached by pack hash: nothing is called while a game's facts are
+  unchanged and its story is under 18 hours old; then the search runs and
+  the story is rewritten only if the news list moved. A new result, ranking
+  or kickoff rewrites at once; at most 12 stories a run. About US$0.003–0.006
+  a story on Haiku 5.5, so roughly US$0.01–0.03 a day, ceiling ~US$0.07 a
+  run; the Actions log prints `storylines spend`.
+- **Silent tier.** The step is continue-on-error and the script exits 0
+  (`storylines skipped: …` in the log). The file is written only when a story
+  changes or a game leaves the window; never hand-edit it, fix the input.
+- The app needs a build to show it (a rendering change); the data itself
+  then needs none.
+
 ## Alerts: who gets pinged
 
 Nico does not review ops output; the scheduled **Claude weekly review** does
@@ -318,6 +353,12 @@ side from the side that landed. Two rules it encodes, both easy to break:
   throws when the vendor answers nothing, so a repair placed after it is never
   reached in the exact case it exists for. It also costs zero calls, which
   matters on a 100/day tier.
+
+The vendor's home side isn't always the host either: SportsAPI Pro listed
+Fiji at home for the 2026 PNC final in Tokyo, and the feed has no venue to
+correct it from. `scripts/host-overrides.mjs` holds the hand-confirmed hosts
+(key `"<UTC day> <VENDOR HOME>-<VENDOR AWAY>"`, applied only while the vendor
+still says that), laid over both writers' output after the mirror.
 
 Don't diagnose a missing game from one team's entry, and don't move the mirror
 after the fetch. Both were the 2026-08-23 bug: New Zealand's 22 Aug loss charted

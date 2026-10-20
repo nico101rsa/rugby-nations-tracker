@@ -29,6 +29,7 @@
 // catch-up makes every later run a no-op by itself.
 
 import { fetchEventsByCode, assembleTeams, mergeRefreshed, mirrorMissingResults } from "./fetch-team-events.mjs";
+import { applyHostOverrides } from "./host-overrides.mjs";
 
 const SETTLE_MS = 150 * 60000; // kickoff -> earliest attempt
 const WINDOW_MS = 12 * 3600 * 1000; // kickoff -> last attempt
@@ -177,7 +178,12 @@ async function main() {
   // Order matters: New Zealand's 22 Aug loss was unrecoverable precisely
   // because the vendor's `last` endpoint for team 4227 503'd on every attempt
   // for ten hours, and a repair that ran after the fetch never got reached.
-  const teams = mirrorMissingResults(te.teams);
+  // The hand-confirmed hosts (host-overrides.mjs) ride the same free pass:
+  // a corrected home side is published even when nothing else is due.
+  const hostFixes = [];
+  const teams = applyHostOverrides(mirrorMissingResults(te.teams), {
+    log: (line) => { hostFixes.push(line); console.log(line); },
+  });
   const mirrored = mirroredSince(te.teams, teams);
   if (mirrored.length) console.log(`rebuilt from the opponent's feed: ${mirrored.join(", ")}`);
   const write = (t) =>
@@ -191,7 +197,7 @@ async function main() {
   if (lost.length) console.log(`played but missing from BOTH lists: ${lost.join(", ")}`);
   const due = [...new Set([...waiting, ...lost])].slice(0, MAX_TEAMS);
   if (due.length === 0) {
-    if (mirrored.length) await write(teams);
+    if (mirrored.length || hostFixes.length) await write(teams);
     console.log(
       mirrored.length
         ? "team-events.json written from the opponent's feed — no vendor calls made"
@@ -217,11 +223,11 @@ async function main() {
   } catch (err) {
     // The vendor gave us nothing — but a repair we already made without it
     // must not be thrown away with the failure. Publish, then still go red.
-    if (mirrored.length) await write(teams);
+    if (mirrored.length || hostFixes.length) await write(teams);
     throw err;
   }
 
-  const merged = mirrorMissingResults(mergeRefreshed(teams, fresh));
+  const merged = applyHostOverrides(mirrorMissingResults(mergeRefreshed(teams, fresh)));
   const out = { ...te, updatedAt: new Date().toISOString(), teams: merged };
   await writeFile("team-events.json", JSON.stringify(out, null, 1) + "\n");
 
