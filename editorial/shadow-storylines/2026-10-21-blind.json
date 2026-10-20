@@ -1,0 +1,478 @@
+{
+ "notice": "Blind grading of the storyline briefs, 21 Oct 2026. The versions are the published final stories of the runs named below; the judges saw them labelled A, B and C only, in the shuffled order the key records, and were asked to judge the writing, not the facts. Model output about model output: it decided a brief, not a fact.",
+ "versions": {
+  "opus-preview": "2026-10-21-0751 claude-opus-5-5 (preview brief)",
+  "opus-dry": "2026-10-21-1027 claude-opus-5-5 (dry brief)",
+  "fable-dry": "2026-10-21-1027 claude-fable-5-1 (dry brief)"
+ },
+ "rubric": "hook, voice, specificity, cliche: 1-5 (5 best); overall: 1-10",
+ "key": {
+  "espn-604593": {
+   "game": 1,
+   "label": "Japan v Fiji (Sat 24 Oct 2026)",
+   "A": "opus-preview",
+   "B": "opus-dry",
+   "C": "fable-dry"
+  },
+  "espn-603993": {
+   "game": 2,
+   "label": "Ireland v Argentina (Sat 7 Nov 2026)",
+   "A": "opus-dry",
+   "B": "fable-dry",
+   "C": "opus-preview"
+  },
+  "espn-603994": {
+   "game": 3,
+   "label": "Italy v South Africa (Sat 7 Nov 2026)",
+   "A": "fable-dry",
+   "B": "opus-preview",
+   "C": "opus-dry"
+  },
+  "espn-603995": {
+   "game": 4,
+   "label": "Scotland v New Zealand (Sun 8 Nov 2026)",
+   "A": "opus-preview",
+   "B": "fable-dry",
+   "C": "opus-dry"
+  },
+  "espn-603996": {
+   "game": 5,
+   "label": "Wales v Japan (Sun 8 Nov 2026)",
+   "A": "opus-dry",
+   "B": "opus-preview",
+   "C": "fable-dry"
+  },
+  "espn-603997": {
+   "game": 6,
+   "label": "France v Fiji (Sun 8 Nov 2026)",
+   "A": "fable-dry",
+   "B": "opus-dry",
+   "C": "opus-preview"
+  },
+  "espn-603998": {
+   "game": 7,
+   "label": "England v Australia (Mon 9 Nov 2026)",
+   "A": "opus-preview",
+   "B": "opus-dry",
+   "C": "fable-dry"
+  }
+ },
+ "judges": {
+  "claude-opus-5-5": {
+   "games": [
+    {
+     "game": 1,
+     "A": {
+      "hook": 3,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 4,
+      "note": "Covers everything at wire pitch: the camp line ('worked through systems... sharpening combinations') is press release, and the closing rankings beat is laborious and repeats itself."
+     },
+     "B": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 7,
+      "note": "The headline carries the angle and the first beat lands it in three short sentences; '31 applicants' and the structure quote are well placed, and even the rankings beat has a point ('the loser has further to fall')."
+     },
+     "C": {
+      "hook": 3,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "'Fiji's response was to hire Jake White' is the best line in the game, but the headline only states the fact, the rankings beat comes second and stumbles ('does the same to Japan'), and the quote is wedged into the form beat."
+     }
+    },
+    {
+     "game": 2,
+     "A": {
+      "hook": 3,
+      "voice": 4,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 6,
+      "note": "Rankings-led with a table beat, but 'Close, mostly. Not wins.' is exactly the register wanted, and the headline is the crispest of the three."
+     },
+     "B": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 5,
+      "note": "Competent and plain: a redundant lead, a table beat and form given as two lists; 'Farrell's stated target is the title' is a good dry kicker."
+     },
+     "C": {
+      "hook": 3,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 2,
+      "overall": 4,
+      "note": "Two straight beats of rankings and table before any rugby, then stat lines and journalese ('pressing his case', 'flourishing display'); six beats and no angle beyond the arithmetic."
+     }
+    },
+    {
+     "game": 3,
+     "A": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 3,
+      "overall": 6,
+      "note": "The headline turns the rankings into a paradox, and 'The table says why that is unlikely' and 'Italy's July read...' are nicely dry, but the first beat just restates the headline and two of five beats are numbers."
+     },
+     "B": {
+      "hook": 2,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 2,
+      "overall": 4,
+      "note": "Press-release phrasing ('Top-level international rugby returns', 'on Italian soil'), a hype verb in an overstuffed headline and two table beats; Italy's last win, over England in March, is the one well-chosen detail."
+     },
+     "C": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 5,
+      "note": "Dry in places ('still on zero', 'Neither gets a rest'), but it opens with two beats of table and arithmetic before any rugby, and the Matfield quote is filler."
+     }
+    },
+    {
+     "game": 4,
+     "A": {
+      "hook": 2,
+      "voice": 2,
+      "specificity": 2,
+      "cliche": 1,
+      "overall": 3,
+      "note": "Rating decimals (86.53 or 87.40), 'hit Murrayfield', 'arrive hot', 'injury list keeps mounting', 'shootout', the sponsor's stadium name and a table beat; the Kerr colour is wasted in a cluttered opener."
+     },
+     "B": {
+      "hook": 2,
+      "voice": 3,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Clean and knowledgeable, with the best rugby beat in the game (McKenzie at ten, Marshall's 'niggly at the breakdown'), but the headline is generic and the piece has no angle."
+     },
+     "C": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 7,
+      "note": "The headline finds the angle a Scottish reader cares about, 'arrive warm' is nicely understated and Kerr's haka line is good colour; its Marshall quote ('potentially go to the UK') is clumsy."
+     }
+    },
+    {
+     "game": 5,
+     "A": {
+      "hook": 3,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Clean and exact, with a good Faletau thread ('won his last one against Japan') and a dry sting about Italy; the headline states the angle flatly."
+     },
+     "B": {
+      "hook": 2,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 2,
+      "overall": 4,
+      "note": "Labels the game, pads with 'Fifty-one weeks on' and 'the Brave Blossoms', spends two beats on arithmetic and table, and drops Faletau without the thread that makes him matter."
+     },
+     "C": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 7,
+      "note": "The best headline of the three and the best detail ('no tries in the second'), let down by a clumsy first sentence, a muddled 'Form points the other way' and bare scorelines."
+     }
+    },
+    {
+     "game": 6,
+     "A": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 4,
+      "cliche": 3,
+      "overall": 6,
+      "note": "The most texture (the Gatland front-runner reports, 'He inherits the bottom', eleven tries in Liverpool), dragged down by a dense three-outcome rankings beat."
+     },
+     "B": {
+      "hook": 2,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 4,
+      "overall": 5,
+      "note": "Tight and clean in four beats, but the headline is a label and nothing in it surprises; the Loftus quote does all the colouring."
+     },
+     "C": {
+      "hook": 2,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 2,
+      "overall": 4,
+      "note": "'Fiji have a new man in charge' sets the tone; the Vakatawa thread is the one original idea but is told in stale, hedged terms, and six beats end on arithmetic then a table line."
+     }
+    },
+    {
+     "game": 7,
+     "A": {
+      "hook": 3,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 2,
+      "overall": 4,
+      "note": "Rankings throughout: 'The ranking swap is live', a table beat, a one-line history beat, and a close that brings up fifth place a third time."
+     },
+     "B": {
+      "hook": 3,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Matfield's semi-final verdict placed right after the top-five question is quietly funny, 'conceded 50 and 43' puts the stress in the right place, and the closing callback works; the arithmetic lead and thin history beat are flat."
+     },
+     "C": {
+      "hook": 3,
+      "voice": 4,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 6,
+      "note": "Sets up the paradox well and 'One afternoon in London would do it, on paper at least' is the best line in the game, but a pure table beat drags the back half."
+     }
+    }
+   ],
+   "summary": "With the same facts and quotes on offer, placement decided most games: the winners put a narrative angle in the headline (White starting where Fiji lost a final, Scotland's route past England, Wales looking up at a side they beat) and let one dry line carry it, and the same Matfield or Faletau material read as wit in one version and filler in another. Ranking arithmetic appeared in every version and was the weakest writing everywhere; it survived only when compressed into one framed sentence ('the loser has further to fall') and failed as multi-outcome beats, back-to-back table lines or rating decimals, often straight after a first beat that restated the headline. The recurring tics were wire and press-release phrasing ('sharpening combinations', 'on Italian soil', 'the Brave Blossoms', 'pressing his case', 'Fifty-two weeks after'), and the six-beat versions that covered everything said least."
+  },
+  "claude-sonnet-5-5": {
+   "games": [
+    {
+     "game": 1,
+     "A": {
+      "hook": 2,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 4,
+      "note": "Press-release register ('sharpening combinations', 'billing as the Anniversary Test'), a Name: explainer headline and a closing beat of pure ranking arithmetic; the two-time-champions line is the one well-placed detail."
+     },
+     "B": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 8,
+      "note": "Headline carries the angle in seven words; the 31 applicants and the 'play like Fiji' quote are chosen rather than dumped, and the rankings beat is squeezed into 'the loser has further to fall'."
+     },
+     "C": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "'Fiji's response was to hire Jake White' and 'then the final' have the right dryness, but the headline only describes and 'a Japan defeat does the same to Japan' is a clumsy beat."
+     }
+    },
+    {
+     "game": 2,
+     "A": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 7,
+      "note": "'Close, mostly. Not wins.' is the knowledgeable friend at last, and the headline puts the stake in seven words; the 'table is tight' beat is filler."
+     },
+     "B": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Orderly, with a raised eyebrow in 'Farrell's stated target is the title', but the form beat is a string of scores and the headline has less snap for the same stake."
+     },
+     "C": {
+      "hook": 3,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 4,
+      "note": "Six beats and no spine: 'flourishing display', 'pressing his case' and the Connacht aside are filler, and '6 of 8' / '1 of 6' are arithmetic standing in for a point."
+     }
+    },
+    {
+     "game": 3,
+     "A": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 7,
+      "note": "'Can only lose a place' is a real angle held through the first beat, 'the table says why that is unlikely' is the right dry turn, and the du Preez hamstring is genuine team news; the minus 94 / plus 81 line is table filler."
+     },
+     "B": {
+      "hook": 3,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 5,
+      "note": "Headline crams two stakes in with 'topple', beat two is wire copy ('international rugby returns to...') and beat one repeats the headline; the unused 'last win 23-18 over England in March' is the best detail."
+     },
+     "C": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Tidy, with 'still on zero' and 'neither gets a rest' in the right register, but no single angle and a limp Matfield quote."
+     }
+    },
+    {
+     "game": 4,
+     "A": {
+      "hook": 2,
+      "voice": 2,
+      "specificity": 2,
+      "cliche": 2,
+      "overall": 3,
+      "note": "Wire-service preview: 'hit Murrayfield', 'arrive hot', 'locked on', 'injury list keeps mounting', and a closing beat that quotes rating points to two decimals."
+     },
+     "B": {
+      "hook": 2,
+      "voice": 3,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Generic headline ('another shot') over clean beats: the stakes plus Australia arriving the week after in two sentences, and a McKenzie/Marshall beat with a quote that earns its place ('niggly at the breakdown')."
+     },
+     "C": {
+      "hook": 4,
+      "voice": 3,
+      "specificity": 4,
+      "cliche": 3,
+      "overall": 7,
+      "note": "Headline and opening beat set an angle (the route above England) and hold it; the Kerr beat is garnish, and 'doesn't get much bigger than that' is a cliche in quotation marks."
+     }
+    },
+    {
+     "game": 5,
+     "A": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Competent and compact: the 12th-to-9th climb is well framed and Faletau is a good detail, but the headline states the fact without a sting and the angle isn't pushed."
+     },
+     "B": {
+      "hook": 2,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 4,
+      "note": "Label headline ('a rankings swap in Cardiff'); two beats are arithmetic and a table line, and the squad beat lists names to no purpose ('Faletau misses out' and that is all)."
+     },
+     "C": {
+      "hook": 5,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 8,
+      "note": "Headline carries the whole arc in ten words, Faletau's last Test being against Japan is detail chosen to fit, 'on nothing' is dry; 'no tries in the second' is redundant after a 0-43."
+     }
+    },
+    {
+     "game": 6,
+     "A": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Best details of the game (Fiji below Italy 'only on points difference', eleven tries and 73 points in Liverpool) and a fair voice, but the ranking beat is long arithmetic."
+     },
+     "B": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 4,
+      "overall": 5,
+      "note": "Compact and clean, and 'win by 16 or more and France drop to sixth' does real work, but the register is neutral wire and little is memorable."
+     },
+     "C": {
+      "hook": 2,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 4,
+      "note": "Covers everything and commits to nothing: six beats, 'a new man in charge', records as '6 of 8', a table line; the one fresh thread (Vakatawa) is dropped after a single beat."
+     }
+    },
+    {
+     "game": 7,
+     "A": {
+      "hook": 3,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 4,
+      "note": "'Vault' in the headline is hype and 'the ranking swap is live' is jargon; the last beat says Matfield 'has set out what they need' without saying what, then repeats beat one."
+     },
+     "B": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 5,
+      "overall": 7,
+      "note": "Clean headline, and the Matfield beat (asked what it takes to be top five, predicts no World Cup semi-final) sets the prize against the doubt; 'the other side a win here would take them past' is a neat close; beat four is padding."
+     },
+     "C": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 5,
+      "note": "'One afternoon in London would do it, on paper at least' is the only real joke and the finals-weekend nugget is interesting, but the table beat is dense and 'Next:' closes it like a listing."
+     }
+    }
+   ],
+   "summary": "The stronger versions chose one angle (the stake, the reversal, the pundit doubting the prize), put it in the headline and first beat, and squeezed the rankings arithmetic into one beat; the weaker ones gave every beat equal weight and let table lines, records like '6 of 8', crowd sizes and even rating decimals crowd out the story. Dry voice was rare and usually confined to a single line ('Close, mostly. Not wins.', 'on paper at least'), and the common failure was wire-service register ('arrive hot', 'pressing his case', 'rugby returns to'), which also supplied most of the clichés. Headlines varied most: the best state the angle with a turn, the worst are 'Name: explainer' labels or 'X hit Y' preview-speak."
+  }
+ },
+ "means": {
+  "opus-preview": {
+   "hook": 2.43,
+   "voice": 2,
+   "specificity": 2.86,
+   "cliche": 2.43,
+   "overall": 3.93
+  },
+  "opus-dry": {
+   "hook": 3.36,
+   "voice": 3.57,
+   "specificity": 3.71,
+   "cliche": 3.86,
+   "overall": 6.29
+  },
+  "fable-dry": {
+   "hook": 3.21,
+   "voice": 3.43,
+   "specificity": 3.71,
+   "cliche": 3.64,
+   "overall": 6.14
+  }
+ },
+ "gamesWon": {
+  "opus-preview": 0,
+  "opus-dry": 4,
+  "fable-dry": 3
+ }
+}
