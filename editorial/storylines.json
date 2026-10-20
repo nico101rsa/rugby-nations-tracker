@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-20T20:56:48.571Z",
+  "updatedAt": "2026-10-20T22:47:44.695Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 205,
+  "count": 208,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -2932,7 +2932,7 @@
         }
       ],
       "firstSeen": "2026-10-13",
-      "lastSeen": "2026-10-20",
+      "lastSeen": "2026-10-21",
       "uses": 0
     },
     {
@@ -3388,12 +3388,17 @@
     },
     {
       "id": "taulupe-faletau-s-return-ctkkpt",
-      "subject": "Taulupe Faletau's return to fitness for Wales ahead of November's Nations Championship",
+      "subject": "Taulupe Faletau's exclusion from Wales' Nations Championship squad and future Test return",
       "teams": [
         391
       ],
       "resolution": "until Faletau returns to competitive action for club or country",
       "sources": [
+        {
+          "title": "Wales squad: Taulupe Faletau and PREM stars snubbed as Steve Tandy includes three uncapped players for Nations Championship",
+          "link": "https://www.planetrugby.com/news/wales-squad-taulupe-faletau-and-prem-stars-snubbed-as-steve-tandy-includes-three-uncapped-players-for-nations-championship",
+          "feedName": "Planet Rugby"
+        },
         {
           "title": "Uncapped Dragons get Wales Nations Championship call",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cjn5vqq974epo?at_medium=RSS&at_campaign=rss",
@@ -3402,11 +3407,6 @@
         {
           "title": "Wales great Faletau still has drive for fourth World Cup",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c62l4xggpnv4o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Wales centre Thomas to miss Nations Championship restart",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmx2dqn95levo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
         }
       ],
@@ -4245,6 +4245,11 @@
       "resolution": "until the IRFU announces the Ireland squad for the upcoming autumn series",
       "sources": [
         {
+          "title": "Farrell set to name Ireland squad as he targets Nations Championship title",
+          "link": "https://www.the42.ie/ireland-farrell-squad-2-7199131-Oct2026/",
+          "feedName": "The42"
+        },
+        {
           "title": "Prendergast's 'massive moment' lifts Leinster, but Conan's shoulder injury a concern",
           "link": "https://www.the42.ie/leo-cullen-leinster-clermont-7196592-Oct2026/",
           "feedName": "The42"
@@ -4628,7 +4633,7 @@
     },
     {
       "id": "faf-de-klerk-s-1gy6s3l",
-      "subject": "Faf de Klerk's ankle injury scans and recovery timeline",
+      "subject": "Faf de Klerk's ankle injury scans following his match for the Cheetahs",
       "teams": [
         467
       ],
@@ -4673,6 +4678,65 @@
         {
           "title": "Bok Women elect new skipper",
           "link": "https://www.sarugbymag.co.za/bok-women-elect-new-skipper/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-21",
+      "lastSeen": "2026-10-21",
+      "uses": 0
+    },
+    {
+      "id": "kwagga-smith-s-move-1ud5nz4",
+      "subject": "Kwagga Smith's move to the Bulls following his contract termination in Japan",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Bulls officially announce the signing of Kwagga Smith",
+      "sources": [
+        {
+          "title": "Springboks star's contract 'terminated' at Japanese club amid reports of South African return",
+          "link": "https://www.planetrugby.com/news/springboks-kwagga-smith-leaves-japanese-club-amid-sa-return-rumours",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Kwagga clears path for Bulls move",
+          "link": "https://www.sarugbymag.co.za/kwagga-clears-path-bulls-move/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-21",
+      "lastSeen": "2026-10-21",
+      "uses": 0
+    },
+    {
+      "id": "the-south-american-joint-3roaqi",
+      "subject": "The South American joint bid by Argentina, Uruguay, Chile and Brazil to host the 2035 Rugby World Cup",
+      "teams": [
+        460
+      ],
+      "resolution": "until World Rugby selects the host for the 2035 Rugby World Cup",
+      "sources": [
+        {
+          "title": "Argentina, Uruguay, Chile and Brazil submit joint RWC bid",
+          "link": "https://www.rte.ie/sport/rugby/2026/1006/1594159-argentina-uruguay-chile-and-brazil-submit-joint-rwc-bid/",
+          "feedName": "RTÉ Sport Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-21",
+      "lastSeen": "2026-10-21",
+      "uses": 0
+    },
+    {
+      "id": "the-stormers-appeal-against-1vo494x",
+      "subject": "The Stormers' appeal against JJ Kotzé's EPCR disciplinary suspension",
+      "teams": [
+        467
+      ],
+      "resolution": "until EPCR issues its final decision on the Stormers' appeal regarding JJ Kotzé",
+      "sources": [
+        {
+          "title": "Stormers challenge Kotzé sanction",
+          "link": "https://www.sarugbymag.co.za/stormers-challenge-kotze-sanction/",
           "feedName": "SA Rugby Magazine"
         }
       ],
