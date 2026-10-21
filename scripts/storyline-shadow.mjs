@@ -116,7 +116,10 @@ export function foldTrace(trace) {
 
 // One writer on one fixture: production's writeStory with that writer and the
 // run's checker, traced and timed.
+// A writer may carry its own brief (`voice`, from expandVoices) so one run can
+// set two briefs side by side on the same packs; the run's voice is the fallback.
 export async function shadowStory({ writer, checker, pack, packText, voice = STORYLINE_DEFAULT_VOICE, now = () => Date.now() }) {
+  const v = writer.voice ?? voice;
   const w = writer.make();
   const c = checker.make();
   const trace = [];
@@ -124,7 +127,7 @@ export async function shadowStory({ writer, checker, pack, packText, voice = STO
   let final = null;
   let error = null;
   try {
-    const s = await writeStory({ writer: w.call, checker: c.call }, pack, packText, { trace, voice });
+    const s = await writeStory({ writer: w.call, checker: c.call }, pack, packText, { trace, voice: v });
     final = { headline: s.headline, beats: s.beats, sources: s.sources, revised: s.revised };
   } catch (e) {
     error = String(e?.message ?? e).slice(0, 300);
@@ -145,6 +148,7 @@ export async function shadowStory({ writer, checker, pack, packText, voice = STO
   const checkerCostUSD = round(cost(ct, checker.price));
   return {
     writer: writer.id,
+    voice: v,
     fixture: pack.fixture.id,
     ok: !!final,
     error,
@@ -154,6 +158,15 @@ export async function shadowStory({ writer, checker, pack, packText, voice = STO
     usage: { writerCalls: wt.calls, writerInput: wt.input, writerOutput: wt.output, writerCostUSD, checkerCalls: ct.calls, checkerCostUSD },
     costUSD: round(writerCostUSD + checkerCostUSD),
   };
+}
+
+// writers × voices: with one voice the writers are returned as they are (the
+// run's voice applies); with several, each writer is copied once per voice,
+// its id suffixed "[voice]" so the totals and the record keep them apart.
+export function expandVoices(writers, voices) {
+  const list = (voices ?? []).filter(Boolean);
+  if (list.length <= 1) return writers.map((w) => (list[0] ? { ...w, voice: list[0] } : w));
+  return list.flatMap((voice) => writers.map((w) => ({ ...w, id: `${w.id} [${voice}]`, voice })));
 }
 
 // Every writer on every fixture, fixture by fixture (the writers of one
@@ -320,9 +333,10 @@ export async function main(argv = process.argv) {
   const cap = Number(arg("--cap", argv)) || DEFAULT_CAP_USD;
   const only = arg("--fixture", argv);
   const outDir = arg("--out", argv) ?? OUT_DIR;
-  const voiceArg = arg("--voice", argv);
-  if (voiceArg && !VOICES.includes(voiceArg)) throw new Error(`--voice must be one of ${VOICES.join(", ")}`);
-  const voice = voiceArg ?? STORYLINE_DEFAULT_VOICE;
+  // One brief, or a comma-separated list to set briefs side by side.
+  const voices = (arg("--voice", argv) ?? STORYLINE_DEFAULT_VOICE).split(",").map((s) => s.trim()).filter(Boolean);
+  for (const v of voices) if (!VOICES.includes(v)) throw new Error(`--voice must be one of ${VOICES.join(", ")}`);
+  const voice = voices.join(",");
 
   const geminiKey = process.env.GEMINI_API_KEY || null;
   const anthropicKey = process.env.ANTHROPIC_API_KEY || null;
@@ -331,7 +345,7 @@ export async function main(argv = process.argv) {
     const { default: Anthropic } = await import("@anthropic-ai/sdk");
     client = new Anthropic({ timeout: REQUEST_TIMEOUT_MS });
   }
-  const writers = writerIds.map((id) => resolveWriter(id, { client, geminiKey }));
+  const writers = expandVoices(writerIds.map((id) => resolveWriter(id, { client, geminiKey })), voices);
   for (const w of writers) if (w.error) console.log(`writer ${w.id}: not run — ${w.error}`);
 
   // Production's checker, whatever the variables say today.
@@ -371,7 +385,7 @@ export async function main(argv = process.argv) {
     console.log(`  ${fixture.home.code} v ${fixture.away.code}: ${pack.news.length} news items (${pack.news.filter((n) => !n.background).length} current), ${bodies.length} article bodies, prompt ${packText.length} chars`);
   }
 
-  const { results, skipped, spentUSD } = await runShadow({ packs, writers, checker, voice, cap });
+  const { results, skipped, spentUSD } = await runShadow({ packs, writers, checker, voice: voices[0], cap });
   const usable = writers.filter((w) => !w.error);
   const totals = totalsOf(results, usable);
   const doc = {

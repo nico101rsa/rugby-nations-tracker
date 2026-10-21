@@ -1,0 +1,444 @@
+{
+ "notice": "A blind grading of the same seven fixtures written under two briefs (dry and dry2, both Claude Opus 5.5, record 2026-10-21-2055) by two model judges. Judges saw versions labelled A and B in a shuffled order per game, with no brief named. Scores are the judges' opinions of the writing, not fact checks; the judges are the writer's relatives and may favour its prose.",
+ "versions": {
+  "dry": "2026-10-21-2055 claude-opus-5-5 [dry]",
+  "dry2": "2026-10-21-2055 claude-opus-5-5 [dry2]"
+ },
+ "rubric": "hook, voice, specificity, cliche: 1-5 (5 best); overall: 1-10; better: the judge's pick per game",
+ "key": {
+  "espn-604593": {
+   "game": 1,
+   "label": "Japan v Fiji (Sat 24 Oct 2026)",
+   "A": "dry2",
+   "B": "dry"
+  },
+  "espn-603993": {
+   "game": 2,
+   "label": "Ireland v Argentina (Sat 7 Nov 2026)",
+   "A": "dry2",
+   "B": "dry"
+  },
+  "espn-603994": {
+   "game": 3,
+   "label": "Italy v South Africa (Sat 7 Nov 2026)",
+   "A": "dry",
+   "B": "dry2"
+  },
+  "espn-603995": {
+   "game": 4,
+   "label": "Scotland v New Zealand (Sun 8 Nov 2026)",
+   "A": "dry",
+   "B": "dry2"
+  },
+  "espn-603996": {
+   "game": 5,
+   "label": "Wales v Japan (Sun 8 Nov 2026)",
+   "A": "dry",
+   "B": "dry2"
+  },
+  "espn-603997": {
+   "game": 6,
+   "label": "France v Fiji (Sun 8 Nov 2026)",
+   "A": "dry",
+   "B": "dry2"
+  },
+  "espn-603998": {
+   "game": 7,
+   "label": "England v Australia (Mon 9 Nov 2026)",
+   "A": "dry2",
+   "B": "dry"
+  }
+ },
+ "judges": {
+  "claude-opus-5-5": {
+   "games": [
+    {
+     "game": 1,
+     "A": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 7,
+      "note": "Best is the flair-versus-discipline pairing ('sees a different priority') and the 'fresh tour of the old problems' close; worst is an opening sentence of appointments-desk detail (31 applicants, the interim coach's name) and a knotted rankings sentence before the payoff."
+     },
+     "B": {
+      "hook": 4,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 5,
+      "note": "Best is the opening's 'same opponent in the same place' set-up; worst is a whole second beat of rankings permutations that states the same swap twice, followed by flat 'says... says' quotes and an itinerary for an ending."
+     },
+     "better": "A",
+     "winner": "dry2"
+    },
+    {
+     "game": 2,
+     "A": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 8,
+      "note": "Best is the close, 'Argentina have become fluent in that kind of defeat. In Dublin it would not be enough', which pays off margins chosen for the angle; worst is the second beat's squad-announcement injury bulletin, straight press-release register."
+     },
+     "B": {
+      "hook": 2,
+      "voice": 2,
+      "specificity": 2,
+      "cliche": 2,
+      "overall": 4,
+      "note": "Best is 'close every time and won none of them'; worst is the wire-preview shape around it: a clunky label headline, a second arithmetic line, Ireland's results with a six-of-eight count, stock team news and an itinerary-and-table ending that never lands."
+     },
+     "better": "A",
+     "winner": "dry2"
+    },
+    {
+     "game": 3,
+     "A": {
+      "hook": 5,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 7,
+      "note": "Best is the hook, the Perth headline plus 'first in the world and first in the table, and may not look it'; worst is the closing fixture list, which drops the angle at the last line, with a clunky Matfield paraphrase on the way."
+     },
+     "B": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 5,
+      "overall": 8,
+      "note": "Best is the closer, 'In Turin, a margin is worth more than a lesson', which ties the experiments angle to points difference; worst is a plain expository first beat that tells where it could tease."
+     },
+     "better": "B",
+     "winner": "dry2"
+    },
+    {
+     "game": 4,
+     "A": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 2,
+      "overall": 5,
+      "note": "Best is Marshall's 'niggly at the breakdown' and 'Their own year has been loud'; worst is a label headline built on stock 'front-foot form', a confusing defeats-yet-unbeaten beat and an ending of rankings arithmetic plus itinerary."
+     },
+     "B": {
+      "hook": 5,
+      "voice": 5,
+      "specificity": 5,
+      "cliche": 4,
+      "overall": 9,
+      "note": "Best is the chain from Marshall's 'static' to 'Scotland do not really do static... and conceded 40 and 38 doing it', every detail serving the headline; worst is the stock 'ran Australia off the park'."
+     },
+     "better": "B",
+     "winner": "dry2"
+    },
+    {
+     "game": 5,
+     "A": {
+      "hook": 3,
+      "voice": 2,
+      "specificity": 2,
+      "cliche": 2,
+      "overall": 4,
+      "note": "Best is the Faletau detail that his last cap came against Japan; worst is a pure arithmetic second beat, press-conference team news ('a legend of our game') and an itinerary ending, all in wire register."
+     },
+     "B": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 6,
+      "note": "Best is Japan's 63 and 57 set against Wales scoring 'no tries at all', with the rankings held to one line; worst is a team-news beat that lists three uncapped names and drifts off the reversal angle."
+     },
+     "better": "B",
+     "winner": "dry2"
+    },
+    {
+     "game": 6,
+     "A": {
+      "hook": 2,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 2,
+      "overall": 4,
+      "note": "Best is 'pointless after three games'; worst is the label headline and press-release opener, a three-sentence permutations beat and the stock 'It gets no gentler' ahead of an itinerary."
+     },
+     "B": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 7,
+      "note": "Best is 'going to surprise people' answered by 'The last surprise came in July: 8–73 against England', dry and earned; worst is an ending that bolts the chairman's flair line onto travel plans, so the irony is there but the line doesn't quite land."
+     },
+     "better": "B",
+     "winner": "dry2"
+    },
+    {
+     "game": 7,
+     "A": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 5,
+      "note": "Best is the tight callback to Scotland at the end and the well-chosen 'leaked two tries a game' detail; worst is that the angle itself is a rankings permutation, so the voice is clean but never witty."
+     },
+     "B": {
+      "hook": 3,
+      "voice": 2,
+      "specificity": 2,
+      "cliche": 2,
+      "overall": 4,
+      "note": "Best is 'England's year turned in July'; worst is two beats of rankings and table arithmetic bookending a results list, a one-of-eight count and the borrowed cliché 'does not bode well'."
+     },
+     "better": "A",
+     "winner": "dry2"
+    }
+   ],
+   "summary": "The stronger versions find one angle a fan would actually say aloud (McKenzie's easy Bledisloe, Argentina's habit of losing by seven, the Boks experimenting in Turin), choose each detail to serve it, and end on a line that turns it, such as 'fluent in that kind of defeat' or 'a margin is worth more than a lesson'. The weaker ones read as wire previews: label headlines, whole beats of rankings permutations, results lists and press-conference team news, closing on a travel itinerary. They should cut the arithmetic to one line with a point, keep only the details that serve the angle, and swap the itinerary ending for a line that pays off the headline."
+  },
+  "claude-sonnet-5-5": {
+   "games": [
+    {
+     "game": 1,
+     "A": {
+      "hook": 4,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Best: the opening ties the new coach to the lost final at Prince Chichibu, and the closing 'debut win or a fresh tour of the old problems' at least tries to land; worst: press-release phrasing ('sees a different priority') and a tangled ranking sentence ('ranked below their hosts as well')."
+     },
+     "B": {
+      "hook": 4,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 5,
+      "note": "Best: 'His first game is the same opponent in the same place' is the cleanest statement of the angle in the pair; worst: a whole beat of near-duplicate ranking arithmetic ('Lose, and it is Fiji who fall behind Wales and Italy') and a flat fixtures-list ending."
+     },
+     "better": "A",
+     "winner": "dry2"
+    },
+    {
+     "game": 2,
+     "A": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 7,
+      "note": "Best: the close, 'fluent in that kind of defeat' then 'In Dublin it would not be enough', pays off the near-miss angle in two dry lines; worst: the beat-two sentence bundling the New Zealand defeat, three home fixtures, Doris and Conan's shoulder reads like a team-news bulletin."
+     },
+     "B": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 4,
+      "note": "Best: 'close every time and won none of them' is a dry, exact summary; worst: five beats of scorelines, injuries and table position with no angle held to the end, closing on Ireland level on points with Scotland."
+     },
+     "better": "A",
+     "winner": "dry2"
+    },
+    {
+     "game": 3,
+     "A": {
+      "hook": 5,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Best: the Perth headline and the 'first in the world and first in the table, and may not look it' opening have a real point of view; worst: once the angle is made the piece drifts through a bland Matfield quote and ends on a fixtures line that does not land."
+     },
+     "B": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 5,
+      "overall": 7,
+      "note": "Best: the last line, 'In Turin, a margin is worth more than a lesson', welds the experiments angle to the points-difference arithmetic in one dry line; worst: the headline takes a beat to decode and the England-win sentence is bolted onto the ranking line."
+     },
+     "better": "B",
+     "winner": "dry2"
+    },
+    {
+     "game": 4,
+     "A": {
+      "hook": 2,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 4,
+      "note": "Best: Marshall's 'perfect storm for DMac' quote and the dry 'Their own year has been loud'; worst: a label headline, a crowded opening beat and a scoreline list that never connects the wet-weather warning to Scotland's style."
+     },
+     "B": {
+      "hook": 5,
+      "voice": 4,
+      "specificity": 5,
+      "cliche": 5,
+      "overall": 8,
+      "note": "Best: 'Scotland do not really do static' turns a stats beat into a point and the closing Australia callback pays off the headline; worst: hard to fault, though 'ran Australia off the park' is the one stock phrase."
+     },
+     "better": "B",
+     "winner": "dry2"
+    },
+    {
+     "game": 5,
+     "A": {
+      "hook": 4,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 5,
+      "note": "Best: the Faletau detail, last capped against Japan, gives the squad beat a thread back to the angle; worst: a stand-alone rankings beat ('lifts them to 9th and drops Japan to 12th at best') and a bare 'Japan go to England' ending."
+     },
+     "B": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Best: Japan's 63 and 57 set against Wales scoring no tries, with the single ranking line placed where it has a point; worst: the 'any kinder' close is a stock tough-run-in line and the Faletau beat is mostly names and caps."
+     },
+     "better": "B",
+     "winner": "dry2"
+    },
+    {
+     "game": 6,
+     "A": {
+      "hook": 2,
+      "voice": 2,
+      "specificity": 3,
+      "cliche": 2,
+      "overall": 3,
+      "note": "Best: 'A France win moves neither side' is the one plain, dry line; worst: a label headline, three beats of scorelines and ranking arithmetic, and a tic-plus-fixtures close ('It gets no gentler')."
+     },
+     "B": {
+      "hook": 4,
+      "voice": 4,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Best: 'The last surprise came in July: 8-73 against England' is exactly the dry wit the brief asks for; worst: the ending splits between the South Africa link and a pasted chairman quote, so it trails off."
+     },
+     "better": "B",
+     "winner": "dry2"
+    },
+    {
+     "game": 7,
+     "A": {
+      "hook": 4,
+      "voice": 3,
+      "specificity": 4,
+      "cliche": 4,
+      "overall": 6,
+      "note": "Best: the headline and last line bookend one ranking angle, with Scotland as the other side Australia would climb past; worst: the Dan Cole sentence is wire-service register and the whole piece is more bookkeeping than wit."
+     },
+     "B": {
+      "hook": 3,
+      "voice": 3,
+      "specificity": 3,
+      "cliche": 3,
+      "overall": 5,
+      "note": "Best: 'England's year turned in July' gives the middle an arc; worst: a points-and-positions table beat, a stock 'does not bode well' quote and a clunky close on 'the side caught between these two in the rankings'."
+     },
+     "better": "A",
+     "winner": "dry2"
+    }
+   ],
+   "summary": "The stronger versions choose one angle and hold it to a closing line that pays it off ('Scotland do not really do static', 'fluent in that kind of defeat', 'a margin is worth more than a lesson'), keep the rankings to one plain sentence and let a dry aside carry the voice. The weaker ones run the same facts as a bulletin: label headlines, a beat or two of scorelines and ranking arithmetic, injury news in wire-service register, and a last beat that is only a fixtures list or a stock tough-run-in line. They should pick the angle before the facts, cut any beat that is only numbers or logistics, and end on the point rather than the next game."
+  }
+ },
+ "means": {
+  "dry": {
+   "hook": 3.21,
+   "voice": 2.79,
+   "specificity": 2.93,
+   "cliche": 2.71,
+   "overall": 4.64
+  },
+  "dry2": {
+   "hook": 4,
+   "voice": 3.79,
+   "specificity": 3.93,
+   "cliche": 4.07,
+   "overall": 6.86
+  }
+ },
+ "gamesWon": {
+  "dry": 0,
+  "dry2": 14,
+  "tie": 0
+ },
+ "perGame": [
+  {
+   "game": 1,
+   "label": "Japan v Fiji (Sat 24 Oct 2026)",
+   "winners": [
+    "dry2",
+    "dry2"
+   ],
+   "agree": true
+  },
+  {
+   "game": 2,
+   "label": "Ireland v Argentina (Sat 7 Nov 2026)",
+   "winners": [
+    "dry2",
+    "dry2"
+   ],
+   "agree": true
+  },
+  {
+   "game": 3,
+   "label": "Italy v South Africa (Sat 7 Nov 2026)",
+   "winners": [
+    "dry2",
+    "dry2"
+   ],
+   "agree": true
+  },
+  {
+   "game": 4,
+   "label": "Scotland v New Zealand (Sun 8 Nov 2026)",
+   "winners": [
+    "dry2",
+    "dry2"
+   ],
+   "agree": true
+  },
+  {
+   "game": 5,
+   "label": "Wales v Japan (Sun 8 Nov 2026)",
+   "winners": [
+    "dry2",
+    "dry2"
+   ],
+   "agree": true
+  },
+  {
+   "game": 6,
+   "label": "France v Fiji (Sun 8 Nov 2026)",
+   "winners": [
+    "dry2",
+    "dry2"
+   ],
+   "agree": true
+  },
+  {
+   "game": 7,
+   "label": "England v Australia (Mon 9 Nov 2026)",
+   "winners": [
+    "dry2",
+    "dry2"
+   ],
+   "agree": true
+  }
+ ]
+}

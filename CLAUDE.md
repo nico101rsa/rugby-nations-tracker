@@ -264,7 +264,7 @@ with `editorial/storylines.json`, the digests' quiet-day backlog.
 `scripts/build-storylines.mjs` builds it as a step of `generate-digests.yml`,
 after the editions (cron 07:00 Sydney time in AEDT, 06:00 in AEST, plus the
 Saturday extras at 19:00 and 23:00 Sat and 04:00 and 09:00 Sun Sydney time in
-AEDT), on the same keys. The writer is **Opus 5.5 on the "dry" brief**
+AEDT), on the same keys. The writer is **Opus 5.5 on the "dry2" brief**
 (both since the shadow runs of 21 Oct 2026, below; the repository variables
 `STORYLINE_WRITER_MODEL` and `STORYLINE_VOICE=preview` override them for
 this step alone); the checker is the digests' (`DIGEST_CHECKER_MODEL`,
@@ -325,8 +325,10 @@ Haiku 5.5).
   fixture, cap, voice) or, from a cloud session that can't dispatch, by
   pushing a change to the harness on a `claude/*` branch with the inputs as
   commit trailers (`Shadow-Models:`, `Shadow-Days:`, `Shadow-Cap:`,
-  `Shadow-Fixture:`, `Shadow-Voice:`); the workflow runs once and commits
-  the records to that branch. The dispatch is capped at US$8 by default; a
+  `Shadow-Fixture:`, `Shadow-Voice:`, which takes a comma list to set briefs
+  side by side on the same packs); the workflow runs once and commits the
+  records to that branch, and a push that edits `build-storylines.mjs` runs
+  it too. The dispatch is capped at US$8 by default; a
   push without trailers runs one writer (Opus 5.5) under US$1, a smoke run
   for the edit, because any push touching the harness runs it (the #173
   push did, on all five writers: US$2.23). The markdown record lists every
@@ -343,10 +345,17 @@ Haiku 5.5).
   beats). Two blind judges scored the same seven games three ways
   (`editorial/shadow-storylines/README.md`, the blind round): the preview
   brief 3.9/10, Opus on the dry brief 6.3, Fable on it 6.1, agreeing on the
-  winner in all seven games; the preview won none. The dry brief is the
-  default, a story written under the other brief is rewritten at the next
-  run, and the same harness grades a new brief in fifteen minutes: write
-  it as a third voice, push with `Shadow-Voice:`, and judge blind.
+  winner in all seven games; the preview won none. The same evening
+  `dry2`, the dry brief with the judges' three notes ruled out (the angle
+  held from the headline to the last line; a first beat that adds a fact
+  rather than restating the headline; one outcome in one sentence inside a
+  rugby beat, never a beat of arithmetic; scores with the point they make;
+  a name only with the thing that makes it matter; three to four beats; an
+  ending that lands), beat dry 14 verdicts to 0 on the same seven packs,
+  6.9 to 4.6 (`2026-10-21-blind2.json`). **dry2 is the default**; a story
+  written under another brief is rewritten at the next run, and the same
+  harness grades a new brief in fifteen minutes: write it as a fourth
+  voice, push with `Shadow-Voice: dry2,<new>`, and judge blind.
 - **Cost.** Cached by pack hash: nothing is called while a game's facts are
   unchanged and its story is under 18 hours old; then the search runs and
   the story is rewritten only if the news list moved. A new result, ranking

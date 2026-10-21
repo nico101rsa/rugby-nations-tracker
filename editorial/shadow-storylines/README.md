@@ -131,3 +131,32 @@ was a real catch: the checker failed a headline calling Fiji "winless" in
 2026 (they beat Canada 45–29 on 12 September), and the rewrite passed. This
 was production for a morning; the blind round above replaced the brief the
 same day, keeping the writer, the gate and the checker.
+
+## The second blind round (21 Oct, evening): dry against dry2
+
+The judges' three notes on the dry stories became the `dry2` brief: the
+angle held from the headline to the last line, a first beat that carries a
+fact the headline did not give, one outcome in one sentence inside a rugby
+beat, scores with the point they make, a name only with the thing that makes
+it matter, three to four beats, an ending that lands. The harness then wrote
+both briefs on Opus 5.5 from the same seven packs (`2026-10-21-2055`: 14
+stories, US$1.01; dry 7 of 7 first time, dry2 7 of 7 with four length
+revisions, a 62-character headline among them), and the same two judges
+scored each pair blind, A and B shuffled per game (`2026-10-21-blind2.json`).
+
+| Version | Hook | Voice | Specificity | Cliché | Overall /10 | Verdicts won (of 14) |
+|---|---|---|---|---|---|---|
+| Opus 5.5, dry brief | 3.2 | 2.8 | 2.9 | 2.7 | 4.6 | 0 |
+| Opus 5.5, dry2 brief | 4.0 | 3.8 | 3.9 | 4.1 | 6.9 | 14 |
+
+Both judges picked dry2 in all seven games. What they praised is what the
+brief asked for: an angle a fan would say aloud, every detail chosen to serve
+it, and a last line that turns it ("Scotland do not really do static",
+"fluent in that kind of defeat", "a margin is worth more than a lesson").
+What they still marked down in dry2: an opening beat of appointments-desk
+detail, a squad-news sentence in press-release register, an ending that bolts
+a quote onto travel plans. **Production runs dry2 on Opus 5.5** from the
+merge; a story written under dry is rewritten at the next run. The dry
+stories scored 6.3 in the morning round and 4.6 here because a judge scores
+against the other version on the page, not because the stories got worse.
+Same caveat as before: the judges are the writer's relatives.
