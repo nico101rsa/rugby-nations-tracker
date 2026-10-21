@@ -485,7 +485,7 @@ export function streakText(streak) {
 // repository variable STORYLINE_VOICE picks the other, and the shadow
 // harness takes --voice.
 export const VOICES = ["preview", "dry", "dry2"];
-export const STORYLINE_DEFAULT_VOICE = "dry";
+export const STORYLINE_DEFAULT_VOICE = "dry2";
 
 // The shape and tone of each brief's approved story, with its facts swapped
 // for placeholders. The approved preview was about Japan v Fiji itself, so

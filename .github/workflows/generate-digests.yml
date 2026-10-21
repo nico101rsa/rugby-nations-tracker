@@ -94,7 +94,8 @@ jobs:
           DIGEST_WRITER_MODEL: ${{ vars.DIGEST_WRITER_MODEL }}
           DIGEST_CHECKER_MODEL: ${{ vars.DIGEST_CHECKER_MODEL }}
           STORYLINE_WRITER_MODEL: ${{ vars.STORYLINE_WRITER_MODEL }}
-          # The brief: preview (the checklist) or dry (one angle, dry wit).
+          # The brief: preview (the checklist), dry (one angle, dry wit) or dry2
+          # (dry with the blind round's notes ruled out; production since 21 Oct).
           # Unset, the script's default applies.
           STORYLINE_VOICE: ${{ vars.STORYLINE_VOICE }}
         run: |
