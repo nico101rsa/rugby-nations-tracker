@@ -847,6 +847,21 @@ export function storylinesFile(stories, now) {
   return { schemaVersion: SCHEMA_VERSION, updatedAt: new Date(now).toISOString(), stories };
 }
 
+// The search widener's queries for one fixture. The first finds the week's
+// news (camp reports, squads, results); the second finds previews, which is
+// where journalists put the colour — the shared history of the two coaches,
+// a head-to-head a reader can be told, a milestone. Without it, Saturday's
+// story on 21 Oct 2026 could not say that Eddie Jones was Jake White's
+// technical adviser on the 2007 World Cup-winning Springboks: the writer is
+// pack-only, and nothing in the pack said so.
+export const fixtureQueries = (f) => [`${f.home.name} ${f.away.name}`, `${f.home.name} v ${f.away.name} preview`];
+
+// Both queries, one list; newsFor dedupes by link and title.
+export async function widenFixture(f, search = fetchTeamNews) {
+  const lists = await Promise.all(fixtureQueries(f).map((q) => search(q).catch(() => [])));
+  return lists.flat();
+}
+
 // Article text for the top CURRENT items, fetched only for a story being written.
 export async function fetchBodies(news) {
   const out = [];
@@ -956,7 +971,7 @@ export async function main({ dryRun = false, only = null, force = false, days = 
 
   const { stories, report } = await buildStorylines({
     fixtures, teamEvents, archive, rankings, nations, pool, previous, now, days, voice,
-    widen: (f) => fetchTeamNews(`${f.home.name} ${f.away.name}`),
+    widen: widenFixture,
     bodies: fetchBodies,
     write,
   });
