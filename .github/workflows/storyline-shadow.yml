@@ -21,7 +21,7 @@ on:
         description: "Spend cap for the run, US$"
         default: "8"
       voice:
-        description: "Writer brief: preview (the checklist) or dry (one angle, dry wit); blank for production's"
+        description: "Writer brief: preview, dry or dry2, or a comma-separated list to set briefs side by side; blank for production's"
         default: ""
   # A push to a claude/* branch that touches the harness runs it once on that
   # branch — a smoke run for the edit, and the only lever a cloud Claude
@@ -39,6 +39,7 @@ on:
     branches: ["claude/**"]
     paths:
       - "scripts/storyline-shadow.mjs"
+      - "scripts/build-storylines.mjs"
       - ".github/workflows/storyline-shadow.yml"
 
 concurrency:

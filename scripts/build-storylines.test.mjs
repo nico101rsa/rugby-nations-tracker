@@ -472,3 +472,15 @@ test("window: a projected finals pairing gets no story; a listed final does", ()
   const listed = fixture({ id: "espn-777", date: "2026-10-28T16:40:00Z" });
   assert.deepEqual(upcomingFixtures([projected, listed], NOW).map((f) => f.id), ["espn-777"]);
 });
+
+test("dry2: the brief that answers the blind round's notes; the rating-points gate covers every non-preview voice", () => {
+  const p = buildWriterPrompt("PACK", { voice: "dry2" });
+  assert.match(p, /never restates the headline/);
+  assert.match(p, /ONE outcome/);
+  assert.match(p, /Brave Blossoms/);
+  assert.doesNotMatch(buildWriterPrompt("PACK", { voice: "dry" }), /never restates the headline/);
+  const story = { headline: "A", beats: ["Rated 85.56 going in.", "b", "c"], sources: [1] };
+  assert.equal(validateStory(story, [], { voice: "dry2" }).ok, false);
+  assert.equal(validateStory(story, [], { voice: "dry" }).ok, false);
+  assert.equal(validateStory(story, [], { voice: "preview" }).ok, true);
+});

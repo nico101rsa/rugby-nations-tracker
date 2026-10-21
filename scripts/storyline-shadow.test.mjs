@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  sydneyStamp, worstCaseUSD, resolveWriter, foldTrace, shadowStory, runShadow, totalsOf, packRecord, renderMarkdown, NOTICE,
+  sydneyStamp, worstCaseUSD, resolveWriter, foldTrace, shadowStory, runShadow, totalsOf, packRecord, renderMarkdown, NOTICE, expandVoices,
 } from "./storyline-shadow.mjs";
 import { MAX_TOKENS, createTally } from "./model-router.mjs";
 import { buildPack, renderPack } from "./build-storylines.mjs";
@@ -155,4 +155,26 @@ test("totalsOf, packRecord and renderMarkdown: the record a reader sees", async 
   assert.match(md, /\*\*White's Fiji debut in Tokyo\*\*/);
   assert.match(md, /First draft headline: \*\*Fiji own this fixture 17-5\*\*/);
   assert.match(md, /"17-5": no item states a head-to-head total \(fix: cut\)/);
+});
+
+test("expandVoices: one voice tags the writers, several copy each writer per voice with a suffixed id", () => {
+  const ws = [{ id: "opus", price: { in: 4, out: 20 } }, { id: "haiku", price: { in: 0.1, out: 0.5 } }];
+  assert.deepEqual(expandVoices(ws, ["dry"]).map((w) => [w.id, w.voice]), [["opus", "dry"], ["haiku", "dry"]]);
+  assert.deepEqual(expandVoices(ws, ["dry", "dry2"]).map((w) => [w.id, w.voice]), [["opus [dry]", "dry"], ["haiku [dry]", "dry"], ["opus [dry2]", "dry2"], ["haiku [dry2]", "dry2"]]);
+  assert.deepEqual(expandVoices(ws, []).map((w) => w.voice), [undefined, undefined]);
+});
+
+test("shadowStory: a writer's own voice chooses the brief it is given, and the result says which", async () => {
+  const seen = [];
+  const capturing = (id, voice) => ({
+    id, voice, price: { in: 1, out: 5 },
+    make: () => { const tally = createTally(); return { tally, call: async (prompt) => { seen.push([id, prompt]); tally.record(id, { input_tokens: 10, output_tokens: 5 }); return GOOD; } }; },
+  });
+  const checker = scripted("c", [PASS], { price: { in: 0.1, out: 0.5 } });
+  const a = await shadowStory({ writer: capturing("w [dry2]", "dry2"), checker, pack, packText, voice: "dry" });
+  const b = await shadowStory({ writer: capturing("w [dry]", "dry"), checker, pack, packText, voice: "dry" });
+  assert.equal(a.voice, "dry2");
+  assert.equal(b.voice, "dry");
+  assert.match(seen.find(([id]) => id === "w [dry2]")[1], /never restates the headline/);
+  assert.doesNotMatch(seen.find(([id]) => id === "w [dry]")[1], /never restates the headline/);
 });

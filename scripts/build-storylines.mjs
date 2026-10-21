@@ -484,7 +484,7 @@ export function streakText(streak) {
 // blind round of 21 Oct (editorial/shadow-storylines/README.md); the
 // repository variable STORYLINE_VOICE picks the other, and the shadow
 // harness takes --voice.
-export const VOICES = ["preview", "dry"];
+export const VOICES = ["preview", "dry", "dry2"];
 export const STORYLINE_DEFAULT_VOICE = "dry";
 
 // The shape and tone of each brief's approved story, with its facts swapped
@@ -507,6 +507,14 @@ const SAMPLES = {
   "The rankings sharpen it. <Team B> win and they go above <Team A>; <Team A> lose and they drop out of the top twelve.",
   "Form says <Team A>: three straight wins, <the two scores>. <Team B> have won once this year, and <Coach> says he wants them to play like <Team B> \\"<a quote the pack carries>\\".",
   "A fortnight later both are in Europe, <Team A> at <X> and <Team B> at <Y>."
+ ],
+ "sources": [2, 3]}`,
+  dry2: `{"headline": "<Coach>'s first <Team B> game is the one that got away",
+ "beats": [
+  "<Team B> hired <Coach> from <N> applicants five weeks after losing the <competition> final on this ground, <score>. His first opponent is the side that took it off them.",
+  "<Team A> arrive on three straight wins, <the two scores>. <Team B> have one win this year, and <Coach> wants them to play like <Team B> \\"<a quote the pack carries>\\".",
+  "Win and <Team B> go above <Team A>; lose and they are out of the top twelve, which is where <Team A> would rather not be either.",
+  "Both are in Europe a fortnight later, which gives whoever loses a long flight to think about it."
  ],
  "sources": [2, 3]}`,
 };
@@ -550,6 +558,43 @@ Then:
   decimals); the last meeting and the form (scores are facts: say them); the
   people (a name, an age, a cap count, a quote the pack carries); what comes
   next. A beat that only restates a table line is cut.`,
+  dry2: `## The voice
+You are the friend who knows the game: dry, exact, a touch of wit, never a
+cheerleader and never a hype man. Short sentences, one idea each. Wit comes
+from putting two true things next to each other, or from understatement,
+never from a joke that needs a fact the pack does not hold. No exclamation
+marks. None of: massive, huge, mouth-watering, knife-edge, clash, showdown,
+blockbuster, vault, topple, "fans will", "all eyes", "returns to", "on
+<country> soil". No nicknames (the side is Japan, not the Brave Blossoms),
+and no counting of weeks ("fifty-one weeks on"). Never tell the reader
+something is interesting; put it where it lands.
+
+## What to write
+First find the one angle a fan would mention first — the debut, the revenge,
+the ranking cliff, the streak nobody saw coming — and hold it from the
+headline to the last line. Then:
+- a headline of at most ${HEADLINE_MAX} characters that carries the angle with
+  a sting: a line, not a label (not "X v Y: a rankings swap in Cardiff", not
+  "<Name>: <explanation>"); no "preview", no question;
+- ${BEATS_MIN} to 4 beats of one to three sentences, ${PROMPT_MAX_WORDS} words at most in
+  all. The first beat delivers the angle with a fact the headline did not
+  give; it never restates the headline. After it, only beats that earn their
+  place, in any order:
+  - what the result changes: ONE outcome, in one sentence, in places and
+    words ("win and Fiji go above Japan", "out of the top twelve"), inside
+    a beat that has a rugby point. Never a beat of table arithmetic, never
+    two or three outcomes, never rating points or decimals;
+  - the last meeting and the form: a score is a fact, say it, but with the
+    point it makes ("conceded 50 and 43 in a fortnight"), never a list of
+    results or a "6 of 8";
+  - the people: a name only with the thing that makes it matter (the last
+    Test he played was against this opponent), an age or a cap count where
+    it bites; a quote only if it says something a reader could not have
+    guessed, otherwise cut it; never a list of names;
+  - what comes next, only inside a sentence that has a point; never a
+    "Next:" line and never a listing.
+- End on a line that lands, not on arithmetic or a table position.
+A beat that only restates a table line, or the headline, is cut.`,
 };
 
 export function buildWriterPrompt(packText, { revision = null, previousDraft = null, voice = STORYLINE_DEFAULT_VOICE } = {}) {
@@ -698,7 +743,7 @@ export function validateStory(raw, news = [], { voice = STORYLINE_DEFAULT_VOICE 
   }
   const meta = [headline, ...beats].find((t) => META_COPY.test(t));
   if (meta) errors.push(`mentions the app or its records ("${meta.match(META_COPY)[0]}"): say "their last meeting" instead`);
-  if (voice === "dry") {
+  if (voice !== "preview") {
     const pts = [headline, ...beats].find((t) => RATING_POINTS.test(t));
     if (pts) errors.push(`rating points in the copy ("${pts.match(RATING_POINTS)[0]}"): places and words only`);
   }
