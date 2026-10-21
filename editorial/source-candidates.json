@@ -1110,6 +1110,47 @@
           "error": "no feed found (8 tried)"
         }
       ]
+    },
+    {
+      "outlet": "The Roar",
+      "host": "theroar.com.au",
+      "homepage": "https://www.theroar.com.au",
+      "teams": [
+        "Australia"
+      ],
+      "why": "Daily Wallabies and Super Rugby coverage would fill today's gap, when Australia's only NEW items were a sponsor release and a New Zealand player piece.",
+      "proposed": "2026-10-22",
+      "status": "ready",
+      "feedUrl": "https://www.theroar.com.au/feed",
+      "probes": [
+        {
+          "date": "2026-10-22",
+          "feedUrl": "https://www.theroar.com.au/feed",
+          "items": 6,
+          "hits": {
+            "Australia": 3
+          }
+        }
+      ],
+      "decided": "2026-10-22"
+    },
+    {
+      "outlet": "Rugby Australia (official news)",
+      "host": "rugby.com.au",
+      "homepage": "https://www.rugby.com.au",
+      "teams": [
+        "Australia"
+      ],
+      "why": "Union news on squads, fixtures and results would supply Wallabies stories the current spine misses.",
+      "proposed": "2026-10-22",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-10-22",
+          "error": "no feed found (8 tried)"
+        }
+      ]
     }
   ]
 }

@@ -18,6 +18,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: https://www.walesonline.co.uk/rss.xml; probes: 5; stories about tracked teams: Wales 33, England 1, Scotland 1, Australia 1, Japan 1, New Zealand 1, South Africa 1, Ireland 1
 - **The Japan Times** (japantimes.co.jp) — proposed 2026-10-19 for Japan: Japan had only background items today, and the Japan Times has a sports desk that covers the national side regularly in English.
   - feed: https://www.japantimes.co.jp/feed; probes: 4; stories about tracked teams: Japan 39, France 4, Australia 2, Scotland 1
+- **The Roar** (theroar.com.au) — proposed 2026-10-22 for Australia: Daily Wallabies and Super Rugby coverage would fill today's gap, when Australia's only NEW items were a sponsor release and a New Zealand player piece.
+  - feed: https://www.theroar.com.au/feed; probes: 1; stories about tracked teams: Australia 3
 
 ## Being probed
 
@@ -25,6 +27,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
 - **The Fiji Times** (fijitimes.com.fj) — proposed 2026-10-21 for Fiji: Fiji's shortlist was all background items, and a national daily's rugby desk would add fresh men's coverage of the Jake White era beyond FBC News.
   - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+- **Rugby Australia (official news)** (rugby.com.au) — proposed 2026-10-22 for Australia: Union news on squads, fixtures and results would supply Wallabies stories the current spine misses.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
