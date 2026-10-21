@@ -114,6 +114,8 @@ export function upcomingFixtures(fixtures, now = Date.now(), days = WINDOW_DAYS)
   return (fixtures ?? [])
     .filter((f) => f?.id && f.home?.code && f.away?.code && f.home?.name && f.away?.name)
     .filter((f) => f.home.tracked || f.away.tracked)
+    // A projected finals pairing (projected-finals.mjs) may change with the table.
+    .filter((f) => !f.final?.projected)
     .filter((f) => !isPlayedOrUnderway(f, now))
     .filter((f) => correctedKickoffMs(f) - now <= days * DAY)
     .sort((a, b) => correctedKickoffMs(a) - correctedKickoffMs(b));

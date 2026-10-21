@@ -40,6 +40,17 @@ export function expectedFixtures(comp) {
   return null; // UNKNOWN or unclassified — nothing to assert
 }
 
+// The games a format plays AFTER its table: a two-conference competition
+// pairs equal ranks on a finals weekend, one game per rank (the Nations
+// Championship's six, 27–29 Nov 2026). ESPN files them under the same league
+// once drawn, so a complete season counts the table plus these (#165).
+export function finalsFor(comp) {
+  if (comp?.structure === "conference" && comp.groups?.length === 2) {
+    return Math.min(comp.groups[0].teams.length, comp.groups[1].teams.length);
+  }
+  return 0;
+}
+
 // registry + fixtures.json -> the problems worth raising. Pure.
 export function checkIntegrity(registry, fixturesFile, today = iso(Date.now())) {
   const problems = [];
@@ -91,13 +102,14 @@ export function checkIntegrity(registry, fixturesFile, today = iso(Date.now())) 
   for (const c of comps) {
     const expect = expectedFixtures(c);
     if (expect == null || c.fixtureCount === 0) continue;
-    if (c.fixtureCount !== expect) {
+    const finals = finalsFor(c);
+    if (c.fixtureCount !== expect && !(finals && c.fixtureCount === expect + finals)) {
       problems.push({
         kind: "fixture-count-mismatch",
         title: `${c.name} ${c.season}: ${c.fixtureCount} fixtures, expected ${expect}`,
         detail:
           `Classified as **${c.structure}** with ${c.teams.length} teams, which requires ` +
-          `**${expect}** matches — the feed carries **${c.fixtureCount}**.\n\n` +
+          `**${expect}** matches${finals ? ` (${expect + finals} with its finals weekend)` : ""} — the feed carries **${c.fixtureCount}**.\n\n` +
           `The list is incomplete or carries a duplicate. A partial fixture list still classifies ` +
           `correctly, so nothing else catches this.`,
       });

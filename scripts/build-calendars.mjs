@@ -209,6 +209,9 @@ export function buildCalendars({ fixtures, updatedAt, state = {}, compNames = {}
   const seen = new Set();
   const rows = (fixtures ?? [])
     .filter((r) => r?.id != null && r.home && r.away && Number.isFinite(ms(r.date)))
+    // A projected finals pairing (projected-finals.mjs) is not an appointment:
+    // it moves with the table, and the real one arrives from ESPN with its own id.
+    .filter((r) => !r.final?.projected)
     .filter((r) => !seen.has(String(r.id)) && seen.add(String(r.id)))
     .sort(byDateThenId);
 

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { checkIntegrity, expectedFixtures, checkStandings } from "./check-competitions.mjs";
+import { checkIntegrity, expectedFixtures, checkStandings, finalsFor } from "./check-competitions.mjs";
 import { buildStandings } from "./build-standings.mjs";
 import { POOL_NAMES } from "./competition-rules.mjs";
 import { spawnSync } from "node:child_process";
@@ -454,4 +454,14 @@ test("check-competitions main() exits 0 with no standings.json when no competiti
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test("a two-conference season counts its finals weekend once ESPN lists it (#165)", () => {
+  // 36 pool games, or 42 with the six finals; 40 is still wrong.
+  for (const [count, bad] of [[36, false], [42, false], [40, true]]) {
+    const p = checkIntegrity(reg([comp({ fixtureCount: count })]), { fixtures: [fixture("rnc-2026", "ENG", "RSA")] }, TODAY);
+    assert.equal(p.some((x) => x.kind === "fixture-count-mismatch"), bad, `count ${count}`);
+  }
+  assert.equal(finalsFor({ structure: "conference", groups: [{ teams: Array(6) }, { teams: Array(6) }] }), 6);
+  assert.equal(finalsFor({ structure: "table", teams: Array(6) }), 0);
 });
