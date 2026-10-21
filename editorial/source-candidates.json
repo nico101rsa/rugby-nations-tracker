@@ -528,6 +528,15 @@
           "feedUrl": "https://www.federugby.it/feed/",
           "items": 10,
           "hits": {}
+        },
+        {
+          "date": "2026-10-22",
+          "feedUrl": "https://www.federugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "Italy": 1,
+            "Argentina": 1
+          }
         }
       ],
       "decided": "2026-10-14"
@@ -692,6 +701,24 @@
             "New Zealand": 6,
             "South Africa": 3
           }
+        },
+        {
+          "date": "2026-10-22",
+          "feedUrl": "https://www.rugbyworld.com/feed",
+          "items": 30,
+          "hits": {
+            "Fiji": 1,
+            "England": 6,
+            "France": 3,
+            "Ireland": 4,
+            "Italy": 2,
+            "Scotland": 1,
+            "Wales": 2,
+            "Argentina": 1,
+            "Australia": 8,
+            "New Zealand": 6,
+            "South Africa": 3
+          }
         }
       ],
       "decided": "2026-10-16"
@@ -768,6 +795,15 @@
             "France": 1,
             "Australia": 1
           }
+        },
+        {
+          "date": "2026-10-22",
+          "feedUrl": "https://www.americasrugbynews.com/feed/",
+          "items": 10,
+          "hits": {
+            "England": 2,
+            "Australia": 1
+          }
         }
       ],
       "decided": "2026-10-16"
@@ -821,6 +857,15 @@
             "Scotland": 7,
             "Australia": 1
           }
+        },
+        {
+          "date": "2026-10-22",
+          "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
+          "items": 25,
+          "hits": {
+            "Scotland": 3,
+            "Japan": 1
+          }
         }
       ],
       "decided": "2026-10-18"
@@ -869,6 +914,20 @@
         },
         {
           "date": "2026-10-21",
+          "feedUrl": "https://www.wru.wales/feed",
+          "items": 10,
+          "hits": {
+            "Fiji": 2,
+            "Wales": 4,
+            "Argentina": 1,
+            "Australia": 1,
+            "Japan": 1,
+            "New Zealand": 1,
+            "South Africa": 1
+          }
+        },
+        {
+          "date": "2026-10-22",
           "feedUrl": "https://www.wru.wales/feed",
           "items": 10,
           "hits": {
@@ -933,6 +992,15 @@
             "New Zealand": 1,
             "South Africa": 1
           }
+        },
+        {
+          "date": "2026-10-22",
+          "feedUrl": "https://www.walesonline.co.uk/rss.xml",
+          "items": 25,
+          "hits": {
+            "Ireland": 1,
+            "Wales": 6
+          }
         }
       ],
       "decided": "2026-10-19"
@@ -976,6 +1044,15 @@
             "Australia": 1,
             "Japan": 8
           }
+        },
+        {
+          "date": "2026-10-22",
+          "feedUrl": "https://www.japantimes.co.jp/feed",
+          "items": 30,
+          "hits": {
+            "France": 3,
+            "Japan": 12
+          }
         }
       ],
       "decided": "2026-10-19"
@@ -1005,6 +1082,10 @@
         {
           "date": "2026-10-21",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-22",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1022,6 +1103,10 @@
       "probes": [
         {
           "date": "2026-10-21",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-22",
           "error": "no feed found (8 tried)"
         }
       ]
