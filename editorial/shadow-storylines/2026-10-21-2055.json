@@ -1,0 +1,5174 @@
+{
+ "notice": "Shadow run. Nothing here was published or shown in the app. Each draft was fact-checked against the app's own data only, never against the world, so any story may be wrong about real people and events.",
+ "startedAt": "2026-10-21T09:55:13.574Z",
+ "startedSydney": "Wed 21 Oct 2026 20:55",
+ "writers": [
+  {
+   "id": "claude-opus-5-5 [dry]",
+   "price": {
+    "id": "claude-opus-5-5",
+    "in": 4,
+    "out": 20
+   }
+  },
+  {
+   "id": "claude-opus-5-5 [dry2]",
+   "price": {
+    "id": "claude-opus-5-5",
+    "in": 4,
+    "out": 20
+   }
+  }
+ ],
+ "checker": "claude-haiku-5-5",
+ "voice": "dry,dry2",
+ "days": 20,
+ "capUSD": 3,
+ "spentUSD": 1.01467,
+ "fixtures": [
+  {
+   "id": "espn-604593",
+   "factsHash": "d335344dda6037a4",
+   "packHash": "4bb3d3685e9e8e33",
+   "pack": {
+    "fixture": {
+     "id": "espn-604593",
+     "home": {
+      "code": "JPN",
+      "name": "Japan",
+      "tracked": true
+     },
+     "away": {
+      "code": "FIJ",
+      "name": "Fiji",
+      "tracked": true
+     },
+     "kickoff": "2026-10-24T05:50:00.000Z",
+     "kickoffSydney": "Sat 24 Oct 2026, 4:50 pm Sydney time",
+     "comp": {
+      "key": "test",
+      "label": "TEST",
+      "kind": "test"
+     },
+     "venue": "Prince Chichibu Memorial Stadium, Tokyo"
+    },
+    "rankings": {
+     "asOf": "19 October 2026",
+     "JPN": {
+      "rank": 9,
+      "points": 77.28
+     },
+     "FIJ": {
+      "rank": 10,
+      "points": 76.81
+     }
+    },
+    "stakes": {
+     "asOf": "19 October 2026",
+     "worldCup": false,
+     "complete": true,
+     "size": 12,
+     "home": {
+      "code": "JPN",
+      "rank": 9,
+      "points": 77.28
+     },
+     "away": {
+      "code": "FIJ",
+      "rank": 10,
+      "points": 76.81
+     },
+     "scenarios": [
+      {
+       "key": "home-win-big",
+       "side": "home",
+       "bigWin": true,
+       "home": {
+        "points": 78.71,
+        "delta": 1.43,
+        "rank": 9,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 75.38,
+        "delta": -1.43,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "WAL",
+         "ITA"
+        ]
+       }
+      },
+      {
+       "key": "home-win",
+       "side": "home",
+       "bigWin": false,
+       "home": {
+        "points": 78.23,
+        "delta": 0.95,
+        "rank": 9,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 75.86,
+        "delta": -0.95,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "WAL",
+         "ITA"
+        ]
+       }
+      },
+      {
+       "key": "draw",
+       "side": null,
+       "bigWin": false,
+       "home": {
+        "points": 77.23,
+        "delta": -0.05,
+        "rank": 9,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 76.86,
+        "delta": 0.05,
+        "rank": 10,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win",
+       "side": "away",
+       "bigWin": false,
+       "home": {
+        "points": 76.23,
+        "delta": -1.05,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "FIJ",
+         "WAL",
+         "ITA"
+        ]
+       },
+       "away": {
+        "points": 77.86,
+        "delta": 1.05,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN"
+        ],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win-big",
+       "side": "away",
+       "bigWin": true,
+       "home": {
+        "points": 75.71,
+        "delta": -1.57,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "FIJ",
+         "WAL",
+         "ITA"
+        ]
+       },
+       "away": {
+        "points": 78.38,
+        "delta": 1.57,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN"
+        ],
+        "passedBy": []
+       }
+      }
+     ]
+    },
+    "trajectory": {
+     "JPN": {
+      "rank": 9,
+      "points": 77.28,
+      "move": 0,
+      "since": "28 September 2026",
+      "previous": {
+       "rank": 12,
+       "asOf": "14 September 2026"
+      },
+      "best": 9,
+      "worst": 12,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     },
+     "FIJ": {
+      "rank": 10,
+      "points": 76.81,
+      "move": 0,
+      "since": "28 September 2026",
+      "previous": {
+       "rank": 9,
+       "asOf": "14 September 2026"
+      },
+      "best": 9,
+      "worst": 10,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     }
+    },
+    "log": null,
+    "table": null,
+    "form": {
+     "JPN": {
+      "results": [
+       {
+        "date": "2026-09-19",
+        "opponent": "Fiji",
+        "side": "home",
+        "score": "20–15",
+        "result": "W",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-09-12",
+        "opponent": "USA",
+        "side": "home",
+        "score": "63–14",
+        "result": "W",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-09-05",
+        "opponent": "Canada",
+        "side": "home",
+        "score": "57–12",
+        "result": "W",
+        "league": "International Friendlies",
+        "tries": null
+       },
+       {
+        "date": "2026-08-15",
+        "opponent": "Australia",
+        "side": "away",
+        "score": "17–56",
+        "result": "L",
+        "league": "International Friendlies",
+        "tries": null
+       },
+       {
+        "date": "2026-08-08",
+        "opponent": "Australia",
+        "side": "home",
+        "score": "32–35",
+        "result": "L",
+        "league": "International Friendlies",
+        "tries": null
+       }
+      ],
+      "streak": {
+       "result": "W",
+       "games": 3,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 8,
+       "W": 4,
+       "D": 0,
+       "L": 4
+      },
+      "yearComplete": true
+     },
+     "FIJ": {
+      "results": [
+       {
+        "date": "2026-09-19",
+        "opponent": "Japan",
+        "side": "away",
+        "score": "15–20",
+        "result": "L",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-09-12",
+        "opponent": "Canada",
+        "side": "home",
+        "score": "45–29",
+        "result": "W",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-07-18",
+        "opponent": "Scotland",
+        "side": "home",
+        "score": "17–33",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 3
+       },
+       {
+        "date": "2026-07-11",
+        "opponent": "England",
+        "side": "home",
+        "score": "8–73",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 1
+       },
+       {
+        "date": "2026-07-04",
+        "opponent": "Wales",
+        "side": "home",
+        "score": "24–39",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 3
+       }
+      ],
+      "streak": {
+       "result": "L",
+       "games": 1,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 5,
+       "W": 1,
+       "D": 0,
+       "L": 4
+      },
+      "yearComplete": true
+     }
+    },
+    "meetings": [
+     {
+      "date": "2026-09-19",
+      "league": "Pacific Nations Cup, Knockout Stage",
+      "stage": "final",
+      "neutral": false,
+      "host": "Japan",
+      "visitor": "Fiji",
+      "score": "Japan 20–15 Fiji",
+      "winner": "Japan",
+      "venue": "Prince Chichibu Memorial Stadium, Tokyo"
+     },
+     {
+      "date": "2025-09-21",
+      "league": "Pacific Nations Cup, Knockout Stage",
+      "stage": "final",
+      "neutral": true,
+      "host": null,
+      "visitor": null,
+      "score": "Japan 27–33 Fiji",
+      "winner": "Fiji",
+      "venue": "America First Field, Salt Lake City"
+     }
+    ],
+    "next": {
+     "JPN": {
+      "date": "2026-11-07",
+      "opponent": "Wales",
+      "side": "away",
+      "league": "Nations Championship, Group Stage"
+     },
+     "FIJ": {
+      "date": "2026-11-07",
+      "opponent": "France",
+      "side": "away",
+      "league": "Nations Championship, Group Stage"
+     }
+    },
+    "news": [
+     {
+      "title": "Third time’s a charm: Japan beats Fiji 20-15 in the Pacific Nations Cup rugby final",
+      "url": "https://apnews.com/article/pacific-nations-cup-final-japan-fiji-84e045b3a8963e5a124695f4532dfd28",
+      "outlet": "Web search",
+      "published": "2026-09-19",
+      "background": true,
+      "about": [
+       "JPN",
+       "FIJ"
+      ]
+     },
+     {
+      "title": "Defending champion Fiji beats Canada to advance to rugby's Pacific Nations Cup final against Japan",
+      "url": "https://www.foxsports.com/articles/soccer/defending-champion-fiji-beats-canada-to-advance-to-rugbys-pacific-nations-cup-final-against-japan",
+      "outlet": "Web search",
+      "published": "2026-09-12",
+      "background": true,
+      "about": [
+       "JPN",
+       "FIJ"
+      ]
+     },
+     {
+      "title": "Rugby-White won't boot Fiji's flair into touch on World Cup quest, says chairman",
+      "url": "https://www.msn.com/en-gb/news/other/rugby-white-wont-boot-fijis-flair-into-touch-on-world-cup-quest-says-chairman/ar-AA2fHYa7",
+      "outlet": "Web search",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "FIJ"
+      ]
+     },
+     {
+      "title": "Springboks star's contract 'terminated' at Japanese club amid reports of South African return",
+      "url": "https://www.planetrugby.com/news/springboks-kwagga-smith-leaves-japanese-club-amid-sa-return-rumours",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "JPN"
+      ]
+     },
+     {
+      "title": "Jake’s Fiji ‘going to surprise people’",
+      "url": "https://www.sarugbymag.co.za/jakes-fiji-going-surprise-people/",
+      "outlet": "SA Rugby Magazine",
+      "published": "2026-10-18",
+      "background": false,
+      "about": [
+       "FIJ"
+      ]
+     },
+     {
+      "title": "World Rugby rankings change as Japan triumph spells trouble for Wales",
+      "url": "https://uk.sports.yahoo.com/news/world-rugby-rankings-change-japan-135328656.html",
+      "outlet": "Web search",
+      "published": "2026-09-19",
+      "background": true,
+      "about": [
+       "JPN"
+      ]
+     }
+    ],
+    "promptChars": 8743,
+    "packSha256": "e191fe7b09ee0c85cb915df68afafa6e59fe70124462c2cc5dc0560a2c8563df"
+   }
+  },
+  {
+   "id": "espn-603993",
+   "factsHash": "cb73a6fe1b37eaa2",
+   "packHash": "5d205cd5b993ad48",
+   "pack": {
+    "fixture": {
+     "id": "espn-603993",
+     "home": {
+      "code": "IRE",
+      "name": "Ireland",
+      "tracked": true
+     },
+     "away": {
+      "code": "ARG",
+      "name": "Argentina",
+      "tracked": true
+     },
+     "kickoff": "2026-11-06T20:10:00.000Z",
+     "kickoffSydney": "Sat 7 Nov 2026, 7:10 am Sydney time",
+     "comp": {
+      "key": "rnc-2026",
+      "label": "RNC '26",
+      "kind": "competition"
+     },
+     "venue": "Aviva Stadium, Dublin"
+    },
+    "rankings": {
+     "asOf": "19 October 2026",
+     "IRE": {
+      "rank": 3,
+      "points": 88.08
+     },
+     "ARG": {
+      "rank": 8,
+      "points": 82.24
+     }
+    },
+    "stakes": {
+     "asOf": "19 October 2026",
+     "worldCup": false,
+     "complete": true,
+     "size": 12,
+     "home": {
+      "code": "IRE",
+      "rank": 3,
+      "points": 88.08
+     },
+     "away": {
+      "code": "ARG",
+      "rank": 8,
+      "points": 82.24
+     },
+     "scenarios": [
+      {
+       "key": "home-win-big",
+       "side": "home",
+       "bigWin": true,
+       "home": {
+        "points": 88.7,
+        "delta": 0.62,
+        "rank": 3,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 81.62,
+        "delta": -0.62,
+        "rank": 8,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "home-win",
+       "side": "home",
+       "bigWin": false,
+       "home": {
+        "points": 88.5,
+        "delta": 0.42,
+        "rank": 3,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 81.82,
+        "delta": -0.42,
+        "rank": 8,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "draw",
+       "side": null,
+       "bigWin": false,
+       "home": {
+        "points": 87.5,
+        "delta": -0.58,
+        "rank": 3,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 82.82,
+        "delta": 0.58,
+        "rank": 8,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win",
+       "side": "away",
+       "bigWin": false,
+       "home": {
+        "points": 86.5,
+        "delta": -1.58,
+        "rank": 4,
+        "exact": true,
+        "passed": [],
+        "passedBy": [
+         "FRA"
+        ]
+       },
+       "away": {
+        "points": 83.82,
+        "delta": 1.58,
+        "rank": 8,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win-big",
+       "side": "away",
+       "bigWin": true,
+       "home": {
+        "points": 85.7,
+        "delta": -2.38,
+        "rank": 4,
+        "exact": true,
+        "passed": [],
+        "passedBy": [
+         "FRA"
+        ]
+       },
+       "away": {
+        "points": 84.62,
+        "delta": 2.38,
+        "rank": 7,
+        "exact": true,
+        "passed": [
+         "AUS"
+        ],
+        "passedBy": []
+       }
+      }
+     ]
+    },
+    "trajectory": {
+     "IRE": {
+      "rank": 3,
+      "points": 88.08,
+      "move": 0,
+      "since": "13 July 2026",
+      "previous": null,
+      "best": 3,
+      "worst": 3,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     },
+     "ARG": {
+      "rank": 8,
+      "points": 82.24,
+      "move": 0,
+      "since": "31 August 2026",
+      "previous": {
+       "rank": 7,
+       "asOf": "24 August 2026"
+      },
+      "best": 7,
+      "worst": 8,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     }
+    },
+    "log": {
+     "IRE": {
+      "rank": 6,
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": -1,
+      "Pts": 10
+     },
+     "ARG": {
+      "rank": 8,
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -2,
+      "Pts": 7
+     }
+    },
+    "table": [
+     {
+      "rank": 1,
+      "code": "RSA",
+      "team": "South Africa",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 81,
+      "Pts": 15
+     },
+     {
+      "rank": 2,
+      "code": "NZL",
+      "team": "New Zealand",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 51,
+      "Pts": 15
+     },
+     {
+      "rank": 3,
+      "code": "FRA",
+      "team": "France",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 41,
+      "Pts": 12
+     },
+     {
+      "rank": 4,
+      "code": "ENG",
+      "team": "England",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 48,
+      "Pts": 10
+     },
+     {
+      "rank": 5,
+      "code": "SCO",
+      "team": "Scotland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 11,
+      "Pts": 10
+     },
+     {
+      "rank": 6,
+      "code": "IRE",
+      "team": "Ireland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": -1,
+      "Pts": 10
+     },
+     {
+      "rank": 7,
+      "code": "AUS",
+      "team": "Australia",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": 29,
+      "Pts": 8
+     },
+     {
+      "rank": 8,
+      "code": "ARG",
+      "team": "Argentina",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -2,
+      "Pts": 7
+     },
+     {
+      "rank": 9,
+      "code": "WAL",
+      "team": "Wales",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -42,
+      "Pts": 5
+     },
+     {
+      "rank": 10,
+      "code": "JPN",
+      "team": "Japan",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -26,
+      "Pts": 4
+     },
+     {
+      "rank": 11,
+      "code": "ITA",
+      "team": "Italy",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -94,
+      "Pts": 0
+     },
+     {
+      "rank": 12,
+      "code": "FIJ",
+      "team": "Fiji",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -96,
+      "Pts": 0
+     }
+    ],
+    "form": {
+     "IRE": {
+      "results": [
+       {
+        "date": "2026-07-18",
+        "opponent": "New Zealand",
+        "side": "away",
+        "score": "21–40",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 3
+       },
+       {
+        "date": "2026-07-11",
+        "opponent": "Japan",
+        "side": "away",
+        "score": "36–20",
+        "result": "W",
+        "league": "Nations Championship, Group Stage",
+        "tries": 5
+       },
+       {
+        "date": "2026-07-04",
+        "opponent": "Australia",
+        "side": "away",
+        "score": "33–31",
+        "result": "W",
+        "league": "Nations Championship, Group Stage",
+        "tries": 5
+       },
+       {
+        "date": "2026-03-14",
+        "opponent": "Scotland",
+        "side": "home",
+        "score": "43–21",
+        "result": "W",
+        "league": "Six Nations",
+        "tries": 6
+       },
+       {
+        "date": "2026-03-06",
+        "opponent": "Wales",
+        "side": "home",
+        "score": "27–17",
+        "result": "W",
+        "league": "Six Nations",
+        "tries": 4
+       }
+      ],
+      "streak": {
+       "result": "L",
+       "games": 1,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 8,
+       "W": 6,
+       "D": 0,
+       "L": 2
+      },
+      "yearComplete": true
+     },
+     "ARG": {
+      "results": [
+       {
+        "date": "2026-09-05",
+        "opponent": "Australia",
+        "side": "home",
+        "score": "28–28",
+        "result": "D",
+        "league": "International Friendlies",
+        "tries": null
+       },
+       {
+        "date": "2026-08-29",
+        "opponent": "Australia",
+        "side": "home",
+        "score": "21–27",
+        "result": "L",
+        "league": "International Friendlies",
+        "tries": null
+       },
+       {
+        "date": "2026-08-08",
+        "opponent": "South Africa",
+        "side": "home",
+        "score": "10–17",
+        "result": "L",
+        "league": "International Friendlies",
+        "tries": null
+       },
+       {
+        "date": "2026-07-18",
+        "opponent": "England",
+        "side": "home",
+        "score": "24–31",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 3
+       },
+       {
+        "date": "2026-07-11",
+        "opponent": "Wales",
+        "side": "home",
+        "score": "35–21",
+        "result": "W",
+        "league": "Nations Championship, Group Stage",
+        "tries": 5
+       }
+      ],
+      "streak": {
+       "result": "D",
+       "games": 1,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 6,
+       "W": 1,
+       "D": 1,
+       "L": 4
+      },
+      "yearComplete": true
+     }
+    },
+    "meetings": [],
+    "next": {
+     "IRE": {
+      "date": "2026-11-14",
+      "opponent": "Fiji",
+      "side": "home",
+      "league": "Nations Championship, Group Stage"
+     },
+     "ARG": {
+      "date": "2026-11-14",
+      "opponent": "Italy",
+      "side": "away",
+      "league": "Nations Championship, Group Stage"
+     }
+    },
+    "news": [
+     {
+      "title": "Key questions as Farrell set to name Ireland squad",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/c6vg0n2v512ko?at_medium=RSS&at_campaign=rss",
+      "outlet": "BBC Rugby Union",
+      "published": "2026-10-21",
+      "background": false,
+      "about": [
+       "IRE"
+      ]
+     },
+     {
+      "title": "Stormers star rejects Irish advances",
+      "url": "https://www.sarugbymag.co.za/stormers-star-rejects-irish-advances/",
+      "outlet": "SA Rugby Magazine",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "IRE"
+      ]
+     },
+     {
+      "title": "Nankivell's new Munster deal paves way for Ireland career",
+      "url": "https://www.rte.ie/sport/rugby/2026/1020/1596133-nankivells-new-munster-deal-paves-way-for-ireland-career/",
+      "outlet": "RTÉ Sport Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "IRE"
+      ]
+     },
+     {
+      "title": "Farrell set to name Ireland squad as he targets Nations Championship title",
+      "url": "https://www.the42.ie/ireland-farrell-squad-2-7199131-Oct2026/",
+      "outlet": "The42",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "IRE"
+      ]
+     },
+     {
+      "title": "England great wades into Ireland's Ciaran Frawley 'argument' with a bold 'real opportunity' suggestion for Andy Farrell",
+      "url": "https://www.planetrugby.com/news/england-great-wades-into-irelands-ciaran-frawley-argument-with-a-bold-real-opportunity-suggestion-for-andy-farrell",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "IRE"
+      ]
+     },
+     {
+      "title": "Watch: When broken Frans tackled Pumas",
+      "url": "https://www.sarugbymag.co.za/watch-broken-frans-tackled-pumas/",
+      "outlet": "SA Rugby Magazine",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "ARG"
+      ]
+     },
+     {
+      "title": "Jack Conan's shoulder injury requires further assessment ahead of Ireland squad announcement",
+      "url": "https://www.the42.ie/jack-conan-shoulder-injury-7198007-Oct2026/",
+      "outlet": "The42",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "IRE"
+      ]
+     },
+     {
+      "title": "Munster hope to see Brian Gleeson getting Ireland's call",
+      "url": "https://www.the42.ie/brian-gleeson-munster-7197662-Oct2026/",
+      "outlet": "The42",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "IRE"
+      ]
+     },
+     {
+      "title": "Munster: Irish star on having 'to dig in and fight' for performance to honour Anthony Foley and verdict on 'fitted right in' rookie",
+      "url": "https://www.planetrugby.com/news/munster-irish-star-on-having-to-dig-in-and-fight-for-performance-to-honour-anthony-foley-and-verdict-on-fitted-right-in-rookie",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-18",
+      "background": false,
+      "about": [
+       "IRE"
+      ]
+     },
+     {
+      "title": "How rugby union is booming in football-mad Argentina",
+      "url": "https://www.msn.com/en-us/sports/rugby/how-rugby-union-is-booming-in-football-mad-argentina/ar-AA284y8x",
+      "outlet": "Web search",
+      "published": "2026-07-16",
+      "background": true,
+      "about": [
+       "ARG"
+      ]
+     },
+     {
+      "title": "Rugby World Cup 2027: England, Ireland handed kind routes? Have World Rugby messed up seeds again?",
+      "url": "https://www.skysports.com/rugby-union/news/13479262/rugby-world-cup-2027-england-ireland-handed-kind-routes-have-world-rugby-messed-up-seeds-again",
+      "outlet": "Web search",
+      "published": "2025-12-04",
+      "background": true,
+      "about": [
+       "IRE"
+      ]
+     }
+    ],
+    "promptChars": 12412,
+    "packSha256": "1be1949bf92c9c24e36d70b9d39d449fcae458185aead5a095069ee77e02eeb0"
+   }
+  },
+  {
+   "id": "espn-603994",
+   "factsHash": "ebcba98c1cef4b15",
+   "packHash": "a06a75a6e90e1152",
+   "pack": {
+    "fixture": {
+     "id": "espn-603994",
+     "home": {
+      "code": "ITA",
+      "name": "Italy",
+      "tracked": true
+     },
+     "away": {
+      "code": "RSA",
+      "name": "South Africa",
+      "tracked": true
+     },
+     "kickoff": "2026-11-07T11:40:00.000Z",
+     "kickoffSydney": "Sat 7 Nov 2026, 10:40 pm Sydney time",
+     "comp": {
+      "key": "rnc-2026",
+      "label": "RNC '26",
+      "kind": "competition"
+     },
+     "venue": "Allianz Stadium, Turin"
+    },
+    "rankings": {
+     "asOf": "19 October 2026",
+     "ITA": {
+      "rank": 12,
+      "points": 76.3
+     },
+     "RSA": {
+      "rank": 1,
+      "points": 93.09
+     }
+    },
+    "stakes": {
+     "asOf": "19 October 2026",
+     "worldCup": false,
+     "complete": true,
+     "size": 12,
+     "home": {
+      "code": "ITA",
+      "rank": 12,
+      "points": 76.3
+     },
+     "away": {
+      "code": "RSA",
+      "rank": 1,
+      "points": 93.09
+     },
+     "scenarios": [
+      {
+       "key": "home-win-big",
+       "side": "home",
+       "bigWin": true,
+       "home": {
+        "points": 79.3,
+        "delta": 3,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN",
+         "FIJ",
+         "WAL"
+        ],
+        "passedBy": []
+       },
+       "away": {
+        "points": 90.09,
+        "delta": -3,
+        "rank": 2,
+        "exact": true,
+        "passed": [],
+        "passedBy": [
+         "NZL"
+        ]
+       }
+      },
+      {
+       "key": "home-win",
+       "side": "home",
+       "bigWin": false,
+       "home": {
+        "points": 78.3,
+        "delta": 2,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN",
+         "FIJ",
+         "WAL"
+        ],
+        "passedBy": []
+       },
+       "away": {
+        "points": 91.09,
+        "delta": -2,
+        "rank": 2,
+        "exact": true,
+        "passed": [],
+        "passedBy": [
+         "NZL"
+        ]
+       }
+      },
+      {
+       "key": "draw",
+       "side": null,
+       "bigWin": false,
+       "home": {
+        "points": 77.3,
+        "delta": 1,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN",
+         "FIJ",
+         "WAL"
+        ],
+        "passedBy": []
+       },
+       "away": {
+        "points": 92.09,
+        "delta": -1,
+        "rank": 2,
+        "exact": true,
+        "passed": [],
+        "passedBy": [
+         "NZL"
+        ]
+       }
+      },
+      {
+       "key": "away-win",
+       "side": "away",
+       "bigWin": false,
+       "home": {
+        "points": 76.3,
+        "delta": 0,
+        "rank": 12,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 93.09,
+        "delta": 0,
+        "rank": 1,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win-big",
+       "side": "away",
+       "bigWin": true,
+       "home": {
+        "points": 76.3,
+        "delta": 0,
+        "rank": 12,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 93.09,
+        "delta": 0,
+        "rank": 1,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      }
+     ]
+    },
+    "trajectory": {
+     "ITA": {
+      "rank": 12,
+      "points": 76.3,
+      "move": 0,
+      "since": "28 September 2026",
+      "previous": {
+       "rank": 11,
+       "asOf": "14 September 2026"
+      },
+      "best": 10,
+      "worst": 12,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     },
+     "RSA": {
+      "rank": 1,
+      "points": 93.09,
+      "move": 0,
+      "since": "31 August 2026",
+      "previous": {
+       "rank": 2,
+       "asOf": "24 August 2026"
+      },
+      "best": 1,
+      "worst": 2,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     }
+    },
+    "log": {
+     "RSA": {
+      "rank": 1,
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 81,
+      "Pts": 15
+     },
+     "ITA": {
+      "rank": 11,
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -94,
+      "Pts": 0
+     }
+    },
+    "table": [
+     {
+      "rank": 1,
+      "code": "RSA",
+      "team": "South Africa",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 81,
+      "Pts": 15
+     },
+     {
+      "rank": 2,
+      "code": "NZL",
+      "team": "New Zealand",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 51,
+      "Pts": 15
+     },
+     {
+      "rank": 3,
+      "code": "FRA",
+      "team": "France",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 41,
+      "Pts": 12
+     },
+     {
+      "rank": 4,
+      "code": "ENG",
+      "team": "England",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 48,
+      "Pts": 10
+     },
+     {
+      "rank": 5,
+      "code": "SCO",
+      "team": "Scotland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 11,
+      "Pts": 10
+     },
+     {
+      "rank": 6,
+      "code": "IRE",
+      "team": "Ireland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": -1,
+      "Pts": 10
+     },
+     {
+      "rank": 7,
+      "code": "AUS",
+      "team": "Australia",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": 29,
+      "Pts": 8
+     },
+     {
+      "rank": 8,
+      "code": "ARG",
+      "team": "Argentina",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -2,
+      "Pts": 7
+     },
+     {
+      "rank": 9,
+      "code": "WAL",
+      "team": "Wales",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -42,
+      "Pts": 5
+     },
+     {
+      "rank": 10,
+      "code": "JPN",
+      "team": "Japan",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -26,
+      "Pts": 4
+     },
+     {
+      "rank": 11,
+      "code": "ITA",
+      "team": "Italy",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -94,
+      "Pts": 0
+     },
+     {
+      "rank": 12,
+      "code": "FIJ",
+      "team": "Fiji",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -96,
+      "Pts": 0
+     }
+    ],
+    "form": {
+     "ITA": {
+      "results": [
+       {
+        "date": "2026-07-18",
+        "opponent": "Australia",
+        "side": "away",
+        "score": "10–57",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 2
+       },
+       {
+        "date": "2026-07-11",
+        "opponent": "New Zealand",
+        "side": "away",
+        "score": "17–47",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 2
+       },
+       {
+        "date": "2026-07-04",
+        "opponent": "Japan",
+        "side": "away",
+        "score": "10–27",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 1
+       },
+       {
+        "date": "2026-03-14",
+        "opponent": "Wales",
+        "side": "away",
+        "score": "17–31",
+        "result": "L",
+        "league": "Six Nations",
+        "tries": 3
+       },
+       {
+        "date": "2026-03-07",
+        "opponent": "England",
+        "side": "home",
+        "score": "23–18",
+        "result": "W",
+        "league": "Six Nations",
+        "tries": 2
+       }
+      ],
+      "streak": {
+       "result": "L",
+       "games": 4,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 8,
+       "W": 2,
+       "D": 0,
+       "L": 6
+      },
+      "yearComplete": true
+     },
+     "RSA": {
+      "results": [
+       {
+        "date": "2026-09-27",
+        "opponent": "Australia",
+        "side": "away",
+        "score": "38–42",
+        "result": "L",
+        "league": "International Friendlies",
+        "tries": 6
+       },
+       {
+        "date": "2026-09-12",
+        "opponent": "New Zealand",
+        "side": "home",
+        "score": "43–28",
+        "result": "W",
+        "league": "Rugbys Greatest Rivalry",
+        "tries": 6
+       },
+       {
+        "date": "2026-09-05",
+        "opponent": "New Zealand",
+        "side": "home",
+        "score": "29–24",
+        "result": "W",
+        "league": "Rugbys Greatest Rivalry",
+        "tries": null
+       },
+       {
+        "date": "2026-08-29",
+        "opponent": "New Zealand",
+        "side": "home",
+        "score": "33–26",
+        "result": "W",
+        "league": "Rugbys Greatest Rivalry",
+        "tries": null
+       },
+       {
+        "date": "2026-08-22",
+        "opponent": "New Zealand",
+        "side": "home",
+        "score": "16–33",
+        "result": "L",
+        "league": "Rugbys Greatest Rivalry",
+        "tries": null
+       }
+      ],
+      "streak": {
+       "result": "L",
+       "games": 1,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 10,
+       "W": 8,
+       "D": 0,
+       "L": 2
+      },
+      "yearComplete": false
+     }
+    },
+    "meetings": [
+     {
+      "date": "2025-11-15",
+      "league": "International Friendlies",
+      "neutral": false,
+      "host": "Italy",
+      "visitor": "South Africa",
+      "score": "Italy 14–32 South Africa",
+      "winner": "South Africa"
+     }
+    ],
+    "next": {
+     "ITA": {
+      "date": "2026-11-14",
+      "opponent": "Argentina",
+      "side": "home",
+      "league": "Nations Championship, Group Stage"
+     },
+     "RSA": {
+      "date": "2026-11-13",
+      "opponent": "France",
+      "side": "away",
+      "league": "Nations Championship, Group Stage"
+     }
+    },
+    "news": [
+     {
+      "title": "Italy-South Africa: top-level rugby returns to the Allianz Stadium",
+      "url": "https://sports.yahoo.com/articles/italy-south-africa-top-level-130600042.html",
+      "outlet": "Web search",
+      "published": "2026-09-21",
+      "background": true,
+      "about": [
+       "ITA",
+       "RSA"
+      ]
+     },
+     {
+      "title": "Boks add bite to Sharks",
+      "url": "https://www.sarugbymag.co.za/boks-add-bite-to-sharks/",
+      "outlet": "SA Rugby Magazine",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "RSA"
+      ]
+     },
+     {
+      "title": "Springbok forward suffers injury blow as Bath issue latest updates on England hopefuls ahead of Nations Championship",
+      "url": "https://www.planetrugby.com/news/springbok-forward-suffers-injury-blow-as-bath-issue-latest-updates-on-england-hopefuls-ahead-of-nations-championship",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "RSA"
+      ]
+     },
+     {
+      "title": "Victor Matfield's 'what Rassie would like' prediction and where the Springboks can 'still get better'",
+      "url": "https://www.planetrugby.com/news/victor-matfields-what-rassie-would-like-prediction-and-where-the-springboks-can-still-get-better",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "RSA"
+      ]
+     },
+     {
+      "title": "Springbok great's verdict on wingers in 'massive talent pool' and his huge claim debate about 'complete game' Cam Hanekom",
+      "url": "https://www.planetrugby.com/news/springbok-greats-verdict-on-wingers-in-massive-talent-pool-and-his-huge-claim-debate-about-complete-game-cam-hanekom",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "RSA"
+      ]
+     },
+     {
+      "title": "Springboks legend: What the Wallabies need to be 'top five' team in the world again",
+      "url": "https://www.planetrugby.com/news/springboks-legend-what-the-wallabies-need-to-be-top-five-team-in-the-world-again",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "RSA"
+      ]
+     },
+     {
+      "title": "Springboks star's contract 'terminated' at Japanese club amid reports of South African return",
+      "url": "https://www.planetrugby.com/news/springboks-kwagga-smith-leaves-japanese-club-amid-sa-return-rumours",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "RSA"
+      ]
+     },
+     {
+      "title": "Welsh copy off Rassie’s Peyper",
+      "url": "https://www.sarugbymag.co.za/welsh-copy-off-rassies-peyper/",
+      "outlet": "SA Rugby Magazine",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "RSA"
+      ]
+     },
+     {
+      "title": "Tony: Boks have got everything right",
+      "url": "https://www.sarugbymag.co.za/tony-boks-got-everything-right/",
+      "outlet": "SA Rugby Magazine",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "RSA"
+      ]
+     },
+     {
+      "title": "Springboks to face Fiji before 2027 Rugby World Cup",
+      "url": "https://www.msn.com/en-us/news/other/springboks-to-face-fiji-before-2027-rugby-world-cup/ar-AA2cwuk1",
+      "outlet": "Web search",
+      "published": "2026-09-18",
+      "background": true,
+      "about": [
+       "RSA"
+      ]
+     },
+     {
+      "title": "Boks power & All Blacks of old - what did we learn from series?",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/c8e3xk48wk9o?at_medium=RSS&at_campaign=rss",
+      "outlet": "BBC Rugby Union",
+      "published": "2026-09-13",
+      "background": true,
+      "about": [
+       "RSA"
+      ]
+     },
+     {
+      "title": "South Africa Form",
+      "url": "https://www.espn.com/rugby/match/_/gameId/603505/league/164205",
+      "outlet": "Web search",
+      "published": "2026-08-21",
+      "background": true,
+      "about": [
+       "RSA"
+      ]
+     }
+    ],
+    "promptChars": 13177,
+    "packSha256": "bf73c0aa9fa9d45daee6e7f7fde5cc644ccaa29abe530c3fe7b5d6fa268d946e"
+   }
+  },
+  {
+   "id": "espn-603995",
+   "factsHash": "4613139b8c85f6fc",
+   "packHash": "9fc0ba7643df7358",
+   "pack": {
+    "fixture": {
+     "id": "espn-603995",
+     "home": {
+      "code": "SCO",
+      "name": "Scotland",
+      "tracked": true
+     },
+     "away": {
+      "code": "NZL",
+      "name": "New Zealand",
+      "tracked": true
+     },
+     "kickoff": "2026-11-07T14:10:00.000Z",
+     "kickoffSydney": "Sun 8 Nov 2026, 1:10 am Sydney time",
+     "comp": {
+      "key": "rnc-2026",
+      "label": "RNC '26",
+      "kind": "competition"
+     },
+     "venue": "Scottish Gas Murrayfield, Edinburgh"
+    },
+    "rankings": {
+     "asOf": "19 October 2026",
+     "SCO": {
+      "rank": 6,
+      "points": 84.78
+     },
+     "NZL": {
+      "rank": 2,
+      "points": 92.27
+     }
+    },
+    "stakes": {
+     "asOf": "19 October 2026",
+     "worldCup": false,
+     "complete": true,
+     "size": 12,
+     "home": {
+      "code": "SCO",
+      "rank": 6,
+      "points": 84.78
+     },
+     "away": {
+      "code": "NZL",
+      "rank": 2,
+      "points": 92.27
+     },
+     "scenarios": [
+      {
+       "key": "home-win-big",
+       "side": "home",
+       "bigWin": true,
+       "home": {
+        "points": 87.4,
+        "delta": 2.62,
+        "rank": 5,
+        "exact": true,
+        "passed": [
+         "ENG"
+        ],
+        "passedBy": []
+       },
+       "away": {
+        "points": 89.65,
+        "delta": -2.62,
+        "rank": 2,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "home-win",
+       "side": "home",
+       "bigWin": false,
+       "home": {
+        "points": 86.53,
+        "delta": 1.75,
+        "rank": 5,
+        "exact": true,
+        "passed": [
+         "ENG"
+        ],
+        "passedBy": []
+       },
+       "away": {
+        "points": 90.52,
+        "delta": -1.75,
+        "rank": 2,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "draw",
+       "side": null,
+       "bigWin": false,
+       "home": {
+        "points": 85.53,
+        "delta": 0.75,
+        "rank": 6,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 91.52,
+        "delta": -0.75,
+        "rank": 2,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win",
+       "side": "away",
+       "bigWin": false,
+       "home": {
+        "points": 84.53,
+        "delta": -0.25,
+        "rank": 6,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 92.52,
+        "delta": 0.25,
+        "rank": 2,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win-big",
+       "side": "away",
+       "bigWin": true,
+       "home": {
+        "points": 84.4,
+        "delta": -0.38,
+        "rank": 7,
+        "exact": true,
+        "passed": [],
+        "passedBy": [
+         "AUS"
+        ]
+       },
+       "away": {
+        "points": 92.65,
+        "delta": 0.38,
+        "rank": 2,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      }
+     ]
+    },
+    "trajectory": {
+     "SCO": {
+      "rank": 6,
+      "points": 84.78,
+      "move": 1,
+      "since": "19 October 2026",
+      "previous": {
+       "rank": 7,
+       "asOf": "12 October 2026"
+      },
+      "best": 6,
+      "worst": 7,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     },
+     "NZL": {
+      "rank": 2,
+      "points": 92.27,
+      "move": 0,
+      "since": "31 August 2026",
+      "previous": {
+       "rank": 1,
+       "asOf": "24 August 2026"
+      },
+      "best": 1,
+      "worst": 2,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     }
+    },
+    "log": {
+     "NZL": {
+      "rank": 2,
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 51,
+      "Pts": 15
+     },
+     "SCO": {
+      "rank": 5,
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 11,
+      "Pts": 10
+     }
+    },
+    "table": [
+     {
+      "rank": 1,
+      "code": "RSA",
+      "team": "South Africa",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 81,
+      "Pts": 15
+     },
+     {
+      "rank": 2,
+      "code": "NZL",
+      "team": "New Zealand",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 51,
+      "Pts": 15
+     },
+     {
+      "rank": 3,
+      "code": "FRA",
+      "team": "France",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 41,
+      "Pts": 12
+     },
+     {
+      "rank": 4,
+      "code": "ENG",
+      "team": "England",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 48,
+      "Pts": 10
+     },
+     {
+      "rank": 5,
+      "code": "SCO",
+      "team": "Scotland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 11,
+      "Pts": 10
+     },
+     {
+      "rank": 6,
+      "code": "IRE",
+      "team": "Ireland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": -1,
+      "Pts": 10
+     },
+     {
+      "rank": 7,
+      "code": "AUS",
+      "team": "Australia",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": 29,
+      "Pts": 8
+     },
+     {
+      "rank": 8,
+      "code": "ARG",
+      "team": "Argentina",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -2,
+      "Pts": 7
+     },
+     {
+      "rank": 9,
+      "code": "WAL",
+      "team": "Wales",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -42,
+      "Pts": 5
+     },
+     {
+      "rank": 10,
+      "code": "JPN",
+      "team": "Japan",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -26,
+      "Pts": 4
+     },
+     {
+      "rank": 11,
+      "code": "ITA",
+      "team": "Italy",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -94,
+      "Pts": 0
+     },
+     {
+      "rank": 12,
+      "code": "FIJ",
+      "team": "Fiji",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -96,
+      "Pts": 0
+     }
+    ],
+    "form": {
+     "SCO": {
+      "results": [
+       {
+        "date": "2026-07-18",
+        "opponent": "Fiji",
+        "side": "away",
+        "score": "33–17",
+        "result": "W",
+        "league": "Nations Championship, Group Stage",
+        "tries": 5
+       },
+       {
+        "date": "2026-07-11",
+        "opponent": "South Africa",
+        "side": "away",
+        "score": "28–42",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 4
+       },
+       {
+        "date": "2026-07-04",
+        "opponent": "Argentina",
+        "side": "away",
+        "score": "47–38",
+        "result": "W",
+        "league": "Nations Championship, Group Stage",
+        "tries": 7
+       },
+       {
+        "date": "2026-03-14",
+        "opponent": "Ireland",
+        "side": "away",
+        "score": "21–43",
+        "result": "L",
+        "league": "Six Nations",
+        "tries": 3
+       },
+       {
+        "date": "2026-03-07",
+        "opponent": "France",
+        "side": "home",
+        "score": "50–40",
+        "result": "W",
+        "league": "Six Nations",
+        "tries": 7
+       }
+      ],
+      "streak": {
+       "result": "W",
+       "games": 1,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 8,
+       "W": 5,
+       "D": 0,
+       "L": 3
+      },
+      "yearComplete": true
+     },
+     "NZL": {
+      "results": [
+       {
+        "date": "2026-10-17",
+        "opponent": "Australia",
+        "side": "away",
+        "score": "43–21",
+        "result": "W",
+        "league": "International Friendlies",
+        "tries": 7
+       },
+       {
+        "date": "2026-10-10",
+        "opponent": "Australia",
+        "side": "home",
+        "score": "50–19",
+        "result": "W",
+        "league": "International Friendlies",
+        "tries": 7
+       },
+       {
+        "date": "2026-09-12",
+        "opponent": "South Africa",
+        "side": "away",
+        "score": "28–43",
+        "result": "L",
+        "league": "Rugbys Greatest Rivalry",
+        "tries": 4
+       },
+       {
+        "date": "2026-09-05",
+        "opponent": "South Africa",
+        "side": "away",
+        "score": "24–29",
+        "result": "L",
+        "league": "Rugbys Greatest Rivalry",
+        "tries": null
+       },
+       {
+        "date": "2026-08-29",
+        "opponent": "South Africa",
+        "side": "away",
+        "score": "26–33",
+        "result": "L",
+        "league": "Rugbys Greatest Rivalry",
+        "tries": null
+       }
+      ],
+      "streak": {
+       "result": "W",
+       "games": 2,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 10,
+       "W": 7,
+       "D": 0,
+       "L": 3
+      },
+      "yearComplete": false
+     }
+    },
+    "meetings": [
+     {
+      "date": "2025-11-08",
+      "league": "International Friendlies",
+      "neutral": false,
+      "host": "Scotland",
+      "visitor": "New Zealand",
+      "score": "Scotland 17–25 New Zealand",
+      "winner": "New Zealand"
+     }
+    ],
+    "next": {
+     "SCO": {
+      "date": "2026-11-15",
+      "opponent": "Australia",
+      "side": "home",
+      "league": "Nations Championship, Group Stage"
+     },
+     "NZL": {
+      "date": "2026-11-14",
+      "opponent": "Wales",
+      "side": "away",
+      "league": "Nations Championship, Group Stage"
+     }
+    },
+    "news": [
+     {
+      "title": "Scotland to face All Blacks in New Zealand for first time in 27 years",
+      "url": "https://www.scotsman.com/sport/rugby-union/scotland-to-face-all-blacks-in-new-zealand-for-first-time-in-27-years-9300679",
+      "outlet": "Web search",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "SCO",
+       "NZL"
+      ]
+     },
+     {
+      "title": "World champion Josh Kerr to play part in Scotland v New Zealand Murrayfield clash",
+      "url": "https://www.msn.com/en-gb/sport/rugby/world-champion-josh-kerr-to-play-part-in-scotland-v-new-zealand-murrayfield-clash/ar-AA2em5g0",
+      "outlet": "Web search",
+      "published": "2026-10-16",
+      "background": false,
+      "about": [
+       "SCO",
+       "NZL"
+      ]
+     },
+     {
+      "title": "Sir John Kirwan: The 'most important' thing from the All Blacks' Bledisloe Cup dominance",
+      "url": "https://www.planetrugby.com/news/sir-john-kirwan-the-most-important-thing-from-the-all-blacks-bledisloe-cup-dominance",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-21",
+      "background": false,
+      "about": [
+       "NZL"
+      ]
+     },
+     {
+      "title": "All Blacks: Justin Marshall and Kieran Read give verdict on Damian McKenzie's role in the team after shining against Wallabies",
+      "url": "https://www.planetrugby.com/news/all-blacks-justin-marshall-and-kieran-read-give-verdict-on-damian-mckenzies-role-in-the-team-after-shining-against-wallabies",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "NZL"
+      ]
+     },
+     {
+      "title": "Justin Marshall hails All Blacks' 'incredible' gesture to Nathan Charles which 'shows you what rugby is all about'",
+      "url": "https://www.planetrugby.com/news/justin-marshall-hails-all-blacks-incredible-gesture-to-nathan-charles-which-shows-you-what-rugby-is-all-about",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "NZL"
+      ]
+     },
+     {
+      "title": "Sir Steve Hansen: The one part of Beauden Barrett's game 'you can't buy' after All Blacks legend's return to form",
+      "url": "https://www.planetrugby.com/news/sir-steve-hansen-the-one-part-of-beauden-barretts-game-you-cant-buy-after-all-blacks-legends-return-to-form",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "NZL"
+      ]
+     },
+     {
+      "title": "All Blacks legend: Injury crisis proving to be 'great' for Dave Rennie but questions raised over lengthy absentee list",
+      "url": "https://www.planetrugby.com/news/all-blacks-legend-injury-crisis-proving-to-be-great-for-dave-rennie-but-questions-raised-over-new-zealands-lengthy-absentee-list",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "NZL"
+      ]
+     },
+     {
+      "title": "Ex-Scotland captain Ritchie set for Glasgow debut",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/cqg7xj7kj4mzo?at_medium=RSS&at_campaign=rss",
+      "outlet": "BBC Rugby Union",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "SCO"
+      ]
+     },
+     {
+      "title": "Who’s hot and who’s not: All Blacks' 'lightning rod', 'indomitable' Lions, 'wobbling' Wallabies and welcome permanent red for 'nasty' tackle",
+      "url": "https://www.planetrugby.com/news/whos-hot-and-whos-not-all-blacks-lightning-rod-indomitable-lions-wobbling-wallabies-and-welcome-permanent-red-for-nasty-tackle",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "NZL"
+      ]
+     },
+     {
+      "title": "Sir Steve Hansen's All Blacks verdict after dominant Bledisloe Cup triumph as one aspect particularly 'sublime'",
+      "url": "https://www.planetrugby.com/news/sir-steve-hansens-all-blacks-verdict-after-dominant-bledisloe-cup-triumph-as-one-aspect-particularly-sublime",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "NZL"
+      ]
+     },
+     {
+      "title": "Ex-All Black hails 'wonderful' reaction from 'kicked in the guts' great and names Dave Rennie's 'most consistent loose forward to date'",
+      "url": "https://www.planetrugby.com/news/ex-all-black-hails-wonderful-reaction-from-kicked-in-the-guts-great-and-names-dave-rennies-most-consistent-loose-forward-to-date",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-18",
+      "background": false,
+      "about": [
+       "NZL"
+      ]
+     },
+     {
+      "title": "Wallabies turn focus to 'tough' Nations Championship Tests as duo address loss against 'world-class' All Blacks",
+      "url": "https://www.planetrugby.com/news/wallabies-turn-focus-to-tough-nations-championship-tests-as-duo-address-loss-against-world-class-all-blacks",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-18",
+      "background": false,
+      "about": [
+       "NZL"
+      ]
+     }
+    ],
+    "promptChars": 13230,
+    "packSha256": "537b2543b0e8998d19a791b4ed734083842e6c53071f930e6fce1c72d25f3455"
+   }
+  },
+  {
+   "id": "espn-603996",
+   "factsHash": "6b3095134887cfe2",
+   "packHash": "fd6fc13e4a7ffdd9",
+   "pack": {
+    "fixture": {
+     "id": "espn-603996",
+     "home": {
+      "code": "WAL",
+      "name": "Wales",
+      "tracked": true
+     },
+     "away": {
+      "code": "JPN",
+      "name": "Japan",
+      "tracked": true
+     },
+     "kickoff": "2026-11-07T16:40:00.000Z",
+     "kickoffSydney": "Sun 8 Nov 2026, 3:40 am Sydney time",
+     "comp": {
+      "key": "rnc-2026",
+      "label": "RNC '26",
+      "kind": "competition"
+     },
+     "venue": "Principality Stadium, Cardiff"
+    },
+    "rankings": {
+     "asOf": "19 October 2026",
+     "WAL": {
+      "rank": 11,
+      "points": 76.38
+     },
+     "JPN": {
+      "rank": 9,
+      "points": 77.28
+     }
+    },
+    "stakes": {
+     "asOf": "19 October 2026",
+     "worldCup": false,
+     "complete": true,
+     "size": 12,
+     "home": {
+      "code": "WAL",
+      "rank": 11,
+      "points": 76.38
+     },
+     "away": {
+      "code": "JPN",
+      "rank": 9,
+      "points": 77.28
+     },
+     "scenarios": [
+      {
+       "key": "home-win-big",
+       "side": "home",
+       "bigWin": true,
+       "home": {
+        "points": 78.02,
+        "delta": 1.64,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN",
+         "FIJ"
+        ],
+        "passedBy": []
+       },
+       "away": {
+        "points": 75.65,
+        "delta": -1.64,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "FIJ",
+         "WAL",
+         "ITA"
+        ]
+       }
+      },
+      {
+       "key": "home-win",
+       "side": "home",
+       "bigWin": false,
+       "home": {
+        "points": 77.47,
+        "delta": 1.09,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN",
+         "FIJ"
+        ],
+        "passedBy": []
+       },
+       "away": {
+        "points": 76.19,
+        "delta": -1.09,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "FIJ",
+         "WAL",
+         "ITA"
+        ]
+       }
+      },
+      {
+       "key": "draw",
+       "side": null,
+       "bigWin": false,
+       "home": {
+        "points": 76.47,
+        "delta": 0.09,
+        "rank": 11,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 77.19,
+        "delta": -0.09,
+        "rank": 9,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win",
+       "side": "away",
+       "bigWin": false,
+       "home": {
+        "points": 75.47,
+        "delta": -0.91,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "ITA"
+        ]
+       },
+       "away": {
+        "points": 78.19,
+        "delta": 0.91,
+        "rank": 9,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win-big",
+       "side": "away",
+       "bigWin": true,
+       "home": {
+        "points": 75.02,
+        "delta": -1.36,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "ITA"
+        ]
+       },
+       "away": {
+        "points": 78.65,
+        "delta": 1.36,
+        "rank": 9,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      }
+     ]
+    },
+    "trajectory": {
+     "WAL": {
+      "rank": 11,
+      "points": 76.38,
+      "move": 0,
+      "since": "28 September 2026",
+      "previous": {
+       "rank": 10,
+       "asOf": "14 September 2026"
+      },
+      "best": 10,
+      "worst": 12,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     },
+     "JPN": {
+      "rank": 9,
+      "points": 77.28,
+      "move": 0,
+      "since": "28 September 2026",
+      "previous": {
+       "rank": 12,
+       "asOf": "14 September 2026"
+      },
+      "best": 9,
+      "worst": 12,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     }
+    },
+    "log": {
+     "WAL": {
+      "rank": 9,
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -42,
+      "Pts": 5
+     },
+     "JPN": {
+      "rank": 10,
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -26,
+      "Pts": 4
+     }
+    },
+    "table": [
+     {
+      "rank": 1,
+      "code": "RSA",
+      "team": "South Africa",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 81,
+      "Pts": 15
+     },
+     {
+      "rank": 2,
+      "code": "NZL",
+      "team": "New Zealand",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 51,
+      "Pts": 15
+     },
+     {
+      "rank": 3,
+      "code": "FRA",
+      "team": "France",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 41,
+      "Pts": 12
+     },
+     {
+      "rank": 4,
+      "code": "ENG",
+      "team": "England",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 48,
+      "Pts": 10
+     },
+     {
+      "rank": 5,
+      "code": "SCO",
+      "team": "Scotland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 11,
+      "Pts": 10
+     },
+     {
+      "rank": 6,
+      "code": "IRE",
+      "team": "Ireland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": -1,
+      "Pts": 10
+     },
+     {
+      "rank": 7,
+      "code": "AUS",
+      "team": "Australia",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": 29,
+      "Pts": 8
+     },
+     {
+      "rank": 8,
+      "code": "ARG",
+      "team": "Argentina",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -2,
+      "Pts": 7
+     },
+     {
+      "rank": 9,
+      "code": "WAL",
+      "team": "Wales",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -42,
+      "Pts": 5
+     },
+     {
+      "rank": 10,
+      "code": "JPN",
+      "team": "Japan",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -26,
+      "Pts": 4
+     },
+     {
+      "rank": 11,
+      "code": "ITA",
+      "team": "Italy",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -94,
+      "Pts": 0
+     },
+     {
+      "rank": 12,
+      "code": "FIJ",
+      "team": "Fiji",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -96,
+      "Pts": 0
+     }
+    ],
+    "form": {
+     "WAL": {
+      "results": [
+       {
+        "date": "2026-07-18",
+        "opponent": "South Africa",
+        "side": "away",
+        "score": "0–43",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 0
+       },
+       {
+        "date": "2026-07-11",
+        "opponent": "Argentina",
+        "side": "away",
+        "score": "21–35",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 3
+       },
+       {
+        "date": "2026-07-04",
+        "opponent": "Fiji",
+        "side": "away",
+        "score": "39–24",
+        "result": "W",
+        "league": "Nations Championship, Group Stage",
+        "tries": 6
+       },
+       {
+        "date": "2026-06-27",
+        "opponent": "The Barbarians",
+        "side": "home",
+        "score": "33–31",
+        "result": "W",
+        "league": "International Friendlies",
+        "tries": null
+       },
+       {
+        "date": "2026-03-14",
+        "opponent": "Italy",
+        "side": "home",
+        "score": "31–17",
+        "result": "W",
+        "league": "Six Nations",
+        "tries": 4
+       }
+      ],
+      "streak": {
+       "result": "L",
+       "games": 2,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 9,
+       "W": 3,
+       "D": 0,
+       "L": 6
+      },
+      "yearComplete": true
+     },
+     "JPN": {
+      "results": [
+       {
+        "date": "2026-09-19",
+        "opponent": "Fiji",
+        "side": "home",
+        "score": "20–15",
+        "result": "W",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-09-12",
+        "opponent": "USA",
+        "side": "home",
+        "score": "63–14",
+        "result": "W",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-09-05",
+        "opponent": "Canada",
+        "side": "home",
+        "score": "57–12",
+        "result": "W",
+        "league": "International Friendlies",
+        "tries": null
+       },
+       {
+        "date": "2026-08-15",
+        "opponent": "Australia",
+        "side": "away",
+        "score": "17–56",
+        "result": "L",
+        "league": "International Friendlies",
+        "tries": null
+       },
+       {
+        "date": "2026-08-08",
+        "opponent": "Australia",
+        "side": "home",
+        "score": "32–35",
+        "result": "L",
+        "league": "International Friendlies",
+        "tries": null
+       }
+      ],
+      "streak": {
+       "result": "W",
+       "games": 3,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 8,
+       "W": 4,
+       "D": 0,
+       "L": 4
+      },
+      "yearComplete": true
+     }
+    },
+    "meetings": [
+     {
+      "date": "2025-11-15",
+      "league": "International Friendlies",
+      "neutral": false,
+      "host": "Wales",
+      "visitor": "Japan",
+      "score": "Wales 24–23 Japan",
+      "winner": "Wales"
+     }
+    ],
+    "next": {
+     "WAL": {
+      "date": "2026-11-14",
+      "opponent": "New Zealand",
+      "side": "home",
+      "league": "Nations Championship, Group Stage"
+     },
+     "JPN": {
+      "date": "2026-11-14",
+      "opponent": "England",
+      "side": "away",
+      "league": "Nations Championship, Group Stage"
+     }
+    },
+    "news": [
+     {
+      "title": "World Rugby rankings change as Japan triumph spells trouble for Wales",
+      "url": "https://uk.sports.yahoo.com/news/world-rugby-rankings-change-japan-135328656.html",
+      "outlet": "Web search",
+      "published": "2026-09-19",
+      "background": true,
+      "about": [
+       "WAL",
+       "JPN"
+      ]
+     },
+     {
+      "title": "Rugby World Cup 2027 draw: Why Wales beating Japan is so important",
+      "url": "https://sports.yahoo.com/article/rugby-world-cup-2027-draw-162211242.html",
+      "outlet": "Web search",
+      "published": "2025-11-14",
+      "background": true,
+      "about": [
+       "WAL",
+       "JPN"
+      ]
+     },
+     {
+      "title": "Wales captain Morgan missing rest of autumn rugby tests including key Japan match",
+      "url": "https://sports.yahoo.com/article/wales-captain-morgan-missing-rest-104400009.html",
+      "outlet": "Web search",
+      "published": "2025-11-11",
+      "background": true,
+      "about": [
+       "WAL",
+       "JPN"
+      ]
+     },
+     {
+      "title": "Tandy on copping flak and his tough Wales calls",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/c8y5607px4z7o?at_medium=RSS&at_campaign=rss",
+      "outlet": "BBC Rugby Union",
+      "published": "2026-10-21",
+      "background": false,
+      "about": [
+       "WAL"
+      ]
+     },
+     {
+      "title": "Wales great Faletau still has drive for fourth World Cup",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/c62l4xggpnv4o?at_medium=RSS&at_campaign=rss",
+      "outlet": "BBC Rugby Union",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "WAL"
+      ]
+     },
+     {
+      "title": "Wales squad: Winners and losers as Steve Tandy 'fills holes' with 'smart thinking' while head coach 'extends an olive branch' out to re-called trio",
+      "url": "https://www.planetrugby.com/news/wales-squad-winners-and-losers-as-steve-tandy-fills-holes-with-smart-thinking-while-head-coach-extends-an-olive-branch-out-to-re-called-trio",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "WAL"
+      ]
+     },
+     {
+      "title": "Wales squad: Taulupe Faletau and PREM stars snubbed as Steve Tandy includes three uncapped players for Nations Championship",
+      "url": "https://www.planetrugby.com/news/wales-squad-taulupe-faletau-and-prem-stars-snubbed-as-steve-tandy-includes-three-uncapped-players-for-nations-championship",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "WAL"
+      ]
+     },
+     {
+      "title": "Uncapped Dragons get Wales Nations Championship call",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/cjn5vqq974epo?at_medium=RSS&at_campaign=rss",
+      "outlet": "BBC Rugby Union",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "WAL"
+      ]
+     },
+     {
+      "title": "Faletau still in Tandy's plans despite being left out of Wales squad",
+      "url": "https://www.msn.com/en-us/news/other/faletau-left-out-of-wales-squad-for-nations-championship/ar-AA2fEjnD",
+      "outlet": "Web search",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "WAL"
+      ]
+     },
+     {
+      "title": "Springboks star's contract 'terminated' at Japanese club amid reports of South African return",
+      "url": "https://www.planetrugby.com/news/springboks-kwagga-smith-leaves-japanese-club-amid-sa-return-rumours",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "JPN"
+      ]
+     },
+     {
+      "title": "Wales' autumn squad named as Hope and Owen called up but Macs Page snubbed",
+      "url": "https://www.msn.com/en-gb/news/other/wales-autumn-squad-named-as-hope-and-owen-called-up-but-macs-page-snubbed/ar-AA2fEhuh",
+      "outlet": "Web search",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "WAL"
+      ]
+     },
+     {
+      "title": "\"How on earth?\" - Fans react as Wales leave out multiple stars from Nations Championship squad",
+      "url": "https://www.ruck.co.uk/wales-rugby-news/how-on-earth-fans-react-as-wales-leave-out-multiple-stars-from-nations-championship-squad",
+      "outlet": "Web search",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "WAL"
+      ]
+     }
+    ],
+    "promptChars": 12902,
+    "packSha256": "ecffeb3e37b26fd7f7a889a7c667ae0840ef87b4e0db72541501bf74a197513d"
+   }
+  },
+  {
+   "id": "espn-603997",
+   "factsHash": "e3bffe038f5ce920",
+   "packHash": "96e467da17ca29b4",
+   "pack": {
+    "fixture": {
+     "id": "espn-603997",
+     "home": {
+      "code": "FRA",
+      "name": "France",
+      "tracked": true
+     },
+     "away": {
+      "code": "FIJ",
+      "name": "Fiji",
+      "tracked": true
+     },
+     "kickoff": "2026-11-07T20:10:00.000Z",
+     "kickoffSydney": "Sun 8 Nov 2026, 7:10 am Sydney time",
+     "comp": {
+      "key": "rnc-2026",
+      "label": "RNC '26",
+      "kind": "competition"
+     },
+     "venue": "Groupama Stadium, Lyon"
+    },
+    "rankings": {
+     "asOf": "19 October 2026",
+     "FRA": {
+      "rank": 4,
+      "points": 87.43
+     },
+     "FIJ": {
+      "rank": 10,
+      "points": 76.81
+     }
+    },
+    "stakes": {
+     "asOf": "19 October 2026",
+     "worldCup": false,
+     "complete": true,
+     "size": 12,
+     "home": {
+      "code": "FRA",
+      "rank": 4,
+      "points": 87.43
+     },
+     "away": {
+      "code": "FIJ",
+      "rank": 10,
+      "points": 76.81
+     },
+     "scenarios": [
+      {
+       "key": "home-win-big",
+       "side": "home",
+       "bigWin": true,
+       "home": {
+        "points": 87.43,
+        "delta": 0,
+        "rank": 4,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 76.81,
+        "delta": 0,
+        "rank": 10,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "home-win",
+       "side": "home",
+       "bigWin": false,
+       "home": {
+        "points": 87.43,
+        "delta": 0,
+        "rank": 4,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 76.81,
+        "delta": 0,
+        "rank": 10,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "draw",
+       "side": null,
+       "bigWin": false,
+       "home": {
+        "points": 86.43,
+        "delta": -1,
+        "rank": 4,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 77.81,
+        "delta": 1,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN"
+        ],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win",
+       "side": "away",
+       "bigWin": false,
+       "home": {
+        "points": 85.43,
+        "delta": -2,
+        "rank": 5,
+        "exact": true,
+        "passed": [],
+        "passedBy": [
+         "ENG"
+        ]
+       },
+       "away": {
+        "points": 78.81,
+        "delta": 2,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN"
+        ],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win-big",
+       "side": "away",
+       "bigWin": true,
+       "home": {
+        "points": 84.43,
+        "delta": -3,
+        "rank": 6,
+        "exact": true,
+        "passed": [],
+        "passedBy": [
+         "ENG",
+         "SCO"
+        ]
+       },
+       "away": {
+        "points": 79.81,
+        "delta": 3,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN"
+        ],
+        "passedBy": []
+       }
+      }
+     ]
+    },
+    "trajectory": {
+     "FRA": {
+      "rank": 4,
+      "points": 87.43,
+      "move": 0,
+      "since": "13 July 2026",
+      "previous": null,
+      "best": 4,
+      "worst": 4,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     },
+     "FIJ": {
+      "rank": 10,
+      "points": 76.81,
+      "move": 0,
+      "since": "28 September 2026",
+      "previous": {
+       "rank": 9,
+       "asOf": "14 September 2026"
+      },
+      "best": 9,
+      "worst": 10,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     }
+    },
+    "log": {
+     "FRA": {
+      "rank": 3,
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 41,
+      "Pts": 12
+     },
+     "FIJ": {
+      "rank": 12,
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -96,
+      "Pts": 0
+     }
+    },
+    "table": [
+     {
+      "rank": 1,
+      "code": "RSA",
+      "team": "South Africa",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 81,
+      "Pts": 15
+     },
+     {
+      "rank": 2,
+      "code": "NZL",
+      "team": "New Zealand",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 51,
+      "Pts": 15
+     },
+     {
+      "rank": 3,
+      "code": "FRA",
+      "team": "France",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 41,
+      "Pts": 12
+     },
+     {
+      "rank": 4,
+      "code": "ENG",
+      "team": "England",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 48,
+      "Pts": 10
+     },
+     {
+      "rank": 5,
+      "code": "SCO",
+      "team": "Scotland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 11,
+      "Pts": 10
+     },
+     {
+      "rank": 6,
+      "code": "IRE",
+      "team": "Ireland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": -1,
+      "Pts": 10
+     },
+     {
+      "rank": 7,
+      "code": "AUS",
+      "team": "Australia",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": 29,
+      "Pts": 8
+     },
+     {
+      "rank": 8,
+      "code": "ARG",
+      "team": "Argentina",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -2,
+      "Pts": 7
+     },
+     {
+      "rank": 9,
+      "code": "WAL",
+      "team": "Wales",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -42,
+      "Pts": 5
+     },
+     {
+      "rank": 10,
+      "code": "JPN",
+      "team": "Japan",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -26,
+      "Pts": 4
+     },
+     {
+      "rank": 11,
+      "code": "ITA",
+      "team": "Italy",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -94,
+      "Pts": 0
+     },
+     {
+      "rank": 12,
+      "code": "FIJ",
+      "team": "Fiji",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -96,
+      "Pts": 0
+     }
+    ],
+    "form": {
+     "FRA": {
+      "results": [
+       {
+        "date": "2026-07-18",
+        "opponent": "Japan",
+        "side": "away",
+        "score": "42–15",
+        "result": "W",
+        "league": "Nations Championship, Group Stage",
+        "tries": 6
+       },
+       {
+        "date": "2026-07-11",
+        "opponent": "Australia",
+        "side": "away",
+        "score": "42–26",
+        "result": "W",
+        "league": "Nations Championship, Group Stage",
+        "tries": 6
+       },
+       {
+        "date": "2026-07-04",
+        "opponent": "New Zealand",
+        "side": "away",
+        "score": "32–34",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 4
+       },
+       {
+        "date": "2026-03-14",
+        "opponent": "England",
+        "side": "home",
+        "score": "48–46",
+        "result": "W",
+        "league": "Six Nations",
+        "tries": 7
+       },
+       {
+        "date": "2026-03-07",
+        "opponent": "Scotland",
+        "side": "away",
+        "score": "40–50",
+        "result": "L",
+        "league": "Six Nations",
+        "tries": 6
+       }
+      ],
+      "streak": {
+       "result": "W",
+       "games": 2,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 8,
+       "W": 6,
+       "D": 0,
+       "L": 2
+      },
+      "yearComplete": true
+     },
+     "FIJ": {
+      "results": [
+       {
+        "date": "2026-09-19",
+        "opponent": "Japan",
+        "side": "away",
+        "score": "15–20",
+        "result": "L",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-09-12",
+        "opponent": "Canada",
+        "side": "home",
+        "score": "45–29",
+        "result": "W",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-07-18",
+        "opponent": "Scotland",
+        "side": "home",
+        "score": "17–33",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 3
+       },
+       {
+        "date": "2026-07-11",
+        "opponent": "England",
+        "side": "home",
+        "score": "8–73",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 1
+       },
+       {
+        "date": "2026-07-04",
+        "opponent": "Wales",
+        "side": "home",
+        "score": "24–39",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 3
+       }
+      ],
+      "streak": {
+       "result": "L",
+       "games": 1,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 5,
+       "W": 1,
+       "D": 0,
+       "L": 4
+      },
+      "yearComplete": true
+     }
+    },
+    "meetings": [
+     {
+      "date": "2025-11-15",
+      "league": "International Friendlies",
+      "neutral": false,
+      "host": "France",
+      "visitor": "Fiji",
+      "score": "France 34–21 Fiji",
+      "winner": "France"
+     }
+    ],
+    "next": {
+     "FRA": {
+      "date": "2026-11-13",
+      "opponent": "South Africa",
+      "side": "home",
+      "league": "Nations Championship, Group Stage"
+     },
+     "FIJ": {
+      "date": "2026-11-14",
+      "opponent": "Ireland",
+      "side": "away",
+      "league": "Nations Championship, Group Stage"
+     }
+    },
+    "news": [
+     {
+      "title": "Rugby-White won't boot Fiji's flair into touch on World Cup quest, says chairman",
+      "url": "https://www.msn.com/en-gb/sport/rugby/rugby-white-won-t-boot-fiji-s-flair-into-touch-on-world-cup-quest-says-chairman/ar-AA2fHYa7",
+      "outlet": "Web search",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "FIJ"
+      ]
+     },
+     {
+      "title": "Watch: Faf's birthday in France",
+      "url": "https://www.sarugbymag.co.za/watch-fafs-birthday-in-france/",
+      "outlet": "SA Rugby Magazine",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "FRA"
+      ]
+     },
+     {
+      "title": "Pau v Leicester Tigers: Five takeaways as France star's 'moments of magic' help hosts 'hold their nerve' in 'proper European tie'",
+      "url": "https://www.planetrugby.com/news/pau-v-leicester-tigers-five-takeaways-as-france-stars-moments-of-magic-help-hosts-hold-their-nerve-in-proper-european-tie",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-18",
+      "background": false,
+      "about": [
+       "FRA"
+      ]
+     },
+     {
+      "title": "A weekend in Clermont: Riots and a French rugby giant facing challenges",
+      "url": "https://www.the42.ie/leinster-clermont-riots-7196652-Oct2026/",
+      "outlet": "The42",
+      "published": "2026-10-18",
+      "background": false,
+      "about": [
+       "FRA"
+      ]
+     },
+     {
+      "title": "Meaty Montpellier leave Bath reeling and offer Prem French lessons",
+      "url": "https://www.theguardian.com/sport/2026/oct/18/meaty-montpellier-leave-bath-reeling-and-offer-prem-french-lessons",
+      "outlet": "Guardian Rugby Union",
+      "published": "2026-10-18",
+      "background": false,
+      "about": [
+       "FRA"
+      ]
+     },
+     {
+      "title": "Dan Robson hails 'brilliant' England exile and labels 'ridiculous' France star as 'one of the best' in the world",
+      "url": "https://www.planetrugby.com/news/dan-robson-hails-brilliant-england-exile-and-labels-ridiculous-france-star-as-one-of-the-best-in-the-world",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-18",
+      "background": false,
+      "about": [
+       "FRA"
+      ]
+     },
+     {
+      "title": "Jake’s Fiji ‘going to surprise people’",
+      "url": "https://www.sarugbymag.co.za/jakes-fiji-going-surprise-people/",
+      "outlet": "SA Rugby Magazine",
+      "published": "2026-10-18",
+      "background": false,
+      "about": [
+       "FIJ"
+      ]
+     },
+     {
+      "title": "Rugby World Cup winner Jake White takes charge of Fiji",
+      "url": "https://www.espn.com.au/rugby/story/_/id/50170945/rugby-world-cup-winner-jake-white-takes-charge-fiji",
+      "outlet": "Web search",
+      "published": "2026-10-13",
+      "background": false,
+      "about": [
+       "FIJ"
+      ]
+     },
+     {
+      "title": "Fiji appoint former Springboks boss White as coach ahead of World Cup",
+      "url": "https://www.reuters.com/sports/fiji-appoint-former-springboks-boss-white-coach-ahead-world-cup-2026-10-13/",
+      "outlet": "Web search",
+      "published": "2026-10-13",
+      "background": false,
+      "about": [
+       "FIJ"
+      ]
+     },
+     {
+      "title": "Fiji reveal new head coach for Rugby World Cup 2027 - Warren Gatland snubbed",
+      "url": "https://www.ruck.co.uk/fiji-rugby-news/fiji-reveal-new-head-coach-for-rugby-world-cup-2027-warren-gatland-misses-out",
+      "outlet": "Web search",
+      "published": "2026-10-12",
+      "background": false,
+      "about": [
+       "FIJ"
+      ]
+     },
+     {
+      "title": "Jake White appointed Fiji head coach ahead of 2027 Rugby World Cup",
+      "url": "https://www.msn.com/en-za/sports/rugby/jake-white-appointed-fiji-head-coach-ahead-of-2027-rugby-world-cup/ar-AA2e7lUe",
+      "outlet": "Web search",
+      "published": "2026-10-12",
+      "background": false,
+      "about": [
+       "FIJ"
+      ]
+     }
+    ],
+    "promptChars": 12675,
+    "packSha256": "06964e4ebec51432bec7675f85db0b7d518ae6bd592f8bb54253888ea495e669"
+   }
+  },
+  {
+   "id": "espn-603998",
+   "factsHash": "523a2874b8e70b81",
+   "packHash": "d860ee0557b98785",
+   "pack": {
+    "fixture": {
+     "id": "espn-603998",
+     "home": {
+      "code": "ENG",
+      "name": "England",
+      "tracked": true
+     },
+     "away": {
+      "code": "AUS",
+      "name": "Australia",
+      "tracked": true
+     },
+     "kickoff": "2026-11-08T15:10:00.000Z",
+     "kickoffSydney": "Mon 9 Nov 2026, 2:10 am Sydney time",
+     "comp": {
+      "key": "rnc-2026",
+      "label": "RNC '26",
+      "kind": "competition"
+     },
+     "venue": "Allianz Stadium, London"
+    },
+    "rankings": {
+     "asOf": "19 October 2026",
+     "ENG": {
+      "rank": 5,
+      "points": 85.68
+     },
+     "AUS": {
+      "rank": 7,
+      "points": 84.43
+     }
+    },
+    "stakes": {
+     "asOf": "19 October 2026",
+     "worldCup": false,
+     "complete": true,
+     "size": 12,
+     "home": {
+      "code": "ENG",
+      "rank": 5,
+      "points": 85.68
+     },
+     "away": {
+      "code": "AUS",
+      "rank": 7,
+      "points": 84.43
+     },
+     "scenarios": [
+      {
+       "key": "home-win-big",
+       "side": "home",
+       "bigWin": true,
+       "home": {
+        "points": 86.99,
+        "delta": 1.31,
+        "rank": 5,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 83.12,
+        "delta": -1.31,
+        "rank": 7,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "home-win",
+       "side": "home",
+       "bigWin": false,
+       "home": {
+        "points": 86.56,
+        "delta": 0.88,
+        "rank": 5,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 83.56,
+        "delta": -0.87,
+        "rank": 7,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "draw",
+       "side": null,
+       "bigWin": false,
+       "home": {
+        "points": 85.56,
+        "delta": -0.12,
+        "rank": 5,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 84.56,
+        "delta": 0.13,
+        "rank": 7,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win",
+       "side": "away",
+       "bigWin": false,
+       "home": {
+        "points": 84.56,
+        "delta": -1.12,
+        "rank": 7,
+        "exact": true,
+        "passed": [],
+        "passedBy": [
+         "SCO",
+         "AUS"
+        ]
+       },
+       "away": {
+        "points": 85.56,
+        "delta": 1.13,
+        "rank": 5,
+        "exact": true,
+        "passed": [
+         "ENG",
+         "SCO"
+        ],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win-big",
+       "side": "away",
+       "bigWin": true,
+       "home": {
+        "points": 83.99,
+        "delta": -1.69,
+        "rank": 7,
+        "exact": true,
+        "passed": [],
+        "passedBy": [
+         "SCO",
+         "AUS"
+        ]
+       },
+       "away": {
+        "points": 86.12,
+        "delta": 1.69,
+        "rank": 5,
+        "exact": true,
+        "passed": [
+         "ENG",
+         "SCO"
+        ],
+        "passedBy": []
+       }
+      }
+     ]
+    },
+    "trajectory": {
+     "ENG": {
+      "rank": 5,
+      "points": 85.68,
+      "move": 0,
+      "since": "13 July 2026",
+      "previous": null,
+      "best": 5,
+      "worst": 5,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     },
+     "AUS": {
+      "rank": 7,
+      "points": 84.43,
+      "move": -1,
+      "since": "19 October 2026",
+      "previous": {
+       "rank": 6,
+       "asOf": "12 October 2026"
+      },
+      "best": 6,
+      "worst": 8,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     }
+    },
+    "log": {
+     "ENG": {
+      "rank": 4,
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 48,
+      "Pts": 10
+     },
+     "AUS": {
+      "rank": 7,
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": 29,
+      "Pts": 8
+     }
+    },
+    "table": [
+     {
+      "rank": 1,
+      "code": "RSA",
+      "team": "South Africa",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 81,
+      "Pts": 15
+     },
+     {
+      "rank": 2,
+      "code": "NZL",
+      "team": "New Zealand",
+      "P": 3,
+      "W": 3,
+      "D": 0,
+      "L": 0,
+      "PD": 51,
+      "Pts": 15
+     },
+     {
+      "rank": 3,
+      "code": "FRA",
+      "team": "France",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 41,
+      "Pts": 12
+     },
+     {
+      "rank": 4,
+      "code": "ENG",
+      "team": "England",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 48,
+      "Pts": 10
+     },
+     {
+      "rank": 5,
+      "code": "SCO",
+      "team": "Scotland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": 11,
+      "Pts": 10
+     },
+     {
+      "rank": 6,
+      "code": "IRE",
+      "team": "Ireland",
+      "P": 3,
+      "W": 2,
+      "D": 0,
+      "L": 1,
+      "PD": -1,
+      "Pts": 10
+     },
+     {
+      "rank": 7,
+      "code": "AUS",
+      "team": "Australia",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": 29,
+      "Pts": 8
+     },
+     {
+      "rank": 8,
+      "code": "ARG",
+      "team": "Argentina",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -2,
+      "Pts": 7
+     },
+     {
+      "rank": 9,
+      "code": "WAL",
+      "team": "Wales",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -42,
+      "Pts": 5
+     },
+     {
+      "rank": 10,
+      "code": "JPN",
+      "team": "Japan",
+      "P": 3,
+      "W": 1,
+      "D": 0,
+      "L": 2,
+      "PD": -26,
+      "Pts": 4
+     },
+     {
+      "rank": 11,
+      "code": "ITA",
+      "team": "Italy",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -94,
+      "Pts": 0
+     },
+     {
+      "rank": 12,
+      "code": "FIJ",
+      "team": "Fiji",
+      "P": 3,
+      "W": 0,
+      "D": 0,
+      "L": 3,
+      "PD": -96,
+      "Pts": 0
+     }
+    ],
+    "form": {
+     "ENG": {
+      "results": [
+       {
+        "date": "2026-07-18",
+        "opponent": "Argentina",
+        "side": "away",
+        "score": "31–24",
+        "result": "W",
+        "league": "Nations Championship, Group Stage",
+        "tries": 5
+       },
+       {
+        "date": "2026-07-11",
+        "opponent": "Fiji",
+        "side": "away",
+        "score": "73–8",
+        "result": "W",
+        "league": "Nations Championship, Group Stage",
+        "tries": 11
+       },
+       {
+        "date": "2026-07-04",
+        "opponent": "South Africa",
+        "side": "away",
+        "score": "21–45",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 3
+       },
+       {
+        "date": "2026-03-14",
+        "opponent": "France",
+        "side": "away",
+        "score": "46–48",
+        "result": "L",
+        "league": "Six Nations",
+        "tries": 7
+       },
+       {
+        "date": "2026-03-07",
+        "opponent": "Italy",
+        "side": "away",
+        "score": "18–23",
+        "result": "L",
+        "league": "Six Nations",
+        "tries": 2
+       }
+      ],
+      "streak": {
+       "result": "W",
+       "games": 2,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 8,
+       "W": 3,
+       "D": 0,
+       "L": 5
+      },
+      "yearComplete": true
+     },
+     "AUS": {
+      "results": [
+       {
+        "date": "2026-10-17",
+        "opponent": "New Zealand",
+        "side": "home",
+        "score": "21–43",
+        "result": "L",
+        "league": "International Friendlies",
+        "tries": 3
+       },
+       {
+        "date": "2026-10-10",
+        "opponent": "New Zealand",
+        "side": "away",
+        "score": "19–50",
+        "result": "L",
+        "league": "International Friendlies",
+        "tries": 3
+       },
+       {
+        "date": "2026-09-27",
+        "opponent": "South Africa",
+        "side": "home",
+        "score": "42–38",
+        "result": "W",
+        "league": "International Friendlies",
+        "tries": 5
+       },
+       {
+        "date": "2026-09-05",
+        "opponent": "Argentina",
+        "side": "away",
+        "score": "28–28",
+        "result": "D",
+        "league": "International Friendlies",
+        "tries": null
+       },
+       {
+        "date": "2026-08-29",
+        "opponent": "Argentina",
+        "side": "away",
+        "score": "27–21",
+        "result": "W",
+        "league": "International Friendlies",
+        "tries": null
+       }
+      ],
+      "streak": {
+       "result": "L",
+       "games": 2,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 10,
+       "W": 5,
+       "D": 1,
+       "L": 4
+      },
+      "yearComplete": false
+     }
+    },
+    "meetings": [
+     {
+      "date": "2025-11-01",
+      "league": "International Friendlies",
+      "neutral": false,
+      "host": "England",
+      "visitor": "Australia",
+      "score": "England 25–7 Australia",
+      "winner": "England"
+     }
+    ],
+    "next": {
+     "ENG": {
+      "date": "2026-11-14",
+      "opponent": "Japan",
+      "side": "home",
+      "league": "Nations Championship, Group Stage"
+     },
+     "AUS": {
+      "date": "2026-11-15",
+      "opponent": "Scotland",
+      "side": "away",
+      "league": "Nations Championship, Group Stage"
+     }
+    },
+    "news": [
+     {
+      "title": "World Rugby rankings: How Australia can leapfrog England and France as All Blacks target Springboks’ lead",
+      "url": "https://www.msn.com/en-au/news/other/world-rugby-rankings-how-australia-can-leapfrog-england-and-france-as-all-blacks-target-springboks-lead/ar-AA2enw2I",
+      "outlet": "Web search",
+      "published": "2026-10-16",
+      "background": false,
+      "about": [
+       "ENG",
+       "AUS"
+      ]
+     },
+     {
+      "title": "Loose Pass: PREM Rugby's European adventure a 'forewarning' for Steve Borthwick and divided opinions on 'unmistakable' trend",
+      "url": "https://www.planetrugby.com/news/loose-pass-prem-rugbys-european-adventure-a-forewarning-for-steve-borthwick-and-divided-opinions-on-unmistakable-trend",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-21",
+      "background": false,
+      "about": [
+       "ENG"
+      ]
+     },
+     {
+      "title": "Northampton Saints: Injured England flanker close to Prem return and Phil Dowson faces 'difficult' half-back selection",
+      "url": "https://www.planetrugby.com/news/northampton-saints-injured-england-flanker-close-to-prem-return-and-phil-dowson-faces-difficult-half-back-selection",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "ENG"
+      ]
+     },
+     {
+      "title": "All Blacks: Justin Marshall and Kieran Read give verdict on Damian McKenzie's role in the team after shining against Wallabies",
+      "url": "https://www.planetrugby.com/news/all-blacks-justin-marshall-and-kieran-read-give-verdict-on-damian-mckenzies-role-in-the-team-after-shining-against-wallabies",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "AUS"
+      ]
+     },
+     {
+      "title": "Springbok forward suffers injury blow as Bath issue latest updates on England hopefuls ahead of Nations Championship",
+      "url": "https://www.planetrugby.com/news/springbok-forward-suffers-injury-blow-as-bath-issue-latest-updates-on-england-hopefuls-ahead-of-nations-championship",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "ENG"
+      ]
+     },
+     {
+      "title": "England great wades into Ireland's Ciaran Frawley 'argument' with a bold 'real opportunity' suggestion for Andy Farrell",
+      "url": "https://www.planetrugby.com/news/england-great-wades-into-irelands-ciaran-frawley-argument-with-a-bold-real-opportunity-suggestion-for-andy-farrell",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "ENG"
+      ]
+     },
+     {
+      "title": "England latest: Winners and losers as bolters 'control the controllables' while Steve Borthwick left with 'questions' after 'sobering' European round",
+      "url": "https://www.planetrugby.com/news/england-latest-winners-and-losers-as-bolters-control-the-controllables-while-steve-borthwick-left-with-questions-after-sobering-european-round",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "ENG"
+      ]
+     },
+     {
+      "title": "Springboks legend: What the Wallabies need to be 'top five' team in the world again",
+      "url": "https://www.planetrugby.com/news/springboks-legend-what-the-wallabies-need-to-be-top-five-team-in-the-world-again",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "AUS"
+      ]
+     },
+     {
+      "title": "Prem stats leaders: 'Electric' Christian Wade closes in on record while England star dominates the 'power game'",
+      "url": "https://www.planetrugby.com/news/prem-stats-leaders-christian-wade-just-one-try-from-record-while-immanuel-feyi-waboso-dominates-the-power-game",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "ENG"
+      ]
+     },
+     {
+      "title": "England great worried about 'Autumn Nations Series and beyond' after European weekend left him giving URC 'flowers'",
+      "url": "https://www.planetrugby.com/news/england-great-worried-about-autumn-nations-series-and-beyond-after-european-weekend-left-him-giving-urc-flowers",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "ENG"
+      ]
+     },
+     {
+      "title": "Who’s hot and who’s not: All Blacks' 'lightning rod', 'indomitable' Lions, 'wobbling' Wallabies and welcome permanent red for 'nasty' tackle",
+      "url": "https://www.planetrugby.com/news/whos-hot-and-whos-not-all-blacks-lightning-rod-indomitable-lions-wobbling-wallabies-and-welcome-permanent-red-for-nasty-tackle",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-19",
+      "background": false,
+      "about": [
+       "AUS"
+      ]
+     },
+     {
+      "title": "Northampton v Cardiff: Five takeaways as 'startling contribution' from England hopeful lights up 'dreary' contest",
+      "url": "https://www.planetrugby.com/news/northampton-v-cardiff-five-takeaways-as-startling-contribution-from-england-hopeful-lights-up-dreary-contest",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-18",
+      "background": false,
+      "about": [
+       "ENG"
+      ]
+     }
+    ],
+    "promptChars": 13352,
+    "packSha256": "b2bbf7b90bba9d76251e5b46eb21fbb7d77cac485ac172d81920f1d4ff2641f3"
+   }
+  }
+ ],
+ "results": [
+  {
+   "writer": "claude-opus-5-5 [dry]",
+   "voice": "dry",
+   "fixture": "espn-604593",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Jake White starts where Fiji lost the final",
+    "beats": [
+     "Five weeks ago on this ground, Japan beat Fiji 20–15 in the Pacific Nations Cup final. Fiji have since picked Jake White, 62, from 31 applicants. His first game is the same opponent in the same place.",
+     "The rankings sharpen it. A Fiji win takes them above Japan into ninth. A Japan defeat drops them below Fiji, Wales and Italy, twelfth at best. Lose, and it is Fiji who fall behind Wales and Italy.",
+     "Japan have won three straight, including 63–14 over the USA and 57–12 over Canada. Fiji have won one of five this year, and in July lost 8–73 at home to England.",
+     "Fiji's chairman says White will not kick their flair into touch. Willem Strauss, the Blue Bulls Rugby Union president, says \"Fiji needs its South African discipline\".",
+     "A fortnight later both are in Europe, Japan at Wales and Fiji at France."
+    ],
+    "sources": 2
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": false,
+   "revisionGate": null,
+   "check2": null,
+   "final": {
+    "headline": "Jake White starts where Fiji lost the final",
+    "beats": [
+     "Five weeks ago on this ground, Japan beat Fiji 20–15 in the Pacific Nations Cup final. Fiji have since picked Jake White, 62, from 31 applicants. His first game is the same opponent in the same place.",
+     "The rankings sharpen it. A Fiji win takes them above Japan into ninth. A Japan defeat drops them below Fiji, Wales and Italy, twelfth at best. Lose, and it is Fiji who fall behind Wales and Italy.",
+     "Japan have won three straight, including 63–14 over the USA and 57–12 over Canada. Fiji have won one of five this year, and in July lost 8–73 at home to England.",
+     "Fiji's chairman says White will not kick their flair into touch. Willem Strauss, the Blue Bulls Rugby Union president, says \"Fiji needs its South African discipline\".",
+     "A fortnight later both are in Europe, Japan at Wales and Fiji at France."
+    ],
+    "sources": [
+     {
+      "title": "Rugby-White won't boot Fiji's flair into touch on World Cup quest, says chairman",
+      "url": "https://www.msn.com/en-gb/news/other/rugby-white-wont-boot-fijis-flair-into-touch-on-world-cup-quest-says-chairman/ar-AA2fHYa7"
+     },
+     {
+      "title": "Jake’s Fiji ‘going to surprise people’",
+      "url": "https://www.sarugbymag.co.za/jakes-fiji-going-surprise-people/"
+     }
+    ],
+    "revised": false
+   },
+   "seconds": 19.5,
+   "usage": {
+    "writerCalls": 1,
+    "writerInput": 5119,
+    "writerOutput": 1464,
+    "writerCostUSD": 0.04976,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00111
+   },
+   "costUSD": 0.05087
+  },
+  {
+   "writer": "claude-opus-5-5 [dry2]",
+   "voice": "dry2",
+   "fixture": "espn-604593",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Jake White starts where Fiji's season ended",
+    "beats": [
+     "Fiji picked Jake White from 31 applicants this month, replacing interim coach Senirusi Seruvakula. His first Test is at Prince Chichibu Memorial Stadium, where Japan beat Fiji 20–15 in the Pacific Nations Cup final on 19 September.",
+     "Japan have won three straight since then, scoring 63 against USA and 57 against Canada. Fiji's only win this year came against Canada. England put 73 on them in July.",
+     "Fiji's rugby boss is confident the pragmatic 62-year-old will not coach the flair out of them. A Blue Bulls official, who worked with White, sees a different priority: \"I think Fiji needs its South African discipline\".",
+     "Win and Fiji go above Japan, who then travel to Wales on 7 November ranked below their hosts as well. Fiji go to France the same day, with either a debut win or a fresh tour of the old problems."
+    ],
+    "sources": 2
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "fail",
+    "material": 1,
+    "issues": [
+     {
+      "claim": "Japan have won three straight since then, scoring 63 against USA and 57 against Canada.",
+      "problem": "\"Since then\" refers to the 19 September final. The Form list shows Japan's three straight wins are the 5, 12 and 19 September games, so the final is one of the three and the 63-14 and 57-12 wins came before it. Japan have played no game since 19 September, so the wording misdates the run.",
+      "fix": "Japan have won three straight, including the final, with 63 against USA and 57 against Canada on the way."
+     }
+    ]
+   },
+   "revised": true,
+   "revisionGate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check2": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "final": {
+    "headline": "Jake White starts where Fiji's season ended",
+    "beats": [
+     "Fiji picked Jake White from 31 applicants this month, replacing interim coach Senirusi Seruvakula. His first Test is at Prince Chichibu Memorial Stadium, where Japan beat Fiji 20–15 in the Pacific Nations Cup final on 19 September.",
+     "Japan have won three straight, including that final, with 63 against USA and 57 against Canada on the way. Fiji's only win this year came against Canada. England put 73 on them in July.",
+     "Fiji's rugby boss is confident the pragmatic 62-year-old will not coach the flair out of them. The Blue Bulls Rugby Union president, Willem Strauss, sees a different priority: \"I think Fiji needs its South African discipline\".",
+     "Win and Fiji go above Japan, who then travel to Wales on 7 November ranked below their hosts as well. Fiji go to France the same day, with either a debut win or a fresh tour of the old problems."
+    ],
+    "sources": [
+     {
+      "title": "Jake’s Fiji ‘going to surprise people’",
+      "url": "https://www.sarugbymag.co.za/jakes-fiji-going-surprise-people/"
+     },
+     {
+      "title": "Rugby-White won't boot Fiji's flair into touch on World Cup quest, says chairman",
+      "url": "https://www.msn.com/en-gb/news/other/rugby-white-wont-boot-fijis-flair-into-touch-on-world-cup-quest-says-chairman/ar-AA2fHYa7"
+     }
+    ],
+    "revised": true
+   },
+   "seconds": 41.9,
+   "usage": {
+    "writerCalls": 2,
+    "writerInput": 11463,
+    "writerOutput": 2688,
+    "writerCostUSD": 0.09961,
+    "checkerCalls": 2,
+    "checkerCostUSD": 0.00279
+   },
+   "costUSD": 0.1024
+  },
+  {
+   "writer": "claude-opus-5-5 [dry]",
+   "voice": "dry",
+   "fixture": "espn-603993",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Ireland's third place meets Pumas winless since July",
+    "beats": [
+     "Argentina last won on 11 July, 35–21 against Wales. Since then they have lost 24–31 to England, 10–17 to South Africa and 21–27 to Australia, then drew 28–28 with Australia. They have been close every time and won none of them.",
+     "Ireland have been third in the world all season. A defeat drops them to fourth, below France. Argentina winning by 16 or more would also lift them above Australia into seventh.",
+     "Ireland have not played since 18 July, when New Zealand beat them 40–21 in Auckland. Before that they won 33–31 in Australia and 36–20 in Japan, and they have won six of eight this year.",
+     "Captain Caelan Doris was still sidelined as Andy Farrell prepared to name his squad. Jack Conan's shoulder needed further assessment.",
+     "This is the first of three home games for Ireland, against Argentina, then Fiji, then South Africa. Finals weekend at Twickenham follows. Ireland start the night level on points with Scotland in fifth."
+    ],
+    "sources": 3
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": false,
+   "revisionGate": null,
+   "check2": null,
+   "final": {
+    "headline": "Ireland's third place meets Pumas winless since July",
+    "beats": [
+     "Argentina last won on 11 July, 35–21 against Wales. Since then they have lost 24–31 to England, 10–17 to South Africa and 21–27 to Australia, then drew 28–28 with Australia. They have been close every time and won none of them.",
+     "Ireland have been third in the world all season. A defeat drops them to fourth, below France. Argentina winning by 16 or more would also lift them above Australia into seventh.",
+     "Ireland have not played since 18 July, when New Zealand beat them 40–21 in Auckland. Before that they won 33–31 in Australia and 36–20 in Japan, and they have won six of eight this year.",
+     "Captain Caelan Doris was still sidelined as Andy Farrell prepared to name his squad. Jack Conan's shoulder needed further assessment.",
+     "This is the first of three home games for Ireland, against Argentina, then Fiji, then South Africa. Finals weekend at Twickenham follows. Ireland start the night level on points with Scotland in fifth."
+    ],
+    "sources": [
+     {
+      "title": "Key questions as Farrell set to name Ireland squad",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/c6vg0n2v512ko?at_medium=RSS&at_campaign=rss"
+     },
+     {
+      "title": "Farrell set to name Ireland squad as he targets Nations Championship title",
+      "url": "https://www.the42.ie/ireland-farrell-squad-2-7199131-Oct2026/"
+     },
+     {
+      "title": "Jack Conan's shoulder injury requires further assessment ahead of Ireland squad announcement",
+      "url": "https://www.the42.ie/jack-conan-shoulder-injury-7198007-Oct2026/"
+     }
+    ],
+    "revised": false
+   },
+   "seconds": 21.2,
+   "usage": {
+    "writerCalls": 1,
+    "writerInput": 6626,
+    "writerOutput": 1405,
+    "writerCostUSD": 0.0546,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00144
+   },
+   "costUSD": 0.05604
+  },
+  {
+   "writer": "claude-opus-5-5 [dry2]",
+   "voice": "dry2",
+   "fixture": "espn-603993",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Argentina's narrow defeats now put Ireland's third on the line",
+    "beats": [
+     "Since July, Argentina have lost to England by seven, South Africa by seven and Australia by six, then drawn 28–28 with Australia a week later. Their only win of 2026 came against Wales.",
+     "Ireland's last game was in July, a 40–21 defeat by New Zealand in Auckland. Their November runs Argentina, Fiji and South Africa in Dublin, and they start it without captain Caelan Doris, with Jack Conan's shoulder needing further assessment before the squad was named.",
+     "Ireland have been third in every ranking since July. Turn one of those near-misses into a win and Argentina send them down to fourth, below France.",
+     "In this competition, losing by seven or fewer earns a bonus point. Argentina have collected the bonus points. In Dublin they need the win."
+    ],
+    "sources": 3
+   },
+   "gate": {
+    "step": "gate",
+    "ok": false,
+    "errors": [
+     "headline 62 chars > 60"
+    ]
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": true,
+   "revisionGate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check2": null,
+   "final": {
+    "headline": "Argentina's near-misses put Ireland's third on the line",
+    "beats": [
+     "Since July, Argentina have lost to England by seven, South Africa by seven and Australia by six, then drawn 28–28 with Australia a week later. Their only win of 2026 came against Wales.",
+     "Ireland's last game was in July, a 40–21 defeat by New Zealand in Auckland. Their November brings Argentina, Fiji and South Africa at home, and they start it without captain Caelan Doris, with Jack Conan's shoulder needing further assessment before the squad announcement.",
+     "Ireland have been third in every ranking since July. Turn one of those near-misses into a win and Argentina send them down to fourth, below France.",
+     "In this competition, losing by seven or fewer earns a bonus point. Argentina have become fluent in that kind of defeat. In Dublin it would not be enough."
+    ],
+    "sources": [
+     {
+      "title": "Key questions as Farrell set to name Ireland squad",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/c6vg0n2v512ko?at_medium=RSS&at_campaign=rss"
+     },
+     {
+      "title": "Farrell set to name Ireland squad as he targets Nations Championship title",
+      "url": "https://www.the42.ie/ireland-farrell-squad-2-7199131-Oct2026/"
+     },
+     {
+      "title": "Jack Conan's shoulder injury requires further assessment ahead of Ireland squad announcement",
+      "url": "https://www.the42.ie/jack-conan-shoulder-injury-7198007-Oct2026/"
+     }
+    ],
+    "revised": true
+   },
+   "seconds": 35,
+   "usage": {
+    "writerCalls": 2,
+    "writerInput": 14291,
+    "writerOutput": 2393,
+    "writerCostUSD": 0.10502,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00138
+   },
+   "costUSD": 0.1064
+  },
+  {
+   "writer": "claude-opus-5-5 [dry]",
+   "voice": "dry",
+   "fixture": "espn-603994",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Last time the Boks rang the changes, they lost in Perth",
+    "beats": [
+     "South Africa arrive first in the world and first in the table, and may not look it. Rassie Erasmus kept largely the same 23 for the last three Tests against New Zealand, then made wholesale changes in Perth and lost 38–42 to Australia.",
+     "Victor Matfield expects more mixing in November. \"There are still some combinations that we can get better,\" he said, while hoping Erasmus does not blood so many at once that it ends in a heavy defeat.",
+     "Italy are the side to test that theory on, in Turin. They have lost four straight, the last 10–57 in Australia, and went down 14–32 to South Africa at home on 15 November 2025. They did beat England 23–18 at home in March.",
+     "An Italian win would lift them to ninth and drop South Africa to second, behind New Zealand. Less dramatically, the Boks top the table only on points difference.",
+     "Then South Africa go to France on 13 November; Italy host Argentina a day later."
+    ],
+    "sources": 1
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": false,
+   "revisionGate": null,
+   "check2": null,
+   "final": {
+    "headline": "Last time the Boks rang the changes, they lost in Perth",
+    "beats": [
+     "South Africa arrive first in the world and first in the table, and may not look it. Rassie Erasmus kept largely the same 23 for the last three Tests against New Zealand, then made wholesale changes in Perth and lost 38–42 to Australia.",
+     "Victor Matfield expects more mixing in November. \"There are still some combinations that we can get better,\" he said, while hoping Erasmus does not blood so many at once that it ends in a heavy defeat.",
+     "Italy are the side to test that theory on, in Turin. They have lost four straight, the last 10–57 in Australia, and went down 14–32 to South Africa at home on 15 November 2025. They did beat England 23–18 at home in March.",
+     "An Italian win would lift them to ninth and drop South Africa to second, behind New Zealand. Less dramatically, the Boks top the table only on points difference.",
+     "Then South Africa go to France on 13 November; Italy host Argentina a day later."
+    ],
+    "sources": [
+     {
+      "title": "Victor Matfield's 'what Rassie would like' prediction and where the Springboks can 'still get better'",
+      "url": "https://www.planetrugby.com/news/victor-matfields-what-rassie-would-like-prediction-and-where-the-springboks-can-still-get-better"
+     }
+    ],
+    "revised": false
+   },
+   "seconds": 17.7,
+   "usage": {
+    "writerCalls": 1,
+    "writerInput": 6961,
+    "writerOutput": 1175,
+    "writerCostUSD": 0.05134,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00119
+   },
+   "costUSD": 0.05253
+  },
+  {
+   "writer": "claude-opus-5-5 [dry2]",
+   "voice": "dry2",
+   "fixture": "espn-603994",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Italy draw South Africa while the experiments are on",
+    "beats": [
+     "South Africa made wholesale changes for Perth in September and lost 38–42 to Australia, their last game. Victor Matfield expects Rassie Erasmus to test his depth again in November, with young Champions Cup players in line. He also warns against fielding too many at once.",
+     "Italy look like the side to try it against. They lost all three Nations Championship games in July and conceded 47 to New Zealand and 57 to Australia in successive weeks. Their last meeting, on 15 November 2025, went 32–14 to South Africa in Italy.",
+     "Italy did beat England this year, 23–18 at home in March. Win in Turin and they climb to 9th, while South Africa drop to 2nd behind New Zealand.",
+     "South Africa lead New Zealand at the top of the table only on points difference, and they face France away six days later. In Turin, a margin is worth more than a lesson."
+    ],
+    "sources": 1
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "fail",
+    "material": 1,
+    "issues": [
+     {
+      "claim": "Headline: \"Italy draw South Africa while the experiments are on\"",
+      "problem": "The match is a future fixture (Sat 7 Nov 2026). The pack has no result, so stating that Italy draw South Africa presents an unplayed result as settled fact.",
+      "fix": "Italy v South Africa? or \"Can Italy hold South Africa while the experiments are on?\""
+     }
+    ]
+   },
+   "revised": true,
+   "revisionGate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check2": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "final": {
+    "headline": "Italy get South Africa while the experiments are on",
+    "beats": [
+     "South Africa made wholesale changes for Perth in September and lost 38–42 to Australia, their last game. Victor Matfield expects Rassie Erasmus to test his depth again in November, with young Champions Cup players in line. He also warns against fielding too many at once.",
+     "Italy look like the side to try it against. They lost all three Nations Championship games in July and conceded 47 to New Zealand and 57 to Australia in successive weeks. Their last meeting, on 15 November 2025, went 32–14 to South Africa in Italy.",
+     "Italy did beat England this year, 23–18 at home in March. Win in Turin and they climb to 9th, while South Africa drop to 2nd behind New Zealand.",
+     "South Africa lead New Zealand at the top of the table only on points difference, and they face France away six days later. In Turin, a margin is worth more than a lesson."
+    ],
+    "sources": [
+     {
+      "title": "Victor Matfield's 'what Rassie would like' prediction and where the Springboks can 'still get better'",
+      "url": "https://www.planetrugby.com/news/victor-matfields-what-rassie-would-like-prediction-and-where-the-springboks-can-still-get-better"
+     }
+    ],
+    "revised": true
+   },
+   "seconds": 39.8,
+   "usage": {
+    "writerCalls": 2,
+    "writerInput": 15081,
+    "writerOutput": 2300,
+    "writerCostUSD": 0.10632,
+    "checkerCalls": 2,
+    "checkerCostUSD": 0.00315
+   },
+   "costUSD": 0.10947
+  },
+  {
+   "writer": "claude-opus-5-5 [dry]",
+   "voice": "dry",
+   "fixture": "espn-603995",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Damian McKenzie's front-foot form meets Murrayfield",
+    "beats": [
+     "Damian McKenzie, 31, ran the All Blacks from fly-half in both Bledisloe Tests, won 50–19 and 43–21, with Ruben Love and Richie Mo'unga injured. Justin Marshall called it \"the perfect storm for DMac\". He also warned the UK is different: \"it's wetter, the opposition's a bit more niggly at the breakdown\".",
+     "Before Australia came three straight defeats to South Africa. New Zealand still top the Nations Championship pool alongside the Springboks, unbeaten in three.",
+     "Scotland lost 25–17 to them on this ground on 8 November 2025. Their own year has been loud: 50–40 against France, 47–38 in Argentina, 33–17 in Fiji in July.",
+     "A win lifts Scotland above England to fifth in the world. A defeat by 16 or more drops them below Australia, who come to them next. New Zealand go on to Wales."
+    ],
+    "sources": 1
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": false,
+   "revisionGate": null,
+   "check2": null,
+   "final": {
+    "headline": "Damian McKenzie's front-foot form meets Murrayfield",
+    "beats": [
+     "Damian McKenzie, 31, ran the All Blacks from fly-half in both Bledisloe Tests, won 50–19 and 43–21, with Ruben Love and Richie Mo'unga injured. Justin Marshall called it \"the perfect storm for DMac\". He also warned the UK is different: \"it's wetter, the opposition's a bit more niggly at the breakdown\".",
+     "Before Australia came three straight defeats to South Africa. New Zealand still top the Nations Championship pool alongside the Springboks, unbeaten in three.",
+     "Scotland lost 25–17 to them on this ground on 8 November 2025. Their own year has been loud: 50–40 against France, 47–38 in Argentina, 33–17 in Fiji in July.",
+     "A win lifts Scotland above England to fifth in the world. A defeat by 16 or more drops them below Australia, who come to them next. New Zealand go on to Wales."
+    ],
+    "sources": [
+     {
+      "title": "All Blacks: Justin Marshall and Kieran Read give verdict on Damian McKenzie's role in the team after shining against Wallabies",
+      "url": "https://www.planetrugby.com/news/all-blacks-justin-marshall-and-kieran-read-give-verdict-on-damian-mckenzies-role-in-the-team-after-shining-against-wallabies"
+     }
+    ],
+    "revised": false
+   },
+   "seconds": 24.8,
+   "usage": {
+    "writerCalls": 1,
+    "writerInput": 7072,
+    "writerOutput": 1740,
+    "writerCostUSD": 0.06309,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00158
+   },
+   "costUSD": 0.06467
+  },
+  {
+   "writer": "claude-opus-5-5 [dry2]",
+   "voice": "dry2",
+   "fixture": "espn-603995",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "The Bledisloe was the easy part for Damian McKenzie",
+    "beats": [
+     "Damian McKenzie started New Zealand's first seven Tests of the year at full-back. He moved to fly-half when Ruben Love and Richie Mo'unga were injured, then ran Australia off the park, 50–19 and 43–21. Justin Marshall called those two Tests \"the perfect storm for DMac\".",
+     "Marshall expects Edinburgh to be wetter and the ball more static, with \"the opposition's a bit more niggly at the breakdown\". Sir John Kirwan's caveat is plainer: \"Australia did not put us under the same pressure\" as South Africa, who beat New Zealand three times running.",
+     "Scotland do not really do static. They put 50 on France and 47 on Argentina this year, and conceded 40 and 38 doing it. They also lost 17–25 to New Zealand on this ground last November. Win this time and they go up to fifth in the world, above England.",
+     "A week later Scotland host Australia, the side McKenzie spent October taking apart."
+    ],
+    "sources": 2
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": false,
+   "revisionGate": null,
+   "check2": null,
+   "final": {
+    "headline": "The Bledisloe was the easy part for Damian McKenzie",
+    "beats": [
+     "Damian McKenzie started New Zealand's first seven Tests of the year at full-back. He moved to fly-half when Ruben Love and Richie Mo'unga were injured, then ran Australia off the park, 50–19 and 43–21. Justin Marshall called those two Tests \"the perfect storm for DMac\".",
+     "Marshall expects Edinburgh to be wetter and the ball more static, with \"the opposition's a bit more niggly at the breakdown\". Sir John Kirwan's caveat is plainer: \"Australia did not put us under the same pressure\" as South Africa, who beat New Zealand three times running.",
+     "Scotland do not really do static. They put 50 on France and 47 on Argentina this year, and conceded 40 and 38 doing it. They also lost 17–25 to New Zealand on this ground last November. Win this time and they go up to fifth in the world, above England.",
+     "A week later Scotland host Australia, the side McKenzie spent October taking apart."
+    ],
+    "sources": [
+     {
+      "title": "Sir John Kirwan: The 'most important' thing from the All Blacks' Bledisloe Cup dominance",
+      "url": "https://www.planetrugby.com/news/sir-john-kirwan-the-most-important-thing-from-the-all-blacks-bledisloe-cup-dominance"
+     },
+     {
+      "title": "All Blacks: Justin Marshall and Kieran Read give verdict on Damian McKenzie's role in the team after shining against Wallabies",
+      "url": "https://www.planetrugby.com/news/all-blacks-justin-marshall-and-kieran-read-give-verdict-on-damian-mckenzies-role-in-the-team-after-shining-against-wallabies"
+     }
+    ],
+    "revised": false
+   },
+   "seconds": 29.8,
+   "usage": {
+    "writerCalls": 1,
+    "writerInput": 7401,
+    "writerOutput": 2134,
+    "writerCostUSD": 0.07228,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00159
+   },
+   "costUSD": 0.07387
+  },
+  {
+   "writer": "claude-opus-5-5 [dry]",
+   "voice": "dry",
+   "fixture": "espn-603996",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Wales won by a point last year. Japan now rank higher",
+    "beats": [
+     "Wales beat Japan 24–23 in Cardiff on 15 November 2025. Japan return to the same ground ranked 9th to Wales's 11th, and one point behind them in the Nations Championship.",
+     "Any Wales win lifts them to 9th and drops Japan to 12th at best. A Wales defeat leaves them below Italy.",
+     "Japan have won three straight, the last a 20–15 win over Fiji in September that took the Pacific Nations Cup. Wales last played in July, losing 0–43 to South Africa.",
+     "Steve Tandy has called up uncapped Dragons backs Aneurin Owen and Che Hope. Taulupe Faletau, 35 and on 109 caps, is left out. His last cap came against Japan in the summer of 2025. Tandy calls him \"a legend of our game\" and will not rule him out of the World Cup.",
+     "Six days later Wales host New Zealand. Japan go to England."
+    ],
+    "sources": 3
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": false,
+   "revisionGate": null,
+   "check2": null,
+   "final": {
+    "headline": "Wales won by a point last year. Japan now rank higher",
+    "beats": [
+     "Wales beat Japan 24–23 in Cardiff on 15 November 2025. Japan return to the same ground ranked 9th to Wales's 11th, and one point behind them in the Nations Championship.",
+     "Any Wales win lifts them to 9th and drops Japan to 12th at best. A Wales defeat leaves them below Italy.",
+     "Japan have won three straight, the last a 20–15 win over Fiji in September that took the Pacific Nations Cup. Wales last played in July, losing 0–43 to South Africa.",
+     "Steve Tandy has called up uncapped Dragons backs Aneurin Owen and Che Hope. Taulupe Faletau, 35 and on 109 caps, is left out. His last cap came against Japan in the summer of 2025. Tandy calls him \"a legend of our game\" and will not rule him out of the World Cup.",
+     "Six days later Wales host New Zealand. Japan go to England."
+    ],
+    "sources": [
+     {
+      "title": "World Rugby rankings change as Japan triumph spells trouble for Wales",
+      "url": "https://uk.sports.yahoo.com/news/world-rugby-rankings-change-japan-135328656.html"
+     },
+     {
+      "title": "Wales great Faletau still has drive for fourth World Cup",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/c62l4xggpnv4o?at_medium=RSS&at_campaign=rss"
+     },
+     {
+      "title": "Uncapped Dragons get Wales Nations Championship call",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/cjn5vqq974epo?at_medium=RSS&at_campaign=rss"
+     }
+    ],
+    "revised": false
+   },
+   "seconds": 23.6,
+   "usage": {
+    "writerCalls": 1,
+    "writerInput": 6922,
+    "writerOutput": 1276,
+    "writerCostUSD": 0.05321,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00188
+   },
+   "costUSD": 0.05509
+  },
+  {
+   "writer": "claude-opus-5-5 [dry2]",
+   "voice": "dry2",
+   "fixture": "espn-603996",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Last year Wales won by a point. Now Japan outrank them",
+    "beats": [
+     "Japan won the Pacific Nations Cup in Tokyo in September, edging Fiji 20–15, and moved up to ninth in the world. Wales are eleventh, and their last Test was a 43–0 defeat in South Africa in July.",
+     "The last meeting, in Cardiff on 15 November 2025, went 24–23 to Wales. Japan have since put 63 on the USA and 57 on Canada, while Wales scored no tries at all in their last outing. Win here and Wales go back above Japan, to ninth.",
+     "Taulupe Faletau, 109 caps, has not played for Wales since facing Japan in the summer of 2025, and he is not in this squad either. Steve Tandy has picked three uncapped players, Aneurin Owen, Che Hope and Rhys Barratt, instead.",
+     "A week later Wales host New Zealand and Japan go to England. Neither side will find the following Saturday any kinder."
+    ],
+    "sources": 3
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": false,
+   "revisionGate": null,
+   "check2": null,
+   "final": {
+    "headline": "Last year Wales won by a point. Now Japan outrank them",
+    "beats": [
+     "Japan won the Pacific Nations Cup in Tokyo in September, edging Fiji 20–15, and moved up to ninth in the world. Wales are eleventh, and their last Test was a 43–0 defeat in South Africa in July.",
+     "The last meeting, in Cardiff on 15 November 2025, went 24–23 to Wales. Japan have since put 63 on the USA and 57 on Canada, while Wales scored no tries at all in their last outing. Win here and Wales go back above Japan, to ninth.",
+     "Taulupe Faletau, 109 caps, has not played for Wales since facing Japan in the summer of 2025, and he is not in this squad either. Steve Tandy has picked three uncapped players, Aneurin Owen, Che Hope and Rhys Barratt, instead.",
+     "A week later Wales host New Zealand and Japan go to England. Neither side will find the following Saturday any kinder."
+    ],
+    "sources": [
+     {
+      "title": "World Rugby rankings change as Japan triumph spells trouble for Wales",
+      "url": "https://uk.sports.yahoo.com/news/world-rugby-rankings-change-japan-135328656.html"
+     },
+     {
+      "title": "Tandy on copping flak and his tough Wales calls",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/c8y5607px4z7o?at_medium=RSS&at_campaign=rss"
+     },
+     {
+      "title": "Wales great Faletau still has drive for fourth World Cup",
+      "url": "https://www.bbc.co.uk/sport/rugby-union/articles/c62l4xggpnv4o?at_medium=RSS&at_campaign=rss"
+     }
+    ],
+    "revised": false
+   },
+   "seconds": 23.3,
+   "usage": {
+    "writerCalls": 1,
+    "writerInput": 7251,
+    "writerOutput": 1370,
+    "writerCostUSD": 0.0564,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00168
+   },
+   "costUSD": 0.05808
+  },
+  {
+   "writer": "claude-opus-5-5 [dry]",
+   "voice": "dry",
+   "fixture": "espn-603997",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Jake White's first Fiji Test is France in Lyon",
+    "beats": [
+     "Fiji appointed Jake White as coach in mid-October. He is a World Cup winner, hired to take them to next year's tournament in Australia, and his first game is France in Lyon. Fiji's chairman says the pragmatic South African won't kick their flair into touch.",
+     "He inherits a side bottom of the Nations Championship, pointless after three games: 24–39 to Wales, 8–73 to England, 17–33 to Scotland. Their one win this year was 45–29 over Canada.",
+     "France have not played since July, when they won 42–26 in Australia and 42–15 in Japan. They beat Fiji 34–21 at home on 15 November 2025.",
+     "A France win moves neither side. A Fiji win lifts them above Japan to ninth and drops France below England. Win by 16 or more and France fall below Scotland too.",
+     "It gets no gentler. France host South Africa on 13 November, and Fiji go to Ireland the next day."
+    ],
+    "sources": 4
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": false,
+   "revisionGate": null,
+   "check2": null,
+   "final": {
+    "headline": "Jake White's first Fiji Test is France in Lyon",
+    "beats": [
+     "Fiji appointed Jake White as coach in mid-October. He is a World Cup winner, hired to take them to next year's tournament in Australia, and his first game is France in Lyon. Fiji's chairman says the pragmatic South African won't kick their flair into touch.",
+     "He inherits a side bottom of the Nations Championship, pointless after three games: 24–39 to Wales, 8–73 to England, 17–33 to Scotland. Their one win this year was 45–29 over Canada.",
+     "France have not played since July, when they won 42–26 in Australia and 42–15 in Japan. They beat Fiji 34–21 at home on 15 November 2025.",
+     "A France win moves neither side. A Fiji win lifts them above Japan to ninth and drops France below England. Win by 16 or more and France fall below Scotland too.",
+     "It gets no gentler. France host South Africa on 13 November, and Fiji go to Ireland the next day."
+    ],
+    "sources": [
+     {
+      "title": "Rugby-White won't boot Fiji's flair into touch on World Cup quest, says chairman",
+      "url": "https://www.msn.com/en-gb/sport/rugby/rugby-white-won-t-boot-fiji-s-flair-into-touch-on-world-cup-quest-says-chairman/ar-AA2fHYa7"
+     },
+     {
+      "title": "Rugby World Cup winner Jake White takes charge of Fiji",
+      "url": "https://www.espn.com.au/rugby/story/_/id/50170945/rugby-world-cup-winner-jake-white-takes-charge-fiji"
+     },
+     {
+      "title": "Fiji appoint former Springboks boss White as coach ahead of World Cup",
+      "url": "https://www.reuters.com/sports/fiji-appoint-former-springboks-boss-white-coach-ahead-world-cup-2026-10-13/"
+     },
+     {
+      "title": "Jake White appointed Fiji head coach ahead of 2027 Rugby World Cup",
+      "url": "https://www.msn.com/en-za/sports/rugby/jake-white-appointed-fiji-head-coach-ahead-of-2027-rugby-world-cup/ar-AA2e7lUe"
+     }
+    ],
+    "revised": false
+   },
+   "seconds": 22.1,
+   "usage": {
+    "writerCalls": 1,
+    "writerInput": 7097,
+    "writerOutput": 1314,
+    "writerCostUSD": 0.05467,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00166
+   },
+   "costUSD": 0.05633
+  },
+  {
+   "writer": "claude-opus-5-5 [dry2]",
+   "voice": "dry2",
+   "fixture": "espn-603997",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Jake White's Fiji begin at the bottom, in Lyon",
+    "beats": [
+     "Fiji appointed Jake White in October, with Warren Gatland reportedly the front runner. His first Test in charge is away to France, while Fiji sit last in the Nations Championship without a point.",
+     "His former colleagues at Loftus Versfeld say his Fiji are \"going to surprise people\". The last surprise came in July: 8–73 against England. France have scored 42 in each of their last two games.",
+     "France won the last meeting 34–21 at home in November 2025. Win this time and Fiji go above Japan, who beat them 20–15 in September.",
+     "France host South Africa five days later, the country White coached to a World Cup. Fiji go on to Ireland, and their chairman insists White will not kick the flair into touch."
+    ],
+    "sources": 4
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": false,
+   "revisionGate": null,
+   "check2": null,
+   "final": {
+    "headline": "Jake White's Fiji begin at the bottom, in Lyon",
+    "beats": [
+     "Fiji appointed Jake White in October, with Warren Gatland reportedly the front runner. His first Test in charge is away to France, while Fiji sit last in the Nations Championship without a point.",
+     "His former colleagues at Loftus Versfeld say his Fiji are \"going to surprise people\". The last surprise came in July: 8–73 against England. France have scored 42 in each of their last two games.",
+     "France won the last meeting 34–21 at home in November 2025. Win this time and Fiji go above Japan, who beat them 20–15 in September.",
+     "France host South Africa five days later, the country White coached to a World Cup. Fiji go on to Ireland, and their chairman insists White will not kick the flair into touch."
+    ],
+    "sources": [
+     {
+      "title": "Rugby-White won't boot Fiji's flair into touch on World Cup quest, says chairman",
+      "url": "https://www.msn.com/en-gb/sport/rugby/rugby-white-won-t-boot-fiji-s-flair-into-touch-on-world-cup-quest-says-chairman/ar-AA2fHYa7"
+     },
+     {
+      "title": "Jake’s Fiji ‘going to surprise people’",
+      "url": "https://www.sarugbymag.co.za/jakes-fiji-going-surprise-people/"
+     },
+     {
+      "title": "Rugby World Cup winner Jake White takes charge of Fiji",
+      "url": "https://www.espn.com.au/rugby/story/_/id/50170945/rugby-world-cup-winner-jake-white-takes-charge-fiji"
+     },
+     {
+      "title": "Fiji reveal new head coach for Rugby World Cup 2027 - Warren Gatland snubbed",
+      "url": "https://www.ruck.co.uk/fiji-rugby-news/fiji-reveal-new-head-coach-for-rugby-world-cup-2027-warren-gatland-misses-out"
+     }
+    ],
+    "revised": false
+   },
+   "seconds": 27.1,
+   "usage": {
+    "writerCalls": 1,
+    "writerInput": 7426,
+    "writerOutput": 1570,
+    "writerCostUSD": 0.0611,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00173
+   },
+   "costUSD": 0.06283
+  },
+  {
+   "writer": "claude-opus-5-5 [dry]",
+   "voice": "dry",
+   "fixture": "espn-603998",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Win in London and Australia take England's place",
+    "beats": [
+     "Two places separate them in the world rankings. An Australia win by any margin lifts them to fifth, above England and Scotland, and drops England to seventh, below both.",
+     "Their last meeting, on 1 November 2025 at home, England won 25–7. Australia arrive having beaten South Africa 42–38 in September, then lost twice to New Zealand in October, 19–50 and 21–43.",
+     "England's year turned in July. Defeats by Italy, France and South Africa gave way to wins in Fiji, 73–8, and Argentina, 31–24. English clubs then won one of eight European games in October, which Loose Pass judged \"does not bode well for England\".",
+     "In the Nations Championship England sit fourth, level on 10 points with Scotland. Australia are seventh on 8. A week later England host Japan and Australia go to Scotland, the side caught between these two in the rankings."
+    ],
+    "sources": 1
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": false,
+   "revisionGate": null,
+   "check2": null,
+   "final": {
+    "headline": "Win in London and Australia take England's place",
+    "beats": [
+     "Two places separate them in the world rankings. An Australia win by any margin lifts them to fifth, above England and Scotland, and drops England to seventh, below both.",
+     "Their last meeting, on 1 November 2025 at home, England won 25–7. Australia arrive having beaten South Africa 42–38 in September, then lost twice to New Zealand in October, 19–50 and 21–43.",
+     "England's year turned in July. Defeats by Italy, France and South Africa gave way to wins in Fiji, 73–8, and Argentina, 31–24. English clubs then won one of eight European games in October, which Loose Pass judged \"does not bode well for England\".",
+     "In the Nations Championship England sit fourth, level on 10 points with Scotland. Australia are seventh on 8. A week later England host Japan and Australia go to Scotland, the side caught between these two in the rankings."
+    ],
+    "sources": [
+     {
+      "title": "Loose Pass: PREM Rugby's European adventure a 'forewarning' for Steve Borthwick and divided opinions on 'unmistakable' trend",
+      "url": "https://www.planetrugby.com/news/loose-pass-prem-rugbys-european-adventure-a-forewarning-for-steve-borthwick-and-divided-opinions-on-unmistakable-trend"
+     }
+    ],
+    "revised": false
+   },
+   "seconds": 21.9,
+   "usage": {
+    "writerCalls": 1,
+    "writerInput": 6902,
+    "writerOutput": 1252,
+    "writerCostUSD": 0.05265,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.0016
+   },
+   "costUSD": 0.05425
+  },
+  {
+   "writer": "claude-opus-5-5 [dry2]",
+   "voice": "dry2",
+   "fixture": "espn-603998",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "One Australian win and England are seventh",
+    "beats": [
+     "England have been fifth in every world ranking since July. A win of any size for Australia ends that run, lifting them to fifth and dropping England to seventh, behind Scotland as well.",
+     "Australia arrive with a strange recent record. They beat South Africa 42–38 in September, then conceded 50 and 43 to New Zealand across October.",
+     "England beat Australia 25–7 at home last November but have not played since winning 31–24 in Argentina in July. In Europe since, English clubs leaked two tries a game more than URC sides, and Dan Cole worries the Prem's style could leave England exposed this November. That makes it a leaky defence against another leaky defence.",
+     "Australia then go to Scotland, the other side a win here would put them above."
+    ],
+    "sources": 2
+   },
+   "gate": {
+    "step": "gate",
+    "ok": false,
+    "errors": [
+     "beat over 320 chars"
+    ]
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": true,
+   "revisionGate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check2": null,
+   "final": {
+    "headline": "One Australian win and England are seventh",
+    "beats": [
+     "England have been fifth in every world ranking since July. A win of any size for Australia ends that run, lifting them to fifth and dropping England to seventh, behind Scotland as well.",
+     "Australia lost 25–7 in England last November. Since then they have beaten South Africa 42–38 and conceded 50 and 43 to New Zealand in October.",
+     "England have not played since winning 31–24 in Argentina in July. English clubs leaked two tries a game more than URC sides in the opening European round, and Dan Cole fears the Prem's style could leave England exposed this November.",
+     "Australia then go to Scotland, the other side a win here would put them above."
+    ],
+    "sources": [
+     {
+      "title": "Loose Pass: PREM Rugby's European adventure a 'forewarning' for Steve Borthwick and divided opinions on 'unmistakable' trend",
+      "url": "https://www.planetrugby.com/news/loose-pass-prem-rugbys-european-adventure-a-forewarning-for-steve-borthwick-and-divided-opinions-on-unmistakable-trend"
+     },
+     {
+      "title": "England great worried about 'Autumn Nations Series and beyond' after European weekend left him giving URC 'flowers'",
+      "url": "https://www.planetrugby.com/news/england-great-worried-about-autumn-nations-series-and-beyond-after-european-weekend-left-him-giving-urc-flowers"
+     }
+    ],
+    "revised": true
+   },
+   "seconds": 33.6,
+   "usage": {
+    "writerCalls": 2,
+    "writerInput": 14809,
+    "writerOutput": 2571,
+    "writerCostUSD": 0.11066,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00118
+   },
+   "costUSD": 0.11184
+  }
+ ],
+ "skipped": [],
+ "totals": [
+  {
+   "writer": "claude-opus-5-5 [dry]",
+   "price": {
+    "id": "claude-opus-5-5",
+    "in": 4,
+    "out": 20
+   },
+   "stories": 7,
+   "passed": 7,
+   "passedFirstTime": 7,
+   "revised": 0,
+   "failed": 0,
+   "gateFailures": 0,
+   "materialIssuesFirstDraft": 0,
+   "writerInput": 46699,
+   "writerOutput": 9626,
+   "costUSD": 0.38978,
+   "writerCostUSD": 0.37932,
+   "perStoryUSD": 0.05568,
+   "secondsPerStory": 21.5
+  },
+  {
+   "writer": "claude-opus-5-5 [dry2]",
+   "price": {
+    "id": "claude-opus-5-5",
+    "in": 4,
+    "out": 20
+   },
+   "stories": 7,
+   "passed": 7,
+   "passedFirstTime": 3,
+   "revised": 4,
+   "failed": 0,
+   "gateFailures": 2,
+   "materialIssuesFirstDraft": 2,
+   "writerInput": 77722,
+   "writerOutput": 15026,
+   "costUSD": 0.62489,
+   "writerCostUSD": 0.61139,
+   "perStoryUSD": 0.08927,
+   "secondsPerStory": 32.9
+  }
+ ]
+}
