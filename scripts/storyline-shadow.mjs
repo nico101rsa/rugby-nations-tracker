@@ -255,6 +255,16 @@ export function renderMarkdown(doc) {
     const rk = r ? `Rankings: ${f.pack.fixture.home.name} ${r[f.pack.fixture.home.code]?.rank ?? "—"}, ${f.pack.fixture.away.name} ${r[f.pack.fixture.away.code]?.rank ?? "—"}. ` : "";
     const current = f.pack.news.filter((n) => !n.background).length;
     L.push(`${rk}${f.pack.comp?.label ? `${f.pack.comp.label}. ` : ""}News items: ${f.pack.news.length} (${current} current). Previous meetings on record: ${f.pack.meetings.length}. Prompt ${f.pack.promptChars} characters.`);
+    // The list itself, so a run doubles as a probe of the search widener:
+    // what the queries surfaced for this game, dated, and which items were
+    // old enough to be BACKGROUND. Titles and links are already public in the
+    // JSON record; snippets and article bodies stay out.
+    if (f.pack.news.length) {
+      L.push("");
+      for (const n of f.pack.news) {
+        L.push(`- ${n.published ?? "undated"}${n.background ? " (background)" : ""} · ${(n.about ?? []).join(", ")} · [${n.title}](${n.url})${n.outlet ? ` — ${n.outlet}` : ""}`);
+      }
+    }
     for (const w of doc.writers) {
       const res = doc.results.find((x) => x.fixture === f.id && x.writer === w.id);
       L.push("");

@@ -1,0 +1,564 @@
+{
+ "notice": "Shadow run. Nothing here was published or shown in the app. Each draft was fact-checked against the app's own data only, never against the world, so any story may be wrong about real people and events.",
+ "startedAt": "2026-10-21T01:05:58.257Z",
+ "startedSydney": "Wed 21 Oct 2026 12:05",
+ "writers": [
+  {
+   "id": "claude-opus-5-5",
+   "price": {
+    "id": "claude-opus-5-5",
+    "in": 4,
+    "out": 20
+   }
+  }
+ ],
+ "checker": "claude-haiku-5-5",
+ "voice": "dry",
+ "days": 20,
+ "capUSD": 1,
+ "spentUSD": 0.05321,
+ "fixtures": [
+  {
+   "id": "espn-604593",
+   "factsHash": "d335344dda6037a4",
+   "packHash": "0b3f082c40642170",
+   "pack": {
+    "fixture": {
+     "id": "espn-604593",
+     "home": {
+      "code": "JPN",
+      "name": "Japan",
+      "tracked": true
+     },
+     "away": {
+      "code": "FIJ",
+      "name": "Fiji",
+      "tracked": true
+     },
+     "kickoff": "2026-10-24T05:50:00.000Z",
+     "kickoffSydney": "Sat 24 Oct 2026, 4:50 pm Sydney time",
+     "comp": {
+      "key": "test",
+      "label": "TEST",
+      "kind": "test"
+     },
+     "venue": "Prince Chichibu Memorial Stadium, Tokyo"
+    },
+    "rankings": {
+     "asOf": "19 October 2026",
+     "JPN": {
+      "rank": 9,
+      "points": 77.28
+     },
+     "FIJ": {
+      "rank": 10,
+      "points": 76.81
+     }
+    },
+    "stakes": {
+     "asOf": "19 October 2026",
+     "worldCup": false,
+     "complete": true,
+     "size": 12,
+     "home": {
+      "code": "JPN",
+      "rank": 9,
+      "points": 77.28
+     },
+     "away": {
+      "code": "FIJ",
+      "rank": 10,
+      "points": 76.81
+     },
+     "scenarios": [
+      {
+       "key": "home-win-big",
+       "side": "home",
+       "bigWin": true,
+       "home": {
+        "points": 78.71,
+        "delta": 1.43,
+        "rank": 9,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 75.38,
+        "delta": -1.43,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "WAL",
+         "ITA"
+        ]
+       }
+      },
+      {
+       "key": "home-win",
+       "side": "home",
+       "bigWin": false,
+       "home": {
+        "points": 78.23,
+        "delta": 0.95,
+        "rank": 9,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 75.86,
+        "delta": -0.95,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "WAL",
+         "ITA"
+        ]
+       }
+      },
+      {
+       "key": "draw",
+       "side": null,
+       "bigWin": false,
+       "home": {
+        "points": 77.23,
+        "delta": -0.05,
+        "rank": 9,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       },
+       "away": {
+        "points": 76.86,
+        "delta": 0.05,
+        "rank": 10,
+        "exact": true,
+        "passed": [],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win",
+       "side": "away",
+       "bigWin": false,
+       "home": {
+        "points": 76.23,
+        "delta": -1.05,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "FIJ",
+         "WAL",
+         "ITA"
+        ]
+       },
+       "away": {
+        "points": 77.86,
+        "delta": 1.05,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN"
+        ],
+        "passedBy": []
+       }
+      },
+      {
+       "key": "away-win-big",
+       "side": "away",
+       "bigWin": true,
+       "home": {
+        "points": 75.71,
+        "delta": -1.57,
+        "rank": 12,
+        "exact": false,
+        "passed": [],
+        "passedBy": [
+         "FIJ",
+         "WAL",
+         "ITA"
+        ]
+       },
+       "away": {
+        "points": 78.38,
+        "delta": 1.57,
+        "rank": 9,
+        "exact": true,
+        "passed": [
+         "JPN"
+        ],
+        "passedBy": []
+       }
+      }
+     ]
+    },
+    "trajectory": {
+     "JPN": {
+      "rank": 9,
+      "points": 77.28,
+      "move": 0,
+      "since": "28 September 2026",
+      "previous": {
+       "rank": 12,
+       "asOf": "14 September 2026"
+      },
+      "best": 9,
+      "worst": 12,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     },
+     "FIJ": {
+      "rank": 10,
+      "points": 76.81,
+      "move": 0,
+      "since": "28 September 2026",
+      "previous": {
+       "rank": 9,
+       "asOf": "14 September 2026"
+      },
+      "best": 9,
+      "worst": 10,
+      "firstAsOf": "13 July 2026",
+      "snapshots": 10
+     }
+    },
+    "log": null,
+    "table": null,
+    "form": {
+     "JPN": {
+      "results": [
+       {
+        "date": "2026-09-19",
+        "opponent": "Fiji",
+        "side": "home",
+        "score": "20–15",
+        "result": "W",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-09-12",
+        "opponent": "USA",
+        "side": "home",
+        "score": "63–14",
+        "result": "W",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-09-05",
+        "opponent": "Canada",
+        "side": "home",
+        "score": "57–12",
+        "result": "W",
+        "league": "International Friendlies",
+        "tries": null
+       },
+       {
+        "date": "2026-08-15",
+        "opponent": "Australia",
+        "side": "away",
+        "score": "17–56",
+        "result": "L",
+        "league": "International Friendlies",
+        "tries": null
+       },
+       {
+        "date": "2026-08-08",
+        "opponent": "Australia",
+        "side": "home",
+        "score": "32–35",
+        "result": "L",
+        "league": "International Friendlies",
+        "tries": null
+       }
+      ],
+      "streak": {
+       "result": "W",
+       "games": 3,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 8,
+       "W": 4,
+       "D": 0,
+       "L": 4
+      },
+      "yearComplete": true
+     },
+     "FIJ": {
+      "results": [
+       {
+        "date": "2026-09-19",
+        "opponent": "Japan",
+        "side": "away",
+        "score": "15–20",
+        "result": "L",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-09-12",
+        "opponent": "Canada",
+        "side": "home",
+        "score": "45–29",
+        "result": "W",
+        "league": "Pacific Nations Cup, Knockout Stage",
+        "tries": null
+       },
+       {
+        "date": "2026-07-18",
+        "opponent": "Scotland",
+        "side": "home",
+        "score": "17–33",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 3
+       },
+       {
+        "date": "2026-07-11",
+        "opponent": "England",
+        "side": "home",
+        "score": "8–73",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 1
+       },
+       {
+        "date": "2026-07-04",
+        "opponent": "Wales",
+        "side": "home",
+        "score": "24–39",
+        "result": "L",
+        "league": "Nations Championship, Group Stage",
+        "tries": 3
+       }
+      ],
+      "streak": {
+       "result": "L",
+       "games": 1,
+       "complete": true
+      },
+      "year": {
+       "year": 2026,
+       "played": 5,
+       "W": 1,
+       "D": 0,
+       "L": 4
+      },
+      "yearComplete": true
+     }
+    },
+    "meetings": [
+     {
+      "date": "2026-09-19",
+      "league": "Pacific Nations Cup, Knockout Stage",
+      "stage": "final",
+      "neutral": false,
+      "host": "Japan",
+      "visitor": "Fiji",
+      "score": "Japan 20–15 Fiji",
+      "winner": "Japan",
+      "venue": "Prince Chichibu Memorial Stadium, Tokyo"
+     },
+     {
+      "date": "2025-09-21",
+      "league": "Pacific Nations Cup, Knockout Stage",
+      "stage": "final",
+      "neutral": true,
+      "host": null,
+      "visitor": null,
+      "score": "Japan 27–33 Fiji",
+      "winner": "Fiji",
+      "venue": "America First Field, Salt Lake City"
+     }
+    ],
+    "next": {
+     "JPN": {
+      "date": "2026-11-07",
+      "opponent": "Wales",
+      "side": "away",
+      "league": "Nations Championship, Group Stage"
+     },
+     "FIJ": {
+      "date": "2026-11-07",
+      "opponent": "France",
+      "side": "away",
+      "league": "Nations Championship, Group Stage"
+     }
+    },
+    "news": [
+     {
+      "title": "Third time’s a charm: Japan beats Fiji 20-15 in the Pacific Nations Cup rugby final",
+      "url": "https://apnews.com/article/pacific-nations-cup-final-japan-fiji-84e045b3a8963e5a124695f4532dfd28",
+      "outlet": "Web search",
+      "published": "2026-09-19",
+      "background": true,
+      "about": [
+       "JPN",
+       "FIJ"
+      ]
+     },
+     {
+      "title": "Eddie Jones’ Japan secure historic Pacific Nations Cup final win over Fiji",
+      "url": "https://www.msn.com/en-za/news/other/eddie-jones-japan-secure-historic-pacific-nations-cup-final-win-over-fiji/ar-AA2cyNMY",
+      "outlet": "Web search",
+      "published": "2026-09-19",
+      "background": true,
+      "about": [
+       "JPN",
+       "FIJ"
+      ]
+     },
+     {
+      "title": "Springboks star's contract 'terminated' at Japanese club amid reports of South African return",
+      "url": "https://www.planetrugby.com/news/springboks-kwagga-smith-leaves-japanese-club-amid-sa-return-rumours",
+      "outlet": "Planet Rugby",
+      "published": "2026-10-20",
+      "background": false,
+      "about": [
+       "JPN"
+      ]
+     },
+     {
+      "title": "Jake’s Fiji ‘going to surprise people’",
+      "url": "https://www.sarugbymag.co.za/jakes-fiji-going-surprise-people/",
+      "outlet": "SA Rugby Magazine",
+      "published": "2026-10-18",
+      "background": false,
+      "about": [
+       "FIJ"
+      ]
+     },
+     {
+      "title": "World Cup-winning coach White takes reins at Fiji",
+      "url": "https://www.rte.ie/sport/rugby/2026/1013/1595228-world-cup-winning-coach-white-takes-reins-in-fiji/",
+      "outlet": "RTÉ Sport Rugby",
+      "published": "2026-10-13",
+      "background": false,
+      "about": [
+       "FIJ"
+      ]
+     },
+     {
+      "title": "Classy seven-try Ireland have far too much for Japan",
+      "url": "https://www.rte.ie/sport/rugby/2026/1003/1593880-classy-seven-try-ireland-have-far-too-much-for-japan/",
+      "outlet": "RTÉ Sport Rugby",
+      "published": "2026-10-03",
+      "background": true,
+      "about": [
+       "JPN"
+      ]
+     },
+     {
+      "title": "World Rugby rankings change as Japan triumph spells trouble for Wales",
+      "url": "https://uk.sports.yahoo.com/news/world-rugby-rankings-change-japan-135328656.html",
+      "outlet": "Web search",
+      "published": "2026-09-19",
+      "background": true,
+      "about": [
+       "JPN"
+      ]
+     }
+    ],
+    "promptChars": 10408,
+    "packSha256": "1b3baadaa448ec98c0cceca35927c9faeab1c0e385eb1b4969d81140249a395b"
+   }
+  }
+ ],
+ "results": [
+  {
+   "writer": "claude-opus-5-5",
+   "fixture": "espn-604593",
+   "ok": true,
+   "error": null,
+   "draft": {
+    "headline": "Jake White's first Fiji game is a rematch of the final",
+    "beats": [
+     "Jake White, 62, was named Fiji coach on 13 October from 31 applicants. His first game is against Japan, on the ground where they beat Fiji 20–15 in the Pacific Nations Cup final five weeks ago.",
+     "The previous final went the other way, 33–27 to Fiji in Salt Lake City in 2025. In September, Eddie Jones's Japan took the title back, their first since 2019.",
+     "Japan have won three straight, including 63–14 against the USA and 57–12 against Canada. Fiji have won once this year. White wants Fiji to play like Fiji, with \"a little bit more structure, a little bit more formation\".",
+     "A Fiji win lifts them to 9th, above Japan, and drops Japan below Wales and Italy, 12th at best. A defeat sends Fiji there instead.",
+     "A fortnight later both are in Europe, Japan at Wales and Fiji at France."
+    ],
+    "sources": 3
+   },
+   "gate": {
+    "step": "gate",
+    "ok": true
+   },
+   "check1": {
+    "verdict": "pass",
+    "material": 0,
+    "issues": []
+   },
+   "revised": false,
+   "revisionGate": null,
+   "check2": null,
+   "final": {
+    "headline": "Jake White's first Fiji game is a rematch of the final",
+    "beats": [
+     "Jake White, 62, was named Fiji coach on 13 October from 31 applicants. His first game is against Japan, on the ground where they beat Fiji 20–15 in the Pacific Nations Cup final five weeks ago.",
+     "The previous final went the other way, 33–27 to Fiji in Salt Lake City in 2025. In September, Eddie Jones's Japan took the title back, their first since 2019.",
+     "Japan have won three straight, including 63–14 against the USA and 57–12 against Canada. Fiji have won once this year. White wants Fiji to play like Fiji, with \"a little bit more structure, a little bit more formation\".",
+     "A Fiji win lifts them to 9th, above Japan, and drops Japan below Wales and Italy, 12th at best. A defeat sends Fiji there instead.",
+     "A fortnight later both are in Europe, Japan at Wales and Fiji at France."
+    ],
+    "sources": [
+     {
+      "title": "Eddie Jones’ Japan secure historic Pacific Nations Cup final win over Fiji",
+      "url": "https://www.msn.com/en-za/news/other/eddie-jones-japan-secure-historic-pacific-nations-cup-final-win-over-fiji/ar-AA2cyNMY"
+     },
+     {
+      "title": "Jake’s Fiji ‘going to surprise people’",
+      "url": "https://www.sarugbymag.co.za/jakes-fiji-going-surprise-people/"
+     },
+     {
+      "title": "World Cup-winning coach White takes reins at Fiji",
+      "url": "https://www.rte.ie/sport/rugby/2026/1013/1595228-world-cup-winning-coach-white-takes-reins-in-fiji/"
+     }
+    ],
+    "revised": false
+   },
+   "seconds": 18,
+   "usage": {
+    "writerCalls": 1,
+    "writerInput": 5711,
+    "writerOutput": 1461,
+    "writerCostUSD": 0.05206,
+    "checkerCalls": 1,
+    "checkerCostUSD": 0.00115
+   },
+   "costUSD": 0.05321
+  }
+ ],
+ "skipped": [],
+ "totals": [
+  {
+   "writer": "claude-opus-5-5",
+   "price": {
+    "id": "claude-opus-5-5",
+    "in": 4,
+    "out": 20
+   },
+   "stories": 1,
+   "passed": 1,
+   "passedFirstTime": 1,
+   "revised": 0,
+   "failed": 0,
+   "gateFailures": 0,
+   "materialIssuesFirstDraft": 0,
+   "writerInput": 5711,
+   "writerOutput": 1461,
+   "costUSD": 0.05321,
+   "writerCostUSD": 0.05206,
+   "perStoryUSD": 0.05321,
+   "secondsPerStory": 18
+  }
+ ]
+}
