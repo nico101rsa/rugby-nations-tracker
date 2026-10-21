@@ -30,8 +30,11 @@ on:
   # which never triggers a push workflow, so the run cannot loop. Pushes to
   # main never run it; use the dispatch. A push carries its inputs as commit
   # trailers on the head commit (Shadow-Models:, Shadow-Days:, Shadow-Cap:,
-  # Shadow-Fixture:, Shadow-Voice:), the same values the dispatch form takes;
-  # absent, the defaults apply.
+  # Shadow-Fixture:, Shadow-Voice:), the same values the dispatch form takes.
+  # Absent, a push runs ONE writer (Opus 5.5) under a US$1 cap: a smoke run
+  # for the edit, not a comparison. The dispatch form keeps the full
+  # defaults. (The push of #173 touched the harness, carried no trailers and
+  # ran all five writers on seven fixtures: US$2.23 nobody had asked for.)
   push:
     branches: ["claude/**"]
     paths:
@@ -81,6 +84,8 @@ jobs:
           trailer() { git log -1 --pretty=%B | sed -n "s/^$1:[[:space:]]*//p" | tail -1; }
           if [ "$GITHUB_EVENT_NAME" = "push" ]; then
             IN_MODELS="$(trailer Shadow-Models)"; IN_DAYS="$(trailer Shadow-Days)"; IN_CAP="$(trailer Shadow-Cap)"; IN_FIXTURE="$(trailer Shadow-Fixture)"; IN_VOICE="$(trailer Shadow-Voice)"
+            # No trailers: a smoke run, one writer under a dollar (see above).
+            IN_MODELS="${IN_MODELS:-claude-opus-5-5}"; IN_CAP="${IN_CAP:-1}"
           fi
           ARGS="--models ${IN_MODELS:-gemini,claude-haiku-5-5,claude-sonnet-5-5,claude-opus-5-5,claude-fable-5-1} --days ${IN_DAYS:-20} --cap ${IN_CAP:-8}"
           if [ -n "$IN_FIXTURE" ]; then ARGS="$ARGS --fixture $IN_FIXTURE"; fi

@@ -312,9 +312,13 @@ Haiku 5.5).
   pushing a change to the harness on a `claude/*` branch with the inputs as
   commit trailers (`Shadow-Models:`, `Shadow-Days:`, `Shadow-Cap:`,
   `Shadow-Fixture:`, `Shadow-Voice:`); the workflow runs once and commits
-  the records to that branch. Capped at US$8 by default. `node
-  scripts/build-storylines.mjs --force [--days N] [--fixture JPN-FIJ]`
-  rewrites by hand after a prompt change.
+  the records to that branch. The dispatch is capped at US$8 by default; a
+  push without trailers runs one writer (Opus 5.5) under US$1, a smoke run
+  for the edit, because any push touching the harness runs it (the #173
+  push did, on all five writers: US$2.23). The markdown record lists every
+  news item a pack carried, dated, so a run doubles as a probe of what the
+  search found. `node scripts/build-storylines.mjs --force [--days N]
+  [--fixture JPN-FIJ]` rewrites by hand after a prompt change.
 - **The brief (the "voice").** Nico read the morning's stories as accurate
   wire-service previews and asked for "the dry wit", so `build-storylines.mjs`
   carries two briefs for the same pack and rules: `preview` (the checklist
