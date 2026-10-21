@@ -258,8 +258,11 @@ Haiku 5.5).
 
 - **Pack only.** The writer sees a fact pack from repo data (fixtures.json,
   team-events.json + archive, rankings.json, nations.json's log for `rnc-*`)
-  plus news-pool.json items whose title names a team and one search per
-  fixture (`fetchTeamNews`, the digests' widener). League, women's,
+  plus news-pool.json items whose title names a team and two searches per
+  fixture (`widenFixture`: the week's news, and the previews, where the
+  colour lives — without the second, Saturday's story could not say Eddie
+  Jones was Jake White's adviser on the 2007 Springboks, because nothing in
+  the pack did; the writer never knows what the pack doesn't). League, women's,
   age-grade and sevens items are dropped; an item over 10 days old is
   BACKGROUND and may only be told as dated history. The checker fails a
   BACKGROUND item told as current, an unsourced head-to-head total (the

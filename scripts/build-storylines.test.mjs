@@ -4,6 +4,7 @@ import {
   upcomingFixtures, sydneyKickoff, teamForm, previousMeetings, newsFor, buildPack, packHashes,
   renderPack, buildWriterPrompt, buildCheckerPrompt, validateStory, writeStory, decide,
   buildStorylines, sameStories, storylinesFile, streakText, logFor, logTable, storylineEnv, stripCitations,
+  fixtureQueries, widenFixture,
   SCHEMA_VERSION, HEADLINE_MAX, NEWS_REFRESH_HOURS, STORYLINE_DEFAULT_WRITER,
 } from "./build-storylines.mjs";
 import { LEAGUE_CHECK_RULE } from "./generate-digests.mjs";
@@ -235,6 +236,15 @@ test("prompts: pack-only, no head-to-head unless sourced, staleness and the shar
   assert.match(c, /head-to-head total/);
   assert.match(c, /Form list \(complete\s+for the dates it covers\) does not show/);
   assert.match(c, /differs from "Rankings at\s+stake"/);
+});
+
+test("widener: the week's news and the previews, one list, a failed query dropped", async () => {
+  assert.deepEqual(fixtureQueries(fixture()), ["Japan Fiji", "Japan v Fiji preview"]);
+  const asked = [];
+  const search = async (q) => { asked.push(q); if (/preview/.test(q)) throw new Error("bing empty"); return [item(`hit for ${q}`, "Mon, 19 Oct 2026 01:00:00 +0000")]; };
+  const items = await widenFixture(fixture(), search);
+  assert.deepEqual(asked, ["Japan Fiji", "Japan v Fiji preview"]);
+  assert.deepEqual(items.map((i) => i.title), ["hit for Japan Fiji"]);
 });
 
 test("storylineEnv: the storyline writer is Opus 5.5 unless STORYLINE_WRITER_MODEL says otherwise; the checker is the digests'", () => {

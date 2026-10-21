@@ -34,11 +34,11 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import {
-  loadInputs, onlyFixture, upcomingFixtures, buildPack, packHashes, renderPack, writeStory, fetchBodies, sha256,
+  loadInputs, onlyFixture, upcomingFixtures, buildPack, packHashes, renderPack, writeStory, fetchBodies, widenFixture, sha256,
   WINDOW_DAYS, VOICES, STORYLINE_DEFAULT_VOICE,
 } from "./build-storylines.mjs";
 import { MAX_TOKENS, REQUEST_TIMEOUT_MS, modelPlan, createAnthropicCaller, createTally, priceFor } from "./model-router.mjs";
-import { fetchTeamNews, geminiCall, GEMINI_MODEL } from "./generate-digests.mjs";
+import { geminiCall, GEMINI_MODEL } from "./generate-digests.mjs";
 import { words } from "./copy-rules.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -345,7 +345,7 @@ export async function main(argv = process.argv) {
   for (const fixture of fixtures) {
     let extra = [];
     try {
-      extra = await fetchTeamNews(`${fixture.home.name} ${fixture.away.name}`);
+      extra = await widenFixture(fixture);
     } catch (e) {
       console.log(`  ${fixture.home.code} v ${fixture.away.code}: search widener failed (${String(e.message).slice(0, 100)}); pool only`);
     }
