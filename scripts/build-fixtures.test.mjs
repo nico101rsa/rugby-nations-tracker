@@ -581,3 +581,14 @@ test("buildFixtures: a played competition game drops from its CORRECTED kickoff"
   // The row itself still carries the vendor time — only publishFixtures writes the correction.
   assert.equal(buildFixtures(raw, new Map(), {}, { now: 0, table: TABLE })[0].date, "2026-10-17T05:00:00.000Z");
 });
+
+test("liveCandidates: a projected finals pairing is never asked of ESPN", () => {
+  const projected = {
+    id: "rnc-2026-final-1", date: "2026-11-29T16:40:00.000Z", timeTBC: false,
+    home: { code: "IRE", name: "Ireland", tracked: true }, away: { code: "RSA", name: "South Africa", tracked: true },
+    comp: { key: "rnc-2026", label: "RNC '26", kind: "competition" }, final: { label: "Grand final", rank: 1, title: true, projected: true },
+  };
+  assert.deepEqual(liveCandidates([projected], Date.parse("2026-11-29T16:50:00Z")), []);
+  // Even filed under an ESPN-scored kind, a projected row stays out.
+  assert.deepEqual(liveCandidates([{ ...projected, comp: { key: "test", label: "TEST", kind: "test" } }], Date.parse("2026-11-29T16:50:00Z")), []);
+});

@@ -466,3 +466,9 @@ test("sameStories ignores key order", () => {
   assert.ok(sameStories({ a: { x: 1, y: 2 } }, { a: { y: 2, x: 1 } }));
   assert.ok(!sameStories({ a: { x: 1 } }, { a: { x: 2 } }));
 });
+
+test("window: a projected finals pairing gets no story; a listed final does", () => {
+  const projected = fixture({ id: "rnc-2026-final-1", date: "2026-10-28T16:40:00Z", final: { label: "Grand final", rank: 1, title: true, projected: true } });
+  const listed = fixture({ id: "espn-777", date: "2026-10-28T16:40:00Z" });
+  assert.deepEqual(upcomingFixtures([projected, listed], NOW).map((f) => f.id), ["espn-777"]);
+});

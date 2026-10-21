@@ -538,3 +538,19 @@ test("rebuildFromCommitted: an empty table publishes fixtures.json's own times",
   const e = byUid(parseIcs(mem.files.get("/r/calendar/AUS.ics")), "espn-603464");
   assert.equal(prop(e, "DTSTART"), "20261017T050000Z");
 });
+
+test("a projected finals pairing is not an appointment; a listed final is", () => {
+  const projected = {
+    id: "rnc-2026-final-1", date: "2026-11-29T16:40:00.000Z", timeTBC: false,
+    home: T("IRE", "Ireland"), away: T("RSA", "South Africa"),
+    comp: { key: "rnc-2026", label: "RNC '26", kind: "competition" }, venue: "Allianz Stadium, Twickenham",
+    final: { label: "Grand final", rank: 1, title: true, projected: true },
+  };
+  const { files } = build([...rows(), projected]);
+  const uids = (code) => parseIcs(files.get(`calendar/${code}.ics`)).events.map((e) => prop(e, "UID").split("@")[0]);
+  assert.ok(!uids("IRE").includes("rnc-2026-final-1"));
+  assert.ok(!uids("all").includes("rnc-2026-final-1"));
+  const locked = { ...projected, final: { ...projected.final, projected: false } };
+  const { files: f2 } = build([...rows(), locked]);
+  assert.ok(parseIcs(f2.get("calendar/IRE.ics")).events.some((e) => prop(e, "UID") === "rnc-2026-final-1@rugby-nations-tracker"));
+});

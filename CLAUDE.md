@@ -97,6 +97,20 @@ F3 when both qualify (World Rugby's thirds table isn't encoded): those Round of
 16 slots wait for ESPN to name the teams, and the entry says so
 (`needs: "thirds-rule"`).
 
+**The Nations Championship finals weekend is projected from the data side**
+(`scripts/projected-finals.mjs`, issue #165, since 21 Oct 2026). fixtures.json
+carries six `rnc-2026-final-<rank>` rows (equal conference ranks meet, the
+confirmed GMT kick-offs, Allianz Stadium) built from nations.json's log on
+every fixtures build, `final.projected` until every side has played six
+rounds, and dropped the moment ESPN lists a real finals-weekend row. The app
+projected the same pairings itself but only while an rnc-* row was in the
+file, and played pool games leave it, so from the first build after the last
+pool game (Mon 23 Nov) until ESPN's listing the finals vanished. The rows
+are not appointments: the calendars and the storylines skip `final.projected`,
+and the live-score pass never asks ESPN about one. `check-competitions`
+accepts a two-conference season at its table count or the table plus its
+finals (36 or 42), so ESPN's listing no longer reads as a miscount.
+
 ## Calendars follow fixtures.json
 
 `calendar/<CODE>.ics` (the 12 tracked nations) and `calendar/all.ics` are

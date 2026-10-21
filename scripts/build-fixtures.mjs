@@ -20,6 +20,7 @@ import { tourFixtures, loadProbeResults } from "./seed-tour.mjs";
 import { venueLabel } from "./venues.mjs";
 import { applyKickoffOverrides, correctedKickoffMs, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 import { writeCalendars } from "./build-calendars.mjs";
+import { projectedFinals, rncComp } from "./projected-finals.mjs";
 
 const ID_TO_CODE = Object.fromEntries(Object.entries(ESPN_TEAM_IDS).map(([c, id]) => [String(id), c]));
 
@@ -322,6 +323,8 @@ export const LIVE_WINDOW_MS = 6 * 3600 * 1000;
 export function liveCandidates(fixtures, nowMs, { table = KICKOFF_OVERRIDES, windowMs = LIVE_WINDOW_MS } = {}) {
   return (fixtures ?? []).filter((f) => {
     if (!scoredByEspn(f.comp)) return false;
+    // A projected finals pairing has no ESPN event to ask (projected-finals.mjs).
+    if (f.final?.projected) return false;
     const t = correctedKickoffMs(f, keyOf.fixture, table);
     if (!Number.isFinite(t) || t > nowMs) return false;
     return f.homeScore == null || nowMs - t < windowMs;
@@ -387,6 +390,15 @@ async function main() {
   // World Cup rows carry their pool letter once the registry has lettered it
   // (the tour rows appended next are never a pools competition).
   fixtures = withPools(fixtures, registry);
+  // The Nations Championship finals weekend, projected from nations.json's
+  // log until ESPN lists the real pairings (scripts/projected-finals.mjs,
+  // issue #165): six rows that the calendars, the storylines and the
+  // live-score pass all skip. Appended after buildFixtures, whose played
+  // filter would drop them (a comp whose record is nations.json); the first
+  // real finals-weekend row from ESPN stands them down.
+  const projected = projectedFinals(fixtures, nations?.log, { comp: rncComp(registry, today) });
+  if (projected.length) console.log(`projected ${projected.length} Nations Championship finals (${projected[0].final.projected ? "pairings from the current table" : "pairings locked"})`);
+  fixtures.push(...projected);
   // The NZ tour midweek games (kind:"tour") — no vendor carries them, so no
   // future-only filter: a played tour game persists with its score (from
   // HAND_RESULTS or the match-day probe), because the seed IS the record.
