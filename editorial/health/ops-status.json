@@ -1,20 +1,13 @@
 {
  "about": "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: routine findings land here instead of notifying anyone, and the Claude weekly review reads it. state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); `page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
- "state": "attention",
+ "state": "ok",
  "paging": [],
  "page": null,
  "overdue": [],
  "unknown": [],
  "heals": {},
  "signals": {
-  "repeatLeads": [
-   {
-    "team": "England",
-    "since": "2026-10-20",
-    "heading": "George Hendy and Will Butt press Borthwick's case with Champions Cup displays",
-    "flagged": true
-   }
-  ],
+  "repeatLeads": [],
   "ladderLastRung": null,
   "squadGaps": []
  },
@@ -82,6 +75,10 @@
   {
    "at": "2026-10-21T00:36:11.886Z",
    "summary": "repeat leads: England"
+  },
+  {
+   "at": "2026-10-22T00:40:14.624Z",
+   "summary": "all clear"
   }
  ]
 }

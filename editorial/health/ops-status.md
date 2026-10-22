@@ -4,7 +4,7 @@ _The silent ops log, written by the daily watchdog (`scripts/watchdog.mjs`) only
 _Nothing here notifies anyone except state **PAGING**. The Claude weekly review reads this file with the newest weekly report in this folder._
 _All times Sydney time._
 
-**State: ATTENTION — something is off, nothing has paged. Triage in the weekly review.**
+**State: OK — every watched job is current and no editorial signal is up.**
 
 ## Paging Nico
 
@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- England — same lead story since Tue 20 Oct, first run as "George Hendy and Will Butt press Borthwick's case with Champions Cup displays" — the novelty gate flagged the latest edition and published anyway
+- None — every briefing moved on.
 
 **Model ladder**
 
@@ -30,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Thu 22 Oct 2026, 11:40 AEDT — all clear
 - Wed 21 Oct 2026, 11:36 AEDT — repeat leads: England
 - Tue 20 Oct 2026, 12:04 AEDT — all clear
 - Mon 19 Oct 2026, 11:11 AEDT — repeat leads: Italy
