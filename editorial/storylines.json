@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-22T20:01:13.195Z",
+  "updatedAt": "2026-10-22T22:50:41.922Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 218,
+  "count": 219,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -28,7 +28,7 @@
         }
       ],
       "firstSeen": "2026-08-26",
-      "lastSeen": "2026-10-22",
+      "lastSeen": "2026-10-23",
       "uses": 1,
       "lastUsed": "2026-09-06"
     },
@@ -336,20 +336,30 @@
     },
     {
       "id": "munster-s-vacant-chief-1ahbjd6",
-      "subject": "Munster's search for a new chief executive following Ian Flanagan's departure",
+      "subject": "Munster's search for a permanent Chief Executive Officer following Ian Flanagan's resignation",
       "teams": [
         388
       ],
       "resolution": "until a permanent successor to Ian Flanagan is appointed",
       "sources": [
         {
-          "title": "Munster: Ian Flanagan set to step down as chief executive after recent criticism",
-          "link": "https://www.planetrugby.com/news/munster-ian-flanagan-set-to-step-down-as-chief-executive-after-recent-criticism",
-          "feedName": "Planet Rugby"
+          "title": "New Munster CEO keen for O'Mahony input",
+          "link": "https://www.rte.ie/sport/rugby/2026/1007/1594423-new-munster-ceo-keen-for-omahony-input/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
+          "title": "Lenihan hopeful Lee can turn Munster's fortunes around",
+          "link": "https://www.rte.ie/sport/rugby/2026/1007/1594476-lenihan-hopeful-lee-can-turn-munsters-fortunes-around/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
+          "title": "Munster appoint New Zealander Lee as interim CEO",
+          "link": "https://www.rte.ie/sport/rugby/2026/1007/1594393-munster-appoint-new-zealander-lee-as-interim-ceo/",
+          "feedName": "RTÉ Sport Rugby"
         }
       ],
       "firstSeen": "2026-10-02",
-      "lastSeen": "2026-10-04",
+      "lastSeen": "2026-10-23",
       "uses": 1,
       "lastUsed": "2026-10-09"
     },
@@ -2686,6 +2696,11 @@
       "resolution": "until Exeter Chiefs provide a medical update on Feyi-Waboso's scan results",
       "sources": [
         {
+          "title": "England boosted with Feyi-Waboso on track for Nations Championship",
+          "link": "https://www.theguardian.com/sport/2026/oct/14/feyi-waboso-england-nations-championship-test-australia-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Immanuel Feyi-Waboso injury update as England take 'safety-first' approach with star winger ahead of Nations Championship",
           "link": "https://www.planetrugby.com/news/immanuel-feyi-waboso-injury-update-as-england-take-safety-first-approach-with-star-winger-ahead-of-nations-championship",
           "feedName": "Planet Rugby"
@@ -2694,11 +2709,6 @@
           "title": "Springbok forward suffers injury blow as Bath issue latest updates on England hopefuls ahead of Nations Championship",
           "link": "https://www.planetrugby.com/news/springbok-forward-suffers-injury-blow-as-bath-issue-latest-updates-on-england-hopefuls-ahead-of-nations-championship",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Winger Feyi-Waboso should be fit for England",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq78p72g1nd4o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-10-13",
@@ -4104,29 +4114,35 @@
       ],
       "firstSeen": "2026-10-20",
       "lastSeen": "2026-10-20",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-23"
     },
     {
       "id": "rassie-erasmus-springbok-squad-umav53",
-      "subject": "Rassie Erasmus' Springbok squad selections for the November tour of Europe",
+      "subject": "Rassie Erasmus' Springbok squad selection and potential bolters for the November tour",
       "teams": [
         467
       ],
       "resolution": "until Rassie Erasmus confirms the South Africa squad for the upcoming tour",
       "sources": [
         {
-          "title": "Ex-England star's Bok eligibility draws near",
-          "link": "https://www.sarugbymag.co.za/ex-england-stars-bok-eligibility-draws-near/",
+          "title": "Springboks: 11 bolters Rassie Erasmus could select including prime English 'rib eye' and two 'blockbuster' teenagers",
+          "link": "https://www.planetrugby.com/news/springboks-11-bolters-rassie-erasmus-could-select-including-prime-english-rib-eye-and-two-blockbuster-teenagers",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Kleyn eyes Springbok recall",
+          "link": "https://www.sarugbymag.co.za/kleyn-eyes-springbok-recall/",
           "feedName": "SA Rugby Magazine"
         },
         {
-          "title": "Heyneke: Rudolph deserves Bok chance",
-          "link": "https://www.sarugbymag.co.za/heyneke-rudolph-deserves-bok-chance/",
+          "title": "Ex-England star's Bok eligibility draws near",
+          "link": "https://www.sarugbymag.co.za/ex-england-stars-bok-eligibility-draws-near/",
           "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-10-20",
-      "lastSeen": "2026-10-20",
+      "lastSeen": "2026-10-23",
       "uses": 0
     },
     {
@@ -4206,7 +4222,7 @@
     },
     {
       "id": "kwagga-smith-s-potential-1uy2y6j",
-      "subject": "Kwagga Smith's anticipated move to the Bulls from Japan",
+      "subject": "Kwagga Smith's potential move to the Blue Bulls following his Japan exit",
       "teams": [
         467
       ],
@@ -4224,7 +4240,7 @@
         }
       ],
       "firstSeen": "2026-10-20",
-      "lastSeen": "2026-10-21",
+      "lastSeen": "2026-10-23",
       "uses": 0
     },
     {
@@ -4508,7 +4524,7 @@
         }
       ],
       "firstSeen": "2026-10-21",
-      "lastSeen": "2026-10-22",
+      "lastSeen": "2026-10-23",
       "uses": 0
     },
     {
@@ -4564,7 +4580,7 @@
     },
     {
       "id": "faf-de-klerk-s-hcla80",
-      "subject": "Faf de Klerk's ankle injury and recovery timeline",
+      "subject": "Faf de Klerk's ankle injury and the timeline for his return",
       "teams": [
         467
       ],
@@ -4577,7 +4593,7 @@
         }
       ],
       "firstSeen": "2026-10-21",
-      "lastSeen": "2026-10-22",
+      "lastSeen": "2026-10-23",
       "uses": 0
     },
     {
@@ -4618,12 +4634,17 @@
     },
     {
       "id": "ciaran-frawley-s-role-1nf8efp",
-      "subject": "Ciaran Frawley's role and potential selection as Ireland's starting fly-half",
+      "subject": "The selection battle for Ireland's starting fly-half jersey between Ciaran Frawley and Jack Crowley",
       "teams": [
         388
       ],
       "resolution": "until Andy Farrell names his starting lineup for Ireland's first November Test",
       "sources": [
+        {
+          "title": "Could Frawley earn Ireland fly-half starting spot?",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c60qkp121xg1o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
         {
           "title": "England great wades into Ireland's Ciaran Frawley 'argument' with a bold 'real opportunity' suggestion for Andy Farrell",
           "link": "https://www.planetrugby.com/news/england-great-wades-into-irelands-ciaran-frawley-argument-with-a-bold-real-opportunity-suggestion-for-andy-farrell",
@@ -4636,7 +4657,7 @@
         }
       ],
       "firstSeen": "2026-10-21",
-      "lastSeen": "2026-10-21",
+      "lastSeen": "2026-10-23",
       "uses": 0
     },
     {
@@ -4897,12 +4918,17 @@
     },
     {
       "id": "brodie-retallick-s-potential-17iv7y9",
-      "subject": "Brodie Retallick's potential return to international rugby with the All Blacks",
+      "subject": "Brodie Retallick's potential return to the All Blacks for the 2027 World Cup cycle",
       "teams": [
         465
       ],
       "resolution": "until Brodie Retallick or New Zealand confirm whether he will return to international rugby",
       "sources": [
+        {
+          "title": "All Blacks legend Brodie Retallick reveals his one 'regret' during remarkable career",
+          "link": "https://www.planetrugby.com/news/all-blacks-legend-brodie-retallick-reveals-his-one-regret-during-remarkable-career",
+          "feedName": "Planet Rugby"
+        },
         {
           "title": "Brodie Retallick provides latest update on All Blacks future with Dave Rennie 'throwing it out there'",
           "link": "https://www.planetrugby.com/news/brodie-retallick-provides-latest-update-on-all-blacks-future-with-dave-rennie-throwing-it-out-there",
@@ -4971,6 +4997,24 @@
           "title": "Jordie Barrett addresses injury concerns after pulling out of Bledisloe Cup: 'A bit of damage there'",
           "link": "https://www.planetrugby.com/news/jordie-barrett-addresses-injury-concerns-after-pulling-out-of-bledisloe-cup-a-bit-of-damage-there",
           "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-23",
+      "lastSeen": "2026-10-23",
+      "uses": 0
+    },
+    {
+      "id": "sam-costelow-s-injury-1bq4sw7",
+      "subject": "Sam Costelow's injury and its impact on Wales' Nations Championship fly-half depth",
+      "teams": [
+        391
+      ],
+      "resolution": "until Wales or the Scarlets provide a definitive medical update on Costelow’s condition",
+      "sources": [
+        {
+          "title": "Costelow injury worry as Scarlets thrash Newcastle in Challenge Cup",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6rryqwwyr5go?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-10-23",
