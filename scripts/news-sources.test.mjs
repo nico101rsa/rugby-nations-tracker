@@ -385,7 +385,8 @@ test("FEEDS: FBC News is in the spine for Fiji, with a rugby topic filter", () =
   assert.equal(fbc.topic.test("Flying Fijians name squad for November"), true);
   assert.equal(fbc.topic.test("Drua sign two props for next season"), true);
   assert.equal(fbc.topic.test("Fiji records budget surplus"), false);
-  assert.deepEqual(FEEDS.filter((f) => f.topic).map((f) => f.id), ["fbcnews", "the42"], "only the general-news sites need a topic");
+  assert.deepEqual(FEEDS.filter((f) => f.topic).map((f) => f.id),
+    ["fbcnews", "the42", "walesonline", "dailyrecord", "japantimes", "theroar"], "only the general-news sites need a topic");
 });
 
 test("FEEDS: The42 and RTÉ Sport are in the spine for Ireland; The42's whole-site feed keeps rugby only", () => {
@@ -400,6 +401,31 @@ test("FEEDS: The42 and RTÉ Sport are in the spine for Ireland; The42's whole-si
   assert.equal(the42.topic.test("Ireland's footballers draw with Portugal in World Cup qualifier"), false);
   assert.equal(the42.topic.test("Kerry name All-Ireland final team"), false);
   assert.ok(mentionsTeam("Andy Farrell names Ireland squad for November", TEAM_ALIASES[388]));
+});
+
+test("FEEDS: the eight outlets Nico adopted on 23 Oct; the whole-site feeds keep rugby only", () => {
+  const host = (id) => new URL(FEEDS.find((f) => f.id === id).url).hostname.replace(/^www\./, "");
+  assert.deepEqual(
+    ["rugbyworld", "wru", "americasrugbynews", "federugby", "walesonline", "dailyrecord", "japantimes", "theroar"].map(host),
+    ["rugbyworld.com", "wru.wales", "americasrugbynews.com", "federugby.it", "walesonline.co.uk", "dailyrecord.co.uk", "japantimes.co.jp", "theroar.com.au"],
+  );
+  const topic = (id) => FEEDS.find((f) => f.id === id).topic;
+  for (const id of ["rugbyworld", "wru", "americasrugbynews", "federugby"]) assert.equal(topic(id), undefined, `${id} is rugby only`);
+
+  assert.equal(topic("walesonline").test("Steve Tandy names Wales squad for the Nations Championship"), true);
+  assert.equal(topic("walesonline").test("Scarlets prop ruled out for six weeks"), true);
+  assert.equal(topic("walesonline").test("Wales boss Bellamy names squad for World Cup qualifier"), false);
+  assert.equal(topic("dailyrecord").test("Gregor Townsend hands debut to Glasgow Warriors back"), true);
+  assert.equal(topic("dailyrecord").test("Scotland rugby: five talking points from Murrayfield"), true);
+  assert.equal(topic("dailyrecord").test("Celtic v Rangers: Scotland international set to start"), false);
+  assert.equal(topic("japantimes").test("Brave Blossoms hold off Fiji in Tokyo"), true);
+  assert.equal(topic("japantimes").test("Eddie Jones names Japan squad for Europe tour"), true);
+  assert.equal(topic("japantimes").test("Japan's ruling party picks new leader"), false);
+  assert.equal(topic("theroar").test("Les Kiss keeps faith with Wallabies halves"), true);
+  assert.equal(topic("theroar").test("Super Rugby Pacific draw: Brumbies open at home"), true);
+  assert.equal(topic("theroar").test("Broncos lock re-signs for three more NRL seasons"), false, "the NRL is not ours");
+  assert.equal(topic("theroar").test("Australia's Test cricketers face India in Perth"), false);
+  assert.ok(mentionsTeam("Italia, la formazione per il test contro il Sudafrica", TEAM_ALIASES[389]), "the Italian union's titles say Italia");
 });
 
 // 19 Oct 2026: the New Zealand edition led with a Rugby League World Cup game
