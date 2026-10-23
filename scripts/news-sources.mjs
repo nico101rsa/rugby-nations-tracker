@@ -60,6 +60,47 @@ export const FEEDS = [
     topic: /\b(rugby|six nations|nations championship|urc|champions cup|leinster|munster|ulster|connacht|andy farrell|lions|scrum|lineout|try|tries)\b/i,
   },
   { id: "rte", name: "RTÉ Sport Rugby", url: "https://www.rte.ie/feeds/rss/?index=/sport/rugby/" },
+  // Eight more, adopted by Nico on 23 Oct 2026 ("yes .. include roar also"):
+  // the daily grades had slid from B- (12 Oct) to C- (19 Oct), with France,
+  // Italy, Scotland, Wales, Argentina and Japan short of usable stories. Each
+  // was proposed by the daily review and probed for at least a week, The Roar
+  // excepted (two probes, taken on Nico's word). Probe counts are in
+  // editorial/source-candidates.md. The rugby-only sites keep everything:
+  { id: "rugbyworld", name: "Rugby World", url: "https://www.rugbyworld.com/feed" },
+  { id: "wru", name: "Welsh Rugby Union", url: "https://www.wru.wales/feed" },
+  { id: "americasrugbynews", name: "Americas Rugby News", url: "https://www.americasrugbynews.com/feed/" },
+  // The Italian union, in Italian: Italy's alias list carries "Italia" for it.
+  { id: "federugby", name: "Federazione Italiana Rugby", url: "https://www.federugby.it/feed/" },
+  // The whole-site feeds get a rugby topic, like The42: their probe counts
+  // matched the country's name anywhere (Scottish football, Japanese
+  // politics), so the rugby yield is smaller than the counts say.
+  {
+    id: "walesonline",
+    name: "WalesOnline",
+    url: "https://www.walesonline.co.uk/rss.xml",
+    topic: /\b(rugby|six nations|nations championship|wru|steve tandy|principality stadium|ospreys|scarlets|cardiff rugby|dragons rfc|urc|scrum|lineout)\b/i,
+  },
+  {
+    id: "dailyrecord",
+    name: "Daily Record",
+    url: "https://www.dailyrecord.co.uk/rss.xml",
+    topic: /\b(rugby|six nations|nations championship|gregor townsend|murrayfield|glasgow warriors|edinburgh rugby|finn russell|urc|scrum|lineout)\b/i,
+  },
+  {
+    id: "japantimes",
+    name: "The Japan Times",
+    url: "https://www.japantimes.co.jp/feed",
+    topic: /\b(rugby|brave blossoms|league one|eddie jones|sakura fifteen|pacific nations)\b/i,
+  },
+  // The Roar covers the NRL as much as the Wallabies, so its topic names union
+  // only (no bare "rugby"); a league story that slips through still meets the
+  // league filter (isRugbyLeague below) on every path into a shortlist.
+  {
+    id: "theroar",
+    name: "The Roar",
+    url: "https://www.theroar.com.au/feed",
+    topic: /\b(wallabies|wallaroos|super rugby|rugby union|rugby championship|bledisloe|brumbies|waratahs|queensland reds|western force|rugby australia|les kiss|joe schmidt|springboks|all blacks|pumas|six nations|nations championship|test rugby)\b/i,
+  },
 ];
 
 // Aliases decide whether a feed item is ABOUT a team. Coaches and nicknames are
@@ -71,7 +112,7 @@ export const TEAM_ALIASES = {
   386: ["England", "Red Rose", "Borthwick"],
   387: ["France", "French", "Les Bleus", "Galthie", "Galthié"],
   388: ["Ireland", "Irish", "Andy Farrell"],
-  389: ["Italy", "Italian", "Azzurri", "Quesada"],
+  389: ["Italy", "Italian", "Italia", "Azzurri", "Quesada"],
   390: ["Scotland", "Scottish", "Townsend"],
   391: ["Wales", "Welsh", "Sherratt", "Tandy"],
   460: ["Argentina", "Argentine", "Pumas", "Contepomi"],
