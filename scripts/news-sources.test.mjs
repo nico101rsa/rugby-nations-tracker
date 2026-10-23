@@ -515,3 +515,25 @@ test("dropLeague: league titles, league publishers, and the code-switch exemptio
   assert.deepEqual(buildShortlist([item(league[4].title, { link: league[4].link })], 465, NOW), []);
   assert.equal(buildShortlist([item(union[0].title, { link: union[0].link })], 461, NOW).length, 1);
 });
+
+test("women's stories never reach the briefing shortlist (men's 15s only)", async () => {
+  const { buildShortlist, dropOffCode, isWomens } = await import("./news-sources.mjs");
+  for (const t of [
+    "Neve Jones to win 50th cap as Ireland women face South Africa",
+    "Springbok Women brace for physical Ireland test after inconsistent WXV",
+    "Red Roses name side for Canada",
+  ]) assert.ok(isWomens(t), t);
+  for (const t of [
+    "Andy Farrell names Ireland side to face New Zealand",
+    "Ireland U20 squad named for summer series",
+    "Springbok sevens graduate earns a first senior call-up",
+  ]) assert.ok(!isWomens(t), t);
+  const items = [
+    { title: "Ireland women face South Africa in WXV opener", link: "https://example.com/a" },
+    { title: "Farrell names Ireland side to face All Blacks", link: "https://example.com/b" },
+  ];
+  assert.deepEqual(dropOffCode(items).map((i) => i.link), ["https://example.com/b"]);
+  const now = new Date("2026-10-23T00:00:00Z");
+  const list = buildShortlist(items.map((i) => ({ ...i, date: now.toISOString(), feedId: "bbc", feedName: "BBC", position: 1 })), 388, now);
+  assert.ok(list.every((s) => !/women/i.test(s.title)));
+});
