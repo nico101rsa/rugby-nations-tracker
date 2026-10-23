@@ -451,7 +451,7 @@
       ],
       "why": "Italy's shortlist held only three low-score items, none about the team's current campaign, and the union page would cover squad and Round 4 news.",
       "proposed": "2026-10-12",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.federugby.it/feed/",
       "probes": [
         {
@@ -546,6 +546,15 @@
             "Italy": 1,
             "Argentina": 1
           }
+        },
+        {
+          "date": "2026-10-24",
+          "feedUrl": "https://www.federugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "Italy": 5,
+            "Argentina": 1
+          }
         }
       ],
       "decided": "2026-10-14"
@@ -561,7 +570,7 @@
       ],
       "why": "France, Argentina and Japan had no NEW national-team stories today, and this magazine's news desk covers all the major nations in English.",
       "proposed": "2026-10-13",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.rugbyworld.com/feed",
       "probes": [
         {
@@ -746,6 +755,24 @@
             "New Zealand": 6,
             "South Africa": 3
           }
+        },
+        {
+          "date": "2026-10-24",
+          "feedUrl": "https://www.rugbyworld.com/feed",
+          "items": 30,
+          "hits": {
+            "Fiji": 1,
+            "England": 6,
+            "France": 3,
+            "Ireland": 4,
+            "Italy": 1,
+            "Scotland": 1,
+            "Wales": 2,
+            "Argentina": 1,
+            "Australia": 8,
+            "New Zealand": 6,
+            "South Africa": 3
+          }
         }
       ],
       "decided": "2026-10-16"
@@ -759,7 +786,7 @@
       ],
       "why": "Argentina's shortlist held only low-scoring background items, and this English-language site covers Los Pumas and South American rugby regularly.",
       "proposed": "2026-10-16",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.americasrugbynews.com/feed/",
       "probes": [
         {
@@ -842,6 +869,18 @@
             "Australia": 1,
             "South Africa": 1
           }
+        },
+        {
+          "date": "2026-10-24",
+          "feedUrl": "https://www.americasrugbynews.com/feed/",
+          "items": 10,
+          "hits": {
+            "England": 2,
+            "France": 1,
+            "Argentina": 2,
+            "Australia": 1,
+            "South Africa": 1
+          }
         }
       ],
       "decided": "2026-10-16"
@@ -855,7 +894,7 @@
       ],
       "why": "Scotland's pool held only the women's Australia game, so a free national-paper rugby desk could supply men's Scotland stories.",
       "proposed": "2026-10-18",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
       "probes": [
         {
@@ -913,6 +952,15 @@
             "France": 1,
             "Scotland": 7
           }
+        },
+        {
+          "date": "2026-10-24",
+          "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
+          "items": 25,
+          "hits": {
+            "Scotland": 4,
+            "Australia": 1
+          }
         }
       ],
       "decided": "2026-10-18"
@@ -926,7 +974,7 @@
       ],
       "why": "Wales had only BACKGROUND items and a vague injury storyline today; the union's own news page would carry squad and injury announcements.",
       "proposed": "2026-10-18",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.wru.wales/feed",
       "probes": [
         {
@@ -1000,6 +1048,15 @@
             "New Zealand": 1,
             "South Africa": 1
           }
+        },
+        {
+          "date": "2026-10-24",
+          "feedUrl": "https://www.wru.wales/feed",
+          "items": 10,
+          "hits": {
+            "Wales": 3,
+            "Japan": 2
+          }
         }
       ],
       "decided": "2026-10-19"
@@ -1013,7 +1070,7 @@
       ],
       "why": "Wales had no fresh coverage today and its shortlist was all background; WalesOnline's rugby desk covers the national side daily.",
       "proposed": "2026-10-18",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.walesonline.co.uk/rss.xml",
       "probes": [
         {
@@ -1071,6 +1128,17 @@
             "Wales": 8,
             "South Africa": 1
           }
+        },
+        {
+          "date": "2026-10-24",
+          "feedUrl": "https://www.walesonline.co.uk/rss.xml",
+          "items": 25,
+          "hits": {
+            "England": 2,
+            "France": 1,
+            "Wales": 10,
+            "New Zealand": 1
+          }
         }
       ],
       "decided": "2026-10-19"
@@ -1084,7 +1152,7 @@
       ],
       "why": "Japan had only background items today, and the Japan Times has a sports desk that covers the national side regularly in English.",
       "proposed": "2026-10-19",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.japantimes.co.jp/feed",
       "probes": [
         {
@@ -1133,6 +1201,16 @@
             "Italy": 1,
             "Japan": 9
           }
+        },
+        {
+          "date": "2026-10-24",
+          "feedUrl": "https://www.japantimes.co.jp/feed",
+          "items": 30,
+          "hits": {
+            "France": 1,
+            "Australia": 1,
+            "Japan": 11
+          }
         }
       ],
       "decided": "2026-10-19"
@@ -1170,6 +1248,10 @@
         {
           "date": "2026-10-23",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-24",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1196,6 +1278,10 @@
         {
           "date": "2026-10-23",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-24",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1208,7 +1294,7 @@
       ],
       "why": "Daily Wallabies and Super Rugby coverage would fill today's gap, when Australia's only NEW items were a sponsor release and a New Zealand player piece.",
       "proposed": "2026-10-22",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.theroar.com.au/feed",
       "probes": [
         {
@@ -1221,6 +1307,14 @@
         },
         {
           "date": "2026-10-23",
+          "feedUrl": "https://www.theroar.com.au/feed",
+          "items": 6,
+          "hits": {
+            "Australia": 3
+          }
+        },
+        {
+          "date": "2026-10-24",
           "feedUrl": "https://www.theroar.com.au/feed",
           "items": 6,
           "hits": {
@@ -1248,6 +1342,10 @@
         },
         {
           "date": "2026-10-23",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-24",
           "error": "no feed found (8 tried)"
         }
       ]
