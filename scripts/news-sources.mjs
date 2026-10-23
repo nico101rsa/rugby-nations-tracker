@@ -188,6 +188,25 @@ export function dropLeague(items) {
   return (items || []).filter((i) => !isRugbyLeague(i));
 }
 
+// Women's rugby. The app is men's 15s (Nico, 23 Oct 2026: "This App is for
+// mens 15"), so a women's story is never a briefing's story, labelled or
+// not. Until then a labelled women's lead was allowed, and in the men's
+// off-season the WXV took five of the twelve editions on 23 Oct. Title-only,
+// like the aboutness test: a men's story that mentions the women's side in
+// its summary is still a men's story. Sevens is ruled out in the writer and
+// checker prompts rather than here, because the word turns up in men's XV
+// headlines ("Springbok sevens graduate earns a first senior call-up").
+export const WOMENS = /\b(women'?s?|womens|ladies|girls|wxv|red roses|black ferns|wallaroos|fijiana|les bleues|azzurre|sakura)\b/i;
+
+export function isWomens(text) {
+  return WOMENS.test(String(text || ""));
+}
+
+// Every path into the briefing writer: league out, women's out.
+export function dropOffCode(items) {
+  return dropLeague(items).filter((i) => !isWomens(i?.title));
+}
+
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 // Word-boundary alias match. \b is wrong for accented aliases (Galthié) because
@@ -437,7 +456,8 @@ export function buildShortlist(items, teamId, now, size = SHORTLIST_SIZE) {
   // A team named in passing in a summary is mentioned, not covered. Headlines
   // name who the story is about — that is what a headline is for.
   // A rugby league story is never a union team's story (isRugbyLeague).
-  const mine = dropLeague(items).filter((i) => mentionsTeam(i.title, aliases));
+  // Nor is a women's story (dropOffCode).
+  const mine = dropOffCode(items).filter((i) => mentionsTeam(i.title, aliases));
   const scored = clusterStories(mine).map((s) => {
     const matchReport = isMatchReport(s.title);
     const subject = subjectWeight(s.title, aliases);

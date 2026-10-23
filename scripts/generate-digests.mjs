@@ -15,7 +15,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { dirname, join, resolve, relative, isAbsolute, sep } from "node:path";
-import { FEEDS, buildShortlist, dropLeague, isQuiet, renderShortlist } from "./news-sources.mjs";
+import { FEEDS, buildShortlist, dropLeague, dropOffCode, isWomens, isQuiet, renderShortlist } from "./news-sources.mjs";
 import { ROLES, REQUEST_TIMEOUT_MS, modelPlan, buildCallers, describePlan } from "./model-router.mjs";
 import { readCandidates, addCandidates, renderCandidatesForReview } from "./source-candidates.mjs";
 import {
@@ -121,13 +121,14 @@ once a day. Today is {DAY_NAME} {DATE_LONG}.
 3. **Lead with the day's actual story.** Check what outlets covering this team
    led with today — if they led with a player's return, so do you, not the
    routine rotation count.
-4. **Men's senior internationals are the default.** The app is men's
-   international rugby; a reader assumes every story is about the men's XV.
-   If the story you lead with is about the women's side, an age-grade team
-   (U20), sevens or a club, the heading AND the first sentence must say so
-   ("England women end 39-match run…", "the Red Roses", "France U20"). An
-   unlabelled women's or U20 story misinforms the reader and fails
-   fact-check. Prefer a men's story when one of comparable weight exists.
+4. **Men's 15s only.** The app is men's 15-a-side rugby; a reader assumes
+   every story is about the men's XV. **Women's rugby (the women's side,
+   WXV, Red Roses, Black Ferns, Wallaroos, Fijiana…) and sevens are never
+   your story**, labelled or not, however big; on a day with nothing else,
+   write a shorter men's edition. If the story you lead with is about an
+   age-grade team (U20) or a club, the heading AND the first sentence must
+   say so ("France U20"); an unlabelled U20 story misinforms the reader and
+   fails fact-check.
    **Rugby league is a different sport and never your story**, labelled as
    league or not. A Rugby League World Cup, NRL, Kangaroos, Kumuls, Kiwi
    Ferns or Jillaroos story presented as union is a material error, even
@@ -1038,7 +1039,8 @@ export async function fetchTeamNews(teamName) {
   // League stories are dropped here as well as in buildShortlist, because
   // the storyline rung's re-check search hands these items to the writer
   // without a shortlist.
-  return dropLeague(items).slice(0, NEWS_ITEMS).map((item, n) => ({
+  // Women's stories too (dropOffCode): the app is men's 15s.
+  return dropOffCode(items).slice(0, NEWS_ITEMS).map((item, n) => ({
     title: item.title,
     link: item.link,
     desc: item.desc,
@@ -1282,11 +1284,11 @@ misinformed for you to flag it. Material errors:
   pack (an accurate paraphrase WITHOUT quote marks is fine and never an issue);
 - a rumour or expectation asserted as settled fact;
 - stale news presented as this week's development;
-- a story about women's rugby, an age-grade side (U20), sevens or a club
-  whose heading or first sentence does not say so — the app is men's
-  internationals by default, so "England drew with Canada" for a Red Roses
-  match misinforms the reader (check the pack: if the sources say Red
-  Roses, women, WXV, Black Ferns, Wallaroos or U20, the draft must too);
+- a story about women's rugby or sevens, labelled or not — the app is
+  men's 15s only (check the pack: if the sources say Red Roses, women, WXV,
+  Black Ferns, Wallaroos, Fijiana or sevens, the story fails);
+- a story about an age-grade side (U20) or a club whose heading or first
+  sentence does not say so — the app is men's internationals by default;
 ${LEAGUE_CHECK_RULE}
 - a \`teamsheet\` entry (name or jersey number) that does not match an explicit
   numbered lineup printed in the pack, or a teamsheet included when the pack
@@ -1383,6 +1385,27 @@ async function resolveLadder(ctx, teamId, params, now) {
   return null;
 }
 
+// Code gate: a women's edition is a material failure whatever the checker
+// thinks (the app is men's 15s; sevens is left to the checker, see WOMENS). Read from the kicker, the heading
+// and the body's first sentence, which is where a lead names its subject; a
+// men's story can mention the women's side further down.
+export function offCodeIssues(digest) {
+  return (digest?.sections || []).flatMap((s) => {
+    const first = String(s?.body || "").split(/(?<=[.!?])\s/)[0];
+    return isWomens(`${s?.kicker ?? ""} ${s?.heading ?? ""} ${first}`)
+      ? [{ kicker: s?.kicker, claim: s?.heading, severity: "material",
+          problem: "women's rugby story: the app is men's 15s only",
+          fix: "lead with a men's 15s story instead, or write a shorter men's edition" }]
+      : [];
+  });
+}
+
+export function withCodeGate(check, digest) {
+  const extra = offCodeIssues(digest);
+  if (!extra.length) return check;
+  return { verdict: "fail", issues: [...extra, ...(check?.issues || [])] };
+}
+
 // The verdict is computed here, not trusted from the model: only material
 // issues fail an edition (Flash's own global verdicts contradicted its
 // per-issue reasoning in testing). Minor issues are dropped.
@@ -1430,7 +1453,7 @@ export async function generateEdition(calls, data, teamId, now, editorNotes, che
 
   let digest = await draft();
   if (trace) trace.firstDraft = digest;
-  let check = parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, digest, pack, checkerNotes))));
+  let check = withCodeGate(parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, digest, pack, checkerNotes)))), digest);
   if (trace) trace.firstCheck = { verdict: check.verdict, materialIssues: check.issues.length };
   let revisions = 0;
 
@@ -1443,7 +1466,7 @@ support. If a quote was flagged, either use the exact verbatim wording the
 fact-checker cites or remove the quotation marks and paraphrase — do not
 re-word a quote a third way. Output the complete JSON again.`;
     digest = await draft(feedback);
-    check = parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, digest, pack, checkerNotes))));
+    check = withCodeGate(parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, digest, pack, checkerNotes)))), digest);
   }
 
   if (check.verdict !== "pass") {
@@ -1460,7 +1483,7 @@ what headlines and articles in the source pack plainly report, plus the
 trusted app data. Bodies may run short (around 50 words). Output the complete
 JSON again.`;
     digest = await draft(feedback);
-    check = parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, digest, pack, checkerNotes))));
+    check = withCodeGate(parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, digest, pack, checkerNotes)))), digest);
   }
   if (trace) trace.revisions = revisions;
   if (check.verdict !== "pass") {
@@ -1491,7 +1514,7 @@ JSON again.`;
     if (repeat) {
       try {
         const alt = await draft(buildNoveltyFeedback(repeat));
-        const altCheck = parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, alt, pack, checkerNotes))));
+        const altCheck = withCodeGate(parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, alt, pack, checkerNotes)))), alt);
         if (altCheck.verdict === "pass") {
           digest = alt;
           noveltyRevised = true;
@@ -1685,10 +1708,10 @@ ${sourcesBlock}
 3. **Quality**: flat or repetitive headings, filler, manufactured hype, name
    echoes. A heading must name someone and say what happened.
 4. **Sources**: invented colour presented as reported fact, missing attribution.
-5. **Labelling**: the app is MEN'S international rugby by default. Any edition
-   about the women's side, an age-grade team, sevens or a club must say so in
-   its heading and first sentence. "England draw with Canada to end their
-   39-game run" for a Red Roses match is a facts defect, not a style one.
+5. **Labelling**: the app is MEN'S 15s rugby. An edition about women's rugby
+   or sevens is a choice defect whatever its labelling (the code gate should
+   have stopped it; say so if one got through). Any edition about an
+   age-grade team or a club must say so in its heading and first sentence.
 
 ${hasWorld ? `## Around the world — the roundup closing every edition
 

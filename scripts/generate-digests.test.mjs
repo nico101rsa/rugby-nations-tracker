@@ -722,7 +722,7 @@ test("buildReviewPrompt reviews the Around the world roundup only when there is 
   assert.match(withWorld, /- England: England's 39-match run ends/);
   assert.match(withWorld, /"world_notes"/);
   // The men's-by-default labelling rule is a review criterion for editions too.
-  assert.match(withWorld, /Labelling.*MEN'S international rugby/s);
+  assert.match(withWorld, /Labelling.*MEN'S 15s rugby/s);
   // Removed lines are shown with their reason, and alone are enough to review.
   const dropped = [{ team: "France", text: "France recover to beat the Wallaroos.", problem: "women's side not labelled" }];
   const onlyDropped = buildReviewPrompt(editions, "2026-09-21", [], dropped);
@@ -1130,4 +1130,14 @@ test("writer and fact-check prompts both rule out rugby league, labelled or not"
   assert.ok(checker.includes("The one exception is the rugby league rule above"), "the pack-is-authority rule yields to it");
   assert.ok(writer.includes("Never describe how the material was gathered"));
   assert.ok(writer.includes("search-results headline"));
+});
+
+test("code gate fails a women's edition whatever the checker said", async () => {
+  const { offCodeIssues, withCodeGate } = await import("./generate-digests.mjs");
+  const womens = { sections: [{ kicker: "Women's WXV", heading: "Neve Jones to win 50th cap", body: "Ireland women's hooker Neve Jones will win her 50th cap. More here." }] };
+  const mens = { sections: [{ kicker: "Selection", heading: "Farrell names his side", body: "Andy Farrell names Ireland's XV. The Black Ferns also play this weekend." }] };
+  assert.equal(offCodeIssues(womens).length, 1);
+  assert.equal(offCodeIssues(mens).length, 0);
+  assert.equal(withCodeGate({ verdict: "pass", issues: [] }, womens).verdict, "fail");
+  assert.equal(withCodeGate({ verdict: "pass", issues: [] }, mens).verdict, "pass");
 });
