@@ -1,16 +1,21 @@
 {
-  "updatedAt": "2026-10-24T12:21:06.683Z",
+  "updatedAt": "2026-10-24T17:01:24.265Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
   "count": 212,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
-      "subject": "Steve Borthwick's England squad selection for the November Nations Championship",
+      "subject": "Steve Borthwick's squad selection choices for England's autumn Nations Championship campaign",
       "teams": [
         386
       ],
       "resolution": "until England proves their tactical consistency in the Nations Championship",
       "sources": [
+        {
+          "title": "England latest: Seven bolters Steve Borthwick could select including PREM ace 'in the form of his life'",
+          "link": "https://www.planetrugby.com/news/england-latest-seven-bolters-steve-borthwick-could-select-including-prem-ace-in-the-form-of-his-life",
+          "feedName": "Planet Rugby"
+        },
         {
           "title": "Comment: England have the cattle to go all the way in Nations Championship, as long as Steve Borthwick picks a pack to win the collisions first",
           "link": "https://www.planetrugby.com/news/comment-england-have-the-cattle-to-go-all-the-way-in-nations-championship-as-long-as-steve-borthwick-picks-a-pack-to-win-the-collisions-first",
@@ -20,15 +25,10 @@
           "title": "England: Bristol Bears star in 'form of his life' to 'knuckle down' and earn recall but knows he 'can’t pick' himself",
           "link": "https://www.planetrugby.com/news/england-bristol-bears-star-in-form-of-his-life-to-knuckle-down-and-earn-recall-but-knows-he-cant-pick-himself",
           "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Will Borthwick’s autumn England squad embrace Prem chaos or prioritise prudence? | Gerard Meagher",
-          "link": "https://www.theguardian.com/sport/2026/oct/23/rugby-union-england-steve-borthwick-selection-autumn-nations-championship",
-          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-08-26",
-      "lastSeen": "2026-10-24",
+      "lastSeen": "2026-10-25",
       "uses": 1,
       "lastUsed": "2026-09-06"
     },
@@ -1107,8 +1107,8 @@
       ],
       "firstSeen": "2026-10-07",
       "lastSeen": "2026-10-19",
-      "uses": 1,
-      "lastUsed": "2026-10-18"
+      "uses": 2,
+      "lastUsed": "2026-10-25"
     },
     {
       "id": "richie-mo-unga-s-3vdndj",
@@ -2340,7 +2340,7 @@
         }
       ],
       "firstSeen": "2026-10-13",
-      "lastSeen": "2026-10-24",
+      "lastSeen": "2026-10-25",
       "uses": 0
     },
     {
@@ -2392,7 +2392,8 @@
       ],
       "firstSeen": "2026-10-13",
       "lastSeen": "2026-10-13",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-25"
     },
     {
       "id": "injury-enforced-squad-changes-ejpotg",
@@ -4571,7 +4572,7 @@
         }
       ],
       "firstSeen": "2026-10-23",
-      "lastSeen": "2026-10-24",
+      "lastSeen": "2026-10-25",
       "uses": 0
     },
     {
@@ -4681,7 +4682,7 @@
         }
       ],
       "firstSeen": "2026-10-24",
-      "lastSeen": "2026-10-24",
+      "lastSeen": "2026-10-25",
       "uses": 0
     },
     {
@@ -4704,7 +4705,7 @@
     },
     {
       "id": "andre-esterhuizen-s-injury-69qiku",
-      "subject": "Andre Esterhuizen's injury and availability for South Africa's November Tests",
+      "subject": "Andre Esterhuizen's injury severity and availability for South Africa's autumn campaign",
       "teams": [
         467
       ],
@@ -4717,7 +4718,7 @@
         }
       ],
       "firstSeen": "2026-10-24",
-      "lastSeen": "2026-10-24",
+      "lastSeen": "2026-10-25",
       "uses": 0
     },
     {
@@ -4822,9 +4823,10 @@
     },
     {
       "id": "sam-prendergast-s-wrist-1s7eksf",
-      "subject": "Sam Prendergast's wrist injury and availability for Ireland's Nations Championship opener",
+      "subject": "Sam Prendergast's wrist injury and availability for Ireland's Nations Championship opener against Argentina",
       "teams": [
-        388
+        388,
+        460
       ],
       "resolution": "until Ireland confirm Sam Prendergast's fitness for the match against Argentina",
       "sources": [
@@ -4835,7 +4837,7 @@
         }
       ],
       "firstSeen": "2026-10-24",
-      "lastSeen": "2026-10-24",
+      "lastSeen": "2026-10-25",
       "uses": 0
     }
   ]
