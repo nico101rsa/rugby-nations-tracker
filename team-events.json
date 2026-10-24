@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-24T05:12:43.852Z",
+ "updatedAt": "2026-10-24T09:23:21.889Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -413,20 +413,6 @@
   "JPN": {
    "last": [
     {
-     "id": 14884325,
-     "date": "2025-11-15T17:40:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Wales",
-     "opponentCode": "WAL",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 23,
-     "them": 24,
-     "result": "L",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14884330,
      "date": "2025-11-22T12:00:00.000Z",
      "league": "International Friendlies",
@@ -553,9 +539,7 @@
      "cards": null,
      "venue": "Prince Chichibu Memorial Stadium, Tokyo",
      "stage": "final"
-    }
-   ],
-   "next": [
+    },
     {
      "id": 17391652,
      "date": "2026-10-24T05:50:00.000Z",
@@ -564,11 +548,14 @@
      "opponentCode": "FIJ",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Prince Chichibu Memorial Stadium, Tokyo"
-    },
+     "us": 28,
+     "them": 34,
+     "result": "L",
+     "tries": 4,
+     "cards": 0
+    }
+   ],
+   "next": [
     {
      "id": 16098048,
      "date": "2026-11-07T16:40:00.000Z",
@@ -1240,20 +1227,6 @@
   "FIJ": {
    "last": [
     {
-     "id": 14647586,
-     "date": "2025-09-15T00:35:00.000Z",
-     "league": "Pacific Nations Cup, Knockout Stage",
-     "opponent": "Canada",
-     "opponentCode": null,
-     "tracked": false,
-     "homeAway": "H",
-     "us": 63,
-     "them": 10,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14694902,
      "date": "2025-09-21T01:35:00.000Z",
      "league": "Pacific Nations Cup, Knockout Stage",
@@ -1383,9 +1356,7 @@
      "cards": null,
      "venue": "Prince Chichibu Memorial Stadium, Tokyo",
      "stage": "final"
-    }
-   ],
-   "next": [
+    },
     {
      "id": 17391652,
      "date": "2026-10-24T05:50:00.000Z",
@@ -1394,11 +1365,14 @@
      "opponentCode": "JPN",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Prince Chichibu Memorial Stadium, Tokyo"
-    },
+     "us": 34,
+     "them": 28,
+     "result": "W",
+     "tries": 4,
+     "cards": 1
+    }
+   ],
+   "next": [
     {
      "id": 16098079,
      "date": "2026-11-07T20:10:00.000Z",
@@ -1443,6 +1417,18 @@
      "date": "2027-10-04T03:15:00.000Z",
      "league": "World Cup, Pool C",
      "opponent": "Spain",
+     "opponentCode": null,
+     "tracked": false,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248067,
+     "date": "2027-10-10T01:45:00.000Z",
+     "league": "World Cup, Pool C",
+     "opponent": "Canada",
      "opponentCode": null,
      "tracked": false,
      "homeAway": "H",
