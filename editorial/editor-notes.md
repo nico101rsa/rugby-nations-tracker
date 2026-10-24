@@ -3,8 +3,8 @@
 Injected into the writer prompt daily; curated by the post-run review.
 Notes age out after 14 days unless re-earned. Prune freely.
 
-- End the paragraph on a sourced fact; never write sentences describing what the coverage lacks ('no timeline', 'no coverage of his condition today') or speculating on availability. _(added 2026-10-25)_
-- When a reported news item and a column or Q&A are both on the shortlist, lead with the reported item; if the lead concerns a club, put the club's name in the heading. _(added 2026-10-25)_
+- If the shortlist holds a NEW Test result, national-squad selection or key injury for the team, lead with it rather than a club match, contract move or recycled squad-announcement item. _(added 2026-10-25)_
+- When the story is about a club or age-grade player or match, put the club or age-grade label in the heading itself (e.g. 'Scarlets winger…'), not only in the first sentence, and keep the heading to 10-12 words. _(added 2026-10-25)_
 - Lead with the team's own recent Test result or squad news when the shortlist holds one; do not lead with a visiting player's club-spell reminiscence (Kolbe for Japan) or a retrospective about past fixtures (Australia's Bledisloe release window). _(added 2026-10-25)_
 - Before claiming an item is the 'only new' one, check every NEW candidate in the shortlist, including low-scoring match results about your own team. _(added 2026-10-25)_
 - When the shortlist holds Test-squad injury, selection or availability news, lead with it rather than a club-match incident, an uncapped player's scare, or an off-field contract move. _(added 2026-10-25)_
