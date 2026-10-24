@@ -1,16 +1,21 @@
 {
   "date": "2026-10-25",
   "counts": {
-    "editions": 12,
-    "quiet": 3,
-    "storyline": 1,
+    "editions": 11,
+    "quiet": 2,
+    "storyline": 0,
     "dataEdition": 2,
-    "failed": 0,
-    "noLead": 3,
+    "failed": 1,
+    "noLead": 2,
     "repeatLead": 1,
-    "world": 4
+    "world": 3
   },
-  "failed": [],
+  "failed": [
+    {
+      "team": "South Africa",
+      "reason": "invalid edition: teamsheet has 0 starters (want 15); starter jerseys must be unique 1-15 | tail: …efore Yaqeen Ahmed scored twice late on to seal it. For South Africa, it is a timely look at the next wave of Stormers backs.\" } ], \"teamsheet\": { \"starters\": [], \"bench\": [] } } ```"
+    }
+  ],
   "teams": [
     {
       "team": "Fiji",
@@ -18,22 +23,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Jake White names four uncapped players in first Fiji squad",
-      "kicker": "Squad selection",
-      "body": "Jake White's first Fiji squad, named ahead of Saturday's 34-28 win over Japan in Tokyo, included four uncapped players. Nacani Boginisoko and Aporosa Vuniyayawa started, while Peni Naruma and Kavekini Boselawa were named among the replacements. White picked no Europe-based players for the match, and said the calibre of player picked from the islands could make Fiji a force at next year's World Cup.",
-      "source": "Planet Rugby",
+      "heading": "Jake White's Fiji beat Japan 34-28 as Ben Volavola's penalties seal win",
+      "kicker": "Winning start",
+      "body": "Jake White's first Test in charge ended in a 34-28 win over Japan in Tokyo on Saturday. The win reversed September's Pacific Nations Cup final, lost 20-15 to Japan. Both teams scored three first-half tries, and substitute Ben Volavola settled it with two penalties after the break. White picked no Europe-based players and handed out four new caps, and he says Fiji \"can beat anyone\" on their day.",
+      "source": "SA Rugby Magazine",
       "lead": {
-        "candidate": 5,
-        "why": "It is the team's own Test squad news, sourced in full, and the only shortlist item that is not a repeat of the Japan result or the Nawaqanitawase story."
+        "candidate": 1,
+        "why": "Fiji's first Test under Jake White produced a new result, and it is the team's own news ahead of the European tour."
       },
-      "leadLink": "https://www.planetrugby.com/news/fiji-team-jake-white-era-underway-as-ex-springbok-boss-names-four-uncapped-players-for-latest-eddie-jones-showdown",
+      "leadLink": "https://www.sarugbymag.co.za/jake-makes-winning-start-to-fiji-stint/",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
-          "title": "Jake: Fiji can be a massive force",
-          "link": "https://www.sarugbymag.co.za/jake-fiji-can-be-a-massive-force/",
-          "score": 28,
+          "title": "Jake makes winning start to Fiji stint",
+          "link": "https://www.sarugbymag.co.za/jake-makes-winning-start-to-fiji-stint/",
+          "score": 17.5,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -41,19 +46,20 @@
           "fresh": true
         },
         {
-          "title": "Jake makes winning start to Fiji stint",
-          "link": "https://www.sarugbymag.co.za/jake-makes-winning-start-to-fiji-stint/",
-          "score": 18.1,
-          "corroboration": 1,
+          "title": "Jake: Fiji can be a massive force",
+          "link": "https://www.sarugbymag.co.za/jake-fiji-can-be-a-massive-force/",
+          "score": 66.9,
+          "corroboration": 2,
           "outlets": [
-            "sarugbymag"
+            "sarugbymag",
+            "search"
           ],
-          "fresh": true
+          "fresh": false
         },
         {
           "title": "White won't boot Fiji's flair into touch on World Cup quest, says chairman",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2c69be664cc7b7644a9455e8cacd&url=https%3a%2f%2fwww.reuters.com%2fsports%2fwhite-wont-boot-fijis-flair-into-touch-world-cup-quest-says-chairman-2026-10-21%2f&c=8449188723600736750&mkt=en-us",
-          "score": 44.5,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add44a4ecd647b3955ce0fde7dd62fd&url=https%3a%2f%2fwww.reuters.com%2fsports%2fwhite-wont-boot-fijis-flair-into-touch-world-cup-quest-says-chairman-2026-10-21%2f&c=8449188723600736750&mkt=en-us",
+          "score": 44.2,
           "corroboration": 2,
           "outlets": [
             "rte",
@@ -63,8 +69,8 @@
         },
         {
           "title": "Fiji pitches pride over money in bid to lure Nawaqanitawase",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2c69be664cc7b7644a9455e8cacd&url=https%3a%2f%2fwww.reuters.com%2fsports%2ffiji-pitches-pride-over-money-bid-lure-nawaqanitawase-2026-10-23%2f&c=5065896542426975740&mkt=en-us",
-          "score": 12,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add44a4ecd647b3955ce0fde7dd62fd&url=https%3a%2f%2fwww.reuters.com%2fsports%2ffiji-pitches-pride-over-money-bid-lure-nawaqanitawase-2026-10-23%2f&c=5065896542426975740&mkt=en-us",
+          "score": 11.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -74,7 +80,7 @@
         {
           "title": "Fiji team: Jake White era underway as ex-Springbok boss names four uncapped players for latest Eddie Jones showdown",
           "link": "https://www.planetrugby.com/news/fiji-team-jake-white-era-underway-as-ex-springbok-boss-names-four-uncapped-players-for-latest-eddie-jones-showdown",
-          "score": 10.8,
+          "score": 10.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -89,22 +95,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Jack van Poortvliet signs new Leicester Tigers deal as England's 27-cap scrum-half",
-      "kicker": "Contract news",
-      "body": "Jack van Poortvliet has committed his future to Leicester Tigers, the club he grew up supporting. The Tigers vice-captain has made 118 appearances since his 2019 debut and was part of the 2021-22 squad that won the Gallagher PREM. The 27-cap England international has also earned an Elite Player Squad contract for 2026-27. He added: \"It was a pretty easy decision to stay. I love it here and long may that continue.\"",
+      "heading": "Borthwick could call George Barton and Nathan Jibulu into November squad",
+      "kicker": "Selection watch",
+      "body": "Planet Rugby has named seven uncapped players Steve Borthwick could draft into England's November Tests, and Gloucester full-back George Barton heads the case, its writer arguing his form has pushed him into the picture. Sale hooker Nathan Jibulu is another name to watch: two man-of-the-match displays this season, and Jamie George is nearing the end of his Test career. England's block also features Australia, Japan and the All Blacks.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 4,
-        "why": "It is the only new England men's item that is not already run, club-match or women's coverage."
+        "candidate": 3,
+        "why": "It is the only shortlisted England men's Test story not already run, and it concerns national squad selection for November."
       },
-      "leadLink": "https://www.planetrugby.com/news/rugby-transfers-england-star-decides-on-leicester-tigers-future-wallabies-flanker-joins-clermont-and-chiefs-make-double-signing",
+      "leadLink": "https://www.planetrugby.com/news/england-latest-seven-bolters-steve-borthwick-could-select-including-prem-ace-in-the-form-of-his-life",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "No panic for England but Mitchell issues PWR warning",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cv0ld9y3g426o?at_medium=RSS&at_campaign=rss",
-          "score": 46,
+          "score": 45.1,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -114,7 +120,7 @@
         {
           "title": "England: Bristol Bears star in 'form of his life' to 'knuckle down' and earn recall but knows he 'can’t pick' himself",
           "link": "https://www.planetrugby.com/news/england-bristol-bears-star-in-form-of-his-life-to-knuckle-down-and-earn-recall-but-knows-he-cant-pick-himself",
-          "score": 45.8,
+          "score": 44.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -124,7 +130,7 @@
         {
           "title": "England latest: Seven bolters Steve Borthwick could select including PREM ace 'in the form of his life'",
           "link": "https://www.planetrugby.com/news/england-latest-seven-bolters-steve-borthwick-could-select-including-prem-ace-in-the-form-of-his-life",
-          "score": 36.1,
+          "score": 35,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -134,7 +140,7 @@
         {
           "title": "Rugby transfers: England star decides on Leicester Tigers future, Wallabies flanker joins Clermont and Chiefs make double-signing",
           "link": "https://www.planetrugby.com/news/rugby-transfers-england-star-decides-on-leicester-tigers-future-wallabies-flanker-joins-clermont-and-chiefs-make-double-signing",
-          "score": 27.2,
+          "score": 26.2,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -144,7 +150,7 @@
         {
           "title": "Bristol Bears v Exeter Chiefs: Five takeaways as hosts show 'different edge' in 'slobberknocker in a slip-and-slide' while England star's efforts leave their mark",
           "link": "https://www.planetrugby.com/news/bristol-bears-v-exeter-chiefs-five-takeaways-as-hosts-show-different-edge-in-slobberknocker-in-a-slip-and-slide-as-england-stars-efforts-leave-their-mark",
-          "score": 18,
+          "score": 17.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -159,22 +165,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "French rugby observes minute's applause for 17-year-old Cléa Menier this weekend",
-      "kicker": "Tribute weekend",
-      "body": "Cléa Menier, a 17-year-old back row for Union du Bassin Marmandais, died in hospital after what her club called an \"accident\" in an amateur under-18s match against Agen Agglo Rugby on Saturday. The French Rugby Federation says a minute's applause will be held before every professional and amateur match in France this weekend, and that the tribute is agreed with her family. Neither the club nor the federation has disclosed the nature of her injury.",
+      "heading": "Billy Searle turns down France return to stay at Leicester Tigers",
+      "kicker": "Player move",
+      "body": "Leicester fly-half Billy Searle turned down a potential return to France to stay at Welford Road, telling BBC Radio Leicester he wanted to \"push his game on\" in England. The 30-year-old signed a three-year extension in September, having already had three spells in French rugby, at Toulouse, Biarritz and Agen. \"I had interest in France but I made it clear I wanted to stay,\" he said. He also hasn't given up on a first senior England cap.",
       "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 2,
-        "why": "The Menier death is the most widely covered French rugby story in today's pack, and the federation's weekend tribute reaches every French pitch, so it is the one a fan would raise with a mate."
+        "candidate": 4,
+        "why": "Alldritt and the Menier tributes have already run, and this is the freshest France-linked item left, with a player who could have returned to France choosing England's Tigers instead."
       },
-      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/crly0lpgd659o?at_medium=RSS&at_campaign=rss",
+      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/ck0j0d6389d4o?at_medium=RSS&at_campaign=rss",
       "repeatLead": null,
-      "noveltyRevised": false,
+      "noveltyRevised": true,
       "candidates": [
         {
           "title": "Alldritt returns to France squad for Nations Championship after one-year absence",
           "link": "https://www.the42.ie/france-squad-nations-championship-7201048-Oct2026/",
-          "score": 56.1,
+          "score": 56,
           "corroboration": 2,
           "outlets": [
             "the42",
@@ -185,7 +191,7 @@
         {
           "title": "French teenage rugby player dies after on-field injury",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/crly0lpgd659o?at_medium=RSS&at_campaign=rss",
-          "score": 14.4,
+          "score": 14.1,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -194,8 +200,8 @@
         },
         {
           "title": "French rugby mourns death of 17-year-old player Cl&#233;a Menier with tributes at weekend games",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2c9f9e0144b6a7fa97e94c4bde3f&url=https%3a%2f%2fwww.nbcsports.com%2frugby%2fnews%2ffrench-rugby-mourns-death-of-17-year-old-player-clea-menier-with-tributes-at-weekend-games&c=15811113198863080050&mkt=en-us",
-          "score": 12.3,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add44cff2fc4152a6946f77b2f77629&url=https%3a%2f%2fwww.nbcsports.com%2frugby%2fnews%2ffrench-rugby-mourns-death-of-17-year-old-player-clea-menier-with-tributes-at-weekend-games&c=15811113198863080050&mkt=en-us",
+          "score": 11.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -205,7 +211,7 @@
         {
           "title": "Searle rejected France move to push on at Tigers",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ck0j0d6389d4o?at_medium=RSS&at_campaign=rss",
-          "score": 11.2,
+          "score": 10.9,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -215,7 +221,7 @@
         {
           "title": "The rising French tennis star whose dad won World Cup with England",
           "link": "https://www.bbc.co.uk/sport/tennis/articles/cqe9ldmdpxzzo?at_medium=RSS&at_campaign=rss",
-          "score": 10.9,
+          "score": 10.6,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -230,22 +236,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Stuart McCloskey bundles over for try in Ulster's 34-26 defeat to Bulls",
-      "kicker": "Selection case",
-      "body": "Ulster's 34-26 defeat at Loftus Versfeld was a day for Stuart McCloskey to make his case. The centre assisted one try and then bundled over for another to get Ulster within striking distance, and Planet Rugby rated him 8. Its writer calls it a 'statement performance' that will put Andy Farrell on notice just before the Nations Championship. The piece says he 'was aggressive and physical in contact' throughout.",
-      "source": "Planet Rugby",
+      "heading": "Andy Farrell names 36-man Ireland squad for November Test window",
+      "kicker": "Squad news",
+      "body": "Andy Farrell has named a 36-man squad for Ireland's November Test window, with Argentina the next opponent, and The42 Rugby Weekly has been picking over the selections. The same week carries a big interpro, with a blockbuster Leinster-Munster URC clash in Dublin. Planet Rugby's Ulster ratings, meanwhile, called Stuart McCloskey's display a 'statement performance' that puts Farrell on notice just before the Nations Championship.",
+      "source": "The42",
       "lead": {
-        "candidate": 3,
-        "why": "The only new men's item in the pack that bears on Ireland's Test selection, with McCloskey's form tied directly to Farrell before the Nations Championship."
+        "candidate": 4,
+        "why": "Farrell's 36-man November squad is a fresh Test-level selection item, and the other fresh candidates are club ratings or a women's match."
       },
-      "leadLink": "https://www.planetrugby.com/news/ulster-player-ratings-stuart-mccloskeys-statement-performance-puts-andy-farrell-on-notice-while-ireland-veteran-struggles-in-bulls-defeat",
+      "leadLink": "https://www.the42.ie/ireland-november-squad-announcement-7203145-Oct2026/",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Ireland power to deserved victory over South Africa",
           "link": "https://www.rte.ie/sport/rugby/2026/1024/1596735-ireland-power-to-deserved-victory-over-south-africa/",
-          "score": 77.6,
+          "score": 76.4,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -256,7 +262,7 @@
         {
           "title": "Munster player ratings: Ireland star's 'excellent all-round effort' not good enough in defeat against Leinster",
           "link": "https://www.planetrugby.com/news/munster-player-ratings-ireland-stars-excellent-all-round-effort-not-good-enough-in-defeat-against-leinster",
-          "score": 24.1,
+          "score": 23.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -266,7 +272,7 @@
         {
           "title": "Ulster player ratings: Stuart McCloskey's 'statement performance' puts Andy Farrell on notice while Ireland veteran struggles in Bulls defeat",
           "link": "https://www.planetrugby.com/news/ulster-player-ratings-stuart-mccloskeys-statement-performance-puts-andy-farrell-on-notice-while-ireland-veteran-struggles-in-bulls-defeat",
-          "score": 10.2,
+          "score": 9.7,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -276,7 +282,7 @@
         {
           "title": "Ireland's November squad and a big interpro at Aviva Stadium",
           "link": "https://www.the42.ie/ireland-november-squad-announcement-7203145-Oct2026/",
-          "score": 37.1,
+          "score": 36.6,
           "corroboration": 1,
           "outlets": [
             "the42"
@@ -286,7 +292,7 @@
         {
           "title": "Wall outlines Ireland's 'clear ambition' to beat the Boks",
           "link": "https://www.rte.ie/sport/rugby/2026/1023/1596650-wall-outlines-irelands-clear-ambition-to-beat-the-boks/",
-          "score": 25.5,
+          "score": 24.9,
           "corroboration": 1,
           "outlets": [
             "rte"
@@ -301,9 +307,9 @@
       "rung": "data",
       "storyline": null,
       "dataAngle": "lastMeeting",
-      "heading": "Italy have conceded 131 points in three games, including 10-57 to Australia",
-      "kicker": "Points tally",
-      "body": "Italy's points record is the story the table tells most bluntly. Across their three games so far they have scored 37 points and conceded 131, a points difference of -94. The most recent of those, a 10-57 loss to Australia in Round three, accounts for the largest single share of that total. Their next match is Round four against South Africa, the side who beat them 32-14 at home in November 2025, and the log leaves little room for comfort.",
+      "heading": "Italy lost 32-14 at home to South Africa in November 2025",
+      "kicker": "Last meeting",
+      "body": "Italy lost 32-14 at home to South Africa in November 2025, in an International Friendly. That is a single result, not a head-to-head record, so it does not establish a wider pattern between the sides. Italy's own run is the more pressing number: across the last three games in the log they have lost every one, conceding 131 points. The next meeting is Round 4 of the Nations Championship.",
       "source": null,
       "lead": null,
       "leadLink": null,
@@ -313,7 +319,7 @@
         {
           "title": "Nazionale Femminile, la formazione Azzurra per Usa v Italia del 24 ottobre a Nashville",
           "link": "https://www.federugby.it/nazionale-femminile-la-formazione-azzurra-per-usa-v-italia-del-24-ottobre-a-nashville/",
-          "score": 11.2,
+          "score": 11.1,
           "corroboration": 1,
           "outlets": [
             "federugby"
@@ -323,7 +329,7 @@
         {
           "title": "Italia, Mannini: “Partita iniziata col piede sbagliato, ma siamo meglio di così e abbiamo dimostrato di essere competitive”",
           "link": "https://www.federugby.it/italia-mannini-partita-iniziata-col-piede-sbagliato-ma-siamo-meglio-di-cosi-e-abbiamo-dimostrato-di-essere-competitive/",
-          "score": 8.1,
+          "score": 7.9,
           "corroboration": 1,
           "outlets": [
             "federugby"
@@ -333,7 +339,7 @@
         {
           "title": "Programma stampa Italia – Raduno Padova, Nations Championship",
           "link": "https://www.federugby.it/programma-stampa-italia-raduno-padova-nations-championship/",
-          "score": 7,
+          "score": 6.9,
           "corroboration": 1,
           "outlets": [
             "federugby"
@@ -342,8 +348,8 @@
         },
         {
           "title": "Italy missing 12 players for next month's Nations Championship",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2cc9cfe9467bac390de3b1671f1a&url=https%3a%2f%2fwww.reuters.com%2fsports%2fitaly-missing-12-players-next-months-nations-championship-2026-10-21%2f&c=951790265923068639&mkt=en-us",
-          "score": 4.5,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add450ab3e74f59b4771044a4bac7c2&url=https%3a%2f%2fwww.reuters.com%2fsports%2fitaly-missing-12-players-next-months-nations-championship-2026-10-21%2f&c=951790265923068639&mkt=en-us",
+          "score": 4.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -352,7 +358,7 @@
         },
         {
           "title": "Italy star Tommaso Menoncello stood down with immediate effect",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2cc9cfe9467bac390de3b1671f1a&url=https%3a%2f%2fwww.ruck.co.uk%2fitaly-rugby-news%2fitaly-star-tommaso-menoncello-stood-down-with-immediate-effect&c=7663737304498558698&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add450ab3e74f59b4771044a4bac7c2&url=https%3a%2f%2fwww.ruck.co.uk%2fitaly-rugby-news%2fitaly-star-tommaso-menoncello-stood-down-with-immediate-effect&c=7663737304498558698&mkt=en-us",
           "score": 4.1,
           "corroboration": 1,
           "outlets": [
@@ -368,32 +374,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Tom English says Darcy Graham is working back into Scotland's wing picture",
-      "kicker": "Selection call",
-      "body": "Darcy Graham is working back into contention, but Tom English's BBC Sport reader Q&A this week points to a hard choice in Scotland's back three. English says Jamie Dobie and Kyle Steyn are the two most consistent wings right now, with Kyle Rowe an inch away, and sees obvious logic in Dobie covering two positions from the bench. That would leave Graham outside the 23, which English describes as a hard call.",
-      "source": null,
+      "heading": "Former Scotland winger Tim Visser to go on trial charged with rape",
+      "kicker": "Court case",
+      "body": "Tim Visser, capped 33 times by Scotland as a winger between 2012 and 2017, is to go on trial accused of controlling, abusing and raping a woman. The 39-year-old faces four charges spanning 14 years, from 2010 to 2024, two of which allege rape, including sex after consent was withdrawn. He has entered a not-guilty plea at a hearing in the High Court in Glasgow, and the trial is set for January 2028 in Edinburgh.",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 4,
-        "why": "The only shortlist item that is Scotland squad selection analysis and not already covered in today's squad-depth edition."
+        "candidate": 1,
+        "why": "It is the most widely covered item not already run on this tab, and it concerns a former Scotland capped player."
       },
-      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2cdee5744517b2932c0c87413e07&url=https%3a%2f%2fwww.bbc.com%2fsport%2frugby-union%2farticles%2fcq33xpd2p2k8o&c=938504288375896698&mkt=en-us",
+      "leadLink": "https://www.bbc.co.uk/news/articles/cxvgd7z3y89po?at_medium=RSS&at_campaign=rss",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
-          "title": "Scotland Nations Championship squad: Unprecedented depth could lead to multiple big name omissions",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2cdee5744517b2932c0c87413e07&url=https%3a%2f%2fwww.scotsman.com%2fsport%2frugby-union%2fscotland-nations-championship-squad-unprecedented-depth-could-lead-to-multiple-big-name-omissions-9301953&c=2470745708331809576&mkt=en-us",
-          "score": 20.3,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ],
-          "fresh": true
-        },
-        {
           "title": "Ex-Scotland and Harlequins player Visser to go on trial charged with rape",
           "link": "https://www.bbc.co.uk/news/articles/cxvgd7z3y89po?at_medium=RSS&at_campaign=rss",
-          "score": 58.6,
+          "score": 58.3,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -403,18 +399,8 @@
         },
         {
           "title": "Scotland make rugby world rankings jump ahead of Nations Championship despite not having played",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2cdee5744517b2932c0c87413e07&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fnews%2fother%2fscotland-make-rugby-world-rankings-jump-ahead-of-nations-championship-despite-not-having-played%2far-AA2fVAo5&c=1252545467375792034&mkt=en-us",
-          "score": 11.9,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ],
-          "fresh": false
-        },
-        {
-          "title": "Any young bolters in Scotland squad? Can Glasgow's maul be stopped?",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2cdee5744517b2932c0c87413e07&url=https%3a%2f%2fwww.bbc.com%2fsport%2frugby-union%2farticles%2fcq33xpd2p2k8o&c=938504288375896698&mkt=en-us",
-          "score": 11.1,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add451f901e458589a661352962eb70&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fnews%2fother%2fscotland-make-rugby-world-rankings-jump-ahead-of-nations-championship-despite-not-having-played%2far-AA2fVAo5&c=1252545467375792034&mkt=en-us",
+          "score": 11.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -423,8 +409,28 @@
         },
         {
           "title": "King Charles strips Scotland rugby legend of MBE as 15 people lose honours",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2cdee5744517b2932c0c87413e07&url=https%3a%2f%2fwww.ruck.co.uk%2frugby-news%2fking-charles-strips-scotland-rugby-legend-of-mbe-as-15-people-lose-honours&c=13981418723903244230&mkt=en-us",
-          "score": 2.4,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add451f901e458589a661352962eb70&url=https%3a%2f%2fwww.ruck.co.uk%2frugby-news%2fking-charles-strips-scotland-rugby-legend-of-mbe-as-15-people-lose-honours&c=13981418723903244230&mkt=en-us",
+          "score": 2.3,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ],
+          "fresh": false
+        },
+        {
+          "title": "Scott Hastings dead aged 61: Scotland rugby legend passes away on day of late wife's birthday",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add451f901e458589a661352962eb70&url=https%3a%2f%2fwww.msn.com%2fen-au%2fhealth%2fother%2fscott-hastings-dead-aged-61-scotland-rugby-legend-passes-away-on-day-of-late-wife-s-birthday%2far-AA23pp0v&c=15686678022884287479&mkt=en-us",
+          "score": 1.3,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ],
+          "fresh": false
+        },
+        {
+          "title": "Scotland rugby stars Darcy Graham and Finn Russell involved in nasty clash of heads during 6 Nations",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add451f901e458589a661352962eb70&url=https%3a%2f%2fsports.yahoo.com%2fscotland-rugby-star-darcy-graham-155743646.html&c=708166418867903726&mkt=en-us",
+          "score": 1.3,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -439,22 +445,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Macs Page taken off on oxygen after head hit against Stormers",
-      "kicker": "Injury scare",
-      "body": "Scarlets winger Macs Page, uncapped and left out of Steve Tandy's 39-man autumn squad, was forced off in Cape Town after his head hit the turf in the United Rugby Championship clash with the Stormers. He appeared to lose consciousness as he spilled the ball forward, and a stretcher was brought on before he walked off on oxygen. Page had already dotted down for his fifth try of the season. Scarlets' Nigel Davies had said it was only a matter of time before Wales brought him in.",
-      "source": "WalesOnline",
+      "heading": "Taulupe Faletau needs finger surgery, Wales hope he's back for November",
+      "kicker": "Injury blow",
+      "body": "Faletau's comeback has come undone. The Cardiff number eight, 35 and on 109 Wales caps, will have surgery on a finger injured in his first game since March, and he misses the URC derby at Ospreys. Cardiff head coach Corniel van Zyl said: \"He will miss the Ospreys game but hopefully after November he will be fine.\" Steve Tandy left him out of the Nations Championship squad and has said he needs to show durability before any return.",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 4,
-        "why": "A fresh Wales-eligible selection storyline and a head-injury scare for an uncapped prospect Tandy left out of the autumn squad, which is more newsworthy than the already-run Faletau and Freddie Thomas"
+        "candidate": 2,
+        "why": "A fresh injury to a Wales great with a November Nations Championship question attached, and it is not one of the stories already run this week."
       },
-      "leadLink": "https://www.walesonline.co.uk/sport/rugby/rugby-news/rising-welsh-rugby-star-taken-34813127",
+      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cw5yn99z31elo?at_medium=RSS&at_campaign=rss",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Why winning ugly is just as important for Wales",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq62y3yr374yo?at_medium=RSS&at_campaign=rss",
-          "score": 41.1,
+          "score": 40.4,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -465,7 +471,7 @@
         {
           "title": "Wales great Faletau suffers fresh injury blow",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cw5yn99z31elo?at_medium=RSS&at_campaign=rss",
-          "score": 32.2,
+          "score": 31.3,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -475,7 +481,7 @@
         {
           "title": "Wales star reminds Tandy of what he's missing and coach picks out youngster",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/wales-star-reminds-tandy-what-34811141",
-          "score": 31.9,
+          "score": 31,
           "corroboration": 1,
           "outlets": [
             "walesonline"
@@ -485,7 +491,7 @@
         {
           "title": "Rising Welsh rugby star taken off field wearing oxygen mask in concerning scenes",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/rising-welsh-rugby-star-taken-34813127",
-          "score": 31.3,
+          "score": 30.1,
           "corroboration": 1,
           "outlets": [
             "walesonline"
@@ -495,7 +501,7 @@
         {
           "title": "Ospreys make winning start at St Helen's with convincing Welsh derby victory",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/ospreys-31-14-dragons-report-34812746",
-          "score": 29.4,
+          "score": 28.7,
           "corroboration": 1,
           "outlets": [
             "walesonline"
@@ -507,17 +513,13 @@
     {
       "team": "Argentina",
       "quiet": true,
-      "rung": "storyline",
-      "storyline": {
-        "subject": "Sam Prendergast's wrist injury and availability for Ireland's Nations Championship opener against Argentina",
-        "resolution": "until Ireland confirm Sam Prendergast's fitness for the match against Argentina",
-        "recheckHits": 3
-      },
-      "dataAngle": null,
-      "heading": "Sam Prendergast a doubt with wrist injury for Pumas' Ireland test",
-      "kicker": "Injury watch",
-      "body": "Ireland's fly-half picture for November remains unclear. RTÉ Sport reported on 24 October that Sam Prendergast's wrist injury makes him a doubt, and The Sun described a major injury scare. No fitness update has surfaced in today's coverage, so the Pumas head into their London camp without knowing whether Prendergast will start at No. 10 for Ireland.",
-      "source": "RTÉ Sport Rugby",
+      "rung": "data",
+      "storyline": null,
+      "dataAngle": "form",
+      "heading": "Argentina's last five: one win, three defeats and a draw",
+      "kicker": "Form check",
+      "body": "In their last five games, Argentina have won one, lost three and drawn one. Read most recent first, the sequence is D L L L W. The latest result was a 28-28 draw with Australia at home in September 2026, in International Friendlies, which leaves Felipe Contepomi's side with three defeats in their last four outings.",
+      "source": null,
       "lead": null,
       "leadLink": null,
       "repeatLead": null,
@@ -526,7 +528,7 @@
         {
           "title": "Canada, USA, Uruguay, Chile and Argentina Referee Appointments for November",
           "link": "https://www.americasrugbynews.com/2026/10/22/canada-usa-uruguay-chile-and-argentina-referee-appointments-for-november/",
-          "score": 14.6,
+          "score": 14.3,
           "corroboration": 1,
           "outlets": [
             "americasrugbynews"
@@ -536,7 +538,7 @@
         {
           "title": "Argentina With the Entire Arsenal back for London Camp",
           "link": "https://www.americasrugbynews.com/2026/10/21/argentina-with-the-entire-arsenal-back-for-london-camp/",
-          "score": 12.8,
+          "score": 12.6,
           "corroboration": 1,
           "outlets": [
             "americasrugbynews"
@@ -546,7 +548,7 @@
         {
           "title": "\"I want to go to the World Cup. Argentina was the first team to offer me a contract&#8230;\" Shaun Edwards on his new coaching role with Argentina and his England ambition",
           "link": "https://www.rugbyworld.com/news/i-want-to-go-to-the-world-cup-argentina-was-the-first-team-to-offer-me-a-contract-shaun-edwards-on-his-new-coaching-role-with-argentina-and-his-england-ambition-186128",
-          "score": 4.3,
+          "score": 4.2,
           "corroboration": 1,
           "outlets": [
             "rugbyworld"
@@ -555,7 +557,7 @@
         },
         {
           "title": "Argentina rugby fixtures and 2026 schedule in the Nations Championship",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2d076bae456e8ab9e7d7e30c3cab&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fargentina-rugby-fixtures-and-2026-schedule-in-the-nations-championship%2far-AA26SgOk&c=16826137278628333918&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add454e52844169a89cd87ce31b894e&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fargentina-rugby-fixtures-and-2026-schedule-in-the-nations-championship%2far-AA26SgOk&c=16826137278628333918&mkt=en-us",
           "score": 1.9,
           "corroboration": 1,
           "outlets": [
@@ -565,7 +567,7 @@
         },
         {
           "title": "Argentina rugby fans display Falklands banner in defeat by South Africa",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2d076bae456e8ab9e7d7e30c3cab&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fargentina-rugby-fans-display-falklands-214017027.html&c=8746594430791508520&mkt=en-us",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add454e52844169a89cd87ce31b894e&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fargentina-rugby-fans-display-falklands-214017027.html&c=8746594430791508520&mkt=en-us",
           "score": 1.8,
           "corroboration": 1,
           "outlets": [
@@ -581,22 +583,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Wallabies flanker Rob Leota signs with Clermont until January 2027",
-      "kicker": "Overseas move",
-      "body": "Rob Leota, the 21-cap Wallabies flanker, has signed for Clermont, committing until January 2027 after leaving Bayonne as a free agent. Urios said: \"It's always difficult to find an additional player at this time of year.\" The 29-year-old is a powerful ball carrier for an Auvergne side awaiting the return of several injured players, and he was not among the 33 Les Kiss named for the spring tour.",
-      "source": "Planet Rugby",
+      "heading": "Les Kiss names 33-man spring squad with Tom Lambert among new faces",
+      "kicker": "Squad selection",
+      "body": "Les Kiss has named a 33-man squad for the spring tour, and the new faces are the story. Prop Tom Lambert is in as a newcomer alongside Teddy Wilson, while centre Len Ikitau is back from injury. Tupou and Hooper return too, after Australia were without them against New Zealand because those Tests fell outside the global player release window. Ryan Lonergan is the standout No. 9, with Wilson and Tate McDermott pushing for the back-up spot.",
+      "source": "Guardian Rugby Union",
       "lead": {
-        "candidate": 1,
-        "why": "The only NEW item on the shortlist, and it is a Wallabies flanker's move rather than a story already run."
+        "candidate": 3,
+        "why": "Items 1 and 2 have already run, so the full 33-man squad, with its new faces and returns, is the strongest remaining Test-squad story."
       },
-      "leadLink": "https://www.planetrugby.com/news/rugby-transfers-england-star-decides-on-leicester-tigers-future-wallabies-flanker-joins-clermont-and-chiefs-make-double-signing",
+      "leadLink": "https://www.theguardian.com/sport/2026/oct/23/australia-wallabies-squad-rugby-nations-championship-teddy-wilson",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Rugby transfers: England star decides on Leicester Tigers future, Wallabies flanker joins Clermont and Chiefs make double-signing",
           "link": "https://www.planetrugby.com/news/rugby-transfers-england-star-decides-on-leicester-tigers-future-wallabies-flanker-joins-clermont-and-chiefs-make-double-signing",
-          "score": 21.8,
+          "score": 21,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -606,7 +608,7 @@
         {
           "title": "Australia call up son of World Cup winner Wilson",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmewejkdkk99o?at_medium=RSS&at_campaign=rss",
-          "score": 99.4,
+          "score": 98.9,
           "corroboration": 3,
           "outlets": [
             "planetrugby",
@@ -616,25 +618,24 @@
           "fresh": false
         },
         {
-          "title": "Australia v New Zealand live streams: How to watch 2026's second Bledisloe Cup match for free from anywhere",
-          "link": "https://www.rugbyworld.com/how-to-watch/australia-new-zealand-bledisloe-cup-2026-second-test-free-186027",
-          "score": 65.3,
-          "corroboration": 3,
+          "title": "Son of Wallabies great named in spring tour squad as Les Kiss turns to new faces",
+          "link": "https://www.theguardian.com/sport/2026/oct/23/australia-wallabies-squad-rugby-nations-championship-teddy-wilson",
+          "score": 61.8,
+          "corroboration": 2,
           "outlets": [
-            "rugbyworld",
             "guardian",
             "search"
           ],
           "fresh": false
         },
         {
-          "title": "Son of Wallabies great named in spring tour squad as Les Kiss turns to new faces",
-          "link": "https://www.theguardian.com/sport/2026/oct/23/australia-wallabies-squad-rugby-nations-championship-teddy-wilson",
-          "score": 62.3,
+          "title": "Australia v New Zealand live streams: How to watch 2026's second Bledisloe Cup match for free from anywhere",
+          "link": "https://www.rugbyworld.com/how-to-watch/australia-new-zealand-bledisloe-cup-2026-second-test-free-186027",
+          "score": 41.9,
           "corroboration": 2,
           "outlets": [
-            "guardian",
-            "search"
+            "rugbyworld",
+            "guardian"
           ],
           "fresh": false
         },
@@ -652,23 +653,26 @@
     },
     {
       "team": "Japan",
-      "quiet": true,
-      "rung": "data",
+      "quiet": false,
+      "rung": "news",
       "storyline": null,
-      "dataAngle": "scoring",
-      "heading": "Japan score 327 points and concede 301 in last 11 Tests",
-      "kicker": "Recent form",
-      "body": "Across their last 11 games, Japan have scored 327 points and conceded 301, averages of 29.7 and 27.4 a game. Their biggest win in that window was a 63-14 home victory over USA in September 2026, in the Pacific Nations Cup Knockout Stage. Their next fixture is Wales in Round 4. Those numbers give a plain picture of the form Japan take into it.",
+      "dataAngle": null,
+      "heading": "Dentsu returns to acquire Rugby World Cup 2027 rights in Japan",
+      "kicker": "Broadcast rights",
+      "body": "Dentsu is returning to acquire the rights to Rugby World Cup 2027 in Japan, a bid that determines how the men's tournament is shown to Japanese fans. The bid itself is the news; the terms and any rivals remain unclear. Meanwhile the team is on the back foot, sitting 10 of 12 on the log after losing to Fiji, with the next Test a trip to Wales in Round four.",
       "source": null,
-      "lead": null,
-      "leadLink": null,
+      "lead": {
+        "candidate": 5,
+        "why": "The only shortlisted item that is new and about Japan's own rugby interests; the Kolbe piece is a club reminiscence and the Wales items are women's WXV coverage."
+      },
+      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add45759ddc405f8f06ad8604b3cd5e&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fdentsu-returns-to-acquire-rugby-world-cup-2027-rights-in-japan%2far-AA2fWO6a&c=14548514492224650343&mkt=en-us",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Cheslin Kolbe: Why I needed to return to South Africa after worst feeling in Japan",
           "link": "https://www.planetrugby.com/news/cheslin-kolbe-why-i-needed-to-return-to-south-africa-after-worst-feeling-in-japan",
-          "score": 18,
+          "score": 17.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -678,7 +682,7 @@
         {
           "title": "Highlights: Japan 0-17 Wales",
           "link": "https://www.bbc.co.uk/sport/rugby-union/videos/c3n04k4vnn51o?at_medium=RSS&at_campaign=rss",
-          "score": 8.9,
+          "score": 8.5,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -686,9 +690,20 @@
           "fresh": true
         },
         {
+          "title": "Wales look to show top-six credentials in Japan",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmgr847gwrx7o?at_medium=RSS&at_campaign=rss",
+          "score": 30.3,
+          "corroboration": 2,
+          "outlets": [
+            "bbc",
+            "search"
+          ],
+          "fresh": false
+        },
+        {
           "title": "JRFU 100th Anniversary Match – Japan Brave Blossoms vs Fiji Preview",
           "link": "https://www.rugbyasia247.com/jrfu-100th-anniversary-match-japan-brave-blossoms-vs-fiji-preview/",
-          "score": 14.2,
+          "score": 14.1,
           "corroboration": 1,
           "outlets": [
             "rugbyasia247"
@@ -696,19 +711,9 @@
           "fresh": false
         },
         {
-          "title": "Wales look to show top-six credentials in Japan",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmgr847gwrx7o?at_medium=RSS&at_campaign=rss",
-          "score": 8.6,
-          "corroboration": 1,
-          "outlets": [
-            "bbc"
-          ],
-          "fresh": false
-        },
-        {
           "title": "Dentsu returns to acquire Rugby World Cup 2027 rights in Japan",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add2d3665304ff18712398c14864dcc&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fdentsu-returns-to-acquire-rugby-world-cup-2027-rights-in-japan%2far-AA2fWO6a&c=14548514492224650343&mkt=en-us",
-          "score": 7,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6add45759ddc405f8f06ad8604b3cd5e&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fdentsu-returns-to-acquire-rugby-world-cup-2027-rights-in-japan%2far-AA2fWO6a&c=14548514492224650343&mkt=en-us",
+          "score": 6.7,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -723,26 +728,26 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Richie Mo’unga not yet ruled out of Europe tour with calf tear",
-      "kicker": "Fitness update",
-      "body": "Richie Mo’unga has not yet been ruled out of the Europe tour, a rare bit of good news after a triple injury blow that also cost Shannon Frizell, Tyrel Lomax and Samisoni Taukei’aho their places. The flyhalf missed both Bledisloe Cup Tests against Australia with a calf tear, and the All Blacks face Scotland, England and Wales before the finals weekend at Twickenham.",
+      "heading": "Captain Ardie Savea among All Blacks unavailable for Europe tour",
+      "kicker": "Injury blow",
+      "body": "Captain Ardie Savea is among the All Blacks unavailable for the Europe tour, with a shoulder injury adding to a growing list. Wing Leroy Carter was ruled out after ankle surgery following a hip-drop tackle in the first Bledisloe Cup Test in Auckland, and Ruben Love, Luke Jacobson, Caleb Clarke, Billy Proctor, Ollie Norris and Tamaiti Williams are also unavailable. The tour takes in Scotland, England and Wales before the Twickenham finals weekend.",
       "source": "SA Rugby Magazine",
       "lead": {
         "candidate": 1,
-        "why": "Mo’unga's status is the one item in the Test-squad injury report that has not already been run, and it is the only possible positive in it."
+        "why": "It is the only NEW men's Test-squad item on the shortlist, and it names the captain among the unavailable players."
       },
       "leadLink": "https://www.sarugbymag.co.za/blacks-injury-list-grows-2/",
       "repeatLead": {
         "date": "2026-10-25",
-        "heading": "Captain Ardie Savea among seven more All Blacks unavailable for Nations Championship",
+        "heading": "Richie Mo’unga not yet ruled out of Europe tour with calf tear",
         "reason": "same source article"
       },
-      "noveltyRevised": false,
+      "noveltyRevised": true,
       "candidates": [
         {
           "title": "All Blacks injury list grows",
           "link": "https://www.sarugbymag.co.za/blacks-injury-list-grows-2/",
-          "score": 31.3,
+          "score": 30.4,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -752,7 +757,7 @@
         {
           "title": "Rugby league newbies target All Blacks star",
           "link": "https://www.sarugbymag.co.za/rugby-league-newbies-target-all-blacks-star/",
-          "score": 24.3,
+          "score": 23.8,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -774,7 +779,7 @@
         {
           "title": "All Blacks legend Brodie Retallick reveals his one 'regret' during remarkable career",
           "link": "https://www.planetrugby.com/news/all-blacks-legend-brodie-retallick-reveals-his-one-regret-during-remarkable-career",
-          "score": 19.6,
+          "score": 19.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -784,7 +789,7 @@
         {
           "title": "All Blacks: Sonny Bill Williams releases emotional video revealing near-death experience",
           "link": "https://www.planetrugby.com/news/all-blacks-sonny-bill-williams-releases-emotional-video-revealing-near-death-experience",
-          "score": 17.7,
+          "score": 17.2,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -792,103 +797,26 @@
           "fresh": false
         }
       ]
-    },
-    {
-      "team": "South Africa",
-      "quiet": false,
-      "rung": "news",
-      "storyline": null,
-      "dataAngle": null,
-      "heading": "Springboks' eight defeats since 2023 read like a manual for beating them",
-      "kicker": "Tactical analysis",
-      "body": "Planet Rugby's analysis argues South Africa's eight Test defeats since the start of 2023 read like a coaching manual for beating the world champions. The winning side averaged 29.9 points across the eight, and none of them scored fewer tries than the Springboks did, so scoring capacity is the first thing the evidence asks for. The Springboks face Italy, France and Ireland in the November leg of the Nations Championship.",
-      "source": "Planet Rugby",
-      "lead": {
-        "candidate": 1,
-        "why": "The only shortlist item about the men's Test side; the others are women's WXV, club matches, or a story already run."
-      },
-      "leadLink": "https://www.planetrugby.com/news/how-to-beat-the-springboks-the-eight-defeats-that-expose-south-africas-blueprint",
-      "repeatLead": null,
-      "noveltyRevised": false,
-      "candidates": [
-        {
-          "title": "How to beat the Springboks: The eight defeats that expose South Africa’s blueprint",
-          "link": "https://www.planetrugby.com/news/how-to-beat-the-springboks-the-eight-defeats-that-expose-south-africas-blueprint",
-          "score": 71.3,
-          "corroboration": 2,
-          "outlets": [
-            "planetrugby",
-            "search"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Ireland power to deserved victory over South Africa",
-          "link": "https://www.rte.ie/sport/rugby/2026/1024/1596735-ireland-power-to-deserved-victory-over-south-africa/",
-          "score": 55.6,
-          "corroboration": 3,
-          "outlets": [
-            "bbc",
-            "rte",
-            "search"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Stormers v Scarlets: Five takeaways as future Springboks combination debuts in 'utterly mad' 92-point epic",
-          "link": "https://www.planetrugby.com/news/stormers-v-scarlets-five-takeaways-as-future-springboks-combination-debuts-in-utterly-mad-92-point-epic",
-          "score": 30.8,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Bulls v Ulster: Five takeaways as Springboks veteran shows 'he's still a force' in hard-fought triumph over spirited visitors",
-          "link": "https://www.planetrugby.com/news/bulls-v-ulster-five-takeaways-as-springboks-veteran-shows-hes-still-a-force-in-hard-fought-triumph-over-spirited-visitors",
-          "score": 28.9,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Cheslin Kolbe: Why I needed to return to South Africa after worst feeling in Japan",
-          "link": "https://www.planetrugby.com/news/cheslin-kolbe-why-i-needed-to-return-to-south-africa-after-worst-feeling-in-japan",
-          "score": 26.2,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ],
-          "fresh": true
-        }
-      ]
     }
   ],
   "world": [
     {
       "team": "Wales",
-      "text": "Scarlets' Macs Page taken off on oxygen after head hit in URC."
-    },
-    {
-      "team": "Ireland",
-      "text": "Ulster lose 34-26 to Bulls in URC."
+      "text": "Faletau to have finger surgery, Wales hope for November return."
     },
     {
       "team": "Australia",
-      "text": "Wallabies flanker Rob Leota signs with Clermont after leaving Bayonne."
+      "text": "Wallabies name Tom Lambert in 33-man spring squad."
     },
     {
-      "team": "England",
-      "text": "England scrum-half Jack van Poortvliet signs new Leicester Tigers deal."
+      "team": "Ireland",
+      "text": "Ireland's Farrell names 36-man squad for Argentina Test."
     }
   ],
   "model": {
     "servedBy": "claude-haiku-5-5",
     "onLastRung": false,
-    "calls": 32,
+    "calls": 35,
     "rejections": 0,
     "plan": {
       "writer": "claude-haiku-5-5",
@@ -899,28 +827,28 @@
       "tune": "gemini"
     },
     "anthropic": {
-      "calls": 31,
+      "calls": 34,
       "failed": 0,
       "fellBack": 0,
-      "costUSD": 0.17822,
+      "costUSD": 0.17976,
       "rows": [
         {
           "model": "claude-haiku-5-5",
-          "calls": 30,
+          "calls": 33,
           "failed": 0,
           "fellBack": 0,
-          "input": 259386,
-          "output": 64286,
-          "costUSD": 0.05809
+          "input": 302014,
+          "output": 66499,
+          "costUSD": 0.06347
         },
         {
           "model": "claude-sonnet-5-5",
           "calls": 1,
           "failed": 0,
           "fellBack": 0,
-          "input": 10466,
-          "output": 9920,
-          "costUSD": 0.12013
+          "input": 9725,
+          "output": 9684,
+          "costUSD": 0.11629
         }
       ]
     },

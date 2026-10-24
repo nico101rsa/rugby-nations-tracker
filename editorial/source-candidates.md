@@ -12,6 +12,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
 - **Rugby Australia (official news)** (rugby.com.au) — proposed 2026-10-22 for Australia: Union news on squads, fixtures and results would supply Wallabies stories the current spine misses.
   - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
+- **Rugby365** (rugby365.com) — proposed 2026-10-25 for France, Japan, Italy: An English-language men's rugby news site that regularly covers Tests and squads, which could fill the France and Japan gaps seen today.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
