@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-24T12:01:18.714Z",
+  "updatedAt": "2026-10-24T12:21:06.683Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 211,
+  "count": 212,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -12,6 +12,11 @@
       "resolution": "until England proves their tactical consistency in the Nations Championship",
       "sources": [
         {
+          "title": "Comment: England have the cattle to go all the way in Nations Championship, as long as Steve Borthwick picks a pack to win the collisions first",
+          "link": "https://www.planetrugby.com/news/comment-england-have-the-cattle-to-go-all-the-way-in-nations-championship-as-long-as-steve-borthwick-picks-a-pack-to-win-the-collisions-first",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "England: Bristol Bears star in 'form of his life' to 'knuckle down' and earn recall but knows he 'can’t pick' himself",
           "link": "https://www.planetrugby.com/news/england-bristol-bears-star-in-form-of-his-life-to-knuckle-down-and-earn-recall-but-knows-he-cant-pick-himself",
           "feedName": "Planet Rugby"
@@ -20,11 +25,6 @@
           "title": "Will Borthwick’s autumn England squad embrace Prem chaos or prioritise prudence? | Gerard Meagher",
           "link": "https://www.theguardian.com/sport/2026/oct/23/rugby-union-england-steve-borthwick-selection-autumn-nations-championship",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "England latest: Winners and losers as bolters 'control the controllables' while Steve Borthwick left with 'questions' after 'sobering' European round",
-          "link": "https://www.planetrugby.com/news/england-latest-winners-and-losers-as-bolters-control-the-controllables-while-steve-borthwick-left-with-questions-after-sobering-european-round",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-08-26",
@@ -1823,7 +1823,8 @@
       ],
       "firstSeen": "2026-10-10",
       "lastSeen": "2026-10-10",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-24"
     },
     {
       "id": "the-evaluation-of-joseph-dv5tqi",
@@ -4813,6 +4814,24 @@
           "title": "Wales great Faletau suffers fresh injury blow",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cw5yn99z31elo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-24",
+      "lastSeen": "2026-10-24",
+      "uses": 0
+    },
+    {
+      "id": "sam-prendergast-s-wrist-1s7eksf",
+      "subject": "Sam Prendergast's wrist injury and availability for Ireland's Nations Championship opener",
+      "teams": [
+        388
+      ],
+      "resolution": "until Ireland confirm Sam Prendergast's fitness for the match against Argentina",
+      "sources": [
+        {
+          "title": "Wrist injury makes Prendergast a doubt for Ireland",
+          "link": "https://www.rte.ie/sport/rugby/2026/1022/1596488-wrist-injury-makes-prendergast-a-doubt-for-ireland/",
+          "feedName": "RTÉ Sport Rugby"
         }
       ],
       "firstSeen": "2026-10-24",
