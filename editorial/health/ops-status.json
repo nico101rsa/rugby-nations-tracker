@@ -1,13 +1,26 @@
 {
  "about": "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: routine findings land here instead of notifying anyone, and the Claude weekly review reads it. state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); `page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
- "state": "ok",
+ "state": "attention",
  "paging": [],
  "page": null,
  "overdue": [],
  "unknown": [],
  "heals": {},
  "signals": {
-  "repeatLeads": [],
+  "repeatLeads": [
+   {
+    "team": "Argentina",
+    "since": "2026-10-23",
+    "heading": "Argentina's biggest win in their last 11 games: 52-28 over Wales",
+    "flagged": false
+   },
+   {
+    "team": "New Zealand",
+    "since": "2026-10-24",
+    "heading": "Shannon Frizell, Tyrel Lomax and Samisoni Taukei’aho ruled out of Europe tour",
+    "flagged": true
+   }
+  ],
   "ladderLastRung": null,
   "squadGaps": []
  },
@@ -79,6 +92,10 @@
   {
    "at": "2026-10-22T00:40:14.624Z",
    "summary": "all clear"
+  },
+  {
+   "at": "2026-10-25T00:19:15.906Z",
+   "summary": "repeat leads: Argentina, New Zealand"
   }
  ]
 }

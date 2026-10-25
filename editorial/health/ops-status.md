@@ -4,7 +4,7 @@ _The silent ops log, written by the daily watchdog (`scripts/watchdog.mjs`) only
 _Nothing here notifies anyone except state **PAGING**. The Claude weekly review reads this file with the newest weekly report in this folder._
 _All times Sydney time._
 
-**State: OK — every watched job is current and no editorial signal is up.**
+**State: ATTENTION — something is off, nothing has paged. Triage in the weekly review.**
 
 ## Paging Nico
 
@@ -18,7 +18,8 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- None — every briefing moved on.
+- Argentina — same lead story since Fri 23 Oct, first run as "Argentina's biggest win in their last 11 games: 52-28 over Wales" — the novelty gate did NOT flag the latest edition
+- New Zealand — same lead story since Sat 24 Oct, first run as "Shannon Frizell, Tyrel Lomax and Samisoni Taukei’aho ruled out of Europe tour" — the novelty gate flagged the latest edition and published anyway
 
 **Model ladder**
 
@@ -30,6 +31,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Sun 25 Oct 2026, 11:19 AEDT — repeat leads: Argentina, New Zealand
 - Thu 22 Oct 2026, 11:40 AEDT — all clear
 - Wed 21 Oct 2026, 11:36 AEDT — repeat leads: England
 - Tue 20 Oct 2026, 12:04 AEDT — all clear
