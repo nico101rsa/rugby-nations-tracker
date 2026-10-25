@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-10-25T16:14:29.874Z",
+  "updatedAt": "2026-10-25T19:03:38.679Z",
   "retentionHours": 72,
   "sources": [
     {
       "id": "planetrugby",
-      "items": 20,
+      "items": 19,
       "ok": true
     },
     {
@@ -35,7 +35,7 @@
     },
     {
       "id": "the42",
-      "items": 12,
+      "items": 10,
       "ok": true
     },
     {
@@ -65,20 +65,21 @@
     },
     {
       "id": "walesonline",
-      "items": 2,
-      "ok": true
+      "items": 0,
+      "ok": false,
+      "error": "HTTP 403"
     },
     {
       "id": "dailyrecord",
       "items": 0,
       "ok": false,
-      "error": "no items"
+      "error": "HTTP 403"
     },
     {
       "id": "japantimes",
       "items": 0,
       "ok": false,
-      "error": "no items"
+      "error": "HTTP 403"
     },
     {
       "id": "theroar",
@@ -87,251 +88,9 @@
     }
   ],
   "counts": {
-    "items": 376
+    "items": 369
   },
   "items": [
-    {
-      "title": "Jordie Barrett addresses injury concerns after pulling out of Bledisloe Cup: 'A bit of damage there'",
-      "link": "https://www.planetrugby.com/news/jordie-barrett-addresses-injury-concerns-after-pulling-out-of-bledisloe-cup-a-bit-of-damage-there",
-      "desc": "All Blacks star Jordie Barrett was forced to pull out of the squad late on last weekend.",
-      "date": "Thu, 22 Oct 2026 18:12:52 +0000",
-      "feedId": "planetrugby",
-      "feedName": "Planet Rugby",
-      "position": 0,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T13:23:48.691Z"
-    },
-    {
-      "title": "All Blacks legend Brodie Retallick reveals his one 'regret' during remarkable career",
-      "link": "https://www.planetrugby.com/news/all-blacks-legend-brodie-retallick-reveals-his-one-regret-during-remarkable-career",
-      "desc": "Brodie Retallick will go down as one of the sport's greats after a stellar career for the All Blacks, Chiefs and Kobe Steelers.",
-      "date": "Thu, 22 Oct 2026 18:12:13 +0000",
-      "feedId": "planetrugby",
-      "feedName": "Planet Rugby",
-      "position": 1,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T13:23:48.691Z"
-    },
-    {
-      "title": "Sir Graham Henry: The 'biggest' learning from the All Blacks' defeats to the Springboks and there are 'some excuses'",
-      "link": "https://www.planetrugby.com/news/sir-graham-henry-the-biggest-learning-from-the-all-blacks-defeats-to-the-springboks-and-there-are-some-excuses",
-      "desc": "What the All Blacks have learned from the tour of South Africa, according to former head coach Sir Graham Henry.",
-      "date": "Thu, 22 Oct 2026 18:11:25 +0000",
-      "feedId": "planetrugby",
-      "feedName": "Planet Rugby",
-      "position": 2,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T13:23:48.691Z"
-    },
-    {
-      "title": "Warren Gatland reveals just how close he was to joining PREM Rugby club and gives his verdict on Jake White's Fiji appointment",
-      "link": "https://www.planetrugby.com/news/warren-gatland-reveals-just-how-close-he-was-to-joining-prem-rugby-club-and-gives-his-verdict-on-jake-whites-fiji-appointment",
-      "desc": "Former Wales head coach Warren Gatland has revealed that a club offered him the head coach role, but he declined due to the \"timing\".",
-      "date": "Thu, 22 Oct 2026 15:22:14 +0000",
-      "feedId": "planetrugby",
-      "feedName": "Planet Rugby",
-      "position": 3,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T13:23:48.691Z"
-    },
-    {
-      "title": "World Rugby confirm referees for November’s Nations Championship: Andrea Piardi gets another Springboks match despite Wallabies controversy",
-      "link": "https://www.planetrugby.com/news/world-rugby-confirm-referees-for-novembers-nations-championship-andrea-piardi-gets-another-springboks-match-despite-wallabies-controversy",
-      "desc": "The officials have been announced for the northern leg of the Nations Championship which takes place in November.",
-      "date": "Thu, 22 Oct 2026 14:22:46 +0000",
-      "feedId": "planetrugby",
-      "feedName": "Planet Rugby",
-      "position": 4,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T13:23:48.691Z"
-    },
-    {
-      "title": "Leinster v Munster: Dan Sheehan's shock position change as key internationals make timely return for Irish derby",
-      "link": "https://www.planetrugby.com/news/leinster-v-munster-dan-sheehans-shock-position-change-as-key-internationals-make-timely-return-for-irish-derby",
-      "desc": "Leinster and Munster have named their sides for Saturday's Irish derby.",
-      "date": "Thu, 22 Oct 2026 14:19:32 +0000",
-      "feedId": "planetrugby",
-      "feedName": "Planet Rugby",
-      "position": 5,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T13:23:48.691Z"
-    },
-    {
-      "title": "URC, Round Four: Predictions, teams, kick-off times, how to watch and referee appointments",
-      "link": "https://www.planetrugby.com/news/urc-round-four-predictions-teams-kick-off-times-how-to-watch-and-referee-appointments",
-      "desc": "The 2026/27 United Rugby Championship season continues this weekend with three games on Friday before five are played over Saturday.",
-      "date": "Thu, 22 Oct 2026 14:01:10 +0000",
-      "feedId": "planetrugby",
-      "feedName": "Planet Rugby",
-      "position": 6,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T13:23:48.691Z"
-    },
-    {
-      "title": "Rugby's data revolution - can Moneyball be oval?",
-      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6kg7kejxvw5o?at_medium=RSS&at_campaign=rss",
-      "desc": "Top rugby clubs are increasingly turning to data when they plan their moves to recruit talent.",
-      "date": "Thu, 22 Oct 2026 16:47:46 GMT",
-      "feedId": "bbc",
-      "feedName": "BBC Rugby Union",
-      "position": 0,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
-    },
-    {
-      "title": "WRU loses £18m and says four regions unsustainable",
-      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ck98z64qydd2o?at_medium=RSS&at_campaign=rss",
-      "desc": "The Welsh Rugby Union blames rising energy and staffing costs combined with falling ticket sales for a dramatic drop in its finances.",
-      "date": "Thu, 22 Oct 2026 16:00:50 GMT",
-      "feedId": "bbc",
-      "feedName": "BBC Rugby Union",
-      "position": 1,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T07:29:07.889Z"
-    },
-    {
-      "title": "Sheehan switches to number eight for Munster derby",
-      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cqkglkpm2m1no?at_medium=RSS&at_campaign=rss",
-      "desc": "Leinster captain Dan Sheehan will start at number eight for the first time in Saturday's United Rugby Championship interprovincial derby against Munster at Aviva Stadium.",
-      "date": "Thu, 22 Oct 2026 13:39:01 GMT",
-      "feedId": "bbc",
-      "feedName": "BBC Rugby Union",
-      "position": 5,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-24T10:55:35.860Z"
-    },
-    {
-      "title": "Northampton 'security incident' believed to be a hoax",
-      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/ck87zezvln97o?at_medium=RSS&at_campaign=rss",
-      "desc": "Police are investigating the incident at Saints' Franklin's Gardens \"following threats made on social media\".",
-      "date": "Mon, 19 Oct 2026 11:39:13 GMT",
-      "feedId": "bbc",
-      "feedName": "BBC Rugby Union",
-      "position": 26,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-22T18:30:48.861Z"
-    },
-    {
-      "title": "England's 39-match winning streak halted by thrilling draw with Canada",
-      "link": "https://www.bbc.co.uk/sport/rugby-union/videos/ckj06v16j972o?at_medium=RSS&at_campaign=rss",
-      "desc": "England's winning record - stretching back to a loss in the 2022 World Cup final to New Zealand - was halted by Canada, who held the hosts to a thrilling 26-26 draw in the WXV Global Series.",
-      "date": "Sat, 19 Sep 2026 17:14:35 GMT",
-      "feedId": "bbc",
-      "feedName": "BBC Rugby Union",
-      "position": 31,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
-    },
-    {
-      "title": "England's second-half response crushes Australia",
-      "link": "https://www.bbc.co.uk/sport/rugby-union/videos/cpd022z5ly2o?at_medium=RSS&at_campaign=rss",
-      "desc": "England's dominant second-half performance sees them defeat Australia in the opening game of the WXV Global Series.",
-      "date": "Sat, 12 Sep 2026 17:50:01 GMT",
-      "feedId": "bbc",
-      "feedName": "BBC Rugby Union",
-      "position": 33,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
-    },
-    {
-      "title": "Wallabies seek to rediscover optimism after pain of Bledisloe Cup humbling | Jack Snape",
-      "link": "https://www.theguardian.com/sport/2026/oct/16/rugby-wallabies-all-blacks-aus-nz-bledisloe-cup-2026-second-test",
-      "desc": "<p>Last week’s result in Auckland tempered progress made under Les Kiss but Saturday’s return fixture in Sydney offers a chance for redemption</p><p>Australian rugby will serve up quantity on Saturday, with the first quadruple header at Accor Stadium providing a smorgasbord of the sport that is entering a golden runway through to two World Cups and a home Olympics over the next six years. The quality of the main dish, though? That remains to be seen.</p><p>The return Bledisloe Cup match for the Wallabies is the showpiece in a glorious afternoon of Australian union beginning with the Wallaroos’ clash against Scotland, followed by two sevens showdowns against the men’s Fiji side and New Zealand’s women.</p> <a href=\"https://www.theguardian.com/sport/2026/oct/16/rugby-wallabies-all-blacks-aus-nz-bledisloe-cup-2026-second-test\">Continue reading...</a>",
-      "date": "Fri, 16 Oct 2026 01:00:46 GMT",
-      "feedId": "guardian",
-      "feedName": "Guardian Rugby Union",
-      "position": 18,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T01:29:00.130Z"
-    },
-    {
-      "title": "Coffee first, collisions later for Coetzee",
-      "link": "https://www.sarugbymag.co.za/coffee-first-collisions-later-for-coetzee/",
-      "desc": "Bulls captain Marcell Coetzee was taking Ulster and Ireland midfielder Stuart McCloskey for coffee on Thursday afternoon. \nThe post Coffee first, collisions later for Coetzee appeared first on SA Rugby magazine.",
-      "date": "Thu, 22 Oct 2026 14:35:16 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 0,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T01:29:00.130Z"
-    },
-    {
-      "title": "Horn back, Boan set for Edinburgh reunion",
-      "link": "https://www.sarugbymag.co.za/horn-back-boan-set-for-edinburgh-reunion/",
-      "desc": "Francke Horn returns to captain the Lions in Friday night’s URC clash against Edinburgh at Hive Stadium. \nThe post Horn back, Boan set for Edinburgh reunion appeared first on SA Rugby magazine.",
-      "date": "Thu, 22 Oct 2026 13:27:23 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 2,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T01:29:00.130Z"
-    },
-    {
-      "title": "Trokkie revs up for Bulls",
-      "link": "https://www.sarugbymag.co.za/trokkie-revs-bulls/",
-      "desc": "Juarno Augustus will start at No 8 for Ulster against the Bulls in Saturday's URC clash at Loftus Versfeld.\nThe post Trokkie revs up for Bulls appeared first on SA Rugby magazine.",
-      "date": "Thu, 22 Oct 2026 10:57:57 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 7,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T01:29:00.130Z"
-    },
-    {
-      "title": "Duhan back to hunt Lions",
-      "link": "https://www.sarugbymag.co.za/duhan-back-to-hunt-lions/",
-      "desc": "Duhan van der Merwe will make his first appearance of the season when Edinburgh host the Lions in Friday night's URC match at Hive Stadium.\nThe post Duhan back to hunt Lions appeared first on SA Rugby magazine.",
-      "date": "Thu, 22 Oct 2026 10:56:44 +0000",
-      "feedId": "sarugbymag",
-      "feedName": "SA Rugby Magazine",
-      "position": 8,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T01:29:00.130Z"
-    },
-    {
-      "title": "SEA Women's XVs Championship 2027 Dates Confirmed – Oneata Schwalger Appointed Philippines Women's XV Head Coach",
-      "link": "https://www.rugbyasia247.com/sea-womens-xvs-championship-2027-dates-confirmed-oneata-schwalger-appointed-philippines-womens-xv-head-coach/",
-      "desc": "The second edition of the SEA Women's XVs Championship 2027 is due to be held between January 13 and 16 at New Clark City Athletics Stadium in Capas, Tarlac, the Philippines. The PRFU also confirmed Oneata Schwalger as their new [&#8230;]\nThe post SEA Women's XVs Championship 2027 Dates Confirmed – Oneata Schwalger Appointed Philippines Women's XV Head Coach appeared first on RugbyAsia247.",
-      "date": "Mon, 19 Oct 2026 08:50:55 +0000",
-      "feedId": "rugbyasia247",
-      "feedName": "Rugby Asia 247",
-      "position": 7,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-25T06:05:22.506Z"
-    },
-    {
-      "title": "Ulster name strong squad ahead of trip to Bulls",
-      "link": "https://www.the42.ie/ulster-rugby-bulls-7201908-Oct2026/",
-      "desc": "Juarno Augustus seeks to back up recent strong form.",
-      "date": "Thu, 22 Oct 2026 14:38:58 GMT",
-      "feedId": "the42",
-      "feedName": "The42",
-      "position": 0,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T22:08:01.672Z"
-    },
-    {
-      "title": "Carbery starts at out-half with Sheehan at No 8 for Leinster while Munster make seven changes",
-      "link": "https://www.the42.ie/leinster-team-against-munster-2-7201811-Oct2026/",
-      "desc": "The URC derby takes place at the Aviva Stadium this Saturday.",
-      "date": "Thu, 22 Oct 2026 14:28:00 GMT",
-      "feedId": "the42",
-      "feedName": "The42",
-      "position": 1,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-23T18:18:47.056Z"
-    },
-    {
-      "title": "King relishing a physical battle against the Boks",
-      "link": "https://www.rte.ie/sport/rugby/2026/1022/1596502-king-relishing-a-physical-battle-against-the-boks/",
-      "desc": "Erin King insists Ireland won't \"shy away\" from the physicality of South Africa when the sides meet in their first ever women's Test in Cape Town on Saturday.",
-      "date": "Thu, 22 Oct 2026 18:29:08 +0100",
-      "feedId": "rte",
-      "feedName": "RTÉ Sport Rugby",
-      "position": 1,
-      "firstSeen": "2026-10-22T18:30:48.861Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
-    },
     {
       "title": "From safari to Springboks - King ready for history",
       "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cv5ynlj2ljppo?at_medium=RSS&at_campaign=rss",
@@ -352,7 +111,7 @@
       "feedName": "BBC Rugby Union",
       "position": 5,
       "firstSeen": "2026-10-22T22:18:25.180Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "JP gives 'gifted' Gianni an opportunity",
@@ -374,7 +133,7 @@
       "feedName": "BBC Rugby Union",
       "position": 1,
       "firstSeen": "2026-10-23T01:29:00.130Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "England secure win over New Zealand with last-gasp try",
@@ -385,7 +144,7 @@
       "feedName": "BBC Rugby Union",
       "position": 29,
       "firstSeen": "2026-10-23T01:29:00.130Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Late try seals dramatic win for England over New Zealand",
@@ -396,7 +155,7 @@
       "feedName": "BBC Rugby Union",
       "position": 30,
       "firstSeen": "2026-10-23T01:29:00.130Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "'Ran through me' & 'good value in pub' - ex-NFL star Kelce tries rugby",
@@ -407,7 +166,7 @@
       "feedName": "BBC Rugby Union",
       "position": 35,
       "firstSeen": "2026-10-23T01:29:00.130Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Boks power & All Blacks of old - what did we learn from series?",
@@ -429,7 +188,7 @@
       "feedName": "BBC Rugby Union",
       "position": 43,
       "firstSeen": "2026-10-23T01:29:00.130Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Rugby Union Weekly",
@@ -440,7 +199,7 @@
       "feedName": "BBC Rugby Union",
       "position": 45,
       "firstSeen": "2026-10-23T01:29:00.130Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Rugby Union Weekly",
@@ -451,7 +210,7 @@
       "feedName": "BBC Rugby Union",
       "position": 46,
       "firstSeen": "2026-10-23T01:29:00.130Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "‘We want the best league in the world’: Bath’s Bruce Craig on 16 years at the Rec",
@@ -495,7 +254,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 12,
       "firstSeen": "2026-10-23T01:29:00.130Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Israel Folau makes decision on his future as controversial ex-Wallaby fails to secure a NRL return: 'I definitely have no regrets'",
@@ -550,7 +309,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Exeter's Wyatt suffers fresh injury blow",
@@ -572,7 +331,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Son of Wallabies great named in spring tour squad as Les Kiss turns to new faces",
@@ -583,7 +342,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 1,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Lions lock Hyron Andrews dies at team hotel before Champions Cup game against La Rochelle",
@@ -726,7 +485,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 0,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "United Rugby Championship Round 4: All You Need to Know",
@@ -737,7 +496,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 1,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Jackman: Lancaster's young stars inspired Connacht win",
@@ -748,7 +507,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 15,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Watch Tonga v Lebanon: Free streams, broadcasters for Rugby League World Cup match",
@@ -759,7 +518,7 @@
       "feedName": "Rugby World",
       "position": 0,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "What are the highest-scoring PREM Rugby matches of all time? 10 top-flight games that notched up a century of points",
@@ -770,7 +529,7 @@
       "feedName": "Rugby World",
       "position": 1,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Who is the top try scorer in PREM Rugby history? And what does Christian Wade need to do to catch him?",
@@ -781,7 +540,7 @@
       "feedName": "Rugby World",
       "position": 2,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How to watch WXV Global Series 2026: Official broadcasters, TV &#038; streaming guide",
@@ -792,7 +551,7 @@
       "feedName": "Rugby World",
       "position": 3,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "URC rugby live streams: How to watch the 2026-27 season on TV, online",
@@ -803,7 +562,7 @@
       "feedName": "Rugby World",
       "position": 4,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How to watch PREM Rugby 2026-27: Official broadcasters &#038; streaming guide",
@@ -814,7 +573,7 @@
       "feedName": "Rugby World",
       "position": 5,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How to watch Rugby League World Cup: Official broadcasters, TV &#038; streaming guide",
@@ -825,7 +584,7 @@
       "feedName": "Rugby World",
       "position": 6,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Confused by rugby’s newest international rugby tournament? Here’s all your Nations Championship questions answered",
@@ -836,7 +595,7 @@
       "feedName": "Rugby World",
       "position": 7,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "\"I want to go to the World Cup. Argentina was the first team to offer me a contract&#8230;\" Shaun Edwards on his new coaching role with Argentina and his England ambition",
@@ -847,7 +606,7 @@
       "feedName": "Rugby World",
       "position": 8,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Rugby World’s top 10 players to have played rugby union and rugby league: Stars who’ve shone in both codes",
@@ -858,7 +617,7 @@
       "feedName": "Rugby World",
       "position": 9,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Fiji v Cook Islands live streams: How to watch Men’s Rugby League World Cup Pool A match for free",
@@ -869,7 +628,7 @@
       "feedName": "Rugby World",
       "position": 10,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How to watch Clermont Auvergne v Leinster: Free streams for Champions Cup opening weekend clash",
@@ -880,7 +639,7 @@
       "feedName": "Rugby World",
       "position": 11,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How to watch England v Tonga: Live stream the Men’s Rugby League World Cup Pool B encounter",
@@ -891,7 +650,7 @@
       "feedName": "Rugby World",
       "position": 12,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Australia v New Zealand live streams: How to watch 2026's second Bledisloe Cup match for free from anywhere",
@@ -902,7 +661,7 @@
       "feedName": "Rugby World",
       "position": 13,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Watch Papua New Guinea v Lebanon: Free streams, broadcasters for Rugby League World Cup clash",
@@ -913,7 +672,7 @@
       "feedName": "Rugby World",
       "position": 14,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Samoa v France live streams: How to watch Men’s Rugby League World Cup Pool B match for free",
@@ -924,7 +683,7 @@
       "feedName": "Rugby World",
       "position": 15,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Rugby Union v Rugby League: As the Rugby League World Cup kicks off, we outline the differences – and similarities – between the two codes",
@@ -935,7 +694,7 @@
       "feedName": "Rugby World",
       "position": 16,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "“If I was in charge of England, I'd try to buy Jack Willis out of his contract, bring him back to England and make him captain”: Former England captain Will Carling on the Willis brothers, Henry Pollock and making headlines on and off the pitch",
@@ -946,7 +705,7 @@
       "feedName": "Rugby World",
       "position": 17,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How to watch Australia v New Zealand: Live stream the Rugby League World Cup opener",
@@ -957,7 +716,7 @@
       "feedName": "Rugby World",
       "position": 18,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How to watch Champions Cup rugby: TV &#038; streaming guide for 2026-27 tournamement",
@@ -968,7 +727,7 @@
       "feedName": "Rugby World",
       "position": 19,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "European Rugby Champions Cup winners: Who has lifted the continent’s biggest trophy from 1995-2026",
@@ -979,7 +738,7 @@
       "feedName": "Rugby World",
       "position": 20,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "When was the last time a British or Irish team won the European Rugby Champions Cup?",
@@ -990,7 +749,7 @@
       "feedName": "Rugby World",
       "position": 21,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "The 12 greatest players in European Champions Cup rugby history, according to Rugby World",
@@ -1001,7 +760,7 @@
       "feedName": "Rugby World",
       "position": 22,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Who are the top 10 most capped men's rugby players of all-time?",
@@ -1012,7 +771,7 @@
       "feedName": "Rugby World",
       "position": 23,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How to watch All Blacks v Wallabies for FREE: Stream first Bledisloe Cup Test from anywhere",
@@ -1023,7 +782,7 @@
       "feedName": "Rugby World",
       "position": 24,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Five early-season surprises from Gloucester's fast start to Leinster's tough beginning: Paul Williams column",
@@ -1089,7 +848,7 @@
       "feedName": "Welsh Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Parry wants Ebbw to repeat last season's Church Bank win in big SRC clash",
@@ -1100,7 +859,7 @@
       "feedName": "Welsh Rugby Union",
       "position": 1,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Welsh match officials quintet all set to feature in autumn series",
@@ -1111,7 +870,7 @@
       "feedName": "Welsh Rugby Union",
       "position": 2,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Combative Ward a Hunter by name and nature!",
@@ -1122,7 +881,7 @@
       "feedName": "Welsh Rugby Union",
       "position": 3,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Wales Women side to face Japan announced",
@@ -1133,7 +892,7 @@
       "feedName": "Welsh Rugby Union",
       "position": 4,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Y capten Callender i ennill ei 50fed cap yn erbryn Japan",
@@ -1199,7 +958,7 @@
       "feedName": "Americas Rugby News",
       "position": 0,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Canada, USA, Uruguay, Chile and Argentina Referee Appointments for November",
@@ -1210,7 +969,7 @@
       "feedName": "Americas Rugby News",
       "position": 1,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Argentina With the Entire Arsenal back for London Camp",
@@ -1221,7 +980,7 @@
       "feedName": "Americas Rugby News",
       "position": 2,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Canada's Mason Flesch Joins Newcastle Red Bulls",
@@ -1232,7 +991,7 @@
       "feedName": "Americas Rugby News",
       "position": 3,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Chile's Las Manques Decisively Defeat Mexico in Santiago",
@@ -1243,7 +1002,7 @@
       "feedName": "Americas Rugby News",
       "position": 4,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Chile U20 Claim Historic Title, Fueling the Pipeline for Rugby World Cup 2027",
@@ -1254,7 +1013,7 @@
       "feedName": "Americas Rugby News",
       "position": 5,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Canada Run Over Brazil to Claim 5th Place Finish at U20 Challenger",
@@ -1265,7 +1024,7 @@
       "feedName": "Americas Rugby News",
       "position": 6,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "A Landmark Upset: Canada Stuns Top-Ranked England to Shatter Historic 41-Match Streak",
@@ -1309,7 +1068,7 @@
       "feedName": "Federazione Italiana Rugby",
       "position": 0,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Comunicato Stampa Nations Championship",
@@ -1320,7 +1079,7 @@
       "feedName": "Federazione Italiana Rugby",
       "position": 1,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Nations Championship Northern Hemisphere Series: le designazioni di World Rugby",
@@ -1331,7 +1090,7 @@
       "feedName": "Federazione Italiana Rugby",
       "position": 2,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Serie A Elite: definite le prossime tre dirette su RaiSport",
@@ -1441,7 +1200,7 @@
       "feedName": "The Roar",
       "position": 0,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "'It’s incredibly exciting': Wallabies strike major blow for World Cup with Crichton hopping codes",
@@ -1452,7 +1211,7 @@
       "feedName": "The Roar",
       "position": 1,
       "firstSeen": "2026-10-23T07:29:07.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "England ace highlights 'reference point' that is grounding Northampton Saints as they look to become team 'people remember'",
@@ -1573,7 +1332,7 @@
       "feedName": "BBC Rugby Union",
       "position": 2,
       "firstSeen": "2026-10-23T13:23:48.691Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ospreylia: How Welsh club turned to a land down under",
@@ -1584,7 +1343,7 @@
       "feedName": "BBC Rugby Union",
       "position": 39,
       "firstSeen": "2026-10-23T13:23:48.691Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Coming soon: Sir David Attenborough's next great ocean journey",
@@ -1595,7 +1354,7 @@
       "feedName": "BBC Rugby Union",
       "position": 52,
       "firstSeen": "2026-10-23T13:23:48.691Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Comedy with Ryan Gosling and Russell Crowe set in 1970s Los Angeles",
@@ -1606,7 +1365,7 @@
       "feedName": "BBC Rugby Union",
       "position": 53,
       "firstSeen": "2026-10-23T13:23:48.691Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Will Borthwick’s autumn England squad embrace Prem chaos or prioritise prudence? | Gerard Meagher",
@@ -1617,7 +1376,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-23T13:23:48.691Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Gloucester upset odds to hold champions Bordeaux to draw in Champions Cup epic",
@@ -1694,7 +1453,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 0,
       "firstSeen": "2026-10-23T13:23:48.691Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Toe-tapping Basham all set to face star-studded Sharks",
@@ -1705,7 +1464,7 @@
       "feedName": "Welsh Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-23T13:23:48.691Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Nicolás Roger to Vannes in the Top 14",
@@ -1716,7 +1475,7 @@
       "feedName": "Americas Rugby News",
       "position": 0,
       "firstSeen": "2026-10-23T13:23:48.691Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Welsh rugby player faces calls for life ban as vile act makes global headlines",
@@ -1749,7 +1508,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-23T18:18:47.056Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "England scrum-half Van Poortvliet signs multi-year Leicester deal",
@@ -1771,7 +1530,7 @@
       "feedName": "BBC Rugby Union",
       "position": 3,
       "firstSeen": "2026-10-23T18:18:47.056Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How have Canada closed gap to world champions England?",
@@ -1782,7 +1541,7 @@
       "feedName": "BBC Rugby Union",
       "position": 34,
       "firstSeen": "2026-10-23T18:18:47.056Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Wallaroos complete Scotland sweep as retiring Smith gets standing ovation despite red",
@@ -1793,7 +1552,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-23T18:18:47.056Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "LIVE: Cardiff vs Sharks",
@@ -1837,7 +1596,7 @@
       "feedName": "Rugby Asia 247",
       "position": 6,
       "firstSeen": "2026-10-23T18:18:47.056Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ireland's November squad and a big interpro at Aviva Stadium",
@@ -1859,7 +1618,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 13,
       "firstSeen": "2026-10-23T18:18:47.056Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Connacht firepower igniting hope and turning heads",
@@ -1870,7 +1629,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 14,
       "firstSeen": "2026-10-23T18:18:47.056Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Canada v Red Roses live streams: How to watch the epic WXV Global Series 2026 rematch",
@@ -1881,7 +1640,7 @@
       "feedName": "Rugby World",
       "position": 0,
       "firstSeen": "2026-10-23T18:18:47.056Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Potential battle between hookers excites Baldwin",
@@ -1892,7 +1651,7 @@
       "feedName": "Welsh Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-23T18:18:47.056Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Serie A Élite maschile: la seconda giornata tra conferme, derby e sfide al vertice",
@@ -1903,7 +1662,7 @@
       "feedName": "Federazione Italiana Rugby",
       "position": 0,
       "firstSeen": "2026-10-23T18:18:47.056Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Cardiff Rugby v Sharks Live: Kick-off time, TV channel and score updates",
@@ -2024,7 +1783,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Impressive Gloucester beat Bath to extend lead at top of Prem",
@@ -2035,7 +1794,7 @@
       "feedName": "BBC Rugby Union",
       "position": 1,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Patterson stars as Edinburgh beat Lions",
@@ -2046,7 +1805,7 @@
       "feedName": "BBC Rugby Union",
       "position": 2,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Six-try Sharks condemn Cardiff to rare home defeat",
@@ -2057,7 +1816,7 @@
       "feedName": "BBC Rugby Union",
       "position": 3,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Wales look to show top-six credentials in Japan",
@@ -2079,7 +1838,7 @@
       "feedName": "BBC Rugby Union",
       "position": 28,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "The Breakdown | ‘Freer’ Red Roses resolve to come back stronger after Canada end epic run",
@@ -2090,7 +1849,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 8,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Australia 21-43 New Zealand: Bledisloe Cup rugby union international – as it happened",
@@ -2101,7 +1860,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 13,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Desiree Miller runs rampant to inspire Wallaroos to eight-try rout of Scotland",
@@ -2112,7 +1871,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 15,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Red Roses’ four-year unbeaten streak ends in a thriller as Canada claim late win",
@@ -2178,7 +1937,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 0,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Nankivell's new Munster deal paves way for Ireland career",
@@ -2189,7 +1948,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 11,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Flannery named as Lions Women's head of operations",
@@ -2200,7 +1959,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 13,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Guzmán Barreiro Names strong Uruguay Roster to face Spain, Zimbabwe and Portugal",
@@ -2211,7 +1970,7 @@
       "feedName": "Americas Rugby News",
       "position": 0,
       "firstSeen": "2026-10-23T22:08:01.672Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How to watch England v France Rugby League World Cup match on TV after BBC axe",
@@ -2233,7 +1992,7 @@
       "feedName": "BBC Rugby Union",
       "position": 5,
       "firstSeen": "2026-10-24T00:39:57.638Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Doomsday for Wallabies and Les Kiss as clinical All Blacks expose fault lines | Angus Fontaine",
@@ -2244,7 +2003,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 12,
       "firstSeen": "2026-10-24T00:39:57.638Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "‘Not acceptable’: Kiss blasts humiliated Wallabies as All Blacks claim 13th straight Bledisloe win",
@@ -2255,7 +2014,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 14,
       "firstSeen": "2026-10-24T00:39:57.638Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "England suffer back-to-back losses to Canada",
@@ -2266,7 +2025,7 @@
       "feedName": "BBC Rugby Union",
       "position": 28,
       "firstSeen": "2026-10-24T05:50:12.055Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Will Saints reign again or new winners rise? - Prem Rugby club guide",
@@ -2277,7 +2036,7 @@
       "feedName": "BBC Rugby Union",
       "position": 38,
       "firstSeen": "2026-10-24T05:50:12.055Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Red Roses suffer back-to-back defeats for first time in 10 years as Canada make statement",
@@ -2288,7 +2047,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-24T05:50:12.055Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Champions Cup roundup: La Rochelle beat Lions after emotional tribute to Andrews",
@@ -2299,7 +2058,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 12,
       "firstSeen": "2026-10-24T05:50:12.055Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Rugby league newbies target All Blacks star",
@@ -2354,7 +2113,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 12,
       "firstSeen": "2026-10-24T05:50:12.055Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "England: Bristol Bears star in 'form of his life' to 'knuckle down' and earn recall but knows he 'can’t pick' himself",
@@ -2387,7 +2146,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-24T10:55:35.860Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Wales great Faletau suffers fresh injury blow",
@@ -2398,7 +2157,7 @@
       "feedName": "BBC Rugby Union",
       "position": 1,
       "firstSeen": "2026-10-24T10:55:35.860Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Canada inflict back-to-back losses on England",
@@ -2409,7 +2168,7 @@
       "feedName": "BBC Rugby Union",
       "position": 2,
       "firstSeen": "2026-10-24T10:55:35.860Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "WIN a Vodacom Bulls home jersey!",
@@ -2464,7 +2223,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 0,
       "firstSeen": "2026-10-24T10:55:35.860Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Wall outlines Ireland's 'clear ambition' to beat the Boks",
@@ -2475,7 +2234,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 1,
       "firstSeen": "2026-10-24T10:55:35.860Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How to watch England v France: Live stream the Men’s Rugby League World Cup Pool B encounter",
@@ -2486,7 +2245,7 @@
       "feedName": "Rugby World",
       "position": 0,
       "firstSeen": "2026-10-24T10:55:35.860Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Papua New Guinea v Samoa live streams: How to watch Men’s Rugby League World Cup Pool B match for free",
@@ -2497,7 +2256,7 @@
       "feedName": "Rugby World",
       "position": 1,
       "firstSeen": "2026-10-24T10:55:35.860Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Plumtree starts as Scarlets seek first win over Stormers",
@@ -2508,7 +2267,7 @@
       "feedName": "Welsh Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-24T10:55:35.860Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Botham double can't stop Cardiff losing their 10-month unbeaten home record",
@@ -2519,7 +2278,7 @@
       "feedName": "Welsh Rugby Union",
       "position": 1,
       "firstSeen": "2026-10-24T10:55:35.860Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How an iconic rugby ground went from a building site to a URC match in months",
@@ -2607,7 +2366,7 @@
       "feedName": "BBC Rugby Union",
       "position": 1,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Wales grind out frustrating WXV win against Japan",
@@ -2618,7 +2377,7 @@
       "feedName": "BBC Rugby Union",
       "position": 2,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Highlights: Japan 0-17 Wales",
@@ -2629,7 +2388,7 @@
       "feedName": "BBC Rugby Union",
       "position": 25,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "From ruin to a (Red) Bull market - how Prem became hot property",
@@ -2640,7 +2399,7 @@
       "feedName": "BBC Rugby Union",
       "position": 34,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Bullying Bulls scrum slays keen Ulster",
@@ -2684,7 +2443,7 @@
       "feedName": "Rugby Asia 247",
       "position": 4,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Isuzu Confirmed as Rugby World Cup Australia 2027 and 2029 Official Partner",
@@ -2695,7 +2454,7 @@
       "feedName": "Rugby Asia 247",
       "position": 5,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Dakar Youth Olympic Games 2026 Rugby 7s",
@@ -2706,7 +2465,7 @@
       "feedName": "Rugby Asia 247",
       "position": 9,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "WXV Global Series: South Africa v Ireland updates",
@@ -2717,7 +2476,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 0,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ulster fall short in battling bid to beat Bulls",
@@ -2728,7 +2487,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 1,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Nankivell - 'International rugby is still the pinnacle'",
@@ -2739,7 +2498,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 14,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ospreys looking to double up against the Dragons on return to St Helen's",
@@ -2750,7 +2509,7 @@
       "feedName": "Welsh Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Coppa Conference Femminile, ultimo turno di qualificazione verso le semifinali",
@@ -2761,7 +2520,7 @@
       "feedName": "Federazione Italiana Rugby",
       "position": 0,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Serie A Élite: Biella e Petrarca chiudono la seconda giornata",
@@ -2772,7 +2531,7 @@
       "feedName": "Federazione Italiana Rugby",
       "position": 1,
       "firstSeen": "2026-10-24T14:30:32.534Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Sam Fender makes a vow as he hits out at his own tour ticket prices",
@@ -2882,7 +2641,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Why winning ugly is just as important for Wales",
@@ -2893,7 +2652,7 @@
       "feedName": "BBC Rugby Union",
       "position": 2,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Glasgow recover 17-point deficit to beat Benetton",
@@ -2904,7 +2663,7 @@
       "feedName": "BBC Rugby Union",
       "position": 3,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Six-try Ireland beat South Africa in Cape Town",
@@ -2915,7 +2674,7 @@
       "feedName": "BBC Rugby Union",
       "position": 4,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Scarlets denied by Stormers in 14-try thriller",
@@ -2926,7 +2685,7 @@
       "feedName": "BBC Rugby Union",
       "position": 5,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Watch now on BBC iPlayer",
@@ -2937,7 +2696,7 @@
       "feedName": "BBC Rugby Union",
       "position": 39,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "'Chaos' & 'comedy refereering' as England beat Argentina",
@@ -2948,7 +2707,7 @@
       "feedName": "BBC Rugby Union",
       "position": 47,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Nations Championship highlights: South Africa 43-0 Wales",
@@ -2959,7 +2718,7 @@
       "feedName": "BBC Rugby Union",
       "position": 48,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Highlights: New Zealand crush Ireland at Eden Park",
@@ -2970,7 +2729,7 @@
       "feedName": "BBC Rugby Union",
       "position": 49,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Leicester turn up the hostility as Steward caps old-time beating of Northampton",
@@ -2981,7 +2740,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Red Roses drop Kildunne to bench for Canada rematch as Mitchell seeks England reset",
@@ -2992,7 +2751,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 9,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Two-try Coetzee backs Bulls’ bravery",
@@ -3069,7 +2828,7 @@
       "feedName": "The42",
       "position": 0,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "LIVE: Leinster v Munster, URC",
@@ -3080,7 +2839,7 @@
       "feedName": "The42",
       "position": 1,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ulster's valiant effort falls short at Bulls",
@@ -3091,7 +2850,7 @@
       "feedName": "The42",
       "position": 2,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "URC: Leinster v Munster updates",
@@ -3102,7 +2861,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 0,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ireland power to deserved victory over South Africa",
@@ -3113,7 +2872,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 1,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "O'Donoghue proud as Munster victorious on emotional night",
@@ -3124,7 +2883,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 24,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Five-try Munster hold off Racing in tight Cork clash",
@@ -3135,7 +2894,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 27,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Scintillating Connacht beat Saracens in Galway try-fest",
@@ -3146,7 +2905,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 28,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Champions Cup: Connacht 45-36 Saracens recap",
@@ -3157,7 +2916,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 29,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Champions Cup: Munster 33-25 Racing 92 recap",
@@ -3168,7 +2927,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 30,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Leinster rout Clermont with slick second half display",
@@ -3179,7 +2938,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 31,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Walker helps Ulster start Challenge Cup with victory",
@@ -3190,7 +2949,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 32,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Champions Cup recap: Clermont Auvergne 23-48 Leinster",
@@ -3201,7 +2960,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 33,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Cullen: Carbery 'more mature' person on Leinster return",
@@ -3212,7 +2971,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 34,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Hard to see past more French dominance in Champions Cup",
@@ -3223,7 +2982,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 35,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Lions player dies in hotel on eve of La Rochelle match",
@@ -3234,7 +2993,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 36,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Team news: Squads named for Champions Cup openers",
@@ -3245,7 +3004,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 37,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Lenihan: Munster-Racing clash should be in Limerick",
@@ -3256,7 +3015,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 38,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Champions Cup Round 1: All You Need to Know",
@@ -3267,7 +3026,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 39,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Cullen excited by 'good little tweak' to bonus-points",
@@ -3278,7 +3037,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 40,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Edogbo signs new contract up to 2029",
@@ -3289,7 +3048,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 41,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Lancaster voices maul concerns after scoring surge",
@@ -3300,7 +3059,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 42,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Lions women to start tour with Cardiff game versus France",
@@ -3311,7 +3070,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 43,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "'Memory of Axel to the forefront of everyone's mind'",
@@ -3322,7 +3081,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 44,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Maul mania, Prendergast's form, and Champions Cup is back",
@@ -3333,7 +3092,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 45,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Issues remain up front as Ulster strive for consistency",
@@ -3344,7 +3103,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 46,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "World Cup-winning coach White takes reins at Fiji",
@@ -3355,7 +3114,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 47,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ryan: 'Our stint in the Aviva had run its course'",
@@ -3388,7 +3147,7 @@
       "feedName": "Federazione Italiana Rugby",
       "position": 0,
       "firstSeen": "2026-10-24T18:07:01.590Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ospreys v Dragons Live updates as St Helen's hosts first professional match",
@@ -3454,7 +3213,7 @@
       "feedName": "Planet Rugby",
       "position": 0,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Leinster v Munster: Winners and losers as visitors put bodies on the line but ill-discipline proves to be their undoing",
@@ -3465,7 +3224,7 @@
       "feedName": "Planet Rugby",
       "position": 1,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Leinster v Munster: Five takeaways as 'self-inflicted wound' and two 'ridiculous pieces of skill' cost visitors who led for 56 minutes",
@@ -3476,7 +3235,7 @@
       "feedName": "Planet Rugby",
       "position": 2,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Leinster player ratings: 'Mind-boggling' Jamison Gibson-Park masterminds Munster's demise while Andrew Porter overcomes 'pancake'",
@@ -3487,7 +3246,7 @@
       "feedName": "Planet Rugby",
       "position": 3,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Bristol Bears v Exeter Chiefs: Five takeaways as hosts show 'different edge' in 'slobberknocker in a slip-and-slide' while England star's efforts leave their mark",
@@ -3498,7 +3257,7 @@
       "feedName": "Planet Rugby",
       "position": 4,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ospreys thump Dragons on return to St Helen's",
@@ -3509,7 +3268,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Leinster fight back to beat Munster in URC derby",
@@ -3520,7 +3279,7 @@
       "feedName": "BBC Rugby Union",
       "position": 1,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Bristol overcome Exeter to go third in Prem",
@@ -3531,7 +3290,7 @@
       "feedName": "BBC Rugby Union",
       "position": 3,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "A new old home for Ospreys side fighting for a future",
@@ -3564,7 +3323,7 @@
       "feedName": "The42",
       "position": 0,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Leinster 24-18 Munster: Snap reaction",
@@ -3575,7 +3334,7 @@
       "feedName": "The42",
       "position": 1,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Leinster fight back to earn bonus-point win against battling Munster",
@@ -3586,7 +3345,7 @@
       "feedName": "The42",
       "position": 2,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Leinster comeback wears Munster down at the Aviva",
@@ -3597,7 +3356,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 0,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "McMillan: 'Powers that be' to look at foul play incident",
@@ -3608,7 +3367,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 1,
       "firstSeen": "2026-10-24T20:46:12.889Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ospreys make winning start at St Helen's with convincing Welsh derby victory",
@@ -3630,7 +3389,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 6,
       "firstSeen": "2026-10-24T23:11:04.261Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ex-tennis pro Megan Rose appointed to lead 2031 men’s Rugby World Cup in US",
@@ -3641,7 +3400,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 7,
       "firstSeen": "2026-10-24T23:11:04.261Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "No sour grapes: Venter on vintage form as he lays out Saracens vision",
@@ -3652,7 +3411,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 8,
       "firstSeen": "2026-10-24T23:11:04.261Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Meaty Montpellier leave Bath reeling and offer Prem French lessons",
@@ -3663,7 +3422,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 12,
       "firstSeen": "2026-10-24T23:11:04.261Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "McMillan backs Coombes '100%' after allegation of serious foul play made against Leinster player",
@@ -3674,7 +3433,7 @@
       "feedName": "The42",
       "position": 0,
       "firstSeen": "2026-10-24T23:11:04.261Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Ireland call-ups for uncapped pair McNabney and Benson",
@@ -3685,7 +3444,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 15,
       "firstSeen": "2026-10-24T23:11:04.261Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Connacht's Jansen backed to fill number 8 gap for Ireland",
@@ -3696,7 +3455,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 16,
       "firstSeen": "2026-10-24T23:11:04.261Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Lions player Andrews died from aortic dissection",
@@ -3707,7 +3466,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 17,
       "firstSeen": "2026-10-24T23:11:04.261Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Lancaster thrilled by Connacht's European response",
@@ -3718,7 +3477,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 27,
       "firstSeen": "2026-10-24T23:11:04.261Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "La Rochelle beat Lions amid emotional scenes",
@@ -3729,7 +3488,7 @@
       "feedName": "RTÉ Sport Rugby",
       "position": 28,
       "firstSeen": "2026-10-24T23:11:04.261Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "WXV Global Series: gli Stati Uniti battono l'Italia 54-24 nel secondo test della serie",
@@ -3740,7 +3499,7 @@
       "feedName": "Federazione Italiana Rugby",
       "position": 0,
       "firstSeen": "2026-10-24T23:11:04.261Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "The Welsh back-row trio starring for Leicester",
@@ -3751,7 +3510,7 @@
       "feedName": "BBC Rugby Union",
       "position": 36,
       "firstSeen": "2026-10-25T01:08:25.047Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "It's official: Kwagga's a Bull",
@@ -3762,7 +3521,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 0,
       "firstSeen": "2026-10-25T06:05:22.506Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Yaqeen grateful for Sacha’s voice in his ear",
@@ -3773,7 +3532,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 1,
       "firstSeen": "2026-10-25T06:05:22.506Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Mongalo: Superstar Bester setting world alight",
@@ -3784,7 +3543,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 2,
       "firstSeen": "2026-10-25T06:05:22.506Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Dobbo misses his ‘defensive champion’",
@@ -3795,7 +3554,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 3,
       "firstSeen": "2026-10-25T06:05:22.506Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "JP brings back Sharks' bite",
@@ -3806,7 +3565,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 4,
       "firstSeen": "2026-10-25T06:05:22.506Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Watch: Pollock in mass flare-up",
@@ -3850,7 +3609,7 @@
       "feedName": "Rugby Asia 247",
       "position": 0,
       "firstSeen": "2026-10-25T06:05:22.506Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Fiji Spoil Japan's Centennial Celebrations With Deserved Win Over Brave Blossoms",
@@ -3861,7 +3620,7 @@
       "feedName": "Rugby Asia 247",
       "position": 1,
       "firstSeen": "2026-10-25T06:05:22.506Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "'Very, very good' - Leinster happy with Sheehan's first outing at 8",
@@ -3872,7 +3631,7 @@
       "feedName": "The42",
       "position": 0,
       "firstSeen": "2026-10-25T06:05:22.506Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "How to watch Australia v Fiji: Live stream the Men’s Rugby League World Cup Pool A encounter",
@@ -3883,7 +3642,7 @@
       "feedName": "Rugby World",
       "position": 0,
       "firstSeen": "2026-10-25T06:05:22.506Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Watch New Zealand v Cook Islands: Free streams, broadcasters for Rugby League World Cup clash",
@@ -3894,7 +3653,7 @@
       "feedName": "Rugby World",
       "position": 1,
       "firstSeen": "2026-10-25T06:05:22.506Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "At a Glance: Americas Rugby News Round Up",
@@ -3905,7 +3664,7 @@
       "feedName": "Americas Rugby News",
       "position": 0,
       "firstSeen": "2026-10-25T06:05:22.506Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Bath boss issues ominous injury update on Test duo: 'I'd be amazed if that wasn't really bad news'",
@@ -3916,7 +3675,7 @@
       "feedName": "Planet Rugby",
       "position": 0,
       "firstSeen": "2026-10-25T11:23:13.593Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Double World Cup-winning Springboks star returns home to South Africa after Japan contract 'terminated'",
@@ -3927,7 +3686,7 @@
       "feedName": "Planet Rugby",
       "position": 1,
       "firstSeen": "2026-10-25T11:23:13.593Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Munster have 'clear footage' of alleged testicle grab incident in wake of serious accusation against Leinster star",
@@ -3938,7 +3697,7 @@
       "feedName": "Planet Rugby",
       "position": 2,
       "firstSeen": "2026-10-25T11:23:13.593Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Exclusive: Why Paul Gustard 'fought hard' to sign 'exceptional' former Junior Springboks captain on path to France debut",
@@ -3949,7 +3708,7 @@
       "feedName": "Planet Rugby",
       "position": 3,
       "firstSeen": "2026-10-25T11:23:13.593Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Cheslin Kolbe urges Springboks hopefuls to take up the shorter format of the game: 'It taught me so much'",
@@ -3960,7 +3719,7 @@
       "feedName": "Planet Rugby",
       "position": 4,
       "firstSeen": "2026-10-25T11:23:13.593Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Sir Graham Henry: Why I admire Rassie Erasmus who is prepared to lose",
@@ -3971,7 +3730,7 @@
       "feedName": "Planet Rugby",
       "position": 5,
       "firstSeen": "2026-10-25T11:23:13.593Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Northampton break England’s duck in Champions Cup with victory over Cardiff",
@@ -3982,7 +3741,7 @@
       "feedName": "Guardian Rugby Union",
       "position": 11,
       "firstSeen": "2026-10-25T11:23:13.593Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "'It was the most out-of-the-blue offer. It's La Rochelle, the club's history'",
@@ -3993,7 +3752,7 @@
       "feedName": "The42",
       "position": 0,
       "firstSeen": "2026-10-25T11:23:13.593Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Iconic rugby ground makes historic return as people of Swansea defy Storm Boelo",
@@ -4048,7 +3807,7 @@
       "feedName": "Planet Rugby",
       "position": 0,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Francois Cros pinpoints where the Springboks had an edge over France at the World Cup: 'We were equally as good, if not better'",
@@ -4059,7 +3818,7 @@
       "feedName": "Planet Rugby",
       "position": 1,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Leo Cullen weighs into testicle grab allegation as Leinster boss claims Munster accuser 'changed his mind'",
@@ -4070,7 +3829,7 @@
       "feedName": "Planet Rugby",
       "position": 2,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Munster's Coombes backed after making groin grab allegation",
@@ -4081,7 +3840,7 @@
       "feedName": "BBC Rugby Union",
       "position": 0,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Gloucester have to have belief says Skivington",
@@ -4092,7 +3851,7 @@
       "feedName": "BBC Rugby Union",
       "position": 4,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Rugby Union Weekly",
@@ -4103,7 +3862,7 @@
       "feedName": "BBC Rugby Union",
       "position": 42,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Rugby Union Weekly",
@@ -4114,7 +3873,7 @@
       "feedName": "BBC Rugby Union",
       "position": 44,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "WXV Global Series highlights: Wales 50-19 South Africa",
@@ -4125,7 +3884,7 @@
       "feedName": "BBC Rugby Union",
       "position": 47,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Rhinos stun College Rovers in thrilling final",
@@ -4136,7 +3895,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 0,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Watch: Testicles targeted or accident?",
@@ -4147,7 +3906,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 1,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Butch: Sacha No 1 but Handré still valuable",
@@ -4158,7 +3917,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 2,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Watch: Siyaya on fire for Sharks",
@@ -4169,7 +3928,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 3,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Cros: Boks outworked Les Bleus in 2023",
@@ -4180,7 +3939,7 @@
       "feedName": "SA Rugby Magazine",
       "position": 4,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Megan Rose Appointed as Managing Director By World Rugby To Head Men’s Rugby World Cup 2031",
@@ -4191,7 +3950,7 @@
       "feedName": "Rugby Asia 247",
       "position": 5,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Phnom Penh 10s 2026 – Tournament Guide",
@@ -4202,7 +3961,7 @@
       "feedName": "Rugby Asia 247",
       "position": 6,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "Italrugby, iniziato il raduno a Padova. Convocati Neculai, Nemer e Zanandrea, si allunga la lista degli atleti indisponibili",
@@ -4213,7 +3972,7 @@
       "feedName": "Federazione Italiana Rugby",
       "position": 0,
       "firstSeen": "2026-10-25T16:14:29.874Z",
-      "lastSeen": "2026-10-25T16:14:29.874Z"
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     },
     {
       "title": "13 Welsh rugby matches end in walkovers as 53 games called off in one day",
@@ -4225,6 +3984,171 @@
       "position": 0,
       "firstSeen": "2026-10-25T16:14:29.874Z",
       "lastSeen": "2026-10-25T16:14:29.874Z"
+    },
+    {
+      "title": "Sir Steve Hansen provides fascinating insight into coaching philosophy as his competitiveness 'was a weakness'",
+      "link": "https://www.planetrugby.com/news/sir-steve-hansen-provides-fascinating-insight-into-coaching-philosophy-as-his-competitiveness-was-a-weakness",
+      "desc": "Sir Steve Hansen became one the sport's most revered coaches after guiding the All Blacks to the 2015 Rugby World Cup title.",
+      "date": "Sun, 25 Oct 2026 17:58:55 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 0,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "Harlequins v Saracens: Five takeaways as Marcus Smith magic ends drought after most 'un-Saracens performance in years'",
+      "link": "https://www.planetrugby.com/news/harlequins-v-saracens-five-takeaways-as-marcus-smith-magic-ends-drought-after-most-un-saracens-performance-in-years",
+      "desc": "Following a 33-15 win for Harlequins over Saracens inspired by Marcus Smith, here's our five takeaways from the PREM Rugby fixture.",
+      "date": "Sun, 25 Oct 2026 17:53:07 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 1,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "Harlequins v Saracens: Winners and losers as Marcus Smith 'at the peak of his powers' while England ace 'worth the wait' after injury hell",
+      "link": "https://www.planetrugby.com/news/harlequins-v-saracens-winners-and-losers-as-marcus-smith-at-the-peak-of-his-powers-while-england-ace-worth-the-wait-after-injury-hell",
+      "desc": "Our take on the key winners and losers from Sunday's London derby between Harlequins and Saracens.",
+      "date": "Sun, 25 Oct 2026 17:27:14 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 2,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "'Child in a Saints kit' Henry Pollock mocked by Leicester Tigers after East Midlands derby brawl",
+      "link": "https://www.planetrugby.com/news/child-in-a-saints-kit-henry-pollock-mocked-by-leicester-tigers-after-east-midlands-derby-brawl",
+      "desc": "Henry Pollock's was once again in the thick of the action after getting involved in a scuffle against Leicester Tigers.",
+      "date": "Sun, 25 Oct 2026 17:09:01 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 3,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "England squad: Maro Itoje returns as Steve Borthwick names three uncapped players to begin Nations Championship preparations",
+      "link": "https://www.planetrugby.com/news/england-squad-maro-itoje-returns-as-steve-borthwick-names-three-uncapped-players-to-begin-nations-championship-preparations",
+      "desc": "England have named a strong 36-man group for the upcoming Tests, where they face Australia, Japan and the All Blacks.",
+      "date": "Sun, 25 Oct 2026 17:00:08 +0000",
+      "feedId": "planetrugby",
+      "feedName": "Planet Rugby",
+      "position": 4,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "Smith stars as Quins beat Saracens for first win",
+      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/crjwe6j90p9lo?at_medium=RSS&at_campaign=rss",
+      "desc": "Marcus Smith sets the tone on his 200th Quins appearance as the Prem's bottom club topple London rivals Saracens 33-15.",
+      "date": "Sun, 25 Oct 2026 17:18:38 GMT",
+      "feedId": "bbc",
+      "feedName": "BBC Rugby Union",
+      "position": 0,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "Marchant recalled by Borthwick for England training camp",
+      "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmq5nyywq8n1o?at_medium=RSS&at_campaign=rss",
+      "desc": "Joe Marchant is recalled to the England set-up after being included in a 36-player training camp for this autumn's Nations Championship matches.",
+      "date": "Sun, 25 Oct 2026 18:35:13 GMT",
+      "feedId": "bbc",
+      "feedName": "BBC Rugby Union",
+      "position": 1,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "Joe Marchant recalled to England training squad for Nations Championship",
+      "link": "https://www.theguardian.com/sport/2026/oct/25/joe-marchant-recalled-to-england-training-squad-for-nations-championship",
+      "desc": "<ul><li><p>Sale centre returns after ending his two-year spell in France</p></li><li><p>Gloucester’s Will Joseph also in Steve Borthwick’s 36-man squad</p></li></ul><p>Joe Marchant has been recalled to England’s training squad for next month’s Nations Championship as Steve Borthwick faces injury disruption to his midfield options.</p><p>Marchant receives his first England call-up since the 2023 World Cup after his two-year spell at Stade Français ended with his return to the Gallagher Prem with Sale this season, making him available for selection once again.</p> <a href=\"https://www.theguardian.com/sport/2026/oct/25/joe-marchant-recalled-to-england-training-squad-for-nations-championship\">Continue reading...</a>",
+      "date": "Sun, 25 Oct 2026 17:57:43 GMT",
+      "feedId": "guardian",
+      "feedName": "Guardian Rugby Union",
+      "position": 0,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "Marcus Smith produces timely reminder of his class as Harlequins sink Saracens",
+      "link": "https://www.theguardian.com/sport/2026/oct/25/harlequins-saracens-prem-rugby-union-match-report",
+      "desc": "<ul><li><p>Harlequins 33-15 Saracens</p></li><li><p>England fly-half marks 200th appearance in style</p></li></ul><p>Marcus Smith celebrated his 200th Harlequins match in magnificent style. Perhaps there is a danger, at times, of taking his immense talent for granted, but the 27-year-old was simply unstoppable here. A powerful visiting Saracens side barely got a look-in, with Smith giving a reminder of his prodigious ability on the day Steve Borthwick names his England squad for a packed November schedule.</p><p>Smith’s sensational running, distribution and tactical kicking masterfully controlled Quins’ attack for a badly needed success. They were nought from three in the league, and this was a vital result for more important reasons than Smith’s personal prestige on a milestone occasion. Smith is marginally the youngest Harlequin to make it to 200 matches: a couple of months younger than Mike Brown.</p> <a href=\"https://www.theguardian.com/sport/2026/oct/25/harlequins-saracens-prem-rugby-union-match-report\">Continue reading...</a>",
+      "date": "Sun, 25 Oct 2026 17:30:59 GMT",
+      "feedId": "guardian",
+      "feedName": "Guardian Rugby Union",
+      "position": 1,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "WXV Global Series 2026 Preview – Japan vs Wales Test #1",
+      "link": "https://www.rugbyasia247.com/wxv-global-series-2026-preview-japan-vs-wales-test-1/",
+      "desc": "The Sakura XV hosts Wales in the first of two Tests as part of the WXV Global Series 2026, also the Lipovitan D Challenge Cup 2026 double-header, as the Brave Blossoms take on Fiji in the JRFU 100th Anniversary Match [&#8230;]\nThe post WXV Global Series 2026 Preview – Japan vs Wales Test #1 appeared first on RugbyAsia247.",
+      "date": "Thu, 22 Oct 2026 09:47:45 +0000",
+      "feedId": "rugbyasia247",
+      "feedName": "Rugby Asia 247",
+      "position": 3,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "JRFU 100th Anniversary Match – Japan Brave Blossoms vs Fiji Preview",
+      "link": "https://www.rugbyasia247.com/jrfu-100th-anniversary-match-japan-brave-blossoms-vs-fiji-preview/",
+      "desc": "A little over a month after these sides squared off in the Pacific Nations Cup 2026 final, which the Japanese won, the Brave Blossoms and Fiji play the JRFU 100th Anniversary Match at Chichibunomiya Rugby Stadium (Tokyo) on Saturday, October [&#8230;]\nThe post JRFU 100th Anniversary Match – Japan Brave Blossoms vs Fiji Preview appeared first on RugbyAsia247.",
+      "date": "Thu, 22 Oct 2026 08:04:27 +0000",
+      "feedId": "rugbyasia247",
+      "feedName": "Rugby Asia 247",
+      "position": 4,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "Bob Tuohy stars as Castlebar Mitchels end nine-year wait for Mayo title",
+      "link": "https://www.the42.ie/castlebar-mitchels-mayo-senior-title-7205020-Oct2026/",
+      "desc": "The Mitchels defeated underdogs Garrymore and now enter the Connacht championship.",
+      "date": "Sun, 25 Oct 2026 17:53:17 +0000",
+      "feedId": "the42",
+      "feedName": "The42",
+      "position": 0,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "Carbery starts for Leinster while Sheehan in back row",
+      "link": "https://www.rte.ie/sport/rugby/2026/1022/1596464-carbery-starts-while-sheehan-named-in-back-row/",
+      "desc": "Joey Carbery will make his first start for Leinster in eight years, while captain Dan Sheehan has been named at number eight for their first interpro of the season at home to Munster at Aviva Stadium on Saturday evening.",
+      "date": "Thu, 22 Oct 2026 14:33:07 +0100",
+      "feedId": "rte",
+      "feedName": "RTÉ Sport Rugby",
+      "position": 12,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "Jones hits 50 caps as Ireland make two changes for SA",
+      "link": "https://www.rte.ie/sport/rugby/2026/1022/1596436-jones-hits-50-caps-as-ireland-make-two-changes-for-sa/",
+      "desc": "Neve Jones will win her 50th Ireland cap on Saturday, with head coach Scott Bemand making just two changes for his side's first WXV Global Series Test against South Africa.",
+      "date": "Thu, 22 Oct 2026 12:22:18 +0100",
+      "feedId": "rte",
+      "feedName": "RTÉ Sport Rugby",
+      "position": 14,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
+    },
+    {
+      "title": "Serie A Elite Maschile, II giornata: Rugby Biella e Petrarca pareggiano 26-26",
+      "link": "https://www.federugby.it/serie-a-elite-maschile-ii-giornata-rugby-biella-e-petrarca-pareggiano-26-26/",
+      "desc": "Roma – Il Biella Rugby Club conferma l’avvio sprint e impatta contro il Petrarca, squadra finalista della scorsa stagione. I piemontesi, con il&#160;26 pari&#160;di oggi, si assestano al secondo posto in classifica dietro al Rovigo e rimangono per il momento imbattuti. Gara in equilibrio fino all’ora di gioco, quando il Petrarca allunga fino al&#160;12-26; da [&#8230;]\nThe post Serie A Elite Maschile, II giornata: Rugby Biella e Petrarca pareggiano 26-26 appeared first on Federazione Italiana Rugby.",
+      "date": "Sun, 25 Oct 2026 17:03:00 +0000",
+      "feedId": "federugby",
+      "feedName": "Federazione Italiana Rugby",
+      "position": 0,
+      "firstSeen": "2026-10-25T19:03:38.679Z",
+      "lastSeen": "2026-10-25T19:03:38.679Z"
     }
   ]
 }
