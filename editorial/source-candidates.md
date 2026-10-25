@@ -14,6 +14,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
 - **Rugby365** (rugby365.com) — proposed 2026-10-25 for France, Japan, Italy: An English-language men's rugby news site that regularly covers Tests and squads, which could fill the France and Japan gaps seen today.
   - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+- **RNZ Sport** (rnz.co.nz) — proposed 2026-10-26 for New Zealand: New Zealand's shortlist held only an old injury list and ex-player human-interest pieces, and the spine has no New Zealand outlet.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 

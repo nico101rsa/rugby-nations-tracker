@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-25T20:01:11.537Z",
+  "updatedAt": "2026-10-25T22:09:32.491Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 213,
+  "count": 215,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -4488,12 +4488,17 @@
     },
     {
       "id": "andre-esterhuizen-s-injury-165sp83",
-      "subject": "Andre Esterhuizen's injury status following his early departure in the Sharks match",
+      "subject": "Andre Esterhuizen's injury severity following his early exit for the Sharks against Cardiff",
       "teams": [
         467
       ],
       "resolution": "until medical results reveal the severity of Andre Esterhuizen's injury and expected return date",
       "sources": [
+        {
+          "title": "JP: Sharks warriors found a way",
+          "link": "https://www.sarugbymag.co.za/jp-sharks-warriors-found-way/",
+          "feedName": "SA Rugby Magazine"
+        },
         {
           "title": "Cardiff v Sharks: Five takeaways as visitors overcome early loss of Springboks star to clinch win while Wales ace 'empties the tank' for hosts",
           "link": "https://www.planetrugby.com/news/cardiff-v-sharks-five-takeaways-as-visitors-overcome-early-loss-of-springboks-star-to-clinch-win-while-wales-ace-empties-the-tank-for-hosts",
@@ -4506,12 +4511,12 @@
         }
       ],
       "firstSeen": "2026-10-24",
-      "lastSeen": "2026-10-25",
+      "lastSeen": "2026-10-26",
       "uses": 0
     },
     {
       "id": "taulupe-faletau-s-fresh-1pgzbva",
-      "subject": "Taulupe Faletau's fresh injury blow and return timeline for Wales",
+      "subject": "Taulupe Faletau's injury setback and timeline for return to action for Cardiff and Wales",
       "teams": [
         391
       ],
@@ -4524,7 +4529,7 @@
         }
       ],
       "firstSeen": "2026-10-24",
-      "lastSeen": "2026-10-24",
+      "lastSeen": "2026-10-26",
       "uses": 0
     },
     {
@@ -4672,7 +4677,8 @@
       ],
       "firstSeen": "2026-10-25",
       "lastSeen": "2026-10-26",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-26"
     },
     {
       "id": "taulupe-faletau-s-injury-18dgvv9",
@@ -4722,7 +4728,7 @@
     },
     {
       "id": "jeremy-ward-s-eligibility-1doo0oh",
-      "subject": "Jeremy Ward's eligibility request to represent France",
+      "subject": "World Rugby's decision on Jeremy Ward's eligibility to represent France",
       "teams": [
         387,
         467
@@ -4838,6 +4844,52 @@
           "title": "Ex-Scotland and Harlequins player Visser to go on trial charged with rape",
           "link": "https://www.bbc.co.uk/news/articles/cxvgd7z3y89po?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-26",
+      "lastSeen": "2026-10-26",
+      "uses": 0
+    },
+    {
+      "id": "handr-pollard-s-fitness-129qvdz",
+      "subject": "Handré Pollard's fitness status following his injury in the Bulls' victory over Ulster",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Bulls or South Africa confirm the severity of Handré Pollard's injury",
+      "sources": [
+        {
+          "title": "Pollard among Bulls’ walking wounded",
+          "link": "https://www.sarugbymag.co.za/pollard-among-bulls-walking-wounded/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-26",
+      "lastSeen": "2026-10-26",
+      "uses": 0
+    },
+    {
+      "id": "urc-disciplinary-investigation-into-1ot8x0p",
+      "subject": "URC disciplinary investigation into the alleged groin-grab on Gavin Coombes during Leinster v Munster",
+      "teams": [
+        388
+      ],
+      "resolution": "until URC disciplinary authorities complete their review and publish an official ruling",
+      "sources": [
+        {
+          "title": "McMillan: 'Powers that be' to look at foul play incident",
+          "link": "https://www.rte.ie/sport/rugby/2026/1024/1596755-mcmillan-powers-that-be-to-look-at-foul-play-incident/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
+          "title": "Munster have 'clear footage' of alleged testicle grab incident in wake of serious accusation against Leinster star",
+          "link": "https://www.planetrugby.com/news/munster-have-clear-footage-of-alleged-testicle-grab-incident-in-wake-of-serious-accusation-against-leinster-star",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Leo Cullen weighs into testicle grab allegation as Leinster boss claims Munster accuser 'changed his mind'",
+          "link": "https://www.planetrugby.com/news/leo-cullen-weighs-into-testicle-grab-allegation-as-leinster-boss-claims-munster-accuser-changed-his-mind",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-10-26",
