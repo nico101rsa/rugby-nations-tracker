@@ -18,8 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- Argentina — same lead story since Fri 23 Oct, first run as "Argentina's biggest win in their last 11 games: 52-28 over Wales" — the novelty gate did NOT flag the latest edition
-- New Zealand — same lead story since Sat 24 Oct, first run as "Shannon Frizell, Tyrel Lomax and Samisoni Taukei’aho ruled out of Europe tour" — the novelty gate flagged the latest edition and published anyway
+- Ireland — same lead story since Sun 25 Oct, first run as "Andy Farrell names 36-man Ireland squad for November Test window" — the novelty gate flagged the latest edition and published anyway
 
 **Model ladder**
 
@@ -31,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Mon 26 Oct 2026, 11:19 AEDT — repeat leads: Ireland
 - Sun 25 Oct 2026, 11:19 AEDT — repeat leads: Argentina, New Zealand
 - Thu 22 Oct 2026, 11:40 AEDT — all clear
 - Wed 21 Oct 2026, 11:36 AEDT — repeat leads: England
