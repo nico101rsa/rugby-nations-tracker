@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-27T20:01:15.643Z",
+  "updatedAt": "2026-10-27T23:19:05.552Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 215,
+  "count": 216,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -533,36 +533,6 @@
       "firstSeen": "2026-10-07",
       "lastSeen": "2026-10-07",
       "uses": 0
-    },
-    {
-      "id": "jake-white-s-potential-75efzj",
-      "subject": "Jake White's appointment of assistant coaches for Fiji following his head coach arrival",
-      "teams": [
-        467,
-        28
-      ],
-      "resolution": "until Jake White either accepts a new international coaching role or opts to remain with his current club",
-      "sources": [
-        {
-          "title": "Jake turns to trusted Bok ally",
-          "link": "https://www.sarugbymag.co.za/jake-eyes-trusted-bok-ally/",
-          "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "World Cup-winning coach White takes reins at Fiji",
-          "link": "https://www.rte.ie/sport/rugby/2026/1013/1595228-world-cup-winning-coach-white-takes-reins-in-fiji/",
-          "feedName": "RTÉ Sport Rugby"
-        },
-        {
-          "title": "Jake’s Fiji ‘going to surprise people’",
-          "link": "https://www.sarugbymag.co.za/jakes-fiji-going-surprise-people/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-10-07",
-      "lastSeen": "2026-10-19",
-      "uses": 2,
-      "lastUsed": "2026-10-25"
     },
     {
       "id": "richie-mo-unga-s-3vdndj",
@@ -4438,13 +4408,18 @@
       "resolution": "until Ireland clarify Sam Prendergast's fitness status ahead of the Argentina Test",
       "sources": [
         {
+          "title": "Sexton 'very hopeful' Prendergast can shake off injury",
+          "link": "https://www.rte.ie/sport/rugby/2026/1027/1597008-sexton-very-hopeful-prendergast-can-shake-off-injury/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
           "title": "Wrist injury makes Prendergast a doubt for Ireland",
           "link": "https://www.rte.ie/sport/rugby/2026/1022/1596488-wrist-injury-makes-prendergast-a-doubt-for-ireland/",
           "feedName": "RTÉ Sport Rugby"
         }
       ],
       "firstSeen": "2026-10-25",
-      "lastSeen": "2026-10-27",
+      "lastSeen": "2026-10-28",
       "uses": 1,
       "lastUsed": "2026-10-26"
     },
@@ -4516,7 +4491,7 @@
       ],
       "firstSeen": "2026-10-26",
       "lastSeen": "2026-10-28",
-      "uses": 1,
+      "uses": 2,
       "lastUsed": "2026-10-28"
     },
     {
@@ -4705,7 +4680,7 @@
     },
     {
       "id": "fin-smith-s-fitness-12hw9t7",
-      "subject": "Fin Smith's fitness ahead of England's Nations Championship fixture against Australia",
+      "subject": "Fin Smith's injury status and availability for England's Nations Championship match against Australia",
       "teams": [
         386
       ],
@@ -4718,7 +4693,7 @@
         }
       ],
       "firstSeen": "2026-10-27",
-      "lastSeen": "2026-10-27",
+      "lastSeen": "2026-10-28",
       "uses": 0
     },
     {
@@ -4758,18 +4733,18 @@
       "resolution": "until the disciplinary panel issues its verdict on Tadhg Furlong's citing",
       "sources": [
         {
+          "title": "Ireland prop Furlong cited over alleged groin grab",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwg5jn7845jdo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Furlong faces ban for testicles grab",
+          "link": "https://www.sarugbymag.co.za/furlong-cited-for-testicles-grab/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
           "title": "Tadhg Furlong cited after testicle grab allegation as Nations Championship participation in doubt",
           "link": "https://www.planetrugby.com/news/tadhg-furlong-cited-after-testicle-grab-allegation-as-nations-championship-participation-in-doubt",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "McMillan backs Coombes '100%' after allegation of serious foul play made against Leinster player",
-          "link": "https://www.the42.ie/gavin-coombes-munster-leinster-7204532-Oct2026/",
-          "feedName": "The42"
-        },
-        {
-          "title": "Munster have 'clear footage' of alleged testicle grab incident in wake of serious accusation against Leinster star",
-          "link": "https://www.planetrugby.com/news/munster-have-clear-footage-of-alleged-testicle-grab-incident-in-wake-of-serious-accusation-against-leinster-star",
           "feedName": "Planet Rugby"
         }
       ],
@@ -4861,7 +4836,7 @@
     },
     {
       "id": "garry-ringrose-s-hamstring-82nvbn",
-      "subject": "Garry Ringrose's hamstring injury and Ireland's midfield options for the Nations Championship",
+      "subject": "Garry Ringrose's hamstring injury and who fills Ireland's vacant midfield spot for the Nations Championship",
       "teams": [
         388
       ],
@@ -4917,16 +4892,62 @@
     },
     {
       "id": "deon-fourie-s-hamstring-1u88q61",
-      "subject": "Deon Fourie's hamstring injury and availability for South Africa's November tour",
+      "subject": "Deon Fourie's hamstring injury and his availability for South Africa's November tour",
       "teams": [
         467
       ],
       "resolution": "until South Africa confirm whether Deon Fourie is included in their travelling squad",
       "sources": [
         {
+          "title": "Springboks: Rassie Erasmus sweats over key duo as injuries strike ahead of Nations Championship",
+          "link": "https://www.planetrugby.com/news/springboks-rassie-erasmus-sweats-over-key-duo-as-injuries-strike-ahead-of-nations-championship",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Brannas in doubt for Bok tour",
           "link": "https://www.sarugbymag.co.za/brannas-doubt-bok-tour/",
           "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-10-28",
+      "uses": 0
+    },
+    {
+      "id": "handr-pollard-s-fitness-b25mpd",
+      "subject": "Handré Pollard's fitness concern following injury troubles ahead of South Africa's international fixtures",
+      "teams": [
+        467
+      ],
+      "resolution": "until the Bulls and South Africa provide official medical clearance for Handré Pollard",
+      "sources": [
+        {
+          "title": "Handré in doubt, star back under the knife",
+          "link": "https://www.sarugbymag.co.za/handre-in-doubt-star-back-under-the-knife/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-28",
+      "lastSeen": "2026-10-28",
+      "uses": 0
+    },
+    {
+      "id": "wru-chair-lyndon-faulkner-ek6nmv",
+      "subject": "WRU chair Lyndon Faulkner's review of Welsh regional finances and potential team cuts",
+      "teams": [
+        391
+      ],
+      "resolution": "until Lyndon Faulkner completes the review and announces the WRU's decision on regional cuts",
+      "sources": [
+        {
+          "title": "'I'm no yes-man' - new WRU chair to review region cut",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cr4g13d0lxnjo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "I met new WRU chief Lyndon Faulkner and three things became instantly clear",
+          "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/met-new-wru-chief-lyndon-34819895",
+          "feedName": "WalesOnline"
         }
       ],
       "firstSeen": "2026-10-28",
