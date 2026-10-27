@@ -1,6 +1,6 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-10-27._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-10-28._
 
 ## Ready — carried stories about the team they were proposed for
 
@@ -8,12 +8,10 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 ## Being probed
 
-- **Rugby Australia (official news)** (rugby.com.au) — proposed 2026-10-22 for Australia: Union news on squads, fixtures and results would supply Wallabies stories the current spine misses.
-  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **Rugby365** (rugby365.com) — proposed 2026-10-25 for France, Japan, Italy: An English-language men's rugby news site that regularly covers Tests and squads, which could fill the France and Japan gaps seen today.
-  - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
+  - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
 - **RNZ Sport** (rnz.co.nz) — proposed 2026-10-26 for New Zealand: New Zealand's shortlist held only an old injury list and ex-player human-interest pieces, and the spine has no New Zealand outlet.
-  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+  - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
@@ -28,6 +26,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 - **Sky Sports Rugby Union** (skysports.com) — proposed 2026-10-19 for Italy, Scotland, Wales: Italy, Scotland and Wales had nothing above the salience bar, and Sky's rugby section carries squad and injury news for the Six Nations sides.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **The Fiji Times** (fijitimes.com.fj) — proposed 2026-10-21 for Fiji: Fiji's shortlist was all background items, and a national daily's rugby desk would add fresh men's coverage of the Jake White era beyond FBC News.
+  - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
+- **Rugby Australia (official news)** (rugby.com.au) — proposed 2026-10-22 for Australia: Union news on squads, fixtures and results would supply Wallabies stories the current spine misses.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 
 ## Adopted
