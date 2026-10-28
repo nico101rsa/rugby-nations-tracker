@@ -1,13 +1,20 @@
 {
  "about": "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: routine findings land here instead of notifying anyone, and the Claude weekly review reads it. state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); `page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
- "state": "ok",
+ "state": "attention",
  "paging": [],
  "page": null,
  "overdue": [],
  "unknown": [],
  "heals": {},
  "signals": {
-  "repeatLeads": [],
+  "repeatLeads": [
+   {
+    "team": "France",
+    "since": "2026-10-27",
+    "heading": "Jeremy Ward named in France squad but will not play in November",
+    "flagged": false
+   }
+  ],
   "ladderLastRung": null,
   "squadGaps": []
  },
@@ -91,6 +98,10 @@
   {
    "at": "2026-10-27T01:27:39.027Z",
    "summary": "all clear"
+  },
+  {
+   "at": "2026-10-28T01:18:09.520Z",
+   "summary": "repeat leads: France"
   }
  ]
 }
