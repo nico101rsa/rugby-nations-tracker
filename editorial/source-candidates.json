@@ -1418,6 +1418,10 @@
         {
           "date": "2026-10-29",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-30",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1448,8 +1452,55 @@
         {
           "date": "2026-10-29",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-30",
+          "error": "no feed found (8 tried)"
         }
       ]
+    },
+    {
+      "outlet": "Kyodo News (English)",
+      "host": "english.kyodonews.net",
+      "homepage": "https://english.kyodonews.net",
+      "teams": [
+        "Japan"
+      ],
+      "why": "Japan's pack held no men's XV news today, and Kyodo's English sports desk covers Brave Blossoms squads and results.",
+      "proposed": "2026-10-30",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-10-30",
+          "error": "no feed found (8 tried)"
+        }
+      ]
+    },
+    {
+      "outlet": "Japan Today",
+      "host": "japantoday.com",
+      "homepage": "https://japantoday.com",
+      "teams": [
+        "Japan"
+      ],
+      "why": "An English-language Japanese news site with a sports section that may carry Japan men's rugby team news missing from today's pack.",
+      "proposed": "2026-10-30",
+      "status": "ready",
+      "feedUrl": "https://japantoday.com/feed",
+      "probes": [
+        {
+          "date": "2026-10-30",
+          "feedUrl": "https://japantoday.com/feed",
+          "items": 30,
+          "hits": {
+            "England": 1,
+            "Italy": 1,
+            "Japan": 5
+          }
+        }
+      ],
+      "decided": "2026-10-30"
     }
   ]
 }
