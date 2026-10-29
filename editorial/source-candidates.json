@@ -1501,6 +1501,30 @@
         }
       ],
       "decided": "2026-10-30"
+    },
+    {
+      "outlet": "Buenos Aires Times",
+      "host": "batimes.com.ar",
+      "homepage": "https://www.batimes.com.ar",
+      "teams": [
+        "Argentina"
+      ],
+      "why": "Argentina's pack held only a schedule item as NEW, with Pumas squad news all stale; an English-language Argentine outlet might add current Pumas stories.",
+      "proposed": "2026-10-30",
+      "status": "ready",
+      "feedUrl": "https://www.batimes.com.ar/feed",
+      "probes": [
+        {
+          "date": "2026-10-30",
+          "feedUrl": "https://www.batimes.com.ar/feed",
+          "items": 100,
+          "hits": {
+            "France": 1,
+            "Argentina": 40
+          }
+        }
+      ],
+      "decided": "2026-10-30"
     }
   ]
 }

@@ -6,6 +6,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 - **Japan Today** (japantoday.com) — proposed 2026-10-30 for Japan: An English-language Japanese news site with a sports section that may carry Japan men's rugby team news missing from today's pack.
   - feed: https://japantoday.com/feed; probes: 1; stories about tracked teams: Japan 5, England 1, Italy 1
+- **Buenos Aires Times** (batimes.com.ar) — proposed 2026-10-30 for Argentina: Argentina's pack held only a schedule item as NEW, with Pumas squad news all stale; an English-language Argentine outlet might add current Pumas stories.
+  - feed: https://www.batimes.com.ar/feed; probes: 1; stories about tracked teams: Argentina 40, France 1
 
 ## Being probed
 
