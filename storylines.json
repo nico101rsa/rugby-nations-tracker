@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "updatedAt": "2026-10-30T20:07:40.012Z",
+ "updatedAt": "2026-10-30T23:27:37.929Z",
  "stories": {
   "espn-603993": {
    "home": "IRE",
@@ -33,24 +33,19 @@
    "home": "ITA",
    "away": "RSA",
    "kickoff": "2026-11-07T11:40:00.000Z",
-   "headline": "Italy's last home game ended with England beaten",
+   "headline": "Australia put 42 on South Africa and 57 on Italy",
    "beats": [
-    "Since that 23–18 win over England in March, Italy have played four Tests, all away, and lost the lot. In July they conceded 47 to New Zealand and 57 to Australia a week apart.",
-    "South Africa lead the Nations Championship on points difference alone, level with New Zealand on 15. Their last outing was a 42–38 loss in Australia, and even a draw in Turin would drop them to second in the world, behind New Zealand.",
-    "Gonzalo Quesada calls Italy's position a \"Situazione difficile\". The cure on offer is a run of home Tests, starting here and then Argentina in Genoa a week later.",
-    "The last meeting, on 15 November 2025, was also in Italy, and South Africa won 32–14. Given how the year has gone, Italy would take an 18-point defeat as a decent afternoon."
+    "South Africa's last Test was a 38–42 defeat away to Australia in September, and they scored six tries in it. Italy went to Australia in July, lost 10–57, and have not played since.",
+    "South Africa top the Nations Championship on points difference alone, level with New Zealand on 15. Italy are 11th without a point, having conceded 47 and 57 in consecutive weeks. A side chasing margin before a trip to France on 13 November could not draw a kinder profile.",
+    "The last meeting, on 15 November 2025, finished Italy 14–32 South Africa in Italy. Win this time and Italy hand New Zealand first place in the world rankings, which would be an awkward thing to explain on the way to Paris.",
+    "Italy's last win was 23–18 over England in March. Since then Australia have shown both defences can leak 40. Only one of them is top of the table."
    ],
-   "sources": [
-    {
-     "title": "Nations Championship, Quesada alla vigilia delle gare di novembre: \"Situazione difficile, ma che piacere ritrovarsi con staff e atleti, misureremo il valore del gruppo\"",
-     "url": "https://www.federugby.it/nations-championship-quesada-alla-vigilia-delle-gare-di-novembre-situazione-difficile-ma-che-piacere-ritrovarsi-con-staff-e-atleti-misureremo-il-valore-del-gruppo/"
-    }
-   ],
-   "generatedAt": "2026-10-29T20:06:32.466Z",
+   "sources": [],
+   "generatedAt": "2026-10-30T23:27:37.929Z",
    "model": "claude-opus-5-5",
    "voice": "dry2",
    "factsHash": "5e40eb924898dedc",
-   "packHash": "210b952d5712615b"
+   "packHash": "c1e1def46155d2ee"
   },
   "espn-603995": {
    "home": "SCO",
@@ -151,6 +146,37 @@
    "voice": "dry2",
    "factsHash": "bae9bf8ee951cd09",
    "packHash": "12ba645337ad574e"
+  },
+  "espn-603999": {
+   "home": "FRA",
+   "away": "RSA",
+   "kickoff": "2026-11-13T20:10:00.000Z",
+   "headline": "Beat South Africa and France hand New Zealand top spot",
+   "beats": [
+    "South Africa have been top of the world rankings since 31 August, but they hold it by one result. A France win in Saint-Denis drops them to second, behind New Zealand, while France climb only to third.",
+    "The last time France hosted them, on 8 November 2025, South Africa won 32–17. Their most recent Test was a 42–38 loss to Australia. France have scored 42 in each of their last two, and conceded 50 to Scotland in March. Nobody should expect a low-scoring game.",
+    "Rassie Erasmus has built his November squad around pace. Nick Mallett reckons the no-frills bolter Yaqeen Ahmed offers something Sacha Feinberg-Mngomezulu does not.",
+    "In New Zealand, Sir John Kirwan is still working out how to combat South Africa up front. The quickest answer this month may be to let France do it."
+   ],
+   "sources": [
+    {
+     "title": "Sir John Kirwan: How Dave Rennie's 'big' selection can help the All Blacks 'combat' the Springboks",
+     "url": "https://www.planetrugby.com/news/sir-john-kirwan-how-dave-rennies-big-selection-can-help-the-all-blacks-combat-the-springboks"
+    },
+    {
+     "title": "Nick Mallett: Where 'no-frills' Springboks bolter is probably better than Sacha Feinberg-Mngomezulu",
+     "url": "https://www.planetrugby.com/news/nick-mallett-where-no-frills-springboks-bolter-is-probably-better-than-sacha-feinberg-mngomezulu"
+    },
+    {
+     "title": "Springboks squad: Five takeaways as Rassie Erasmus serves his 'need for speed' but doesn't address 'glaring problem'",
+     "url": "https://www.planetrugby.com/news/springboks-five-takeaways-from-rassie-erasmus-nations-championship-squad-2026"
+    }
+   ],
+   "generatedAt": "2026-10-30T23:27:37.929Z",
+   "model": "claude-opus-5-5",
+   "voice": "dry2",
+   "factsHash": "d1a96bbbe84884ad",
+   "packHash": "8fd83386aafd70ce"
   }
  }
 }

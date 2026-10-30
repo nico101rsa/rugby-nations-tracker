@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-30T20:00:23.494Z",
+  "updatedAt": "2026-10-30T23:21:18.083Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 207,
+  "count": 211,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -1837,7 +1837,8 @@
       ],
       "firstSeen": "2026-10-16",
       "lastSeen": "2026-10-16",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-10-31"
     },
     {
       "id": "richie-mo-unga-s-1hnt5w1",
@@ -4407,7 +4408,7 @@
         }
       ],
       "firstSeen": "2026-10-29",
-      "lastSeen": "2026-10-30",
+      "lastSeen": "2026-10-31",
       "uses": 0
     },
     {
@@ -4814,6 +4815,98 @@
           "title": "Marx confirms SA return",
           "link": "https://www.sarugbymag.co.za/marx-confirms-sa-return/",
           "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-10-31",
+      "lastSeen": "2026-10-31",
+      "uses": 0
+    },
+    {
+      "id": "garry-ringrose-hamstring-injury-kzp6dj",
+      "subject": "Garry Ringrose hamstring injury and status for Ireland's autumn campaign",
+      "teams": [
+        388
+      ],
+      "resolution": "until Ireland officially confirm Garry Ringrose's availability for the Nations Championship",
+      "sources": [
+        {
+          "title": "Ringrose set to miss November Tests with hamstring issue",
+          "link": "https://www.rte.ie/sport/rugby/2026/1027/1596941-ringrose-set-to-miss-november-tests-with-hamstring-issue/",
+          "feedName": "RTÉ Sport Rugby"
+        }
+      ],
+      "firstSeen": "2026-10-31",
+      "lastSeen": "2026-10-31",
+      "uses": 0
+    },
+    {
+      "id": "benhard-janse-van-rensburg-r3febi",
+      "subject": "Benhard Janse van Rensburg head injury recovery and return timeline",
+      "teams": [
+        386
+      ],
+      "resolution": "until Benhard Janse van Rensburg is medically cleared to return to play",
+      "sources": [
+        {
+          "title": "Benhard sidelined indefinitely",
+          "link": "https://www.sarugbymag.co.za/benhard-sidelined-indefinitely/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Janse van Rensburg set to return in December",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c84g1lxg1n4wo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "England fret over Fin Smith’s fitness for looming Australia match",
+          "link": "https://www.theguardian.com/sport/2026/oct/26/england-fin-smith-fitness-australia-nations-championship-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-31",
+      "lastSeen": "2026-10-31",
+      "uses": 0
+    },
+    {
+      "id": "ellie-kildunne-losing-her-fs3k4a",
+      "subject": "Ellie Kildunne losing her starting place in the England Red Roses lineup",
+      "teams": [
+        386
+      ],
+      "resolution": "until John Mitchell restores Ellie Kildunne to the England starting XV",
+      "sources": [
+        {
+          "title": "Red Roses drop Kildunne to bench for Canada rematch as Mitchell seeks England reset",
+          "link": "https://www.theguardian.com/sport/2026/oct/21/red-roses-drop-ellie-kildunne-bench-canada-rematch-as-mitchell-seeks-england-reset",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Red Roses make six changes but Kildunne on bench again",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq1m4kn84gk2o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "From her own Barbie doll to bench - how Ellie Kildunne slipped from Red Roses' XV",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmy832jv00p1o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-10-31",
+      "lastSeen": "2026-10-31",
+      "uses": 0
+    },
+    {
+      "id": "kieran-hardy-injury-recovery-1g8dj93",
+      "subject": "Kieran Hardy injury recovery and fitness race for the Rugby World Cup",
+      "teams": [
+        391
+      ],
+      "resolution": "until Kieran Hardy returns to match fitness for Wales",
+      "sources": [
+        {
+          "title": "Wales scrum-half Hardy faces World Cup fitness race",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c65ynw5184pjo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-10-31",
