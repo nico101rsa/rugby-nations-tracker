@@ -1,22 +1,20 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-10-30._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-10-31._
 
 ## Ready — carried stories about the team they were proposed for
 
 - **Japan Today** (japantoday.com) — proposed 2026-10-30 for Japan: An English-language Japanese news site with a sports section that may carry Japan men's rugby team news missing from today's pack.
-  - feed: https://japantoday.com/feed; probes: 1; stories about tracked teams: Japan 5, England 1, Italy 1
+  - feed: https://japantoday.com/feed; probes: 2; stories about tracked teams: Japan 7, France 2, England 1, Italy 1
 - **Buenos Aires Times** (batimes.com.ar) — proposed 2026-10-30 for Argentina: Argentina's pack held only a schedule item as NEW, with Pumas squad news all stale; an English-language Argentine outlet might add current Pumas stories.
-  - feed: https://www.batimes.com.ar/feed; probes: 1; stories about tracked teams: Argentina 40, France 1
+  - feed: https://www.batimes.com.ar/feed; probes: 2; stories about tracked teams: Argentina 78, France 2
 
 ## Being probed
 
-- **Rugby365** (rugby365.com) — proposed 2026-10-25 for France, Japan, Italy: An English-language men's rugby news site that regularly covers Tests and squads, which could fill the France and Japan gaps seen today.
-  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **RNZ Sport** (rnz.co.nz) — proposed 2026-10-26 for New Zealand: New Zealand's shortlist held only an old injury list and ex-player human-interest pieces, and the spine has no New Zealand outlet.
-  - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
+  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **Kyodo News (English)** (english.kyodonews.net) — proposed 2026-10-30 for Japan: Japan's pack held no men's XV news today, and Kyodo's English sports desk covers Brave Blossoms squads and results.
-  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
@@ -33,6 +31,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 - **The Fiji Times** (fijitimes.com.fj) — proposed 2026-10-21 for Fiji: Fiji's shortlist was all background items, and a national daily's rugby desk would add fresh men's coverage of the Jake White era beyond FBC News.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **Rugby Australia (official news)** (rugby.com.au) — proposed 2026-10-22 for Australia: Union news on squads, fixtures and results would supply Wallabies stories the current spine misses.
+  - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
+- **Rugby365** (rugby365.com) — proposed 2026-10-25 for France, Japan, Italy: An English-language men's rugby news site that regularly covers Tests and squads, which could fill the France and Japan gaps seen today.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 
 ## Adopted

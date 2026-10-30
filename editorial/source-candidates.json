@@ -1396,7 +1396,7 @@
       ],
       "why": "An English-language men's rugby news site that regularly covers Tests and squads, which could fill the France and Japan gaps seen today.",
       "proposed": "2026-10-25",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1422,8 +1422,13 @@
         {
           "date": "2026-10-30",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-31",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-10-31"
     },
     {
       "outlet": "RNZ Sport",
@@ -1456,6 +1461,10 @@
         {
           "date": "2026-10-30",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-31",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1473,6 +1482,10 @@
       "probes": [
         {
           "date": "2026-10-30",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-10-31",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -1498,6 +1511,15 @@
             "Italy": 1,
             "Japan": 5
           }
+        },
+        {
+          "date": "2026-10-31",
+          "feedUrl": "https://japantoday.com/feed",
+          "items": 30,
+          "hits": {
+            "France": 2,
+            "Japan": 2
+          }
         }
       ],
       "decided": "2026-10-30"
@@ -1521,6 +1543,15 @@
           "hits": {
             "France": 1,
             "Argentina": 40
+          }
+        },
+        {
+          "date": "2026-10-31",
+          "feedUrl": "https://www.batimes.com.ar/feed",
+          "items": 100,
+          "hits": {
+            "France": 1,
+            "Argentina": 38
           }
         }
       ],
