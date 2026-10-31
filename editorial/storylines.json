@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-31T17:00:30.326Z",
+  "updatedAt": "2026-10-31T20:00:29.346Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 209,
+  "count": 214,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -1476,8 +1476,8 @@
       ],
       "firstSeen": "2026-10-16",
       "lastSeen": "2026-10-16",
-      "uses": 1,
-      "lastUsed": "2026-10-31"
+      "uses": 2,
+      "lastUsed": "2026-11-01"
     },
     {
       "id": "richie-mo-unga-s-1hnt5w1",
@@ -4527,7 +4527,7 @@
     },
     {
       "id": "kieran-hardy-injury-recovery-1g8dj93",
-      "subject": "Kieran Hardy injury recovery and fitness race for the Rugby World Cup",
+      "subject": "Kieran Hardy’s recovery timeline and fitness race for the 2027 World Cup",
       "teams": [
         391
       ],
@@ -4540,7 +4540,7 @@
         }
       ],
       "firstSeen": "2026-10-31",
-      "lastSeen": "2026-10-31",
+      "lastSeen": "2026-11-01",
       "uses": 0
     },
     {
@@ -4707,7 +4707,7 @@
     },
     {
       "id": "malcolm-marx-s-next-1lfx9jv",
-      "subject": "Malcolm Marx's next South African club choice after leaving Kubota Spears",
+      "subject": "Malcolm Marx’s choice of South African club following his exit from Kubota Spears",
       "teams": [
         467
       ],
@@ -4725,7 +4725,7 @@
         }
       ],
       "firstSeen": "2026-10-31",
-      "lastSeen": "2026-10-31",
+      "lastSeen": "2026-11-01",
       "uses": 0
     },
     {
@@ -4871,6 +4871,133 @@
         460
       ],
       "resolution": "until the conclusion of the 2026 Nations Championship",
+      "sources": [
+        {
+          "title": "\"I want to go to the World Cup. Argentina was the first team to offer me a contract&#8230;\" Shaun Edwards on his new coaching role with Argentina and his England ambition",
+          "link": "https://www.rugbyworld.com/news/i-want-to-go-to-the-world-cup-argentina-was-the-first-team-to-offer-me-a-contract-shaun-edwards-on-his-new-coaching-role-with-argentina-and-his-england-ambition-186128",
+          "feedName": "Rugby World"
+        }
+      ],
+      "firstSeen": "2026-11-01",
+      "lastSeen": "2026-11-01",
+      "uses": 0
+    },
+    {
+      "id": "the-wru-s-formal-1a5sft",
+      "subject": "The WRU's formal interest in moving Welsh clubs to the English Premiership",
+      "teams": [
+        386,
+        391
+      ],
+      "resolution": "until a final decision is announced on whether Welsh clubs will join the Premiership or remain in the URC",
+      "sources": [
+        {
+          "title": "Prem and RFU commit to expanding with English clubs after report of Welsh sides joining",
+          "link": "https://www.theguardian.com/sport/2026/oct/28/prem-rfu-commit-english-clubs-after-report-welsh-sides-joining",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Welsh make Premiership move",
+          "link": "https://www.sarugbymag.co.za/welsh-make-premiership-move/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Prem, RFU committed to English-led expansion as WRU apply",
+          "link": "https://www.rte.ie/sport/rugby/2026/1028/1597130-prem-rfu-committed-to-english-led-expansion-as-wru-apply/",
+          "feedName": "RTÉ Sport Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-01",
+      "lastSeen": "2026-11-01",
+      "uses": 0
+    },
+    {
+      "id": "richie-mo-unga-s-sefdas",
+      "subject": "Richie Mo’unga’s Test availability and the potential relaxation of NZR's overseas selection policy",
+      "teams": [
+        465
+      ],
+      "resolution": "until NZ Rugby makes a formal announcement regarding changes to its overseas player selection criteria",
+      "sources": [
+        {
+          "title": "NZ Rugby 'open' to relaxing All Blacks selection policy with a Super Rugby salary cap tabled",
+          "link": "https://www.planetrugby.com/news/nz-rugby-open-to-relaxing-all-blacks-selection-policy-with-a-super-rugby-salary-cap-tabled",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Stephen Donald claims 'fair bit of pressure' on Richie Mo'unga amid 'unfortunate' situation since All Blacks return",
+          "link": "https://www.planetrugby.com/news/stephen-donald-claims-fair-bit-of-pressure-on-richie-mounga-amid-unfortunate-situation-since-all-blacks-return",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-01",
+      "lastSeen": "2026-11-01",
+      "uses": 0
+    },
+    {
+      "id": "andy-farrell-s-decision-1tjb1sc",
+      "subject": "Andy Farrell's decision on using Dan Sheehan as a back-rower for Ireland",
+      "teams": [
+        388
+      ],
+      "resolution": "until Ireland name their matchday squad for the first Nations Championship fixture",
+      "sources": [
+        {
+          "title": "Sheehan at 8 would be 'a little too cute' for Ireland",
+          "link": "https://www.rte.ie/sport/rugby/2026/1028/1597109-sheehan-at-8-would-be-a-little-too-cute-for-ireland/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
+          "title": "Carbery starts for Leinster while Sheehan in back row",
+          "link": "https://www.rte.ie/sport/rugby/2026/1022/1596464-carbery-starts-while-sheehan-named-in-back-row/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
+          "title": "Cullen hints at more switches after Sheehan side-quest",
+          "link": "https://www.rte.ie/sport/rugby/2026/1025/1596821-cullen-hints-at-more-switches-after-sheehan-side-quest/",
+          "feedName": "RTÉ Sport Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-01",
+      "lastSeen": "2026-11-01",
+      "uses": 0
+    },
+    {
+      "id": "the-impact-of-henry-prr3dz",
+      "subject": "The impact of Henry Pollock’s on-field discipline on his England selection prospects",
+      "teams": [
+        386
+      ],
+      "resolution": "until Steve Borthwick names his matchday squad for the Nations Championship opener",
+      "sources": [
+        {
+          "title": "Brian Moore slams Henry Pollock after brawl as 'antics' could have 'repercussions' for Steve Borthwick and England",
+          "link": "https://www.planetrugby.com/news/brian-moore-slams-henry-pollock-after-brawl-as-antics-could-have-repercussions-for-steve-borthwick-and-england",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Loose Pass: Why the Nations Championship will carry an 'asterisk' while polarising Henry Pollock is becoming a dangerous presence",
+          "link": "https://www.planetrugby.com/news/loose-pass-why-the-nations-championship-will-carry-an-asterisk-while-polarising-henry-pollock-is-becoming-a-dangerous-presence",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "“If I was in charge of England, I'd try to buy Jack Willis out of his contract, bring him back to England and make him captain”: Former England captain Will Carling on the Willis brothers, Henry Pollock and making headlines on and off the pitch",
+          "link": "https://www.rugbyworld.com/featured/will-carling-interview-rugby-is-still-way-off-where-it-needs-to-be-185967",
+          "feedName": "Rugby World"
+        }
+      ],
+      "firstSeen": "2026-11-01",
+      "lastSeen": "2026-11-01",
+      "uses": 0
+    },
+    {
+      "id": "shaun-edwards-potential-move-1pvkeg3",
+      "subject": "Shaun Edwards’ potential move to the England coaching staff while with Argentina",
+      "teams": [
+        386,
+        460
+      ],
+      "resolution": "until Edwards either signs a contract extension with Argentina or accepts a role with the RFU",
       "sources": [
         {
           "title": "\"I want to go to the World Cup. Argentina was the first team to offer me a contract&#8230;\" Shaun Edwards on his new coaching role with Argentina and his England ambition",
