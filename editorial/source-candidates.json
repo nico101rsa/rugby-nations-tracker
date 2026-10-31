@@ -1439,7 +1439,7 @@
       ],
       "why": "New Zealand's shortlist held only an old injury list and ex-player human-interest pieces, and the spine has no New Zealand outlet.",
       "proposed": "2026-10-26",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1465,8 +1465,13 @@
         {
           "date": "2026-10-31",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-01",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-01"
     },
     {
       "outlet": "Kyodo News (English)",
@@ -1486,6 +1491,10 @@
         },
         {
           "date": "2026-10-31",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-01",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -1520,6 +1529,17 @@
             "France": 2,
             "Japan": 2
           }
+        },
+        {
+          "date": "2026-11-01",
+          "feedUrl": "https://japantoday.com/feed",
+          "items": 30,
+          "hits": {
+            "France": 2,
+            "Italy": 1,
+            "Scotland": 1,
+            "Japan": 8
+          }
         }
       ],
       "decided": "2026-10-30"
@@ -1553,6 +1573,15 @@
             "France": 1,
             "Argentina": 38
           }
+        },
+        {
+          "date": "2026-11-01",
+          "feedUrl": "https://www.batimes.com.ar/feed",
+          "items": 100,
+          "hits": {
+            "France": 1,
+            "Argentina": 39
+          }
         }
       ],
       "decided": "2026-10-30"
@@ -1572,6 +1601,10 @@
         {
           "date": "2026-10-31",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-01",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1589,6 +1622,15 @@
       "probes": [
         {
           "date": "2026-10-31",
+          "feedUrl": "https://www.greenandgoldrugby.com/feed",
+          "items": 10,
+          "hits": {
+            "Scotland": 2,
+            "Australia": 5
+          }
+        },
+        {
+          "date": "2026-11-01",
           "feedUrl": "https://www.greenandgoldrugby.com/feed",
           "items": 10,
           "hits": {
@@ -1623,6 +1665,21 @@
             "Australia": 9,
             "Japan": 1,
             "New Zealand": 8,
+            "South Africa": 1
+          }
+        },
+        {
+          "date": "2026-11-01",
+          "feedUrl": "https://www.stuff.co.nz/feed",
+          "items": 81,
+          "hits": {
+            "Fiji": 3,
+            "England": 1,
+            "France": 3,
+            "Scotland": 1,
+            "Australia": 8,
+            "Japan": 1,
+            "New Zealand": 7,
             "South Africa": 1
           }
         }
