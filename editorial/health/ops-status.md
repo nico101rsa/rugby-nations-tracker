@@ -4,7 +4,7 @@ _The silent ops log, written by the daily watchdog (`scripts/watchdog.mjs`) only
 _Nothing here notifies anyone except state **PAGING**. The Claude weekly review reads this file with the newest weekly report in this folder._
 _All times Sydney time._
 
-**State: OK — every watched job is current and no editorial signal is up.**
+**State: ATTENTION — something is off, nothing has paged. Triage in the weekly review.**
 
 ## Paging Nico
 
@@ -18,7 +18,8 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- None — every briefing moved on.
+- Italy — same lead story since Fri 30 Oct, first run as "Quesada expects Tommaso Allan at significant part of Friday training" — the novelty gate flagged the latest edition and published anyway
+- Japan — same lead story since Fri 30 Oct, first run as "Japan Rugby publishes 2026 Nations Championship schedule, with Wales in Round 4" — the novelty gate did NOT flag the latest edition
 
 **Model ladder**
 
@@ -30,6 +31,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Sat 31 Oct 2026, 12:33 AEDT — repeat leads: Italy, Japan
 - Thu 29 Oct 2026, 12:47 AEDT — all clear
 - Wed 28 Oct 2026, 12:18 AEDT — repeat leads: France
 - Tue 27 Oct 2026, 12:27 AEDT — all clear

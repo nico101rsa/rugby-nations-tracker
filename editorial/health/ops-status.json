@@ -1,13 +1,26 @@
 {
  "about": "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: routine findings land here instead of notifying anyone, and the Claude weekly review reads it. state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); `page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
- "state": "ok",
+ "state": "attention",
  "paging": [],
  "page": null,
  "overdue": [],
  "unknown": [],
  "heals": {},
  "signals": {
-  "repeatLeads": [],
+  "repeatLeads": [
+   {
+    "team": "Italy",
+    "since": "2026-10-30",
+    "heading": "Quesada expects Tommaso Allan at significant part of Friday training",
+    "flagged": true
+   },
+   {
+    "team": "Japan",
+    "since": "2026-10-30",
+    "heading": "Japan Rugby publishes 2026 Nations Championship schedule, with Wales in Round 4",
+    "flagged": false
+   }
+  ],
   "ladderLastRung": null,
   "squadGaps": []
  },
@@ -99,6 +112,10 @@
   {
    "at": "2026-10-29T01:47:01.838Z",
    "summary": "all clear"
+  },
+  {
+   "at": "2026-10-31T01:33:58.863Z",
+   "summary": "repeat leads: Italy, Japan"
   }
  ]
 }
