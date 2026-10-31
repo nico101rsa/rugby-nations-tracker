@@ -1556,6 +1556,48 @@
         }
       ],
       "decided": "2026-10-30"
+    },
+    {
+      "outlet": "ABC News Sport (Australia)",
+      "host": "abc.net.au",
+      "homepage": "https://www.abc.net.au/news/sport",
+      "teams": [
+        "Australia"
+      ],
+      "why": "Australia's shortlist was all BACKGROUND with no new stories, and a free national broadcaster's sport desk would add fresh Wallabies news.",
+      "proposed": "2026-10-31",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-10-31",
+          "error": "no feed found (8 tried)"
+        }
+      ]
+    },
+    {
+      "outlet": "Green and Gold Rugby",
+      "host": "greenandgoldrugby.com",
+      "homepage": "https://www.greenandgoldrugby.com",
+      "teams": [
+        "Australia"
+      ],
+      "why": "A dedicated Australian rugby news site that could fill the Wallabies gap beyond The Roar.",
+      "proposed": "2026-10-31",
+      "status": "ready",
+      "feedUrl": "https://www.greenandgoldrugby.com/feed",
+      "probes": [
+        {
+          "date": "2026-10-31",
+          "feedUrl": "https://www.greenandgoldrugby.com/feed",
+          "items": 10,
+          "hits": {
+            "Scotland": 2,
+            "Australia": 5
+          }
+        }
+      ],
+      "decided": "2026-10-31"
     }
   ]
 }

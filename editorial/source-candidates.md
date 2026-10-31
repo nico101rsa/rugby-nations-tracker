@@ -8,6 +8,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: https://japantoday.com/feed; probes: 2; stories about tracked teams: Japan 7, France 2, England 1, Italy 1
 - **Buenos Aires Times** (batimes.com.ar) — proposed 2026-10-30 for Argentina: Argentina's pack held only a schedule item as NEW, with Pumas squad news all stale; an English-language Argentine outlet might add current Pumas stories.
   - feed: https://www.batimes.com.ar/feed; probes: 2; stories about tracked teams: Argentina 78, France 2
+- **Green and Gold Rugby** (greenandgoldrugby.com) — proposed 2026-10-31 for Australia: A dedicated Australian rugby news site that could fill the Wallabies gap beyond The Roar.
+  - feed: https://www.greenandgoldrugby.com/feed; probes: 1; stories about tracked teams: Australia 5, Scotland 2
 
 ## Being probed
 
@@ -15,6 +17,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **Kyodo News (English)** (english.kyodonews.net) — proposed 2026-10-30 for Japan: Japan's pack held no men's XV news today, and Kyodo's English sports desk covers Brave Blossoms squads and results.
   - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+- **ABC News Sport (Australia)** (abc.net.au) — proposed 2026-10-31 for Australia: Australia's shortlist was all BACKGROUND with no new stories, and a free national broadcaster's sport desk would add fresh Wallabies news.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
