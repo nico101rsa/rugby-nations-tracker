@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-10-31T22:00:29.202Z",
+  "updatedAt": "2026-10-31T22:54:52.669Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 216,
+  "count": 217,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -1414,26 +1414,6 @@
       "lastSeen": "2026-10-18",
       "uses": 1,
       "lastUsed": "2026-10-18"
-    },
-    {
-      "id": "france-s-squad-selection-1iav9aa",
-      "subject": "France's squad selection following latest injury setbacks ahead of their Test against South Africa",
-      "teams": [
-        387,
-        467
-      ],
-      "resolution": "until France confirm their matchday squad for the Nations Championship match against South Africa",
-      "sources": [
-        {
-          "title": "Les Bleus dealt fresh blow ahead of Bok brawl",
-          "link": "https://www.sarugbymag.co.za/les-bleus-dealt-fresh-blow-ahead-bok-brawl/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-10-16",
-      "lastSeen": "2026-10-16",
-      "uses": 2,
-      "lastUsed": "2026-11-01"
     },
     {
       "id": "richie-mo-unga-s-1hnt5w1",
@@ -4409,7 +4389,7 @@
     },
     {
       "id": "garry-ringrose-hamstring-injury-kzp6dj",
-      "subject": "Garry Ringrose hamstring injury and status for Ireland's autumn campaign",
+      "subject": "Garry Ringrose's hamstring injury and availability for Ireland's autumn Tests",
       "teams": [
         388
       ],
@@ -4422,7 +4402,7 @@
         }
       ],
       "firstSeen": "2026-10-31",
-      "lastSeen": "2026-10-31",
+      "lastSeen": "2026-11-01",
       "uses": 0
     },
     {
@@ -4635,7 +4615,7 @@
     },
     {
       "id": "new-zealand-rugby-policy-1hhmaka",
-      "subject": "New Zealand Rugby review of overseas player selection policy for the All Blacks",
+      "subject": "NZ Rugby's consideration of relaxing its overseas player selection policy for the All Blacks",
       "teams": [
         465
       ],
@@ -5046,6 +5026,47 @@
           "title": "Connacht's Jansen backed to fill number 8 gap for Ireland",
           "link": "https://www.rte.ie/sport/rugby/2026/1021/1596331-connachts-jansen-backed-to-fill-number-8-gap-for-ireland/",
           "feedName": "RTÉ Sport Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-01",
+      "lastSeen": "2026-11-01",
+      "uses": 0
+    },
+    {
+      "id": "alex-mitchell-s-hamstring-jv6bkt",
+      "subject": "Alex Mitchell's hamstring injury and availability for England's autumn Tests",
+      "teams": [
+        386
+      ],
+      "resolution": "until England provide a medical update on Alex Mitchell's hamstring injury",
+      "sources": [
+        {
+          "title": "Mitchell injury blow adds to England’s woes as Northampton sink Gloucester",
+          "link": "https://www.theguardian.com/sport/2026/oct/31/northampton-gloucester-prem-rugby-union-match-report",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-11-01",
+      "lastSeen": "2026-11-01",
+      "uses": 0
+    },
+    {
+      "id": "richie-mo-unga-s-z50t4a",
+      "subject": "Richie Mo'unga's injury recovery and availability for New Zealand's Nations Championship matches",
+      "teams": [
+        465
+      ],
+      "resolution": "until New Zealand confirm whether Richie Mo'unga is available to play in the Nations Championship",
+      "sources": [
+        {
+          "title": "Tana Umaga reveals telling Richie Mo'unga message after 'positive' All Blacks fly-half was 'proven right'",
+          "link": "https://www.planetrugby.com/news/tana-umaga-reveals-telling-richie-mounga-message-after-positive-all-blacks-fly-half-was-proven-right",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Stephen Donald claims 'fair bit of pressure' on Richie Mo'unga amid 'unfortunate' situation since All Blacks return",
+          "link": "https://www.planetrugby.com/news/stephen-donald-claims-fair-bit-of-pressure-on-richie-mounga-amid-unfortunate-situation-since-all-blacks-return",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-11-01",
