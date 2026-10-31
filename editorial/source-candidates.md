@@ -10,6 +10,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: https://www.batimes.com.ar/feed; probes: 2; stories about tracked teams: Argentina 78, France 2
 - **Green and Gold Rugby** (greenandgoldrugby.com) — proposed 2026-10-31 for Australia: A dedicated Australian rugby news site that could fill the Wallabies gap beyond The Roar.
   - feed: https://www.greenandgoldrugby.com/feed; probes: 1; stories about tracked teams: Australia 5, Scotland 2
+- **Stuff (NZ) Sport** (stuff.co.nz) — proposed 2026-10-31 for New Zealand: NZ's only fresh union item today was a Kirwan podcast opinion piece, so a national news site's rugby desk could add squad and injury reporting.
+  - feed: https://www.stuff.co.nz/feed; probes: 1; stories about tracked teams: Australia 9, New Zealand 8, Fiji 3, France 3, England 1, Scotland 1, Japan 1, South Africa 1
 
 ## Being probed
 
