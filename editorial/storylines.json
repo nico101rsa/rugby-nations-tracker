@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-01T20:00:30.478Z",
+  "updatedAt": "2026-11-01T23:12:52.280Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 205,
+  "count": 206,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -1767,8 +1767,8 @@
       ],
       "firstSeen": "2026-10-20",
       "lastSeen": "2026-10-20",
-      "uses": 1,
-      "lastUsed": "2026-10-23"
+      "uses": 2,
+      "lastUsed": "2026-11-02"
     },
     {
       "id": "rassie-erasmus-springbok-squad-umav53",
@@ -3238,7 +3238,8 @@
       "id": "fin-smith-s-fitness-12hw9t7",
       "subject": "Fin Smith's fitness and availability for England ahead of their Nations Championship opener against Australia",
       "teams": [
-        386
+        386,
+        461
       ],
       "resolution": "until England confirm whether Fin Smith is fit for selection against Australia",
       "sources": [
@@ -3531,6 +3532,11 @@
       "resolution": "until Premiership Rugby and the WRU issue a definitive decision on Welsh clubs entering the Premiership",
       "sources": [
         {
+          "title": "Prem, RFU committed to English-led expansion as WRU apply",
+          "link": "https://www.rte.ie/sport/rugby/2026/1028/1597130-prem-rfu-committed-to-english-led-expansion-as-wru-apply/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
           "title": "Welsh club coaches respond to WRU's English Prem talks as same point made",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/welsh-club-coaches-respond-anglo-34836657",
           "feedName": "WalesOnline"
@@ -3539,11 +3545,6 @@
           "title": "Prem and RFU commit to expanding with English clubs after report of Welsh sides joining",
           "link": "https://www.theguardian.com/sport/2026/oct/28/prem-rfu-commit-english-clubs-after-report-welsh-sides-joining",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Welsh make Premiership move",
-          "link": "https://www.sarugbymag.co.za/welsh-make-premiership-move/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-10-29",
@@ -4640,7 +4641,7 @@
         }
       ],
       "firstSeen": "2026-11-01",
-      "lastSeen": "2026-11-01",
+      "lastSeen": "2026-11-02",
       "uses": 0
     },
     {
@@ -4779,7 +4780,7 @@
     },
     {
       "id": "noel-mcnamara-s-expected-130l0lt",
-      "subject": "Noel McNamara's expected appointment to succeed Leo Cullen as Leinster head coach",
+      "subject": "Noel McNamara's expected appointment as Leo Cullen's successor as Leinster head coach",
       "teams": [
         388
       ],
@@ -4799,6 +4800,29 @@
           "title": "Noel McNamara in line to succeed Leo Cullen at Leinster",
           "link": "https://www.the42.ie/noel-mcnamara-leinster-7211609-Nov2026/",
           "feedName": "The42"
+        }
+      ],
+      "firstSeen": "2026-11-02",
+      "lastSeen": "2026-11-02",
+      "uses": 0
+    },
+    {
+      "id": "handr-pollard-s-contract-g5q80g",
+      "subject": "Handré Pollard's contract decision between the Bulls and overseas offers",
+      "teams": [
+        467
+      ],
+      "resolution": "until Handré Pollard officially signs a contract with the Bulls or an overseas club",
+      "sources": [
+        {
+          "title": "Malcolm Marx's deal almost complete as Bulls await Handre Pollard's decision amid overseas interest – report",
+          "link": "https://www.planetrugby.com/news/malcolm-marxs-deal-almost-complete-as-bulls-await-handre-pollards-decision-amid-overseas-interest-report",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Bulls make moves on Papier, Pollard",
+          "link": "https://www.sarugbymag.co.za/bulls-make-moves-papier-pollard/",
+          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-11-02",
