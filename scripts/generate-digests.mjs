@@ -118,9 +118,13 @@ once a day. Today is {DAY_NAME} {DATE_LONG}.
    never asserted. No unverifiable superlatives ("biggest ever", "first on
    record") and no uncorroborated statistics (cap counts, streaks) — cut or
    soften anything you cannot source.
-3. **Lead with the day's actual story.** Check what outlets covering this team
-   led with today — if they led with a player's return, so do you, not the
-   routine rotation count.
+3. **Lead with the day's actual story — a reported EVENT about {TEAM_NAME}.**
+   A squad or team selection, an injury, a result, a coach's decision. Take a
+   NEW shortlist item over a BACKGROUND one; a fresh event beats an old
+   appointment, a pundit's verdict or a backward-looking quote. A rival's
+   injury, a club derby or a transfer that only MENTIONS {TEAM_NAME} is not a
+   {TEAM_NAME} story. If opinion is all there is, name the pundit or outlet
+   in the heading and state the news fact the opinion rests on.
 4. **Men's 15s only.** The app is men's 15-a-side rugby; a reader assumes
    every story is about the men's XV. **Women's rugby (the women's side,
    WXV, Red Roses, Black Ferns, Wallaroos, Fijiana…) and sevens are never
@@ -188,6 +192,13 @@ one a fan would text a mate about.
   team's press corps writes. No manufactured hype, no "mouth-watering clash".
 - Re-read for name echoes across sentences (two different Gregors back-to-back
   reads like a glitch).
+- **The heading promises only what the body delivers.** Every name and claim
+  in it (scorers, "debutant", durations) must appear in, and be supported by,
+  the paragraph.
+- **Don't restate the heading** in the first sentence, and don't repeat a fact
+  later in the paragraph; spend the words on what was said or what happened.
+- **End on the last sourced fact.** No generic closer ("the question is
+  whether…", "margins matter", "plenty to ponder", "the bigger horizon").
 
 ## Style
 
@@ -1416,6 +1427,42 @@ export function parseVerdict(raw) {
   return { verdict: issues.length ? "fail" : "pass", issues };
 }
 
+// ---- lead gate: a BACKGROUND lead while NEW candidates sit above it ---------
+//
+// The commonest defect in the daily reviews (Oct-Nov 2026): the writer leads
+// with an older story (an appointment, a pundit column, a 'no regrets' quote)
+// while the shortlist carries a NEW one about the team. The review kept
+// re-proposing "lead with the NEW item" as a standing note — about six
+// wordings since mid-October, each pushed out of the 8-note list within days —
+// and the grade never moved. The shortlist already says which items are NEW,
+// and the draft says which one it led with, so this is checked here instead.
+//
+// Pure. Returns null when the lead is fine (NEW, untagged, or no NEW item on
+// offer), else the chosen candidate and the NEW ones it passed over.
+export function findPassedOverNew(digest, shortlist = []) {
+  const n = digest?.lead?.candidate;
+  const chosen = Number.isInteger(n) ? shortlist[n - 1] : null;
+  if (!chosen || chosen.fresh !== false) return null;
+  const fresh = shortlist
+    .map((s, i) => ({ n: i + 1, title: s?.title ?? "", fresh: s?.fresh }))
+    .filter((s) => s.fresh === true);
+  return fresh.length ? { chosen: { n, title: chosen.title ?? "" }, fresh: fresh.slice(0, 3) } : null;
+}
+
+export function buildLeadFeedback(passed, teamName) {
+  const list = passed.fresh.map((s) => `- #${s.n} (NEW): ${s.title}`).join("\n");
+  return `## Your lead is BACKGROUND while NEW candidates sit above it — reconsider
+You led with #${passed.chosen.n} (BACKGROUND): ${passed.chosen.title}
+The shortlist has fresher items:
+${list}
+Lead with the highest of these that is genuinely about ${teamName} (its squad,
+selection, result, injury or coach) and that you have not already reported.
+Keep #${passed.chosen.n} ONLY if every NEW item fails that test (it is about another
+team, a club derby, opinion with no news, or a story already run), and then
+say which test it failed in \`lead.why\`. Keep every rule from the brief: only
+facts the pack supports, one section, strict JSON. Output the complete JSON again.`;
+}
+
 // `trace`, when given, is filled in as the edition is written: the exact
 // first-draft writer prompt, the first draft, its first fact-check verdict and
 // the revision count. Record only. It changes nothing this function returns or
@@ -1490,6 +1537,31 @@ JSON again.`;
     const remaining = check.issues.map((i) => i.problem).join("; ");
     throw new Error(`fact-check failed after ${revisions} revisions: ${remaining}`);
   }
+
+  // Lead gate (findPassedOverNew above): a BACKGROUND lead with NEW items on
+  // offer earns ONE redraft, fact-checked like any other. If the writer keeps
+  // its lead (it may: the NEW items can be about someone else) or the redraft
+  // fails, the first draft stands and the note says so.
+  let leadNote = "";
+  const passed = ladder ? null : findPassedOverNew(digest, shortlist);
+  if (passed) {
+    try {
+      const alt = await draft(buildLeadFeedback(passed, params.TEAM_NAME));
+      const altCheck = withCodeGate(parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, alt, pack, checkerNotes)))), alt);
+      if (altCheck.verdict !== "pass") {
+        leadNote = ", lead=kept-background (redraft failed fact-check)";
+      } else if (findPassedOverNew(alt, shortlist)) {
+        digest = alt; // the writer reconsidered and gave its reason in lead.why
+        leadNote = `, lead=kept-background (${(alt.lead?.why ?? "no reason").slice(0, 80)})`;
+      } else {
+        digest = alt;
+        leadNote = `, lead=revised #${passed.chosen.n}→#${alt.lead?.candidate ?? "?"}`;
+      }
+    } catch (e) {
+      leadNote = `, lead=kept-background (redraft unusable: ${e.message.slice(0, 60)})`;
+    }
+  }
+  if (trace) trace.leadGate = passed ? leadNote.slice(2) : null;
 
   // Novelty gate. The prompt has already said "not these again"; this is the
   // deterministic check that the writer listened, because on 23-25 Sep 2026
@@ -1593,7 +1665,7 @@ JSON again.`;
     ladder,
     repeatLead: repeat ? { date: repeat.entry.date ?? null, heading: repeat.entry.heading, reason: repeat.reason } : null,
     noveltyRevised,
-    note: `${shortlist.length} candidates (${poolCount} pooled, ${widenedCount} searched), ${articleCount} articles${lead}${quiet ? ", QUIET" : ""}${rungNote}, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}, ${novelty}${noveltyNote}${sheetNote}`,
+    note: `${shortlist.length} candidates (${poolCount} pooled, ${widenedCount} searched), ${articleCount} articles${lead}${quiet ? ", QUIET" : ""}${rungNote}, fact-checked${revisions ? ` after ${revisions} revision(s)` : ""}${leadNote}, ${novelty}${noveltyNote}${sheetNote}`,
   };
 }
 
@@ -1747,7 +1819,14 @@ fault a men's line for not saying "men's". Notes for the roundup go in
   "world_notes": ["<up to 2 short imperative notes for the ROUNDUP prompt — selection, labelling or register defects in today's roundup. Empty array if it was fine.>"]` : ""}
 }
 Only propose a prompt note for a defect visible in MULTIPLE editions; one-off
-slips don't earn a standing rule. Notes must work WITHIN the format contract —
+slips don't earn a standing rule. The writer's brief ALREADY carries these as
+permanent rules, so never propose a note that restates them (report a breach in
+\`report\` instead): lead with a NEW reported event about the team over
+BACKGROUND, opinion or a story that only mentions it (a BACKGROUND lead with
+NEW items on offer is also re-drafted in code); attribute opinion to its
+pundit or outlet; the heading claims only what the body supports; don't
+restate the heading; end on a sourced fact, no generic closer; never describe
+what the coverage lacks. Notes must work WITHIN the format contract —
 every edition is a single section: a short topical kicker, one heading of 10-12
 words, one 55-90 word paragraph — so never propose adding sections or consulting
 resources the writer doesn't have (its only inputs are the shortlist, the source
