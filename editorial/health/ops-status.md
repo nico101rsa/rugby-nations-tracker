@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- Scotland — same lead story since Sat 31 Oct, first run as "Jack Singleton scores on Glasgow debut after cardiac event; Warriors beat Lions" — the novelty gate flagged the latest edition and published anyway
+- Argentina — same lead story since Sun 1 Nov, first run as "Facundo Isa recalled to Argentina squad for Ireland, replacing injured Santiago Grondona" — the novelty gate flagged the latest edition and published anyway
 
 **Model ladder**
 
@@ -30,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Mon 2 Nov 2026, 12:29 AEDT — repeat leads: Argentina
 - Sun 1 Nov 2026, 12:07 AEDT — repeat leads: Scotland
 - Sat 31 Oct 2026, 12:33 AEDT — repeat leads: Italy, Japan
 - Thu 29 Oct 2026, 12:47 AEDT — all clear
