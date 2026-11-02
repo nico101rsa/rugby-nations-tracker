@@ -1141,3 +1141,36 @@ test("code gate fails a women's edition whatever the checker said", async () => 
   assert.equal(withCodeGate({ verdict: "pass", issues: [] }, womens).verdict, "fail");
   assert.equal(withCodeGate({ verdict: "pass", issues: [] }, mens).verdict, "pass");
 });
+
+// ---- lead gate ----------------------------------------------------------------
+import { findPassedOverNew, buildLeadFeedback } from "./generate-digests.mjs";
+
+const SL = [
+  { title: "White names first Fiji squad with four uncapped players", fresh: true },
+  { title: "Fiji confirm Hawkins as assistant", fresh: true },
+  { title: "Jake White appointed Fiji coach", fresh: false },
+];
+
+test("findPassedOverNew: a BACKGROUND lead with NEW items on offer is caught", () => {
+  const hit = findPassedOverNew({ lead: { candidate: 3 } }, SL);
+  assert.deepEqual(hit.chosen, { n: 3, title: SL[2].title });
+  assert.deepEqual(hit.fresh.map((s) => s.n), [1, 2]);
+  const fb = buildLeadFeedback(hit, "Fiji");
+  assert.match(fb, /#3 \(BACKGROUND\)/);
+  assert.match(fb, /#1 \(NEW\): White names first Fiji squad/);
+  assert.match(fb, /lead\.why/);
+});
+
+test("findPassedOverNew: NEW leads, untagged shortlists and no-NEW days pass", () => {
+  assert.equal(findPassedOverNew({ lead: { candidate: 2 } }, SL), null);
+  assert.equal(findPassedOverNew({ lead: { candidate: 1 } }, [{ title: "a" }, { title: "b" }]), null);
+  assert.equal(findPassedOverNew({ lead: { candidate: 1 } }, [{ title: "a", fresh: false }]), null);
+  assert.equal(findPassedOverNew({}, SL), null);
+  assert.equal(findPassedOverNew({ lead: { candidate: 9 } }, SL), null);
+});
+
+test("the writer brief carries the permanent lead and craft rules", () => {
+  assert.match(TEMPLATE, /NEW\s+shortlist item over a BACKGROUND one/);
+  assert.match(TEMPLATE, /heading promises only what the body delivers/);
+  assert.match(TEMPLATE, /End on the last sourced fact/);
+});
