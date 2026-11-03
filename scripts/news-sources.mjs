@@ -101,6 +101,32 @@ export const FEEDS = [
     url: "https://www.theroar.com.au/feed",
     topic: /\b(wallabies|wallaroos|super rugby|rugby union|rugby championship|bledisloe|brumbies|waratahs|queensland reds|western force|rugby australia|les kiss|joe schmidt|springboks|all blacks|pumas|six nations|nations championship|test rugby)\b/i,
   },
+  // Four more, adopted by Nico on 3 Nov 2026 ("yes do A and B"): the daily
+  // grade sat at C to C+ from 21 Oct to 3 Nov, about half of it from
+  // retrieval-starved packs. Each was proposed by the daily review and probed
+  // daily for 4-5 days to "ready" (counts in editorial/source-candidates.md).
+  // Green and Gold Rugby is a union-only site and keeps everything; the other
+  // three are whole-site news feeds, so each gets a topic, union terms only
+  // where the country also plays league (the league filter backs it up).
+  { id: "greenandgold", name: "Green and Gold Rugby", url: "https://www.greenandgoldrugby.com/feed" },
+  {
+    id: "japantoday",
+    name: "Japan Today",
+    url: "https://japantoday.com/feed",
+    topic: /\b(rugby|brave blossoms|league one|eddie jones|sakura fifteen|pacific nations)\b/i,
+  },
+  {
+    id: "batimes",
+    name: "Buenos Aires Times",
+    url: "https://www.batimes.com.ar/feed",
+    topic: /\b(rugby|los pumas|contepomi|jaguares|uar|super rugby americas)\b/i,
+  },
+  {
+    id: "stuff",
+    name: "Stuff",
+    url: "https://www.stuff.co.nz/feed",
+    topic: /\b(all blacks|rugby union|super rugby|new zealand rugby|nzr|dave rennie|bledisloe|rugby championship|nations championship|npc|crusaders|highlanders|hurricanes)\b/i,
+  },
 ];
 
 // Aliases decide whether a feed item is ABOUT a team. Coaches and nicknames are
@@ -109,18 +135,18 @@ export const FEEDS = [
 // "New South Wales", and the untracked nations (Tonga, Georgia, Samoa) must not
 // fire on anything.
 export const TEAM_ALIASES = {
-  386: ["England", "Red Rose", "Borthwick"],
-  387: ["France", "French", "Les Bleus", "Galthie", "Galthié"],
-  388: ["Ireland", "Irish", "Andy Farrell"],
+  386: ["England", "Red Rose", "Borthwick", "Inghilterra"],
+  387: ["France", "French", "Les Bleus", "Galthie", "Galthié", "Francia"],
+  388: ["Ireland", "Irish", "Andy Farrell", "Irlanda"],
   389: ["Italy", "Italian", "Italia", "Azzurri", "Quesada"],
-  390: ["Scotland", "Scottish", "Townsend"],
-  391: ["Wales", "Welsh", "Sherratt", "Tandy"],
+  390: ["Scotland", "Scottish", "Townsend", "Scozia"],
+  391: ["Wales", "Welsh", "Sherratt", "Tandy", "Galles"],
   460: ["Argentina", "Argentine", "Pumas", "Contepomi"],
   461: ["Australia", "Australian", "Wallabies", "Schmidt"],
-  463: ["Japan", "Japanese", "Brave Blossoms"],
-  465: ["New Zealand", "All Blacks", "Rennie"],
-  467: ["South Africa", "Springbok", "Springboks", "Boks", "Rassie", "Erasmus"],
-  28: ["Fiji", "Fijian", "Flying Fijians"],
+  463: ["Japan", "Japanese", "Brave Blossoms", "Giappone"],
+  465: ["New Zealand", "All Blacks", "Rennie", "Nuova Zelanda"],
+  467: ["South Africa", "Springbok", "Springboks", "Boks", "Rassie", "Erasmus", "Sudafrica"],
+  28: ["Fiji", "Fijian", "Flying Fijians", "Figi"],
 };
 
 // "New South Wales" must not match Wales, and "Tonga" must not match anything.
@@ -401,7 +427,9 @@ export function isMatchReport(title) {
 // Two cheap positional signals separate subject from mention:
 //   - where in the headline the alias falls (subjects lead)
 //   - whether an opposition marker precedes it ("against Springboks", "v Wales")
-const OPPOSITION_MARKER = /\b(against|versus|vs?\.?|face|faces|facing|host|hosts|hosting|beat|beaten by|defeat|defeated by|lost to|ahead of|before)\s*$/i;
+// The Italian ones are for the Italian union's own feed (federugby), whose
+// "Sudafrica, il XV per la sfida all'Italia" led Italy on 3 Nov 2026.
+const OPPOSITION_MARKER = /\b(against|versus|vs?\.?|face|faces|facing|host|hosts|hosting|beat|beaten by|defeat|defeated by|lost to|ahead of|before|contro|sfida(\s+(all[ae]?|al|con))?)\s*$/i;
 
 // 1.0 when the team is plainly the subject, down to 0.35 when it is named in
 // passing. A multiplier rather than a filter — a passing mention on a huge story
@@ -426,6 +454,43 @@ export function subjectWeight(title, aliases) {
     best = Math.max(best, depth <= 0.35 ? 1 : depth <= 0.6 ? 0.8 : 0.55);
   }
   return best;
+}
+
+// WHOSE STORY IS IT? A headline that names two tracked teams belongs to the
+// one it is about. Until 3 Nov 2026 a team only had to be NAMED to own a
+// story, and the subject weight only nudged its rank, so a thin pack filled up
+// with other teams' news and the writer led with it: that day Italy led with
+// the Springbok XV ("Erasmus restores Moerat to Springboks XV for Italy
+// clash"), Argentina with England A's squad, Australia with England's injury
+// list, Fiji with an Ireland XV story. The daily reviews had called it "badly
+// chosen" for weeks.
+//
+// So: the team with the higher subject weight owns the headline. When this
+// team is outranked, the story is `otherTeam` (that team's first alias): it
+// stays on the list, ranks below the team's own stories, is printed as
+// another team's, can't make the day un-quiet, and a lead taken from it is
+// re-drafted (findOtherTeamLead in generate-digests.mjs). And when NO other
+// tracked team is named, the headline is this team's however late the name
+// falls: "Alex Mitchell out of opener in fresh England injury blow" was
+// weighted 0.55 for England on the depth rule alone and lost its place.
+const RESULT_WORDS = /\b(beat|beats|beaten|overpower\w*|edges?|edged|thrash\w*|defeats?|defeated|downs?|sinks?|sank|stuns?|stunned|routs?|routed|crush\w*|hammer\w*|sees? off|saw off|win over|victory over|loss to|lose to|lost to|falls? to|fell to)\b/i;
+
+export function ownership(title, teamId) {
+  const own = subjectWeight(title, TEAM_ALIASES[teamId] ?? []);
+  let rival = null;
+  let rivalWeight = 0;
+  for (const [id, aliases] of Object.entries(TEAM_ALIASES)) {
+    if (String(id) === String(teamId) || !mentionsTeam(title, aliases)) continue;
+    const w = subjectWeight(title, aliases);
+    if (w > rivalWeight) { rivalWeight = w; rival = aliases[0]; }
+  }
+  if (!rival) return { subject: Math.max(own, 0.8), otherTeam: null };
+  // A result belongs to both sides ("Scotland beat Fiji 34-21" is Fiji's
+  // result too), and a joint headline ("Scotland and Wales name squads") to
+  // both teams. Only a clear gap (a lead subject against a passing or
+  // opposition mention) hands the story to the rival.
+  if (isMatchReport(title) || RESULT_WORDS.test(String(title || ""))) return { subject: own, otherTeam: null };
+  return { subject: own, otherTeam: rivalWeight - own >= 0.4 ? rival : null };
 }
 
 const SHORTLIST_SIZE = 5;
@@ -460,15 +525,15 @@ export function buildShortlist(items, teamId, now, size = SHORTLIST_SIZE) {
   const mine = dropOffCode(items).filter((i) => mentionsTeam(i.title, aliases));
   const scored = clusterStories(mine).map((s) => {
     const matchReport = isMatchReport(s.title);
-    const subject = subjectWeight(s.title, aliases);
+    const { subject, otherTeam } = ownership(s.title, teamId);
     const score = scoreStory(s, now) * (matchReport ? 0.45 : 1) * subject;
     const seenHours = s.firstSeenAt === null ? null : (now.getTime() - s.firstSeenAt) / 3_600_000;
-    return { ...s, score: Math.round(score * 10) / 10, matchReport, subject, fresh: isFresh(s, now), seenHours };
+    return { ...s, score: Math.round(score * 10) / 10, matchReport, subject, otherTeam, fresh: isFresh(s, now), seenHours };
   });
-  // Fresh first, then by score. An older story can still make the list — as
-  // background, printed as such — but it never outranks something that broke
-  // since the last edition.
-  scored.sort((a, b) => Number(b.fresh) - Number(a.fresh) || b.score - a.score || a.position - b.position);
+  // Fresh first, then the team's own stories before another team's, then by
+  // score. An older story can still make the list — as background, printed as
+  // such — but it never outranks something that broke since the last edition.
+  scored.sort((a, b) => Number(b.fresh) - Number(a.fresh) || Number(!!a.otherTeam) - Number(!!b.otherTeam) || b.score - a.score || a.position - b.position);
   return scored.slice(0, size);
 }
 
@@ -478,8 +543,12 @@ export function buildShortlist(items, teamId, now, size = SHORTLIST_SIZE) {
 // Quiet is judged on the STRONGEST candidate, not the first: the list is
 // ordered fresh-first, so the top entry may be a small new item sitting above
 // a big older one, and the calibration above was done on peak score.
+// Another team's story never counts here (ownership above): a pack of other
+// teams' news is a quiet day for this team, and the ladder (storyline, data
+// edition) is the honest answer to it.
 export function isQuiet(shortlist) {
-  return !shortlist.length || Math.max(...shortlist.map((s) => s.score)) < QUIET_THRESHOLD;
+  const own = shortlist.filter((s) => !s.otherTeam);
+  return !own.length || Math.max(...own.map((s) => s.score)) < QUIET_THRESHOLD;
 }
 
 // Render the shortlist for the writer prompt. Each candidate is numbered so the
@@ -491,6 +560,7 @@ export function renderShortlist(shortlist) {
     .map((s, n) => {
       const bits = [`${s.corroboration} outlet${s.corroboration === 1 ? "" : "s"} (${s.outlets.join(", ")})`];
       if (s.matchReport) bits.push("match report — demoted");
+      if (s.otherTeam) bits.push(`ANOTHER TEAM'S STORY (about ${s.otherTeam}) — not a lead`);
       // Freshness is printed, not just ranked: the writer picks by reading,
       // and "background" beside a candidate is what stops it leading.
       const tag = s.fresh === undefined ? "" : s.fresh ? "NEW · " : `BACKGROUND${ageLabel(s)} · `;

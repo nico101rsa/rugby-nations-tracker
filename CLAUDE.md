@@ -253,6 +253,23 @@ outlet to `scripts/news-sources.mjs` except a person: this repo is public and
 the spine carries publishers' text. The weekly review puts the ready ones to
 Nico.
 
+**Standing yes from Nico (3 Nov 2026) for France, Italy, Fiji and Argentina:**
+six outlets were queued for the probe that day (L'Équipe, Rugbyrama, Midi
+Olympique, OnRugby, Islands Business, Olé). Any of them that reaches "ready"
+is adopted without asking again: add it to `FEEDS` with a topic filter if it is
+a whole-site feed, as the 3 Nov four were. The French and Spanish ones match
+through the aliases already there ("France" in "XV de France", "Pumas").
+
+**Whose story is it** (`ownership()` in `scripts/news-sources.mjs`, 3 Nov
+2026). A headline that names two tracked teams belongs to the one it is about:
+the team with the clearly higher subject weight. A team's shortlist still
+carries another team's story, but ranks it below its own, prints it as
+ANOTHER TEAM'S STORY, never lets it lift the day out of quiet, and re-drafts
+an edition that leads with it while the team has a story of its own
+(`findOtherTeamLead`). Results ("Scotland beat Fiji") and joint headlines
+belong to both sides. A league or union name in another language belongs in
+`TEAM_ALIASES` (the Italian ones are for the Italian union's feed).
+
 ## Storylines (fixture previews)
 
 `storylines.json` at the root holds a pre-match story for every unplayed

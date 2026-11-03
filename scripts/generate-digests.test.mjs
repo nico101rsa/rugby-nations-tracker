@@ -1174,3 +1174,26 @@ test("the writer brief carries the permanent lead and craft rules", () => {
   assert.match(TEMPLATE, /heading promises only what the body delivers/);
   assert.match(TEMPLATE, /End on the last sourced fact/);
 });
+
+// ---- other-team lead gate (3 Nov 2026) ---------------------------------------
+import { findOtherTeamLead, buildOtherTeamFeedback } from "./generate-digests.mjs";
+
+test("findOtherTeamLead: another team's story led while the team had its own", () => {
+  const sl = [
+    { title: "Azzurri bring in ex-Pumas playmaker", fresh: false, otherTeam: null },
+    { title: "Erasmus restores Moerat to Springboks XV for Italy clash", fresh: true, otherTeam: "South Africa" },
+  ];
+  const hit = findOtherTeamLead({ lead: { candidate: 2 } }, sl);
+  assert.equal(hit.chosen.otherTeam, "South Africa");
+  assert.deepEqual(hit.own.map((s) => s.n), [1]);
+  const fb = buildOtherTeamFeedback(hit, "Italy");
+  assert.match(fb, /South Africa's story, not Italy's/);
+  assert.match(fb, /#1 \(BACKGROUND\): Azzurri/);
+});
+
+test("findOtherTeamLead: own leads, and packs with nothing of the team's own, pass", () => {
+  const sl = [{ title: "a", otherTeam: null }, { title: "b", otherTeam: "Ireland" }];
+  assert.equal(findOtherTeamLead({ lead: { candidate: 1 } }, sl), null);
+  assert.equal(findOtherTeamLead({ lead: { candidate: 1 } }, [{ title: "b", otherTeam: "Ireland" }]), null);
+  assert.equal(findOtherTeamLead({}, sl), null);
+});

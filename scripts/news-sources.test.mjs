@@ -386,7 +386,7 @@ test("FEEDS: FBC News is in the spine for Fiji, with a rugby topic filter", () =
   assert.equal(fbc.topic.test("Drua sign two props for next season"), true);
   assert.equal(fbc.topic.test("Fiji records budget surplus"), false);
   assert.deepEqual(FEEDS.filter((f) => f.topic).map((f) => f.id),
-    ["fbcnews", "the42", "walesonline", "dailyrecord", "japantimes", "theroar"], "only the general-news sites need a topic");
+    ["fbcnews", "the42", "walesonline", "dailyrecord", "japantimes", "theroar", "japantoday", "batimes", "stuff"], "only the general-news sites need a topic");
 });
 
 test("FEEDS: The42 and RTÉ Sport are in the spine for Ireland; The42's whole-site feed keeps rugby only", () => {
@@ -536,4 +536,66 @@ test("women's stories never reach the briefing shortlist (men's 15s only)", asyn
   const now = new Date("2026-10-23T00:00:00Z");
   const list = buildShortlist(items.map((i) => ({ ...i, date: now.toISOString(), feedId: "bbc", feedName: "BBC", position: 1 })), 388, now);
   assert.ok(list.every((s) => !/women/i.test(s.title)));
+});
+
+// ---- ownership: whose story is it? (3 Nov 2026 review) ------------------------
+import { ownership } from "./news-sources.mjs";
+
+test("ownership: the 3 Nov other-team leads belong to the other team", () => {
+  // Italy (389) led with the Springbok XV, Argentina (460) with England A,
+  // Australia (461) with England's injury list, Fiji (28) with an Ireland XV story.
+  assert.equal(ownership("Erasmus restores Salmaan Moerat to Springboks XV for Italy clash", 389).otherTeam, "South Africa");
+  assert.equal(ownership("England A name eight Test-capped men for Argentina XV clash", 460).otherTeam, "England");
+  assert.equal(ownership("England rule out Alex Mitchell and Archie McParland for Wallabies Test", 461).otherTeam, "England");
+  assert.equal(ownership("Ireland name Joey Carbery in XV squad to face Fiji A", 28).otherTeam, "Ireland");
+});
+
+test("ownership: the owning team keeps its story, however late its name falls", () => {
+  assert.equal(ownership("Erasmus restores Salmaan Moerat to Springboks XV for Italy clash", 467).otherTeam, null);
+  // Only England named, at the end: was weighted 0.55 on depth alone.
+  const late = ownership("Alex Mitchell out of Nations Championship opener in fresh England injury blow", 386);
+  assert.equal(late.otherTeam, null);
+  assert.ok(late.subject >= 0.8);
+  // Two teams equally the subject: both keep it.
+  assert.equal(ownership("Scotland and Wales name squads", 390).otherTeam, null);
+  assert.equal(ownership("Scotland and Wales name squads", 391).otherTeam, null);
+});
+
+test("buildShortlist: another team's story ranks below the team's own and is printed as such", () => {
+  const items = [
+    { title: "Erasmus restores Salmaan Moerat to Springboks XV for Italy clash", link: "https://x/a", description: "", pubDate: hoursAgo(3), feedId: "planetrugby", feedName: "Planet Rugby" },
+    { title: "Azzurri bring in ex-Pumas playmaker for Springbok Test", link: "https://x/b", description: "", pubDate: hoursAgo(3), feedId: "federugby", feedName: "FIR" },
+  ];
+  const sl = buildShortlist(items, 389, NOW);
+  assert.equal(sl.length, 2);
+  assert.match(sl[0].title, /Azzurri/);
+  assert.equal(sl[0].otherTeam, null);
+  assert.equal(sl[1].otherTeam, "South Africa");
+  assert.match(renderShortlist(sl), /ANOTHER TEAM'S STORY \(about South Africa\)/);
+});
+
+test("isQuiet: a pack of other teams' stories is a quiet day", () => {
+  assert.equal(isQuiet([{ score: 99, otherTeam: "Ireland" }]), true);
+  assert.equal(isQuiet([{ score: 99, otherTeam: "Ireland" }, { score: QUIET_THRESHOLD, otherTeam: null }]), false);
+});
+
+test("ownership: a result is both sides' story", () => {
+  assert.equal(ownership("Scotland beat Fiji 34-21 at Murrayfield", 28).otherTeam, null);
+  assert.equal(ownership("Scotland flirt with defeat before overpowering Fiji", 28).otherTeam, null);
+});
+
+test("ownership: the Italian union's headline about the Springbok XV is South Africa's", () => {
+  assert.equal(ownership("Sudafrica, il XV per la sfida all'Italia", 389).otherTeam, "South Africa");
+  assert.equal(ownership("Sudafrica, il XV per la sfida all'Italia", 467).otherTeam, null);
+});
+
+test("FEEDS: the 3 Nov adoptions keep union news and drop the rest", () => {
+  const f = (id) => FEEDS.find((x) => x.id === id);
+  assert.ok(f("greenandgold") && !f("greenandgold").topic, "union-only site keeps everything");
+  assert.equal(f("japantoday").topic.test("Brave Blossoms name squad for Europe tour"), true);
+  assert.equal(f("japantoday").topic.test("Japan's economy grows 0.3%"), false);
+  assert.equal(f("batimes").topic.test("Los Pumas name squad to face Ireland"), true);
+  assert.equal(f("batimes").topic.test("Argentina's inflation slows again"), false);
+  assert.equal(f("stuff").topic.test("All Blacks name squad for northern tour"), true);
+  assert.equal(f("stuff").topic.test("Warriors re-sign halfback for 2027 NRL season"), false);
 });

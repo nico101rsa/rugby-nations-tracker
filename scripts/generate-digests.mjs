@@ -123,7 +123,8 @@ once a day. Today is {DAY_NAME} {DATE_LONG}.
    NEW shortlist item over a BACKGROUND one; a fresh event beats an old
    appointment, a pundit's verdict or a backward-looking quote. A rival's
    injury, a club derby or a transfer that only MENTIONS {TEAM_NAME} is not a
-   {TEAM_NAME} story. If opinion is all there is, name the pundit or outlet
+   {TEAM_NAME} story, and a shortlist item marked ANOTHER TEAM'S STORY never
+   leads while an item about {TEAM_NAME} is on offer. If opinion is all there is, name the pundit or outlet
    in the heading and state the news fact the opinion rests on.
 4. **Men's 15s only.** The app is men's 15-a-side rugby; a reader assumes
    every story is about the men's XV. **Women's rugby (the women's side,
@@ -532,6 +533,7 @@ export function buildRunReport(dateISO, teams, generated, retrieval, failed = []
       candidates: shortlist.map((s) => ({
         title: s.title, link: s.link ?? null, score: s.score, corroboration: s.corroboration, outlets: s.outlets,
         ...(s.fresh === undefined ? {} : { fresh: s.fresh }),
+        ...(s.otherTeam ? { otherTeam: s.otherTeam } : {}),
       })),
     };
   });
@@ -1463,6 +1465,42 @@ say which test it failed in \`lead.why\`. Keep every rule from the brief: only
 facts the pack supports, one section, strict JSON. Output the complete JSON again.`;
 }
 
+// ---- lead gate: another team's story while the team has its own ----------
+//
+// The other half of "badly chosen" (3 Nov 2026: Italy led with the Springbok
+// XV while "Azzurri bring in ex-Pumas playmaker" sat at #1). The shortlist
+// marks a story another team owns (ownership() in news-sources.mjs); leading
+// with one while the team has a story of its own earns the same single
+// redraft as a BACKGROUND lead. Checked first: a fresh rival story is the
+// worse defect of the two. Pure; null when the lead is fine.
+export function findOtherTeamLead(digest, shortlist = []) {
+  const n = digest?.lead?.candidate;
+  const chosen = Number.isInteger(n) ? shortlist[n - 1] : null;
+  if (!chosen?.otherTeam) return null;
+  const own = shortlist
+    .map((s, i) => ({ n: i + 1, title: s?.title ?? "", fresh: s?.fresh, otherTeam: s?.otherTeam }))
+    .filter((s) => !s.otherTeam);
+  return own.length
+    ? { kind: "other-team", chosen: { n, title: chosen.title ?? "", otherTeam: chosen.otherTeam }, own: own.slice(0, 3) }
+    : null;
+}
+
+export function buildOtherTeamFeedback(found, teamName) {
+  const list = found.own
+    .map((s) => `- #${s.n}${s.fresh === true ? " (NEW)" : s.fresh === false ? " (BACKGROUND)" : ""}: ${s.title}`)
+    .join("\n");
+  return `## Your lead is ${found.chosen.otherTeam}'s story, not ${teamName}'s — reconsider
+You led with #${found.chosen.n}: ${found.chosen.title}
+The shortlist marks it as ANOTHER TEAM'S STORY. These are about ${teamName}:
+${list}
+Lead with the best of these: prefer a NEW one, and skip any you have already
+reported. Keep #${found.chosen.n} ONLY if every one of them fails (women's,
+sevens, league, already reported), and then lead from ${teamName}'s side
+(what it means for ${teamName}), naming that test in \`lead.why\`. Keep every
+rule from the brief: only facts the pack supports, one section, strict JSON.
+Output the complete JSON again.`;
+}
+
 // `trace`, when given, is filled in as the edition is written: the exact
 // first-draft writer prompt, the first draft, its first fact-check verdict and
 // the revision count. Record only. It changes nothing this function returns or
@@ -1542,26 +1580,34 @@ JSON again.`;
   // offer earns ONE redraft, fact-checked like any other. If the writer keeps
   // its lead (it may: the NEW items can be about someone else) or the redraft
   // fails, the first draft stands and the note says so.
+  // The other-team gate (findOtherTeamLead) runs first, with the same one
+  // redraft; a lead can't trip both, so at most one redraft per edition.
   let leadNote = "";
-  const passed = ladder ? null : findPassedOverNew(digest, shortlist);
-  if (passed) {
+  const other = ladder ? null : findOtherTeamLead(digest, shortlist);
+  const passed = ladder || other ? null : findPassedOverNew(digest, shortlist);
+  const gate = other
+    ? { found: other, feedback: buildOtherTeamFeedback(other, params.TEAM_NAME), stillBad: findOtherTeamLead, kept: "kept-other-team" }
+    : passed
+      ? { found: passed, feedback: buildLeadFeedback(passed, params.TEAM_NAME), stillBad: findPassedOverNew, kept: "kept-background" }
+      : null;
+  if (gate) {
     try {
-      const alt = await draft(buildLeadFeedback(passed, params.TEAM_NAME));
+      const alt = await draft(gate.feedback);
       const altCheck = withCodeGate(parseVerdict(extractJson(await calls.checker(buildFactCheckPrompt(params, alt, pack, checkerNotes)))), alt);
       if (altCheck.verdict !== "pass") {
-        leadNote = ", lead=kept-background (redraft failed fact-check)";
-      } else if (findPassedOverNew(alt, shortlist)) {
+        leadNote = `, lead=${gate.kept} (redraft failed fact-check)`;
+      } else if (gate.stillBad(alt, shortlist)) {
         digest = alt; // the writer reconsidered and gave its reason in lead.why
-        leadNote = `, lead=kept-background (${(alt.lead?.why ?? "no reason").slice(0, 80)})`;
+        leadNote = `, lead=${gate.kept} (${(alt.lead?.why ?? "no reason").slice(0, 80)})`;
       } else {
         digest = alt;
-        leadNote = `, lead=revised #${passed.chosen.n}→#${alt.lead?.candidate ?? "?"}`;
+        leadNote = `, lead=revised #${gate.found.chosen.n}→#${alt.lead?.candidate ?? "?"}`;
       }
     } catch (e) {
-      leadNote = `, lead=kept-background (redraft unusable: ${e.message.slice(0, 60)})`;
+      leadNote = `, lead=${gate.kept} (redraft unusable: ${e.message.slice(0, 60)})`;
     }
   }
-  if (trace) trace.leadGate = passed ? leadNote.slice(2) : null;
+  if (trace) trace.leadGate = gate ? leadNote.slice(2) : null;
 
   // Novelty gate. The prompt has already said "not these again"; this is the
   // deterministic check that the writer listened, because on 23-25 Sep 2026
@@ -1823,7 +1869,8 @@ slips don't earn a standing rule. The writer's brief ALREADY carries these as
 permanent rules, so never propose a note that restates them (report a breach in
 \`report\` instead): lead with a NEW reported event about the team over
 BACKGROUND, opinion or a story that only mentions it (a BACKGROUND lead with
-NEW items on offer is also re-drafted in code); attribute opinion to its
+NEW items on offer, and a lead marked ANOTHER TEAM'S STORY while the team has
+its own, are also re-drafted in code); attribute opinion to its
 pundit or outlet; the heading claims only what the body supports; don't
 restate the heading; end on a sourced fact, no generic closer; never describe
 what the coverage lacks. Notes must work WITHIN the format contract —
