@@ -1,30 +1,28 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-04._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-05._
 
 ## Ready — carried stories about the team they were proposed for
 
 - **Rugbyrama** (rugbyrama.fr) — proposed 2026-11-03 for France: A French rugby-only news site that would add XV de France squad and injury news missing from France's thin pack.
-  - feed: https://www.rugbyrama.fr/rss.xml; probes: 1; stories about tracked teams: France 18, South Africa 2, New Zealand 1
+  - feed: https://www.rugbyrama.fr/rss.xml; probes: 2; stories about tracked teams: France 37, South Africa 4, Argentina 2, New Zealand 1
 - **Midi Olympique** (midi-olympique.fr) — proposed 2026-11-03 for France: The French rugby paper of record, covering Galthié's squad and selection daily.
-  - feed: https://www.rugbyrama.fr/midi-olympique/rss.xml; probes: 1; stories about tracked teams: France 3
+  - feed: https://www.rugbyrama.fr/midi-olympique/rss.xml; probes: 2; stories about tracked teams: France 7
 - **OnRugby** (onrugby.it) — proposed 2026-11-03 for Italy: An Italian rugby news site that covers the Azzurri daily, to back up the union's own feed when Italy's pack is thin.
-  - feed: https://www.onrugby.it/feed/; probes: 1; stories about tracked teams: Italy 6, South Africa 5, England 2, France 1, Wales 1, New Zealand 1
+  - feed: https://www.onrugby.it/feed/; probes: 2; stories about tracked teams: Italy 11, South Africa 8, New Zealand 3, England 2, France 2, Ireland 2, Argentina 2, Wales 1, Scotland 1
+- **Islands Business** (islandsbusiness.com) — proposed 2026-11-03 for Fiji: Fiji is starved most days and FBC News is its only local feed; this Pacific news site covers the Flying Fijians.
+  - feed: https://islandsbusiness.com/feed/; probes: 2; stories about tracked teams: Fiji 7, Australia 3, Japan 1
 
 ## Being probed
 
-- **Kyodo News (English)** (english.kyodonews.net) — proposed 2026-10-30 for Japan: Japan's pack held no men's XV news today, and Kyodo's English sports desk covers Brave Blossoms squads and results.
-  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **ABC News Sport (Australia)** (abc.net.au) — proposed 2026-10-31 for Australia: Australia's shortlist was all BACKGROUND with no new stories, and a free national broadcaster's sport desk would add fresh Wallabies news.
-  - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
+  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **England Rugby (RFU official news)** (englandrugby.com) — proposed 2026-11-01 for England: England's pack held only women's, club and Argentina-XV items; the union's own news page would carry men's squad and selection news.
-  - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
+  - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
 - **L'Équipe Rugby** (lequipe.fr) — proposed 2026-11-03 for France: France is retrieval-starved most days (3 Nov: two items in its pack); France's main sports daily covers the XV de France every day, in French.
-  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
-- **Islands Business** (islandsbusiness.com) — proposed 2026-11-03 for Fiji: Fiji is starved most days and FBC News is its only local feed; this Pacific news site covers the Flying Fijians.
-  - feed: https://islandsbusiness.com/feed/; probes: 1; stories about tracked teams: Australia 2, Japan 1
+  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 - **Olé Rugby** (ole.com.ar) — proposed 2026-11-03 for Argentina: Argentina's packs keep filling with other teams' stories; Olé's rugby desk covers Los Pumas daily, in Spanish.
-  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
@@ -46,11 +44,11 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **RNZ Sport** (rnz.co.nz) — proposed 2026-10-26 for New Zealand: New Zealand's shortlist held only an old injury list and ex-player human-interest pieces, and the spine has no New Zealand outlet.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
+- **Kyodo News (English)** (english.kyodonews.net) — proposed 2026-10-30 for Japan: Japan's pack held no men's XV news today, and Kyodo's English sports desk covers Brave Blossoms squads and results.
+  - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 
 ## Adopted
 
-- **Federazione Italiana Rugby** (federugby.it) — proposed 2026-10-12 for Italy: Italy's shortlist held only three low-score items, none about the team's current campaign, and the union page would cover squad and Round 4 news.
-  - feed: https://www.federugby.it/feed/; probes: 13; stories about tracked teams: Italy 11, Argentina 7
 - **Rugby World** (rugbyworld.com) — proposed 2026-10-13 for France, Argentina, Japan: France, Argentina and Japan had no NEW national-team stories today, and this magazine's news desk covers all the major nations in English.
   - feed: https://www.rugbyworld.com/feed; probes: 12; stories about tracked teams: Australia 80, New Zealand 48, England 45, Ireland 40, South Africa 33, France 25, Wales 24, Italy 23, Scotland 18, Fiji 6, Argentina 4
 - **Americas Rugby News** (americasrugbynews.com) — proposed 2026-10-16 for Argentina: Argentina's shortlist held only low-scoring background items, and this English-language site covers Los Pumas and South American rugby regularly.

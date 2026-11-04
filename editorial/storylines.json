@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-04T00:15:55.150Z",
+  "updatedAt": "2026-11-04T20:01:12.726Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 189,
+  "count": 192,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -420,30 +420,6 @@
       "firstSeen": "2026-10-15",
       "lastSeen": "2026-10-15",
       "uses": 0
-    },
-    {
-      "id": "jake-white-s-recruitment-8005lf",
-      "subject": "Jake White's recruitment of a former Springbok assistant coach to join his Fiji backroom team",
-      "teams": [
-        28
-      ],
-      "resolution": "until Fiji Rugby officially announces Jake White's assistant coaching staff",
-      "sources": [
-        {
-          "title": "Jake White's Fiji reign begins as ex-Springbok coach names three uncapped players for Japan re-match",
-          "link": "https://www.planetrugby.com/news/jake-whites-fiji-reign-begins-as-ex-springbok-coach-names-three-uncapped-players-for-japan-re-match",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "Jake turns to trusted Bok ally",
-          "link": "https://www.sarugbymag.co.za/jake-eyes-trusted-bok-ally/",
-          "feedName": "SA Rugby Magazine"
-        }
-      ],
-      "firstSeen": "2026-10-16",
-      "lastSeen": "2026-10-18",
-      "uses": 2,
-      "lastUsed": "2026-10-18"
     },
     {
       "id": "ben-thomas-and-taulupe-1f7o27n",
@@ -2754,12 +2730,22 @@
     },
     {
       "id": "fin-smith-s-fitness-1i48qe1",
-      "subject": "Fin Smith's fitness injury setback and Steve Borthwick's fly-half options for England against Australia",
+      "subject": "Fin Smith's injury status and Steve Borthwick's starting fly-half selection for England against Australia",
       "teams": [
         386
       ],
       "resolution": "until Steve Borthwick clarifies Fin Smith's match fitness or names his starting fly-half against Australia",
       "sources": [
+        {
+          "title": "Smith makes claim, Chessum and Russell make friends - Prem talking points",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c620rdnr3rl1o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "England’s Nations Championship plans hit by Pepper and Van Rensburg double blow",
+          "link": "https://www.theguardian.com/sport/2026/oct/27/england-nations-championship-guy-pepper-benhard-van-rensburg-injury-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
         {
           "title": "England fret over Fin Smith’s fitness for looming Australia match",
           "link": "https://www.theguardian.com/sport/2026/oct/26/england-fin-smith-fitness-australia-nations-championship-rugby-union",
@@ -2767,7 +2753,7 @@
         }
       ],
       "firstSeen": "2026-10-27",
-      "lastSeen": "2026-10-27",
+      "lastSeen": "2026-11-05",
       "uses": 0
     },
     {
@@ -4461,6 +4447,119 @@
       ],
       "firstSeen": "2026-11-04",
       "lastSeen": "2026-11-04",
+      "uses": 0
+    },
+    {
+      "id": "kurtley-beale-s-return-aifo31",
+      "subject": "Kurtley Beale's return to the Wallabies squad and whether he features in a Test match during Australia's European tour",
+      "teams": [
+        461
+      ],
+      "resolution": "until Kurtley Beale is selected in a Wallabies Test matchday squad during their European tour",
+      "sources": [
+        {
+          "title": "All Blacks legend believes Kurtley Beale 'is not the answer' as ex-Springboks dubs it 'a sad step back' for Australia",
+          "link": "https://www.planetrugby.com/news/all-blacks-legend-believes-kurtley-beale-is-not-the-answer-as-ex-springboks-dubs-it-a-sad-step-back-for-australia",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Les Kiss backs Beale to ‘compete’ for Wallabies’ World Cup spot: ‘He’s in there to perform’",
+          "link": "https://www.theguardian.com/sport/2026/oct/30/australia-wallabies-les-kiss-kurtley-beale-rugby-world-cup",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Kurtley Beale earns shock recall to Wallabies squad five years after last Test",
+          "link": "https://www.theguardian.com/sport/2026/oct/28/kurtley-beale-shock-recall-wallabies-squad-rugby-world-cup-australia",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-11-05",
+      "lastSeen": "2026-11-05",
+      "uses": 0
+    },
+    {
+      "id": "joey-carbery-s-potential-1pxul1l",
+      "subject": "Joey Carbery's potential return to the senior Ireland squad following his selection for Ireland XV against Fiji A",
+      "teams": [
+        388
+      ],
+      "resolution": "until Andy Farrell names Joey Carbery in a senior Ireland matchday squad",
+      "sources": [
+        {
+          "title": "Former England prop Brookes gets Ireland XV call-up",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cqe9lml7d07xo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Carbery headlines Ireland XV squad to face Fiji A",
+          "link": "https://www.rte.ie/sport/rugby/2026/1029/1597269-carbery-headlines-ireland-xv-squad-to-face-fiji-a/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
+          "title": "Carbery's return to fitness and form timed to perfection",
+          "link": "https://www.rte.ie/sport/rugby/2026/1026/1596839-carberys-return-to-fitness-and-form-timed-to-perfection/",
+          "feedName": "RTÉ Sport Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-05",
+      "lastSeen": "2026-11-05",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-rotation-policy-rxhi9v",
+      "subject": "Rassie Erasmus' rotation policy and whether the six uncapped Springboks earn Test caps during the European tour",
+      "teams": [
+        467
+      ],
+      "resolution": "until all six uncapped players make their Test debuts or South Africa complete their European tour",
+      "sources": [
+        {
+          "title": "Erasmus has 'full faith' in Bok youngsters",
+          "link": "https://www.sarugbymag.co.za/rassie-has-full-faith-in-bok-youngsters/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Rassie wants Riley to watch Boks win",
+          "link": "https://www.sarugbymag.co.za/rassie-wants-riley-watch-boks-win/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Bok youngster too 'sore' to train",
+          "link": "https://www.sarugbymag.co.za/bok-youngster-too-sore-to-train/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-11-05",
+      "lastSeen": "2026-11-05",
+      "uses": 0
+    },
+    {
+      "id": "the-legal-and-governance-creid7",
+      "subject": "The legal and governance dispute between the URC and WRU over Welsh regions exploring a move to the English Premiership",
+      "teams": [
+        386,
+        391
+      ],
+      "resolution": "until the WRU and URC reach a formal agreement regarding the future participation of Welsh clubs",
+      "sources": [
+        {
+          "title": "URC warns Welsh",
+          "link": "https://www.sarugbymag.co.za/urc-warns-welsh/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "URC threaten Welsh rugby with legal action over talks with English Premiership",
+          "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/urc-threaten-welsh-rugby-legal-34851740",
+          "feedName": "WalesOnline"
+        },
+        {
+          "title": "Prem and RFU commit to expanding with English clubs after report of Welsh sides joining",
+          "link": "https://www.theguardian.com/sport/2026/oct/28/prem-rfu-commit-english-clubs-after-report-welsh-sides-joining",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-11-05",
+      "lastSeen": "2026-11-05",
       "uses": 0
     }
   ]

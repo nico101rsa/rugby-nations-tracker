@@ -176,123 +176,6 @@
       "decided": "2026-10-18"
     },
     {
-      "outlet": "Federazione Italiana Rugby",
-      "host": "federugby.it",
-      "homepage": "https://www.federugby.it",
-      "teams": [
-        "Italy"
-      ],
-      "why": "Italy's shortlist held only three low-score items, none about the team's current campaign, and the union page would cover squad and Round 4 news.",
-      "proposed": "2026-10-12",
-      "status": "adopted",
-      "feedUrl": "https://www.federugby.it/feed/",
-      "probes": [
-        {
-          "date": "2026-10-12",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {
-            "Italy": 1
-          }
-        },
-        {
-          "date": "2026-10-13",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {
-            "Italy": 1
-          }
-        },
-        {
-          "date": "2026-10-14",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {
-            "Italy": 1
-          }
-        },
-        {
-          "date": "2026-10-15",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {
-            "Italy": 1,
-            "Argentina": 1
-          }
-        },
-        {
-          "date": "2026-10-16",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {
-            "Argentina": 1
-          }
-        },
-        {
-          "date": "2026-10-17",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {
-            "Argentina": 1
-          }
-        },
-        {
-          "date": "2026-10-18",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {
-            "Argentina": 1
-          }
-        },
-        {
-          "date": "2026-10-19",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {}
-        },
-        {
-          "date": "2026-10-20",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {}
-        },
-        {
-          "date": "2026-10-21",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {}
-        },
-        {
-          "date": "2026-10-22",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {
-            "Italy": 1,
-            "Argentina": 1
-          }
-        },
-        {
-          "date": "2026-10-23",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {
-            "Italy": 1,
-            "Argentina": 1
-          }
-        },
-        {
-          "date": "2026-10-24",
-          "feedUrl": "https://www.federugby.it/feed/",
-          "items": 10,
-          "hits": {
-            "Italy": 5,
-            "Argentina": 1
-          }
-        }
-      ],
-      "decided": "2026-10-14"
-    },
-    {
       "outlet": "Rugby World",
       "host": "rugbyworld.com",
       "homepage": "https://www.rugbyworld.com",
@@ -1215,7 +1098,7 @@
       ],
       "why": "Japan's pack held no men's XV news today, and Kyodo's English sports desk covers Brave Blossoms squads and results.",
       "proposed": "2026-10-30",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1241,8 +1124,13 @@
         {
           "date": "2026-11-04",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-05",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-05"
     },
     {
       "outlet": "Japan Today",
@@ -1420,6 +1308,10 @@
         {
           "date": "2026-11-04",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-05",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1585,6 +1477,10 @@
         {
           "date": "2026-11-04",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-05",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1602,6 +1498,10 @@
       "probes": [
         {
           "date": "2026-11-04",
+          "error": "no feed found (8 tried; homepage HTTP 403)"
+        },
+        {
+          "date": "2026-11-05",
           "error": "no feed found (8 tried; homepage HTTP 403)"
         }
       ]
@@ -1627,6 +1527,16 @@
             "New Zealand": 1,
             "South Africa": 2
           }
+        },
+        {
+          "date": "2026-11-05",
+          "feedUrl": "https://www.rugbyrama.fr/rss.xml",
+          "items": 100,
+          "hits": {
+            "France": 19,
+            "Argentina": 2,
+            "South Africa": 2
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1649,6 +1559,14 @@
           "items": 25,
           "hits": {
             "France": 3
+          }
+        },
+        {
+          "date": "2026-11-05",
+          "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
+          "items": 25,
+          "hits": {
+            "France": 4
           }
         }
       ],
@@ -1678,6 +1596,20 @@
             "New Zealand": 1,
             "South Africa": 5
           }
+        },
+        {
+          "date": "2026-11-05",
+          "feedUrl": "https://www.onrugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "France": 1,
+            "Ireland": 2,
+            "Italy": 5,
+            "Scotland": 1,
+            "Argentina": 2,
+            "New Zealand": 2,
+            "South Africa": 3
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1691,7 +1623,7 @@
       ],
       "why": "Fiji is starved most days and FBC News is its only local feed; this Pacific news site covers the Flying Fijians.",
       "proposed": "2026-11-03",
-      "status": "proposed",
+      "status": "ready",
       "feedUrl": "https://islandsbusiness.com/feed/",
       "probes": [
         {
@@ -1702,8 +1634,18 @@
             "Australia": 2,
             "Japan": 1
           }
+        },
+        {
+          "date": "2026-11-05",
+          "feedUrl": "https://islandsbusiness.com/feed/",
+          "items": 12,
+          "hits": {
+            "Fiji": 7,
+            "Australia": 1
+          }
         }
-      ]
+      ],
+      "decided": "2026-11-05"
     },
     {
       "outlet": "Olé Rugby",
@@ -1719,6 +1661,10 @@
       "probes": [
         {
           "date": "2026-11-04",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-05",
           "error": "no feed found (8 tried)"
         }
       ]
