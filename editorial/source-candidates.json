@@ -1286,7 +1286,7 @@
       ],
       "why": "Australia's shortlist was all BACKGROUND with no new stories, and a free national broadcaster's sport desk would add fresh Wallabies news.",
       "proposed": "2026-10-31",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1312,8 +1312,13 @@
         {
           "date": "2026-11-05",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-06",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-06"
     },
     {
       "outlet": "Green and Gold Rugby",
@@ -1481,6 +1486,10 @@
         {
           "date": "2026-11-05",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-06",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1502,6 +1511,10 @@
         },
         {
           "date": "2026-11-05",
+          "error": "no feed found (8 tried; homepage HTTP 403)"
+        },
+        {
+          "date": "2026-11-06",
           "error": "no feed found (8 tried; homepage HTTP 403)"
         }
       ]
@@ -1537,6 +1550,16 @@
             "Argentina": 2,
             "South Africa": 2
           }
+        },
+        {
+          "date": "2026-11-06",
+          "feedUrl": "https://www.rugbyrama.fr/rss.xml",
+          "items": 100,
+          "hits": {
+            "France": 26,
+            "Argentina": 2,
+            "South Africa": 3
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1567,6 +1590,14 @@
           "items": 25,
           "hits": {
             "France": 4
+          }
+        },
+        {
+          "date": "2026-11-06",
+          "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
+          "items": 25,
+          "hits": {
+            "France": 5
           }
         }
       ],
@@ -1610,6 +1641,21 @@
             "New Zealand": 2,
             "South Africa": 3
           }
+        },
+        {
+          "date": "2026-11-06",
+          "feedUrl": "https://www.onrugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "Fiji": 1,
+            "France": 1,
+            "Italy": 5,
+            "Scotland": 2,
+            "Wales": 1,
+            "Japan": 1,
+            "New Zealand": 2,
+            "South Africa": 5
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1643,6 +1689,15 @@
             "Fiji": 7,
             "Australia": 1
           }
+        },
+        {
+          "date": "2026-11-06",
+          "feedUrl": "https://islandsbusiness.com/feed/",
+          "items": 12,
+          "hits": {
+            "Fiji": 8,
+            "Australia": 1
+          }
         }
       ],
       "decided": "2026-11-05"
@@ -1666,6 +1721,10 @@
         {
           "date": "2026-11-05",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-06",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1683,6 +1742,10 @@
       "probes": [
         {
           "date": "2026-11-05",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-06",
           "error": "no feed found (8 tried)"
         }
       ]
