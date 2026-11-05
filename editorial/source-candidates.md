@@ -23,6 +23,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 - **Olé Rugby** (ole.com.ar) — proposed 2026-11-03 for Argentina: Argentina's packs keep filling with other teams' stories; Olé's rugby desk covers Los Pumas daily, in Spanish.
   - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+- **The Japan News (Yomiuri Shimbun)** (japannews.yomiuri.co.jp) — proposed 2026-11-05 for Japan: Japan's pack held no Japan-specific men's 15s news today, only Wales stories and old background.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
