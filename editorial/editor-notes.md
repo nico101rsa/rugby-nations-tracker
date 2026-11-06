@@ -3,6 +3,8 @@
 Injected into the writer prompt daily; curated by the post-run review.
 Notes age out after 14 days unless re-earned. Prune freely.
 
+- When a team has just been named, lead with the selection's headline change (star return, captain, debutant, key omission), not a bench or secondary angle. _(added 2026-11-06)_
+- Every sentence must be reported fact; do not add connecting inferences about what a quote or selection 'shows' or 'fits'. _(added 2026-11-06)_
 - Before writing, check that every figure and claim in the paragraph agrees with the others (a count in the heading matches the names listed; a 'winless' record doesn't sit beside a recent win); cut any figure that conflicts. _(added 2026-11-05)_
 - Don't skip the top-scored NEW item about the team's own squad, selection or injuries as 'already covered' unless the same event is in the supplied app data; never lead with a club contract or another team's view. _(added 2026-11-05)_
 - Every sentence must serve the heading: cut trailing facts borrowed from other items (a different ground, an unrelated red card, a dated feature) and name any quoted person with role or club. _(added 2026-11-04)_
