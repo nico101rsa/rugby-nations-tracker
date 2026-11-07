@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-07T18:38:11.542Z",
+ "updatedAt": "2026-11-07T22:36:59.577Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -227,20 +227,6 @@
   "FRA": {
    "last": [
     {
-     "id": 14884328,
-     "date": "2025-11-15T20:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Fiji",
-     "opponentCode": "FIJ",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 34,
-     "them": 21,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14884335,
      "date": "2025-11-22T20:10:00.000Z",
      "league": "International Friendlies",
@@ -365,9 +351,7 @@
      "result": "W",
      "tries": 6,
      "cards": 2
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098079,
      "date": "2026-11-07T20:10:00.000Z",
@@ -376,11 +360,14 @@
      "opponentCode": "FIJ",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Groupama Stadium, Lyon"
-    },
+     "us": 54,
+     "them": 17,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16098043,
      "date": "2026-11-13T20:10:00.000Z",
@@ -411,20 +398,6 @@
   },
   "JPN": {
    "last": [
-    {
-     "id": 14884330,
-     "date": "2025-11-22T12:00:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Georgia",
-     "opponentCode": null,
-     "tracked": false,
-     "homeAway": "A",
-     "us": 25,
-     "them": 23,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
     {
      "id": 16098052,
      "date": "2026-07-04T08:40:00.000Z",
@@ -552,9 +525,7 @@
      "result": "L",
      "tries": 4,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098048,
      "date": "2026-11-07T16:40:00.000Z",
@@ -563,11 +534,14 @@
      "opponentCode": "WAL",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Principality Stadium, Cardiff"
-    },
+     "us": 21,
+     "them": 28,
+     "result": "L",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16098051,
      "date": "2026-11-14T16:40:00.000Z",
@@ -1224,23 +1198,6 @@
   "FIJ": {
    "last": [
     {
-     "id": 14694902,
-     "date": "2025-09-21T01:35:00.000Z",
-     "league": "Pacific Nations Cup, Knockout Stage",
-     "opponent": "Japan",
-     "opponentCode": "JPN",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 33,
-     "them": 27,
-     "result": "W",
-     "tries": null,
-     "cards": null,
-     "venue": "America First Field, Salt Lake City",
-     "neutral": true,
-     "stage": "final"
-    },
-    {
      "id": 14884318,
      "date": "2025-11-08T17:40:00.000Z",
      "league": "International Friendlies",
@@ -1367,9 +1324,7 @@
      "result": "W",
      "tries": 4,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098079,
      "date": "2026-11-07T20:10:00.000Z",
@@ -1378,11 +1333,14 @@
      "opponentCode": "FRA",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Groupama Stadium, Lyon"
-    },
+     "us": 17,
+     "them": 54,
+     "result": "L",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16098075,
      "date": "2026-11-14T20:10:00.000Z",
@@ -1432,25 +1390,23 @@
      "us": null,
      "them": null,
      "result": null
+    },
+    {
+     "id": 16248075,
+     "date": "2027-10-16T02:45:00.000Z",
+     "league": "World Cup, Pool C",
+     "opponent": "Argentina",
+     "opponentCode": "ARG",
+     "tracked": true,
+     "homeAway": "A",
+     "us": null,
+     "them": null,
+     "result": null
     }
    ]
   },
   "WAL": {
    "last": [
-    {
-     "id": 14884338,
-     "date": "2025-11-29T15:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "South Africa",
-     "opponentCode": "RSA",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 0,
-     "them": 73,
-     "result": "L",
-     "tries": null,
-     "cards": null
-    },
     {
      "id": 15106000,
      "date": "2026-02-07T16:40:00.000Z",
@@ -1576,9 +1532,7 @@
      "result": "L",
      "tries": 0,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098048,
      "date": "2026-11-07T16:40:00.000Z",
@@ -1587,11 +1541,14 @@
      "opponentCode": "JPN",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Principality Stadium, Cardiff"
-    },
+     "us": 28,
+     "them": 21,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16098045,
      "date": "2026-11-14T14:10:00.000Z",
