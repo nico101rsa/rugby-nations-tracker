@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-06T07:32:10.185Z",
+ "updatedAt": "2026-11-07T06:43:49.377Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -1018,20 +1018,6 @@
   "IRE": {
    "last": [
     {
-     "id": 14884326,
-     "date": "2025-11-15T20:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Australia",
-     "opponentCode": "AUS",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 46,
-     "them": 19,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14884334,
      "date": "2025-11-22T17:40:00.000Z",
      "league": "International Friendlies",
@@ -1156,9 +1142,7 @@
      "result": "L",
      "tries": 3,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098060,
      "date": "2026-11-06T20:10:00.000Z",
@@ -1167,11 +1151,14 @@
      "opponentCode": "ARG",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Aviva Stadium, Dublin"
-    },
+     "us": 42,
+     "them": 12,
+     "result": "W",
+     "tries": 6,
+     "cards": 1
+    }
+   ],
+   "next": [
     {
      "id": 16098075,
      "date": "2026-11-14T20:10:00.000Z",
@@ -1217,6 +1204,18 @@
      "opponent": "Scotland",
      "opponentCode": "SCO",
      "tracked": true,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248070,
+     "date": "2027-10-17T03:45:00.000Z",
+     "league": "World Cup, Pool D",
+     "opponent": "Uruguay",
+     "opponentCode": null,
+     "tracked": false,
      "homeAway": "H",
      "us": null,
      "them": null,
@@ -2020,20 +2019,6 @@
   "ARG": {
    "last": [
     {
-     "id": 14000788,
-     "date": "2025-10-04T13:00:00.000Z",
-     "league": "The Rugby Championship",
-     "opponent": "South Africa",
-     "opponentCode": "RSA",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 27,
-     "them": 29,
-     "result": "L",
-     "tries": 3,
-     "cards": 1
-    },
-    {
      "id": 14884321,
      "date": "2025-11-09T15:10:00.000Z",
      "league": "International Friendlies",
@@ -2158,9 +2143,7 @@
      "result": "D",
      "tries": null,
      "cards": null
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098060,
      "date": "2026-11-06T20:10:00.000Z",
@@ -2169,11 +2152,14 @@
      "opponentCode": "IRE",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Aviva Stadium, Dublin"
-    },
+     "us": 12,
+     "them": 42,
+     "result": "L",
+     "tries": 2,
+     "cards": 2
+    }
+   ],
+   "next": [
     {
      "id": 16098046,
      "date": "2026-11-14T11:40:00.000Z",
@@ -2219,6 +2205,18 @@
      "opponent": "Spain",
      "opponentCode": null,
      "tracked": false,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248075,
+     "date": "2027-10-16T02:45:00.000Z",
+     "league": "World Cup, Pool C",
+     "opponent": "Fiji",
+     "opponentCode": "FIJ",
+     "tracked": true,
      "homeAway": "H",
      "us": null,
      "them": null,
