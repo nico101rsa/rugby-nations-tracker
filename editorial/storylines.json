@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-07T08:01:08.422Z",
+  "updatedAt": "2026-11-07T12:01:11.890Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 193,
+  "count": 195,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -2745,13 +2745,18 @@
     },
     {
       "id": "the-wru-s-proposal-1szrke4",
-      "subject": "The WRU's proposal to integrate Welsh teams into the English Premiership",
+      "subject": "Welsh Rugby Union proposal to integrate Welsh teams into the English Premiership",
       "teams": [
         386,
         391
       ],
       "resolution": "until Premiership Rugby and the WRU issue a final decision regarding Welsh clubs joining the league",
       "sources": [
+        {
+          "title": "Prem, RFU committed to English-led expansion as WRU apply",
+          "link": "https://www.rte.ie/sport/rugby/2026/1028/1597130-prem-rfu-committed-to-english-led-expansion-as-wru-apply/",
+          "feedName": "RTÉ Sport Rugby"
+        },
         {
           "title": "Prem and RFU commit to expanding with English clubs after report of Welsh sides joining",
           "link": "https://www.theguardian.com/sport/2026/oct/28/prem-rfu-commit-english-clubs-after-report-welsh-sides-joining",
@@ -2761,11 +2766,6 @@
           "title": "RFU boss confirms WRU Anglo-Welsh league approach",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c9p8ggzzerz5o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Welsh make Premiership move",
-          "link": "https://www.sarugbymag.co.za/welsh-make-premiership-move/",
-          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-10-29",
@@ -4269,7 +4269,7 @@
     },
     {
       "id": "tom-curry-s-training-1cxwzft",
-      "subject": "Tom Curry's training injury and availability for England's Nations Championship matches",
+      "subject": "Tom Curry's training injury and availability for England's remaining Nations Championship matches",
       "teams": [
         386
       ],
@@ -4481,12 +4481,17 @@
     },
     {
       "id": "pieter-steph-du-toit-1hwlppr",
-      "subject": "Pieter-Steph du Toit's next club destination following his release from Japan",
+      "subject": "Pieter-Steph du Toit's next South African club following his release from Japan",
       "teams": [
         467
       ],
       "resolution": "until Pieter-Steph du Toit announces his new club contract",
       "sources": [
+        {
+          "title": "Kolisi happy to have Pietie back home",
+          "link": "https://www.sarugbymag.co.za/kolisi-happy-pietie-back-home/",
+          "feedName": "SA Rugby Magazine"
+        },
         {
           "title": "Pieter-Steph du Toit joins Japan exodus as Springboks star primed for South African return after contract termination",
           "link": "https://www.planetrugby.com/news/springboks-pieter-steph-du-toit-set-for-south-african-return-after-terminating-japan-contract",
@@ -4627,6 +4632,57 @@
           "title": "Fin Smith fit to face Australia as Ben Curry replaces injured twin Tom in England line-up",
           "link": "https://www.theguardian.com/sport/2026/nov/06/fin-smith-steve-borthwick-maro-itoje-australia-england-rugby-union",
           "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-11-07",
+      "lastSeen": "2026-11-07",
+      "uses": 0
+    },
+    {
+      "id": "joey-carbery-s-push-182teq4",
+      "subject": "Joey Carbery's push for an Ireland Test recall following ACL injury recovery",
+      "teams": [
+        388
+      ],
+      "resolution": "until Joey Carbery is selected in a senior Test matchday squad for Ireland",
+      "sources": [
+        {
+          "title": "Carbery headlines Ireland XV squad to face Fiji A",
+          "link": "https://www.rte.ie/sport/rugby/2026/1029/1597269-carbery-headlines-ireland-xv-squad-to-face-fiji-a/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
+          "title": "Carbery's return to fitness and form timed to perfection",
+          "link": "https://www.rte.ie/sport/rugby/2026/1026/1596839-carberys-return-to-fitness-and-form-timed-to-perfection/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
+          "title": "Carbery talk could escalate faster than we thought",
+          "link": "https://www.rte.ie/sport/rugby/2026/1102/1597699-carbery-talk-could-escalate-faster-than-we-thought/",
+          "feedName": "RTÉ Sport Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-07",
+      "lastSeen": "2026-11-07",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-and-south-1p6n2s",
+      "subject": "Rassie Erasmus and South Africa's player rotation policy across upcoming November Tests",
+      "teams": [
+        467
+      ],
+      "resolution": "until South Africa announce their team selections for the matches against France and Ireland",
+      "sources": [
+        {
+          "title": "Springboks coaches 'unsure' about player rotation as November tour is a 'good representative' of World Cup knockouts",
+          "link": "https://www.planetrugby.com/news/springboks-coaches-unsure-about-player-rotation-as-november-tour-is-a-good-representative-of-world-cup-knockouts",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Springboks legend: Don't be surprised if Rassie Erasmus backs bolters against France and Ireland",
+          "link": "https://www.planetrugby.com/news/springboks-legend-dont-be-surprised-if-rassie-erasmus-backs-bolters-against-france-and-ireland",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-11-07",
