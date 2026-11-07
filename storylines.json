@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "updatedAt": "2026-11-07T20:11:02.981Z",
+ "updatedAt": "2026-11-07T20:46:11.379Z",
  "stories": {
   "espn-603998": {
    "home": "ENG",
@@ -335,6 +335,33 @@
    "voice": "dry2",
    "factsHash": "e30b490232c9f523",
    "packHash": "1bac998f736f4260"
+  },
+  "espn-604010": {
+   "home": "WAL",
+   "away": "AUS",
+   "kickoff": "2026-11-21T20:10:00.000Z",
+   "headline": "Italy have lost four from four. Wales could still trail them",
+   "beats": [
+    "Wales beat Italy 31-17 in Cardiff in March. Lose to Australia here by any margin and Wales drop below Italy and Japan in the world rankings, twelfth at best.",
+    "Australia are not arriving in comfort. They conceded 50 and 43 to New Zealand in October, a fortnight after beating South Africa 42-38. They went into November in a pay dispute.",
+    "Wales have their own scar. South Africa held them scoreless in July, 43-0. Steve Tandy called this November pivotal, with Japan first, then New Zealand, then Australia last.",
+    "Australia's next fixture is Hong Kong at the World Cup in October 2027. Wales have nothing else scheduled, so whatever happens here is the number they keep."
+   ],
+   "sources": [
+    {
+     "title": "Wales Rugby Today: Steve Tandy says Japan visit starts pivotal November in Cardiff",
+     "url": "https://www.el-balad.com/17064738"
+    },
+    {
+     "title": "Borthwick backed, Wallabies in pay dispute",
+     "url": "https://www.sarugbymag.co.za/borthwick-backed-wallabies-in-pay-dispute/"
+    }
+   ],
+   "generatedAt": "2026-11-07T20:46:11.379Z",
+   "model": "claude-opus-5-5",
+   "voice": "dry2",
+   "factsHash": "1d92973ba703abb0",
+   "packHash": "ceff745919c0238c"
   }
  }
 }
