@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T01:01:20.015Z",
+  "updatedAt": "2026-11-07T00:10:57.202Z",
   "source": "aggregated",
   "matches": [
     {
@@ -3574,6 +3574,195 @@
           "player": "Emmanuel Iyogun"
         }
       ]
+    },
+    {
+      "id": 53231,
+      "round": "4",
+      "date": "2026-11-06T20:10:00+00:00",
+      "home": {
+        "id": 388,
+        "name": "Ireland",
+        "score": 42
+      },
+      "away": {
+        "id": 460,
+        "name": "Argentina",
+        "score": 12
+      },
+      "eventId": 16098060,
+      "reconciled": true,
+      "scoring": [
+        {
+          "min": 10,
+          "team": "away",
+          "type": "try",
+          "player": "Mateo Carreras",
+          "after": [
+            0,
+            5
+          ]
+        },
+        {
+          "min": 15,
+          "team": "home",
+          "type": "try",
+          "player": "Hugo Keenan",
+          "after": [
+            5,
+            5
+          ]
+        },
+        {
+          "min": 15,
+          "team": "home",
+          "type": "conversion",
+          "player": "Sam Prendergast",
+          "after": [
+            7,
+            5
+          ]
+        },
+        {
+          "min": 25,
+          "team": "home",
+          "type": "try",
+          "player": "Dan Sheehan",
+          "after": [
+            12,
+            5
+          ]
+        },
+        {
+          "min": 26,
+          "team": "home",
+          "type": "conversion",
+          "player": "Sam Prendergast",
+          "after": [
+            14,
+            5
+          ]
+        },
+        {
+          "min": 30,
+          "team": "home",
+          "type": "try",
+          "player": "Hugo Keenan",
+          "after": [
+            19,
+            5
+          ]
+        },
+        {
+          "min": 30,
+          "team": "home",
+          "type": "conversion",
+          "player": "Sam Prendergast",
+          "after": [
+            21,
+            5
+          ]
+        },
+        {
+          "min": 42,
+          "team": "home",
+          "type": "try",
+          "player": "Sam Prendergast",
+          "after": [
+            26,
+            5
+          ]
+        },
+        {
+          "min": 42,
+          "team": "home",
+          "type": "conversion",
+          "player": "Sam Prendergast",
+          "after": [
+            28,
+            5
+          ]
+        },
+        {
+          "min": 46,
+          "team": "away",
+          "type": "try",
+          "player": "Mateo Carreras",
+          "after": [
+            28,
+            10
+          ]
+        },
+        {
+          "min": 46,
+          "team": "away",
+          "type": "conversion",
+          "player": "Tomás Albornoz",
+          "after": [
+            28,
+            12
+          ]
+        },
+        {
+          "min": 50,
+          "team": "home",
+          "type": "try",
+          "player": "Hugo Keenan",
+          "after": [
+            33,
+            12
+          ]
+        },
+        {
+          "min": 51,
+          "team": "home",
+          "type": "conversion",
+          "player": "Sam Prendergast",
+          "after": [
+            35,
+            12
+          ]
+        },
+        {
+          "min": 55,
+          "team": "home",
+          "type": "try",
+          "player": "Ronan Kelleher",
+          "after": [
+            40,
+            12
+          ]
+        },
+        {
+          "min": 56,
+          "team": "home",
+          "type": "conversion",
+          "player": "Ciaran Frawley",
+          "after": [
+            42,
+            12
+          ]
+        }
+      ],
+      "cards": [
+        {
+          "min": 35,
+          "team": "away",
+          "type": "yellow",
+          "player": "Justo Piccardo"
+        },
+        {
+          "min": 54,
+          "team": "away",
+          "type": "yellow",
+          "player": "Efraín Elías"
+        },
+        {
+          "min": 61,
+          "team": "home",
+          "type": "yellow",
+          "player": "Sam Illo"
+        }
+      ]
     }
   ],
   "aggregates": {
@@ -3582,6 +3771,11 @@
         "player": "Will Jordan",
         "team": "New Zealand",
         "tries": 6
+      },
+      {
+        "player": "Hugo Keenan",
+        "team": "Ireland",
+        "tries": 5
       },
       {
         "player": "Josh Canham",
@@ -3605,6 +3799,11 @@
       },
       {
         "player": "Joaquín Oviedo",
+        "team": "Argentina",
+        "tries": 3
+      },
+      {
+        "player": "Mateo Carreras",
         "team": "Argentina",
         "tries": 3
       },
@@ -3636,11 +3835,6 @@
       {
         "player": "Fraser McReight",
         "team": "Australia",
-        "tries": 2
-      },
-      {
-        "player": "Hugo Keenan",
-        "team": "Ireland",
         "tries": 2
       },
       {
@@ -3816,6 +4010,11 @@
       {
         "player": "Damian Willemse",
         "team": "South Africa",
+        "tries": 1
+      },
+      {
+        "player": "Dan Sheehan",
+        "team": "Ireland",
         "tries": 1
       },
       {
@@ -4009,11 +4208,6 @@
         "tries": 1
       },
       {
-        "player": "Mateo Carreras",
-        "team": "Argentina",
-        "tries": 1
-      },
-      {
         "player": "Matt Fagerson",
         "team": "Scotland",
         "tries": 1
@@ -4074,6 +4268,11 @@
         "tries": 1
       },
       {
+        "player": "Ronan Kelleher",
+        "team": "Ireland",
+        "tries": 1
+      },
+      {
         "player": "Rory Hutchinson",
         "team": "Scotland",
         "tries": 1
@@ -4091,6 +4290,11 @@
       {
         "player": "Sam Darry",
         "team": "New Zealand",
+        "tries": 1
+      },
+      {
+        "player": "Sam Prendergast",
+        "team": "Ireland",
         "tries": 1
       },
       {
@@ -4209,6 +4413,15 @@
         "d": 0
       },
       {
+        "player": "Tomás Albornoz",
+        "team": "Argentina",
+        "points": 32,
+        "t": 0,
+        "c": 13,
+        "p": 2,
+        "d": 0
+      },
+      {
         "player": "Ruben Love",
         "team": "New Zealand",
         "points": 31,
@@ -4227,19 +4440,28 @@
         "d": 0
       },
       {
-        "player": "Tomás Albornoz",
-        "team": "Argentina",
-        "points": 30,
-        "t": 0,
-        "c": 12,
-        "p": 2,
-        "d": 0
-      },
-      {
         "player": "Will Jordan",
         "team": "New Zealand",
         "points": 30,
         "t": 6,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Sam Prendergast",
+        "team": "Ireland",
+        "points": 29,
+        "t": 1,
+        "c": 12,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Hugo Keenan",
+        "team": "Ireland",
+        "points": 25,
+        "t": 5,
         "c": 0,
         "p": 0,
         "d": 0
@@ -4308,8 +4530,8 @@
         "d": 0
       },
       {
-        "player": "Mathieu Jalibert",
-        "team": "France",
+        "player": "Mateo Carreras",
+        "team": "Argentina",
         "points": 15,
         "t": 3,
         "c": 0,
@@ -4317,11 +4539,11 @@
         "d": 0
       },
       {
-        "player": "Sam Prendergast",
-        "team": "Ireland",
-        "points": 14,
-        "t": 0,
-        "c": 7,
+        "player": "Mathieu Jalibert",
+        "team": "France",
+        "points": 15,
+        "t": 3,
+        "c": 0,
         "p": 0,
         "d": 0
       },
@@ -4394,15 +4616,6 @@
         "points": 10,
         "t": 0,
         "c": 5,
-        "p": 0,
-        "d": 0
-      },
-      {
-        "player": "Hugo Keenan",
-        "team": "Ireland",
-        "points": 10,
-        "t": 2,
-        "c": 0,
         "p": 0,
         "d": 0
       },
@@ -4542,6 +4755,15 @@
         "d": 0
       },
       {
+        "player": "Ciaran Frawley",
+        "team": "Ireland",
+        "points": 8,
+        "t": 0,
+        "c": 4,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Finn Russell",
         "team": "Scotland",
         "points": 8,
@@ -4589,15 +4811,6 @@
       {
         "player": "Carter Gordon",
         "team": "Australia",
-        "points": 6,
-        "t": 0,
-        "c": 3,
-        "p": 0,
-        "d": 0
-      },
-      {
-        "player": "Ciaran Frawley",
-        "team": "Ireland",
         "points": 6,
         "t": 0,
         "c": 3,
@@ -4791,6 +5004,15 @@
         "t": 0,
         "c": 1,
         "p": 1,
+        "d": 0
+      },
+      {
+        "player": "Dan Sheehan",
+        "team": "Ireland",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
         "d": 0
       },
       {
@@ -5145,15 +5367,6 @@
         "d": 0
       },
       {
-        "player": "Mateo Carreras",
-        "team": "Argentina",
-        "points": 5,
-        "t": 1,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
         "player": "Matt Fagerson",
         "team": "Scotland",
         "points": 5,
@@ -5237,6 +5450,15 @@
       {
         "player": "Rodrigo Isgró",
         "team": "Argentina",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Ronan Kelleher",
+        "team": "Ireland",
         "points": 5,
         "t": 1,
         "c": 0,
@@ -5480,13 +5702,13 @@
     ],
     "discipline": [
       {
-        "team": "England",
+        "team": "Argentina",
         "yellow": 6,
         "red": 0
       },
       {
-        "team": "Argentina",
-        "yellow": 4,
+        "team": "England",
+        "yellow": 6,
         "red": 0
       },
       {
@@ -5525,6 +5747,11 @@
         "red": 0
       },
       {
+        "team": "Ireland",
+        "yellow": 1,
+        "red": 0
+      },
+      {
         "team": "Scotland",
         "yellow": 1,
         "red": 0
@@ -5533,14 +5760,17 @@
         "team": "Wales",
         "yellow": 1,
         "red": 0
-      },
-      {
-        "team": "Ireland",
-        "yellow": 0,
-        "red": 0
       }
     ],
     "teamTotals": [
+      {
+        "team": "Ireland",
+        "tries": 19,
+        "cons": 17,
+        "pens": 1,
+        "drops": 0,
+        "pointsFor": 132
+      },
       {
         "team": "South Africa",
         "tries": 20,
@@ -5582,28 +5812,20 @@
         "pointsFor": 114
       },
       {
+        "team": "Argentina",
+        "tries": 15,
+        "cons": 13,
+        "pens": 2,
+        "drops": 0,
+        "pointsFor": 109
+      },
+      {
         "team": "Scotland",
         "tries": 16,
         "cons": 14,
         "pens": 0,
         "drops": 0,
         "pointsFor": 108
-      },
-      {
-        "team": "Argentina",
-        "tries": 13,
-        "cons": 12,
-        "pens": 2,
-        "drops": 0,
-        "pointsFor": 97
-      },
-      {
-        "team": "Ireland",
-        "tries": 13,
-        "cons": 11,
-        "pens": 1,
-        "drops": 0,
-        "pointsFor": 90
       },
       {
         "team": "Japan",
