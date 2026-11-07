@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-07T11:28:42.006Z",
+  "updatedAt": "2026-11-07T11:52:50.180Z",
   "counts": {
-    "fixtures": 17,
-    "results": 19,
+    "fixtures": 16,
+    "results": 20,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53232,
-      "date": "2026-11-07T11:40:00+00:00",
-      "week": "4",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 389,
-        "name": "Italy",
-        "logo": "https://media.api-sports.io/rugby/teams/389.png",
-        "score": null
-      },
-      "away": {
-        "id": 467,
-        "name": "South Africa",
-        "logo": "https://media.api-sports.io/rugby/teams/467.png",
-        "score": null
-      }
-    },
     {
       "id": 53233,
       "date": "2026-11-07T14:10:00+00:00",
@@ -818,6 +796,28 @@
         "logo": "https://media.api-sports.io/rugby/teams/460.png",
         "score": 12
       }
+    },
+    {
+      "id": 53232,
+      "date": "2026-11-07T11:40:00+00:00",
+      "week": "4",
+      "status": {
+        "short": "1H",
+        "long": "First Half",
+        "live": true
+      },
+      "home": {
+        "id": 389,
+        "name": "Italy",
+        "logo": "https://media.api-sports.io/rugby/teams/389.png",
+        "score": 0
+      },
+      "away": {
+        "id": 467,
+        "name": "South Africa",
+        "logo": "https://media.api-sports.io/rugby/teams/467.png",
+        "score": 8
+      }
     }
   ],
   "log": [
@@ -1028,10 +1028,22 @@
   ],
   "news": [
     {
+      "title": "South Africa vs. Italy Rugby Live Score Updates: Nations Championship 2026 News And Highlights",
+      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNc0ZwQTUyOGY1RV9CcW1mbnFrYXprbDM1dl9LbFJfaHhQU0pVZUVDek1KZ0NFc0xjUlVWVmNwVWYtQzdHeTdxRXpGclU4MUdZRXhpYzdsUXMySWVtX2F6LXN6N0JhOUxWRnVkWXJkazdsS2RDanhjVGhMM0NOd2hrX0hn?oc=5",
+      "source": "Yahoo Sports",
+      "published": "Sat, 07 Nov 2026 10:55:00 GMT"
+    },
+    {
       "title": "Nations Championship 2026 on TV | Schedule, TV channels and live stream",
       "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbXVXS0FIU25Pa3pnakVQVlM1YkQ0UzFKNXhlM1BYT1BIY3lNa2UyblVKaFhhdlBQbUhManY3MDBPZklzQWtMRVFfQ2NLc003VXF1cEg3ckZudV9VT3BlR3VmdTdIdXFZUTR5WUx1Z0RkU0oybzk3XzNiUXZQWGhSUy1PUQ?oc=5",
       "source": "Radio Times",
       "published": "Sat, 07 Nov 2026 05:26:36 GMT"
+    },
+    {
+      "title": "‘Annoyingly bloody good’: How every rugby heavyweight shapes up",
+      "link": "https://news.google.com/rss/articles/CBMigwJBVV95cUxPeE1HeEJJc09pWXJvRlgtY1F5UDBMNWdXeDZoa0cwNnFnMGtvUzExUFRzLXdRUXVsRWxHdWVPMVEzejNncV9QMF8ydS1NUTdJM3BGMUpINVhOQUZYYXd0RTRvYkJxOENoRE5OTkxCaVFnY1ozREJLT09UdGVLZENmWlc3T28tSFQwZTJHbU5DYmhpeGNtaGlhNTVvT2VJeTJTa3NRaVRUT3gzRE9FN0FnSTZFa01oMUlNd3UxQ195cWVRT3gwejZINXNocHdWYkY4TWtHRGZSMHU2YXJTeHFFNlR0RExFbUNPQzZ1V3B3cElyQmgzNG90NVNPQXRiMkszNWdr?oc=5",
+      "source": "The Australian",
+      "published": "Sat, 07 Nov 2026 03:27:26 GMT"
     },
     {
       "title": "Ireland 42-12: Hugo Keenan hat trick guides Irish to big win - as it happened",
@@ -1040,16 +1052,16 @@
       "published": "Sat, 07 Nov 2026 00:44:09 GMT"
     },
     {
+      "title": "Hugo Keenan hat trick powers Ireland to 42-12 win over Argentina",
+      "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxNTDZlSTBqcnByR1pPYzdGQmpobmZUWlgybTBUZkVYN3g2ZklER0ROTVNBZWZiLXczanM2VllLZmZjNTdsa2QweHpnQy1yWnU4SUFSM28yVWtwcnV1MTVUM3NqMjZ1UTFiMDF4dGlEUWtQY1ctcUlwc0M5eFZpMm5mMGZuSVpDZ1p3cWpBUlNGMXdOR3RsUnRnSnJFd0Y0ekE5alRaSjQ4dFAtQQ?oc=5",
+      "source": "ESPN",
+      "published": "Sat, 07 Nov 2026 00:29:09 GMT"
+    },
+    {
       "title": "Nations Championship power rankings: Who should be worried as Rugby World Cup looms?",
       "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxOUjZaZHNrcnhQazZwa0xNcmUyc2hjMURNTE9XRGRGOTkxampPbUxRcGZmOExLMjU5dVpYTEkxdTlnS1dwcjhab1JnbFJ4VUpqVXlIREZVTERTMHVqcDNoaEJPU21WVU5jUURVUGg3RGhrbGFBSi0xOWEtSl82WGdmMnNFYTllVl9jRDkzTjlYWGNiUklmRkZXcEx1OU1teHVFNXBKQlp3NHFlYkdaRmVtSjZxYkI2ZE5MLW9GMTZWaWs2R3AxTVpmQlRyOHQyQUFuTW5zSjRB?oc=5",
       "source": "ESPN",
       "published": "Sat, 07 Nov 2026 00:14:38 GMT"
-    },
-    {
-      "title": "Keenan hat-trick inspires six-try Ireland to emphatic win against Argentina",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQc2RqSVVpYVRoeVF5bzgyZEs0b2I4b2psbkhuZ0pra084ZG9DdzlOclNHd0pHVTRld3U2ckxBcmZBaXhkTm1HVHkwdG9EUXJocHJfRzI4U2QwV1B6RWVxZmF5UUl6MjNIaGptVGhSeE1DdFozblRpQXNEeGVsS192ZGd4UGd4RTgwcm5UU0ZHWTVGdXJMT0ZGLXF5YkRPdw?oc=5",
-      "source": "The Guardian",
-      "published": "Fri, 06 Nov 2026 23:44:00 GMT"
     },
     {
       "title": "Injury crises and Borthwick under scrutiny: it’s that time of year again for England rugby",
@@ -1058,10 +1070,10 @@
       "published": "Fri, 06 Nov 2026 23:29:00 GMT"
     },
     {
-      "title": "Hugo Keenan leaves Pumas panting in Ireland romp",
-      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPRmQ4dXl1Tm1iTDVYWlhaMkRLSDZuS2ZmLUZyWEhnQnc0UzBlaWsxZExsQTk2dUl5c1VaZHpodmxLY0xmQlExWHJGR3NZSU9YVkx6ejhOY3VvejRIak9RVllWWFRzUzNXczY4aEVINzJheE9oaFJkTGFaeTJub2gyUnZMekVNSEVDdFhkRU9B?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Fri, 06 Nov 2026 22:30:51 GMT"
+      "title": "England v Wallabies: How to watch Test in Australia, teams, fixtures and more",
+      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQeU9DcnhTY2tuNmRmYWJfb0RhMXJnay1wbWk4QURwOS1aWE5QbFBvNzhJUFgwbTlpdjdoWXg1UU9FSjlyQ1dENHd5dmlDalplWUs0RW9ZVFBlUXVhaTFvRkRDeUFSYXZDd2FFbUtmQnRJR2pUdVctMlhmRkJNcG1qT2xBSUJGcU1uUXdhamFJYlFJNndnZHdQcnhnTEhmQ1ZnM253UTQyZGx5Y1ozTWg2WkJ4UXhsbkgxdy10MUQzaU5jSGVsV1NfUzdpbElkWHRlRGpxSFVn?oc=5",
+      "source": "RUGBY.com.au",
+      "published": "Fri, 06 Nov 2026 22:59:17 GMT"
     },
     {
       "title": "This is the Test match that does not need a fancy new format",
@@ -1070,34 +1082,22 @@
       "published": "Fri, 06 Nov 2026 22:30:00 GMT"
     },
     {
+      "title": "Keenan hat-trick inspires six-try Ireland to emphatic win against Argentina",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxQc2RqSVVpYVRoeVF5bzgyZEs0b2I4b2psbkhuZ0pra084ZG9DdzlOclNHd0pHVTRld3U2ckxBcmZBaXhkTm1HVHkwdG9EUXJocHJfRzI4U2QwV1B6RWVxZmF5UUl6MjNIaGptVGhSeE1DdFozblRpQXNEeGVsS192ZGd4UGd4RTgwcm5UU0ZHWTVGdXJMT0ZGLXF5YkRPdw?oc=5",
+      "source": "The Guardian",
+      "published": "Fri, 06 Nov 2026 22:20:00 GMT"
+    },
+    {
       "title": "Nations Championship, Rugby League World Cup and NFL action – follow with us",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNTEtjNnowbnhzLWNfTTVXV1N5VEticjNzZEd6ZTQ1M214ekFiRFNwbEFVZ0FnUUxENTdvWi10ekxBLVk2OU5PbzRqRnY1VnhQTVZzMEd0V2lLTzZGNmhKNXUxTTJ1QXg4VExSSFA2X2E4SHNjZzJwMmxnSFd2NUpteHJENGdQMjBBZElwRGl3TEFEYV9uUmlVbzNBY0w5TzNLaElCV2piU2RJQlVlLV8weXEzTTJpTVgtSFBJ?oc=5",
       "source": "The Guardian",
       "published": "Fri, 06 Nov 2026 20:33:00 GMT"
     },
     {
-      "title": "Ireland v Argentina, LIVE BLOG: Coverage of the Nations Championship fixture",
-      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOSDRfbDJvREdpNjRtYjN2UzEwdVVieExUTzdaMDFkWmN4QUpDYTBfSW1LTF9vejAxblZwam4xLWZmN1kzRFp2VmZWaWdjUnJDbFM5c3NYRk13T1lXM05KNUxOc2VhV29kcWp2TlFOQ28wZy1UT01TSWhmS1BvcjBId1JOOHFrdU5nTkF6VVRTMHR6aXZ1Z3FQNWFpR3VjMDR0aTg1RUlnWmxXNzA?oc=5",
-      "source": "Planet Rugby",
-      "published": "Fri, 06 Nov 2026 19:59:55 GMT"
-    },
-    {
-      "title": "Nations Championship and Nations Cup provides first international outing for new 'hip drop' tackle laws",
-      "link": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxNdG8tcmpDYVNGTkRPbUdRQTNwVTVRZnVhaGdSM3UxQlVpTUVFSDFMWnIzdGlhaDg5cHZLU3lJQ0F0RVhtTTV1bldrM0xjanNQT3Zsc2xMOC1jSzdtanh0YndNWjZJd2JEeDdISXMtVXRiMTdPRFhScXEtNk1SSWNiUTVweFBvcHkyMkM0TEtycElsaUU2eHBqN0FZdmJYVHRfcjJTQ3BLZ0pRYmhKQ08yZFY4UC1peXZUZlhveHZoYURYMExSYUdMY0E3M0lHa25GX1c0eTQ4M3E5SFB0eU56V1FiRGItaFdOMF9aYzRn?oc=5",
-      "source": "World Rugby",
-      "published": "Fri, 06 Nov 2026 12:05:23 GMT"
-    },
-    {
-      "title": "Italy vs. South Africa - Kick-off time, team news, how to watch the Springboks' Nations Championship",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxONjUyLW52b2o2cDdjVmhDTVl2TUxIbjdJRkpqeTVnVFdQWDVySzlzUFNhbGhINjQxVC10Z3JkZjVmdTRzZVlPU3h5YkloLUpleTM4ajVKaUV5bHR2Q3VRZDRzdlNERVphSk82alFrWUNYeDlQT0VNMHpBZWdTQ1hTZVVsbDNtdTVHWHpxbV81UlExOGdUYWg4YjZ6RlFmZkhOVGozRHZLS3pybDJuN0JkV0h0V1NoSGl5bkZ3T2w2bVpzVDJQUlE?oc=5",
-      "source": "ESPN",
-      "published": "Fri, 06 Nov 2026 08:16:25 GMT"
-    },
-    {
-      "title": "Bullseye painted on Wallabies as shiny new comp explained",
-      "link": "https://news.google.com/rss/articles/CBMi-wFBVV95cUxPUlFNWEFkSnQtSF91ZG5QeW1NLUxVQUZSY1FDQVJGcHhndzRyYnBJMko1QUdBa3F3b1d4X3pxWWE1Qld5N1NPTnNEOFRTdHNNWmcycjlnYXdrRlhnX3I4eVVhYThsaDBtZGEyZ3RYaXpGLVFGN1NBT29TSHIxa1JxS2ZSREtPQ2VYcGhmQVdoWDJGMXBtX0g1cGR0Yy1oWEtUanVFNHE4SmZrRGdkWTRVLUpYLXgwbmhyNzFWeG1FVWZKTVpHcmgwckhlYmpZeVg2NVFLV0swMWlvcHA3MEREdWVVVnJ3MDlINEtNRE9Ud243WFg1S202RW5LVQ?oc=5",
-      "source": "Nine.com.au",
-      "published": "Fri, 06 Nov 2026 05:14:37 GMT"
+      "title": "Three World Rugby Rankings could fall as Nations Championship resumes",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPNmNSVmhrbzV6d0JUdl9Ua3F4WHQ5cjZoeWhtbUdRaDk2VlBLZFk5TGJmS0szTEZnZHk4ZWNfRGVObHpmNFpSUEtNNXQ3M3RoWlNsbTdBTk9va3lYQmJud1ByWXNUU05RM1RXaS05Vng2UVNnU0MtZ3FXUk9jUUxGd3BBZnVjMWktSXNKaW9IUHhnVjMxYUtBY0F2bWU4a3dQWTE4?oc=5",
+      "source": "Rugbypass.com",
+      "published": "Fri, 06 Nov 2026 07:00:25 GMT"
     },
     {
       "title": "South Africa, France eye bragging rights in inaugural Nations Championship",
@@ -1106,16 +1106,16 @@
       "published": "Thu, 05 Nov 2026 22:24:12 GMT"
     },
     {
-      "title": "Nations Championship: Wales must embrace English-based players - Steve Tandy",
-      "link": "https://news.google.com/rss/articles/CBMiugFBVV95cUxPcXdUN0g2NXh5QmFjR3BMbDlROGdaVjhwRms2cHRmMGwwZDBhZ1R1cnBPbzZfY0lFVGtwV3c3Z3hrbU9XN0xEZ0lIZjFIbU92c016TExZSFpVa0pQOWlUaFAyQWRuLWxPTDk1TmpvVlhZNWJlT2s0VGJYeW9jZTR3U1NRMl9YbWlVc0ViTjNjNExRcGUyNm1mWTBraEdOdEFTbW15SVFMVGduRVprMk5GOG5pNENZeFBndWc?oc=5",
-      "source": "ESPN",
-      "published": "Thu, 05 Nov 2026 16:08:21 GMT"
-    },
-    {
       "title": "2026 Nations Championship Fixtures",
       "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOMVN6RDJUNUxNRXZEb0FjcVg3aGZKdDJNcU1LcWdOdTctWHFzd0xWOU1nTE8yWU9NdjlkOTlTMmFORHlpVDNpYXloTnNIdzF2QlF5cEVmcTBucm1XeHZUQWhWcHU3MWNaT21DS2pvUVF6VHE4bnJ2a2JIN2U2QkVTXzE0TlZRcGY5a19tNDFNVzJudElMa241RFRsUWw0RE5SUHk4djhiV21YalZDSVg1N1Nodm51TkJDQ2w4UmExaE1WdGFhYWVuU2p4a1A0a0poNnE5ZHl4WjZtbVAt?oc=5",
       "source": "RUGBY.com.au",
       "published": "Wed, 04 Nov 2026 08:00:00 GMT"
+    },
+    {
+      "title": "Borthwick urges England players to improve discipline at Nations Championship",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPOGhjWUxCOFQyVm51Q3IxOTJrZk9MSG1ZLWhpcWFwbGd6Tm9DV3RhdUJBZElSMHZzRE03OW1Kb0VfQmVlRm10Z0tab2UwMWIzQWRwQWVUTlBQbWQ3djJlb0dMSlRCSDR2MXdiSW1fRE55U1Nfc3BPS2dqRTNsNFhMcnVEa0N4VWVWcFJTd3I1M1d4aGsxRUN5QlhDMFhPMjVEbEVXV0dGX2pVdS02VEN5bHh3Ry1iZDNPdFZMVVVIMXhTWkZDZ3A5MDVvZw?oc=5",
+      "source": "The Guardian",
+      "published": "Sun, 01 Nov 2026 19:16:00 GMT"
     }
   ],
   "triesPending": 0,
