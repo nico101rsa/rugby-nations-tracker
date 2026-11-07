@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-07T17:18:43.581Z",
+  "updatedAt": "2026-11-07T17:43:02.677Z",
   "counts": {
     "fixtures": 14,
     "results": 22,
@@ -802,15 +802,15 @@
       "date": "2026-11-07T16:40:00+00:00",
       "week": "4",
       "status": {
-        "short": "1H",
-        "long": "First Half",
+        "short": "HT",
+        "long": "Half Time",
         "live": true
       },
       "home": {
         "id": 391,
         "name": "Wales",
         "logo": "https://media.api-sports.io/rugby/teams/391.png",
-        "score": 14
+        "score": 21
       },
       "away": {
         "id": 463,
@@ -1028,14 +1028,8 @@
   ],
   "news": [
     {
-      "title": "All Blacks down Scotland 43-21 and stay perfect in Nations Championship rugby",
-      "link": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBnUDhuamJpb1VBTU1OOXBjblRVWG41WU5aRkJxdjdEWTAxUTlCM1FjV3RsYnVUWmF0RFpFRm9USnJob1Rtemlvc2ZMcm5TZlBxdjd6ZU1aTDh2WWg0ejdQV29nWExhckgyOG5aaUltamZYcjN5VmR0WXBrd1FzY1U?oc=5",
-      "source": "Yahoo",
-      "published": "Sat, 07 Nov 2026 16:38:50 GMT"
-    },
-    {
       "title": "Scotland 21-43 New Zealand: Nations Championship rugby union – as it happened",
-      "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxNblYtYWhBcFdsR0poenVWbHh6Z1ZFT1hpd3RqM2pBZ3VLOUpNcTYzd1l2T0pyaW01V19YaUpDQno3RkhFMnpyemljMUFRV0FlTUNLcTVPQldMNEM3VzlNU24wdWlRMnRKTUFsaGFvOVo0Tll2N1lSQlk5UGs4N1R2RjFWS1N6X3JWRmE2R2VKd3BYd2NldWR0NHpLM19GQ2dxMUh4SjNEc1QtVEJrbFQxRDh3MXIzUmE4NzFMWlczYlRTOFI4ZGJ0RFN5bmlzazBRU2M4dkM1Q3R1ci1DUHVOQXlSTEprUU0?oc=5",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNYnJ0SnR0dGxjMU0xNjI4djlDZ2kzTEEzUU1kM1QwM2lHRl9FUGlYRkMzYTlCaDRIdDlRRVpkT21YV1ZPZnAxTWZMdmJyalREZzYxOHlLdWhVbUhBcHFBdG5FdUVhajU1d3VKVlNON2ZpX09HaU1ueG1yYXd1VUM0a244ZEVfUFRyYTBrd3E1RGJ2azk0VGtEYmtnSTZxSjNaLVpRbGhMRmFOVUJBS1QxUg?oc=5",
       "source": "The Guardian",
       "published": "Sat, 07 Nov 2026 16:34:59 GMT"
     },
@@ -1044,12 +1038,6 @@
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNeEVDYzdvTnBCd0ZoSjhMckFhd1Zoei1RVVN2ZS1ZLW1aYzVjYzMyekZZamtqSmZvNjhGU2l1b0tuQjM4eWNpNVdtLXduZ2hYTjFJVDJFajcyYjQ0YUdnemZzV1pCT2R0ak0wRHhKbXhXZWFTTkFlVVU3SDkwMXRfYzBFeDdEZHI1VzczRi1SaEFTdmZWSmZMUU9PQXdaM0dHaHhLcFJfdnFtS2RPeGphMHR3?oc=5",
       "source": "The Guardian",
       "published": "Sat, 07 Nov 2026 16:30:00 GMT"
-    },
-    {
-      "title": "All Blacks down Scotland 43-21 and stay perfect in Nations Championship rugby",
-      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxOdm9LU3Bpd3VfLXRKczFucEhHcVNXaVRpdXpYVGI5T2dJMFhtWTlMMUtVNFBfWEZqSFJuMmltT05ONnJWTUx3VHFmRlNXWTVjV1A5YTJGRlhOdnVwdXZ4VXJqOWJhTEVUQUtlTUpiUUhJbzZua3JHNHJEVFJyNE1hX09IWnVMUXFZcTRKY0psNm4zZkVFcE8xa3dJSmFPck5Rc2FEQjVEVy1LaHJDSUVmc0lFRk9zS3BCWnJKRm5mbjhEWFRNcDJtcks5b3RPczJ1T3dHT0JhOVY?oc=5",
-      "source": "The Washington Post",
-      "published": "Sat, 07 Nov 2026 16:28:57 GMT"
     },
     {
       "title": "Scotland 21-43 New Zealand: All Blacks dominate in Edinburgh - as it happened",
@@ -1064,10 +1052,10 @@
       "published": "Sat, 07 Nov 2026 16:08:51 GMT"
     },
     {
-      "title": "All Blacks player ratings vs Scotland | Nations Championship 2026",
-      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQaEZKbm9nT1pNUmwtNzdLVDJuTGVzSDNaanBGMU81dTYzamxUcUc3VG4xQlFNSzB1RGYwQ0JGWjFWdkg4YVBPRkxoOTlwNVRGeDZVbVFEU3NadXd5QW9qMThhTGFOUkxoRnRZQldxcG9BTHN1TlpYNEFWTVdvZlFBN25wUjRRaUhLR2QwVFNiWUw1cHluT2djbDdzMA?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Sat, 07 Nov 2026 16:06:03 GMT"
+      "title": "Scotland v New Zealand: Nations Championship rugby union – live",
+      "link": "https://news.google.com/rss/articles/CBMi6gFBVV95cUxPTGp2T1RiSzlOYXY0RWcyeUUwVXNJc2ttMnNKcUVBWk84dEhnVVBGSy1DZEVqTXk1eF9sY1NVUVVCaWNHelU4LW1jYWlhTEJadVI3TEg3UVo5dHc1WEVtamdta2JTOWtON3lxdnU0RkUzYWFPbkY0WERlWFVTV1ZqMk4xMGdNRWx4VGVaZHF2eFNCVFY3MTBRQTI0aHZYWUxSOFplQ1ZIU2lkRWk0NktDM2gtRkE0U1luazhycXgyYlN4eFBqeFREVHhBNkhCSUFWSDJNSVgyNzhncFlDWXpETDViSzI4M2hXX3c?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 07 Nov 2026 15:51:00 GMT"
     },
     {
       "title": "Springboks thrash depleted Italy 66-7 with 9 tries in Nations Championship rugby",
@@ -1076,22 +1064,16 @@
       "published": "Sat, 07 Nov 2026 14:30:55 GMT"
     },
     {
+      "title": "Springboks thrash depleted Italy 66-7 with 9 tries in Nations Championship rugby",
+      "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPMjZsVjgteks2bmpZbGY0cXZLZWVqenF3WmliMmJlaHFpSndIS09RbXFkRFpFOE54aldWLTliQnFVekFjWnBGcE5TZmZHTS1YdDBVOUVJQlFNeldJd0VaWlVpSmNpbkJGM0VyNHpPNm94RU1kelJLb0RXajJMMi1UblhkVGM4SkxQUjhJ?oc=5",
+      "source": "Yahoo Sports",
+      "published": "Sat, 07 Nov 2026 13:59:31 GMT"
+    },
+    {
       "title": "Springboks blow Italy away to take control of Nations Championship group",
       "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNSzdDaTRneUd1NlI2RkZVU3JJNXFFZkRSbU9BRjhmanh2QklTSkRFRmdqV2JEamRVTzk5MWVXLVctWHNGVGNuOGtGdWhiREFhQklabk1FZ0toYm1KN2RlWEFBdTFKRXRtc1pvM3JWLVMyQmZKbkhmd1BOZF9KYTJEMDRaZ0FKZnF5dTFnUGJVSERYVWpacENwa1lPcm9Bd2xINmM2aF9ZYklXb0JyN3ZwOEF6Q3ltc2Y4?oc=5",
       "source": "Rugbypass.com",
       "published": "Sat, 07 Nov 2026 13:54:39 GMT"
-    },
-    {
-      "title": "Springboks player ratings vs Italy | Nations Championship 2026",
-      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPeGdrUFhrc0VNY19PMXZIcnAzck1MaXJoMVRJWEh0VTBtMlkxZ2VjYUJTbkQxY1l4T0x3N2JNcElid0VyeW1Yc3JWZXVod1I3d2RVcGFNLXJMbGRTY21nUTVJSFdtLTF4R1ExblNIQW1Hb2EteXNJTjhlc2JQbDBaMkJsV2pVY0dVR29QWHdqdXF3czdKbzVr?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Sat, 07 Nov 2026 13:27:47 GMT"
-    },
-    {
-      "title": "Scotland 21-43 New Zealand: Nations Championship rugby union – live",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNYnJ0SnR0dGxjMU0xNjI4djlDZ2kzTEEzUU1kM1QwM2lHRl9FUGlYRkMzYTlCaDRIdDlRRVpkT21YV1ZPZnAxTWZMdmJyalREZzYxOHlLdWhVbUhBcHFBdG5FdUVhajU1d3VKVlNON2ZpX09HaU1ueG1yYXd1VUM0a244ZEVfUFRyYTBrd3E1RGJ2azk0VGtEYmtnSTZxSjNaLVpRbGhMRmFOVUJBS1QxUg?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 07 Nov 2026 13:00:00 GMT"
     },
     {
       "title": "Injury crises and Borthwick under scrutiny: it’s that time of year again for England rugby",
@@ -1104,6 +1086,24 @@
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNTEtjNnowbnhzLWNfTTVXV1N5VEticjNzZEd6ZTQ1M214ekFiRFNwbEFVZ0FnUUxENTdvWi10ekxBLVk2OU5PbzRqRnY1VnhQTVZzMEd0V2lLTzZGNmhKNXUxTTJ1QXg4VExSSFA2X2E4SHNjZzJwMmxnSFd2NUpteHJENGdQMjBBZElwRGl3TEFEYV9uUmlVbzNBY0w5TzNLaElCV2piU2RJQlVlLV8weXEzTTJpTVgtSFBJ?oc=5",
       "source": "The Guardian",
       "published": "Fri, 06 Nov 2026 20:33:00 GMT"
+    },
+    {
+      "title": "Nations Championship 2026 on TV | Schedule, TV channels and live stream",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbXVXS0FIU25Pa3pnakVQVlM1YkQ0UzFKNXhlM1BYT1BIY3lNa2UyblVKaFhhdlBQbUhManY3MDBPZklzQWtMRVFfQ2NLc003VXF1cEg3ckZudV9VT3BlR3VmdTdIdXFZUTR5WUx1Z0RkU0oybzk3XzNiUXZQWGhSUy1PUQ?oc=5",
+      "source": "Radio Times",
+      "published": "Fri, 06 Nov 2026 08:00:00 GMT"
+    },
+    {
+      "title": "Three World Rugby Rankings could fall as Nations Championship resumes",
+      "link": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPNmNSVmhrbzV6d0JUdl9Ua3F4WHQ5cjZoeWhtbUdRaDk2VlBLZFk5TGJmS0szTEZnZHk4ZWNfRGVObHpmNFpSUEtNNXQ3M3RoWlNsbTdBTk9va3lYQmJud1ByWXNUU05RM1RXaS05Vng2UVNnU0MtZ3FXUk9jUUxGd3BBZnVjMWktSXNKaW9IUHhnVjMxYUtBY0F2bWU4a3dQWTE4?oc=5",
+      "source": "Rugbypass.com",
+      "published": "Fri, 06 Nov 2026 07:00:25 GMT"
+    },
+    {
+      "title": "South Africa, France eye bragging rights in inaugural Nations Championship",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOS2RWMVJ5bHFUSnFqYjJhX2M0RWo4R1d3ZUNubXFTalpBaUJOb01acDJSTlJEei01M3VCdWZNWldxdkxQY1VSTGYxd290RmM5Zk44RTFNOFVCbWpuejZJQUY1Tlp5aGl1azhyVUlIQzV2N080ODJxWmdLMDVvdWJrYXVQbDBqd1RtQ0RqcG1NTWFld0xlSGdPdTNueTVsam9QVEFHRDRmYXkydXdodHIxNg?oc=5",
+      "source": "RUGBY.com.au",
+      "published": "Thu, 05 Nov 2026 22:24:12 GMT"
     },
     {
       "title": "2026 Nations Championship Fixtures",
