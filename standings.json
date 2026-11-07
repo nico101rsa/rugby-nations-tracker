@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-07T13:29:12.544Z",
+ "updatedAt": "2026-11-07T17:30:47.227Z",
  "source": "computed",
  "competitions": [
   {
@@ -102,7 +102,7 @@
     "meetings": 1,
     "source": null
    },
-   "played": 20,
+   "played": 21,
    "total": 36,
    "complete": false,
    "completedAt": null,
@@ -150,27 +150,28 @@
        "code": "NZL",
        "id": 465,
        "team": "New Zealand",
-       "P": 3,
-       "W": 3,
+       "P": 4,
+       "W": 4,
        "D": 0,
        "L": 0,
-       "PF": 121,
-       "PA": 70,
-       "PD": 51,
-       "TF": 17,
-       "TA": 8,
-       "BPtry": 3,
+       "PF": 164,
+       "PA": 91,
+       "PD": 73,
+       "TF": 24,
+       "TA": 11,
+       "BPtry": 4,
        "BPlose": 0,
-       "BP": 3,
+       "BP": 4,
        "GS": 0,
-       "Pts": 15,
+       "Pts": 20,
        "pending": 0,
        "form": [
         "W",
         "W",
+        "W",
         "W"
        ],
-       "decidedBy": "pts",
+       "decidedBy": "pd",
        "q": null
       },
       {
@@ -389,15 +390,15 @@
        "code": "SCO",
        "id": 390,
        "team": "Scotland",
-       "P": 3,
+       "P": 4,
        "W": 2,
        "D": 0,
-       "L": 1,
-       "PF": 108,
-       "PA": 97,
-       "PD": 11,
-       "TF": 14,
-       "TA": 14,
+       "L": 2,
+       "PF": 129,
+       "PA": 140,
+       "PD": -11,
+       "TF": 17,
+       "TA": 21,
        "BPtry": 2,
        "BPlose": 0,
        "BP": 2,
@@ -407,7 +408,8 @@
        "form": [
         "W",
         "L",
-        "W"
+        "W",
+        "L"
        ],
        "decidedBy": "pd",
        "q": null
