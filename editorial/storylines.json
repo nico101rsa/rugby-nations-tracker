@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-07T22:00:47.591Z",
+  "updatedAt": "2026-11-07T23:13:42.552Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
   "count": 203,
   "storylines": [
@@ -2647,13 +2647,18 @@
     },
     {
       "id": "the-welsh-rugby-union-16elh00",
-      "subject": "The Welsh Rugby Union's formal proposal for Welsh regions to join the English Premiership",
+      "subject": "The Welsh Rugby Union's formal proposal for an Anglo-Welsh league with English Premiership Rugby",
       "teams": [
         386,
         391
       ],
       "resolution": "until Premiership Rugby and the WRU issue a definitive decision on Welsh clubs entering the Premiership",
       "sources": [
+        {
+          "title": "Formal WRU talks with English confirmed and Wales starter sits out training",
+          "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/formal-wru-talks-english-confirmed-34875165",
+          "feedName": "WalesOnline"
+        },
         {
           "title": "Prem and RFU commit to expanding with English clubs after report of Welsh sides joining",
           "link": "https://www.theguardian.com/sport/2026/oct/28/prem-rfu-commit-english-clubs-after-report-welsh-sides-joining",
@@ -2663,11 +2668,6 @@
           "title": "RFU boss confirms WRU Anglo-Welsh league approach",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c9p8ggzzerz5o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Prem, RFU committed to English-led expansion as WRU apply",
-          "link": "https://www.rte.ie/sport/rugby/2026/1028/1597130-prem-rfu-committed-to-english-led-expansion-as-wru-apply/",
-          "feedName": "RTÉ Sport Rugby"
         }
       ],
       "firstSeen": "2026-10-29",
@@ -4846,6 +4846,11 @@
       ],
       "resolution": "until South Africa confirm the severity of Salmaan Moerat's injury and his availability for upcoming Tests",
       "sources": [
+        {
+          "title": "Rassie Erasmus explains Salmaan Moerat's late withdrawal and issues Springboks injury update: 'Hopefully it’s not too serious'",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-explains-salmaan-moerats-late-withdrawal-and-issues-springboks-injury-update-hopefully-its-not-too-serious",
+          "feedName": "Planet Rugby"
+        },
         {
           "title": "Erasmus gives update on Moerat",
           "link": "https://www.sarugbymag.co.za/erasmus-gives-update-moerat/",
