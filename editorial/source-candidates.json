@@ -2,137 +2,6 @@
   "notice": "Outlets proposed by the daily editorial review and probed by code. Nothing here is a news source until it is added to scripts/news-sources.mjs by hand.",
   "candidates": [
     {
-      "outlet": "Fiji Sun",
-      "host": "fijisun.com.fj",
-      "homepage": "https://fijisun.com.fj",
-      "teams": [
-        "Fiji"
-      ],
-      "why": "Fiji's pack held a Coca-Cola promo, deaf rugby and a six-month-old coaching exit; a Fijian daily with a sports desk could add current men's 15s news.",
-      "proposed": "2026-10-11",
-      "status": "no-feed",
-      "feedUrl": null,
-      "probes": [
-        {
-          "date": "2026-10-11",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-12",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-13",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-14",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-15",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-16",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-17",
-          "error": "no feed found (8 tried)"
-        }
-      ],
-      "decided": "2026-10-17"
-    },
-    {
-      "outlet": "FijiVillage",
-      "host": "fijivillage.com",
-      "homepage": "https://www.fijivillage.com",
-      "teams": [
-        "Fiji"
-      ],
-      "why": "A free Fijian news site with regular rugby coverage that could fill the gap in Fiji's thin pack.",
-      "proposed": "2026-10-11",
-      "status": "no-feed",
-      "feedUrl": null,
-      "probes": [
-        {
-          "date": "2026-10-11",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-12",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-13",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-14",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-15",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-16",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-17",
-          "error": "no feed found (8 tried)"
-        }
-      ],
-      "decided": "2026-10-17"
-    },
-    {
-      "outlet": "RugbyPass",
-      "host": "rugbypass.com",
-      "homepage": "https://www.rugbypass.com",
-      "teams": [
-        "France",
-        "Japan",
-        "England"
-      ],
-      "why": "France, Japan and England packs led with July or August items or off-field filler; a dedicated rugby site would add current men's coverage.",
-      "proposed": "2026-10-11",
-      "status": "no-feed",
-      "feedUrl": null,
-      "probes": [
-        {
-          "date": "2026-10-11",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-12",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-13",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-14",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-15",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-16",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-17",
-          "error": "no feed found (8 tried)"
-        }
-      ],
-      "decided": "2026-10-17"
-    },
-    {
       "outlet": "Scottish Rugby (official union news)",
       "host": "scottishrugby.org",
       "homepage": "https://www.scottishrugby.org",
@@ -1199,6 +1068,10 @@
         {
           "date": "2026-11-07",
           "error": "no feed found (8 tried; homepage HTTP 403)"
+        },
+        {
+          "date": "2026-11-08",
+          "error": "no feed found (8 tried; homepage HTTP 403)"
         }
       ]
     },
@@ -1255,6 +1128,18 @@
             "New Zealand": 1,
             "South Africa": 1
           }
+        },
+        {
+          "date": "2026-11-08",
+          "feedUrl": "https://www.rugbyrama.fr/rss.xml",
+          "items": 99,
+          "hits": {
+            "France": 23,
+            "Ireland": 1,
+            "Argentina": 3,
+            "New Zealand": 1,
+            "South Africa": 2
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1301,6 +1186,17 @@
           "items": 25,
           "hits": {
             "France": 6,
+            "Ireland": 1,
+            "Argentina": 1,
+            "New Zealand": 1
+          }
+        },
+        {
+          "date": "2026-11-08",
+          "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
+          "items": 25,
+          "hits": {
+            "France": 7,
             "Ireland": 1,
             "Argentina": 1,
             "New Zealand": 1
@@ -1378,6 +1274,21 @@
             "Japan": 1,
             "South Africa": 3
           }
+        },
+        {
+          "date": "2026-11-08",
+          "feedUrl": "https://www.onrugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "England": 1,
+            "Ireland": 2,
+            "Italy": 6,
+            "Scotland": 1,
+            "Argentina": 2,
+            "Australia": 1,
+            "New Zealand": 1,
+            "South Africa": 6
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1430,6 +1341,16 @@
             "England": 1,
             "France": 1
           }
+        },
+        {
+          "date": "2026-11-08",
+          "feedUrl": "https://islandsbusiness.com/feed/",
+          "items": 12,
+          "hits": {
+            "Fiji": 8,
+            "England": 1,
+            "France": 1
+          }
         }
       ],
       "decided": "2026-11-05"
@@ -1461,6 +1382,10 @@
         {
           "date": "2026-11-07",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-08",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1487,6 +1412,10 @@
         {
           "date": "2026-11-07",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-08",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1504,6 +1433,10 @@
       "probes": [
         {
           "date": "2026-11-07",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-08",
           "error": "no feed found (8 tried)"
         }
       ]

@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-07T12:01:11.890Z",
+  "updatedAt": "2026-11-07T14:30:30.493Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 195,
+  "count": 196,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -2647,13 +2647,18 @@
     },
     {
       "id": "the-welsh-rugby-union-16elh00",
-      "subject": "The Welsh Rugby Union's proposal to include Welsh regions in the English Premiership",
+      "subject": "The Welsh Rugby Union's formal proposal for Welsh regions to join the English Premiership",
       "teams": [
         386,
         391
       ],
       "resolution": "until Premiership Rugby and the WRU issue a definitive decision on Welsh clubs entering the Premiership",
       "sources": [
+        {
+          "title": "RFU boss confirms WRU Anglo-Welsh league approach",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c9p8ggzzerz5o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
         {
           "title": "Prem, RFU committed to English-led expansion as WRU apply",
           "link": "https://www.rte.ie/sport/rugby/2026/1028/1597130-prem-rfu-committed-to-english-led-expansion-as-wru-apply/",
@@ -2663,15 +2668,10 @@
           "title": "Welsh club coaches respond to WRU's English Prem talks as same point made",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/welsh-club-coaches-respond-anglo-34836657",
           "feedName": "WalesOnline"
-        },
-        {
-          "title": "Prem and RFU commit to expanding with English clubs after report of Welsh sides joining",
-          "link": "https://www.theguardian.com/sport/2026/oct/28/prem-rfu-commit-english-clubs-after-report-welsh-sides-joining",
-          "feedName": "Guardian Rugby Union"
         }
       ],
       "firstSeen": "2026-10-29",
-      "lastSeen": "2026-11-02",
+      "lastSeen": "2026-11-08",
       "uses": 0
     },
     {
@@ -4287,7 +4287,7 @@
         }
       ],
       "firstSeen": "2026-11-06",
-      "lastSeen": "2026-11-07",
+      "lastSeen": "2026-11-08",
       "uses": 0
     },
     {
@@ -4338,7 +4338,7 @@
         }
       ],
       "firstSeen": "2026-11-06",
-      "lastSeen": "2026-11-07",
+      "lastSeen": "2026-11-08",
       "uses": 0
     },
     {
@@ -4504,7 +4504,7 @@
         }
       ],
       "firstSeen": "2026-11-07",
-      "lastSeen": "2026-11-07",
+      "lastSeen": "2026-11-08",
       "uses": 0
     },
     {
@@ -4687,6 +4687,34 @@
       ],
       "firstSeen": "2026-11-07",
       "lastSeen": "2026-11-07",
+      "uses": 0
+    },
+    {
+      "id": "kurtley-beale-s-bid-15weyjl",
+      "subject": "Kurtley Beale's bid to feature in a Test match for the Wallabies following his recall",
+      "teams": [
+        461
+      ],
+      "resolution": "until Kurtley Beale plays in a Test match for Australia",
+      "sources": [
+        {
+          "title": "Kurtley Beale's blunt revelation about his Test ambitions as he opens up on Wallabies recall",
+          "link": "https://www.planetrugby.com/news/kurtley-beales-blunt-revelation-about-his-test-ambitions-as-he-opens-up-on-wallabies-recall",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Kurtley Beale on his return to Wallabies fold aged 37: ‘There was some unfinished business’",
+          "link": "https://www.theguardian.com/sport/2026/nov/05/kurtley-beale-wallabies-australia-rugby-squad-unfinished-business",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Beale never stopped believing",
+          "link": "https://www.sarugbymag.co.za/beale-never-stopped-believing/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
       "uses": 0
     }
   ]
