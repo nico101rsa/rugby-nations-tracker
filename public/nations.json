@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-07T21:49:32.886Z",
+  "updatedAt": "2026-11-07T22:01:35.267Z",
   "counts": {
     "fixtures": 13,
     "results": 23,
@@ -802,21 +802,21 @@
       "date": "2026-11-07T20:10:00+00:00",
       "week": "4",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false
       },
       "home": {
         "id": 387,
         "name": "France",
         "logo": "https://media.api-sports.io/rugby/teams/387.png",
-        "score": 40
+        "score": 54
       },
       "away": {
         "id": 28,
         "name": "Fiji",
         "logo": "https://media.api-sports.io/rugby/teams/28.png",
-        "score": 10
+        "score": 17
       }
     }
   ],
@@ -857,6 +857,23 @@
     },
     {
       "rank": 3,
+      "id": 387,
+      "team": "France",
+      "logo": "https://media.api-sports.io/rugby/teams/387.png",
+      "P": 4,
+      "W": 3,
+      "D": 0,
+      "L": 1,
+      "PF": 170,
+      "PA": 92,
+      "PD": 78,
+      "TF": 23,
+      "TA": 13,
+      "BP": 5,
+      "Pts": 17
+    },
+    {
+      "rank": 4,
       "id": 388,
       "team": "Ireland",
       "logo": "https://media.api-sports.io/rugby/teams/388.png",
@@ -871,23 +888,6 @@
       "TA": 14,
       "BP": 3,
       "Pts": 15
-    },
-    {
-      "rank": 4,
-      "id": 387,
-      "team": "France",
-      "logo": "https://media.api-sports.io/rugby/teams/387.png",
-      "P": 3,
-      "W": 2,
-      "D": 0,
-      "L": 1,
-      "PF": 116,
-      "PA": 75,
-      "PD": 41,
-      "TF": 16,
-      "TA": 11,
-      "BP": 4,
-      "Pts": 12
     },
     {
       "rank": 5,
@@ -996,15 +996,15 @@
       "id": 28,
       "team": "Fiji",
       "logo": "https://media.api-sports.io/rugby/teams/28.png",
-      "P": 3,
+      "P": 4,
       "W": 0,
       "D": 0,
-      "L": 3,
-      "PF": 49,
-      "PA": 145,
-      "PD": -96,
-      "TF": 7,
-      "TA": 20,
+      "L": 4,
+      "PF": 66,
+      "PA": 199,
+      "PD": -133,
+      "TF": 9,
+      "TA": 27,
       "BP": 0,
       "Pts": 0
     },
@@ -1058,12 +1058,6 @@
       "published": "Sat, 07 Nov 2026 18:46:00 GMT"
     },
     {
-      "title": "Wales player ratings vs Japan | Nations Championship 2026",
-      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPZW5HRTJHYnZyZWs2YkhIUkRiNDgwZW9sYU0zbk1Vd3hsZTcwWXprLUROT1Z4V3BVN0VUZFVyMFVmN3V6VVl4aV9uOXdLTFVDY3hhOGxBdUhiR0VySm11RE5nMzJxNVZTckUwUzlZckplLUN3LTQtYUtBV21xdWZCeUpWS3k5cW1XRGRIVVo2T3A?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Sat, 07 Nov 2026 18:39:56 GMT"
-    },
-    {
       "title": "Nations Championship: Sione Tuipulotu takes 'full responsibility' for Scotland collapse",
       "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBPNmVfTjVMTWtGRmxGcV9ndFluT0Z4b21hMGp6LWNHVnVjNVVpQ0s0QXpNNG9iY3l1dXdzSnhFT1F1VGI2ejhXblJDbEpqNXVQYlU3ODNpSzFHWWVvRnMxSjVqR3BhN0lqTm1mdg?oc=5",
       "source": "BBC",
@@ -1074,6 +1068,12 @@
       "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxNeEVDYzdvTnBCd0ZoSjhMckFhd1Zoei1RVVN2ZS1ZLW1aYzVjYzMyekZZamtqSmZvNjhGU2l1b0tuQjM4eWNpNVdtLXduZ2hYTjFJVDJFajcyYjQ0YUdnemZzV1pCT2R0ak0wRHhKbXhXZWFTTkFlVVU3SDkwMXRfYzBFeDdEZHI1VzczRi1SaEFTdmZWSmZMUU9PQXdaM0dHaHhLcFJfdnFtS2RPeGphMHR3?oc=5",
       "source": "The Guardian",
       "published": "Sat, 07 Nov 2026 18:25:00 GMT"
+    },
+    {
+      "title": "All Blacks player ratings vs Scotland | Nations Championship 2026",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQaEZKbm9nT1pNUmwtNzdLVDJuTGVzSDNaanBGMU81dTYzamxUcUc3VG4xQlFNSzB1RGYwQ0JGWjFWdkg4YVBPRkxoOTlwNVRGeDZVbVFEU3NadXd5QW9qMThhTGFOUkxoRnRZQldxcG9BTHN1TlpYNEFWTVdvZlFBN25wUjRRaUhLR2QwVFNiWUw1cHluT2djbDdzMA?oc=5",
+      "source": "Rugbypass.com",
+      "published": "Sat, 07 Nov 2026 16:06:03 GMT"
     },
     {
       "title": "Springboks thrash depleted Italy 66-7 with 9 tries in Nations Championship rugby",
