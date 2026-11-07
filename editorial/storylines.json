@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-07T14:30:30.493Z",
+  "updatedAt": "2026-11-07T17:01:13.042Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 196,
+  "count": 198,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -2550,7 +2550,7 @@
         }
       ],
       "firstSeen": "2026-10-28",
-      "lastSeen": "2026-11-04",
+      "lastSeen": "2026-11-08",
       "uses": 0
     },
     {
@@ -2655,6 +2655,11 @@
       "resolution": "until Premiership Rugby and the WRU issue a definitive decision on Welsh clubs entering the Premiership",
       "sources": [
         {
+          "title": "Prem and RFU commit to expanding with English clubs after report of Welsh sides joining",
+          "link": "https://www.theguardian.com/sport/2026/oct/28/prem-rfu-commit-english-clubs-after-report-welsh-sides-joining",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "RFU boss confirms WRU Anglo-Welsh league approach",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c9p8ggzzerz5o?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
@@ -2663,11 +2668,6 @@
           "title": "Prem, RFU committed to English-led expansion as WRU apply",
           "link": "https://www.rte.ie/sport/rugby/2026/1028/1597130-prem-rfu-committed-to-english-led-expansion-as-wru-apply/",
           "feedName": "RTÉ Sport Rugby"
-        },
-        {
-          "title": "Welsh club coaches respond to WRU's English Prem talks as same point made",
-          "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/welsh-club-coaches-respond-anglo-34836657",
-          "feedName": "WalesOnline"
         }
       ],
       "firstSeen": "2026-10-29",
@@ -4269,7 +4269,7 @@
     },
     {
       "id": "tom-curry-s-training-1cxwzft",
-      "subject": "Tom Curry's training injury and availability for England's remaining Nations Championship matches",
+      "subject": "Tom Curry's training injury and availability for the rest of England's Nations Championship campaign",
       "teams": [
         386
       ],
@@ -4711,6 +4711,52 @@
           "title": "Beale never stopped believing",
           "link": "https://www.sarugbymag.co.za/beale-never-stopped-believing/",
           "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "uses": 0
+    },
+    {
+      "id": "pieter-steph-du-toit-wh8ign",
+      "subject": "Pieter-Steph du Toit's next club destination following his departure from Japanese rugby",
+      "teams": [
+        467
+      ],
+      "resolution": "until Pieter-Steph du Toit officially signs with a new club",
+      "sources": [
+        {
+          "title": "Pieter-Steph du Toit joins Japan exodus as Springboks star primed for South African return after contract termination",
+          "link": "https://www.planetrugby.com/news/springboks-pieter-steph-du-toit-set-for-south-african-return-after-terminating-japan-contract",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "POLL: Pick Du Toit's new SA team!",
+          "link": "https://www.sarugbymag.co.za/poll-pick-psdts-new-sa-team/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "uses": 0
+    },
+    {
+      "id": "rassie-erasmus-and-south-ev746a",
+      "subject": "Rassie Erasmus and South Africa's squad rotation strategy for the November Nations Championship",
+      "teams": [
+        467
+      ],
+      "resolution": "until South Africa confirm their squad lineups for their remaining November Tests",
+      "sources": [
+        {
+          "title": "Springboks coaches 'unsure' about player rotation as November tour is a 'good representative' of World Cup knockouts",
+          "link": "https://www.planetrugby.com/news/springboks-coaches-unsure-about-player-rotation-as-november-tour-is-a-good-representative-of-world-cup-knockouts",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Springboks legend: Don't be surprised if Rassie Erasmus backs bolters against France and Ireland",
+          "link": "https://www.planetrugby.com/news/springboks-legend-dont-be-surprised-if-rassie-erasmus-backs-bolters-against-france-and-ireland",
+          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-11-08",
