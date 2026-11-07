@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-07T20:13:12.597Z",
+  "updatedAt": "2026-11-07T20:37:19.226Z",
   "counts": {
-    "fixtures": 14,
-    "results": 22,
+    "fixtures": 13,
+    "results": 23,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53235,
-      "date": "2026-11-07T20:10:00+00:00",
-      "week": "4",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 387,
-        "name": "France",
-        "logo": "https://media.api-sports.io/rugby/teams/387.png",
-        "score": null
-      },
-      "away": {
-        "id": 28,
-        "name": "Fiji",
-        "logo": "https://media.api-sports.io/rugby/teams/28.png",
-        "score": null
-      }
-    },
     {
       "id": 53236,
       "date": "2026-11-08T15:10:00+00:00",
@@ -818,6 +796,28 @@
         "logo": "https://media.api-sports.io/rugby/teams/463.png",
         "score": 21
       }
+    },
+    {
+      "id": 53235,
+      "date": "2026-11-07T20:10:00+00:00",
+      "week": "4",
+      "status": {
+        "short": "1H",
+        "long": "First Half",
+        "live": true
+      },
+      "home": {
+        "id": 387,
+        "name": "France",
+        "logo": "https://media.api-sports.io/rugby/teams/387.png",
+        "score": 10
+      },
+      "away": {
+        "id": 28,
+        "name": "Fiji",
+        "logo": "https://media.api-sports.io/rugby/teams/28.png",
+        "score": 0
+      }
     }
   ],
   "log": [
@@ -1049,7 +1049,7 @@
       "title": "Louis Rees-Zammit helps edge Wales to unconvincing victory against Japan",
       "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxNeG0tdTF0VkhpR3gzaF91cGprWjVMTDhaWWVRZmNoZFp0cHdycEo4Q2djTDdzMG1rVDdEamFoZGlqUFJvRWVCLUwzaXhtQ1N5WURLcXhxb09VYmluR2RPX1dvaE8zMkhFUVVISjAzcVgzZzRTN05KaDk1QkpXWWRMWXN4SXJsQVBPVFdyZEpPNDlEeU44SlZnUnU2Sl9NSC1MS1FIVlFn?oc=5",
       "source": "The Guardian",
-      "published": "Sat, 07 Nov 2026 18:46:00 GMT"
+      "published": "Sat, 07 Nov 2026 19:26:00 GMT"
     },
     {
       "title": "Wales player ratings vs Japan | Nations Championship 2026",
@@ -1076,12 +1076,6 @@
       "published": "Sat, 07 Nov 2026 17:17:15 GMT"
     },
     {
-      "title": "Scotland 21-43 New Zealand: Nations Championship rugby union – as it happened",
-      "link": "https://news.google.com/rss/articles/CBMi5wFBVV95cUxQR1d3cDdZR1RqeXltYXlBNXFia2xIZUJNMzUxaXpCSktFUDI1OXlFbEpmVk1hVzVQeWRzbmZsUmRBUVE4TlIybGpKcTVBRHMyLTl5R1BERnBpa1VwWDh0OTEwdUVLM1R2TllFYm51eDQ3VjFBQ1I0NlN4cVFIY0FFNWVQc25wRGNEeG1rYnZmUFBKbXRyZE9RVG5fUkxEbmRWaUJEdWVOcWRRS3hHek8waWpiSTNZNlMxaUpkVHRVZ1p4R1hDeHJfODA2UWhxVU5uSDJuSXBqaWw2MEs3UWRxMjRDeUpiOFU?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 07 Nov 2026 16:34:59 GMT"
-    },
-    {
       "title": "Scotland 21-43 New Zealand: All Blacks dominate in Edinburgh - as it happened",
       "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNVVB0RXBfUDBsSGFSNlhYdHh3amE1Sk1CQkNYV3hhYTZkNUt4MFpzTlpHVWp1Mm03LTRkU0pZUEktWHh1NVBHMUdJRHBrMWN2ZVo0QWdVc0VfTVEzVVo1aWJ3Vm1KdG5tU1E2NEJRMkhSajFXLWRqeW5CRmluU3pQVy04M2ZURjRvUENaMDRHcVBtV1lGcjBWTTBmVlFJcXpNeGFWcFVhSV90aXFiVjJtNTBjUGkyMDRDQ2lYb2U4OFdLemdRYmstbnFMNC1Cb2VmSFAw?oc=5",
       "source": "ESPN",
@@ -1094,10 +1088,16 @@
       "published": "Sat, 07 Nov 2026 14:30:55 GMT"
     },
     {
-      "title": "South Africa Crushes Italy 66-7 In Nations Championship 2026: Rugby Results And Highlights",
-      "link": "https://news.google.com/rss/articles/CBMiggFBVV95cUxNc0ZwQTUyOGY1RV9CcW1mbnFrYXprbDM1dl9LbFJfaHhQU0pVZUVDek1KZ0NFc0xjUlVWVmNwVWYtQzdHeTdxRXpGclU4MUdZRXhpYzdsUXMySWVtX2F6LXN6N0JhOUxWRnVkWXJkazdsS2RDanhjVGhMM0NOd2hrX0hn?oc=5",
-      "source": "Yahoo Sports",
-      "published": "Sat, 07 Nov 2026 13:30:00 GMT"
+      "title": "Scotland 21-43 New Zealand: Nations Championship rugby union – as it happened",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNYnJ0SnR0dGxjMU0xNjI4djlDZ2kzTEEzUU1kM1QwM2lHRl9FUGlYRkMzYTlCaDRIdDlRRVpkT21YV1ZPZnAxTWZMdmJyalREZzYxOHlLdWhVbUhBcHFBdG5FdUVhajU1d3VKVlNON2ZpX09HaU1ueG1yYXd1VUM0a244ZEVfUFRyYTBrd3E1RGJ2azk0VGtEYmtnSTZxSjNaLVpRbGhMRmFOVUJBS1QxUg?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 07 Nov 2026 13:00:00 GMT"
+    },
+    {
+      "title": "Nations Championship 2026 on TV | Schedule, TV channels and live stream",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbXVXS0FIU25Pa3pnakVQVlM1YkQ0UzFKNXhlM1BYT1BIY3lNa2UyblVKaFhhdlBQbUhManY3MDBPZklzQWtMRVFfQ2NLc003VXF1cEg3ckZudV9VT3BlR3VmdTdIdXFZUTR5WUx1Z0RkU0oybzk3XzNiUXZQWGhSUy1PUQ?oc=5",
+      "source": "Radio Times",
+      "published": "Sat, 07 Nov 2026 10:03:39 GMT"
     },
     {
       "title": "This is the Test match that does not need a fancy new format",
