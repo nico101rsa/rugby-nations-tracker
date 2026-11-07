@@ -3,11 +3,11 @@
   "counts": {
     "editions": 12,
     "quiet": 1,
-    "storyline": 1,
-    "dataEdition": 0,
+    "storyline": 0,
+    "dataEdition": 1,
     "failed": 0,
     "noLead": 1,
-    "repeatLead": 0,
+    "repeatLead": 2,
     "world": 4
   },
   "failed": [],
@@ -15,17 +15,13 @@
     {
       "team": "Fiji",
       "quiet": true,
-      "rung": "storyline",
-      "storyline": {
-        "subject": "Jake White's appointment of his assistant coaching team for Fiji",
-        "resolution": "until Fiji officially confirm Jake White's complete backroom coaching staff",
-        "recheckHits": 4
-      },
-      "dataAngle": null,
-      "heading": "Senirusi Seruvakula to remain involved in Flying Fijians coaching setup",
-      "kicker": "Coaching staff",
-      "body": "Senirusi Seruvakula, who was interim coach through July, will remain involved in the Flying Fijians setup, FBC News reports. Mick Byrne left the role in April, and Jake White, the former South Africa coach, was appointed head coach ahead of the 2027 World Cup. White's full backroom staff has yet to be officially confirmed by Fiji. Their last outing was a 34-28 win over Japan.",
-      "source": "SA Rugby Magazine",
+      "rung": "data",
+      "storyline": null,
+      "dataAngle": "lastMeeting",
+      "heading": "Fiji lost 34-21 away to France in November 2025 friendly",
+      "kicker": "Previous meeting",
+      "body": "Fiji and France last met in a November 2025 International Friendly, with the Pacific side making the trip and losing. Fiji are 12th of 12 in the Nations Championship log after three matches, all defeats, scoring 49 and conceding 145 across them. They meet France again, as the hosts, at the Groupama Stadium in Lyon today.",
+      "source": null,
       "lead": null,
       "leadLink": null,
       "repeatLead": null,
@@ -34,7 +30,7 @@
         {
           "title": "France v Fiji prediction: Les Bleus to use 'attacking excellence' to hammer Jake White's side but risk exposing 'soft underbelly' before Boks showdown",
           "link": "https://www.planetrugby.com/news/france-v-fiji-prediction-les-bleus-to-use-attacking-excellence-to-hammer-jake-whites-side-but-risk-exposing-soft-underbelly-before-boks-showdown",
-          "score": 8.5,
+          "score": 7,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -43,8 +39,8 @@
         },
         {
           "title": "Ex-England International set for Fiji Test debut against France",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee681d956b4f57b34e58917d1a874c&url=https%3a%2f%2fwww.msn.com%2fen-au%2fnews%2fother%2fex-england-international-set-for-fiji-test-debut-against-france%2far-AA2gQ2Xn&c=2863463671888921413&mkt=en-us",
-          "score": 9.4,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeedac4eb7841a48c7a8d0a8f07de7c&url=https%3a%2f%2fwww.msn.com%2fen-au%2fnews%2fother%2fex-england-international-set-for-fiji-test-debut-against-france%2far-AA2gQ2Xn&c=2863463671888921413&mkt=en-us",
+          "score": 7.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -53,8 +49,8 @@
         },
         {
           "title": "Jake White named Fiji head coach ahead of 2027 Rugby World Cup",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee681d956b4f57b34e58917d1a874c&url=https%3a%2f%2fwww.news24.com%2fsport%2frugby%2fjake-white-named-fiji-head-coach-ahead-of-2027-rugby-world-cup-20261013-0304&c=4724479678069994935&mkt=en-us",
-          "score": 1.8,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeedac4eb7841a48c7a8d0a8f07de7c&url=https%3a%2f%2fwww.news24.com%2fsport%2frugby%2fjake-white-named-fiji-head-coach-ahead-of-2027-rugby-world-cup-20261013-0304&c=4724479678069994935&mkt=en-us",
+          "score": 1.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -63,8 +59,8 @@
         },
         {
           "title": "Fiji Defeats New Zealand, Clinches Back-To-Back Gold Medals in Rugby 7s",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee681d956b4f57b34e58917d1a874c&url=https%3a%2f%2fwww.nbcolympics.com%2fnews%2ffiji-defeats-new-zealand-clinches-back-back-gold-medals-rugby-7s&c=3883552262699688430&mkt=en-us",
-          "score": 1.5,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeedac4eb7841a48c7a8d0a8f07de7c&url=https%3a%2f%2fwww.nbcolympics.com%2fnews%2ffiji-defeats-new-zealand-clinches-back-back-gold-medals-rugby-7s&c=3883552262699688430&mkt=en-us",
+          "score": 1.4,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -74,7 +70,7 @@
         {
           "title": "France team v Fiji: Injury-ravaged Les Bleus hand rising star a first start as big Antoine Dupont decision made",
           "link": "https://www.planetrugby.com/news/france-team-v-fiji-injury-ravaged-les-bleus-hand-rising-star-a-first-start-as-big-antoine-dupont-decision-made",
-          "score": 8,
+          "score": 7.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -90,22 +86,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Jamie George says England squad are 'really upset' by Times rift report",
-      "kicker": "Squad rift claim",
-      "body": "The Times report says unhappy players wanted talks with head coach Steve Borthwick and Rugby Football Union chief executive Bill Sweeney in Argentina in July, citing concerns over man-management. Hooker Jamie George says the squad are unhappy with the article, insisting that \"a lot of it's untrue\" and that its timing, two days before Sunday's Test against Australia, was designed to divide them. Captain Maro Itoje called a leader's meeting to handle it. \"This is going to galvanise us,\" George said.",
-      "source": "BBC Rugby Union",
+      "heading": "Borthwick names Ben Curry and George Furbank in England side for Wallabies",
+      "kicker": "Team news",
+      "body": "Ben Curry starts at openside against Australia, his Test return after an injury-hit 16 months, with Guy Pepper ruled out by an ankle injury sustained in Bath's defeat at Gloucester. George Furbank returns at full-back, Marcus Smith drops to the bench, and Fin Baxter starts at loosehead ahead of Ellis Genge. Maro Itoje is restored to the captaincy, and Exeter's Greg Fisilau is poised to win his first cap from the bench. Tom Curry misses the matchday 23 after an injury setback in training.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 2,
-        "why": "A fresh on-record reaction from within the squad to the Times player-unrest report, ahead of Sunday's Test."
+        "candidate": 5,
+        "why": "The England team for Sunday's opener against Australia has just been named, with Ben Curry's return and George Furbank's recall as the headline changes."
       },
-      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cmx2qqyz4p1po?at_medium=RSS&at_campaign=rss",
+      "leadLink": "https://www.planetrugby.com/news/england-team-five-takeaways-as-trust-shown-in-george-furbank-pom-squad-back-in-favour-and-steve-borthwicks-latest-rookie-gambit",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Injury crises and Borthwick under scrutiny: it’s that time of year again for England rugby",
           "link": "https://www.theguardian.com/sport/2026/nov/06/nations-championship-injuries-steve-borthwick-england-australia-rugby",
-          "score": 74.7,
+          "score": 69.4,
           "corroboration": 2,
           "outlets": [
             "guardian",
@@ -116,7 +112,7 @@
         {
           "title": "Player-coach rift report will only galvanise England - George",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmx2qqyz4p1po?at_medium=RSS&at_campaign=rss",
-          "score": 40.7,
+          "score": 36.5,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -124,9 +120,19 @@
           "fresh": true
         },
         {
+          "title": "Borthwick backed, Wallabies in pay dispute",
+          "link": "https://www.sarugbymag.co.za/borthwick-backed-wallabies-in-pay-dispute/",
+          "score": 35.2,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ],
+          "fresh": true
+        },
+        {
           "title": "Fly-half Smith fit to steer England against Wallabies",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cv4g11wr6l5jo?at_medium=RSS&at_campaign=rss",
-          "score": 38.2,
+          "score": 34.6,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -136,17 +142,7 @@
         {
           "title": "England team: Five takeaways as 'trust' shown in George Furbank, 'Pom Squad' back in favour and Steve Borthwick's 'latest rookie' gambit",
           "link": "https://www.planetrugby.com/news/england-team-five-takeaways-as-trust-shown-in-george-furbank-pom-squad-back-in-favour-and-steve-borthwicks-latest-rookie-gambit",
-          "score": 37.5,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "England team v Australia: Steve Borthwick makes crucial Fin Smith call as uncapped man poised for Test debut",
-          "link": "https://www.planetrugby.com/news/england-team-v-australia-steve-borthwick-makes-crucial-fin-smith-call-as-uncapped-man-poised-for-test-debut",
-          "score": 35.3,
+          "score": 32.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -161,22 +157,32 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Oscar Jegou ruled out with rib injury; Esteban Capilla named for Fiji",
-      "kicker": "Injury blow",
-      "body": "Oscar Jegou is out of Saturday's clash with Fiji after a rib injury sustained in training, and head coach Fabien Galthié has named uncapped loose forward Esteban Capilla in the matchday 23. Capilla could make his France debut off the bench. Kalvin Gourgues gets his first start for Les Bleus in midfield, after four appearances off the bench, in a side already missing Thibaud Flament, Emmanuel Meafou and Matthieu Jalibert.",
+      "heading": "Galthié reunites Dupont and Ntamack as France's half-back pairing against Fiji",
+      "kicker": "Team news",
+      "body": "Coach Fabien Galthié has named Antoine Dupont at scrum-half and Romain Ntamack at flyhalf for Saturday's match in Lyon, their first start together at half-back since March 2025. Ntamack's injury record includes a long-running kidney problem, while Dupont missed the whole of July with a calf issue. Matthieu Jalibert is out with a quadriceps problem, and Maxime Lucu is among the replacements. Fiji, coached by Jake White, scored no points in July, losing 39-24 to Wales and 73-8 to England.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 4,
-        "why": "Item 1 is an opinion preview with no news, and items 2 and 3 are older, so this fresh injury-driven squad change is the strongest France story not already reported."
+        "candidate": 2,
+        "why": "The only fresh France squad item: #1 is rugby league and #3 is sponsorship, and #5 is older team news."
       },
-      "leadLink": "https://www.planetrugby.com/news/france-team-v-fiji-injury-ravaged-les-bleus-hand-rising-star-a-first-start-as-big-antoine-dupont-decision-made",
+      "leadLink": "https://www.planetrugby.com/news/france-v-fiji-prediction-les-bleus-to-use-attacking-excellence-to-hammer-jake-whites-side-but-risk-exposing-soft-underbelly-before-boks-showdown",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
+          "title": "France could JOIN Pacific Championship as part of NRL partnership",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeedaf14471415db2d899ea973bfe5b&url=https%3a%2f%2fwww.msn.com%2fen-za%2fnews%2fother%2ffrance-could-join-pacific-championship-as-part-of-nrl-partnership%2far-AA2gW67C&c=2890702631259946224&mkt=en-us",
+          "score": 23.8,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ],
+          "fresh": true
+        },
+        {
           "title": "France v Fiji prediction: Les Bleus to use 'attacking excellence' to hammer Jake White's side but risk exposing 'soft underbelly' before Boks showdown",
           "link": "https://www.planetrugby.com/news/france-v-fiji-prediction-les-bleus-to-use-attacking-excellence-to-hammer-jake-whites-side-but-risk-exposing-soft-underbelly-before-boks-showdown",
-          "score": 24.2,
+          "score": 20.1,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -184,43 +190,33 @@
           "fresh": true
         },
         {
-          "title": "Nations Championship: France set to give Capilla debut",
-          "link": "https://www.rte.ie/sport/rugby/2026/1105/1598094-nations-championship-france-set-to-give-capilla-debut/",
-          "score": 47.3,
-          "corroboration": 2,
-          "outlets": [
-            "rte",
-            "search"
-          ],
-          "fresh": false
-        },
-        {
-          "title": "France pick 'survivors' before Boks arrive",
-          "link": "https://www.sarugbymag.co.za/france-pick-survivors-boks-arrive/",
-          "score": 23,
+          "title": "Orange or CMA CGM: Who could replace Altrad as France Rugby’s shirt partner?",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeedaf14471415db2d899ea973bfe5b&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fsport%2frugby%2forange-or-cma-cgm-who-could-replace-altrad-as-france-rugby-s-shirt-partner%2far-AA2gVBKz&c=79604401727593607&mkt=en-us",
+          "score": 19,
           "corroboration": 1,
           "outlets": [
-            "sarugbymag"
+            "search"
           ],
-          "fresh": false
+          "fresh": true
         },
         {
-          "title": "France team v Fiji: Injury-ravaged Les Bleus hand rising star a first start as big Antoine Dupont decision made",
-          "link": "https://www.planetrugby.com/news/france-team-v-fiji-injury-ravaged-les-bleus-hand-rising-star-a-first-start-as-big-antoine-dupont-decision-made",
-          "score": 22.9,
+          "title": "Springboks legend: Don't be surprised if Rassie Erasmus backs bolters against France and Ireland",
+          "link": "https://www.planetrugby.com/news/springboks-legend-dont-be-surprised-if-rassie-erasmus-backs-bolters-against-france-and-ireland",
+          "score": 9.9,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
           ],
-          "fresh": false
+          "fresh": true,
+          "otherTeam": "South Africa"
         },
         {
-          "title": "Springboks and France on collision course for Twickenham rugby final but challenges await",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee6846b0b34546997987c8aefed14f&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2frugby%2fspringboks-and-france-on-collision-course-for-twickenham-rugby-final-but-challenges-await%2far-AA2gR4ni&c=8299292491290811914&mkt=en-us",
-          "score": 14.3,
+          "title": "France pick 'survivors' before Boks arrive",
+          "link": "https://www.sarugbymag.co.za/france-pick-survivors-boks-arrive/",
+          "score": 20.9,
           "corroboration": 1,
           "outlets": [
-            "search"
+            "sarugbymag"
           ],
           "fresh": false
         }
@@ -232,72 +228,69 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Hugo Keenan hat-trick as Ireland beat Argentina 42-12 at Aviva Stadium",
-      "kicker": "Round 4 result",
-      "body": "Ireland led 21-5 at half-time on Friday night and pulled clear after the break, with Hugo Keenan scoring three tries in the Aviva Stadium win. Dan Sheehan crossed before the interval and Sam Prendergast added a try and five conversions, while Matteo Carreras scored both of Argentina's tries. Keenan's first came in the 15th minute and his third in the 50th, with Ireland finishing 42-12 ahead of Fiji's visit next Saturday.",
-      "source": null,
+      "heading": "Andy Farrell faces injury worries after Dan Sheehan fails head assessment",
+      "kicker": "Injury worries",
+      "body": "Captain Dan Sheehan was forced off in the first half of Friday's 42-12 win over Argentina after failing a head injury assessment, though Andy Farrell said he \"seems fine in the dressing room\". Robert Baloucoune also left with a knock in the 58th minute, while Sean Jansen took a \"bang\" to his knee and Josh van der Flier and Mack Hansen both have ankle concerns. Hansen continued after treatment.",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 4,
-        "why": "The Friday result is the freshest Ireland event in the pack; the other Ireland items are pre-match previews or ticket warnings."
+        "candidate": 1,
+        "why": "It is the only shortlist item with a new Ireland injury development from Friday's match, which the Keenan hat-trick edition did not cover."
       },
-      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee6879203149e38ce3217483dc8b82&url=https%3a%2f%2fwww.bbc.com%2fsport%2frugby-union%2flive%2fcq2d63pwwdkkt&c=11858994060801470005&mkt=en-us",
+      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cmde88ppx39go?at_medium=RSS&at_campaign=rss",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
-          "title": "Farrell's Ireland bid to go to the next level as Pumas visit Dublin",
-          "link": "https://www.the42.ie/ireland-argentina-preview-4-7216266-Nov2026/",
-          "score": 43.3,
-          "corroboration": 1,
+          "title": "Six tries and a big win - but were Ireland ruthless?",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmde88ppx39go?at_medium=RSS&at_campaign=rss",
+          "score": 71.2,
+          "corroboration": 2,
           "outlets": [
-            "the42"
+            "bbc",
+            "guardian"
           ],
           "fresh": true
         },
         {
-          "title": "Ireland's home straight to World Cup starts with Pumas",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cve8rx3yxg2eo?at_medium=RSS&at_campaign=rss",
-          "score": 24.3,
+          "title": "Boks warned: Ireland can be 'more ruthless'",
+          "link": "https://www.sarugbymag.co.za/boks-warned-ireland-can-be-more-ruthless/",
+          "score": 52.8,
           "corroboration": 1,
           "outlets": [
-            "bbc"
+            "sarugbymag"
           ],
           "fresh": true
         },
         {
-          "title": "Rugby fans warned of spike in fake tickets being sold ahead of Argentina V Ireland match",
-          "link": "https://www.the42.ie/scam-ireland-v-argentina-fake-tickets-2-7217549-Nov2026/",
-          "score": 15.5,
-          "corroboration": 1,
+          "title": "Ireland player ratings: 'Simply brilliant' hat-trick hero the standout but 'transformative night' for Sam Prendergast and some 'robust' forwards",
+          "link": "https://www.planetrugby.com/news/ireland-player-ratings-simply-brilliant-hat-trick-hero-the-standout-but-transformative-night-for-sam-prendergast-and-some-robust-forwards",
+          "score": 39.7,
+          "corroboration": 2,
           "outlets": [
-            "the42"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Clinical Ireland beat Argentina - as it happened",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee6879203149e38ce3217483dc8b82&url=https%3a%2f%2fwww.bbc.com%2fsport%2frugby-union%2flive%2fcq2d63pwwdkkt&c=11858994060801470005&mkt=en-us",
-          "score": 9.4,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Nations Championship 2026 – Ireland vs Argentina – ARN Guide",
-          "link": "https://www.americasrugbynews.com/2026/11/04/nations-championship-2026-ireland-vs-argentina-arn-guide/",
-          "score": 89,
-          "corroboration": 6,
-          "outlets": [
-            "americasrugbynews",
             "planetrugby",
-            "the42",
-            "rte",
-            "rugbyworld",
-            "search"
+            "sarugbymag"
           ],
-          "fresh": false
+          "fresh": true
+        },
+        {
+          "title": "Pace, precision and pressure ensure a strong start to Ireland's November campaign",
+          "link": "https://www.the42.ie/ireland-argentina-comment-7218286-Nov2026/",
+          "score": 38.5,
+          "corroboration": 1,
+          "outlets": [
+            "the42"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Ireland v Argentina: Five takeaways as 'outstanding' Hugo Keenan shines to leave 'harsh truth' for Felipe Contepomi",
+          "link": "https://www.planetrugby.com/news/ireland-v-argentina-five-takeaways-as-outstanding-hugo-keenan-shines-to-leave-harsh-truth-for-felipe-contepomi",
+          "score": 35.7,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ],
+          "fresh": true
         }
       ]
     },
@@ -307,22 +300,26 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Quesada hands Leonardo Marin and Paolo Odogwu Italy's centre berths against Springboks",
-      "kicker": "Team news",
-      "body": "Italy coach Gonzalo Quesada has picked Leonardo Marin at inside centre and Paolo Odogwu outside him for Saturday's Test against South Africa in Turin, with Nacho Brex and Tommaso Menoncello both out. Brex has detached a bicep, expects surgery and faces a three-month recovery, while Menoncello is 12 weeks out after subluxing a shoulder for Toulouse against Exeter Chiefs in the Champions Cup. Marin, a former fly-half, was identified by Quesada in June 2025 as a potential successor to Brex's playmaking role.",
+      "heading": "Nacho Brex calls Springboks' De Allende and Kriel probably the best pairing",
+      "kicker": "Injury blow",
+      "body": "Italy's vice-captain Juan Ignacio Brex, sidelined for Saturday's match, has praised Damian de Allende and Jesse Kriel. \"They're probably the best centre partnership in the world,\" he told Planet Rugby exclusively. Brex, who detached a bicep in the last Top 14 round and expects surgery next week, said he and Tommaso Menoncello see the South African pair as a benchmark to challenge. Menoncello, who faces 12 weeks out after subluxing his shoulder for Toulouse against Exeter Chiefs in the Champions Cup, is also out.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 3,
-        "why": "A new injury-driven selection call at centre gives Italy's own squad the day's freshest story, ahead of the Coppa Italia club item and the already-reported Vintcent bench news."
+        "candidate": 2,
+        "why": "A new, Italy-angled quote from an injured Italy centre about the centre pairing Italy must now do without."
       },
       "leadLink": "https://www.planetrugby.com/news/springboks-duo-damian-de-allende-and-jesse-kriel-hailed-by-italy-centre-nacho-brex",
-      "repeatLead": null,
-      "noveltyRevised": false,
+      "repeatLead": {
+        "date": "2026-11-07",
+        "heading": "Quesada hands Leonardo Marin and Paolo Odogwu Italy's centre berths against Springboks",
+        "reason": "same source article"
+      },
+      "noveltyRevised": true,
       "candidates": [
         {
           "title": "Coppa Italia, ultimi 80 minuti per conquistare le semifinali: decisive Viadana-Fiamme Oro e Vicenza-Parabiago",
           "link": "https://www.federugby.it/coppa-italia-ultimi-80-minuti-per-conquistare-le-semifinali-decisive-viadana-fiamme-oro-e-vicenza-parabiago/",
-          "score": 47.6,
+          "score": 43,
           "corroboration": 1,
           "outlets": [
             "federugby"
@@ -330,19 +327,9 @@
           "fresh": true
         },
         {
-          "title": "Italian Saffa denied Bok family meeting",
-          "link": "https://www.sarugbymag.co.za/italian-saffa-denied-bok-family-meeting/",
-          "score": 43.6,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
-          ],
-          "fresh": true
-        },
-        {
           "title": "Springboks duo hailed by injured Italy star: 'They're probably the best centre partnership in the world'",
           "link": "https://www.planetrugby.com/news/springboks-duo-damian-de-allende-and-jesse-kriel-hailed-by-italy-centre-nacho-brex",
-          "score": 32.9,
+          "score": 27.9,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -352,7 +339,7 @@
         {
           "title": "Nations Championship: la presentazione di Italia-Sudafrica",
           "link": "https://www.federugby.it/nations-championship-la-presentazione-di-italia-sudafrica/",
-          "score": 28.4,
+          "score": 25.4,
           "corroboration": 1,
           "outlets": [
             "federugby"
@@ -360,9 +347,19 @@
           "fresh": true
         },
         {
-          "title": "Quesada: Boks have shown us huge respect",
-          "link": "https://www.sarugbymag.co.za/quesada-boks-shown-us-huge-respect/",
-          "score": 26.4,
+          "title": "Italy v South Africa prediction: Springboks win 'inevitable' as injury-stricken Azzurri fail to contain Bomb Squad 'explosion'",
+          "link": "https://www.planetrugby.com/news/italy-v-south-africa-prediction-springboks-win-inevitable-as-injury-stricken-azzurri-fail-to-contain-bomb-squad-explosion",
+          "score": 21.6,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Stokke: Don’t give Italy room to move",
+          "link": "https://www.sarugbymag.co.za/stokke-dont-give-italy-room-move/",
+          "score": 21,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -377,22 +374,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Sione Tuipulotu says Scotland have progressed since 17-17 All Blacks near miss",
-      "kicker": "Captain's verdict",
-      "body": "Captain Sione Tuipulotu says the squad has grown since last year's All Blacks match, when Scotland came back from 17-0 down to 17-17 only to lose to a late Damien McKenzie score. \"I do feel like we've progressed a lot in the last 12 months,\" he said. Since then, they have broken England's 12-game winning run, scored 50 points against France and pushed world champions South Africa close in Pretoria. New Zealand have won 31 of the 33 meetings so far.",
-      "source": "BBC Rugby Union",
+      "heading": "Josh Kerr to deliver match ball before Scotland face All Blacks",
+      "kicker": "Matchday appearance",
+      "body": "Olympic silver medallist Josh Kerr will deliver the match ball to the middle of the Murrayfield pitch before Saturday's Test, and he has already been inside the camp. He joined the squad for Friday's captain's run and a lunch session on high performance, and told the Telegraph he would \"look awful\" on the pitch, joking that his speed would let him down. His brother Jake won a full cap at hooker for Scotland in 2019.",
+      "source": null,
       "lead": {
-        "candidate": 1,
-        "why": "It is a new BBC item with the strongest cross-outlet pickup, and it gives the captain's own view on the squad's progress since last year's near miss, a different angle from the Dempsey story already r"
+        "candidate": 4,
+        "why": "It is a new Scotland-linked item from today's pack, and it avoids the Tuipulotu progress quote already run in today's earlier edition."
       },
-      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cw62yy06dejzo?at_medium=RSS&at_campaign=rss",
+      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeedb77960a4a6da30e60cc55487878&url=https%3a%2f%2fwww.telegraph.co.uk%2frugby-union%2f2026%2f11%2f07%2fjosh-kerr-obsessed-rugby-know-scotland-can-beat-all-blacks%2f&c=16353683396209165966&mkt=en-us",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Scotland come full circle for another crack at All Blacks",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cw62yy06dejzo?at_medium=RSS&at_campaign=rss",
-          "score": 78.3,
+          "score": 73.1,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -403,29 +400,7 @@
         {
           "title": "Scotland v New Zealand prediction: All Blacks to 'navigate tricky assignment' and extend unbeaten streak against 'competitive' hosts",
           "link": "https://www.planetrugby.com/news/scotland-v-new-zealand-prediction-all-blacks-to-navigate-tricky-assignment-and-extend-unbeaten-streak-against-competitive-hosts",
-          "score": 69.8,
-          "corroboration": 2,
-          "outlets": [
-            "planetrugby",
-            "search"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Scotland can be best and worst team in world - Dempsey",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmd934jpg59yo?at_medium=RSS&at_campaign=rss",
-          "score": 63.4,
-          "corroboration": 2,
-          "outlets": [
-            "bbc",
-            "search"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "World Rugby rankings: Springboks' top spot on the line as Scotland target historic All Blacks victory and all-time high in intense battle for third",
-          "link": "https://www.planetrugby.com/news/world-rugby-rankings-springboks-top-spot-on-the-line-as-scotland-target-historic-all-blacks-victory-and-all-time-high-in-intense-battle-for-third",
-          "score": 20.8,
+          "score": 25,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -433,14 +408,36 @@
           "fresh": true
         },
         {
-          "title": "Josh Kerr on his Scotland rugby or athletics dilemma and competing against Finn Russell's wife",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee68a859ec44be817d3679aae056d5&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fsport%2fathletics%2fjosh-kerr-on-his-scotland-rugby-or-athletics-dilemma-and-competing-against-finn-russell-s-wife%2far-AA2gUf3F&c=2726345547364423209&mkt=en-us",
-          "score": 20.2,
+          "title": "Scotland vs New Zealand Nations Championship predictions: Kiwis can continue dominance over Scots",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeedb77960a4a6da30e60cc55487878&url=https%3a%2f%2fwww.racingpost.com%2fsport%2frugby-union-tips%2fscotland-vs-new-zealand-championship-rugby-union-predictions-betting-tips-and-odds-a2cBK0s3kKpj%2f&c=10210760274946723206&mkt=en-us",
+          "score": 17.4,
           "corroboration": 1,
           "outlets": [
             "search"
           ],
           "fresh": true
+        },
+        {
+          "title": "Josh Kerr: I am obsessed with rugby – and I know Scotland can beat All Blacks",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeedb77960a4a6da30e60cc55487878&url=https%3a%2f%2fwww.telegraph.co.uk%2frugby-union%2f2026%2f11%2f07%2fjosh-kerr-obsessed-rugby-know-scotland-can-beat-all-blacks%2f&c=16353683396209165966&mkt=en-us",
+          "score": 14.1,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Scotland's Russell & Tuipulotu return to face  All Blacks",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cm89zjzp3qq4o?at_medium=RSS&at_campaign=rss",
+          "score": 85.6,
+          "corroboration": 3,
+          "outlets": [
+            "planetrugby",
+            "bbc",
+            "search"
+          ],
+          "fresh": false
         }
       ]
     },
@@ -450,33 +447,36 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Archie Griffin sits out Wales captain's run but is not injured",
-      "kicker": "Team news",
-      "body": "Bath prop Archie Griffin skipped Friday's captain's run before Saturday's Nations Championship match against Japan at the Principality Stadium. WalesOnline understands he is not carrying an injury and the absence was a decision to manage his training load. He will start at tighthead in a front row featuring Nicky Smith and captain Dewi Lake. The 25-year-old has a reputation as an extremely mobile and dynamic prop.",
+      "heading": "Bill Sweeney confirms WRU's formal request for Welsh clubs to join Prem",
+      "kicker": "Prem expansion bid",
+      "body": "The Welsh Rugby Union wants its clubs in English rugby's top flight, and the RFU has confirmed the request. Speaking to BBC Radio Four, chief executive Bill Sweeney said the RFU had \"received a formal approach\" and must go back with more questions. Its stated focus remains expanding the English game, with the Premiership moving from 10 to 12 clubs. The United Rugby Championship has threatened the WRU, a shareholder, with legal action over leaving.",
       "source": "WalesOnline",
       "lead": {
         "candidate": 2,
-        "why": "A fresh squad item about a Wales starter's training absence, which beats the Mann feature and the WRU story already reported."
+        "why": "A fresh, confirmed WRU move with a direct stake for Wales, unlike the Griffin training story already published."
       },
       "leadLink": "https://www.walesonline.co.uk/sport/rugby/rugby-news/formal-wru-talks-english-confirmed-34875165",
-      "repeatLead": null,
-      "noveltyRevised": false,
+      "repeatLead": {
+        "date": "2026-11-07",
+        "heading": "Archie Griffin sits out Wales captain's run but is not injured",
+        "reason": "same source article"
+      },
+      "noveltyRevised": true,
       "candidates": [
         {
           "title": "Wales player divides fans but coaches and team-mates know the truth",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/wales-player-divides-fans-coaches-34873831",
-          "score": 91.2,
-          "corroboration": 2,
+          "score": 45.9,
+          "corroboration": 1,
           "outlets": [
-            "walesonline",
-            "search"
+            "walesonline"
           ],
           "fresh": true
         },
         {
           "title": "Formal WRU talks with English confirmed and Wales starter sits out training",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/formal-wru-talks-english-confirmed-34875165",
-          "score": 26.5,
+          "score": 22.5,
           "corroboration": 1,
           "outlets": [
             "walesonline"
@@ -486,7 +486,7 @@
         {
           "title": "RFU boss confirms WRU Anglo-Welsh league approach",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c9p8ggzzerz5o?at_medium=RSS&at_campaign=rss",
-          "score": 22.6,
+          "score": 19,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -494,24 +494,27 @@
           "fresh": true
         },
         {
-          "title": "Wales vs. Japan rugby lineups: Louis Rees-Zammit starts in Cardiff",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee68be0b2e44f2a7254ed820cf82a4&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fwales-vs-japan-rugby-lineups-louis-rees-zammit-starts-in-cardiff%2far-AA2gTZEN&c=2560082976528046859&mkt=en-us",
-          "score": 20,
-          "corroboration": 1,
+          "title": "Japan date starts pivotal month for Welsh rugby",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq8ez336g0r1o?at_medium=RSS&at_campaign=rss",
+          "score": 44.7,
+          "corroboration": 2,
           "outlets": [
+            "bbc",
             "search"
           ],
-          "fresh": true
+          "fresh": true,
+          "otherTeam": "Japan"
         },
         {
-          "title": "Thousands of Wales rugby fans must have train reservation and can't use Cardiff Central",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee68be0b2e44f2a7254ed820cf82a4&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fsport%2fgeneral%2fthousands-of-wales-rugby-fans-must-have-train-reservation-and-can-t-use-cardiff-central%2far-AA2gTeTV&c=16119503268764839086&mkt=en-us",
-          "score": 18.5,
+          "title": "Shocked England players angry over accusations and Wales star released from squad",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeedb8a92cc4dde9fa2a7239ad6cb86&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fnews%2fother%2fshocked-england-players-angry-over-accusations-and-wales-star-released-from-squad%2far-AA2gWvkl&c=5893290411245692117&mkt=en-us",
+          "score": 13.8,
           "corroboration": 1,
           "outlets": [
             "search"
           ],
-          "fresh": true
+          "fresh": true,
+          "otherTeam": "England"
         }
       ]
     },
@@ -521,22 +524,33 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Pumas fall 42-12 to Ireland in Dublin as Hugo Keenan scores hat-trick",
-      "kicker": "Dublin defeat",
-      "body": "Argentina went to the Aviva Stadium on Friday night chasing a first win in Dublin and fell well short. BBC Sport had noted beforehand that the Pumas have never won there, and that Ireland had taken 14 of the 20 previous meetings between the sides. Argentina have won all three of their World Cup meetings with Ireland, and each time it ended Ireland's tournament early.",
-      "source": null,
+      "heading": "Bath sign Argentina tight-head prop Marcos Camerlinckx, Super Rugby Americas champion",
+      "kicker": "Bath signing",
+      "body": "Marcos Camerlinckx, a 22-year-old tight-head prop and former Argentina Under-20 international, joins Bath after winning this year's Super Rugby Americas Championship with Pampas XV. He also played for an Argentina XV against the United States in August. Bath director of rugby Johann van Graan told the club website: \"We are looking forward to seeing how Marcos will develop his game over the next period of time and I am sure he will fit into our group very well.\" Bath have not disclosed the length of the deal.",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 3,
-        "why": "It is the only new item about Argentina's own result that is not already covered, since the Camerlinckx signing has run and the other new items are about Ireland or ticketing."
+        "candidate": 2,
+        "why": "It is the only new item about an Argentina player, and the Ireland match report has already run today."
       },
-      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee68d98f954ccba26347e5180932ff&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fireland-vs-argentina-live-updates-pumas-chase-history-in-dublin%2far-AA2gUgKq&c=3809098512679825707&mkt=en-us",
+      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/c60mee4z3rg7o?at_medium=RSS&at_campaign=rss",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
+          "title": "Keenan hat-trick as six-try Ireland beat Pumas",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmgellz7dn52o?at_medium=RSS&at_campaign=rss",
+          "score": 26.4,
+          "corroboration": 2,
+          "outlets": [
+            "bbc",
+            "guardian"
+          ],
+          "fresh": true
+        },
+        {
           "title": "Bath sign Argentine prop Camerlinckx",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c60mee4z3rg7o?at_medium=RSS&at_campaign=rss",
-          "score": 24.1,
+          "score": 19.8,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -544,43 +558,33 @@
           "fresh": true
         },
         {
-          "title": "Rugby fans warned of spike in fake tickets being sold ahead of Argentina V Ireland match",
-          "link": "https://www.the42.ie/scam-ireland-v-argentina-fake-tickets-2-7217549-Nov2026/",
-          "score": 15.5,
+          "title": "Ireland player ratings: Back three shine in Pumas rout",
+          "link": "https://www.rte.ie/sport/rugby/2026/1106/1598221-player-ratings-back-three-shine-brightest-in-irish-rout/",
+          "score": 7.9,
           "corroboration": 1,
           "outlets": [
-            "the42"
+            "rte"
           ],
           "fresh": true
         },
         {
-          "title": "Hugo Keenan's Hat Trick Leads Ireland Rugby To 42-12 Win Over Argentina",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee68d98f954ccba26347e5180932ff&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fireland-vs-argentina-live-updates-pumas-chase-history-in-dublin%2far-AA2gUgKq&c=3809098512679825707&mkt=en-us",
-          "score": 6.1,
+          "title": "Ireland v Argentina: Five takeaways as 'outstanding' Hugo Keenan shines to leave 'harsh truth' for Felipe Contepomi",
+          "link": "https://www.planetrugby.com/news/ireland-v-argentina-five-takeaways-as-outstanding-hugo-keenan-shines-to-leave-harsh-truth-for-felipe-contepomi",
+          "score": 19.6,
           "corroboration": 1,
           "outlets": [
-            "search"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Farrell's Ireland bid to go to the next level as Pumas visit Dublin",
-          "link": "https://www.the42.ie/ireland-argentina-preview-4-7216266-Nov2026/",
-          "score": 23.8,
-          "corroboration": 1,
-          "outlets": [
-            "the42"
+            "planetrugby"
           ],
           "fresh": true,
           "otherTeam": "Ireland"
         },
         {
-          "title": "Ireland's home straight to World Cup starts with Pumas",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cve8rx3yxg2eo?at_medium=RSS&at_campaign=rss",
-          "score": 13.4,
+          "title": "Ireland impress to make light work of poor Pumas",
+          "link": "https://www.rte.ie/sport/rugby/2026/1106/1598215-ireland-impress-to-make-light-work-of-poor-pumas/",
+          "score": 19.4,
           "corroboration": 1,
           "outlets": [
-            "bbc"
+            "rte"
           ],
           "fresh": true,
           "otherTeam": "Ireland"
@@ -593,22 +597,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Angus Crichton drops into Wallabies training in England while rehabbing foot injury",
-      "kicker": "Squad visit",
-      "body": "Wallabies coach Les Kiss says new NSW Waratahs recruit Angus Crichton could be a real asset in the midfield, after the former Sydney Roosters star joined the group for training in England. Crichton, who is still rehabbing a stress fracture in his right foot, was over on holiday and lunched with the squad alongside Brisbane Lions player Will Ashcroft. Kiss said, \"I think initially the midfield, definitely. That's how I see it,\" and Crichton will head to Waratahs pre-season in the coming days.",
-      "source": null,
+      "heading": "Fraser McReight to win 50th cap as Wallabies name Len Ikitau back",
+      "kicker": "Team news",
+      "body": "Jeremy Williams starts at blindside in a new-look back row for Sunday's Test against England at Twickenham, with Fraser McReight winning his 50th cap alongside Williams and Harry Wilson captaining from number eight. Len Ikitau returns to midfield after missing the last Test under HIA protocols, partnering Isaac Henry, who will play his first Test in the United Kingdom. Taniela Tupou is back among the replacements.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 3,
-        "why": "It is the only new item pointing at the Wallabies' own squad, and the McReight cap and Twickenham side have already been covered."
+        "candidate": 1,
+        "why": "It is a fresh team announcement with a headline milestone (McReight's 50th cap) and a returning midfielder, and it is the only new Australia-side item in the pack."
       },
-      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee68f3cb254fc398774fab5513359a&url=https%3a%2f%2fwww.rugby.com.au%2fnews%2fwallabies-paid-premiership-visit-as-new-waratahs-recruit-crichton-starts-rugby-journey-2026116&c=7114168247962504754&mkt=en-us",
+      "leadLink": "https://www.planetrugby.com/news/wallabies-team-v-england-fraser-mcreight-reaches-milestone-while-stalwart-makes-welcome-return",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Wallabies team v England: Fraser McReight reaches milestone while stalwart makes welcome return",
           "link": "https://www.planetrugby.com/news/wallabies-team-v-england-fraser-mcreight-reaches-milestone-while-stalwart-makes-welcome-return",
-          "score": 88.2,
+          "score": 83.5,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
@@ -619,7 +623,7 @@
         {
           "title": "Australia need a way to turn moments into momentum to revive spirits",
           "link": "https://www.theguardian.com/sport/2026/nov/06/australia-need-a-way-to-turn-moments-into-momentum-to-revive-spirits",
-          "score": 39.5,
+          "score": 34,
           "corroboration": 1,
           "outlets": [
             "guardian"
@@ -627,9 +631,9 @@
           "fresh": true
         },
         {
-          "title": "New Waratahs recruit Crichton links up with Wallabies ahead of Rugby journey",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee68f3cb254fc398774fab5513359a&url=https%3a%2f%2fwww.rugby.com.au%2fnews%2fwallabies-paid-premiership-visit-as-new-waratahs-recruit-crichton-starts-rugby-journey-2026116&c=7114168247962504754&mkt=en-us",
-          "score": 15.8,
+          "title": "Son of English parents Canham ready to soar in Wallabies' gold",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aeedbc54de74489a5fa7a3a5aac5c3f&url=https%3a%2f%2fwww.rugby.com.au%2fnews%2fson-of-english-parents-canham-ready-to-soar-in-wallabies-gold-2026117&c=3558336149866646194&mkt=en-us",
+          "score": 16.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -639,7 +643,7 @@
         {
           "title": "Fly-half Smith fit to steer England against Wallabies",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cv4g11wr6l5jo?at_medium=RSS&at_campaign=rss",
-          "score": 16.7,
+          "score": 15.1,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -650,7 +654,7 @@
         {
           "title": "England team v Australia: Steve Borthwick makes crucial Fin Smith call as uncapped man poised for Test debut",
           "link": "https://www.planetrugby.com/news/england-team-v-australia-steve-borthwick-makes-crucial-fin-smith-call-as-uncapped-man-poised-for-test-debut",
-          "score": 12.4,
+          "score": 10.7,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -666,22 +670,33 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Ieuan Evans recalls 1993 try within 45 seconds against Japan in Cardiff",
-      "kicker": "Japan history",
-      "body": "The try came off a wild pass from Japan's scrum-half, a loose ball Evans gathered on the 10-metre line before diving in at the right corner. It was the first full capped match between the sides, and Evans, Wales captain that day, later spoke Japanese at the post-match banquet using phonetic text written by Cardiff University's Business School. Wales won pretty convincingly, and Evans says Japanese rugby has since gone on to become a major force.",
-      "source": "Welsh Rugby Union",
+      "heading": "Eddie Jones starts uncapped Riku Kitahara at fly-half against Wales",
+      "kicker": "Selection call",
+      "body": "Japan have been without their first three choice fly-halves for Saturday's Nations Championship match against Wales. Eddie Jones has opted to start Riku Kitahara, uncapped and from Honda Heat, at fly-half. Shinya Komura, who won his last of three caps against Georgia in November 2025, is the only other fly-half on tour. Sam Greene and Seung-sin Lee are injured, while Ryunosuke Ito, who has started every Japan Test in 2026, is back at university and misses the entire tour.",
+      "source": "Rugby Asia 247",
       "lead": {
-        "candidate": 1,
-        "why": "It is the strongest NEW item in the pack that is not a club contract or a story already covered in earlier editions, though it is a retrospective."
+        "candidate": 3,
+        "why": "Item 1 is a Wales preview rather than a Japan event, item 2 is the Ieuan Evans piece already run today, so item 3 is the only Japan selection story on the shortlist."
       },
-      "leadLink": "https://www.wru.wales/2026/11/the-day-ieuan-evans-ended-up-speaking-japanese/",
+      "leadLink": "https://www.rugbyasia247.com/japan-brave-blossoms-vs-wales-nations-championship-2026-preview/",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
+          "title": "Japan date starts pivotal month for Welsh rugby",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq8ez336g0r1o?at_medium=RSS&at_campaign=rss",
+          "score": 81.2,
+          "corroboration": 2,
+          "outlets": [
+            "bbc",
+            "search"
+          ],
+          "fresh": true
+        },
+        {
           "title": "The day Ieuan Evans ended up speaking Japanese",
           "link": "https://www.wru.wales/2026/11/the-day-ieuan-evans-ended-up-speaking-japanese/",
-          "score": 40.6,
+          "score": 36.4,
           "corroboration": 1,
           "outlets": [
             "wru"
@@ -689,30 +704,9 @@
           "fresh": true
         },
         {
-          "title": "Pieter-Steph du Toit joins Japan exodus as Springboks star primed for South African return after contract termination",
-          "link": "https://www.planetrugby.com/news/springboks-pieter-steph-du-toit-set-for-south-african-return-after-terminating-japan-contract",
-          "score": 22.1,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Wales vs. Japan Rugby Lineups: Louis Rees-Zammit Starts In Cardiff",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee690b9dfb4cfbb95d5359533a0bfe&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fwales-vs-japan-rugby-lineups-louis-rees-zammit-starts-in-cardiff%2far-AA2gTZEN&c=2560082976528046859&mkt=en-us",
-          "score": 7,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ],
-          "fresh": true,
-          "otherTeam": "Wales"
-        },
-        {
           "title": "Japan Brave Blossoms vs Wales Nations Championship 2026 Preview",
           "link": "https://www.rugbyasia247.com/japan-brave-blossoms-vs-wales-nations-championship-2026-preview/",
-          "score": 104.8,
+          "score": 101.5,
           "corroboration": 3,
           "outlets": [
             "planetrugby",
@@ -724,10 +718,20 @@
         {
           "title": "Japan call in Welshman to plot Wales' downfall as Eddie Jones predicts gameplan",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/japan-call-welshman-plot-wales-34868235",
-          "score": 24.8,
+          "score": 22.3,
           "corroboration": 1,
           "outlets": [
             "walesonline"
+          ],
+          "fresh": false
+        },
+        {
+          "title": "Pieter-Steph du Toit joins Japan exodus as Springboks star primed for South African return after contract termination",
+          "link": "https://www.planetrugby.com/news/springboks-pieter-steph-du-toit-set-for-south-african-return-after-terminating-japan-contract",
+          "score": 18.3,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
           ],
           "fresh": false
         }
@@ -739,33 +743,42 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "All Blacks could regain No. 1 ranking if Springboks slip in Turin",
-      "kicker": "Rankings race",
-      "body": "The Springboks' top spot is at stake in Turin on Saturday, where they face Italy in the first Nations Championship match of the weekend. Defeat there would surrender it if paired with an All Blacks victory or draw at Murrayfield. New Zealand cannot drop below second whatever happens, and they have never lost to Scotland.",
+      "heading": "Beauden Barrett's form could cause selection headaches, Jeff Wilson says",
+      "kicker": "Selection debate",
+      "body": "Former All Blacks full-back Jeff Wilson has pointed to Beauden Barrett's recent form. Injuries to Ruben Love and Richie Mo'unga opened the door, with Barrett coming in at 15 and Damian McKenzie moving from full-back to take Love and Mo'unga's place, and the pair have kept their spots. Wilson said: \"If he continues his good form, I think it will be him who might give the selectors headaches because their preferred option was clearly McKenzie at 15.\"",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 4,
-        "why": "It is a new item with a direct New Zealand stake: the All Blacks return to No. 1 if the Springboks lose in Turin and New Zealand avoid defeat at Murrayfield."
+        "candidate": 1,
+        "why": "A fresh New Zealand selection story about the 10 and 15 positions, which the earlier Wilson pieces did not cover."
       },
-      "leadLink": "https://www.planetrugby.com/news/world-rugby-rankings-springboks-top-spot-on-the-line-as-scotland-target-historic-all-blacks-victory-and-all-time-high-in-intense-battle-for-third",
+      "leadLink": "https://www.planetrugby.com/news/beauden-barrett-is-changing-the-conversation-around-the-all-blacks-playmakers-as-jeff-wilson-claims-dave-rennie-doesnt-want-to-take-will-jordan-last-resort",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
+          "title": "Beauden Barrett is 'changing the conversation' around the All Blacks playmakers as Jeff Wilson claims Dave Rennie doesn't want to take Will Jordan 'last resort'",
+          "link": "https://www.planetrugby.com/news/beauden-barrett-is-changing-the-conversation-around-the-all-blacks-playmakers-as-jeff-wilson-claims-dave-rennie-doesnt-want-to-take-will-jordan-last-resort",
+          "score": 25,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ],
+          "fresh": true
+        },
+        {
           "title": "Scotland v New Zealand prediction: All Blacks to 'navigate tricky assignment' and extend unbeaten streak against 'competitive' hosts",
           "link": "https://www.planetrugby.com/news/scotland-v-new-zealand-prediction-all-blacks-to-navigate-tricky-assignment-and-extend-unbeaten-streak-against-competitive-hosts",
-          "score": 69.8,
-          "corroboration": 2,
+          "score": 25,
+          "corroboration": 1,
           "outlets": [
-            "planetrugby",
-            "search"
+            "planetrugby"
           ],
           "fresh": true
         },
         {
           "title": "Siya not stressing about All Blacks",
           "link": "https://www.sarugbymag.co.za/siya-not-stressing-blacks/",
-          "score": 28.2,
+          "score": 24.5,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -775,7 +788,7 @@
         {
           "title": "Ex-All Blacks forward makes Hurricanes return as Super Rugby champions confirm new coaching hires",
           "link": "https://www.planetrugby.com/news/ex-all-blacks-forward-makes-hurricanes-return-as-super-rugby-champions-confirm-new-coaching-hires",
-          "score": 23.4,
+          "score": 19.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -783,24 +796,15 @@
           "fresh": true
         },
         {
-          "title": "World Rugby rankings: Springboks' top spot on the line as Scotland target historic All Blacks victory and all-time high in intense battle for third",
-          "link": "https://www.planetrugby.com/news/world-rugby-rankings-springboks-top-spot-on-the-line-as-scotland-target-historic-all-blacks-victory-and-all-time-high-in-intense-battle-for-third",
-          "score": 20.8,
+          "title": "Scotland come full circle for another crack at All Blacks",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cw62yy06dejzo?at_medium=RSS&at_campaign=rss",
+          "score": 18.2,
           "corroboration": 1,
           "outlets": [
-            "planetrugby"
+            "bbc"
           ],
-          "fresh": true
-        },
-        {
-          "title": "What we think we know about England, Australia, New Zealand and more as rugby's Nations Championship returns",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6aee69256ed840f585d09a280d9d6634&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fwhat-we-think-we-know-about-england-australia-new-zealand-and-more-as-rugbys-nations-championship-returns%2far-AA2gOfin&c=9879750441852102465&mkt=en-us",
-          "score": 13.8,
-          "corroboration": 1,
-          "outlets": [
-            "search"
-          ],
-          "fresh": true
+          "fresh": true,
+          "otherTeam": "Scotland"
         }
       ]
     },
@@ -810,32 +814,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Nacho Brex calls De Allende and Kriel 'probably the best' centre pair",
-      "kicker": "Centre praise",
-      "body": "Italy's Nacho Brex, who is out injured, told Planet Rugby that Damian de Allende and Jesse Kriel are probably the best centre partnership in the world, adding they have played so many games together that they understand each other's games well. The Springboks' midfield faces an Italy pairing rebuilt around Leonardo Marin and Paolo Odogwu, with Brex's partner Tommaso Menoncello also sidelined for around 12 weeks after a shoulder subluxation. Brex, who detached a bicep in the Top 14, expects surgery next week.",
+      "heading": "Matfield expects Rassie Erasmus to test uncapped Boks against France, Ireland",
+      "kicker": "Selection call",
+      "body": "Rassie Erasmus named South Africa's strongest available side for the Italy match, holding back six uncapped players, including Yaqeen Ahmed, Markus Muller, Riley Norton and Luan Giliomee. His explanation was time: the group only arrived in camp on Monday. Victor Matfield, speaking on the Rivals podcast, expects those players to be involved later in the tougher Nations Championship tests, adding that the head coach is never shy of a selection curveball.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "It is a fresh, fan-friendly item that puts the Springbok midfield at the centre of the build-up, and it is the only shortlist item that is not a preview, rankings piece or tribute."
+        "candidate": 2,
+        "why": "A fresh selection story about South Africa's own uncapped players, which fits the brief better than the Brex quote already reported today."
       },
-      "leadLink": "https://www.planetrugby.com/news/springboks-duo-damian-de-allende-and-jesse-kriel-hailed-by-italy-centre-nacho-brex",
+      "leadLink": "https://www.planetrugby.com/news/springboks-legend-dont-be-surprised-if-rassie-erasmus-backs-bolters-against-france-and-ireland",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
-          "title": "Springboks duo hailed by injured Italy star: 'They're probably the best centre partnership in the world'",
-          "link": "https://www.planetrugby.com/news/springboks-duo-damian-de-allende-and-jesse-kriel-hailed-by-italy-centre-nacho-brex",
-          "score": 32.9,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Boks’ hearts, minds with Hyron’s family",
-          "link": "https://www.sarugbymag.co.za/boks-hearts-minds-hyrons-family/",
-          "score": 28.9,
+          "title": "Boks warned: Ireland can be 'more ruthless'",
+          "link": "https://www.sarugbymag.co.za/boks-warned-ireland-can-be-more-ruthless/",
+          "score": 52.8,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -843,9 +837,29 @@
           "fresh": true
         },
         {
+          "title": "Springboks legend: Don't be surprised if Rassie Erasmus backs bolters against France and Ireland",
+          "link": "https://www.planetrugby.com/news/springboks-legend-dont-be-surprised-if-rassie-erasmus-backs-bolters-against-france-and-ireland",
+          "score": 28.4,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Springboks duo hailed by injured Italy star: 'They're probably the best centre partnership in the world'",
+          "link": "https://www.planetrugby.com/news/springboks-duo-damian-de-allende-and-jesse-kriel-hailed-by-italy-centre-nacho-brex",
+          "score": 27.9,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ],
+          "fresh": true
+        },
+        {
           "title": "Nations Championship: la presentazione di Italia-Sudafrica",
           "link": "https://www.federugby.it/nations-championship-la-presentazione-di-italia-sudafrica/",
-          "score": 28.4,
+          "score": 25.4,
           "corroboration": 1,
           "outlets": [
             "federugby"
@@ -853,22 +867,12 @@
           "fresh": true
         },
         {
-          "title": "Quesada: Boks have shown us huge respect",
-          "link": "https://www.sarugbymag.co.za/quesada-boks-shown-us-huge-respect/",
-          "score": 26.4,
+          "title": "Boks’ hearts, minds with Hyron’s family",
+          "link": "https://www.sarugbymag.co.za/boks-hearts-minds-hyrons-family/",
+          "score": 24.3,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "World Rugby rankings: Springboks' top spot on the line as Scotland target historic All Blacks victory and all-time high in intense battle for third",
-          "link": "https://www.planetrugby.com/news/world-rugby-rankings-springboks-top-spot-on-the-line-as-scotland-target-historic-all-blacks-victory-and-all-time-high-in-intense-battle-for-third",
-          "score": 26,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
           ],
           "fresh": true
         }
@@ -877,27 +881,27 @@
   ],
   "world": [
     {
-      "team": "Italy",
-      "text": "Italy lose Nacho Brex and Tommaso Menoncello to injury before Springboks."
+      "team": "Ireland",
+      "text": "Ireland captain Dan Sheehan forced off after failing head injury assessment."
     },
     {
-      "team": "Ireland",
-      "text": "Ireland beat Argentina 42-12 as Hugo Keenan scores hat-trick."
+      "team": "England",
+      "text": "England's Tom Curry out of Wallabies Test after training setback."
     },
     {
       "team": "France",
-      "text": "France's Oscar Jegou ruled out of Fiji clash with rib injury."
+      "text": "France's Matthieu Jalibert ruled out of Fiji match with quadriceps problem."
     },
     {
-      "team": "Fiji",
-      "text": "Jake White named Fiji head coach ahead of 2027 World Cup."
+      "team": "Japan",
+      "text": "Japan start uncapped Riku Kitahara at fly-half against Wales."
     }
   ],
   "model": {
     "servedBy": "claude-haiku-5-5",
     "onLastRung": false,
-    "calls": 32,
-    "rejections": 0,
+    "calls": 36,
+    "rejections": 9,
     "plan": {
       "writer": "claude-haiku-5-5",
       "checker": "claude-haiku-5-5",
@@ -907,36 +911,36 @@
       "tune": "gemini"
     },
     "anthropic": {
-      "calls": 31,
+      "calls": 35,
       "failed": 0,
       "fellBack": 0,
-      "costUSD": 0.177,
+      "costUSD": 0.17763,
       "rows": [
         {
           "model": "claude-haiku-5-5",
-          "calls": 30,
+          "calls": 34,
           "failed": 0,
           "fellBack": 0,
-          "input": 271167,
-          "output": 71751,
-          "costUSD": 0.06304
+          "input": 311409,
+          "output": 87345,
+          "costUSD": 0.07477
         },
         {
           "model": "claude-sonnet-5-5",
           "calls": 1,
           "failed": 0,
           "fellBack": 0,
-          "input": 12869,
-          "output": 8822,
-          "costUSD": 0.11396
+          "input": 12740,
+          "output": 7738,
+          "costUSD": 0.10286
         }
       ]
     },
     "gemini": {
       "calls": 1,
-      "rejections": 0,
-      "servedBy": "gemini-3.5-flash",
-      "onLastRung": false
+      "rejections": 9,
+      "servedBy": "gemini-3.5-flash-lite",
+      "onLastRung": true
     }
   },
   "worldDropped": []
