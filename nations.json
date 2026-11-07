@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-07T15:54:24.025Z",
+  "updatedAt": "2026-11-07T16:18:28.126Z",
   "counts": {
     "fixtures": 15,
     "results": 21,
@@ -802,9 +802,9 @@
       "date": "2026-11-07T14:10:00+00:00",
       "week": "4",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false
       },
       "home": {
         "id": 390,
@@ -843,17 +843,17 @@
       "id": 465,
       "team": "New Zealand",
       "logo": "https://media.api-sports.io/rugby/teams/465.png",
-      "P": 3,
-      "W": 3,
+      "P": 4,
+      "W": 4,
       "D": 0,
       "L": 0,
-      "PF": 121,
-      "PA": 70,
-      "PD": 51,
-      "TF": 17,
-      "TA": 8,
-      "BP": 3,
-      "Pts": 15
+      "PF": 164,
+      "PA": 91,
+      "PD": 73,
+      "TF": 24,
+      "TA": 11,
+      "BP": 4,
+      "Pts": 20
     },
     {
       "rank": 3,
@@ -911,15 +911,15 @@
       "id": 390,
       "team": "Scotland",
       "logo": "https://media.api-sports.io/rugby/teams/390.png",
-      "P": 3,
+      "P": 4,
       "W": 2,
       "D": 0,
-      "L": 1,
-      "PF": 108,
-      "PA": 97,
-      "PD": 11,
-      "TF": 14,
-      "TA": 14,
+      "L": 2,
+      "PF": 129,
+      "PA": 140,
+      "PD": -11,
+      "TF": 17,
+      "TA": 21,
       "BP": 2,
       "Pts": 10
     },
@@ -1028,10 +1028,22 @@
   ],
   "news": [
     {
-      "title": "South Africa thump Italy to continue perfect Nations Championship run",
-      "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPNUVHVlBlMGxhc0tOOFBmMXdQblk0NG9weDJFamJIcGRGVFVJUjl6TWNxVEt6OExPb2M3YXMxU183SkVYRjJ1bV9qc0xJeUhQSW1ocldubDBDcTZLQnh0MWVUVTc2eno3X3JhcHNWNGpUZkY3d2lFaFNVRWROdTIxRjlhakVDNW1McHdaNUlFMTh6eEwwNmVIR1NWdjM2SHlSOHp3QXByT2tYLXBRSlpjMTBNMGZpLUpTRGE2Vg?oc=5",
-      "source": "The Irish Times",
-      "published": "Sat, 07 Nov 2026 14:54:20 GMT"
+      "title": "Nations Championship - Scotland 21-43 New Zealand: All Blacks power on to leave hosts well short of history at Murrayfield",
+      "link": "https://news.google.com/rss/articles/CBMigAJBVV95cUxPeEJsamVoVnlHVG9mdjZsa0dFSlpFT3h5T3ZoUGsyZUNuQ3lvV25zSmhSQWV0dS1LRWJlVGtSTXB0UGt6bVdsMGljVG5UNzZiZ1E2OWZjRmo2TVBKMmw5MmlyeldLT0U4cUE3MGlyQUtCazl1ZDkwb3k5Ml9laEI0Z0xqNDRyY21QRmxWOUd6OXZjOTNTVnVjQVRERG1sWlR2ZTdDeGZkOEpzYjEzLThLTVRhTUx3QzJqVW5VRGpWc0hKekwyNmcyeUlZanJZeFNWTWY2LU1lQmhfUVBSM18tenRQSG5hc3c0dzg5NzczeW5VdTFQNXVGZ2hwcXBqWm55?oc=5",
+      "source": "Sky Sports",
+      "published": "Sat, 07 Nov 2026 16:08:45 GMT"
+    },
+    {
+      "title": "All Blacks player ratings vs Scotland | Nations Championship 2026",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQaEZKbm9nT1pNUmwtNzdLVDJuTGVzSDNaanBGMU81dTYzamxUcUc3VG4xQlFNSzB1RGYwQ0JGWjFWdkg4YVBPRkxoOTlwNVRGeDZVbVFEU3NadXd5QW9qMThhTGFOUkxoRnRZQldxcG9BTHN1TlpYNEFWTVdvZlFBN25wUjRRaUhLR2QwVFNiWUw1cHluT2djbDdzMA?oc=5",
+      "source": "Rugbypass.com",
+      "published": "Sat, 07 Nov 2026 16:06:03 GMT"
+    },
+    {
+      "title": "England vs Australia: Nations Championship rugby union predictions, betting tips and odds",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxOSDQzbTlzWFVENTVOZ25hVkM4S0N2VmFCZkY4WXZ6dmRQcVgwTzBERFNTQjFSRmlScm56dFlXdldkZFFiZTl4b0ZlcUl3SHIzaTA1UUJwbmVoVXd1WmJFUHdocTM1WHBZX0prN0t6aUVlNExaRTB0am9qMjVnUWs3UVZYTEN3YlJYVDdnNVZSUS1fZ3Jha190UUdDSDR0TG5XN2k1blhVUDRQbHhLOWRISnE1R00wUkxpeEpCWkF3TFlITTNoTHJJSUVR?oc=5",
+      "source": "Racing Post",
+      "published": "Sat, 07 Nov 2026 16:00:00 GMT"
     },
     {
       "title": "Springboks thrash depleted Italy 66-7 with 9 tries in Nations Championship rugby",
@@ -1046,22 +1058,10 @@
       "published": "Sat, 07 Nov 2026 14:24:58 GMT"
     },
     {
-      "title": "RUGBY.LIVE: NZ All Blacks vs Scotland Live Free Nations Championship Rugby Game On TV Channel",
-      "link": "https://news.google.com/rss/articles/CBMidkFVX3lxTE1KSGFsSEx3SXJxSi1Sb1lheFlZV29hazMzSXlUdXlSR1dCZk1XZk9JalNlSXpKWDdDRlRac1BOaEJTYkZwVFJLdUtFc3ZpTWRmeC1VQ1JXWVRJM3BFRWdwRnZfQnBQd1V1c2ZCOGU3N0EteHc4Y2c?oc=5",
-      "source": "BKReader",
-      "published": "Sat, 07 Nov 2026 14:03:33 GMT"
-    },
-    {
       "title": "Springboks thrash depleted Italy 66-7 with 9 tries in Nations Championship rugby",
       "link": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxPMjZsVjgteks2bmpZbGY0cXZLZWVqenF3WmliMmJlaHFpSndIS09RbXFkRFpFOE54aldWLTliQnFVekFjWnBGcE5TZmZHTS1YdDBVOUVJQlFNeldJd0VaWlVpSmNpbkJGM0VyNHpPNm94RU1kelJLb0RXajJMMi1UblhkVGM4SkxQUjhJ?oc=5",
       "source": "Yahoo Sports",
       "published": "Sat, 07 Nov 2026 13:59:31 GMT"
-    },
-    {
-      "title": "Springboks blow Italy away to take control of Nations Championship group",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNSzdDaTRneUd1NlI2RkZVU3JJNXFFZkRSbU9BRjhmanh2QklTSkRFRmdqV2JEamRVTzk5MWVXLVctWHNGVGNuOGtGdWhiREFhQklabk1FZ0toYm1KN2RlWEFBdTFKRXRtc1pvM3JWLVMyQmZKbkhmd1BOZF9KYTJEMDRaZ0FKZnF5dTFnUGJVSERYVWpacENwa1lPcm9Bd2xINmM2aF9ZYklXb0JyN3ZwOEF6Q3ltc2Y4?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Sat, 07 Nov 2026 13:54:39 GMT"
     },
     {
       "title": "Springboks player ratings vs Italy | Nations Championship 2026",
@@ -1070,15 +1070,15 @@
       "published": "Sat, 07 Nov 2026 13:27:47 GMT"
     },
     {
+      "title": "Scotland 21-43 New Zealand: Nations Championship rugby union – live",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNYnJ0SnR0dGxjMU0xNjI4djlDZ2kzTEEzUU1kM1QwM2lHRl9FUGlYRkMzYTlCaDRIdDlRRVpkT21YV1ZPZnAxTWZMdmJyalREZzYxOHlLdWhVbUhBcHFBdG5FdUVhajU1d3VKVlNON2ZpX09HaU1ueG1yYXd1VUM0a244ZEVfUFRyYTBrd3E1RGJ2azk0VGtEYmtnSTZxSjNaLVpRbGhMRmFOVUJBS1QxUg?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 07 Nov 2026 13:00:00 GMT"
+    },
+    {
       "title": "Scotland vs New Zealand's All Blacks LIVE! Nations Championship updates, latest scores, team news, commentary from Murrayfield",
       "link": "https://news.google.com/rss/articles/CBMiigJBVV95cUxQb3dJSmxtemhlR25jSEVMRE55ZDl2TUhoa2l3ZUs4OGViUFJtT093Q3FISlRVOFRPOENOQlBIZXJrT1d3ZExNY3loS2JCVEwyUTBiaHI2b1lzTHlxZnNTWTNDUXBjZEdZc2M1U3V1N3hzNHBMSUNuYktlRURqVnRfcmF3LVVqZmJxYlppaTFfeTZrNXN4OF81dGk5WUloZzVVYzNaWDVDN0NoVDdfV3NGaG1fYkI2bXZoSHROYUlEOG0yU2NWX2d5Qy0wcjNBQ3hNMG53QlZiaTl1aVFQMUNjTHM2RWp5Nm12c1NicVJyX3FQQ1p6bFd3bHV1MjN3SFBnc0VVMTM5a205Zw?oc=5",
       "source": "Sky Sports",
-      "published": "Sat, 07 Nov 2026 13:05:00 GMT"
-    },
-    {
-      "title": "Scotland v New Zealand: Nations Championship rugby union – live",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNYnJ0SnR0dGxjMU0xNjI4djlDZ2kzTEEzUU1kM1QwM2lHRl9FUGlYRkMzYTlCaDRIdDlRRVpkT21YV1ZPZnAxTWZMdmJyalREZzYxOHlLdWhVbUhBcHFBdG5FdUVhajU1d3VKVlNON2ZpX09HaU1ueG1yYXd1VUM0a244ZEVfUFRyYTBrd3E1RGJ2azk0VGtEYmtnSTZxSjNaLVpRbGhMRmFOVUJBS1QxUg?oc=5",
-      "source": "The Guardian",
       "published": "Sat, 07 Nov 2026 13:00:00 GMT"
     },
     {
