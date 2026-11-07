@@ -23,6 +23,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
 - **All Blacks (New Zealand Rugby official news)** (allblacks.com) — proposed 2026-11-07 for New Zealand: NZ's matchday shortlist had no All Blacks selection or Test news, so the writer fell back on a Hurricanes club coaching story.
   - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+- **Fiji Sun** (fijisun.com.fj) — proposed 2026-11-08 for Fiji: Fiji's pack had no NEW Fiji-centred story, and a Fiji-based daily's rugby desk could supply named selection and debut detail.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 

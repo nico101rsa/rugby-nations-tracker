@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-07T17:01:13.042Z",
+  "updatedAt": "2026-11-07T20:01:10.250Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 198,
+  "count": 202,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -2115,6 +2115,11 @@
       "resolution": "until Ireland clarify Sam Prendergast's fitness status ahead of the Argentina Test",
       "sources": [
         {
+          "title": "Sexton 'very hopeful' Prendergast can shake off injury",
+          "link": "https://www.rte.ie/sport/rugby/2026/1027/1597008-sexton-very-hopeful-prendergast-can-shake-off-injury/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
           "title": "48,400 tickets sold as Ireland remain 'optimistic' on Prendergast",
           "link": "https://www.the42.ie/ireland-prendergast-tickets-7211710-Nov2026/",
           "feedName": "The42"
@@ -2123,15 +2128,10 @@
           "title": "Ireland 'optimistic' Prendergast will be fit for Pumas",
           "link": "https://www.rte.ie/sport/rugby/2026/1101/1597530-ireland-optimistic-prendergast-will-be-fit-for-pumas/",
           "feedName": "RTÉ Sport Rugby"
-        },
-        {
-          "title": "Ireland team: Update issued on Sam Prendergast injury and Aviva Stadium ticket sales",
-          "link": "https://www.planetrugby.com/news/ireland-team-update-issued-on-sam-prendergast-injury-and-aviva-stadium-ticket-sales",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-10-25",
-      "lastSeen": "2026-11-04",
+      "lastSeen": "2026-11-08",
       "uses": 1,
       "lastUsed": "2026-10-26"
     },
@@ -3075,7 +3075,7 @@
         }
       ],
       "firstSeen": "2026-10-31",
-      "lastSeen": "2026-11-06",
+      "lastSeen": "2026-11-08",
       "uses": 0
     },
     {
@@ -4757,6 +4757,99 @@
           "title": "Springboks legend: Don't be surprised if Rassie Erasmus backs bolters against France and Ireland",
           "link": "https://www.planetrugby.com/news/springboks-legend-dont-be-surprised-if-rassie-erasmus-backs-bolters-against-france-and-ireland",
           "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "uses": 0
+    },
+    {
+      "id": "the-pay-dispute-between-s9n0ak",
+      "subject": "The pay dispute between Rugby Australia and the Australian Rugby Players' Association",
+      "teams": [
+        461
+      ],
+      "resolution": "until Rugby Australia and the players' union reach an agreement on terms for a new collective bargaining deal",
+      "sources": [
+        {
+          "title": "Wallabies’ pay dispute with Rugby Australia overshadows Nations Championship finale",
+          "link": "https://www.theguardian.com/sport/blog/2026/nov/06/wallabies-pay-dispute-with-rugby-australia-overshadows-nations-championship-finale",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Borthwick backed, Wallabies in pay dispute",
+          "link": "https://www.sarugbymag.co.za/borthwick-backed-wallabies-in-pay-dispute/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "uses": 0
+    },
+    {
+      "id": "the-welsh-rugby-union-18p8wp9",
+      "subject": "The Welsh Rugby Union's formal proposal to establish a joint Anglo-Welsh league with the RFU",
+      "teams": [
+        386,
+        391
+      ],
+      "resolution": "until the RFU and WRU formally decide whether to pursue or reject an Anglo-Welsh league structure",
+      "sources": [
+        {
+          "title": "RFU boss confirms WRU Anglo-Welsh league approach",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c9p8ggzzerz5o?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Formal WRU talks with English confirmed and Wales starter sits out training",
+          "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/formal-wru-talks-english-confirmed-34875165",
+          "feedName": "WalesOnline"
+        }
+      ],
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "uses": 0
+    },
+    {
+      "id": "pieter-steph-du-toit-15bzm7c",
+      "subject": "Pieter-Steph du Toit's next team following his contract termination in Japan",
+      "teams": [
+        467
+      ],
+      "resolution": "until Pieter-Steph du Toit officially signs with a new club",
+      "sources": [
+        {
+          "title": "Pieter-Steph du Toit joins Japan exodus as Springboks star primed for South African return after contract termination",
+          "link": "https://www.planetrugby.com/news/springboks-pieter-steph-du-toit-set-for-south-african-return-after-terminating-japan-contract",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Kolisi happy to have Pietie back home",
+          "link": "https://www.sarugbymag.co.za/kolisi-happy-pietie-back-home/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "POLL: Pick Du Toit's new SA team!",
+          "link": "https://www.sarugbymag.co.za/poll-pick-psdts-new-sa-team/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "uses": 0
+    },
+    {
+      "id": "salmaan-moerat-s-fitness-8nm50z",
+      "subject": "Salmaan Moerat's fitness following his late withdrawal from the South Africa squad against Italy",
+      "teams": [
+        467
+      ],
+      "resolution": "until South Africa confirm the severity of Salmaan Moerat's injury and his availability for upcoming Tests",
+      "sources": [
+        {
+          "title": "Erasmus gives update on Moerat",
+          "link": "https://www.sarugbymag.co.za/erasmus-gives-update-moerat/",
+          "feedName": "SA Rugby Magazine"
         }
       ],
       "firstSeen": "2026-11-08",
