@@ -2,129 +2,6 @@
   "notice": "Outlets proposed by the daily editorial review and probed by code. Nothing here is a news source until it is added to scripts/news-sources.mjs by hand.",
   "candidates": [
     {
-      "outlet": "Scottish Rugby (official union news)",
-      "host": "scottishrugby.org",
-      "homepage": "https://www.scottishrugby.org",
-      "teams": [
-        "Scotland"
-      ],
-      "why": "Scotland's edition fell to a data note with nothing above salience, and the union's own news page would give squad and fixture items the spine misses.",
-      "proposed": "2026-10-12",
-      "status": "no-feed",
-      "feedUrl": null,
-      "probes": [
-        {
-          "date": "2026-10-12",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-13",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-14",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-15",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-16",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-17",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-18",
-          "error": "no feed found (8 tried)"
-        }
-      ],
-      "decided": "2026-10-18"
-    },
-    {
-      "outlet": "Daily Record",
-      "host": "dailyrecord.co.uk",
-      "homepage": "https://www.dailyrecord.co.uk",
-      "teams": [
-        "Scotland"
-      ],
-      "why": "Scotland's pool held only the women's Australia game, so a free national-paper rugby desk could supply men's Scotland stories.",
-      "proposed": "2026-10-18",
-      "status": "adopted",
-      "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
-      "probes": [
-        {
-          "date": "2026-10-18",
-          "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "Scotland": 4,
-            "Australia": 1
-          }
-        },
-        {
-          "date": "2026-10-19",
-          "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "Scotland": 4
-          }
-        },
-        {
-          "date": "2026-10-20",
-          "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "England": 1,
-            "France": 1,
-            "Ireland": 1,
-            "Italy": 1,
-            "Scotland": 3
-          }
-        },
-        {
-          "date": "2026-10-21",
-          "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "Scotland": 7,
-            "Australia": 1
-          }
-        },
-        {
-          "date": "2026-10-22",
-          "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "Scotland": 3,
-            "Japan": 1
-          }
-        },
-        {
-          "date": "2026-10-23",
-          "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "France": 1,
-            "Scotland": 7
-          }
-        },
-        {
-          "date": "2026-10-24",
-          "feedUrl": "https://www.dailyrecord.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "Scotland": 4,
-            "Australia": 1
-          }
-        }
-      ],
-      "decided": "2026-10-18"
-    },
-    {
       "outlet": "Welsh Rugby Union (official news)",
       "host": "wru.wales",
       "homepage": "https://www.wru.wales",
@@ -1072,6 +949,10 @@
         {
           "date": "2026-11-08",
           "error": "no feed found (8 tried; homepage HTTP 403)"
+        },
+        {
+          "date": "2026-11-09",
+          "error": "no feed found (8 tried; homepage HTTP 403)"
         }
       ]
     },
@@ -1140,6 +1021,19 @@
             "New Zealand": 1,
             "South Africa": 2
           }
+        },
+        {
+          "date": "2026-11-09",
+          "feedUrl": "https://www.rugbyrama.fr/rss.xml",
+          "items": 100,
+          "hits": {
+            "France": 34,
+            "Wales": 1,
+            "Argentina": 2,
+            "Australia": 1,
+            "New Zealand": 2,
+            "South Africa": 4
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1200,6 +1094,14 @@
             "Ireland": 1,
             "Argentina": 1,
             "New Zealand": 1
+          }
+        },
+        {
+          "date": "2026-11-09",
+          "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
+          "items": 25,
+          "hits": {
+            "France": 9
           }
         }
       ],
@@ -1289,6 +1191,24 @@
             "New Zealand": 1,
             "South Africa": 6
           }
+        },
+        {
+          "date": "2026-11-09",
+          "feedUrl": "https://www.onrugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "Fiji": 1,
+            "England": 2,
+            "France": 1,
+            "Italy": 4,
+            "Scotland": 1,
+            "Wales": 1,
+            "Argentina": 1,
+            "Australia": 2,
+            "Japan": 1,
+            "New Zealand": 1,
+            "South Africa": 3
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1351,6 +1271,16 @@
             "England": 1,
             "France": 1
           }
+        },
+        {
+          "date": "2026-11-09",
+          "feedUrl": "https://islandsbusiness.com/feed/",
+          "items": 12,
+          "hits": {
+            "Fiji": 8,
+            "England": 1,
+            "France": 1
+          }
         }
       ],
       "decided": "2026-11-05"
@@ -1386,6 +1316,10 @@
         {
           "date": "2026-11-08",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-09",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1416,6 +1350,10 @@
         {
           "date": "2026-11-08",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-09",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1438,6 +1376,10 @@
         {
           "date": "2026-11-08",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-09",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1455,6 +1397,10 @@
       "probes": [
         {
           "date": "2026-11-08",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-09",
           "error": "no feed found (8 tried)"
         }
       ]
