@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-07T23:46:26.060Z",
+  "updatedAt": "2026-11-08T23:51:52.176Z",
   "source": "aggregated",
   "matches": [
     {
@@ -4586,6 +4586,213 @@
           "player": "Mesake Vocevoce"
         }
       ]
+    },
+    {
+      "id": 53236,
+      "round": "4",
+      "date": "2026-11-08T15:10:00+00:00",
+      "home": {
+        "id": 386,
+        "name": "England",
+        "score": 45
+      },
+      "away": {
+        "id": 461,
+        "name": "Australia",
+        "score": 22
+      },
+      "eventId": 16098047,
+      "reconciled": true,
+      "scoring": [
+        {
+          "min": 8,
+          "team": "home",
+          "type": "try",
+          "player": "Jamie George",
+          "after": [
+            5,
+            0
+          ]
+        },
+        {
+          "min": 12,
+          "team": "away",
+          "type": "penalty",
+          "player": "Ryan Lonergan",
+          "after": [
+            5,
+            3
+          ]
+        },
+        {
+          "min": 26,
+          "team": "home",
+          "type": "try",
+          "player": "Ollie Chessum",
+          "after": [
+            10,
+            3
+          ]
+        },
+        {
+          "min": 27,
+          "team": "home",
+          "type": "conversion",
+          "player": "Fin Smith",
+          "after": [
+            12,
+            3
+          ]
+        },
+        {
+          "min": 33,
+          "team": "home",
+          "type": "try",
+          "player": "Joe Heyes",
+          "after": [
+            17,
+            3
+          ]
+        },
+        {
+          "min": 34,
+          "team": "home",
+          "type": "conversion",
+          "player": "Fin Smith",
+          "after": [
+            19,
+            3
+          ]
+        },
+        {
+          "min": 40,
+          "team": "away",
+          "type": "try",
+          "player": "Max Jorgensen",
+          "after": [
+            19,
+            8
+          ]
+        },
+        {
+          "min": 40,
+          "team": "away",
+          "type": "conversion",
+          "player": "Ryan Lonergan",
+          "after": [
+            19,
+            10
+          ]
+        },
+        {
+          "min": 43,
+          "team": "home",
+          "type": "try",
+          "player": "Jack Van Poortvliet",
+          "after": [
+            24,
+            10
+          ]
+        },
+        {
+          "min": 43,
+          "team": "home",
+          "type": "conversion",
+          "player": "Fin Smith",
+          "after": [
+            26,
+            10
+          ]
+        },
+        {
+          "min": 55,
+          "team": "home",
+          "type": "try",
+          "player": "Henry Pollock",
+          "after": [
+            31,
+            10
+          ]
+        },
+        {
+          "min": 57,
+          "team": "home",
+          "type": "try",
+          "player": "Henry Pollock",
+          "after": [
+            36,
+            10
+          ]
+        },
+        {
+          "min": 58,
+          "team": "home",
+          "type": "conversion",
+          "player": "Fin Smith",
+          "after": [
+            38,
+            10
+          ]
+        },
+        {
+          "min": 62,
+          "team": "away",
+          "type": "try",
+          "player": "Filipo Daugunu",
+          "after": [
+            38,
+            15
+          ]
+        },
+        {
+          "min": 74,
+          "team": "away",
+          "type": "try",
+          "player": "Jeremy Williams",
+          "after": [
+            38,
+            20
+          ]
+        },
+        {
+          "min": 75,
+          "team": "away",
+          "type": "conversion",
+          "player": "Ben Donaldson",
+          "after": [
+            38,
+            22
+          ]
+        },
+        {
+          "min": 76,
+          "team": "home",
+          "type": "try",
+          "player": "Ben Spencer",
+          "after": [
+            43,
+            22
+          ]
+        },
+        {
+          "min": 77,
+          "team": "home",
+          "type": "conversion",
+          "player": "Fin Smith",
+          "after": [
+            45,
+            22
+          ]
+        }
+      ],
+      "cards": [
+        {
+          "min": 32,
+          "team": "away",
+          "type": "yellow",
+          "player": "Angus Bell"
+        }
+      ]
     }
   ],
   "aggregates": {
@@ -4594,6 +4801,11 @@
         "player": "Will Jordan",
         "team": "New Zealand",
         "tries": 6
+      },
+      {
+        "player": "Henry Pollock",
+        "team": "England",
+        "tries": 5
       },
       {
         "player": "Hugo Keenan",
@@ -4618,11 +4830,6 @@
       {
         "player": "Ewan Ashman",
         "team": "Scotland",
-        "tries": 3
-      },
-      {
-        "player": "Henry Pollock",
-        "team": "England",
         "tries": 3
       },
       {
@@ -4723,6 +4930,16 @@
       {
         "player": "Jamie Dobie",
         "team": "Scotland",
+        "tries": 2
+      },
+      {
+        "player": "Jamie George",
+        "team": "England",
+        "tries": 2
+      },
+      {
+        "player": "Jeremy Williams",
+        "team": "Australia",
         "tries": 2
       },
       {
@@ -4836,6 +5053,11 @@
         "tries": 1
       },
       {
+        "player": "Ben Spencer",
+        "team": "England",
+        "tries": 1
+      },
+      {
         "player": "Ben Warren",
         "team": "Wales",
         "tries": 1
@@ -4946,6 +5168,11 @@
         "tries": 1
       },
       {
+        "player": "Filipo Daugunu",
+        "team": "Australia",
+        "tries": 1
+      },
+      {
         "player": "Florian Verhaeghe",
         "team": "France",
         "tries": 1
@@ -5006,13 +5233,13 @@
         "tries": 1
       },
       {
-        "player": "Jaco Williams",
-        "team": "South Africa",
+        "player": "Jack Van Poortvliet",
+        "team": "England",
         "tries": 1
       },
       {
-        "player": "Jamie George",
-        "team": "England",
+        "player": "Jaco Williams",
+        "team": "South Africa",
         "tries": 1
       },
       {
@@ -5031,13 +5258,13 @@
         "tries": 1
       },
       {
-        "player": "Jeremy Williams",
+        "player": "Jock Campbell",
         "team": "Australia",
         "tries": 1
       },
       {
-        "player": "Jock Campbell",
-        "team": "Australia",
+        "player": "Joe Heyes",
+        "team": "England",
         "tries": 1
       },
       {
@@ -5111,6 +5338,11 @@
         "tries": 1
       },
       {
+        "player": "Max Jorgensen",
+        "team": "Australia",
+        "tries": 1
+      },
+      {
         "player": "Maxime Lucu",
         "team": "France",
         "tries": 1
@@ -5137,6 +5369,11 @@
       },
       {
         "player": "Noah Caluori",
+        "team": "England",
+        "tries": 1
+      },
+      {
+        "player": "Ollie Chessum",
         "team": "England",
         "tries": 1
       },
@@ -5322,6 +5559,15 @@
         "d": 0
       },
       {
+        "player": "Fin Smith",
+        "team": "England",
+        "points": 40,
+        "t": 0,
+        "c": 20,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Takuro Matsunaga",
         "team": "Japan",
         "points": 32,
@@ -5349,15 +5595,6 @@
         "d": 0
       },
       {
-        "player": "Fin Smith",
-        "team": "England",
-        "points": 30,
-        "t": 0,
-        "c": 15,
-        "p": 0,
-        "d": 0
-      },
-      {
         "player": "Will Jordan",
         "team": "New Zealand",
         "points": 30,
@@ -5376,6 +5613,15 @@
         "d": 0
       },
       {
+        "player": "Ryan Lonergan",
+        "team": "Australia",
+        "points": 26,
+        "t": 1,
+        "c": 9,
+        "p": 1,
+        "d": 0
+      },
+      {
         "player": "Sacha Feinberg-Mngomezulu",
         "team": "South Africa",
         "points": 26,
@@ -5385,8 +5631,8 @@
         "d": 0
       },
       {
-        "player": "Hugo Keenan",
-        "team": "Ireland",
+        "player": "Henry Pollock",
+        "team": "England",
         "points": 25,
         "t": 5,
         "c": 0,
@@ -5394,11 +5640,11 @@
         "d": 0
       },
       {
-        "player": "Ryan Lonergan",
-        "team": "Australia",
-        "points": 21,
-        "t": 1,
-        "c": 8,
+        "player": "Hugo Keenan",
+        "team": "Ireland",
+        "points": 25,
+        "t": 5,
+        "c": 0,
         "p": 0,
         "d": 0
       },
@@ -5450,15 +5696,6 @@
       {
         "player": "Ewan Ashman",
         "team": "Scotland",
-        "points": 15,
-        "t": 3,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
-        "player": "Henry Pollock",
-        "team": "England",
         "points": 15,
         "t": 3,
         "c": 0,
@@ -5691,6 +5928,24 @@
         "d": 0
       },
       {
+        "player": "Jamie George",
+        "team": "England",
+        "points": 10,
+        "t": 2,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Jeremy Williams",
+        "team": "Australia",
+        "points": 10,
+        "t": 2,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Justo Piccardo",
         "team": "Argentina",
         "points": 10,
@@ -5799,6 +6054,15 @@
         "d": 0
       },
       {
+        "player": "Ben Donaldson",
+        "team": "Australia",
+        "points": 9,
+        "t": 1,
+        "c": 2,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Ciaran Frawley",
         "team": "Ireland",
         "points": 8,
@@ -5810,15 +6074,6 @@
       {
         "player": "Antoine Hastoy",
         "team": "France",
-        "points": 7,
-        "t": 1,
-        "c": 1,
-        "p": 0,
-        "d": 0
-      },
-      {
-        "player": "Ben Donaldson",
-        "team": "Australia",
         "points": 7,
         "t": 1,
         "c": 1,
@@ -5963,6 +6218,15 @@
       {
         "player": "Ardie Savea",
         "team": "New Zealand",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Ben Spencer",
+        "team": "England",
         "points": 5,
         "t": 1,
         "c": 0,
@@ -6150,6 +6414,15 @@
         "d": 0
       },
       {
+        "player": "Filipo Daugunu",
+        "team": "Australia",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Florian Verhaeghe",
         "team": "France",
         "points": 5,
@@ -6267,8 +6540,8 @@
         "d": 0
       },
       {
-        "player": "Jaco Williams",
-        "team": "South Africa",
+        "player": "Jack Van Poortvliet",
+        "team": "England",
         "points": 5,
         "t": 1,
         "c": 0,
@@ -6276,8 +6549,8 @@
         "d": 0
       },
       {
-        "player": "Jamie George",
-        "team": "England",
+        "player": "Jaco Williams",
+        "team": "South Africa",
         "points": 5,
         "t": 1,
         "c": 0,
@@ -6312,7 +6585,7 @@
         "d": 0
       },
       {
-        "player": "Jeremy Williams",
+        "player": "Jock Campbell",
         "team": "Australia",
         "points": 5,
         "t": 1,
@@ -6321,8 +6594,8 @@
         "d": 0
       },
       {
-        "player": "Jock Campbell",
-        "team": "Australia",
+        "player": "Joe Heyes",
+        "team": "England",
         "points": 5,
         "t": 1,
         "c": 0,
@@ -6447,6 +6720,15 @@
         "d": 0
       },
       {
+        "player": "Max Jorgensen",
+        "team": "Australia",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Michele Lamaro",
         "team": "Italy",
         "points": 5,
@@ -6484,6 +6766,15 @@
       },
       {
         "player": "Noah Caluori",
+        "team": "England",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Ollie Chessum",
         "team": "England",
         "points": 5,
         "t": 1,
@@ -6852,13 +7143,13 @@
         "red": 0
       },
       {
-        "team": "France",
+        "team": "Australia",
         "yellow": 3,
         "red": 0
       },
       {
-        "team": "Australia",
-        "yellow": 2,
+        "team": "France",
+        "yellow": 3,
         "red": 0
       },
       {
@@ -6897,6 +7188,14 @@
         "pointsFor": 196
       },
       {
+        "team": "England",
+        "tries": 26,
+        "cons": 20,
+        "pens": 0,
+        "drops": 0,
+        "pointsFor": 170
+      },
+      {
         "team": "France",
         "tries": 24,
         "cons": 18,
@@ -6913,6 +7212,14 @@
         "pointsFor": 164
       },
       {
+        "team": "Australia",
+        "tries": 21,
+        "cons": 14,
+        "pens": 1,
+        "drops": 0,
+        "pointsFor": 136
+      },
+      {
         "team": "Ireland",
         "tries": 19,
         "cons": 17,
@@ -6927,22 +7234,6 @@
         "pens": 0,
         "drops": 0,
         "pointsFor": 129
-      },
-      {
-        "team": "England",
-        "tries": 19,
-        "cons": 15,
-        "pens": 0,
-        "drops": 0,
-        "pointsFor": 125
-      },
-      {
-        "team": "Australia",
-        "tries": 18,
-        "cons": 12,
-        "pens": 0,
-        "drops": 0,
-        "pointsFor": 114
       },
       {
         "team": "Argentina",
