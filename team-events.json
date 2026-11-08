@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-08T06:49:59.844Z",
+ "updatedAt": "2026-11-08T18:44:53.547Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -781,20 +781,6 @@
   "AUS": {
    "last": [
     {
-     "id": 16098050,
-     "date": "2026-07-04T10:10:00.000Z",
-     "league": "Nations Championship, Group Stage",
-     "opponent": "Ireland",
-     "opponentCode": "IRE",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 31,
-     "them": 33,
-     "result": "L",
-     "tries": 5,
-     "cards": 1
-    },
-    {
      "id": 16098044,
      "date": "2026-07-11T07:40:00.000Z",
      "league": "Nations Championship, Group Stage",
@@ -919,9 +905,7 @@
      "result": "L",
      "tries": 3,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098047,
      "date": "2026-11-08T15:10:00.000Z",
@@ -930,11 +914,14 @@
      "opponentCode": "ENG",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Allianz Stadium, London"
-    },
+     "us": 22,
+     "them": 45,
+     "result": "L",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16098053,
      "date": "2026-11-15T15:10:00.000Z",
@@ -981,6 +968,18 @@
      "opponentCode": "NZL",
      "tracked": true,
      "homeAway": "A",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 16248074,
+     "date": "2027-10-16T05:10:00.000Z",
+     "league": "World Cup, Pool A",
+     "opponent": "Chile",
+     "opponentCode": null,
+     "tracked": false,
+     "homeAway": "H",
      "us": null,
      "them": null,
      "result": null
@@ -1788,20 +1787,6 @@
   "ENG": {
    "last": [
     {
-     "id": 14884324,
-     "date": "2025-11-15T15:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "New Zealand",
-     "opponentCode": "NZL",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 33,
-     "them": 19,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 14884337,
      "date": "2025-11-23T16:10:00.000Z",
      "league": "International Friendlies",
@@ -1926,9 +1911,7 @@
      "result": "W",
      "tries": 5,
      "cards": 4
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098047,
      "date": "2026-11-08T15:10:00.000Z",
@@ -1937,11 +1920,14 @@
      "opponentCode": "AUS",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Allianz Stadium, London"
-    },
+     "us": 45,
+     "them": 22,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16098051,
      "date": "2026-11-14T16:40:00.000Z",
