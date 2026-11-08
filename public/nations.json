@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-08T16:37:09.708Z",
+  "updatedAt": "2026-11-08T17:01:14.425Z",
   "counts": {
     "fixtures": 12,
     "results": 24,
@@ -802,21 +802,21 @@
       "date": "2026-11-08T15:10:00+00:00",
       "week": "4",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false
       },
       "home": {
         "id": 386,
         "name": "England",
         "logo": "https://media.api-sports.io/rugby/teams/386.png",
-        "score": 38
+        "score": 45
       },
       "away": {
         "id": 461,
         "name": "Australia",
         "logo": "https://media.api-sports.io/rugby/teams/461.png",
-        "score": 10
+        "score": 22
       }
     }
   ],
@@ -874,6 +874,23 @@
     },
     {
       "rank": 4,
+      "id": 386,
+      "team": "England",
+      "logo": "https://media.api-sports.io/rugby/teams/386.png",
+      "P": 4,
+      "W": 3,
+      "D": 0,
+      "L": 1,
+      "PF": 170,
+      "PA": 99,
+      "PD": 71,
+      "TF": 26,
+      "TA": 13,
+      "BP": 3,
+      "Pts": 15
+    },
+    {
+      "rank": 5,
       "id": 388,
       "team": "Ireland",
       "logo": "https://media.api-sports.io/rugby/teams/388.png",
@@ -888,23 +905,6 @@
       "TA": 14,
       "BP": 3,
       "Pts": 15
-    },
-    {
-      "rank": 5,
-      "id": 386,
-      "team": "England",
-      "logo": "https://media.api-sports.io/rugby/teams/386.png",
-      "P": 3,
-      "W": 2,
-      "D": 0,
-      "L": 1,
-      "PF": 125,
-      "PA": 77,
-      "PD": 48,
-      "TF": 19,
-      "TA": 10,
-      "BP": 2,
-      "Pts": 10
     },
     {
       "rank": 6,
@@ -945,15 +945,15 @@
       "id": 461,
       "team": "Australia",
       "logo": "https://media.api-sports.io/rugby/teams/461.png",
-      "P": 3,
+      "P": 4,
       "W": 1,
       "D": 0,
-      "L": 2,
-      "PF": 114,
-      "PA": 85,
-      "PD": 29,
-      "TF": 17,
-      "TA": 13,
+      "L": 3,
+      "PF": 136,
+      "PA": 130,
+      "PD": 6,
+      "TF": 20,
+      "TA": 20,
       "BP": 4,
       "Pts": 8
     },
@@ -1028,12 +1028,6 @@
   ],
   "news": [
     {
-      "title": "England vs Australia LIVE! (3.10pm kick-off)",
-      "link": "https://news.google.com/rss/articles/CBMiigJBVV95cUxOOE45RkZWZHVoc1VfSVg0dWhoTGx2a1JwWUt2OVNBMjBNc3RoMHFFbFBpM0xHUFVwb2IxTXN5azFBRWdEVTlGZEpxdVQzUUR6MHRRMlZVR1RGR3JiR1NPUlZfR1Z5dEM5azdGVGNqTmZQdXNoa0F0YkJWb041anV6QU1zTEI4RHdqQmhvQWhKZUFLMm1CeGxjWXh3WGxFdDZLYkJRZ0ROYlR2X1VnbVVZQkNQcnpndC1PNUlMS1FRREZPUUNMczEyTXk2LXdzdmRtODFoaVNqZjh3Tk1fMUNLLWhuSzRBU2laUGlZbmgxdlREMkNBUFZSaE9MMjNrNUJjRlZNMG9fYTlDdw?oc=5",
-      "source": "Sky Sports",
-      "published": "Sun, 08 Nov 2026 15:23:07 GMT"
-    },
-    {
       "title": "England vs. Australia Rugby Live Updates: Nations Championship 2026",
       "link": "https://news.google.com/rss/articles/CBMihwFBVV95cUxPd01wZl9ubzh4aE1zXzVDT211bDVacm5SMVR4NDIwSFU0ZnY5UkRNRDBuRWRGbnZwOWtRa09KQ3BRNFF6bEEwUHl5REh2Yll6YWw1WkgyNVR5NXZOSlhBcDN4OGZDZUdBZkFpZTBKa3YzckUyTHBhR01PRGdxNjZLTFkxa2pGRkE?oc=5",
       "source": "Yahoo Sports",
@@ -1046,10 +1040,10 @@
       "published": "Sun, 08 Nov 2026 14:31:29 GMT"
     },
     {
-      "title": "The Exeter verdict on what Greg Fisilau can deliver for England",
-      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPMWk5TlJYRld1OEdwRk5mYXdQSmVIcnM3ME5BUk5hR2NsMkltdnhra3ViUEY0ODhCNXZZVXhqZV9sdGNhbVlFTEdacFdxT0x1NndnaXhVeTNncXo4Qnpmdk13aGNzaTNLT3NmOEM0THJkOG5iWmVETFdVRWw5VGxuNFpWNWJiME1TNjA5UmZ5NmNRSEUyQlJmMUNjVQ?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Sun, 08 Nov 2026 09:00:17 GMT"
+      "title": "England v Australia: Nations Championship – rugby union live",
+      "link": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQSXo4dmYtWVFTcmx4SGNJZ1dXTlRVMU54R01fR2k1ZHVTUFVLT25CS1pjTW92UHQtTHFHY18tbGo0a2sxWDd2TmxaUy01Vk5Hbk5qODZ1eUo5Q0xXREVSWU5NaW11Ykg3bjVjbnBMVEVpck9OaF9Ycm9tazhsWHZmaGJmMVNpNnhCZkNmSmRuV2JwdE5vUDlBeGF0NUdjMWlyZk9kRDM2WWlWYkdDeFp4VVJCN3NWbVp6M3d1eEEyNEkxSU5RM1pMakdCREtCcG1BM2tEVzhtZ2tNcm5UVlRKR0Z0RQ?oc=5",
+      "source": "The Guardian",
+      "published": "Sun, 08 Nov 2026 14:10:00 GMT"
     },
     {
       "title": "France fans are saying the same thing after losing a fourth flyhalf before Boks",
@@ -1088,12 +1082,6 @@
       "published": "Sat, 07 Nov 2026 18:46:00 GMT"
     },
     {
-      "title": "Japan player ratings vs Wales | Nations Championship 2026",
-      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxNR1hlQkJXR0hxRl9VNERPQ0dKWWVsMDgtNVAxWUoxc0NubW9qRkFSS3RkSWM1RDRZNlRoWFNkTWs5YkcxdEVyNFhLaEV0MkItSjUwYXhQd09yUXJCM2JhbS1zWnp0N1R4QlU5M2tFSnN4SHdkNFBiSmVlb0J5QnFjazVJWEJvRFlBei1Hc0R1cHc?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Sat, 07 Nov 2026 18:27:47 GMT"
-    },
-    {
       "title": "Scotland 21-43 New Zealand: Nations Championship rugby union – as it happened",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNYnJ0SnR0dGxjMU0xNjI4djlDZ2kzTEEzUU1kM1QwM2lHRl9FUGlYRkMzYTlCaDRIdDlRRVpkT21YV1ZPZnAxTWZMdmJyalREZzYxOHlLdWhVbUhBcHFBdG5FdUVhajU1d3VKVlNON2ZpX09HaU1ueG1yYXd1VUM0a244ZEVfUFRyYTBrd3E1RGJ2azk0VGtEYmtnSTZxSjNaLVpRbGhMRmFOVUJBS1QxUg?oc=5",
       "source": "The Guardian",
@@ -1106,6 +1094,12 @@
       "published": "Sat, 07 Nov 2026 12:22:30 GMT"
     },
     {
+      "title": "This is the Test match that does not need a fancy new format",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPX1o3cUdLRFVkWmhBeFhrQm9XUlh6YjQyYk5JWWlUdk1VWkJJeUNUZWk1SWJNdVJ5QUNySkNZM0lFY2ZuSkxPWmR3UUZjTUVoQmowVkEwYTVwa2RZQXdqYmNxWklKNHhnRVJjRVotQy1ab2NPVUhOaVNRSVh2TjI3WWRqeHU3anIxUGhxcnppT2lFc2pVeGNUZUxNdkNES2lMN1JmaWNpWjVfR0JYSDJnNVM2cmptOHNxZ2lQRlRzVQ?oc=5",
+      "source": "SMH.com.au",
+      "published": "Fri, 06 Nov 2026 22:30:00 GMT"
+    },
+    {
       "title": "World Rugby Nations Cup 2026 | Official Tournament Website",
       "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE51WUt2NVVDY1ZwVGRyY2trRVI2M3hnZWQ4NlVDb2lZeG1PalF0SzdzQ082dnN5bVRyTW9QSGhTbjJzeDJNbVd1NGNhQnBGcmc?oc=5",
       "source": "World Rugby",
@@ -1116,6 +1110,12 @@
       "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOMVN6RDJUNUxNRXZEb0FjcVg3aGZKdDJNcU1LcWdOdTctWHFzd0xWOU1nTE8yWU9NdjlkOTlTMmFORHlpVDNpYXloTnNIdzF2QlF5cEVmcTBucm1XeHZUQWhWcHU3MWNaT21DS2pvUVF6VHE4bnJ2a2JIN2U2QkVTXzE0TlZRcGY5a19tNDFNVzJudElMa241RFRsUWw0RE5SUHk4djhiV21YalZDSVg1N1Nodm51TkJDQ2w4UmExaE1WdGFhYWVuU2p4a1A0a0poNnE5ZHl4WjZtbVAt?oc=5",
       "source": "RUGBY.com.au",
       "published": "Wed, 04 Nov 2026 08:00:00 GMT"
+    },
+    {
+      "title": "Borthwick urges England players to improve discipline at Nations Championship",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxPOGhjWUxCOFQyVm51Q3IxOTJrZk9MSG1ZLWhpcWFwbGd6Tm9DV3RhdUJBZElSMHZzRE03OW1Kb0VfQmVlRm10Z0tab2UwMWIzQWRwQWVUTlBQbWQ3djJlb0dMSlRCSDR2MXdiSW1fRE55U1Nfc3BPS2dqRTNsNFhMcnVEa0N4VWVWcFJTd3I1M1d4aGsxRUN5QlhDMFhPMjVEbEVXV0dGX2pVdS02VEN5bHh3Ry1iZDNPdFZMVVVIMXhTWkZDZ3A5MDVvZw?oc=5",
+      "source": "The Guardian",
+      "published": "Sun, 01 Nov 2026 19:16:00 GMT"
     }
   ],
   "triesPending": 0,
