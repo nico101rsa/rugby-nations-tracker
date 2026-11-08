@@ -30,6 +30,16 @@ label it "Sydney time". A bare UTC time in a report is a bug.
 
 Everything else: proceed.
 
+## Code gets better over time
+
+Nico cares about the long-term shape of both repos. Use the `codebase-design`
+vocabulary (vendored in `.claude/skills/`), leave a hot spot deeper than you
+found it within the change's scope, and run `/improve-codebase-architecture`
+about monthly. The backlog, glossary and ADRs for both repos live in the app
+repo (`docs/ARCHITECTURE_IMPROVEMENTS.md`, `GLOSSARY.md`, `docs/adr/`); this
+repo's candidates are D1–D5 there. The top one is D1: `generateEdition` has no
+tests because it fetches its own news.
+
 ## What this repo is
 
 The data pipeline behind the iOS app, whose source lives in the private sibling
@@ -79,8 +89,7 @@ written only when a table changes (`updatedAt` is the last change, not the last
 run), and every job that rebuilds it commits it and the cache alongside
 fixtures.json and `calendar` (`fixtures-burst.test.mjs` checks). A table a try
 bonus short says so (`triesPending`); a tie the data can't split publishes as a
-shared rank with what it `needs`. The app (from the dec-jan build; 1.3.9
-doesn't read the file) takes nations.json `log` for `rnc-*` and standings.json
+shared rank with what it `needs`. The app takes nations.json `log` for `rnc-*` and standings.json
 for everything else. Fix an input, never the output — the
 next run rewrites it; the one hand edit allowed is a confirmed try count added
 to a cache when ESPN never supplies it (the integrity check asks for that a
@@ -204,10 +213,9 @@ installed copy with no build.
   team-events.json pick a row up on their own next runs.
 - **Ship a row at least a day before the game.** Calendar subscribers refresh
   slowly, and nothing can force them.
-- The app's old table (`src/kickoff-overrides.js`, shipped in 1.3.9, keyed by
-  fixture id) goes quiet by itself once the feed carries the earlier time — its
-  vendor guard sees a different time — and is deleted in the dec-jan build. New
-  rows go here only.
+- The app's old table (`src/kickoff-overrides.js`, shipped in 1.3.9) was
+  deleted in the dec-jan build, and the app's `src/feed-kickoffs.test.mjs` keeps
+  it deleted. New rows go here only.
 - nations.json's November rows (Rounds 4–6) are no longer noon placeholders:
   since #144 (12 Oct 2026) `SCHEDULE` in static-fixtures.mjs carries ESPN's
   confirmed kickoffs (`timeTBC: false`), and nations.json takes them at its
@@ -479,14 +487,16 @@ Don't diagnose a missing game from one team's entry, and don't move the mirror
 after the fetch. Both were the 2026-08-23 bug: New Zealand's 22 Aug loss charted
 for South Africa and not for New Zealand.
 
-## SportsAPI Pro may be going away (2026-08-23)
+## SportsAPI Pro: flaky in August, healthy since
 
 The free tier has returned 503s for five days; the nightly `team-events` job
 logged 36 of them and skipped all twelve teams on 23 Aug. It is **not**
 team-specific — South Africa probed worse than New Zealand — and the results
 (`last`) endpoint is sicker than fixtures (`next`).
 
-`scripts/vendor-probe.mjs` records health nightly to `vendor-probe-log.json`.
+It recovered: `vendor-probe-log.json` shows every one of the 30 nightly probes to
+7 Nov 2026 healthy. `scripts/vendor-probe.mjs` records health nightly to
+`vendor-probe-log.json`.
 **Read that log before claiming anything about vendor health**, and don't assume
 this vendor is up when planning work that depends on it. The likely answer is
 moving the results call onto keyless ESPN, which already feeds `next` through
