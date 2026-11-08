@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-07T22:01:36.481Z",
+ "updatedAt": "2026-11-08T17:01:15.823Z",
  "source": "computed",
  "competitions": [
   {
@@ -102,7 +102,7 @@
     "meetings": 1,
     "source": null
    },
-   "played": 23,
+   "played": 24,
    "total": 36,
    "complete": false,
    "completedAt": null,
@@ -180,15 +180,15 @@
        "code": "AUS",
        "id": 461,
        "team": "Australia",
-       "P": 3,
+       "P": 4,
        "W": 1,
        "D": 0,
-       "L": 2,
-       "PF": 114,
-       "PA": 85,
-       "PD": 29,
-       "TF": 17,
-       "TA": 13,
+       "L": 3,
+       "PF": 136,
+       "PA": 130,
+       "PD": 6,
+       "TF": 20,
+       "TA": 20,
        "BPtry": 3,
        "BPlose": 1,
        "BP": 4,
@@ -198,7 +198,8 @@
        "form": [
         "L",
         "L",
-        "W"
+        "W",
+        "L"
        ],
        "decidedBy": "pts",
        "q": null
@@ -331,6 +332,36 @@
       {
        "rank": 2,
        "tied": false,
+       "code": "ENG",
+       "id": 386,
+       "team": "England",
+       "P": 4,
+       "W": 3,
+       "D": 0,
+       "L": 1,
+       "PF": 170,
+       "PA": 99,
+       "PD": 71,
+       "TF": 26,
+       "TA": 13,
+       "BPtry": 3,
+       "BPlose": 0,
+       "BP": 3,
+       "GS": 0,
+       "Pts": 15,
+       "pending": 0,
+       "form": [
+        "L",
+        "W",
+        "W",
+        "W"
+       ],
+       "decidedBy": "pts",
+       "q": null
+      },
+      {
+       "rank": 3,
+       "tied": false,
        "code": "IRE",
        "id": 388,
        "team": "Ireland",
@@ -355,36 +386,7 @@
         "L",
         "W"
        ],
-       "decidedBy": "pts",
-       "q": null
-      },
-      {
-       "rank": 3,
-       "tied": false,
-       "code": "ENG",
-       "id": 386,
-       "team": "England",
-       "P": 3,
-       "W": 2,
-       "D": 0,
-       "L": 1,
-       "PF": 125,
-       "PA": 77,
-       "PD": 48,
-       "TF": 19,
-       "TA": 10,
-       "BPtry": 2,
-       "BPlose": 0,
-       "BP": 2,
-       "GS": 0,
-       "Pts": 10,
-       "pending": 0,
-       "form": [
-        "L",
-        "W",
-        "W"
-       ],
-       "decidedBy": "pts",
+       "decidedBy": "pd",
        "q": null
       },
       {
@@ -414,7 +416,7 @@
         "W",
         "L"
        ],
-       "decidedBy": "pd",
+       "decidedBy": "pts",
        "q": null
       },
       {
