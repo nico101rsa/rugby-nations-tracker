@@ -4,7 +4,7 @@ _The silent ops log, written by the daily watchdog (`scripts/watchdog.mjs`) only
 _Nothing here notifies anyone except state **PAGING**. The Claude weekly review reads this file with the newest weekly report in this folder._
 _All times Sydney time._
 
-**State: ATTENTION — something is off, nothing has paged. Triage in the weekly review.**
+**State: OK — every watched job is current and no editorial signal is up.**
 
 ## Paging Nico
 
@@ -18,8 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- Fiji — same lead story since Sat 7 Nov, first run as "Fiji have lost all three logged games, conceding 145 points" — the novelty gate did NOT flag the latest edition
-- Ireland — same lead story since Sat 7 Nov, first run as "Hugo Keenan hat-trick fires Ireland to six-try 42-12 win over Argentina" — the novelty gate flagged the latest edition and published anyway
+- None — every briefing moved on.
 
 **Model ladder**
 
@@ -31,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Sun 8 Nov 2026, 12:24 AEDT — all clear
 - Sun 8 Nov 2026, 03:26 AEDT — repeat leads: Fiji, Ireland
 - Tue 3 Nov 2026, 14:27 AEDT — all clear
 - Tue 3 Nov 2026, 07:22 AEDT — repeat leads: Japan

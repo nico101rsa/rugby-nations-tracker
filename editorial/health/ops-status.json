@@ -1,26 +1,13 @@
 {
  "about": "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: routine findings land here instead of notifying anyone, and the Claude weekly review reads it. state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); `page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
- "state": "attention",
+ "state": "ok",
  "paging": [],
  "page": null,
  "overdue": [],
  "unknown": [],
  "heals": {},
  "signals": {
-  "repeatLeads": [
-   {
-    "team": "Fiji",
-    "since": "2026-11-07",
-    "heading": "Fiji have lost all three logged games, conceding 145 points",
-    "flagged": false
-   },
-   {
-    "team": "Ireland",
-    "since": "2026-11-07",
-    "heading": "Hugo Keenan hat-trick fires Ireland to six-try 42-12 win over Argentina",
-    "flagged": true
-   }
-  ],
+  "repeatLeads": [],
   "ladderLastRung": null,
   "squadGaps": []
  },
@@ -136,6 +123,10 @@
   {
    "at": "2026-11-07T16:26:02.833Z",
    "summary": "repeat leads: Fiji, Ireland"
+  },
+  {
+   "at": "2026-11-08T01:24:50.513Z",
+   "summary": "all clear"
   }
  ]
 }
