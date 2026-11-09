@@ -1404,6 +1404,42 @@
           "error": "no feed found (8 tried)"
         }
       ]
+    },
+    {
+      "outlet": "Scottish Rugby (official news)",
+      "host": "scottishrugby.org",
+      "homepage": "https://www.scottishrugby.org",
+      "teams": [
+        "Scotland"
+      ],
+      "why": "Scotland's whole shortlist was BACKGROUND match coverage; the union's own news page could supply squad, injury and selection items.",
+      "proposed": "2026-11-09",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-11-09",
+          "error": "no feed found (8 tried)"
+        }
+      ]
+    },
+    {
+      "outlet": "Irish Rugby (IRFU official news)",
+      "host": "irishrugby.ie",
+      "homepage": "https://www.irishrugby.ie",
+      "teams": [
+        "Ireland"
+      ],
+      "why": "Ireland's only NEW candidate was a women's GAA story, so the union's own news could provide squad and injury updates.",
+      "proposed": "2026-11-09",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-11-09",
+          "error": "no feed found (8 tried)"
+        }
+      ]
     }
   ]
 }

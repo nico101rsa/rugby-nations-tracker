@@ -25,6 +25,10 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
 - **Fiji Sun** (fijisun.com.fj) — proposed 2026-11-08 for Fiji: Fiji's pack had no NEW Fiji-centred story, and a Fiji-based daily's rugby desk could supply named selection and debut detail.
   - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+- **Scottish Rugby (official news)** (scottishrugby.org) — proposed 2026-11-09 for Scotland: Scotland's whole shortlist was BACKGROUND match coverage; the union's own news page could supply squad, injury and selection items.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+- **Irish Rugby (IRFU official news)** (irishrugby.ie) — proposed 2026-11-09 for Ireland: Ireland's only NEW candidate was a women's GAA story, so the union's own news could provide squad and injury updates.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
