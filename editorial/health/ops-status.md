@@ -4,7 +4,7 @@ _The silent ops log, written by the daily watchdog (`scripts/watchdog.mjs`) only
 _Nothing here notifies anyone except state **PAGING**. The Claude weekly review reads this file with the newest weekly report in this folder._
 _All times Sydney time._
 
-**State: ATTENTION — something is off, nothing has paged. Triage in the weekly review.**
+**State: OK — every watched job is current and no editorial signal is up.**
 
 ## Paging Nico
 
@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- Argentina — same lead story since Sun 8 Nov, first run as "Efraín Elías yellow-carded as Pumas' forwards are disrupted in Dublin" — the novelty gate flagged the latest edition and published anyway
+- None — every briefing moved on.
 
 **Model ladder**
 
@@ -30,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Tue 10 Nov 2026, 07:43 AEDT — all clear
 - Mon 9 Nov 2026, 12:42 AEDT — repeat leads: Argentina
 - Sun 8 Nov 2026, 12:24 AEDT — all clear
 - Sun 8 Nov 2026, 03:26 AEDT — repeat leads: Fiji, Ireland
