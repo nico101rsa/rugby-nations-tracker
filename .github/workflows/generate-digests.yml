@@ -127,7 +127,8 @@ jobs:
       - name: Email the daily briefings
         continue-on-error: true
         env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          # Email switched off 2026-11-09 (Nico doesn't want these mails). Restore this line to turn it back on:
+          # RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           # Recipient is a SECRET, not a variable: this repo is public, so its
           # workflow logs are public, and a variable would put Nico's personal
           # address in them. As a secret, Actions masks it in any log output.
