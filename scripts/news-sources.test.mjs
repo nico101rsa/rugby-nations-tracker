@@ -386,7 +386,16 @@ test("FEEDS: FBC News is in the spine for Fiji, with a rugby topic filter", () =
   assert.equal(fbc.topic.test("Drua sign two props for next season"), true);
   assert.equal(fbc.topic.test("Fiji records budget surplus"), false);
   assert.deepEqual(FEEDS.filter((f) => f.topic).map((f) => f.id),
-    ["fbcnews", "the42", "walesonline", "dailyrecord", "japantimes", "theroar", "japantoday", "batimes", "stuff"], "only the general-news sites need a topic");
+    ["fbcnews", "the42", "walesonline", "dailyrecord", "japantimes", "theroar", "japantoday", "batimes", "stuff", "islandsbusiness"], "only the general-news sites need a topic");
+});
+
+test("FEEDS: the four outlets adopted on 9 Nov under the 3 Nov standing yes", () => {
+  const host = (id) => new URL(FEEDS.find((f) => f.id === id).url).hostname.replace(/^www\./, "");
+  assert.deepEqual(["rugbyrama", "midiolympique", "onrugby", "islandsbusiness"].map(host),
+    ["rugbyrama.fr", "rugbyrama.fr", "onrugby.it", "islandsbusiness.com"]);
+  const ib = FEEDS.find((f) => f.id === "islandsbusiness");
+  assert.equal(ib.topic.test("Flying Fijians name squad for Italy"), true);
+  assert.equal(ib.topic.test("Fiji budget surplus announced"), false);
 });
 
 test("FEEDS: The42 and RTÉ Sport are in the spine for Ireland; The42's whole-site feed keeps rugby only", () => {
