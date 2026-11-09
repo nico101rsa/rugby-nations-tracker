@@ -126,6 +126,19 @@ export const FEEDS = [
     name: "Stuff",
     url: "https://www.stuff.co.nz/feed",
     topic: /\b(all blacks|rugby union|super rugby|new zealand rugby|nzr|dave rennie|bledisloe|rugby championship|nations championship|npc|crusaders|highlanders|hurricanes)\b/i,
+  },  // Four more, adopted on 9 Nov 2026 under Nico's standing yes of 3 Nov for
+  // France, Italy, Fiji and Argentina: each reached "ready" after 7 daily
+  // probes (editorial/source-candidates.md). Rugbyrama, Midi Olympique and
+  // OnRugby are rugby-only sites and keep everything; Islands Business is a
+  // whole-site Pacific news feed, so it gets a rugby topic like FBC News.
+  { id: "rugbyrama", name: "Rugbyrama", url: "https://www.rugbyrama.fr/rss.xml" },
+  { id: "midiolympique", name: "Midi Olympique", url: "https://www.rugbyrama.fr/midi-olympique/rss.xml" },
+  { id: "onrugby", name: "OnRugby", url: "https://www.onrugby.it/feed/" },
+  {
+    id: "islandsbusiness",
+    name: "Islands Business",
+    url: "https://islandsbusiness.com/feed/",
+    topic: /\b(rugby|drua|flying fijians|fijiana|sevens|7s|pacific nations|fiji airways)\b/i,
   },
 ];
 
