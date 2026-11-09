@@ -1,34 +1,30 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-09._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-10._
 
 ## Ready — carried stories about the team they were proposed for
 
 - **Rugbyrama** (rugbyrama.fr) — proposed 2026-11-03 for France: A French rugby-only news site that would add XV de France squad and injury news missing from France's thin pack.
-  - feed: https://www.rugbyrama.fr/rss.xml; probes: 6; stories about tracked teams: France 145, South Africa 14, Argentina 13, New Zealand 5, Ireland 2, Wales 1, Australia 1
+  - feed: https://www.rugbyrama.fr/rss.xml; probes: 7; stories about tracked teams: France 183, South Africa 21, Argentina 13, New Zealand 8, Australia 3, Ireland 2, Wales 2, England 1
 - **Midi Olympique** (midi-olympique.fr) — proposed 2026-11-03 for France: The French rugby paper of record, covering Galthié's squad and selection daily.
-  - feed: https://www.rugbyrama.fr/midi-olympique/rss.xml; probes: 6; stories about tracked teams: France 34, Ireland 2, Argentina 2, New Zealand 2
+  - feed: https://www.rugbyrama.fr/midi-olympique/rss.xml; probes: 7; stories about tracked teams: France 39, New Zealand 3, Ireland 2, Argentina 2, England 1, Australia 1, South Africa 1
 - **OnRugby** (onrugby.it) — proposed 2026-11-03 for Italy: An Italian rugby news site that covers the Azzurri daily, to back up the union's own feed when Italy's pack is thin.
-  - feed: https://www.onrugby.it/feed/; probes: 6; stories about tracked teams: Italy 29, South Africa 25, England 7, New Zealand 7, Argentina 7, France 6, Ireland 6, Scotland 5, Australia 5, Fiji 4, Wales 3, Japan 3
+  - feed: https://www.onrugby.it/feed/; probes: 7; stories about tracked teams: Italy 31, South Africa 26, England 8, France 8, Argentina 8, New Zealand 7, Ireland 7, Australia 6, Scotland 5, Fiji 4, Wales 3, Japan 3
 - **Islands Business** (islandsbusiness.com) — proposed 2026-11-03 for Fiji: Fiji is starved most days and FBC News is its only local feed; this Pacific news site covers the Flying Fijians.
-  - feed: https://islandsbusiness.com/feed/; probes: 6; stories about tracked teams: Fiji 39, Australia 4, England 3, France 3, Japan 1
+  - feed: https://islandsbusiness.com/feed/; probes: 7; stories about tracked teams: Fiji 45, Australia 5, England 4, France 4, Japan 2
 
 ## Being probed
 
-- **L'Équipe Rugby** (lequipe.fr) — proposed 2026-11-03 for France: France is retrieval-starved most days (3 Nov: two items in its pack); France's main sports daily covers the XV de France every day, in French.
-  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
-- **Olé Rugby** (ole.com.ar) — proposed 2026-11-03 for Argentina: Argentina's packs keep filling with other teams' stories; Olé's rugby desk covers Los Pumas daily, in Spanish.
-  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **The Japan News (Yomiuri Shimbun)** (japannews.yomiuri.co.jp) — proposed 2026-11-05 for Japan: Japan's pack held no Japan-specific men's 15s news today, only Wales stories and old background.
-  - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
+  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **All Blacks (New Zealand Rugby official news)** (allblacks.com) — proposed 2026-11-07 for New Zealand: NZ's matchday shortlist had no All Blacks selection or Test news, so the writer fell back on a Hurricanes club coaching story.
-  - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
+  - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
 - **Fiji Sun** (fijisun.com.fj) — proposed 2026-11-08 for Fiji: Fiji's pack had no NEW Fiji-centred story, and a Fiji-based daily's rugby desk could supply named selection and debut detail.
-  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+  - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
 - **Scottish Rugby (official news)** (scottishrugby.org) — proposed 2026-11-09 for Scotland: Scotland's whole shortlist was BACKGROUND match coverage; the union's own news page could supply squad, injury and selection items.
-  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 - **Irish Rugby (IRFU official news)** (irishrugby.ie) — proposed 2026-11-09 for Ireland: Ireland's only NEW candidate was a women's GAA story, so the union's own news could provide squad and injury updates.
-  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
@@ -48,15 +44,13 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **England Rugby (RFU official news)** (englandrugby.com) — proposed 2026-11-01 for England: England's pack held only women's, club and Argentina-XV items; the union's own news page would carry men's squad and selection news.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
+- **L'Équipe Rugby** (lequipe.fr) — proposed 2026-11-03 for France: France is retrieval-starved most days (3 Nov: two items in its pack); France's main sports daily covers the XV de France every day, in French.
+  - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
+- **Olé Rugby** (ole.com.ar) — proposed 2026-11-03 for Argentina: Argentina's packs keep filling with other teams' stories; Olé's rugby desk covers Los Pumas daily, in Spanish.
+  - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 
 ## Adopted
 
-- **Welsh Rugby Union (official news)** (wru.wales) — proposed 2026-10-18 for Wales: Wales had only BACKGROUND items and a vague injury storyline today; the union's own news page would carry squad and injury announcements.
-  - feed: https://www.wru.wales/feed; probes: 7; stories about tracked teams: Wales 22, Japan 7, Fiji 5, Argentina 3, Australia 3, New Zealand 3, South Africa 3, Italy 2, Scotland 2, England 2
-- **WalesOnline** (walesonline.co.uk) — proposed 2026-10-18 for Wales: Wales had no fresh coverage today and its shortlist was all background; WalesOnline's rugby desk covers the national side daily.
-  - feed: https://www.walesonline.co.uk/rss.xml; probes: 7; stories about tracked teams: Wales 51, England 3, New Zealand 2, South Africa 2, Scotland 1, Australia 1, Japan 1, Ireland 1, France 1
-- **The Japan Times** (japantimes.co.jp) — proposed 2026-10-19 for Japan: Japan had only background items today, and the Japan Times has a sports desk that covers the national side regularly in English.
-  - feed: https://www.japantimes.co.jp/feed; probes: 6; stories about tracked teams: Japan 59, France 6, Australia 3, Scotland 1, Italy 1
 - **The Roar** (theroar.com.au) — proposed 2026-10-22 for Australia: Daily Wallabies and Super Rugby coverage would fill today's gap, when Australia's only NEW items were a sponsor release and a New Zealand player piece.
   - feed: https://www.theroar.com.au/feed; probes: 3; stories about tracked teams: Australia 9
 - **Japan Today** (japantoday.com) — proposed 2026-10-30 for Japan: An English-language Japanese news site with a sports section that may carry Japan men's rugby team news missing from today's pack.

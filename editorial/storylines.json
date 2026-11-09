@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-09T07:29:53.266Z",
+  "updatedAt": "2026-11-09T20:00:50.465Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 202,
+  "count": 207,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -3921,7 +3921,7 @@
         }
       ],
       "firstSeen": "2026-11-06",
-      "lastSeen": "2026-11-08",
+      "lastSeen": "2026-11-10",
       "uses": 0
     },
     {
@@ -4837,12 +4837,17 @@
     },
     {
       "id": "fabien-galthi-s-fly-qi94tw",
-      "subject": "Fabien Galthié's fly-half selection for France following injuries to four top fly-halves",
+      "subject": "Fabien Galthié's selection at fly-half for France following injuries to four top fly-halves",
       "teams": [
         387
       ],
       "resolution": "until France announce their team selection to face South Africa",
       "sources": [
+        {
+          "title": "Bok boss picks the French 10",
+          "link": "https://www.sarugbymag.co.za/bok-boss-picks-french-10/",
+          "feedName": "SA Rugby Magazine"
+        },
         {
           "title": "France flyhalf crisis worsens ahead of Bok battle",
           "link": "https://www.sarugbymag.co.za/france-flyhalf-crisis-worsens-ahead-of-bok-battle/",
@@ -4855,7 +4860,7 @@
         }
       ],
       "firstSeen": "2026-11-09",
-      "lastSeen": "2026-11-09",
+      "lastSeen": "2026-11-10",
       "uses": 0
     },
     {
@@ -4879,6 +4884,128 @@
       ],
       "firstSeen": "2026-11-09",
       "lastSeen": "2026-11-09",
+      "uses": 0
+    },
+    {
+      "id": "dan-sheehan-s-fitness-12h7xqf",
+      "subject": "Dan Sheehan's fitness and recovery timeline for Ireland's clash against South Africa",
+      "teams": [
+        388,
+        467
+      ],
+      "resolution": "until Ireland confirm whether Dan Sheehan is fit to play against South Africa",
+      "sources": [
+        {
+          "title": "Ireland team: Dan Sheehan in 'race to be fit' to face Springboks and rookie forward 'ruled out' for remainder of Nations Championship",
+          "link": "https://www.planetrugby.com/news/ireland-team-dan-sheehan-in-race-to-be-fit-to-face-springboks-and-rookie-forward-ruled-out-for-remainder-of-nations-championship",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Ireland lose loosie, star in race to face Boks",
+          "link": "https://www.sarugbymag.co.za/ireland-lose-loosie-star-race-face-boks/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Irish captain Sheehan ruled out of Fiji game",
+          "link": "https://www.rte.ie/sport/rugby/2026/1109/1598520-irish-captain-sheehan-ruled-out-of-fiji-game/",
+          "feedName": "RTÉ Sport Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-10",
+      "lastSeen": "2026-11-10",
+      "uses": 0
+    },
+    {
+      "id": "the-wru-s-formal-1biv65n",
+      "subject": "The WRU's formal application to integrate Welsh regions into the English Gallagher Premiership",
+      "teams": [
+        386,
+        391
+      ],
+      "resolution": "until Premiership Rugby and the RFU announce a decision on Welsh clubs joining the Gallagher Premiership",
+      "sources": [
+        {
+          "title": "Formal WRU talks with English confirmed and Wales starter sits out training",
+          "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/formal-wru-talks-english-confirmed-34875165",
+          "feedName": "WalesOnline"
+        },
+        {
+          "title": "Prem, RFU committed to English-led expansion as WRU apply",
+          "link": "https://www.rte.ie/sport/rugby/2026/1028/1597130-prem-rfu-committed-to-english-led-expansion-as-wru-apply/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
+          "title": "Ex-WRU chief suggests radical idea for four Welsh clubs amid Anglo-Welsh talks",
+          "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/ex-wru-chief-suggests-radical-34879503",
+          "feedName": "WalesOnline"
+        }
+      ],
+      "firstSeen": "2026-11-10",
+      "lastSeen": "2026-11-10",
+      "uses": 0
+    },
+    {
+      "id": "pieter-steph-du-toit-ysvdho",
+      "subject": "Pieter-Steph du Toit and Damian de Allende's potential transfer to the Boland Cavaliers",
+      "teams": [
+        467
+      ],
+      "resolution": "until Pieter-Steph du Toit and Damian de Allende confirm their club contracts for next season",
+      "sources": [
+        {
+          "title": "Bok stalwarts mull Boland swansong",
+          "link": "https://www.sarugbymag.co.za/bok-stalwarts-mull-boland-swansong/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Boland boss: Bok deal a work in progress",
+          "link": "https://www.sarugbymag.co.za/boland-boss-bok-deal-work-progress/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-11-10",
+      "lastSeen": "2026-11-10",
+      "uses": 0
+    },
+    {
+      "id": "salmaan-moerat-s-neck-1v2tcfb",
+      "subject": "Salmaan Moerat's neck injury and availability for South Africa's remaining November Test matches",
+      "teams": [
+        467
+      ],
+      "resolution": "until South Africa issue an official medical update regarding Salmaan Moerat's fitness",
+      "sources": [
+        {
+          "title": "Erasmus gives update on Moerat",
+          "link": "https://www.sarugbymag.co.za/erasmus-gives-update-moerat/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Rassie Erasmus explains Salmaan Moerat's late withdrawal and issues Springboks injury update: 'Hopefully it’s not too serious'",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-explains-salmaan-moerats-late-withdrawal-and-issues-springboks-injury-update-hopefully-its-not-too-serious",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-10",
+      "lastSeen": "2026-11-10",
+      "uses": 0
+    },
+    {
+      "id": "wasps-potential-return-to-xavfhx",
+      "subject": "Wasps' potential return to professional competitive rugby",
+      "teams": [
+        386
+      ],
+      "resolution": "until Wasps officially announce their competition entry and plan for returning to play",
+      "sources": [
+        {
+          "title": "'The rising has started' – Wasps indicate return with first social media statement in two years",
+          "link": "https://www.planetrugby.com/news/the-rising-has-started-wasps-indicate-return-with-first-social-media-statement-in-two-years",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-10",
+      "lastSeen": "2026-11-10",
       "uses": 0
     }
   ]

@@ -2,256 +2,6 @@
   "notice": "Outlets proposed by the daily editorial review and probed by code. Nothing here is a news source until it is added to scripts/news-sources.mjs by hand.",
   "candidates": [
     {
-      "outlet": "Welsh Rugby Union (official news)",
-      "host": "wru.wales",
-      "homepage": "https://www.wru.wales",
-      "teams": [
-        "Wales"
-      ],
-      "why": "Wales had only BACKGROUND items and a vague injury storyline today; the union's own news page would carry squad and injury announcements.",
-      "proposed": "2026-10-18",
-      "status": "adopted",
-      "feedUrl": "https://www.wru.wales/feed",
-      "probes": [
-        {
-          "date": "2026-10-18",
-          "feedUrl": "https://www.wru.wales/feed",
-          "items": 10,
-          "hits": {
-            "Italy": 1,
-            "Scotland": 1,
-            "Wales": 2
-          }
-        },
-        {
-          "date": "2026-10-19",
-          "feedUrl": "https://www.wru.wales/feed",
-          "items": 10,
-          "hits": {
-            "England": 1,
-            "Italy": 1,
-            "Scotland": 1,
-            "Wales": 2
-          }
-        },
-        {
-          "date": "2026-10-20",
-          "feedUrl": "https://www.wru.wales/feed",
-          "items": 10,
-          "hits": {
-            "England": 1,
-            "Wales": 3
-          }
-        },
-        {
-          "date": "2026-10-21",
-          "feedUrl": "https://www.wru.wales/feed",
-          "items": 10,
-          "hits": {
-            "Fiji": 2,
-            "Wales": 4,
-            "Argentina": 1,
-            "Australia": 1,
-            "Japan": 1,
-            "New Zealand": 1,
-            "South Africa": 1
-          }
-        },
-        {
-          "date": "2026-10-22",
-          "feedUrl": "https://www.wru.wales/feed",
-          "items": 10,
-          "hits": {
-            "Fiji": 2,
-            "Wales": 4,
-            "Argentina": 1,
-            "Australia": 1,
-            "Japan": 1,
-            "New Zealand": 1,
-            "South Africa": 1
-          }
-        },
-        {
-          "date": "2026-10-23",
-          "feedUrl": "https://www.wru.wales/feed",
-          "items": 10,
-          "hits": {
-            "Fiji": 1,
-            "Wales": 4,
-            "Argentina": 1,
-            "Australia": 1,
-            "Japan": 3,
-            "New Zealand": 1,
-            "South Africa": 1
-          }
-        },
-        {
-          "date": "2026-10-24",
-          "feedUrl": "https://www.wru.wales/feed",
-          "items": 10,
-          "hits": {
-            "Wales": 3,
-            "Japan": 2
-          }
-        }
-      ],
-      "decided": "2026-10-19"
-    },
-    {
-      "outlet": "WalesOnline",
-      "host": "walesonline.co.uk",
-      "homepage": "https://www.walesonline.co.uk/",
-      "teams": [
-        "Wales"
-      ],
-      "why": "Wales had no fresh coverage today and its shortlist was all background; WalesOnline's rugby desk covers the national side daily.",
-      "proposed": "2026-10-18",
-      "status": "adopted",
-      "feedUrl": "https://www.walesonline.co.uk/rss.xml",
-      "probes": [
-        {
-          "date": "2026-10-18",
-          "feedUrl": "https://www.walesonline.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "England": 1,
-            "Wales": 2
-          }
-        },
-        {
-          "date": "2026-10-19",
-          "feedUrl": "https://www.walesonline.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "Scotland": 1,
-            "Wales": 5
-          }
-        },
-        {
-          "date": "2026-10-20",
-          "feedUrl": "https://www.walesonline.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "Wales": 11
-          }
-        },
-        {
-          "date": "2026-10-21",
-          "feedUrl": "https://www.walesonline.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "Wales": 9,
-            "Australia": 1,
-            "Japan": 1,
-            "New Zealand": 1,
-            "South Africa": 1
-          }
-        },
-        {
-          "date": "2026-10-22",
-          "feedUrl": "https://www.walesonline.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "Ireland": 1,
-            "Wales": 6
-          }
-        },
-        {
-          "date": "2026-10-23",
-          "feedUrl": "https://www.walesonline.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "Wales": 8,
-            "South Africa": 1
-          }
-        },
-        {
-          "date": "2026-10-24",
-          "feedUrl": "https://www.walesonline.co.uk/rss.xml",
-          "items": 25,
-          "hits": {
-            "England": 2,
-            "France": 1,
-            "Wales": 10,
-            "New Zealand": 1
-          }
-        }
-      ],
-      "decided": "2026-10-19"
-    },
-    {
-      "outlet": "The Japan Times",
-      "host": "japantimes.co.jp",
-      "homepage": "https://www.japantimes.co.jp",
-      "teams": [
-        "Japan"
-      ],
-      "why": "Japan had only background items today, and the Japan Times has a sports desk that covers the national side regularly in English.",
-      "proposed": "2026-10-19",
-      "status": "adopted",
-      "feedUrl": "https://www.japantimes.co.jp/feed",
-      "probes": [
-        {
-          "date": "2026-10-19",
-          "feedUrl": "https://www.japantimes.co.jp/feed",
-          "items": 30,
-          "hits": {
-            "Scotland": 1,
-            "Japan": 6
-          }
-        },
-        {
-          "date": "2026-10-20",
-          "feedUrl": "https://www.japantimes.co.jp/feed",
-          "items": 30,
-          "hits": {
-            "Australia": 1,
-            "Japan": 13
-          }
-        },
-        {
-          "date": "2026-10-21",
-          "feedUrl": "https://www.japantimes.co.jp/feed",
-          "items": 30,
-          "hits": {
-            "France": 1,
-            "Australia": 1,
-            "Japan": 8
-          }
-        },
-        {
-          "date": "2026-10-22",
-          "feedUrl": "https://www.japantimes.co.jp/feed",
-          "items": 30,
-          "hits": {
-            "France": 3,
-            "Japan": 12
-          }
-        },
-        {
-          "date": "2026-10-23",
-          "feedUrl": "https://www.japantimes.co.jp/feed",
-          "items": 30,
-          "hits": {
-            "France": 1,
-            "Italy": 1,
-            "Japan": 9
-          }
-        },
-        {
-          "date": "2026-10-24",
-          "feedUrl": "https://www.japantimes.co.jp/feed",
-          "items": 30,
-          "hits": {
-            "France": 1,
-            "Australia": 1,
-            "Japan": 11
-          }
-        }
-      ],
-      "decided": "2026-10-19"
-    },
-    {
       "outlet": "Sky Sports Rugby Union",
       "host": "skysports.com",
       "homepage": "https://www.skysports.com/rugby-union",
@@ -927,7 +677,7 @@
       ],
       "why": "France is retrieval-starved most days (3 Nov: two items in its pack); France's main sports daily covers the XV de France every day, in French.",
       "proposed": "2026-11-03",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -953,8 +703,13 @@
         {
           "date": "2026-11-09",
           "error": "no feed found (8 tried; homepage HTTP 403)"
+        },
+        {
+          "date": "2026-11-10",
+          "error": "no feed found (8 tried; homepage HTTP 403)"
         }
-      ]
+      ],
+      "decided": "2026-11-10"
     },
     {
       "outlet": "Rugbyrama",
@@ -1034,6 +789,19 @@
             "New Zealand": 2,
             "South Africa": 4
           }
+        },
+        {
+          "date": "2026-11-10",
+          "feedUrl": "https://www.rugbyrama.fr/rss.xml",
+          "items": 100,
+          "hits": {
+            "England": 1,
+            "France": 38,
+            "Wales": 1,
+            "Australia": 2,
+            "New Zealand": 3,
+            "South Africa": 7
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1102,6 +870,18 @@
           "items": 25,
           "hits": {
             "France": 9
+          }
+        },
+        {
+          "date": "2026-11-10",
+          "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
+          "items": 25,
+          "hits": {
+            "England": 1,
+            "France": 5,
+            "Australia": 1,
+            "New Zealand": 1,
+            "South Africa": 1
           }
         }
       ],
@@ -1209,6 +989,20 @@
             "New Zealand": 1,
             "South Africa": 3
           }
+        },
+        {
+          "date": "2026-11-10",
+          "feedUrl": "https://www.onrugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "England": 1,
+            "France": 2,
+            "Ireland": 1,
+            "Italy": 2,
+            "Argentina": 1,
+            "Australia": 1,
+            "South Africa": 1
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1281,6 +1075,18 @@
             "England": 1,
             "France": 1
           }
+        },
+        {
+          "date": "2026-11-10",
+          "feedUrl": "https://islandsbusiness.com/feed/",
+          "items": 12,
+          "hits": {
+            "Fiji": 6,
+            "England": 1,
+            "France": 1,
+            "Australia": 1,
+            "Japan": 1
+          }
         }
       ],
       "decided": "2026-11-05"
@@ -1294,7 +1100,7 @@
       ],
       "why": "Argentina's packs keep filling with other teams' stories; Olé's rugby desk covers Los Pumas daily, in Spanish.",
       "proposed": "2026-11-03",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1320,8 +1126,13 @@
         {
           "date": "2026-11-09",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-10",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-10"
     },
     {
       "outlet": "The Japan News (Yomiuri Shimbun)",
@@ -1354,6 +1165,10 @@
         {
           "date": "2026-11-09",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-10",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1380,6 +1195,10 @@
         {
           "date": "2026-11-09",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-10",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1402,6 +1221,10 @@
         {
           "date": "2026-11-09",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-10",
+          "error": "no feed found (8 tried; homepage The operation was aborted due to timeout)"
         }
       ]
     },
@@ -1420,6 +1243,10 @@
         {
           "date": "2026-11-09",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-10",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1437,6 +1264,10 @@
       "probes": [
         {
           "date": "2026-11-09",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-10",
           "error": "no feed found (8 tried)"
         }
       ]
