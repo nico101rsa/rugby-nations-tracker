@@ -41,7 +41,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HEALTH_EMAIL: ${{ vars.HEALTH_EMAIL }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          # Email switched off 2026-11-09 (Nico doesn't want these mails). Restore this line to turn it back on:
+          # RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           NOTIFY_TO: ${{ secrets.NOTIFY_TO }}
           DIGEST_EMAIL_TO: ${{ secrets.DIGEST_EMAIL_TO }}
         run: node scripts/health-report.mjs
