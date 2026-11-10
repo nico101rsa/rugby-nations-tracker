@@ -67,10 +67,10 @@ export const FEEDS = [
   // excepted (two probes, taken on Nico's word). Probe counts are in
   // editorial/source-candidates.md. The rugby-only sites keep everything:
   { id: "rugbyworld", name: "Rugby World", url: "https://www.rugbyworld.com/feed" },
-  { id: "wru", name: "Welsh Rugby Union", url: "https://www.wru.wales/feed" },
+  { id: "wru", name: "Welsh Rugby Union", url: "https://www.wru.wales/feed", team: 391 },
   { id: "americasrugbynews", name: "Americas Rugby News", url: "https://www.americasrugbynews.com/feed/" },
   // The Italian union, in Italian: Italy's alias list carries "Italia" for it.
-  { id: "federugby", name: "Federazione Italiana Rugby", url: "https://www.federugby.it/feed/" },
+  { id: "federugby", name: "Federazione Italiana Rugby", url: "https://www.federugby.it/feed/", team: 389 },
   // The whole-site feeds get a rugby topic, like The42: their probe counts
   // matched the country's name anywhere (Scottish football, Japanese
   // politics), so the rugby yield is smaller than the counts say.
@@ -151,7 +151,7 @@ export const TEAM_ALIASES = {
   386: ["England", "Red Rose", "Borthwick", "Inghilterra"],
   387: ["France", "French", "Les Bleus", "Galthie", "Galthié", "Francia"],
   388: ["Ireland", "Irish", "Andy Farrell", "Irlanda"],
-  389: ["Italy", "Italian", "Italia", "Azzurri", "Quesada"],
+  389: ["Italy", "Italian", "Italia", "Italrugby", "Azzurri", "Quesada"],
   390: ["Scotland", "Scottish", "Townsend", "Scozia"],
   391: ["Wales", "Welsh", "Sherratt", "Tandy", "Galles"],
   460: ["Argentina", "Argentine", "Pumas", "Contepomi"],
@@ -442,7 +442,10 @@ export function isMatchReport(title) {
 //   - whether an opposition marker precedes it ("against Springboks", "v Wales")
 // The Italian ones are for the Italian union's own feed (federugby), whose
 // "Sudafrica, il XV per la sfida all'Italia" led Italy on 3 Nov 2026.
-const OPPOSITION_MARKER = /\b(against|versus|vs?\.?|face|faces|facing|host|hosts|hosting|beat|beaten by|defeat|defeated by|lost to|ahead of|before|contro|sfida(\s+(all[ae]?|al|con))?)\s*$/i;
+// The marker may be followed by an article: "Contro l'Argentina" (Italian),
+// "contre la France", "ante los Pumas", "against the All Blacks". The quote or
+// apostrophe right before the name is stripped first, so l' arrives as "l".
+const OPPOSITION_MARKER = /\b(against|versus|vs?\.?|face|faces|facing|host|hosts|hosting|beat|beaten by|defeat|defeated by|lost to|ahead of|before|contro|contre|contra|ante|frente a|sfida(\s+(all[ae]?|al|con))?)(\s+(the|l|la|il|lo|gli|le|les|el|los|las))?\s*$/i;
 
 // 1.0 when the team is plainly the subject, down to 0.35 when it is named in
 // passing. A multiplier rather than a filter — a passing mention on a huge story
@@ -488,13 +491,22 @@ export function subjectWeight(title, aliases) {
 // weighted 0.55 for England on the depth rule alone and lost its place.
 const RESULT_WORDS = /\b(beat|beats|beaten|overpower\w*|edges?|edged|thrash\w*|defeats?|defeated|downs?|sinks?|sank|stuns?|stunned|routs?|routed|crush\w*|hammer\w*|sees? off|saw off|win over|victory over|loss to|lose to|lost to|falls? to|fell to)\b/i;
 
-export function ownership(title, teamId) {
+export function ownership(title, teamId, { house = [] } = {}) {
   const own = subjectWeight(title, TEAM_ALIASES[teamId] ?? []);
   let rival = null;
   let rivalWeight = 0;
   for (const [id, aliases] of Object.entries(TEAM_ALIASES)) {
-    if (String(id) === String(teamId) || !mentionsTeam(title, aliases)) continue;
-    const w = subjectWeight(title, aliases);
+    if (String(id) === String(teamId)) continue;
+    // A union's own feed writes about its own team, often without naming it:
+    // federugby's "Italrugby, Fischetti: Contro l'Argentina …" (10 Nov 2026)
+    // is an Italy player on Italy's next game, and led Argentina's edition.
+    // So the feed's house team is the subject unless the headline names that
+    // team itself, in which case the headline's own weighting decides
+    // ("Sudafrica, il XV per la sfida all'Italia" stays South Africa's).
+    const named = mentionsTeam(title, aliases);
+    const fromHouse = house.some((h) => String(h) === String(id));
+    if (!named && !fromHouse) continue;
+    const w = named ? subjectWeight(title, aliases) : 1;
     if (w > rivalWeight) { rivalWeight = w; rival = aliases[0]; }
   }
   if (!rival) return { subject: Math.max(own, 0.8), otherTeam: null };
@@ -524,6 +536,11 @@ export const QUIET_THRESHOLD = 22;
 
 // Build the ranked shortlist for one team. The writer may not lead with anything
 // outside this list — that constraint is the point, not a detail.
+// The team a union's own feed belongs to (FEEDS `team`), for each outlet that
+// carried a story. Independent outlets have none.
+const HOUSE_TEAM = Object.fromEntries(FEEDS.filter((f) => f.team).map((f) => [f.id, f.team]));
+export const houseTeams = (outlets = []) => [...new Set(outlets.map((o) => HOUSE_TEAM[o]).filter(Boolean))];
+
 export function buildShortlist(items, teamId, now, size = SHORTLIST_SIZE) {
   const aliases = TEAM_ALIASES[teamId];
   if (!aliases) throw new Error(`no aliases for team ${teamId}`);
@@ -538,7 +555,7 @@ export function buildShortlist(items, teamId, now, size = SHORTLIST_SIZE) {
   const mine = dropOffCode(items).filter((i) => mentionsTeam(i.title, aliases));
   const scored = clusterStories(mine).map((s) => {
     const matchReport = isMatchReport(s.title);
-    const { subject, otherTeam } = ownership(s.title, teamId);
+    const { subject, otherTeam } = ownership(s.title, teamId, { house: houseTeams(s.outlets) });
     const score = scoreStory(s, now) * (matchReport ? 0.45 : 1) * subject;
     const seenHours = s.firstSeenAt === null ? null : (now.getTime() - s.firstSeenAt) / 3_600_000;
     return { ...s, score: Math.round(score * 10) / 10, matchReport, subject, otherTeam, fresh: isFresh(s, now), seenHours };

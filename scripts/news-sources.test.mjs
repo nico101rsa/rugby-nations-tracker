@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  houseTeams,
   mentionsTeam,
   TEAM_ALIASES,
   significantTokens,
@@ -591,6 +592,32 @@ test("isQuiet: a pack of other teams' stories is a quiet day", () => {
 test("ownership: a result is both sides' story", () => {
   assert.equal(ownership("Scotland beat Fiji 34-21 at Murrayfield", 28).otherTeam, null);
   assert.equal(ownership("Scotland flirt with defeat before overpowering Fiji", 28).otherTeam, null);
+});
+
+test("ownership: the Italian union's Fischetti story is Italy's, not Argentina's (10 Nov 2026)", () => {
+  const t = `Italrugby, Fischetti: "Contro l'Argentina focus sulla perfomance. Vogliamo mostrare il carattere della squadra"`;
+  // "Contro l'" marks Argentina as the opponent, and "Italrugby" names Italy.
+  assert.equal(ownership(t, 460).otherTeam, "Italy");
+  assert.equal(ownership(t, 389).otherTeam, null);
+  // The house feed alone is enough when the headline never names Italy.
+  const bare = "Fischetti: contro l'Argentina focus sulla performance";
+  assert.equal(ownership(bare, 460).otherTeam, null, "no feed, no named rival: Argentina's");
+  assert.equal(ownership(bare, 460, { house: [389] }).otherTeam, "Italy");
+  assert.deepEqual(houseTeams(["federugby", "onrugby"]), [389]);
+  assert.deepEqual(houseTeams(["the42"]), []);
+});
+
+test("ownership: articles after an opposition marker, in four languages", () => {
+  assert.equal(ownership("Wales confident against the All Blacks", 391).otherTeam, null);
+  assert.equal(ownership("La France confiante contre les Pumas", 460).otherTeam, "France");
+  assert.equal(ownership("Los Pumas ante los Springboks", 467).otherTeam, "Argentina");
+});
+
+test("ownership: a house feed that names its own team in passing does not take the story", () => {
+  // federugby on the Springbok XV: Italy is named, as the opponent, so the
+  // headline decides and the story stays South Africa's.
+  assert.equal(ownership("Sudafrica, il XV per la sfida all'Italia", 467, { house: [389] }).otherTeam, null);
+  assert.equal(ownership("Sudafrica, il XV per la sfida all'Italia", 389, { house: [389] }).otherTeam, "South Africa");
 });
 
 test("ownership: the Italian union's headline about the Springbok XV is South Africa's", () => {
