@@ -119,12 +119,19 @@ test("logTable: the whole Nations Championship table, ranked, only for an rnc-* 
   assert.equal(logTable(nations, { key: "test" }), null);
   const t = logTable(nations, { key: "rnc-2026" });
   assert.deepEqual(t.map((r) => [r.rank, r.code, r.Pts]), [[1, "JPN", 14], [2, "FIJ", 9], [3, "WAL", 5]]);
+  assert.deepEqual(t.map((r) => [r.code, r.conf, r.confRank]), [["JPN", "South", 1], ["FIJ", "South", 2], ["WAL", "North", 1]]);
   const pack = buildPack(fixture({ comp: { key: "rnc-2026", label: "Nations Championship", kind: "competition" } }), { teamEvents, rankings, nations, newsItems: [], now: NOW });
   const text = renderPack(pack);
   assert.match(text, /## Nations Championship table \(trusted; after 3 of 6 pool rounds/);
-  assert.match(text, /- 1\. Japan: P3 W3 D0 L0, PD 36, 14 pts ←/);
-  assert.match(text, /- Fiji: 5 points behind Japan \(1st\), 4 points ahead of Wales \(3rd\)\. A win is 4 points/);
-  assert.match(text, /- Japan: 5 points ahead of Fiji \(2nd\)\./);
+  assert.match(text, /- 1\. Japan \(South 1st\): P3 W3 D0 L0, PD 36, 14 pts ←/);
+  assert.match(text, /- 3\. Wales \(North 1st\):/);
+  // The finals pair the conferences place for place, never 1st v 2nd overall.
+  assert.match(text, /Grand final \(North 1st v South 1st\), 3rd-place final \(North 2nd v South 2nd\)/);
+  assert.match(text, /11th-place final \(North 6th v South 6th\)/);
+  assert.doesNotMatch(text, /pairing 1st v 2nd, 3rd v 4th/);
+  // Neighbours are conference neighbours: Wales (overall 3rd, North) is not Fiji's.
+  assert.match(text, /- Fiji: South 2nd, 5 points behind Japan \(South 1st\)\. A win is 4 points/);
+  assert.match(text, /- Japan: South 1st, 5 points ahead of Fiji \(South 2nd\)\./);
 });
 
 test("news: title-matched, league and women's dropped, old items marked BACKGROUND, both-team items first", () => {
