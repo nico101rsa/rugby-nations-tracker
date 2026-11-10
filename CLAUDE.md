@@ -443,11 +443,15 @@ the open silent issues, and is the only
 other thing that escalates to Nico (its own "🚨 Weekly review <week>: …"
 issue, raised only when something needs him).
 
-**The one email (Nico, 10 Nov 2026):** `news-weekly-email.yml` sends the
-weekly news-quality summary (daily review grades, the trend, which teams kept
-missing, the spend) on Monday morning, Sydney time. Everything else stays off:
-the daily briefings, alerts and weekly health report were switched off on
-9 Nov (#187) because he didn't want those mails.
+**No email is sent from this repo (Nico, 10 Nov 2026).** His morning email
+comes from the private app repo (`owner-email.yml` there: a daily, and on
+Sydney's Tuesday the weekly, which carries the news-quality week read from
+this repo's `editorial/reviews` and `editorial/runs`). It lives there because
+it carries private figures and this repo's logs are public.
+`news-weekly-email.yml`, the Monday news-quality summary, ran once and was
+disabled by Nico in Actions the same day; the file and its script stay, so
+re-enabling the workflow brings it back. The daily briefings, alerts and
+weekly health report were switched off on 9 Nov (#187).
 
 Don't add an `@nico101rsa`, an `--assignee` or a default-on email anywhere
 else. If a new check really is an outage, route it through the watchdog's
