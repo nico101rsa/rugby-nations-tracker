@@ -1,0 +1,47 @@
+name: Weekly news email
+
+# One email a week on the news quality: the daily review grades for the
+# previous Monday–Sunday, the trend against the week before, which teams kept
+# missing, and the spend (scripts/email-news-weekly.mjs). Nico asked for it on
+# 10 Nov 2026. It is the ONLY email this repo sends: the daily briefings,
+# alerts and weekly health report stay off (#187, 9 Nov).
+#
+# Reads committed files only (editorial/reviews, editorial/runs), calls no
+# model and writes nothing. A failed or skipped send never fails the job.
+#
+# To stop it: disable this workflow (Actions → Weekly news email → ⋯ →
+# Disable workflow), or delete the RESEND_API_KEY line below.
+on:
+  schedule:
+    # Sun 20:07 UTC = Mon 07:07 Sydney time in AEDT, 06:07 in AEST. GitHub
+    # often starts crons hours late; the week is computed from the Sydney date,
+    # so a late start still reports the previous Monday–Sunday.
+    - cron: "7 20 * * 0"
+  workflow_dispatch:
+  # Sends once when this file changes on main, so a change can be checked in
+  # the inbox (the integration can't dispatch workflows).
+  push:
+    branches: [main]
+    paths: [".github/workflows/news-weekly-email.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Tests for the email builder
+        run: node --test scripts/email-news-weekly.test.mjs
+      - name: Send the weekly news email
+        continue-on-error: true
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          # A secret, not a variable: this repo's logs are public.
+          DIGEST_EMAIL_TO: ${{ secrets.DIGEST_EMAIL_TO }}
+          DIGEST_EMAIL_FROM: ${{ vars.DIGEST_EMAIL_FROM }}
+        run: node scripts/email-news-weekly.mjs

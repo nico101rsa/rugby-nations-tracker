@@ -443,6 +443,12 @@ the open silent issues, and is the only
 other thing that escalates to Nico (its own "🚨 Weekly review <week>: …"
 issue, raised only when something needs him).
 
+**The one email (Nico, 10 Nov 2026):** `news-weekly-email.yml` sends the
+weekly news-quality summary (daily review grades, the trend, which teams kept
+missing, the spend) on Monday morning, Sydney time. Everything else stays off:
+the daily briefings, alerts and weekly health report were switched off on
+9 Nov (#187) because he didn't want those mails.
+
 Don't add an `@nico101rsa`, an `--assignee` or a default-on email anywhere
 else. If a new check really is an outage, route it through the watchdog's
 page tier and its "still down after a retry" rules. One caveat this can't fix
