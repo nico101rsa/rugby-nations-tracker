@@ -1,21 +1,30 @@
 {
  "about": "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: routine findings land here instead of notifying anyone, and the Claude weekly review reads it. state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); `page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
- "state": "ok",
+ "state": "attention",
  "paging": [],
  "page": null,
  "overdue": [],
- "unknown": [],
+ "unknown": [
+  {
+   "workflow": "generate-digests.yml",
+   "label": "Daily news digests",
+   "error": "failed to get runs: HTTP 502: Server Error (https://api.github.com/repos/nico101rsa/rugby-nations-tracker/actions/workflows/310651251/runs?exclude_pull_requests=true&per_page=100)"
+  }
+ ],
  "heals": {},
  "signals": {
-  "repeatLeads": [],
+  "repeatLeads": [
+   {
+    "team": "Fiji",
+    "since": "2026-11-09",
+    "heading": "Vilimoni Botitu's handling error hands France the bonus point before half-time",
+    "flagged": true
+   }
+  ],
   "ladderLastRung": null,
   "squadGaps": []
  },
  "history": [
-  {
-   "at": "2026-10-06T02:16:54.440Z",
-   "summary": "repeat leads: England"
-  },
   {
    "at": "2026-10-07T01:31:16.615Z",
    "summary": "repeat leads: Argentina"
@@ -131,6 +140,10 @@
   {
    "at": "2026-11-09T20:43:13.497Z",
    "summary": "all clear"
+  },
+  {
+   "at": "2026-11-10T04:05:16.520Z",
+   "summary": "status unknown: generate-digests.yml; repeat leads: Fiji"
   }
  ]
 }
