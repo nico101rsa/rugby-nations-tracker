@@ -4,13 +4,7 @@
  "paging": [],
  "page": null,
  "overdue": [],
- "unknown": [
-  {
-   "workflow": "generate-digests.yml",
-   "label": "Daily news digests",
-   "error": "failed to get runs: HTTP 502: Server Error (https://api.github.com/repos/nico101rsa/rugby-nations-tracker/actions/workflows/310651251/runs?exclude_pull_requests=true&per_page=100)"
-  }
- ],
+ "unknown": [],
  "heals": {},
  "signals": {
   "repeatLeads": [
@@ -144,6 +138,10 @@
   {
    "at": "2026-11-10T04:05:16.520Z",
    "summary": "status unknown: generate-digests.yml; repeat leads: Fiji"
+  },
+  {
+   "at": "2026-11-10T17:49:58.581Z",
+   "summary": "repeat leads: Fiji"
   }
  ]
 }

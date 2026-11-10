@@ -13,7 +13,6 @@ _All times Sydney time._
 ## Overdue jobs and self-heal
 
 - Every watched job has a recent successful run.
-- **Daily news digests** (`generate-digests.yml`) — its run history could not be read (failed to get runs: HTTP 502: Server Error (https://api.github.com/repos/nico101rsa/rugby-nations-tracker/actions/workflows/310651251/runs?exclude_pull_requests=true&per_page=100)). Not re-run and not paged on that; its self-heal record is kept as it was.
 
 ## Editorial signals (never page)
 
@@ -31,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Wed 11 Nov 2026, 04:49 AEDT — repeat leads: Fiji
 - Tue 10 Nov 2026, 15:05 AEDT — status unknown: generate-digests.yml; repeat leads: Fiji
 - Tue 10 Nov 2026, 07:43 AEDT — all clear
 - Mon 9 Nov 2026, 12:42 AEDT — repeat leads: Argentina
