@@ -51,6 +51,7 @@ import { TEAM_ALIASES, dropLeague, mentionsTeam, titleSimilarity } from "./news-
 import { unwrapRedirect } from "./novelty.mjs";
 import { correctedKickoffMs } from "./kickoff-overrides.mjs";
 import { applyHostOverrides } from "./host-overrides.mjs";
+import { NORTH_IDS, FINALS_BY_SEASON } from "./projected-finals.mjs";
 import { stakesFor, rankTrajectory, renderStakes, renderTrajectory, ordinal } from "./rankings-stakes.mjs";
 import { bannedCopyIn, words } from "./copy-rules.mjs";
 import { ROLES, REQUEST_TIMEOUT_MS, modelPlan, buildCallers, describePlan } from "./model-router.mjs";
@@ -252,14 +253,26 @@ export function logFor(nations, comp, home, away) {
 
 // The whole Nations Championship table, only for an rnc-* game, so "what's
 // at stake" can say who a win catches. Six pool rounds, then a finals
-// weekend that pairs the table's neighbours (1st v 2nd and so on).
+// weekend that pairs the conferences place for place (North 1st v South 1st
+// and so on; projected-finals.mjs).
 export const RNC_POOL_ROUNDS = 6;
 export function logTable(nations, comp) {
   if (!String(comp?.key ?? "").startsWith("rnc-")) return null;
   const rows = (nations?.log ?? [])
-    .map((row) => ({ rank: row.rank, code: ID_TO_CODE[row.id] ?? null, team: row.team, P: row.P, W: row.W, D: row.D, L: row.L, PD: row.PD, Pts: row.Pts }))
+    .map((row) => ({ rank: row.rank, code: ID_TO_CODE[row.id] ?? null, team: row.team, conf: NORTH_IDS.has(row.id) ? "North" : "South", P: row.P, W: row.W, D: row.D, L: row.L, PD: row.PD, Pts: row.Pts }))
     .sort((a, b) => a.rank - b.rank);
+  // Finals weekend pairs the conferences place for place (projected-finals.mjs),
+  // so a side's conference place, not its overall rank, decides its final.
+  const seen = { North: 0, South: 0 };
+  for (const r of rows) r.confRank = ++seen[r.conf];
   return rows.length ? rows : null;
+}
+
+// "Grand final (1st v 1st), 3rd-place final (2nd v 2nd), …" from the season's
+// finals list, so the writer is told the real pairing rule.
+export function finalsPairingText(season = 2026) {
+  const finals = FINALS_BY_SEASON[season] ?? FINALS_BY_SEASON[2026];
+  return finals.map(([label, rank]) => `${label} (North ${ordinal(rank)} v South ${ordinal(rank)})`).join(", ");
 }
 
 // Women's, age-grade, sevens and other non-test headlines. The app is men's
@@ -404,20 +417,22 @@ export function renderPack(pack, bodies = []) {
   if (pack.table) {
     const played = Math.max(0, ...pack.table.map((r) => r.P ?? 0));
     L.push("");
-    L.push(`## Nations Championship table (trusted; after ${played} of ${RNC_POOL_ROUNDS} pool rounds, then a finals weekend pairing 1st v 2nd, 3rd v 4th and so on)`);
+    L.push(`## Nations Championship table (trusted; after ${played} of ${RNC_POOL_ROUNDS} pool rounds)`);
+    L.push(`Two conferences: North is the Six Nations sides, South the other six. After the pool rounds, finals weekend pairs the conferences place for place: ${finalsPairingText()}. A side's place in its own conference decides which final it plays, not its overall rank. It never pairs 1st v 2nd overall.`);
     for (const r of pack.table) {
       const mark = r.code === H || r.code === A ? " ←" : "";
-      L.push(`- ${r.rank}. ${r.team}: P${r.P} W${r.W} D${r.D} L${r.L}, PD ${r.PD}, ${r.Pts} pts${mark}`);
+      L.push(`- ${r.rank}. ${r.team} (${r.conf} ${ordinal(r.confRank)}): P${r.P} W${r.W} D${r.D} L${r.L}, PD ${r.PD}, ${r.Pts} pts${mark}`);
     }
     for (const c of [H, A]) {
       const me = pack.table.find((r) => r.code === c);
       if (!me) continue;
-      const above = pack.table.find((r) => r.rank === me.rank - 1);
-      const below = pack.table.find((r) => r.rank === me.rank + 1);
-      const parts = [];
-      if (above) parts.push(`${above.Pts - me.Pts} point${above.Pts - me.Pts === 1 ? "" : "s"} behind ${above.team} (${ordinal(above.rank)})`);
-      if (below) parts.push(`${me.Pts - below.Pts} point${me.Pts - below.Pts === 1 ? "" : "s"} ahead of ${below.team} (${ordinal(below.rank)})`);
-      if (parts.length) L.push(`- ${nm[c]}: ${parts.join(", ")}. A win is 4 points, a draw 2, plus a bonus point for four tries or a loss by seven or fewer.`);
+      const peer = (n) => pack.table.find((r) => r.conf === me.conf && r.confRank === n);
+      const above = peer(me.confRank - 1);
+      const below = peer(me.confRank + 1);
+      const parts = [`${me.conf} ${ordinal(me.confRank)}`];
+      if (above) parts.push(`${above.Pts - me.Pts} point${above.Pts - me.Pts === 1 ? "" : "s"} behind ${above.team} (${me.conf} ${ordinal(above.confRank)})`);
+      if (below) parts.push(`${me.Pts - below.Pts} point${me.Pts - below.Pts === 1 ? "" : "s"} ahead of ${below.team} (${me.conf} ${ordinal(below.confRank)})`);
+      L.push(`- ${nm[c]}: ${parts.join(", ")}. A win is 4 points, a draw 2, plus a bonus point for four tries or a loss by seven or fewer.`);
     }
   }
   L.push("");
