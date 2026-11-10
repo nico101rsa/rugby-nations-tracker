@@ -25,6 +25,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 - **Irish Rugby (IRFU official news)** (irishrugby.ie) — proposed 2026-11-09 for Ireland: Ireland's only NEW candidate was a women's GAA story, so the union's own news could provide squad and injury updates.
   - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+- **RugbyPass** (rugbypass.com) — proposed 2026-11-10 for Scotland, Japan, Fiji: A dedicated global rugby news site that could supply own-team stories where Scotland, Japan and Fiji were starved today.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
