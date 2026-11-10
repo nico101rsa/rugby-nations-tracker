@@ -1,5 +1,9 @@
 name: Weekly news email
 
+# DISABLED in Actions by Nico on Tue 10 Nov 2026 (Sydney time): the app repo's
+# Tuesday email (owner-email.yml there) carries this content. Re-enable it in
+# Actions → Weekly news email → Enable workflow.
+#
 # One email a week on the news quality: the daily review grades for the
 # previous Monday–Sunday, the trend against the week before, which teams kept
 # missing, and the spend (scripts/email-news-weekly.mjs). Nico asked for it on
