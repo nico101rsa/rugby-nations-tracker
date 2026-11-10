@@ -720,7 +720,7 @@
       ],
       "why": "A French rugby-only news site that would add XV de France squad and injury news missing from France's thin pack.",
       "proposed": "2026-11-03",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.rugbyrama.fr/rss.xml",
       "probes": [
         {
@@ -801,6 +801,19 @@
             "Australia": 2,
             "New Zealand": 3,
             "South Africa": 7
+          }
+        },
+        {
+          "date": "2026-11-11",
+          "feedUrl": "https://www.rugbyrama.fr/rss.xml",
+          "items": 100,
+          "hits": {
+            "England": 1,
+            "France": 41,
+            "Wales": 1,
+            "Australia": 2,
+            "New Zealand": 2,
+            "South Africa": 8
           }
         }
       ],
@@ -883,6 +896,18 @@
             "New Zealand": 1,
             "South Africa": 1
           }
+        },
+        {
+          "date": "2026-11-11",
+          "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
+          "items": 25,
+          "hits": {
+            "England": 1,
+            "France": 3,
+            "Australia": 1,
+            "New Zealand": 1,
+            "South Africa": 1
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -896,7 +921,7 @@
       ],
       "why": "An Italian rugby news site that covers the Azzurri daily, to back up the union's own feed when Italy's pack is thin.",
       "proposed": "2026-11-03",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.onrugby.it/feed/",
       "probes": [
         {
@@ -1003,6 +1028,20 @@
             "Australia": 1,
             "South Africa": 1
           }
+        },
+        {
+          "date": "2026-11-11",
+          "feedUrl": "https://www.onrugby.it/feed/",
+          "items": 10,
+          "hits": {
+            "England": 2,
+            "Italy": 4,
+            "Wales": 1,
+            "Argentina": 3,
+            "Japan": 1,
+            "New Zealand": 2,
+            "South Africa": 2
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1016,7 +1055,7 @@
       ],
       "why": "Fiji is starved most days and FBC News is its only local feed; this Pacific news site covers the Flying Fijians.",
       "proposed": "2026-11-03",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://islandsbusiness.com/feed/",
       "probes": [
         {
@@ -1087,6 +1126,16 @@
             "Australia": 1,
             "Japan": 1
           }
+        },
+        {
+          "date": "2026-11-11",
+          "feedUrl": "https://islandsbusiness.com/feed/",
+          "items": 12,
+          "hits": {
+            "Fiji": 4,
+            "France": 1,
+            "Australia": 2
+          }
         }
       ],
       "decided": "2026-11-05"
@@ -1143,7 +1192,7 @@
       ],
       "why": "Japan's pack held no Japan-specific men's 15s news today, only Wales stories and old background.",
       "proposed": "2026-11-05",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1169,8 +1218,13 @@
         {
           "date": "2026-11-10",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-11",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-11"
     },
     {
       "outlet": "All Blacks (New Zealand Rugby official news)",
@@ -1199,6 +1253,10 @@
         {
           "date": "2026-11-10",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-11",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1225,6 +1283,10 @@
         {
           "date": "2026-11-10",
           "error": "no feed found (8 tried; homepage The operation was aborted due to timeout)"
+        },
+        {
+          "date": "2026-11-11",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1246,6 +1308,10 @@
         },
         {
           "date": "2026-11-10",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-11",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -1269,6 +1335,10 @@
         {
           "date": "2026-11-10",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-11",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1288,6 +1358,10 @@
       "probes": [
         {
           "date": "2026-11-10",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-11",
           "error": "no feed found (8 tried)"
         }
       ]
