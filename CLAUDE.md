@@ -120,6 +120,34 @@ and the live-score pass never asks ESPN about one. `check-competitions`
 accepts a two-conference season at its table count or the table plus its
 finals (36 or 42), so ESPN's listing no longer reads as a miscount.
 
+## Live scores: api-sports is the record, ESPN keeps it fresh
+
+nations.json is the Nations Championship's live feed, and its burst is paced by
+quota: one api-sports fetch every 12 minutes (100 calls a day). On its own that
+left phones 12 to 36 minutes behind in Round 4 (7-8 Nov 2026: France v Fiji
+showed 26-3 from 63 to 99 minutes after kickoff, the first live score of two
+games landed at +27, and a 1-star review said scores were "well behind").
+
+`scripts/espn-live-overlay.mjs` fills the gaps. Inside a live burst it reads
+ESPN's league scoreboard (keyless, one request) every 3 minutes and straight
+after each api-sports fetch, and lifts any row ESPN is ahead on: score, phase
+(in api-sports' own 1H / HT / 2H words) and the final whistle. A lifted row
+carries `status.via: "espn"`. Rules, all tested:
+
+- A score never goes backwards on ESPN's word: ESPN is taken only when level
+  or ahead on both sides. The one exception is a score ESPN itself wrote.
+- A row api-sports has called FT is never touched, and `log`, the try counts
+  and `triesPending` stay api-sports' own. So after an ESPN full time the
+  table follows at the next api-sports fetch, up to 12 minutes later.
+- It can never fail a pass. ESPN down means the last good states are laid
+  again and the api-sports feed publishes as before.
+
+A top-up commits only when a row moved ("data: live refresh, ESPN (…)"), so a
+quiet stretch costs no Pages build. To read how far ESPN led api-sports in a
+round, grep the refresh-data run logs for `[espn-overlay]`: every lift prints
+the row before and after. If no such line appears in a live round, ESPN is not
+serving this league's scores in play and the feed is back to 12 minutes.
+
 ## Calendars follow fixtures.json
 
 `calendar/<CODE>.ics` (the 12 tracked nations) and `calendar/all.ics` are
