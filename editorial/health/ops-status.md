@@ -60,4 +60,3 @@ _All times Sydney time._
 - Sat 10 Oct 2026, 12:44 AEDT — repeat leads: Australia, Japan
 - Fri 9 Oct 2026, 13:07 AEDT — repeat leads: Argentina
 - Thu 8 Oct 2026, 12:54 AEDT — repeat leads: Argentina, Scotland
-- Wed 7 Oct 2026, 12:31 AEDT — repeat leads: Argentina
