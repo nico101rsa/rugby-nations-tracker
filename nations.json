@@ -10,7 +10,8 @@
     "fixtures": 12,
     "results": 24,
     "teams": 12,
-    "news": 15
+    "news": 15,
+    "digests": 12
   },
   "fixtures": [
     {
@@ -1125,37 +1126,37 @@
       "edition": "Wednesday 11 November",
       "sections": [
         {
-          "kicker": "Coaching appointment",
-          "heading": "Jake White named Fiji head coach ahead of 2027 Rugby World Cup",
-          "body": "Fiji's Nations Championship campaign sits with Jake White, whose appointment ahead of the 2027 World Cup was reported last month. His side slumped to a fourth straight defeat in the inaugural Nations Championship, going down 54-17 to France in Lyon after starting with 10 France-based players, including their entire backline. Ireland are next for the Flying Fijians, who have won none of their four matches."
+          "kicker": "Nations loss",
+          "heading": "Jake White's Fiji slump to fourth straight defeat, 54-17 to France",
+          "body": "Fiji coach Jake White's side started with 10 France-based players, including their entire backline, and were typically physical. Their much-vaunted backs struggled to fire. Simione Kuruvoli's penalty was their only reward before the break, when France led 26-3. Selestino Ravutaumada added a second consolation try, while Jiuta Wainiqolo, playing in his adopted home, was unable to make an impact."
         },
         {
           "kicker": "Around the world",
-          "heading": "England's Feyi-Waboso and Tom Curry ruled out of Nations Championship",
-          "body": "New Zealand's Will Jordan out of Wales test with hamstring tear. Wallabies' Angus Bell first yellow-carded for hip-drop tackle under new law. Argentina's Juan Cruz Mallía out of Nations Championship with knee sprain."
+          "heading": "All Blacks beat Scotland 43-21 in maul-heavy Nations Championship win",
+          "body": "France lose Jalibert, Ntamack and Hastoy for Springboks test. Springboks start Van den Berg at scrum-half against France. Wallabies' Hooper, Gordon and Paenga-Amosa set to be fit."
         }
-      ]
+      ],
+      "source": {
+        "name": "Japan Today"
+      }
     },
     "386": {
       "date": "2026-11-11",
       "edition": "Wednesday 11 November",
       "sections": [
         {
-          "kicker": "Squad changes",
-          "heading": "Borthwick makes six squad changes as Feyi-Waboso and Curry are ruled out",
-          "body": "Immanuel Feyi-Waboso, forced off at half-time against Australia with an ankle injury, and Tom Curry, who hurt a hip in training, will play no further part in the Nations Championship. England head coach Steve Borthwick has made six changes to his 36-man squad for Saturday's match against Japan. Max Hicks, Max Ojomoh, Noah Caluori and Tobias Elliott are in, while Ollie Chessum, Seb Atkinson and George Furbank remain in rehabilitation with no definitive timescale. Caluori scored twice and Ojomoh crossed in England A's 59-24 win over Argentina XV."
+          "kicker": "Pollock hype",
+          "heading": "Victor Matfield questions Henry Pollock's hype after his two tries against Australia",
+          "body": "Former Springboks second row Victor Matfield has questioned the fuss around Henry Pollock on the Rugby Rivals podcast. He cannot see why so much is expected of him. Matfield argued the credit for Pollock's second try, a run to the corner unopposed, belongs to the team-mates who got him the ball. Former All Blacks and Italy coach John Kirwan disagreed, saying England need a superstar and that Pollock is one. Pollock came on at half-time against Australia, moved to the wing and scored twice in two minutes."
         },
         {
           "kicker": "Around the world",
-          "heading": "New Zealand's Will Jordan out of Wales test with hamstring tear",
-          "body": "Wallabies' Angus Bell first yellow-carded for hip-drop tackle under new law. Argentina's Juan Cruz Mallía out of Nations Championship with knee sprain."
+          "heading": "All Blacks beat Scotland 43-21 in maul-heavy Nations Championship win",
+          "body": "France lose Jalibert, Ntamack and Hastoy for Springboks test. Springboks start Van den Berg at scrum-half against France. Wallabies' Hooper, Gordon and Paenga-Amosa set to be fit."
         }
       ],
-      "match": {
-        "venue": "Allianz Stadium, Twickenham"
-      },
       "source": {
-        "name": "WalesOnline"
+        "name": "OnRugby"
       }
     },
     "387": {
@@ -1163,16 +1164,19 @@
       "edition": "Wednesday 11 November",
       "sections": [
         {
-          "kicker": "Squad watch",
-          "heading": "Jeremy Ward trains with France; Rassie Erasmus says Boks never considered him",
-          "body": "Stade Français centre Jeremy Ward has been training with Fabien Galthié's France squad this month, though he only qualifies on residency grounds in 2027. The 30-year-old has said he is open to playing for Les Bleus, and Springboks head coach Rassie Erasmus was asked about the switch ahead of Friday's clash in Paris. Erasmus said South Africa had never really considered Ward for a Springbok squad, and that it would be silly to be upset about South African players representing other countries."
+          "kicker": "Fly-half crisis",
+          "heading": "Galthié adds Desperes and Le Brun as Jalibert, Ntamack miss Springboks test",
+          "body": "Fabien Galthié, France head coach, has brought Axel Desperes and Louis Le Brun into preparations for Friday's Springboks test in Paris, widening a fly-half pool stripped by injury. Matthieu Jalibert, Romain Ntamack and Antoine Hastoy are all ruled out, and Thomas Ramos, who has covered No. 10 before, is sidelined too. Reports in France tip Maxime Lucu to start there, but Springboks head coach Rassie Erasmus expects a different route: \"It will be Lucu or the 13,\" he said after naming his team."
         },
         {
           "kicker": "Around the world",
-          "heading": "England's Feyi-Waboso and Tom Curry ruled out of Nations Championship",
-          "body": "New Zealand's Will Jordan out of Wales test with hamstring tear. Wallabies' Angus Bell first yellow-carded for hip-drop tackle under new law. Argentina's Juan Cruz Mallía out of Nations Championship with knee sprain."
+          "heading": "All Blacks beat Scotland 43-21 in maul-heavy Nations Championship win",
+          "body": "Wallabies' Hooper, Gordon and Paenga-Amosa set to be fit."
         }
       ],
+      "match": {
+        "venue": "Stade de France, Paris"
+      },
       "source": {
         "name": "Planet Rugby"
       }
@@ -1182,38 +1186,32 @@
       "edition": "Wednesday 11 November",
       "sections": [
         {
-          "kicker": "Selection call",
-          "heading": "Ciaran Frawley expected to start at out-half against Fiji on Saturday",
-          "body": "Ciaran Frawley is expected to start at out-half for Saturday's Nations Championship match against Fiji, his second run at No. 10 in four Tests. Jack Crowley remains unavailable through injury, and Frawley, a 16-cap utility player, has spent recent seasons as a utility option rather than a specialist 10. Having kicked the Durban drop goal that beat South Africa in 2024 from the bench, he said he has \"definitely matured a lot\" since the 2022 tour to New Zealand."
+          "kicker": "Fixture clash",
+          "heading": "Ireland v Fiji and Republic of Ireland's Austria game clash on Saturday",
+          "body": "Fans have only just clocked the collision: Ireland head coach Andy Farrell's side host Fiji at the Aviva Stadium on Saturday, the same evening the Republic of Ireland football side play Austria in Linz in the Nations League. Caolan's post on X, \"That's a pain.\", has drawn more than 330 likes, with some fans arguing the schedule should have been different. Ireland beat Argentina 42-12 last Friday, and Fiji are next at the Aviva."
         },
         {
           "kicker": "Around the world",
-          "heading": "England's Feyi-Waboso and Tom Curry ruled out of Nations Championship",
-          "body": "New Zealand's Will Jordan out of Wales test with hamstring tear. Wallabies' Angus Bell first yellow-carded for hip-drop tackle under new law. Argentina's Juan Cruz Mallía out of Nations Championship with knee sprain."
+          "heading": "All Blacks beat Scotland 43-21 in maul-heavy Nations Championship win",
+          "body": "France lose Jalibert, Ntamack and Hastoy for Springboks test. Springboks start Van den Berg at scrum-half against France. Wallabies' Hooper, Gordon and Paenga-Amosa set to be fit."
         }
-      ],
-      "source": {
-        "name": "Planet Rugby"
-      }
+      ]
     },
     "389": {
       "date": "2026-11-11",
       "edition": "Wednesday 11 November",
       "sections": [
         {
-          "kicker": "Squad news",
-          "heading": "Quesada brings Riccardo Casarin and Antony Italo Miranda into Argentina camp",
-          "body": "Italy coach Gonzalo Quesada has added two invitees to the Argentina camp: Riccardo Casarin, a centre from Valorugby, and Antony Italo Miranda, a back-rower from Mogliano, both joining after the squad list went out. Casarin captained Italy U20 in the last Six Nations and the Junior Rugby World Cup and has made an URC debut for Zebre; Miranda also played for the U20s last season. Both are joining the camp in Turin as Italy prepare for Saturday's test against Argentina."
+          "kicker": "Set-piece focus",
+          "heading": "Tommaso Di Bartolomeo says Italy will target Argentina's scrum and lineout",
+          "body": "Zebre hooker Tommaso Di Bartolomeo says Italy want to press Argentina on efficiency, ball-winning phases and the scrum and lineout. Speaking after the squad's first day on the grass in Turin, he said the Pumas, beaten 42-12 by Ireland in Dublin, will arrive keen to play their best game. He expects an even contest in which the side bringing more intensity and precision wins, and admitted much could have been done better against South Africa."
         },
         {
           "kicker": "Around the world",
-          "heading": "England's Feyi-Waboso and Tom Curry ruled out of Nations Championship",
-          "body": "New Zealand's Will Jordan out of Wales test with hamstring tear. Wallabies' Angus Bell first yellow-carded for hip-drop tackle under new law. Argentina's Juan Cruz Mallía out of Nations Championship with knee sprain."
+          "heading": "All Blacks beat Scotland 43-21 in maul-heavy Nations Championship win",
+          "body": "France lose Jalibert, Ntamack and Hastoy for Springboks test. Springboks start Van den Berg at scrum-half against France. Wallabies' Hooper, Gordon and Paenga-Amosa set to be fit."
         }
       ],
-      "match": {
-        "venue": "Stadio Luigi Ferraris, Genova"
-      },
       "source": {
         "name": "OnRugby"
       }
@@ -1223,37 +1221,40 @@
       "edition": "Wednesday 11 November",
       "sections": [
         {
-          "kicker": "Standing debate",
-          "heading": "Centre Jones says Scotland have yet to prove they're top-tier",
-          "body": "Jones made the point after last Saturday's 43-21 defeat by New Zealand at Murrayfield. Former captain John Barclay pointed to red-zone efficiency, with Scotland converting 30% of visits to the 22 against New Zealand's 58%. Scotland sit sixth of 12 in the log on two wins and two defeats from four matches, and their next test is against Australia."
+          "kicker": "Opponent check",
+          "heading": "Harry Wilson's Wallabies lose 45-22 at Twickenham, a fairer fight for Scotland",
+          "body": "Wallabies captain Harry Wilson said at full-time: \"We've got seven days to take some feedback from this game and make sure we're a lot better because Scotland are a really good team.\" Planet Rugby's opinion column reads Australia's problems as deeper than one result, citing porous defence, a revolving cast at fly-half and poor control of possession under new coach Les Kiss. It sees Scotland as a closer test than England was, which could make for an even contest."
         },
         {
           "kicker": "Around the world",
-          "heading": "England's Feyi-Waboso and Tom Curry ruled out of Nations Championship",
-          "body": "New Zealand's Will Jordan out of Wales test with hamstring tear. Wallabies' Angus Bell first yellow-carded for hip-drop tackle under new law. Argentina's Juan Cruz Mallía out of Nations Championship with knee sprain."
+          "heading": "All Blacks beat Scotland 43-21 in maul-heavy Nations Championship win",
+          "body": "France lose Jalibert, Ntamack and Hastoy for Springboks test. Springboks start Van den Berg at scrum-half against France. Wallabies' Hooper, Gordon and Paenga-Amosa set to be fit."
         }
-      ]
+      ],
+      "source": {
+        "name": "Planet Rugby"
+      }
     },
     "391": {
       "date": "2026-11-11",
       "edition": "Wednesday 11 November",
       "sections": [
         {
-          "kicker": "Injury doubt",
-          "heading": "Wales face Aaron Wainwright injury doubt for All Blacks clash on Saturday",
-          "body": "Lydiate, Wales's contact skills coach and a former Wainwright team-mate, described the leg problem as \"a minor injury\" but said the number eight may not be available. Wainwright, 29, did not train on Tuesday and was still in a protective boot, with Steve Tandy due to name the team on Thursday. If he is out, Taine Basham, the Cardiff number eight, is the likely replacement and would make his first international start since the 2022 Six Nations against England."
+          "kicker": "Ticket pricing",
+          "heading": "WRU cuts student tickets for Wales v All Blacks to £20",
+          "body": "A flash sale that went live on Tuesday, four days before Saturday's Wales v New Zealand match at the Principality Stadium, cuts student tickets to £20. Upper-tier student seats, priced at £62.50, have been cut by more than 63%, and Category B seats near the halfway line, £98 for adults, are part of the £20 offer. The WRU is trying to boost the crowd: last weekend's Japan match drew 52,425, against 61,324 a year earlier, after the union recently posted annual losses of £18m."
         },
         {
           "kicker": "Around the world",
-          "heading": "England's Feyi-Waboso and Tom Curry ruled out of Nations Championship",
-          "body": "Wallabies' Angus Bell first yellow-carded for hip-drop tackle under new law. Argentina's Juan Cruz Mallía out of Nations Championship with knee sprain."
+          "heading": "All Blacks beat Scotland 43-21 in maul-heavy Nations Championship win",
+          "body": "France lose Jalibert, Ntamack and Hastoy for Springboks test. Springboks start Van den Berg at scrum-half against France. Wallabies' Hooper, Gordon and Paenga-Amosa set to be fit."
         }
       ],
       "match": {
         "venue": "Principality Stadium, Cardiff"
       },
       "source": {
-        "name": "BBC Rugby Union"
+        "name": "WalesOnline"
       }
     },
     "460": {
@@ -1283,61 +1284,56 @@
       "edition": "Wednesday 11 November",
       "sections": [
         {
-          "kicker": "Hip-drop ruling",
-          "heading": "Angus Bell becomes first player yellow-carded for hip-drop tackle under new law",
-          "body": "Bell's yellow came after a TMO review in the stoppage for Immanuel Feyi-Waboso's injury, with referee Pierre Brousset deciding it. World Rugby formally outlawed the hip drop on 1 November, so the card is a first under the new rule. Australia went 19-3 down with 14 men, lost 45-22, and Scotland are next. Feyi-Waboso is ruled out of the rest of England's Nations Championship campaign."
+          "kicker": "Team news",
+          "heading": "Hooper, Gordon and Paenga-Amosa set to be fit for Scotland",
+          "body": "Three players who missed the England defeat are in contention for the Scotland test. Tom Hooper's shoulder problem was re-aggravated with Exeter last month. Flyhalf Carter Gordon is still returning from the broken leg he suffered against Argentina in September, while hooker Brandon Paenga-Amosa has had knee bruising from the Sydney training camp. Scrum coach John Ulugia said: \"Everyone's on deck.\" The side is due to be named on Friday."
         },
         {
           "kicker": "Around the world",
-          "heading": "England's Feyi-Waboso and Tom Curry ruled out of Nations Championship",
-          "body": "New Zealand's Will Jordan out of Wales test with hamstring tear. Argentina's Juan Cruz Mallía out of Nations Championship with knee sprain."
+          "heading": "All Blacks beat Scotland 43-21 in maul-heavy Nations Championship win",
+          "body": "France lose Jalibert, Ntamack and Hastoy for Springboks test. Springboks start Van den Berg at scrum-half against France."
         }
-      ],
-      "match": {
-        "venue": "Allianz Stadium, Twickenham",
-        "referee": "Pierre Brousset"
-      },
-      "source": {
-        "name": "The42"
-      }
+      ]
     },
     "463": {
       "date": "2026-11-11",
       "edition": "Wednesday 11 November",
       "sections": [
         {
-          "kicker": "Form in numbers",
-          "heading": "Japan score 325 points and concede 305 in last 11 games",
-          "body": "Across their last 11 games, Japan have scored 325 points and conceded 305, averages of 29.5 scored and 27.7 conceded per game. Those figures are the form line into Saturday's Round 5 Test against England. Their biggest win in that window came in September, a 63-14 victory over USA at home in the Pacific Nations Cup Knockout Stage."
+          "kicker": "Selection puzzle",
+          "heading": "Japan cannot pick their best fly-half for England, a report says",
+          "body": "Japan head coach Eddie Jones faces a selection puzzle before Saturday's Test against England at Allianz Stadium, Twickenham, with a report saying his best fly-half cannot be picked. The reason is not spelled out in today's press coverage. Japan are 10th of 12 in the log, with one win from four, after a 21-28 defeat to Wales in their last match."
         },
         {
           "kicker": "Around the world",
-          "heading": "England's Feyi-Waboso and Tom Curry ruled out of Nations Championship",
-          "body": "New Zealand's Will Jordan out of Wales test with hamstring tear. Wallabies' Angus Bell first yellow-carded for hip-drop tackle under new law. Argentina's Juan Cruz Mallía out of Nations Championship with knee sprain."
+          "heading": "All Blacks beat Scotland 43-21 in maul-heavy Nations Championship win",
+          "body": "France lose Jalibert, Ntamack and Hastoy for Springboks test. Springboks start Van den Berg at scrum-half against France. Wallabies' Hooper, Gordon and Paenga-Amosa set to be fit."
         }
       ],
-      "rung": "data"
+      "match": {
+        "venue": "Allianz Stadium, Twickenham"
+      }
     },
     "465": {
       "date": "2026-11-11",
       "edition": "Wednesday 11 November",
       "sections": [
         {
-          "kicker": "Team news",
-          "heading": "Will Jordan sidelined by hamstring tear as Jordie Barrett misses Wales test",
-          "body": "Will Jordan has been ruled out of Saturday's test against Wales in Cardiff with a minor hamstring tear, and Jordie Barrett will not feature despite passing his head injury assessment after a head-on-head clash against Scotland. The head coach said the side could make several changes from the team that beat Scotland 43-21, with a couple of players set for opportunities."
+          "kicker": "Law change call",
+          "heading": "Jason Ryan asks World Rugby to consider maul law change",
+          "body": "All Blacks forwards coach Jason Ryan has called on World Rugby to consider a law change at the maul, which produced three first-half tries in last Saturday's 43-21 win over Scotland. Peter Lakai scored from a 20th-minute maul, but Scotland scored twice as extra players joined their drives, and Ryan said: \"They add their backs in and next minute it's a 12 on eight.\" Ryan also said the review had focused on accuracy and decision-making, and that back-to-back double yellow cards had put the defence under pressure."
         },
         {
           "kicker": "Around the world",
-          "heading": "England's Feyi-Waboso and Tom Curry ruled out of Nations Championship",
-          "body": "Wallabies' Angus Bell first yellow-carded for hip-drop tackle under new law. Argentina's Juan Cruz Mallía out of Nations Championship with knee sprain."
+          "heading": "France lose Jalibert, Ntamack and Hastoy for Springboks test",
+          "body": "Springboks start Van den Berg at scrum-half against France. Wallabies' Hooper, Gordon and Paenga-Amosa set to be fit."
         }
       ],
       "match": {
         "venue": "Principality Stadium, Cardiff"
       },
       "source": {
-        "name": "WalesOnline"
+        "name": "Planet Rugby"
       }
     },
     "467": {
@@ -1345,16 +1341,19 @@
       "edition": "Wednesday 11 November",
       "sections": [
         {
-          "kicker": "Player allegiance",
-          "heading": "Rassie Erasmus says Springboks never considered Jeremy Ward, now training with France",
-          "body": "The Springboks hold no grudge over Jeremy Ward, the Stade Français centre who has been training with France this month and could play for them next year. Erasmus said South Africa never looked at Ward for a Springbok squad in his era, adding that they track players worldwide and are proud of others such as Duhan van der Merwe, Pierre Schoeman and Kyle Steyn, who found opportunities elsewhere."
+          "kicker": "Selection call",
+          "heading": "Morne van den Berg starts at scrum-half against France, Reinach on bench",
+          "body": "Erasmus has kept faith with the man who started against Italy, judging it best for the Springboks that Cobus Reinach is held in reserve. Van den Berg, a 12-cap Springbok aged 29, now faces France scrum-half Antoine Dupont, the 65-cap player many consider the best in the world at nine. Retired prop Steven Kitshoff, speaking on For the Love of Rugby South Africa, said: \"The way that Morne is currently playing, he has got a lot of Dupont in him.\""
         },
         {
           "kicker": "Around the world",
-          "heading": "England's Feyi-Waboso and Tom Curry ruled out of Nations Championship",
-          "body": "New Zealand's Will Jordan out of Wales test with hamstring tear. Wallabies' Angus Bell first yellow-carded for hip-drop tackle under new law. Argentina's Juan Cruz Mallía out of Nations Championship with knee sprain."
+          "heading": "All Blacks beat Scotland 43-21 in maul-heavy Nations Championship win",
+          "body": "Wallabies' Hooper, Gordon and Paenga-Amosa set to be fit."
         }
       ],
+      "match": {
+        "venue": "Stade de France"
+      },
       "source": {
         "name": "Planet Rugby"
       }
