@@ -16,7 +16,10 @@ on:
     # spend from the fixture schedule (all UTC, matching the api-sports data):
     #   - LIVE  (match live/imminent): burst-polls in-process every ~12 min,
     #           publishing each fetch, for up to ~2h (one landed fire covers a
-    #           whole match even when GitHub drops the next scheduled runs)
+    #           whole match even when GitHub drops the next scheduled runs).
+    #           Between those fetches a keyless ESPN top-up runs every 3 min
+    #           and publishes only when a score or phase moved
+    #           (scripts/espn-live-overlay.mjs; zero api-sports quota)
     #   - SWEEP (00/06/12/18 UTC):     today..+2, 3 API calls   -> news/fixtures
     #   - IDLE  (nothing on):          no API call at all
     # A budget guard refuses to spend the last ~10 requests. Stays under

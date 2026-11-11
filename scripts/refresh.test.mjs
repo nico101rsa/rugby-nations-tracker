@@ -350,3 +350,90 @@ test("live burst: a persistently broken publish escalates to the cap", async () 
   assert.equal(passes, 3, "stops at the failure cap rather than looping the window");
   assert.equal(r.consecutiveFailures, 3);
 });
+
+// ---- the ESPN top-up inside the burst ---------------------------------------
+// Round 4 (7-8 Nov 2026): one api-sports fetch per 12 minutes left phones
+// 12-36 minutes behind. scripts/espn-live-overlay.mjs fills the gaps.
+
+test("live burst + ESPN: three top-ups between api-sports fetches, published only when a row moved", async () => {
+  const events = [];
+  let passes = 0, tops = 0;
+  const r = await runLiveBurst({
+    dates: ["2026-11-07"],
+    refresh: async () => { passes++; events.push("api"); return { remaining: 50 }; },
+    overlay: async () => { tops++; events.push("espn"); return tops === 3 ? 1 : 0; },
+    publish: (msg) => events.push(msg.startsWith("data: live refresh, ESPN") ? "publish-espn" : "publish"),
+    isLive: () => passes < 2,
+    sleep: async (ms) => events.push(`sleep ${ms / 60000}`),
+    now: () => 0,
+  });
+  assert.deepEqual(events, [
+    // api-sports, ESPN laid over it, one publish for both.
+    "api", "espn", "publish",
+    // 12 minutes in four 3-minute slices, ESPN after each but the last.
+    "sleep 3", "espn", "sleep 3", "espn", "publish-espn", "sleep 3", "espn", "sleep 3",
+    "api", "espn", "publish",
+  ]);
+  assert.equal(r.iterations, 2);
+  assert.equal(r.overlayPublishes, 1);
+});
+
+test("live burst + ESPN: api-sports still fetches exactly once per interval (quota unchanged)", async () => {
+  let passes = 0, slept = 0;
+  await runLiveBurst({
+    dates: ["2026-11-07"],
+    refresh: async () => { passes++; return { remaining: 50 }; },
+    overlay: async () => 0,
+    publish: () => {},
+    isLive: () => passes < 5,
+    sleep: async (ms) => { slept += ms; },
+    now: () => 0,
+  });
+  assert.equal(passes, 5);
+  assert.equal(slept, 4 * 12 * 60000);
+});
+
+test("live burst + ESPN: a top-up publish that fails costs one slice, not the burst", async () => {
+  let passes = 0;
+  const r = await runLiveBurst({
+    dates: ["2026-11-07"],
+    refresh: async () => { passes++; return { remaining: 50 }; },
+    overlay: async () => 1,
+    publish: (msg) => { if (msg.includes("ESPN")) throw new Error("failed to push some refs"); },
+    isLive: () => passes < 3,
+    sleep: async () => {},
+    now: () => 0,
+  });
+  assert.equal(passes, 3);
+  assert.equal(r.consecutiveFailures, 0);
+  assert.equal(r.overlayPublishes, 0);
+});
+
+test("live burst + ESPN: an api-sports failure doesn't stop the top-ups", async () => {
+  let passes = 0, tops = 0;
+  await runLiveBurst({
+    dates: ["2026-11-07"],
+    refresh: async () => { passes++; if (passes === 1) throw new Error("api-sports 502"); return { remaining: 50 }; },
+    overlay: async () => { tops++; return 0; },
+    publish: () => {},
+    isLive: () => passes < 2,
+    sleep: async () => {},
+    now: () => 0,
+  });
+  assert.equal(tops, 3 + 1, "three in the gap after the failed fetch, one with the good one");
+});
+
+test("live burst without an overlay is the burst it always was: one sleep per interval", async () => {
+  const sleeps = [];
+  let passes = 0;
+  const r = await runLiveBurst({
+    dates: ["2026-11-07"],
+    refresh: async () => { passes++; return { remaining: 50 }; },
+    publish: () => {},
+    isLive: () => passes < 3,
+    sleep: async (ms) => sleeps.push(ms),
+    now: () => 0,
+  });
+  assert.deepEqual(sleeps, [12 * 60000, 12 * 60000]);
+  assert.equal(r.overlayPublishes, 0);
+});

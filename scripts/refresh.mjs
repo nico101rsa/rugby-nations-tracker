@@ -7,6 +7,7 @@ import { scheduleKickoffs } from "./static-fixtures.mjs";
 import { refresh, refreshNewsOnly, utcDateStr, datesForWindow } from "./fetch-nations.mjs";
 import { runTourProbe } from "./probe-tour.mjs";
 import { pushWithRetries } from "./git-push-retry.mjs";
+import { makeOverlayPass, OVERLAY_INTERVAL_MS } from "./espn-live-overlay.mjs";
 
 const PRE_MS = 15 * 60000;    // start polling 15 min before kickoff
 // Keep polling 170 min after kickoff (play + HT + FT settle). 150 until
@@ -98,14 +99,44 @@ export async function runLiveBurst({
   burstMs = LIVE_BURST_MAX_MS,
   guardFloor = GUARD_FLOOR,
   maxConsecutiveFailures = MAX_CONSECUTIVE_FAILURES,
+  // The keyless ESPN top-up (espn-live-overlay.mjs): an async function that
+  // lifts any row ESPN is ahead on and returns how many it changed. It never
+  // throws. null (the default, and every test that doesn't pass one) leaves
+  // the burst exactly as it was: one api-sports fetch per interval.
+  overlay = null,
+  overlayMs = OVERLAY_INTERVAL_MS,
 } = {}) {
   const started = now();
   let iterations = 0;
   let consecutiveFailures = 0;
+  let overlayPublishes = 0;
+  // Between two api-sports fetches: sleep the interval in overlay-sized
+  // slices and top up from ESPN after each but the last (the api-sports pass
+  // that follows lays the overlay itself). A fixed slice count, so the loop
+  // ends on the sleeps alone. A failed publish here costs one slice: the
+  // commit stays local and the next publish carries it.
+  const waitForNextPoll = async () => {
+    const slices = overlay ? Math.max(1, Math.round(intervalMs / overlayMs)) : 1;
+    for (let i = 0; i < slices; i++) {
+      await sleep(intervalMs / slices);
+      if (i === slices - 1 || !isLive()) break;
+      try {
+        if (await overlay()) {
+          publish(`data: live refresh, ESPN (${new Date().toISOString()})`);
+          overlayPublishes++;
+        }
+      } catch (err) {
+        console.warn(`[refresh] ESPN top-up not published: ${err.message}`);
+      }
+    }
+  };
   while (true) {
     try {
       const result = await doRefresh({ dates });
       iterations++;
+      // Lay ESPN over what api-sports just wrote, before the publish, so a
+      // slower vendor answer never drags a fresher score back onto phones.
+      if (overlay) await overlay();
       publish(`data: live refresh (${new Date().toISOString()})`);
       // Reset only once the pass has fully landed, publish included, so a
       // persistently broken publish still escalates to the failure cap
@@ -131,9 +162,9 @@ export async function runLiveBurst({
     }
     if (now() - started >= burstMs) break;   // burst window elapsed
     if (!isLive()) break;                     // match window closed
-    await sleep(intervalMs);
+    await waitForNextPoll();
   }
-  return { iterations, consecutiveFailures };
+  return { iterations, consecutiveFailures, overlayPublishes };
 }
 
 async function mainRun() {
@@ -162,8 +193,8 @@ async function mainRun() {
   if (decision.mode === "live") {
     // Live: poll in a loop, publishing each fetch, so one landed fire covers
     // ~a full match even when GitHub drops the following scheduled runs.
-    const { iterations } = await runLiveBurst({ dates: decision.dates });
-    console.log(`[refresh] live burst done — ${iterations} fetch(es)`);
+    const { iterations, overlayPublishes } = await runLiveBurst({ dates: decision.dates, overlay: makeOverlayPass() });
+    console.log(`[refresh] live burst done — ${iterations} fetch(es), ${overlayPublishes} ESPN top-up(s) published`);
     return;
   }
 
