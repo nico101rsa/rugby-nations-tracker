@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
-import { checkVote, init, castVote, tallies, handle, makeLimiter, parseMatch, TRACKED, VOTE_WINDOW_DAYS } from "./pulse.js";
+import { checkVote, init, castVote, tallies, handle, makeLimiter, parseMatch, TRACKED, VOTE_WINDOW_DAYS, SHOWN_DAYS, RELEASE } from "./pulse.js";
 
 // The Durable Object hands the rules sql(query, ...params) -> rows. Here the
 // same shape over node's own SQLite, so the real queries run.
@@ -39,7 +39,7 @@ test("anything else is refused, with which part was wrong", () => {
   assert.equal(checkVote("up", FT).error, "not a vote");
 });
 
-test("a game takes votes from its kickoff day until four days after", () => {
+test("a game takes votes from its kickoff day until the window closes", () => {
   const day = parseMatch(MATCH).dayMs;
   assert.equal(checkVote(vote(), day - 1).error, "too early");
   assert.equal(checkVote(vote(), day).ok, true);
@@ -79,9 +79,11 @@ test("voting again changes the answer and never counts twice", () => {
 test("only recent games come back", () => {
   const sql = store();
   castVote(sql, vote());
-  castVote(sql, { match: "2026-11-07 SCO-NZL", team: "SCO", mood: "up", voter: voter(9) });
+  castVote(sql, { match: "2026-10-10 NZL-AUS", team: "NZL", mood: "up", voter: voter(9) });
   assert.deepEqual(Object.keys(tallies(sql, FT)), [MATCH]);
-  assert.deepEqual(Object.keys(tallies(sql, Date.parse("2026-11-28T00:00:00Z"))), []);
+  const day = parseMatch(MATCH).dayMs;
+  assert.deepEqual(Object.keys(tallies(sql, day + SHOWN_DAYS * 86_400_000)), [MATCH]);
+  assert.deepEqual(Object.keys(tallies(sql, day + (SHOWN_DAYS + 1) * 86_400_000)), []);
 });
 
 test("nothing but the four fields is ever stored", () => {
@@ -132,4 +134,11 @@ test("/health proves storage works and leaves nothing behind", () => {
   const res = handle({ method: "GET", path: "/health", now: FT }, sql, makeLimiter());
   assert.deepEqual([res.status, res.body.ok], [200, true]);
   assert.equal(sql(`SELECT COUNT(*) AS n FROM votes`)[0].n, 0);
+});
+
+test("the test-build windows are put back before round 5", () => {
+  // Opened up on Thu 12 Nov 2026 so round 4 could be voted on from TestFlight.
+  // From Sat 14 Nov (round 5) the real values must be back.
+  if (Date.now() < Date.parse("2026-11-13T13:00:00Z")) return; // Sat 14 Nov 00:00 Sydney time
+  assert.deepEqual({ VOTE_WINDOW_DAYS, SHOWN_DAYS }, RELEASE);
 });
