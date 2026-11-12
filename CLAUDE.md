@@ -476,6 +476,14 @@ unless a caller passes `page: true`.
   quota spend: `team-events.yml` (SportsAPI Pro, ~25 calls) is re-run at most
   once every 20h (`reHealAfterHours`), though it is checked and paged on
   every run.
+- **The cron Worker is watched too (13 Nov 2026).** It is not a workflow, so
+  the watchdog reads it through what it does: the newest refresh run titled
+  `cloudflare-worker`, whatever its result (`aliveBy` on its `WATCHERS` row).
+  Three hours of silence and the watchdog redeploys it (`deploy-worker.yml`);
+  still silent on a later run and it pages, because the usual cause by then is
+  an expired dispatch token, which needs Nico's hands (`worker/README.md`).
+  Before this only the weekly health check looked, over 7 days, while the
+  Worker was starting 9 refresh runs in 10.
 - **Silent — everything else.** The watchdog re-dispatches any overdue job
   first (self-heal) and records the state in `editorial/health/ops-status.json`
   and `ops-status.md`: current signals, heal attempts and streaks, a 35-day
