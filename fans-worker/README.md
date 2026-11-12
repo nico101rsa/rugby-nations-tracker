@@ -5,7 +5,7 @@ pulse**: after a game a fan taps one of three faces for their team, and the
 app shows how each side's fans took it.
 
 - **Rules and storage:** `src/pulse.js` (plain JavaScript, tested with
-  `node --test fans-worker/src/` against node's own SQLite).
+  `node --test fans-worker/src/*.test.mjs` against node's own SQLite).
 - **Cloudflare wiring:** `src/index.js` (one Durable Object, one SQLite file)
   and `wrangler.jsonc`.
 - **Deploy:** merging a change under `fans-worker/` runs

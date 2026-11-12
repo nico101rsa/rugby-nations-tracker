@@ -48,7 +48,7 @@ jobs:
           node-version: 22
 
       - name: Tests
-        run: node --test fans-worker/src/
+        run: node --test fans-worker/src/*.test.mjs
 
       - name: Deploy
         if: steps.gate.outputs.ready == 'true'
