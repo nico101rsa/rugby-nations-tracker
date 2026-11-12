@@ -4,7 +4,7 @@ _The silent ops log, written by the daily watchdog (`scripts/watchdog.mjs`) only
 _Nothing here notifies anyone except state **PAGING**. The Claude weekly review reads this file with the newest weekly report in this folder._
 _All times Sydney time._
 
-**State: ATTENTION — something is off, nothing has paged. Triage in the weekly review.**
+**State: OK — every watched job is current and no editorial signal is up.**
 
 ## Paging Nico
 
@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- Fiji — same lead story since Mon 9 Nov, first run as "Vilimoni Botitu's handling error hands France the bonus point before half-time" — the novelty gate flagged the latest edition and published anyway
+- None — every briefing moved on.
 
 **Model ladder**
 
@@ -30,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Thu 12 Nov 2026, 13:56 AEDT — all clear
 - Wed 11 Nov 2026, 04:49 AEDT — repeat leads: Fiji
 - Tue 10 Nov 2026, 15:05 AEDT — status unknown: generate-digests.yml; repeat leads: Fiji
 - Tue 10 Nov 2026, 07:43 AEDT — all clear
@@ -59,4 +60,3 @@ _All times Sydney time._
 - Sun 11 Oct 2026, 11:59 AEDT — repeat leads: Argentina
 - Sat 10 Oct 2026, 12:44 AEDT — repeat leads: Australia, Japan
 - Fri 9 Oct 2026, 13:07 AEDT — repeat leads: Argentina
-- Thu 8 Oct 2026, 12:54 AEDT — repeat leads: Argentina, Scotland
