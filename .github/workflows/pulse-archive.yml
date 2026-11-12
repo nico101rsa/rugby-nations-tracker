@@ -1,0 +1,57 @@
+name: Pulse archive
+
+# Copies the full-time pulse's counts from the fans worker into
+# editorial/pulse.json (scripts/pulse-archive.mjs). The worker only returns the
+# last six days of games; this file never forgets one. The news writer and
+# Nico's morning email both read it.
+#
+# Every two hours. It commits only when a count changed, so outside a match
+# weekend it does nothing. GitHub starts this repo's timers late; a late run
+# loses nothing, because each run takes the worker's whole six-day answer.
+#
+# Silent tier: a worker that can't be reached is a log line, not a failure.
+on:
+  schedule:
+    - cron: "23 */2 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/pulse-archive.mjs"
+      - ".github/workflows/pulse-archive.yml"
+
+# Own group — never share one with the data jobs.
+concurrency:
+  group: pulse-archive
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Copy the worker's counts
+        run: node scripts/pulse-archive.mjs
+
+      - name: Commit if a count changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add editorial/pulse.json 2>/dev/null || true
+          git diff --cached --quiet && echo "no change" && exit 0
+          git commit -m "Pulse archive $(date -u '+%Y-%m-%d %H:%M UTC')"
+          # Other jobs push to main all day: rebase and retry rather than lose
+          # the run. The file is this workflow's alone, so there is no conflict.
+          for i in 1 2 3 4; do
+            git pull --rebase --autostash && git push && exit 0
+            sleep $((i * 5))
+          done
+          echo "::warning::could not push the pulse archive; the next run takes the same counts"

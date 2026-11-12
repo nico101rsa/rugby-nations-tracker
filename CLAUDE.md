@@ -148,6 +148,31 @@ round, grep the refresh-data run logs for `[espn-overlay]`: every lift prints
 the row before and after. If no such line appears in a live round, ESPN is not
 serving this league's scores in play and the feed is back to 12 minutes.
 
+## The full-time pulse: counted in a Worker, kept in a file
+
+`fans-worker/` is a second Cloudflare Worker (`rugby-tracker-fans`), apart from
+the cron Worker so that nothing a fan sends can touch live scores. After a
+game the app asks a team's followers one thing (buzzing, meh or fuming) and
+shows each side's split; the Worker counts the votes in one Durable Object.
+`fans-worker/src/pulse.js` holds the rules and `fans-worker/README.md` the
+rest. It deploys by itself when `fans-worker/` changes
+(`deploy-fans-worker.yml`), then checks the live Worker.
+
+- **A vote is four fields**: the game (`2026-11-21 ENG-NZL`, the kickoff
+  overrides' key), the side, the mood and a per-game random number. No
+  address, country, install number or time. `privacy.html` says exactly this;
+  change the two together.
+- **The Worker returns six days of games.** `scripts/pulse-archive.mjs` copies
+  its answer into `editorial/pulse.json` every two hours (`pulse-archive.yml`)
+  and never drops a game, so that file is the full history. Don't hand-edit it.
+- **Two readers.** The news writer: `buildParams` adds the fans' verdict to a
+  team's "Last result" fact when at least 30 of that team's fans answered and
+  the game is under four days old (`pulseLine`), so the writer and the checker
+  both see it. And Nico's morning email in the app repo, which reads the same
+  file from its checkout of this repo.
+- **Silent tier.** A Worker that can't be reached is a log line. Nothing pages.
+- **If the numbers are gamed**, stop showing them in the app. Don't add sign-in.
+
 ## Calendars follow fixtures.json
 
 `calendar/<CODE>.ics` (the 12 tracked nations) and `calendar/all.ics` are
