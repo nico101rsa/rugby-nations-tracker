@@ -35,14 +35,9 @@ const VOTER_RE = /^[a-f0-9]{32}$/;
 const DAY_MS = 86_400_000;
 
 // A game takes votes from the start of its kickoff day (UTC) for this long.
-// TEMPORARY (Thu 12 Nov 2026): 9 and 9, so Nico can vote on round 4 (6-8 Nov)
-// from a TestFlight build before round 5 is played. The real values are 4 and
-// 6; RELEASE below holds them and pulse.test.mjs fails from Sat 14 Nov if
-// they haven't been put back.
-export const RELEASE = { VOTE_WINDOW_DAYS: 4, SHOWN_DAYS: 6 };
-export const VOTE_WINDOW_DAYS = 9;
+export const VOTE_WINDOW_DAYS = 4;
 // What GET returns: games whose kickoff day is within this many days.
-export const SHOWN_DAYS = 9;
+export const SHOWN_DAYS = 6;
 
 export function parseMatch(match) {
   const m = MATCH_RE.exec(String(match ?? ""));

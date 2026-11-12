@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
-import { checkVote, init, castVote, tallies, handle, makeLimiter, parseMatch, TRACKED, VOTE_WINDOW_DAYS, SHOWN_DAYS, RELEASE } from "./pulse.js";
+import { checkVote, init, castVote, tallies, handle, makeLimiter, parseMatch, TRACKED, VOTE_WINDOW_DAYS, SHOWN_DAYS } from "./pulse.js";
 
 // The Durable Object hands the rules sql(query, ...params) -> rows. Here the
 // same shape over node's own SQLite, so the real queries run.
@@ -136,9 +136,8 @@ test("/health proves storage works and leaves nothing behind", () => {
   assert.equal(sql(`SELECT COUNT(*) AS n FROM votes`)[0].n, 0);
 });
 
-test("the test-build windows are put back before round 5", () => {
-  // Opened up on Thu 12 Nov 2026 so round 4 could be voted on from TestFlight.
-  // From Sat 14 Nov (round 5) the real values must be back.
-  if (Date.now() < Date.parse("2026-11-13T13:00:00Z")) return; // Sat 14 Nov 00:00 Sydney time
-  assert.deepEqual({ VOTE_WINDOW_DAYS, SHOWN_DAYS }, RELEASE);
+test("the windows are the released ones", () => {
+  // Opened to nine days for one TestFlight test on Thu 12 Nov 2026, then put
+  // back. The app stops asking after three days and shows for six.
+  assert.deepEqual({ VOTE_WINDOW_DAYS, SHOWN_DAYS }, { VOTE_WINDOW_DAYS: 4, SHOWN_DAYS: 6 });
 });
