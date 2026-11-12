@@ -33,6 +33,7 @@ import {
   buildNoveltyFeedback,
   previousWorldLines,
 } from "./novelty.mjs";
+import { pulseKey, pulseLine } from "./pulse-archive.mjs";
 
 // Re-exported: the rules moved to copy-rules.mjs so the roundup can share them,
 // but the tests and compare script still read them from here.
@@ -341,7 +342,23 @@ function competitionLabel(league) {
   return name && !/friendl/i.test(name) ? name : null;
 }
 
-function lastResultFor(results, teamId, log, archiveGames = null) {
+// How long after a game its fans' pulse is still worth a line in an edition.
+const PULSE_NEWS_DAYS = 4;
+
+// The fans' verdict on that result, from editorial/pulse.json (the app's
+// full-time pulse, archived by scripts/pulse-archive.mjs), as a sentence added
+// to the trusted "Last result" fact — so the writer and the fact-checker both
+// see it, and neither prompt needs to know it exists. Empty unless enough of
+// THIS team's fans answered and the game is recent.
+function pulseForResult(r, teamId, pulse, now) {
+  if (!pulse || !r || !(now instanceof Date)) return "";
+  if (now.getTime() - Date.parse(r.date) > PULSE_NEWS_DAYS * 86_400_000) return "";
+  const key = pulseKey(r.date, TEAMS[r.home?.id]?.code, TEAMS[r.away?.id]?.code);
+  const line = pulseLine(pulse, key, TEAMS[teamId]?.code, TEAMS[teamId]?.name);
+  return line ? `. ${line}` : "";
+}
+
+function lastResultFor(results, teamId, log, archiveGames = null, pulse = null, now = null) {
   const r = (Array.isArray(results) ? results : [])
     .filter((g) => g?.home?.id === teamId || g?.away?.id === teamId)
     .filter((g) => g?.status?.short === "FT")
@@ -358,10 +375,10 @@ function lastResultFor(results, teamId, log, archiveGames = null) {
   const them = home ? r.away : r.home;
   const verb = us.score > them.score ? "beat" : us.score < them.score ? "lost to" : "drew with";
   const label = roundLabel(r, { results, log });
-  return `${verb} ${them.name} ${us.score}-${them.score}${label ? ` (${label})` : ""}`;
+  return `${verb} ${them.name} ${us.score}-${them.score}${label ? ` (${label})` : ""}${pulseForResult(r, teamId, pulse, now)}`;
 }
 
-export function buildParams(data, teamId, now = new Date(), archiveGames = null) {
+export function buildParams(data, teamId, now = new Date(), archiveGames = null, pulse = null) {
   const team = TEAMS[teamId];
   const fixture = nextFixtureFor(data?.fixtures, teamId, now);
   const row = (data?.log || []).find((l) => l.id === teamId) || {};
@@ -380,7 +397,7 @@ export function buildParams(data, teamId, now = new Date(), archiveGames = null)
     P: String(row.P ?? 0), W: String(row.W ?? 0), D: String(row.D ?? 0), L: String(row.L ?? 0),
     PF: String(row.PF ?? 0), PA: String(row.PA ?? 0),
     PD: pd > 0 ? `+${pd}` : String(pd),
-    LAST_RESULT: lastResultFor(data?.results, teamId, data?.log, archiveGames),
+    LAST_RESULT: lastResultFor(data?.results, teamId, data?.log, archiveGames, pulse, now),
   };
 }
 
@@ -1509,7 +1526,7 @@ Output the complete JSON again.`;
 // replays the recorded prompt on a paid model; main() passes a trace only when
 // DIGEST_PROMPTS_DIR is set.
 export async function generateEdition(calls, data, teamId, now, editorNotes, checkerNotes = "", pool = [], ladderCtx = null, recentRuns = [], trace = null) {
-  const params = buildParams(data, teamId, now, ladderCtx?.archive?.games?.[TEAMS[teamId]?.code]);
+  const params = buildParams(data, teamId, now, ladderCtx?.archive?.games?.[TEAMS[teamId]?.code], ladderCtx?.pulse);
   const { pack, shortlist, quiet, ladder, articleCount, poolCount, widenedCount } =
     await buildSourcePack(teamId, params.TEAM_NAME, now, pool, ladderCtx ? () => resolveLadder(ladderCtx, teamId, params, now) : null);
   const notesBlock = editorNotes
@@ -2172,6 +2189,9 @@ export async function main({ dryRun = false } = {}) {
   const ladderCtx = {
     backlog: await readBacklog(),
     archive: await readJsonOrNull(join(ROOT, "team-events-archive.json")),
+    // The full-time pulse archive: how each side's fans in the app took a
+    // result. Null when the file isn't there yet; nothing depends on it.
+    pulse: await readJsonOrNull(join(ROOT, "editorial", "pulse.json")),
     rankingStats: await readJsonOrNull(join(ROOT, "ranking-stats.json")),
     // Carried here rather than closed over: the backlog refresh at the end of
     // main() reads it from here.
