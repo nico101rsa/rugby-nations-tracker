@@ -104,6 +104,28 @@ export const WATCHERS = [
     workflow: "team-events-catchup.yml", label: "Team events catch-up (post-match)", maxAgeHours: 26,
     userFacing: false, coveredBy: "team-events.yml",
   },
+  // The Cloudflare cron Worker (worker/), the match-day scheduler. On 12 Nov
+  // 2026 it started 9 of the last 10 refresh runs and GitHub's own timer 1, so
+  // live scores rest on it, and until 13 Nov only the weekly health check
+  // looked at it, over 7 days: a Worker that died on a Friday went unseen
+  // through the weekend.
+  //
+  // It is not a workflow, so it is read through what it does (`aliveBy`): the
+  // newest refresh run whose title carries its name, whatever that run's
+  // result, since a fire that GitHub queued and then replaced still proves the
+  // Worker fired. It fires every 15 minutes; 3 hours of silence is not drift.
+  // The heal is the one thing a workflow can do for it: deploy it again
+  // (deploy-worker.yml also pushes the dispatch token afresh). That cannot fix
+  // an expired token, which is why it pages when the silence outlasts a
+  // redeploy: that fix needs Nico's hands (worker/README.md).
+  {
+    workflow: "deploy-worker.yml", label: "Match-day cron Worker (Cloudflare)", maxAgeHours: 3,
+    userFacing: true,
+    impact: "live scores wait on GitHub's own timer, which has been starting about one refresh in ten",
+    aliveBy: { workflow: "refresh-data.yml", titleIncludes: "cloudflare-worker" },
+    sign: "last refresh it started",
+    hint: "If the redeploy has not brought it back, the GitHub token it dispatches with has most likely expired: worker/README.md has the steps (a new token, then the GH_DISPATCH_TOKEN secret).",
+  },
 ];
 
 // A heal attempt must be at least this old before a still-overdue job pages.
@@ -162,7 +184,7 @@ export function formatReport(misses, now) {
     const when =
       m.lastSuccessAt === null
         ? "no successful run found at all"
-        : `last success ${m.lastSuccessAt.toISOString()} (${m.ageHours.toFixed(1)}h ago; limit ${m.maxAgeHours}h)`;
+        : `${m.sign ?? "last success"} ${m.lastSuccessAt.toISOString()} (${m.ageHours.toFixed(1)}h ago; limit ${m.maxAgeHours}h)`;
     lines.push(`• ${m.label} (${m.workflow}) — ${when}`);
   }
   lines.push(
@@ -191,6 +213,18 @@ export function summariseRuns(rows = []) {
     lastSuccessAt: success ? new Date(success.createdAt) : null,
     active: sorted.some((r) => ACTIVE.has(r.status)),
   };
+}
+
+// For a watcher that is not itself a workflow (`aliveBy`): the newest run of
+// the workflow it drives whose title names it. Any status counts. A fire that
+// was queued and then replaced by the next one is cancelled, and is still the
+// Worker firing.
+export function lastSignOfLife(rows = [], titleIncludes) {
+  const times = (rows ?? [])
+    .filter((r) => String(r.displayTitle ?? "").includes(titleIncludes))
+    .map((r) => new Date(r.createdAt).getTime())
+    .filter(Number.isFinite);
+  return times.length ? new Date(Math.max(...times)) : null;
 }
 
 // ---- self-heal ----------------------------------------------------------------
@@ -391,8 +425,10 @@ export function sydney(when) {
 
 const ageText = (m, now) =>
   m.lastSuccessAt
-    ? `last success ${sydney(m.lastSuccessAt)} (${((now - m.lastSuccessAt) / 3600000).toFixed(1)}h ago; limit ${m.maxAgeHours}h)`
-    : `no successful run in the last ${RUN_WINDOW} runs (limit ${m.maxAgeHours}h)`;
+    ? `${m.sign ?? "last success"} ${sydney(m.lastSuccessAt)} (${((now - m.lastSuccessAt) / 3600000).toFixed(1)}h ago; limit ${m.maxAgeHours}h)`
+    : m.sign
+      ? `no ${m.sign.replace(/^last /, "")} in the last ${RUN_WINDOW} runs (limit ${m.maxAgeHours}h)`
+      : `no successful run in the last ${RUN_WINDOW} runs (limit ${m.maxAgeHours}h)`;
 
 // True when the job did run successfully during its overdue streak (the
 // re-runs work) but keeps going stale between watchdog runs.
@@ -420,6 +456,7 @@ export function pageReport(paging, heals, now, repoUrl = "") {
       }
     }
     if (m.impact) lines.push(`  Meanwhile in the app: ${m.impact}.`);
+    if (m.hint) lines.push(`  ${m.hint}`);
     if (repoUrl) lines.push(`  Runs: ${repoUrl}/actions/workflows/${m.workflow}`);
   }
   lines.push(
@@ -630,6 +667,7 @@ export function buildStatus({ now, misses, paging, heals, coverage, repeats, lad
     overdue: misses.map((m) => ({
       workflow: m.workflow, label: m.label, userFacing: Boolean(m.userFacing), maxAgeHours: m.maxAgeHours,
       lastSuccessAt: iso(m.lastSuccessAt), paging: pagingSet.has(m.workflow),
+      ...(m.sign ? { sign: m.sign } : {}),
     })),
     unknown: (unknown ?? []).map((u) => ({ workflow: u.workflow, label: u.label ?? u.workflow, error: u.error ?? null })),
     heals: heals ?? {},
@@ -685,7 +723,7 @@ export function renderStatusMarkdown(status) {
       : "";
     L.push(
       `- **${o.label}** (\`${o.workflow}\`${o.userFacing ? ", user-facing" : ", not user-facing — never pages"}) — ` +
-        `last success ${sydney(o.lastSuccessAt)}; limit ${o.maxAgeHours}h.${heal}`,
+        `${o.sign ?? "last success"} ${sydney(o.lastSuccessAt)}; limit ${o.maxAgeHours}h.${heal}`,
     );
   }
   for (const u of status.unknown ?? []) {
@@ -785,7 +823,7 @@ export async function syncPageIssue(paging, heals, now, repoUrl = "", { stored =
 async function recentRuns(workflow) {
   // gh uses GH_TOKEN (the workflow's GITHUB_TOKEN) in Actions.
   return JSON.parse(await gh([
-    "run", "list", "--workflow", workflow, "--limit", String(RUN_WINDOW), "--json", "createdAt,status,conclusion",
+    "run", "list", "--workflow", workflow, "--limit", String(RUN_WINDOW), "--json", "createdAt,status,conclusion,displayTitle",
   ]));
 }
 
@@ -813,7 +851,9 @@ async function main() {
   for (const w of WATCHERS) {
     try {
       const s = summariseRuns(await recentRuns(w.workflow));
-      latest[w.workflow] = s.lastSuccessAt ?? (await lastSuccessFallback(w.workflow));
+      latest[w.workflow] = w.aliveBy
+        ? lastSignOfLife(await recentRuns(w.aliveBy.workflow), w.aliveBy.titleIncludes)
+        : s.lastSuccessAt ?? (await lastSuccessFallback(w.workflow));
       active[w.workflow] = s.active;
     } catch (err) {
       // UNKNOWN, not a miss: counted as "no success at all", two flaky API

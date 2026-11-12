@@ -8,7 +8,7 @@ import {
   WATCHERS as LIVE_WATCHERS, PAGE_AFTER_HEAL_HOURS, summariseRuns, selectHeals, dispatchArgs, nextHeals,
   pagingMisses, pageSignature, pagedIn, decidePageAction, pageReport, sydney,
   statusLine, appendHistory, buildStatus, renderStatusMarkdown, writeStatus,
-  nextPageRecord, heldPages, syncPageIssue,
+  nextPageRecord, heldPages, syncPageIssue, lastSignOfLife,
 } from "./watchdog.mjs";
 import { PUBLISH_TEAMSHEETS } from "./generate-digests.mjs";
 
@@ -219,7 +219,8 @@ test("pagingMisses: only a user-facing job still overdue after an EARLIER heal p
 
 test("two-day scenario: day 1 heals silently, day 2 pages once, day 3 recovery closes", () => {
   const latestFail = { "generate-digests.yml": new Date("2026-09-30T23:00:00Z"), "refresh-data.yml": new Date("2026-10-01T00:30:00Z"),
-    "team-events.yml": new Date("2026-09-29T06:20:44Z"), "team-events-catchup.yml": new Date("2026-09-30T14:00:00Z") };
+    "team-events.yml": new Date("2026-09-29T06:20:44Z"), "team-events-catchup.yml": new Date("2026-09-30T14:00:00Z"),
+    "deploy-worker.yml": new Date("2026-10-01T01:00:00Z") };
   const day1 = new Date("2026-10-01T01:16:00Z");
   const m1 = evaluate(day1, latestFail);
   assert.deepEqual(m1.map((x) => x.workflow), ["team-events.yml"]);
@@ -229,7 +230,7 @@ test("two-day scenario: day 1 heals silently, day 2 pages once, day 3 recovery c
   assert.equal(decidePageAction(null, []), "noop"); // day 1: nobody is pinged
 
   const day2 = new Date("2026-10-02T01:40:00Z");
-  const m2 = evaluate(day2, { ...latestFail, "generate-digests.yml": new Date("2026-10-01T23:32:00Z"), "refresh-data.yml": new Date("2026-10-02T01:30:00Z"), "team-events-catchup.yml": new Date("2026-10-01T14:00:00Z") });
+  const m2 = evaluate(day2, { ...latestFail, "generate-digests.yml": new Date("2026-10-01T23:32:00Z"), "refresh-data.yml": new Date("2026-10-02T01:30:00Z"), "team-events-catchup.yml": new Date("2026-10-01T14:00:00Z"), "deploy-worker.yml": new Date("2026-10-02T01:30:00Z") });
   const p2 = pagingMisses(m2, heals1, day2);
   assert.deepEqual(p2.map((x) => x.workflow), ["team-events.yml"]);
   assert.equal(decidePageAction(null, p2), "create"); // the one ping
@@ -237,7 +238,7 @@ test("two-day scenario: day 1 heals silently, day 2 pages once, day 3 recovery c
   const issue = { number: 140, body: `x\n<!-- page: ${pageSignature(p2)} -->` };
 
   const day3 = new Date("2026-10-03T01:10:00Z");
-  const m3 = evaluate(day3, { ...latestFail, "team-events.yml": new Date("2026-10-02T06:22:17Z"), "generate-digests.yml": new Date("2026-10-02T23:24:00Z"), "refresh-data.yml": new Date("2026-10-03T01:00:00Z"), "team-events-catchup.yml": new Date("2026-10-02T14:00:00Z") });
+  const m3 = evaluate(day3, { ...latestFail, "team-events.yml": new Date("2026-10-02T06:22:17Z"), "generate-digests.yml": new Date("2026-10-02T23:24:00Z"), "refresh-data.yml": new Date("2026-10-03T01:00:00Z"), "team-events-catchup.yml": new Date("2026-10-02T14:00:00Z"), "deploy-worker.yml": new Date("2026-10-03T01:00:00Z") });
   assert.deepEqual(m3, []);
   assert.equal(decidePageAction(issue, pagingMisses(m3, heals2, day3)), "close");
 });
@@ -832,4 +833,56 @@ test("November: a manual watchdog re-run soon after a heal still does not page",
     assert.deepEqual(r.misses.map((m) => m.workflow), ["team-events.yml"]); // still overdue...
     assert.deepEqual(r.paging, [], `${hoursLater}h after the heal`); // ...but too soon to page
   }
+});
+
+// ---- the Cloudflare cron Worker (13 Nov 2026) ---------------------------------
+// Until then only the weekly health check looked at it, over 7 days, while it
+// was starting 9 refresh runs in 10.
+
+const WORKER = LIVE_WATCHERS.find((w) => w.aliveBy);
+
+test("the Worker is watched through the refresh runs it starts, and healed by a redeploy", () => {
+  assert.equal(WORKER.workflow, "deploy-worker.yml");
+  assert.deepEqual(WORKER.aliveBy, { workflow: "refresh-data.yml", titleIncludes: "cloudflare-worker" });
+  assert.equal(WORKER.userFacing, true);
+  assert.deepEqual(dispatchArgs(WORKER), ["workflow", "run", "deploy-worker.yml", "--ref", "main"]);
+});
+
+test("lastSignOfLife: the newest run the Worker started, whatever became of it", () => {
+  const rows = [
+    { createdAt: "2026-11-14T06:00:00Z", conclusion: "success", displayTitle: "Refresh match data (schedule)" },
+    { createdAt: "2026-11-14T05:45:00Z", conclusion: "cancelled", displayTitle: "Refresh match data (cloudflare-worker)" },
+    { createdAt: "2026-11-14T05:30:00Z", conclusion: "success", displayTitle: "Refresh match data (cloudflare-worker)" },
+    { createdAt: "2026-11-14T05:50:00Z", conclusion: "success", displayTitle: "Refresh match data (watchdog)" },
+  ];
+  // The replaced (cancelled) fire still proves the Worker fired.
+  assert.equal(lastSignOfLife(rows, "cloudflare-worker").toISOString(), "2026-11-14T05:45:00.000Z");
+  // GitHub's own timer and the watchdog's re-run are not the Worker.
+  assert.equal(lastSignOfLife(rows.filter((r) => !r.displayTitle.includes("cloudflare")), "cloudflare-worker"), null);
+  assert.equal(lastSignOfLife([], "cloudflare-worker"), null);
+});
+
+test("a silent Worker: redeployed on the first run, paged on the next if still silent", () => {
+  const dead = new Date("2026-11-13T18:00:00Z"); // Sat 05:00 Sydney time: its last fire
+  const run1 = new Date("2026-11-14T00:30:00Z");
+  const fresh = (now) => ({ ...freshAll(now), "deploy-worker.yml": dead });
+  const m1 = evaluate(run1, fresh(run1));
+  assert.deepEqual(m1.map((x) => x.workflow), ["deploy-worker.yml"]);
+  assert.deepEqual(pagingMisses(m1, {}, run1), []); // the redeploy gets its chance first
+  const plan1 = selectHeals(m1, {});
+  assert.deepEqual(plan1.dispatch, ["deploy-worker.yml"]);
+  const heals1 = nextHeals({}, m1, plan1, { "deploy-worker.yml": { ok: true } }, run1);
+
+  const run2 = new Date("2026-11-14T10:20:00Z"); // November's second run
+  const m2 = evaluate(run2, fresh(run2));
+  const p2 = pagingMisses(m2, heals1, run2);
+  assert.deepEqual(p2.map((x) => x.workflow), ["deploy-worker.yml"]);
+  const text = pageReport(p2, heals1, run2);
+  assert.match(text, /last refresh it started Sat 14 Nov 2026, 05:00 AEDT/);
+  assert.match(text, /token it dispatches with has most likely expired/);
+  assert.doesNotMatch(text, /last success/);
+
+  // It fires again: nothing is overdue, so the page closes by itself.
+  const run3 = new Date("2026-11-14T22:30:00Z");
+  assert.deepEqual(evaluate(run3, { ...freshAll(run3), "deploy-worker.yml": new Date(run3 - 10 * 60000) }), []);
 });
