@@ -1,0 +1,86 @@
+name: Deploy fans worker
+
+# Deploys fans-worker/ (the full-time pulse) to Cloudflare. Separate from
+# deploy-worker.yml on purpose: that one ships the match-day scheduler, and a
+# fan-facing change must never be able to hold it up or break it.
+#
+# The tests run first, against real SQLite. After the deploy, the job asks the
+# live Worker's /health, which writes, reads and removes one row: a deploy
+# whose storage doesn't work fails here, in a log, not on a phone.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "fans-worker/**"
+      - ".github/workflows/deploy-fans-worker.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-fans-worker
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  FANS_URL: https://rugby-tracker-fans.4jc94jpbb7.workers.dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Skip unless the Cloudflare token exists
+        id: gate
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -z "$CF_TOKEN" ]; then
+            echo "::notice::Fans worker not deployed: CLOUDFLARE_API_TOKEN is missing."
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Tests
+        run: node --test fans-worker/src/*.test.mjs
+
+      - name: Deploy
+        if: steps.gate.outputs.ready == 'true'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: fans-worker
+          # v3 of the action defaults to wrangler 3.90, which can't read
+          # wrangler.jsonc (see deploy-worker.yml).
+          wranglerVersion: "4"
+          command: deploy
+
+      - name: Ask the live Worker whether it works
+        if: steps.gate.outputs.ready == 'true'
+        run: |
+          # A new workers.dev name can take a minute to answer.
+          for i in 1 2 3 4 5 6 7 8 9 10; do
+            body=$(curl -sS -m 15 "$FANS_URL/health" || true)
+            echo "health (try $i): $body"
+            if echo "$body" | grep -q '"ok":true'; then ok=1; break; fi
+            sleep 12
+          done
+          [ -n "$ok" ] || { echo "::error::the fans worker did not report healthy storage"; exit 1; }
+          echo "counts: $(curl -sS -m 15 "$FANS_URL/pulse")"
+          # The app calls from capacitor://localhost: the preflight must pass.
+          code=$(curl -sS -m 15 -o /dev/null -w '%{http_code}' -X OPTIONS \
+            -H 'Origin: capacitor://localhost' -H 'Access-Control-Request-Method: POST' \
+            -H 'Access-Control-Request-Headers: content-type' "$FANS_URL/pulse")
+          echo "preflight: $code"
+          [ "$code" = "204" ] || { echo "::error::CORS preflight answered $code"; exit 1; }
+          # A vote the rules refuse must be refused by the live Worker too.
+          code=$(curl -sS -m 15 -o /dev/null -w '%{http_code}' -X POST -H 'content-type: application/json' \
+            -d '{"match":"2026-11-21 ENG-NZL","team":"FRA","mood":"up","voter":"00000000000000000000000000000000"}' "$FANS_URL/pulse")
+          echo "bad vote: $code"
+          [ "$code" = "400" ] || { echo "::error::a bad vote answered $code, expected 400"; exit 1; }

@@ -128,6 +128,22 @@
   switch is off), and there is no switch to stop them; if you have questions
   about them, use the contact address below.</p>
 
+  <h2>The full-time pulse</h2>
+  <p>From the version after 1.3.16, after a game your followed team has
+  played, the app may ask how you took it, with three faces to choose from.
+  If you tap one, the app sends that answer to a small counting service the
+  developer runs on Cloudflare: which game it was, which of the two teams you
+  follow, which face you tapped, and a random number the app makes up for
+  that one game, so that changing your mind replaces your first answer
+  instead of counting twice. That number is different for every game, is not
+  the install number described above, and is not sent to Aptabase. Nothing
+  else is stored with the answer: no name, no IP address, no country and no
+  time. Cloudflare, which runs the service, sees your IP address while it
+  handles the request, as any web server does; the counting service does not
+  keep it. The app then shows the totals for each team's fans. If you never tap
+  a face, nothing is sent; reading the totals sends only the request for
+  them.</p>
+
   <h2>Match data</h2>
   <p>When you use the app, match fixtures, results and standings are fetched
   from data files we publish on GitHub Pages, which we build from third-party
