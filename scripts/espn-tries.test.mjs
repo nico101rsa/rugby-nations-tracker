@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { fetchEspnTries, tryCandidates, serialiseCache, RECENT_HOURS, FETCH_TIMEOUT_MS } from "./espn-tries.mjs";
+import { fetchEspnTries, tryCandidates, serialiseCache, RECENT_HOURS, RECHECK_DAYS, FETCH_TIMEOUT_MS } from "./espn-tries.mjs";
 
 const REGISTRY = {
   competitions: [
@@ -83,7 +83,7 @@ test("a summary with 3 tries + a penalty try home and 2 tries away caches 4-2 fr
   const { urls, fetchJson } = stub(() => summary());
   const out = await run([row("espn-603600")], fetchJson);
   assert.deepEqual(urls, ["https://site.api.espn.com/apis/site/v2/sports/rugby/180659/summary?event=603600"]);
-  assert.deepEqual(out.cache["espn-603600"], { home: 4, away: 2, league: 180659, source: "summary", at: "2027-02-06T00:00:00.000Z" });
+  assert.deepEqual(out.cache["espn-603600"], { home: 4, away: 2, league: 180659, source: "summary", checked: false, at: "2027-02-06T00:00:00.000Z" });
   assert.equal(out.cached, 1);
   assert.equal(out.fetched, 1);
 });
@@ -119,7 +119,7 @@ test("empty details fall back to the competitors' statistics", async () => {
   });
   const out = await run([row("espn-603601")], fetchJson);
   assert.equal(urls[1], "https://sports.core.api.espn.com/v2/sports/rugby/leagues/180659/events/603601");
-  assert.deepEqual(out.cache["espn-603601"], { home: 4, away: 1, league: 180659, source: "statistics", at: "2027-02-06T00:00:00.000Z" });
+  assert.deepEqual(out.cache["espn-603601"], { home: 4, away: 1, league: 180659, source: "statistics", checked: false, at: "2027-02-06T00:00:00.000Z" });
   assert.equal(out.fetched, 4);
 });
 
@@ -223,4 +223,75 @@ test("the default fetch carries a timeout, so a hung ESPN request can't hold up 
   assert.ok(seen.length >= 1);
   for (const s of seen) assert.ok(s instanceof AbortSignal, "every request is abortable");
   assert.ok(FETCH_TIMEOUT_MS > 0 && FETCH_TIMEOUT_MS <= 30_000, "well under one 3-minute burst pass");
+});
+
+// ---- checked counts (13 Nov 2026: Scotland a bonus point short for four months) ----
+
+// Rows that sum to the row's 24-20: IRE 3 converted tries + a penalty, ENG 2
+// converted tries + 2 penalties.
+const ADDS_UP = [
+  det("Try", "3"), det("Conversion", "3"), det("Try", "3"), det("Conversion", "3"), det("Try", "3"), det("Conversion", "3"), det("Penalty Goal", "3"),
+  det("Try", "1"), det("Conversion", "1"), det("Try", "1"), det("Conversion", "1"), det("Penalty Goal", "1"), det("Penalty Goal", "1"),
+];
+// The same game with one English try and its conversion missing from the rows: 24-13.
+const SHORT = ADDS_UP.filter((_, i) => i !== 9 && i !== 10);
+
+test("rows that sum to the final score are cached as checked", async () => {
+  const { fetchJson } = stub(() => summary({ details: ADDS_UP }));
+  const out = await run([row("espn-1")], fetchJson);
+  assert.deepEqual(out.cache["espn-1"], { home: 3, away: 2, league: 180659, source: "summary", checked: true, at: "2027-02-06T00:00:00.000Z" });
+});
+
+test("rows that do not sum to the score are still cached, unchecked, so the table does not wait", async () => {
+  const { fetchJson } = stub(() => summary({ details: SHORT }));
+  const out = await run([row("espn-1")], fetchJson);
+  assert.equal(out.cache["espn-1"].home, 3);
+  assert.equal(out.cache["espn-1"].away, 1);
+  assert.equal(out.cache["espn-1"].checked, false);
+});
+
+test("an unchecked count is asked about again, and a read that adds up replaces it", async () => {
+  const cache = { "espn-1": { home: 3, away: 1, league: 180659, source: "summary", checked: false, at: "x" } };
+  const { urls, fetchJson } = stub(() => summary({ details: ADDS_UP }));
+  const out = await run([row("espn-1")], fetchJson, { cache });
+  assert.equal(urls.length, 1);
+  assert.equal(out.cached, 1);
+  assert.deepEqual(out.cache["espn-1"], { home: 3, away: 2, league: 180659, source: "summary", checked: true, at: "2027-02-06T00:00:00.000Z" });
+});
+
+test("asked again and still unproven with the same count: the entry is left as it was", async () => {
+  const cache = { "espn-1": { home: 3, away: 1, league: 180659, source: "summary", checked: false, at: "x" } };
+  const { urls, fetchJson } = stub(() => summary({ details: SHORT }));
+  const out = await run([row("espn-1")], fetchJson, { cache });
+  assert.equal(urls.length, 1);
+  assert.equal(out.cached, 0);
+  assert.deepEqual(out.cache, cache);
+});
+
+test("a checked count, a hand-confirmed one and one from before the check are never asked about again", () => {
+  const cache = {
+    "espn-1": { home: 3, away: 2, checked: true },
+    "espn-2": { home: 3, away: 2, checked: true, source: "hand" },
+    "espn-3": { home: 3, away: 2 },
+  };
+  assert.deepEqual(tryCandidates([row("espn-1"), row("espn-2"), row("espn-3")], REGISTRY, cache, { nowMs: NOW().getTime() }), []);
+});
+
+test("an unchecked count stops being asked about RECHECK_DAYS after kickoff; the integrity check owns it from there", () => {
+  const cache = { "espn-1": { home: 3, away: 1, checked: false } };
+  const ko = Date.parse(row("espn-1").date);
+  const ids = (nowMs, over) => tryCandidates([row("espn-1")], REGISTRY, cache, { nowMs, ...over }).map((c) => c.row.id);
+  assert.deepEqual(ids(ko + (RECHECK_DAYS - 1) * 86400000), ["espn-1"]);
+  assert.deepEqual(ids(ko + (RECHECK_DAYS + 1) * 86400000), []);
+  // The frequent callers (--recent) re-ask only near kickoff, as they do for a miss.
+  assert.deepEqual(ids(ko + 2 * 86400000, { since: ko + 2 * 86400000 - RECENT_HOURS * 3600000 }), []);
+});
+
+test("ESPN listing our away side as home: the score is checked the same way round as the rows", async () => {
+  // ESPN home = ENG (1), our home = IRE. ESPN's rows give ENG 20, IRE 24.
+  const { fetchJson } = stub(() => summary({ details: ADDS_UP, homeId: "1", awayId: "3" }));
+  const out = await run([row("espn-1")], fetchJson);
+  assert.equal(out.cache["espn-1"].checked, true);
+  assert.equal(out.cache["espn-1"].home, 3);
+  assert.equal(out.cache["espn-1"].away, 2);
 });

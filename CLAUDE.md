@@ -104,9 +104,21 @@ Scotland a point short, four months after the game. `stats.json` holds the same
 games with events that sum exactly to the final score. `scripts/try-counts.mjs`
 lays every reconciled count over the cache: inside `scrapeTries` whenever the
 log is built, and as a step of every refresh-data tick before build-standings.
-A correction that moves a try bonus point files a silent issue. The other
-competitions' cache (`match-tries-espn.json`) has no box score behind it yet;
-it needs the same check before the Six Nations (5 Feb 2027).
+A correction that moves a try bonus point files a silent issue.
+
+**Every other table's try count says whether it is checked.** The Six Nations,
+the World Cup and any competition added later have no second vendor, so
+`espn-tries.mjs` checks ESPN against the score: an entry in
+`match-tries-espn.json` is `checked: true` when ESPN's scoring rows sum exactly
+to the final score in fixtures.json (`summaryTries` in `try-counts.mjs`, the
+same gate stats.json is published through, penalty tries the rows leave out
+included). An unchecked count is still used, is asked about again for seven
+days, and two days after kickoff the daily integrity check raises it
+(`tries-unchecked`) with the count and the score. Settle one from a match
+report: set the counts and `"checked": true, "source": "hand"`. The Nations
+Championship's first read goes through the same reader, so a count ESPN's rows
+prove is right on the night. Limit: the gate has only been run on recorded
+rows, not on a live Six Nations weekend; the first is Sat 6 Feb 2027 (Sydney).
 
 The World Cup entry adds, from its first game (Fri 1 Oct 2027, 20:45 Sydney
 time), `q` on every pool row, the best third-placed teams and the 16-slot

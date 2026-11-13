@@ -15,7 +15,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { checkTries, readStats } from "./try-counts.mjs";
+import { checkTries, readStats, summaryTries } from "./try-counts.mjs";
 
 const ESPN = "https://site.api.espn.com/apis/site/v2/sports/rugby/17567";
 const CACHE = join(dirname(fileURLToPath(import.meta.url)), "match-tries.json");
@@ -30,16 +30,9 @@ async function espn(path) {
   return r.json();
 }
 
-// Exported for espn-tries.mjs, which counts every other competition's tries
-// from the same ESPN summary shape — one counting rule, not two.
-export function countTries(details, homeId) {
-  const t = { home: 0, away: 0 };
-  for (const d of details || []) {
-    if (!/^(penalty )?try$/i.test(d.type?.text || "")) continue;
-    t[String(d.team?.id) === String(homeId) ? "home" : "away"]++;
-  }
-  return t;
-}
+// The counting rule lives in try-counts.mjs with the check that goes with it;
+// re-exported because this is where it has always been imported from.
+export { countTries } from "./try-counts.mjs";
 
 // finished: slim/raw api-sports games (needs id, date, home team name).
 // Returns { [apiSportsGameId]: { home, away } }, updating the JSON cache.
@@ -63,11 +56,13 @@ export async function scrapeTries(finished) {
         if (!ev || !ev.status?.type?.completed) continue;
         const summary = await espn(`summary?event=${ev.id}`);
         const comp = summary.header?.competitions?.[0];
-        const homeId = comp?.competitors?.find((c) => c.homeAway === "home")?.id;
-        const details = comp?.details;
-        if (!details?.length || homeId == null) continue;
-        cache[g.id] = countTries(details, homeId);
-        console.log(`tries: game ${g.id} (${g.teams?.home?.name ?? g.home?.name}) → ${cache[g.id].home}-${cache[g.id].away} (ESPN ${ev.id})`);
+        // Checked against the final score where ESPN's rows add up to it
+        // (a penalty try with no row is found that way, on the night); the
+        // labelled rows otherwise, and stats.json settles it later.
+        const read = summaryTries(comp, g.scores?.home ?? g.home?.score, g.scores?.away ?? g.away?.score);
+        if (!read) continue;
+        cache[g.id] = read.counts;
+        console.log(`tries: game ${g.id} (${g.teams?.home?.name ?? g.home?.name}) → ${cache[g.id].home}-${cache[g.id].away} (ESPN ${ev.id}, ${read.checked ? "adds up to the score" : "rows do not add up to the score: unchecked"})`);
       }
     } catch (e) {
       console.warn(`try scrape failed for ${day}: ${e.message} — using cached counts`);

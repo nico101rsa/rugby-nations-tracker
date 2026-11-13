@@ -42,6 +42,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { postIssue } from "./notify.mjs";
+import { espnGate } from "./fetch-stats.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 export const CACHE_PATH = join(ROOT, "scripts", "match-tries.json");
@@ -51,15 +52,62 @@ export const STATS_PATH = join(ROOT, "stats.json");
 const BONUS_AT = 4;
 const TRY_TYPES = new Set(["try", "penaltyTry"]);
 
+// ---- Reading tries from an ESPN summary -------------------------------------
+//
+// Every competition's first read comes through here (scrape-tries.mjs for the
+// Nations Championship, espn-tries.mjs for the rest), so it is checked the
+// same way everywhere.
+
+// The rows typed "try" or "penalty try", by team. This is the count as ESPN
+// labels it, and the one that was short in 2026.
+export function countTries(details, homeId) {
+  const t = { home: 0, away: 0 };
+  for (const d of details || []) {
+    if (!/^(penalty )?try$/i.test(d.type?.text || "")) continue;
+    t[String(d.team?.id) === String(homeId) ? "home" : "away"]++;
+  }
+  return t;
+}
+
+const tally = (scoring) => {
+  const c = { home: 0, away: 0 };
+  for (const e of scoring) if (TRY_TYPES.has(e?.type) && (e.team === "home" || e.team === "away")) c[e.team]++;
+  return c;
+};
+
+// One game's tries from ESPN's summary competition (`header.competitions[0]`),
+// and whether the count is proven.
+//
+//   { counts: { home, away }, checked }      or null when there are no rows
+//
+// `checked: true` means ESPN's scoring rows sum exactly to the final score we
+// hold from the score feed (fetch-stats.mjs espnGate, penalty tries the rows
+// leave out included), and the count is the tries in that list. Otherwise the
+// count is the labelled rows and nothing vouches for it: a missing try and a
+// missing penalty goal look the same from here. Home and away are ESPN's.
+export function summaryTries(comp, homeFinal, awayFinal) {
+  const details = Array.isArray(comp?.details) ? comp.details : [];
+  if (!details.length) return null;
+  const ids = (side) => {
+    const c = comp?.competitors?.find((x) => x.homeAway === side);
+    return [c?.id, c?.team?.id].filter((x) => x != null);
+  };
+  if (!ids("home").length) return null;
+  const labelled = countTries(details, String(ids("home").at(-1)));
+  if (homeFinal == null || awayFinal == null) return { counts: labelled, checked: false };
+  const gate = espnGate(details, ids("home"), ids("away"), homeFinal, awayFinal);
+  return gate.ok ? { counts: tally(gate.scoring), checked: true } : { counts: labelled, checked: false };
+}
+
+// ---- The Nations Championship cache against the box scores ------------------
+
 // stats.json -> { [apiSportsGameId]: { home, away } } for reconciled matches
 // only. A penalty try is a try, as everywhere else in this repo.
 export function reconciledTries(stats) {
   const out = {};
   for (const m of stats?.matches ?? []) {
     if (!m?.reconciled || m.id == null || !Array.isArray(m.scoring)) continue;
-    const c = { home: 0, away: 0 };
-    for (const e of m.scoring) if (TRY_TYPES.has(e?.type) && (e.team === "home" || e.team === "away")) c[e.team]++;
-    out[m.id] = c;
+    out[m.id] = tally(m.scoring);
   }
   return out;
 }

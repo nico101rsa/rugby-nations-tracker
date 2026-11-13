@@ -10,12 +10,29 @@
 //
 // For each finished, uncached competition row (oldest first):
 //   1. GET site.api.espn.com/apis/site/v2/sports/rugby/<league>/summary?event=<n>.
-//      It must say completed; tries are counted from the scoring `details`
-//      with scrape-tries.mjs countTries ("try" and "penalty try", by team).
+//      It must say completed; tries are read from the scoring `details`
+//      with try-counts.mjs summaryTries, which also says whether the count
+//      is CHECKED: ESPN's scoring rows sum exactly to the final score in
+//      fixtures.json (a penalty try the rows leave out included).
 //   2. No details -> each competitor's `statistics.$ref` on the core-API
 //      event, read with fetch-form-stats.mjs extractEspnStats (the path
 //      verified for the Six Nations on 2026-07-16).
 //   3. Neither -> stays uncached and a later run tries again.
+//
+// Every entry says `checked: true | false`. An unchecked count is still used
+// (the table should not wait on it: five of 24 were short in 2026, nineteen
+// were right), but it is not final:
+//   - it is asked again like a miss (below) until ESPN's rows add up, for
+//     RECHECK_DAYS after kickoff. A later read that adds up replaces it; one
+//     that still does not, and counts differently, replaces it unchecked.
+//   - still unchecked two days after kickoff, the daily integrity check
+//     (check-competitions.mjs `tries-unchecked`) raises it with the count and
+//     the score. Settle it from a match report by setting the counts and
+//     `"checked": true, "source": "hand"` in the cache: a checked entry is
+//     never asked about again.
+// The statistics path has no rows to add up, so it is always unchecked.
+// The Nations Championship has the same first read and a second vendor's box
+// score behind it instead (try-counts.mjs checkTries).
 // Never more than `max` summary fetches a run; an HTTP or JSON error is
 // logged and skipped, never thrown. A run with nothing new scored makes ZERO
 // requests — the no-op path costs nothing (CLAUDE.md).
@@ -34,7 +51,7 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { countTries } from "./scrape-tries.mjs";
+import { summaryTries } from "./try-counts.mjs";
 import { extractEspnStats } from "./fetch-form-stats.mjs";
 import { ESPN_CODES } from "./build-competitions.mjs";
 
@@ -45,15 +62,19 @@ const SITE = "https://site.api.espn.com/apis/site/v2/sports/rugby";
 const CORE = "https://sports.core.api.espn.com/v2/sports/rugby/leagues";
 
 export const RECENT_HOURS = 6;
+// How long an unchecked count is asked about again. ESPN corrects a summary
+// within days or not at all; after this the integrity check's issue owns it.
+export const RECHECK_DAYS = 7;
 
 const eventIdOf = (id) => (/^espn-(\d+)$/.exec(String(id ?? "")) ?? [])[1] ?? null;
 
 // fixtures.json rows that need a fetch: competition games other than the
-// Nations Championship, ESPN-keyed, with a final score, not live, not cached,
-// in a registered competition that names its ESPN league. Oldest first, so a
+// Nations Championship, ESPN-keyed, with a final score, not live, in a
+// registered competition that names its ESPN league, and either not cached or
+// cached unchecked within RECHECK_DAYS of kickoff. Oldest first, so a
 // backlog drains in kickoff order under the `max` cap.
 // `since` (epoch ms, optional): skip games that kicked off before it (--recent).
-export function tryCandidates(fixtures, registry, cache = {}, { since = null } = {}) {
+export function tryCandidates(fixtures, registry, cache = {}, { since = null, nowMs = Date.now() } = {}) {
   const leagues = new Map((registry?.competitions ?? []).map((c) => [c.key, c.espnLeagueId]));
   const rows = Array.isArray(fixtures) ? fixtures : fixtures?.fixtures ?? [];
   const out = [];
@@ -64,7 +85,10 @@ export function tryCandidates(fixtures, registry, cache = {}, { since = null } =
     if (!n) continue; // seed-* rows have no ESPN event yet
     if (f.homeScore == null || f.awayScore == null) continue;
     if (f.status?.live) continue;
-    if (Object.hasOwn(cache, f.id)) continue;
+    if (Object.hasOwn(cache, f.id)) {
+      if (cache[f.id]?.checked !== false) continue; // checked, or from before the check existed
+      if (!(nowMs - Date.parse(f.date) <= RECHECK_DAYS * 86400000)) continue;
+    }
     if (since != null && !(Date.parse(f.date) >= since)) continue;
     const league = leagues.get(f.comp.key);
     if (league == null) continue;
@@ -96,7 +120,7 @@ export async function fetchEspnTries({
   let fetched = 0;
   let summaries = 0;
   let cached = 0;
-  for (const { row, eventId, league } of tryCandidates(fixtures, registry, cache, { since })) {
+  for (const { row, eventId, league } of tryCandidates(fixtures, registry, cache, { since, nowMs: now().getTime() })) {
     if (summaries >= max) break;
     summaries++;
     fetched++;
@@ -113,10 +137,18 @@ export async function fetchEspnTries({
     const away = comp.competitors?.find((c) => c.homeAway === "away");
     if (!home || !away) continue;
 
+    // fixtures.json lists home/away as ESPN does, so this is a guard, not a
+    // routine step: if ESPN's home side is our away side, swap.
+    const espnHome = ESPN_CODES[competitorTeamId(home)];
+    const espnAway = ESPN_CODES[competitorTeamId(away)];
+    const flipped = espnHome && espnAway && espnHome === row.away?.code && espnAway === row.home?.code;
+
     let counts = null;
     let source = null;
-    if (Array.isArray(comp.details) && comp.details.length) {
-      counts = countTries(comp.details, competitorTeamId(home));
+    let checked = false;
+    const read = summaryTries(comp, flipped ? row.awayScore : row.homeScore, flipped ? row.homeScore : row.awayScore);
+    if (read) {
+      ({ counts, checked } = read);
       source = "summary";
     } else {
       try {
@@ -139,15 +171,13 @@ export async function fetchEspnTries({
     }
     if (!counts) continue;
 
-    // fixtures.json lists home/away as ESPN does, so this is a guard, not a
-    // routine step: if ESPN's home side is our away side, swap.
-    const espnHome = ESPN_CODES[competitorTeamId(home)];
-    const espnAway = ESPN_CODES[competitorTeamId(away)];
-    const flipped = espnHome && espnAway && espnHome === row.away?.code && espnAway === row.home?.code;
     const [h, a] = flipped ? [counts.away, counts.home] : [counts.home, counts.away];
-    next[row.id] = { home: h, away: a, league, source, at: now().toISOString() };
+    // Asked again and still unproven with the same count: nothing new to say.
+    const prev = cache[row.id];
+    if (prev && !checked && prev.home === h && prev.away === a) continue;
+    next[row.id] = { home: h, away: a, league, source, checked, at: now().toISOString() };
     cached++;
-    log.log?.(`espn-tries: ${row.id} ${row.home?.code} ${h}-${a} ${row.away?.code} tries (${source})`);
+    log.log?.(`espn-tries: ${row.id} ${row.home?.code} ${h}-${a} ${row.away?.code} tries (${source}, ${checked ? "adds up to the score" : "unchecked"}${prev ? `; was ${prev.home}-${prev.away}` : ""})`);
   }
   return { cache: next, fetched, cached };
 }
