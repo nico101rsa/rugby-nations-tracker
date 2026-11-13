@@ -887,6 +887,17 @@
             "France": 7,
             "South Africa": 4
           }
+        },
+        {
+          "date": "2026-11-14",
+          "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
+          "items": 25,
+          "hits": {
+            "France": 11,
+            "Wales": 1,
+            "Argentina": 1,
+            "South Africa": 6
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1257,7 +1268,7 @@
       ],
       "why": "Fiji's pack had no NEW Fiji-centred story, and a Fiji-based daily's rugby desk could supply named selection and debut detail.",
       "proposed": "2026-11-08",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1283,8 +1294,13 @@
         {
           "date": "2026-11-13",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-14",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-14"
     },
     {
       "outlet": "Scottish Rugby (official news)",
@@ -1316,6 +1332,10 @@
         },
         {
           "date": "2026-11-13",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-14",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -1351,6 +1371,10 @@
         {
           "date": "2026-11-13",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-14",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1382,6 +1406,10 @@
         },
         {
           "date": "2026-11-13",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-14",
           "error": "no feed found (8 tried)"
         }
       ]
