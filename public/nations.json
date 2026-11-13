@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-13T22:20:16.711Z",
+  "updatedAt": "2026-11-13T22:26:25.830Z",
   "counts": {
     "fixtures": 11,
     "results": 25,
@@ -799,8 +799,7 @@
       "status": {
         "short": "FT",
         "long": "Finished",
-        "live": false,
-        "via": "espn"
+        "live": false
       },
       "home": {
         "id": 387,
@@ -822,20 +821,37 @@
       "id": 467,
       "team": "South Africa",
       "logo": "https://media.api-sports.io/rugby/teams/467.png",
-      "P": 4,
+      "P": 5,
       "W": 4,
       "D": 0,
-      "L": 0,
-      "PF": 196,
-      "PA": 56,
-      "PD": 140,
-      "TF": 29,
-      "TA": 8,
-      "BP": 4,
-      "Pts": 20
+      "L": 1,
+      "PF": 215,
+      "PA": 77,
+      "PD": 138,
+      "TF": 32,
+      "TA": 11,
+      "BP": 5,
+      "Pts": 21
     },
     {
       "rank": 2,
+      "id": 387,
+      "team": "France",
+      "logo": "https://media.api-sports.io/rugby/teams/387.png",
+      "P": 5,
+      "W": 4,
+      "D": 0,
+      "L": 1,
+      "PF": 191,
+      "PA": 111,
+      "PD": 80,
+      "TF": 27,
+      "TA": 16,
+      "BP": 5,
+      "Pts": 21
+    },
+    {
+      "rank": 3,
       "id": 465,
       "team": "New Zealand",
       "logo": "https://media.api-sports.io/rugby/teams/465.png",
@@ -850,23 +866,6 @@
       "TA": 12,
       "BP": 4,
       "Pts": 20
-    },
-    {
-      "rank": 3,
-      "id": 387,
-      "team": "France",
-      "logo": "https://media.api-sports.io/rugby/teams/387.png",
-      "P": 4,
-      "W": 3,
-      "D": 0,
-      "L": 1,
-      "PF": 170,
-      "PA": 92,
-      "PD": 78,
-      "TF": 24,
-      "TA": 13,
-      "BP": 5,
-      "Pts": 17
     },
     {
       "rank": 4,
