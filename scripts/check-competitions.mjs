@@ -381,18 +381,57 @@ export function checkStandings(registry, standings, fixturesFile, nations, today
   return problems;
 }
 
+// tries-unchecked — a try count the table is using that nothing vouches for.
+//
+// espn-tries.mjs marks every count `checked` when ESPN's scoring rows sum to
+// the final score. One that does not is still used and is asked about again
+// for a week; if it is still unchecked two days after kickoff, ESPN is not
+// going to settle it and a person (the Claude review) has to, before the
+// table goes on being a try bonus point out. The Nations Championship is not
+// here: its counts are checked against stats.json (try-counts.mjs).
+//
+// One problem per competition still offered, naming every such game. Pure.
+export function checkTryCounts(registry, fixturesFile, espnTries, today = iso(Date.now())) {
+  const problems = [];
+  const nowMs = Date.parse(today + "T00:00:00Z") + DAY_MS;
+  const rows = Array.isArray(fixturesFile) ? fixturesFile : fixturesFile?.fixtures ?? [];
+  for (const c of registry?.competitions ?? []) {
+    if (!c?.key || String(c.key).startsWith("rnc-")) continue;
+    if (c.defaultUntil && c.defaultUntil <= today) continue; // no longer offered
+    const open = rows.filter((f) =>
+      f?.comp?.key === c.key && espnTries?.[f.id]?.checked === false && nowMs - Date.parse(f.date) > 2 * DAY_MS);
+    if (!open.length) continue;
+    problems.push({
+      kind: "tries-unchecked",
+      title: `match-tries-espn.json ${c.key}: try counts that do not add up to the score`,
+      detail:
+        `${open.length} ${c.label ?? c.name ?? c.key} game(s) have a try count taken from ESPN's rows that do not sum to the final score, ` +
+        `so a try (and a try bonus point) may be missing from the table:\n\n` +
+        open.slice(0, 12).map((f) => {
+          const t = espnTries[f.id];
+          return `- ${String(f.date).slice(0, 10)} ${f.home?.code} ${f.homeScore}-${f.awayScore} ${f.away?.code}: counted ${t.home}-${t.away} tries (\`${f.id}\`, ${t.source ?? "?"})`;
+        }).join("\n") +
+        `\n\nConfirm each from a match report, then set the counts and \`"checked": true, "source": "hand"\` on its entry in ` +
+        `\`scripts/match-tries-espn.json\`. The next build-standings run moves the table.`,
+    });
+  }
+  return problems;
+}
+
 async function main() {
   const today = iso(Date.now());
-  const [registry, fixtures, standings, nations] = await Promise.all([
+  const [registry, fixtures, standings, nations, espnTries] = await Promise.all([
     readFile("competitions.json", "utf8").then(JSON.parse).catch(() => null),
     readFile("fixtures.json", "utf8").then(JSON.parse).catch(() => null),
     readFile("standings.json", "utf8").then(JSON.parse).catch(() => null),
     readFile("nations.json", "utf8").then(JSON.parse).catch(() => null),
+    readFile("scripts/match-tries-espn.json", "utf8").then(JSON.parse).catch(() => null),
   ]);
 
   const problems = [
     ...checkIntegrity(registry, fixtures, today),
     ...checkStandings(registry, standings, fixtures, nations, today),
+    ...checkTryCounts(registry, fixtures, espnTries, today),
   ];
 
   console.log(`current=${registry?.current ?? "none"}`);

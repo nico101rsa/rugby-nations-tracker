@@ -420,6 +420,36 @@ export function espnPenaltyTries(details = [], homeIds = [], awayIds = []) {
   return out;
 }
 
+// ESPN's rows through the publish gate, both readings, as one answer. The
+// rows as labelled first; only if they fail (and every row was readable) the
+// penalty-try reading above, which is used only if it then passes the same
+// gate and is not followed by its side's conversion. Pure: the box-score
+// pipeline (reconcileFromEspn) and the try counts (try-counts.mjs
+// summaryTries) both read ESPN through here, so "adds up to the final score"
+// means one thing.
+//
+//   { ok, scoring, listed, cards, unknown, gate, second }
+//
+// `scoring` is the list that passed, or `listed` (the rows as labelled) when
+// none did. `second` is null unless the penalty-try reading was tried.
+export function espnGate(details = [], homeIds = [], awayIds = [], homeFinal, awayFinal) {
+  const { scoring: listed, cards, unknown } = parseEspnDetails(details, homeIds, awayIds);
+  let scoring = listed;
+  let gate = reconcile(scoring, homeFinal, awayFinal);
+  let second = null;
+  if (!gate.ok && !unknown.length) {
+    const added = espnPenaltyTries(details, homeIds, awayIds);
+    if (added.length) {
+      const withPenaltyTries = [...listed, ...added].sort(byPlay);
+      const reread = reconcile(withPenaltyTries, homeFinal, awayFinal);
+      const converted = penaltyTryConverted(withPenaltyTries);
+      second = { added, reread, converted };
+      if (reread.ok && !converted) { scoring = withPenaltyTries; gate = reread; }
+    }
+  }
+  return { ok: gate.ok && !unknown.length, scoring, listed, cards, unknown, gate, second };
+}
+
 const kickoffMinute = (iso) => {
   const t = new Date(iso);
   return Number.isNaN(t.getTime()) ? null : t.toISOString().slice(0, 16);
@@ -521,22 +551,12 @@ async function reconcileFromEspn(r, fetchEspn, scoreboard) {
     return [c?.id, c?.team?.id].filter((x) => x != null);
   };
   const details = Array.isArray(comp?.details) ? comp.details : [];
-  const { scoring: listed, cards, unknown } = parseEspnDetails(details, ids("home"), ids("away"));
-  let scoring = listed;
-  let gate = reconcile(scoring, r.home.score, r.away.score);
-  // Second reading, only for a list that failed: a penalty try ESPN left out
-  // of the rows but kept in the score (issue #143).
-  if (!gate.ok && !unknown.length) {
-    const added = espnPenaltyTries(details, ids("home"), ids("away"));
-    if (added.length) {
-      const withPenaltyTries = [...listed, ...added].sort(byPlay);
-      const reread = reconcile(withPenaltyTries, r.home.score, r.away.score);
-      const converted = penaltyTryConverted(withPenaltyTries);
-      console.log(`ESPN event ${ev.id} for match ${r.id}: the running score shows ${added.length} penalty try(s) with no row (${added.map((p) => `${p.team} ${p.min ?? "?"}'`).join(", ")}); with them ${converted ? "a penalty try is followed by its side's conversion, which can't happen: not used" : reread.ok ? "it reconciles" : `still home ${reread.home.computed}/${reread.home.expected}, away ${reread.away.computed}/${reread.away.expected}`}`);
-      if (reread.ok && !converted) { scoring = withPenaltyTries; gate = reread; }
-    }
+  const { ok, scoring, listed, cards, unknown, gate, second } = espnGate(details, ids("home"), ids("away"), r.home.score, r.away.score);
+  if (second) {
+    const { added, reread, converted } = second;
+    console.log(`ESPN event ${ev.id} for match ${r.id}: the running score shows ${added.length} penalty try(s) with no row (${added.map((p) => `${p.team} ${p.min ?? "?"}'`).join(", ")}); with them ${converted ? "a penalty try is followed by its side's conversion, which can't happen: not used" : reread.ok ? "it reconciles" : `still home ${reread.home.computed}/${reread.home.expected}, away ${reread.away.computed}/${reread.away.expected}`}`);
   }
-  if (gate.ok && !unknown.length) return { ok: true, scoring, cards, espnEventId: ev.id };
+  if (ok) return { ok: true, scoring, cards, espnEventId: ev.id };
 
   // The follow-up needs the real payload and the Actions log is the only
   // place it can be seen: every row in one line, plus the raw JSON of any row

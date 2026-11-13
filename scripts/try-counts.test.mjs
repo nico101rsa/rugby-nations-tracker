@@ -76,3 +76,36 @@ test("refresh-data runs the check before it builds standings, and may file the i
   assert.ok(check < yml.indexOf("node scripts/build-standings.mjs"), "and runs before build-standings");
   assert.match(yml, /issues: write/);
 });
+
+// ---- summaryTries: every competition's first read ----------------------------
+{
+  const { summaryTries, countTries } = await import("./try-counts.mjs");
+  const det = (type, team, hs, as) => ({ type: { text: type }, team: { id: team }, ...(hs == null ? {} : { homeScore: hs, awayScore: as }) });
+  const comp = (details) => ({
+    competitors: [{ id: "3", homeAway: "home", team: { id: "3" } }, { id: "1", homeAway: "away", team: { id: "1" } }],
+    details,
+  });
+  // Home 12 (a converted try and a try), away 3.
+  const ROWS = [det("Try", "3"), det("Conversion", "3"), det("Try", "3"), det("Penalty Goal", "1"), det("Yellow Card", "1")];
+
+  test("summaryTries: rows that sum to the final score are checked", () => {
+    assert.deepEqual(summaryTries(comp(ROWS), 12, 3), { counts: { home: 2, away: 0 }, checked: true });
+  });
+
+  test("summaryTries: rows short of the score give the labelled count, unchecked", () => {
+    assert.deepEqual(summaryTries(comp(ROWS), 17, 3), { counts: { home: 2, away: 0 }, checked: false });
+    assert.deepEqual(summaryTries(comp(ROWS), null, null), { counts: { home: 2, away: 0 }, checked: false }, "no score to check against");
+  });
+
+  test("summaryTries: a penalty try ESPN keeps in the running score and leaves out of the rows is counted (France v Fiji, 7 Nov 2026)", () => {
+    // Home: try 5-0, then the score steps to 12-0 on a card row with no scoring row, then a penalty 15-0.
+    const rows = [det("Try", "3", 5, 0), det("Yellow Card", "1", 12, 0), det("Penalty Goal", "3", 15, 0)];
+    assert.deepEqual(countTries(rows, "3"), { home: 1, away: 0 }, "the labelled rows miss it");
+    assert.deepEqual(summaryTries(comp(rows), 15, 0), { counts: { home: 2, away: 0 }, checked: true });
+  });
+
+  test("summaryTries: no rows, or no competitors, is null (the caller falls back or waits)", () => {
+    assert.equal(summaryTries(comp([]), 12, 3), null);
+    assert.equal(summaryTries({ details: ROWS }, 12, 3), null);
+  });
+}

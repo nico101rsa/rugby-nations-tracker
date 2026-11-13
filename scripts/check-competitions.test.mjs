@@ -465,3 +465,43 @@ test("a two-conference season counts its finals weekend once ESPN lists it (#165
   assert.equal(finalsFor({ structure: "conference", groups: [{ teams: Array(6) }, { teams: Array(6) }] }), 6);
   assert.equal(finalsFor({ structure: "table", teams: Array(6) }), 0);
 });
+
+// ---- tries-unchecked ---------------------------------------------------------
+{
+  const { checkTryCounts } = await import("./check-competitions.mjs");
+  const REG = { competitions: [
+    { key: "6n-2027", label: "6N '27", defaultUntil: "2027-04-01" },
+    { key: "6n-2026", label: "6N '26", defaultUntil: "2026-04-01" },
+    { key: "rnc-2026", label: "RNC", defaultUntil: "2027-01-01" },
+  ] };
+  const game = (id, key, date) => ({ id, date, comp: { key, kind: "competition" }, home: { code: "IRE" }, away: { code: "ENG" }, homeScore: 24, awayScore: 20 });
+  const FIX = { fixtures: [
+    game("espn-1", "6n-2027", "2027-02-05T20:10:00Z"),
+    game("espn-2", "6n-2027", "2027-02-06T14:10:00Z"),
+    game("espn-3", "6n-2027", "2027-02-06T16:40:00Z"),
+    game("espn-4", "6n-2026", "2026-02-05T20:10:00Z"),
+    game("espn-5", "rnc-2026", "2026-11-07T14:10:00Z"),
+  ] };
+  const TRIES = {
+    "espn-1": { home: 3, away: 1, checked: false, source: "summary" },
+    "espn-2": { home: 2, away: 2, checked: true },
+    "espn-3": { home: 2, away: 2 }, // from before the check existed
+    "espn-4": { home: 1, away: 1, checked: false },
+    "espn-5": { home: 1, away: 1, checked: false },
+  };
+
+  test("tries-unchecked: an unchecked count is raised two days after kickoff, with the count and the score", () => {
+    assert.deepEqual(checkTryCounts(REG, FIX, TRIES, "2027-02-06"), [], "the day after: ESPN may still settle it");
+    const out = checkTryCounts(REG, FIX, TRIES, "2027-02-09");
+    assert.equal(out.length, 1);
+    assert.equal(out[0].kind, "tries-unchecked");
+    assert.match(out[0].title, /6n-2027/);
+    assert.match(out[0].detail, /2027-02-05 IRE 24-20 ENG: counted 3-1 tries \(`espn-1`, summary\)/);
+    assert.doesNotMatch(out[0].detail, /espn-2|espn-3/);
+  });
+
+  test("tries-unchecked: checked counts, an expired competition, the Nations Championship and a missing cache raise nothing", () => {
+    assert.deepEqual(checkTryCounts(REG, FIX, { ...TRIES, "espn-1": { home: 3, away: 2, checked: true, source: "hand" } }, "2027-02-09"), []);
+    assert.deepEqual(checkTryCounts(REG, FIX, null, "2027-02-09"), []);
+  });
+}
