@@ -97,6 +97,17 @@ week after a season ends). The Nations Championship tiebreak order is
 computeLog's and **unverified** (`tiebreakVerified: false`): never print it as
 a rule.
 
+**A Nations Championship try count is checked against the box score.**
+`scripts/match-tries.json` is the first read (ESPN's rows at full time) and was
+short in five of the first 24 games of 2026; on 13 Nov 2026 a user reported
+Scotland a point short, four months after the game. `stats.json` holds the same
+games with events that sum exactly to the final score. `scripts/try-counts.mjs`
+lays every reconciled count over the cache: inside `scrapeTries` whenever the
+log is built, and as a step of every refresh-data tick before build-standings.
+A correction that moves a try bonus point files a silent issue. The other
+competitions' cache (`match-tries-espn.json`) has no box score behind it yet;
+it needs the same check before the Six Nations (5 Feb 2027).
+
 The World Cup entry adds, from its first game (Fri 1 Oct 2027, 20:45 Sydney
 time), `q` on every pool row, the best third-placed teams and the 16-slot
 knockout bracket — each filled only once the results prove it. Two things it
