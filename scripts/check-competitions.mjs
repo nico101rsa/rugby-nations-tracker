@@ -22,6 +22,7 @@ import { readFile } from "node:fs/promises";
 import { classify } from "./build-competitions.mjs";
 import { gamesFor, lineUp, TABLE_STRUCTURES } from "./build-standings.mjs";
 import { postIssue } from "./notify.mjs";
+import { fetchComparisons, checkPublishedTables } from "./published-tables.mjs";
 
 const iso = (ms) => new Date(ms).toISOString().slice(0, 10);
 
@@ -427,11 +428,19 @@ async function main() {
     readFile("nations.json", "utf8").then(JSON.parse).catch(() => null),
     readFile("scripts/match-tries-espn.json", "utf8").then(JSON.parse).catch(() => null),
   ]);
+  const rncTries = await readFile("scripts/match-tries.json", "utf8").then(JSON.parse).catch(() => ({}));
+
+  // Our tables against the ones ESPN publishes (published-tables.mjs): one
+  // keyless request per competition with results. Never fails the check.
+  const comparisons = await fetchComparisons(registry, standings, today, {
+    gamesOf: (c) => gamesFor(c, { nations, fixtures, rncTries, espnTries: espnTries ?? {} }).games,
+  }).catch((e) => { console.log(`::warning::published tables not checked: ${e.message}`); return []; });
 
   const problems = [
     ...checkIntegrity(registry, fixtures, today),
     ...checkStandings(registry, standings, fixtures, nations, today),
     ...checkTryCounts(registry, fixtures, espnTries, today),
+    ...checkPublishedTables(comparisons),
   ];
 
   console.log(`current=${registry?.current ?? "none"}`);

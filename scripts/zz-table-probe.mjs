@@ -1,16 +1,15 @@
-// One-off probe; compact lines only.
-const get = async (url) => {
-  try { const r = await fetch(url, { signal: AbortSignal.timeout(20000) }); return { status: r.status, json: await r.json().catch(() => null) }; }
-  catch (e) { return { status: 0, error: String(e.message) }; }
-};
-const KEEP = ["rank", "gamesPlayed", "gamesWon", "gamesDrawn", "gamesLost", "pointsFor", "pointsAgainst", "triesFor", "triesAgainst", "bonusPointsTry", "bonusPointsLosing", "bonusPoints", "points"];
-for (const [name, league, q] of [["rnc", 17567, "?season=2026"], ["rnc-noseason", 17567, ""], ["6n-2027", 180659, "?season=2027"], ["6n-noseason", 180659, ""], ["rwc-2027", 164205, "?season=2027"], ["trc", 244293, ""], ["l256449", 256449, ""]]) {
-  const r = await get(`https://site.api.espn.com/apis/v2/sports/rugby/${league}/standings${q}`);
-  const j = r.json ?? {};
-  const groups = j.children ?? (j.standings ? [j] : []);
-  console.log(`\n## ${name} -> ${r.status} ${r.error ?? ""} name=${j.name} season=${JSON.stringify(j.season ?? null)?.slice(0, 160)} groups=${groups.length} childKeys=${Object.keys(groups[0] ?? {})}`);
-  for (const g of groups) for (const x of g.standings?.entries ?? []) {
-    const s = Object.fromEntries((x.stats ?? []).map((t) => [t.name, t.value]));
-    console.log(`  [${g.name}|${g.abbreviation ?? ""}] ${x.team?.abbreviation} id=${x.team?.id} ${KEEP.map((k) => `${k}=${s[k]}`).join(" ")}`);
-  }
-}
+// One-off: the real comparison, live, printing what it would raise. Files nothing.
+import { readFile } from "node:fs/promises";
+import { fetchComparisons, checkPublishedTables, compareTable } from "./published-tables.mjs";
+import { gamesFor } from "./build-standings.mjs";
+const read = (p) => readFile(p, "utf8").then(JSON.parse);
+const [registry, standings, nations, fixtures, rncTries] = await Promise.all(["competitions.json", "standings.json", "nations.json", "fixtures.json", "scripts/match-tries.json"].map(read));
+const today = new Date().toISOString().slice(0, 10);
+const cmp = await fetchComparisons(registry, standings, today, { gamesOf: (c) => gamesFor(c, { nations, fixtures, rncTries, espnTries: {} }).games });
+for (const c of cmp) console.log(c.comp.key, JSON.stringify(c.espn ? compareTable(c.entry, c.espn) : "no answer"));
+console.log("PROBLEMS:", JSON.stringify(checkPublishedTables(cmp), null, 1));
+// And the table as it stood this morning: Scotland back on 10.
+const before = structuredClone(standings);
+for (const e of before.competitions) for (const g of e.groups ?? []) for (const r of g.rows ?? []) if (e.key === "rnc-2026" && r.code === "SCO") Object.assign(r, { Pts: 10, BPtry: 2, BP: 2, TF: 17 });
+const old = await fetchComparisons(registry, before, today, { gamesOf: (c) => gamesFor(c, { nations, fixtures, rncTries: { ...rncTries, 53228: { home: 3, away: 3 } }, espnTries: {} }).games, log: {} });
+console.log("WITH THIS MORNING'S TABLE:", checkPublishedTables(old).map((p) => `${p.title}\n${p.detail}`).join("\n"));
