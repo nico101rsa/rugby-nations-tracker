@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-13T20:00:37.874Z",
+  "updatedAt": "2026-11-13T20:12:43.219Z",
   "counts": {
-    "fixtures": 12,
-    "results": 24,
+    "fixtures": 11,
+    "results": 25,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53237,
-      "date": "2026-11-13T20:10:00+00:00",
-      "week": "5",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 387,
-        "name": "France",
-        "logo": "https://media.api-sports.io/rugby/teams/387.png",
-        "score": null
-      },
-      "away": {
-        "id": 467,
-        "name": "South Africa",
-        "logo": "https://media.api-sports.io/rugby/teams/467.png",
-        "score": null
-      }
-    },
     {
       "id": 53238,
       "date": "2026-11-14T11:40:00+00:00",
@@ -813,6 +791,29 @@
         "logo": "https://media.api-sports.io/rugby/teams/461.png",
         "score": 22
       }
+    },
+    {
+      "id": 53237,
+      "date": "2026-11-13T20:10:00+00:00",
+      "week": "5",
+      "status": {
+        "short": "LIVE",
+        "long": "In Progress",
+        "live": true,
+        "via": "espn"
+      },
+      "home": {
+        "id": 387,
+        "name": "France",
+        "logo": "https://media.api-sports.io/rugby/teams/387.png",
+        "score": 0
+      },
+      "away": {
+        "id": 467,
+        "name": "South Africa",
+        "logo": "https://media.api-sports.io/rugby/teams/467.png",
+        "score": 0
+      }
     }
   ],
   "log": [
@@ -1035,6 +1036,12 @@
       "published": "Fri, 13 Nov 2026 19:47:13 GMT"
     },
     {
+      "title": "France v South Africa, LIVE BLOG: Coverage of the Nations Championship fixture",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPNWoyelRnTXlUTEpVUGhTS2JtR1ZZNGlFOWZxZlVyM3oxVGRSRG94RUpQd0VDY1NOS2dWNDljSnBOT0pQTkt1VUhPYm5CaEJNbEY3M2tWUEZDSDRmZHhQcDZBLWRqSmRZX01ad3ZwSXd1RVh4ekRkVVlLODNOTF9ndUhCYlVvaTRXeXJHMWc2bGlYd01nY19qMklVMEZtMHJTV253cGtDUGhPV0llZGc?oc=5",
+      "source": "Planet Rugby",
+      "published": "Fri, 13 Nov 2026 19:30:00 GMT"
+    },
+    {
       "title": "++!【LIVESTREAMS】UPDATES!]France vs South Africa Live free streams Nations Championship Rugby November 13, 2026",
       "link": "https://news.google.com/rss/articles/CBMi9AJBVV95cUxQMm1rSGtDMGtRVzNpeF91bmZDdHJad2FkSFFMRG5XQjYtZ3pRX2VxUjdQT0lqZ3gybDdWdnN1My03Q3dKSEJ6SEtEa2w2NmM1dV9JZE5DM0twRW5hM2lvNUdBSkVjSVhTTFZHQTgtcnlRbFNXSDVCN0RKSEJPRmNRa3RpX0c0YVo2TFJQMFlxbGdNOUhlLTJxcS1fM3NvU1V5WngtQ2RYNTRzUnlwaVdreTRjd3oyVzdwQXlEdm12RWFzZFBxVVNHRFFuN25DUWlOOVlkUEJHOUY5ODRaOXRSUXpVQ2RkY01MZEc2cmJLU1pPRmwxdW9nQWZtWHpIbTZUQ29SM0ZVV3dvTWFJaS16Z3R4M0JqajZSb3lZOUxCRDA1VXphNkplTmJZYnY5eEY3aTlfT01iM3VjTVpTRUduckwzUnh0a2FheFktOHJCWXBlLXNBRUlYRnktdG85V1FHbE12UExmRWJkWko3WE9PR2hLdGY?oc=5",
       "source": "日本取引所グループ",
@@ -1071,22 +1078,16 @@
       "published": "Fri, 13 Nov 2026 09:05:47 GMT"
     },
     {
+      "title": "George Bower: Rebuilding his All Blacks career, one song and prayer at a time",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQV2MwcnFrb1hNa1lCX3M4RHA5REhXTVdOSXp0NnE3c0FRZHR3R0RpdFg2RmpjNU1FMjZVMk00SVA4Y2p4ZzZYU1RCZm9fVE1sT0ZKcHItcEJPVlJzLUsyMjJTQ1ZSUWhIWWR2M2tsWm9fOTB2cUV4bEpFWFpoWnBuWFRTUlN6dG5TRE9mb0l0dzhXbkR6ckQzZlFVNjFZTnh3WTBkOHMyTFozV0s1VEJfMjJB?oc=5",
+      "source": "Rugbypass.com",
+      "published": "Fri, 13 Nov 2026 08:20:06 GMT"
+    },
+    {
       "title": "France have spent years trying to beat the Boks but belief and bodies are fading",
       "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPbENGRUJBMVg2VTFfeWFiS3Vrd0JaeXA1dkVROEpnSUM5THdnUUJzNHl6X2JBT29RVGV3OFo1ZE5SOU56M3RTRFR0eWFtZXJiSUlVWmdfaUprVVZzY0ZfN3BfZF9GQkxGN2VWQnBOZmJZMUxNbVlPLUpvX2ljNWFLQjZJZDhia0labTF1UWlTeWd1cXdiNTdFaG5tX3FBTXJ4Y2s5UTMyZTBadEk5MUdrNzhZeWwxOE0?oc=5",
       "source": "The Guardian",
       "published": "Fri, 13 Nov 2026 02:30:00 GMT"
-    },
-    {
-      "title": "Pumas lose 324 caps' worth of experience from starting XV for Italy",
-      "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNSzVoSXZVRTgxWF9IZHhhbkdOT195U1RpYTUxWmw4ako2ZTBaMXoycVIxdlg2b1ZJV2ZOa2lXYUR0VGxxeUJ6NklSWjlZN2poQ2dBMktNdDdROVlQclZzZE1TdUNHbWw5a2VwU1lBUDFCMVREUXJWX25YS0JNdnctYmFCa3B2N3FJdHAtVmYwdHlDR3FNSDBIMXBXakZkRE9ZR1IxSXcxTW9uWUktdkF0T2stQ2R4aHlVTXIyR0E0OUJVT2xsME1oUzdlUEpTUncybkZoZ3FnVmsydGpkdVE2dFBzbzM?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Thu, 12 Nov 2026 14:14:07 GMT"
-    },
-    {
-      "title": "Victor Matfield: Rassie Erasmus has changed tune on Nations Championship as it's become 'like a Rugby World Cup'",
-      "link": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxORG5Ha3Y4ckltM3RlV2k5ZnMxaXNTeXdHSWYtNzVxdkQ3NkNpa2VMNmxXc2dZSVYtY3prdTFOOGNLR0RFMUY1Y2o3enhDQ3NSNllwUWJ1eWpwdUo0TjJSd2F3NHZNR1B2NXJoVDEyanFEaWpIUDY1SjNWUXlpc2hzSXVoYWQ3c01ySkhXa0dndi1WQm1mTHFGdVFEemc2Y3Iwd3ZCMnBjZGlXTl80S1JZUEhTaE95TnBlUGg5OV9rRWkzWkNsanEwQy1admNtd1RwYUxEZlV6Vmk?oc=5",
-      "source": "Planet Rugby",
-      "published": "Thu, 12 Nov 2026 06:02:04 GMT"
     },
     {
       "title": "2026 Nations Championship Fixtures",
@@ -1110,7 +1111,7 @@
       "title": "Nations Championship, Rugby League World Cup and NFL action – follow with us",
       "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNTEtjNnowbnhzLWNfTTVXV1N5VEticjNzZEd6ZTQ1M214ekFiRFNwbEFVZ0FnUUxENTdvWi10ekxBLVk2OU5PbzRqRnY1VnhQTVZzMEd0V2lLTzZGNmhKNXUxTTJ1QXg4VExSSFA2X2E4SHNjZzJwMmxnSFd2NUpteHJENGdQMjBBZElwRGl3TEFEYV9uUmlVbzNBY0w5TzNLaElCV2piU2RJQlVlLV8weXEzTTJpTVgtSFBJ?oc=5",
       "source": "The Guardian",
-      "published": "Fri, 06 Nov 2026 20:33:00 GMT"
+      "published": "Sat, 07 Nov 2026 07:26:00 GMT"
     }
   ],
   "triesPending": 0,
