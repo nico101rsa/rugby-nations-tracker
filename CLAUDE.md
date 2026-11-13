@@ -97,6 +97,19 @@ week after a season ends). The Nations Championship tiebreak order is
 computeLog's and **unverified** (`tiebreakVerified: false`): never print it as
 a rule.
 
+**Every table is compared with the one ESPN publishes, daily.**
+`scripts/published-tables.mjs`, run by the integrity check
+(`check-competitions.mjs`, in team-events): one keyless request per competition
+with results, to ESPN's standings endpoint, always with `?season=`. Points,
+wins, draws, losses, points for and against, both bonus columns and both tries
+columns are compared team by team (matched on ESPN's team id); a difference
+files a silent issue (`table-differs`) with both numbers and that team's games
+and try counts. It decides nothing by itself. This is the check that would have
+caught Scotland on 18 Jul 2026: run against that table on 13 Nov it named the
+row and the game. A team on a different game count is a result in flight and
+is raised only after two days. The score vendor's own table is not on the free
+plan.
+
 **A Nations Championship try count is checked against the box score.**
 `scripts/match-tries.json` is the first read (ESPN's rows at full time) and was
 short in five of the first 24 games of 2026; on 13 Nov 2026 a user reported
