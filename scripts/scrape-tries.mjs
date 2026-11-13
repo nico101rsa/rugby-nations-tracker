@@ -7,10 +7,15 @@
 // "try" or "penalty try" (both count toward the bonus). Results are cached
 // in scripts/match-tries.json keyed by *api-sports* game id, so already-
 // scraped matches never refetch and offline rebuilds keep working.
+//
+// This is the FIRST read, and it can be short: ESPN's rows missed a try in
+// five of the first 24 games of 2026. try-counts.mjs lays the reconciled box
+// score over it as soon as stats.json has one.
 
 import { readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { checkTries, readStats } from "./try-counts.mjs";
 
 const ESPN = "https://site.api.espn.com/apis/site/v2/sports/rugby/17567";
 const CACHE = join(dirname(fileURLToPath(import.meta.url)), "match-tries.json");
@@ -70,5 +75,10 @@ export async function scrapeTries(finished) {
   }
 
   await writeFile(CACHE, JSON.stringify(cache, null, 2));
-  return cache;
+  // The log is built from the checked counts: where stats.json has a
+  // reconciled box score, its count replaces the row count above
+  // (try-counts.mjs has the why). The file keeps the first read here; the
+  // `node scripts/try-counts.mjs` step that follows in refresh-data writes the
+  // correction and raises it, so one place does both.
+  return checkTries(cache, await readStats()).cache;
 }

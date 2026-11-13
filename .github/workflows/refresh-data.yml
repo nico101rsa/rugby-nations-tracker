@@ -42,6 +42,7 @@ concurrency:
 
 permissions:
   contents: write
+  issues: write # try-counts.mjs: a silent issue when a correction moves a bonus point
 
 jobs:
   refresh:
@@ -98,6 +99,17 @@ jobs:
       - name: Cache ESPN try counts (keyless)
         continue-on-error: true
         run: node scripts/espn-tries.mjs --recent
+
+      # A try count read from ESPN's rows at full time can be short. Once
+      # stats.json has the match's reconciled box score (events that sum to
+      # the final score), that count replaces it here, and a correction that
+      # moves a try bonus point files a silent issue. Reads two files, no
+      # vendor calls (scripts/try-counts.mjs).
+      - name: Check try counts against the box scores
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/try-counts.mjs
 
       - name: Build standings.json (computed from results, zero vendor calls)
         continue-on-error: true
