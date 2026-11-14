@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-14T20:00:40.082Z",
+  "updatedAt": "2026-11-14T21:00:11.485Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 202,
+  "count": 204,
   "storylines": [
     {
       "id": "england-s-nations-championship-vp59b0",
@@ -4349,6 +4349,11 @@
       "resolution": "until Exeter Chiefs or England provide a definitive timeline for Feyi-Waboso's return to play",
       "sources": [
         {
+          "title": "Feyi-Waboso and Tom Curry out of Nations Championship in fresh blow to England",
+          "link": "https://www.theguardian.com/sport/2026/nov/09/england-fresh-injury-woe-feyi-waboso-tom-curry-out-nations-championship",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Borthwick gets a glimpse of first-choice back three – before injuries strike again",
           "link": "https://www.theguardian.com/sport/2026/nov/09/england-first-choice-back-three-steve-borthwick-australia-nations-championship",
           "feedName": "Guardian Rugby Union"
@@ -4357,11 +4362,6 @@
           "title": "Will Joseph poised to audition for leading role against Japan in Feyi-Waboso’s absence",
           "link": "https://www.theguardian.com/sport/2026/nov/10/rugby-union-england-japan-nations-championship-will-joseph",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Exeter hopeful Feyi-Waboso ankle injury not serious",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6qx5jexrx89o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-11-13",
@@ -4572,7 +4572,7 @@
     },
     {
       "id": "courtney-lawes-recovery-from-1bm9q1t",
-      "subject": "Courtney Lawes' recovery from a severe infection and return to play for Sale Sharks",
+      "subject": "Courtney Lawes' recovery and return to play following hospitalisation for a serious infection",
       "teams": [
         386
       ],
@@ -4613,12 +4613,17 @@
     },
     {
       "id": "julien-marchand-s-late-35v7o1",
-      "subject": "Julien Marchand's late thigh injury before the South Africa Test",
+      "subject": "Julien Marchand's thigh injury recovery timeline after withdrawing against South Africa",
       "teams": [
         387
       ],
       "resolution": "until the French coaching staff update Julien Marchand's fitness status and availability",
       "sources": [
+        {
+          "title": "Exclu Midol. XV de France - Matthieu Jalibert de retour dans le groupe des Bleus pour préparer la suite du Championnat des Nations, Marchand forfait pour la suite de la compétition",
+          "link": "https://www.rugbyrama.fr/2026/11/14/exclu-midol-xv-de-france-matthieu-jalibert-de-retour-dans-le-groupe-des-bleus-pour-preparer-la-suite-du-championnat-des-nations-13652598.php",
+          "feedName": "Rugbyrama"
+        },
         {
           "title": "France - Afrique du Sud. Julien Marchand forfait, Peato Mauvaka titulaire, Maxime Lamothe entre sur le banc",
           "link": "https://www.rugbyrama.fr/2026/11/13/xv-de-france-julien-marchand-forfait-peato-mauvaka-titulaire-maxime-lamothe-entre-sur-le-banc-13651576.php",
@@ -4631,7 +4636,7 @@
         }
       ],
       "firstSeen": "2026-11-14",
-      "lastSeen": "2026-11-14",
+      "lastSeen": "2026-11-15",
       "uses": 0
     },
     {
@@ -4927,6 +4932,52 @@
           "title": "Wales make Tomos Williams admission after scrum-half policy questioned",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/wales-make-tomos-williams-admission-34901476",
           "feedName": "WalesOnline"
+        }
+      ],
+      "firstSeen": "2026-11-15",
+      "lastSeen": "2026-11-15",
+      "uses": 0
+    },
+    {
+      "id": "matthieu-jalibert-s-return-1lff5av",
+      "subject": "Matthieu Jalibert's return from injury to the France squad for the Argentina match",
+      "teams": [
+        387
+      ],
+      "resolution": "until Fabien Galthié confirms Matthieu Jalibert's inclusion in France's matchday squad",
+      "sources": [
+        {
+          "title": "France - Afrique du Sud - \"Pourquoi pas une belle surprise avant la fin ?\" : Matthieu Jalibert ouvre la porte à un retour avec les Bleus en novembre",
+          "link": "https://www.rugbyrama.fr/2026/11/13/france-afrique-du-sud-pourquoi-pas-une-belle-surprise-avant-la-fin-matthieu-jalibert-ouvre-la-porte-a-un-retour-avec-les-bleus-en-novembre-13651587.php",
+          "feedName": "Rugbyrama"
+        },
+        {
+          "title": "Exclu Midol. XV de France - Matthieu Jalibert de retour dans le groupe des Bleus pour préparer la suite du Championnat des Nations, Marchand forfait pour la suite de la compétition",
+          "link": "https://www.rugbyrama.fr/2026/11/14/exclu-midol-xv-de-france-matthieu-jalibert-de-retour-dans-le-groupe-des-bleus-pour-preparer-la-suite-du-championnat-des-nations-13652598.php",
+          "feedName": "Rugbyrama"
+        }
+      ],
+      "firstSeen": "2026-11-15",
+      "lastSeen": "2026-11-15",
+      "uses": 0
+    },
+    {
+      "id": "juli-n-montoya-s-ws62hc",
+      "subject": "Julián Montoya's fitness and return for Argentina's match against France",
+      "teams": [
+        460
+      ],
+      "resolution": "until Felipe Contepomi confirms whether Julián Montoya is available to play against France",
+      "sources": [
+        {
+          "title": "Pumas Lose Captain for Nations Championship clash with Italy",
+          "link": "https://www.americasrugbynews.com/2026/11/11/pumas-lose-captain-for-nations-championship-clash-with-italy/",
+          "feedName": "Americas Rugby News"
+        },
+        {
+          "title": "Four Players Join Pumas Roster to Prepare for Italy Test Match",
+          "link": "https://www.americasrugbynews.com/2026/11/09/four-players-join-pumas-roster-to-prepare-for-italy-test-match/",
+          "feedName": "Americas Rugby News"
         }
       ],
       "firstSeen": "2026-11-15",
