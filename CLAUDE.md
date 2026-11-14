@@ -189,6 +189,31 @@ carries `status.via: "espn"`. Rules, all tested:
 - It can never fail a pass. ESPN down means the last good states are laid
   again and the api-sports feed publishes as before.
 
+**A live row also carries the game's running notes** (`play`, since Sun 15
+Nov 2026; `scripts/live-events.mjs`). Nico asked for a live game card: tries,
+the minute, yellow and red cards with their minutes. On each overlay pass one
+more keyless request per game in play reads ESPN's event summary, and the row
+gets `play: { minute, at, events: [{ min, team, type }] }`. Rules:
+
+- **No player names, ever.** Nico chose that on 15 Nov when asked, because
+  this is a live surface built on ESPN's data (app repo `docs/DATA_RIGHTS.md`).
+  A test fails if a fourth field appears.
+- **One switch.** `PUBLISH_LIVE_EVENTS = false` strips `play` from every row
+  at the next pass, on every phone, with no app build.
+- The minute is published only when ESPN's clock sits inside its half (it
+  has read 1' twenty minutes in) and is never behind the last event. The app
+  runs it on from `at`.
+- A pass republishes for a new event or a minute five or more ahead, so a
+  quiet stretch costs one Pages build in six minutes, not one in three.
+- The rows are not gated against a final score. They are notes for the card
+  and never feed the table.
+- Nations Championship only. A test, series or tour game (fixtures.json) has
+  no notes yet.
+- **Not yet seen on a live game**: ESPN is not reachable from a cloud session,
+  so it was built against the rows recorded for the box score. Its first game
+  is Scotland v Australia, Mon 16 Nov 2026, 02:10 Sydney time; grep that
+  refresh run for `live notes updated`.
+
 A top-up commits only when a row moved ("data: live refresh, ESPN (…)"), so a
 quiet stretch costs no Pages build. To read how far ESPN led api-sports in a
 round, grep the refresh-data run logs for `[espn-overlay]`: every lift prints

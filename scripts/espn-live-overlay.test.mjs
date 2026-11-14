@@ -141,7 +141,7 @@ const event = (id, date, state, detail, home, away) => ({
   }],
 });
 
-test("fetchEspnNationsStates: one keyless request, in-play and finished games near now only", async () => {
+test("fetchEspnNationsStates: the scoreboard plus one summary per game in play; in-play and finished games near now only", async () => {
   const urls = [];
   const nowMs = Date.parse("2026-11-07T21:30:00Z");
   const states = await fetchEspnNationsStates({
@@ -158,9 +158,12 @@ test("fetchEspnNationsStates: one keyless request, in-play and finished games ne
       ] };
     },
   });
-  assert.deepEqual(urls, [`https://site.api.espn.com/apis/site/v2/sports/rugby/${ESPN_NATIONS_LEAGUE}/scoreboard?dates=2026`]);
+  const base = `https://site.api.espn.com/apis/site/v2/sports/rugby/${ESPN_NATIONS_LEAGUE}`;
+  // The live game's notes are asked for; a finished game's are not. This
+  // stub's summary has no rows and its status no clock: no events, no minute.
+  assert.deepEqual(urls, [`${base}/scoreboard?dates=2026`, `${base}/summary?event=1`]);
   assert.deepEqual(states, [
-    { key: "FRA-FIJ", date: "2026-11-07T20:10Z", home: 40, away: 10, live: true, short: "2nd Half" },
+    { key: "FRA-FIJ", date: "2026-11-07T20:10Z", home: 40, away: 10, live: true, short: "2nd Half", events: [], minute: null },
     { key: "WAL-JPN", date: "2026-11-07T16:40Z", home: 28, away: 21, live: false, short: "FT" },
   ]);
 });
