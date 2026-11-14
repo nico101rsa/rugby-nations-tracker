@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-14T11:42:41.056Z",
+  "updatedAt": "2026-11-14T11:45:47.143Z",
   "counts": {
-    "fixtures": 11,
-    "results": 25,
+    "fixtures": 10,
+    "results": 26,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53238,
-      "date": "2026-11-14T11:40:00+00:00",
-      "week": "5",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 389,
-        "name": "Italy",
-        "logo": "https://media.api-sports.io/rugby/teams/389.png",
-        "score": null
-      },
-      "away": {
-        "id": 460,
-        "name": "Argentina",
-        "logo": "https://media.api-sports.io/rugby/teams/460.png",
-        "score": null
-      }
-    },
     {
       "id": 53239,
       "date": "2026-11-14T14:10:00+00:00",
@@ -811,6 +789,29 @@
         "name": "South Africa",
         "logo": "https://media.api-sports.io/rugby/teams/467.png",
         "score": 19
+      }
+    },
+    {
+      "id": 53238,
+      "date": "2026-11-14T11:40:00+00:00",
+      "week": "5",
+      "status": {
+        "short": "LIVE",
+        "long": "In Progress",
+        "live": true,
+        "via": "espn"
+      },
+      "home": {
+        "id": 389,
+        "name": "Italy",
+        "logo": "https://media.api-sports.io/rugby/teams/389.png",
+        "score": 0
+      },
+      "away": {
+        "id": 460,
+        "name": "Argentina",
+        "logo": "https://media.api-sports.io/rugby/teams/460.png",
+        "score": 0
       }
     }
   ],
