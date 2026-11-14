@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-13T07:29:45.040Z",
+ "updatedAt": "2026-11-14T07:10:40.253Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -57,8 +57,8 @@
      "us": 33,
      "them": 16,
      "result": "W",
-     "tries": null,
-     "cards": null
+     "tries": 5,
+     "cards": 0
     },
     {
      "id": 16716848,
@@ -85,8 +85,8 @@
      "us": 26,
      "them": 33,
      "result": "L",
-     "tries": null,
-     "cards": null
+     "tries": 4,
+     "cards": 0
     },
     {
      "id": 16651326,
@@ -227,20 +227,6 @@
   "FRA": {
    "last": [
     {
-     "id": 14884335,
-     "date": "2025-11-22T20:10:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Australia",
-     "opponentCode": "AUS",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 48,
-     "them": 33,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 15105993,
      "date": "2026-02-05T20:10:00.000Z",
      "league": "Six Nations",
@@ -365,9 +351,7 @@
      "result": "W",
      "tries": 8,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098043,
      "date": "2026-11-13T20:10:00.000Z",
@@ -376,11 +360,14 @@
      "opponentCode": "RSA",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Stade de France, Saint-Denis"
-    },
+     "us": 21,
+     "them": 19,
+     "result": "W",
+     "tries": 3,
+     "cards": 3
+    }
+   ],
+   "next": [
     {
      "id": 16098067,
      "date": "2026-11-21T20:10:00.000Z",
@@ -426,6 +413,18 @@
      "opponentCode": "SCO",
      "tracked": true,
      "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 17537429,
+     "date": "2027-03-06T14:10:00.000Z",
+     "league": "Six Nations",
+     "opponent": "Italy",
+     "opponentCode": "ITA",
+     "tracked": true,
+     "homeAway": "A",
      "us": null,
      "them": null,
      "result": null
@@ -487,8 +486,8 @@
      "us": 32,
      "them": 35,
      "result": "L",
-     "tries": null,
-     "cards": null
+     "tries": 4,
+     "cards": 0
     },
     {
      "id": 16786650,
@@ -501,8 +500,8 @@
      "us": 17,
      "them": 56,
      "result": "L",
-     "tries": null,
-     "cards": null
+     "tries": 3,
+     "cards": 1
     },
     {
      "id": 16972143,
@@ -855,8 +854,8 @@
      "us": 35,
      "them": 32,
      "result": "W",
-     "tries": null,
-     "cards": null
+     "tries": 5,
+     "cards": 1
     },
     {
      "id": 16786650,
@@ -869,8 +868,8 @@
      "us": 56,
      "them": 17,
      "result": "W",
-     "tries": null,
-     "cards": null
+     "tries": 8,
+     "cards": 0
     },
     {
      "id": 16906632,
@@ -883,8 +882,8 @@
      "us": 27,
      "them": 21,
      "result": "W",
-     "tries": null,
-     "cards": null
+     "tries": 4,
+     "cards": 1
     },
     {
      "id": 16965159,
@@ -1651,20 +1650,6 @@
   "RSA": {
    "last": [
     {
-     "id": 16098077,
-     "date": "2026-07-04T15:40:00.000Z",
-     "league": "Nations Championship, Group Stage",
-     "opponent": "England",
-     "opponentCode": "ENG",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 45,
-     "them": 21,
-     "result": "W",
-     "tries": 7,
-     "cards": 1
-    },
-    {
      "id": 16098078,
      "date": "2026-07-11T15:40:00.000Z",
      "league": "Nations Championship, Group Stage",
@@ -1703,8 +1688,8 @@
      "us": 17,
      "them": 10,
      "result": "W",
-     "tries": null,
-     "cards": null
+     "tries": 2,
+     "cards": 0
     },
     {
      "id": 16651329,
@@ -1717,8 +1702,8 @@
      "us": 16,
      "them": 33,
      "result": "L",
-     "tries": null,
-     "cards": null
+     "tries": 1,
+     "cards": 2
     },
     {
      "id": 16651327,
@@ -1731,8 +1716,8 @@
      "us": 33,
      "them": 26,
      "result": "W",
-     "tries": null,
-     "cards": null
+     "tries": 3,
+     "cards": 1
     },
     {
      "id": 16651326,
@@ -1789,9 +1774,7 @@
      "result": "W",
      "tries": 9,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098043,
      "date": "2026-11-13T20:10:00.000Z",
@@ -1800,11 +1783,14 @@
      "opponentCode": "FRA",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Stade de France, Saint-Denis"
-    },
+     "us": 19,
+     "them": 21,
+     "result": "L",
+     "tries": 3,
+     "cards": 2
+    }
+   ],
+   "next": [
     {
      "id": 16098066,
      "date": "2026-11-21T16:40:00.000Z",
@@ -2161,8 +2147,8 @@
      "us": 10,
      "them": 17,
      "result": "L",
-     "tries": null,
-     "cards": null
+     "tries": 1,
+     "cards": 0
     },
     {
      "id": 16906632,
@@ -2175,8 +2161,8 @@
      "us": 21,
      "them": 27,
      "result": "L",
-     "tries": null,
-     "cards": null
+     "tries": 3,
+     "cards": 0
     },
     {
      "id": 16965159,
