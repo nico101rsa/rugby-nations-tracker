@@ -1,25 +1,16 @@
 {
   "date": "2026-11-15",
   "counts": {
-    "editions": 10,
+    "editions": 12,
     "quiet": 0,
     "storyline": 0,
     "dataEdition": 0,
-    "failed": 2,
+    "failed": 0,
     "noLead": 0,
-    "repeatLead": 2,
-    "world": 1
+    "repeatLead": 0,
+    "world": 4
   },
-  "failed": [
-    {
-      "team": "Ireland",
-      "reason": "invalid edition: teamsheet has 0 starters (want 15); starter jerseys must be unique 1-15 | tail: …aird calls the year that followed \\\"soul-sapping\\\", but says he came back for two URC games and a Heineken Cup quarter-final.\" } ], \"teamsheet\": { \"starters\": [], \"bench\": [] } } ```"
-    },
-    {
-      "team": "Argentina",
-      "reason": "invalid edition: teamsheet has 0 starters (want 15); starter jerseys must be unique 1-15 | tail: …lty, while France, though heavily depleted, are still determined. The last meeting went France's way, 37-23 in November 2024.\" } ], \"teamsheet\": { \"starters\": [], \"bench\": [] } } ```"
-    }
-  ],
+  "failed": [],
   "teams": [
     {
       "team": "Fiji",
@@ -27,26 +18,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Jake White dreams of Fiji hosting Ireland in a Suva Test match",
-      "kicker": "Coaching ambition",
-      "body": "In an interview with The42 this week, Jake White sets out a bigger ambition for Fiji: a Test in Suva against Ireland would be the best of all. It is a notable hope, since Fiji's Nations Championship home games this summer were played on UK soil, their national stadium not considered of a suitable standard for regular Tests. White, who beat Warren Gatland and Shaun Edwards to the job last month, is working towards a more consistent side for next year's World Cup in Australia.",
+      "heading": "Jake White moves Fiji's captain's run from the Aviva to Kirwan Park",
+      "kicker": "Dublin base",
+      "body": "Jake White's Fiji have been training at De La Salle Palmerston FC, the junior club known locally as 'Salmo', and have felt so at home there that they decided to hold their captain's run on Friday at Kirwan Park rather than the Aviva Stadium. Non-playing squad members were due to train at the club again on Saturday morning. Club director of rugby Norman Byrne watched the sessions and said: \"They’re the nicest people you’ll ever come across.\"",
       "source": "The42",
       "lead": {
-        "candidate": 1,
-        "why": "The Suva ambition is a fresh angle from the White interview, and the move-to-Fiji and Higgins stories have already run."
+        "candidate": 5,
+        "why": "The NEW items fail: #1 and #2 are stories already reported on this tab, and #3 is Ireland's story, so this Fiji training-base story is the strongest remaining item."
       },
-      "leadLink": "https://www.the42.ie/jake-white-fiji-7225185-Nov2026/",
-      "repeatLead": {
-        "date": "2026-11-15",
-        "heading": "Jake White will move to live in Fiji in early 2027",
-        "reason": "same source article"
-      },
+      "leadLink": "https://www.the42.ie/fiji-dublin-dlsp-7224511-Nov2026/",
+      "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "'There'd be nothing greater than for Fiji to host Ireland in Suva'",
           "link": "https://www.the42.ie/jake-white-fiji-7225185-Nov2026/",
-          "score": 26.2,
+          "score": 25.7,
           "corroboration": 1,
           "outlets": [
             "the42"
@@ -55,8 +42,8 @@
         },
         {
           "title": "Fiji Showed Incredible Respect To Michael D Higgins On Last Trip To Ireland",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8cbdbf3674045a35178e2da172b07&url=https%3a%2f%2fwww.balls.ie%2frugby%2ffiji-michael-d-higgins-respect-ireland-667317&c=10460411386188817812&mkt=en-us",
-          "score": 19.5,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8da0759c042b2bf9615fb8876302b&url=https%3a%2f%2fwww.balls.ie%2frugby%2ffiji-michael-d-higgins-respect-ireland-667317&c=10460411386188817812&mkt=en-us",
+          "score": 19,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -66,7 +53,7 @@
         {
           "title": "Farrell's Ireland must maintain momentum against Flying Fijians",
           "link": "https://www.the42.ie/ireland-fiji-preview-2-7225087-Nov2026/",
-          "score": 8.5,
+          "score": 8.3,
           "corroboration": 1,
           "outlets": [
             "the42"
@@ -75,24 +62,22 @@
           "otherTeam": "Ireland"
         },
         {
-          "title": "Ireland vs Fiji rugby: Kick-off time, TV channel, live stream, team news, lineups, h2h results, odds today",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8cbdbf3674045a35178e2da172b07&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fireland-vs-fiji-rugby-date-204316347.html&c=16194058711674801052&mkt=en-us",
-          "score": 7.1,
+          "title": "Flying Fijians fall in France",
+          "link": "https://islandsbusiness.com/news-break/flying-fijians-fall-in-france/",
+          "score": 29.9,
           "corroboration": 1,
           "outlets": [
-            "search"
+            "islandsbusiness"
           ],
-          "fresh": true,
-          "otherTeam": "Ireland"
+          "fresh": false
         },
         {
-          "title": "Nations Championship, Farrell punta sull'esperienza: le formazioni di Irlanda-Fiji",
-          "link": "https://www.onrugby.it/2026/11/12/nations-championship-farrell-punta-sullesperienza-le-formazioni-di-irlanda-fiji/",
-          "score": 32.7,
-          "corroboration": 2,
+          "title": "Coconuts, kava, hymns and pure rugby joy as Fiji set up in Salmo",
+          "link": "https://www.the42.ie/fiji-dublin-dlsp-7224511-Nov2026/",
+          "score": 28.2,
+          "corroboration": 1,
           "outlets": [
-            "onrugby",
-            "search"
+            "the42"
           ],
           "fresh": false
         }
@@ -104,71 +89,67 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Fans rage as ITV runs split-screen adverts during England's Japan rout",
-      "kicker": "Broadcast row",
-      "body": "Split-screen adverts during ITV's coverage of Saturday's England v Japan game drew complaints on X, with viewers saying the breaks spoiled the experience. \"This is not America.\" one wrote, while another objected to \"watching rugby union, not the NFL.\" One viewer said the broadcaster cut away from a TMO check for an advert, and others defended the ads, arguing that rugby's finances left it in no position to be choosy.",
-      "source": null,
+      "heading": "Will Joseph's five tries match England record in 78-15 win over Japan",
+      "kicker": "Record haul",
+      "body": "Will Joseph's second cap turned into a record-equalling afternoon as the wing crossed five times in England's 78-15 win over Japan on Saturday. Japan were a man down before they touched the ball, Harry Hockings sent off inside the first minute for a dangerous hit on Ellis Genge, and Joseph had a hat-trick inside 20 minutes. Five tries matches the England record held jointly by Douglas Lambert, Rory Underwood, Josh Lewsey and Henry Arundell, and England's 78 points were their biggest total for a quarter of a century.",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 1,
-        "why": "The only NEW shortlist item, and it concerns England's Saturday coverage rather than a result already reported."
+        "candidate": 4,
+        "why": "It is a fresh match report on England's 78-15 win over Japan, with the decisive red card and Will Joseph's record-equalling five tries."
       },
-      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8cc2856d54f1396d4fb92a8e6e312&url=https%3a%2f%2fwww.thesun.co.uk%2fsport%2f41025392%2fengland-japan-itv-coverage-fans-angry-adverts-wales-nz%2f&c=15733992841750823689&mkt=en-us",
+      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cq0l3pn5z20xo?at_medium=RSS&at_campaign=rss",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
-          "title": "‘This is not America’ – Rugby fans rage at hated ITV feature during coverage of England clash",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8cc2856d54f1396d4fb92a8e6e312&url=https%3a%2f%2fwww.thesun.co.uk%2fsport%2f41025392%2fengland-japan-itv-coverage-fans-angry-adverts-wales-nz%2f&c=15733992841750823689&mkt=en-us",
-          "score": 19.8,
+          "title": "England leave Jones sucking lemons but demolition of Japan shows widening gulf | Gerard Meagher",
+          "link": "https://www.theguardian.com/sport/2026/nov/14/england-leave-jones-sucking-lemons-but-demolition-of-japan-shows-widening-gulf",
+          "score": 53.1,
           "corroboration": 1,
           "outlets": [
-            "search"
+            "guardian"
           ],
           "fresh": true
         },
         {
           "title": "England v Japan kick-off time, free TV channel and live stream",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/england-v-japan-kick-time-34906896",
-          "score": 85.6,
-          "corroboration": 2,
-          "outlets": [
-            "walesonline",
-            "search"
-          ],
-          "fresh": false
-        },
-        {
-          "title": "England ease pressure on Borthwick after big win over Australia",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/videos/cked3q4z0y5xo?at_medium=RSS&at_campaign=rss",
-          "score": 43.6,
-          "corroboration": 2,
-          "outlets": [
-            "bbc",
-            "guardian"
-          ],
-          "fresh": false
-        },
-        {
-          "title": "Maro Itoje warns England not to sleepwalk into clash with Eddie Jones’s Japan",
-          "link": "https://www.theguardian.com/sport/2026/nov/13/maro-itoje-england-sleepwalk-eddie-jones-japan-rugby-union",
-          "score": 39.2,
+          "score": 45,
           "corroboration": 1,
           "outlets": [
-            "guardian"
+            "walesonline"
           ],
-          "fresh": false
+          "fresh": true
         },
         {
-          "title": "Jones vows Japan will 'play the house down' against England",
-          "link": "https://japantoday.com/category/sports/jones-vows-japan-will-%27play-the-house-down%27-against-england",
-          "score": 36.3,
-          "corroboration": 3,
+          "title": "Comment: England's hunger shone through and Will Joseph will no longer be referred to as Jonathan’s kid brother",
+          "link": "https://www.planetrugby.com/news/comment-englands-hunger-shone-through-and-will-joseph-will-no-longer-be-referred-to-as-jonathans-kid-brother",
+          "score": 36.5,
+          "corroboration": 1,
           "outlets": [
-            "japantoday",
-            "japantimes",
-            "search"
+            "planetrugby"
           ],
-          "fresh": false
+          "fresh": true
+        },
+        {
+          "title": "Comeback kid Joseph thrills as England eye All Blacks",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq0l3pn5z20xo?at_medium=RSS&at_campaign=rss",
+          "score": 33.4,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "England v Japan: Five takeaways as Max Ojomoh emerges as the future while Eddie Jones' former players show off",
+          "link": "https://www.planetrugby.com/news/england-v-japan-five-takeaways-as-max-ojomohs-emerges-as-the-future-while-eddie-jones-former-players-show-off",
+          "score": 32.9,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ],
+          "fresh": true
         }
       ]
     },
@@ -178,22 +159,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Antoine Dupont inspires France to end South Africa run with 21-19 win",
-      "kicker": "Match report",
-      "body": "France ended a five-match losing run against South Africa at Stade de France on Friday, winning 21-19 after three first-half tries from Aaron Grandidier-Nkanang, Theo Attissogbe and Louis Bielle-Biarrey. Antoine Dupont, named player of the match, gathered the ball that sealed it after Bielle-Biarrey's huge defensive tackle forced a loose ball late on. Manie Libbok had missed the conversion to Malcolm Marx's try that would have levelled the game. The win leaves France six points clear at the top of the northern hemisphere standings before Argentina next Saturday.",
-      "source": "BBC Rugby Union",
+      "heading": "Julien Marchand ruled out for rest of Nations Championship; Jalibert nears return",
+      "kicker": "Injury blow",
+      "body": "Planet Rugby understands that Julien Marchand has been ruled out for the rest of the Nations Championship. The hooker felt further thigh tightness in the warm-up before the South Africa win and had to pull out of the starting side, with Peato Mauvaka taking his place and Guillaume Cramont now the reserve hooker. The news is partly offset at fly-half, where Matthieu Jalibert, out since a quadriceps injury on 20 September, is expected at Marcoussis early next week and in line for the squad to face Argentina.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "A fresh match report on France's 21-19 win over South Africa, the strongest new item and not the Marchand story already run."
+        "candidate": 2,
+        "why": "It is a new France injury development, with Marchand ruled out for the rest of the competition and Jalibert nearing a return, and it is not part of the South Africa result already reported."
       },
-      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cqm2j810r2m2o?at_medium=RSS&at_campaign=rss",
+      "leadLink": "https://www.planetrugby.com/news/frances-injury-crisis-eased-as-playmaker-makes-timely-return-after-springboks-victory",
       "repeatLead": null,
-      "noveltyRevised": true,
+      "noveltyRevised": false,
       "candidates": [
         {
           "title": "France hold nerve to edge past South Africa in thriller",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cqm2j810r2m2o?at_medium=RSS&at_campaign=rss",
-          "score": 41.3,
+          "score": 40.9,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -203,7 +184,7 @@
         {
           "title": "France's injury crisis eased as playmaker makes timely return after Springboks victory",
           "link": "https://www.planetrugby.com/news/frances-injury-crisis-eased-as-playmaker-makes-timely-return-after-springboks-victory",
-          "score": 33.6,
+          "score": 32.9,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -213,7 +194,7 @@
         {
           "title": "Direct. Angleterre - Japon : le XV de la Rose veut mettre la pression sur le XV de France... Suivez le match du Championnat des Nations",
           "link": "https://www.rugbyrama.fr/2026/11/14/direct-angleterre-japon-le-xv-de-la-rose-veut-mettre-la-pression-sur-le-xv-de-france-suivez-le-match-du-championnat-des-nations-13652401.php",
-          "score": 31.1,
+          "score": 30.5,
           "corroboration": 1,
           "outlets": [
             "rugbyrama"
@@ -223,7 +204,7 @@
         {
           "title": "France - Afrique du Sud. Pourquoi Peato Mauvaka et la première ligne sud-africaine ont-ils joué avec des numéros de remplaçants ?",
           "link": "https://www.rugbyrama.fr/2026/11/14/france-afrique-du-sud-pourquoi-peato-mauvaka-et-la-premiere-ligne-sud-africaine-ont-ils-joue-avec-des-numeros-de-remplacants-13652812.php",
-          "score": 30.8,
+          "score": 30.1,
           "corroboration": 1,
           "outlets": [
             "rugbyrama"
@@ -231,9 +212,9 @@
           "fresh": true
         },
         {
-          "title": "France - Afrique du Sud - \"(Dupont) Une des plus grandes performances individuelles\", \"bonne dose de chance\", \"une mêlée dévorée comme un gâteau au chocolat\" : la revue de presse internationale",
-          "link": "https://www.rugbyrama.fr/2026/11/14/france-afrique-du-sud-dupont-une-des-plus-grandes-performances-individuelles-bonne-dose-de-chance-une-melee-devoree-comme-un-gateau-au-chocolat-la-13652356.php",
-          "score": 28.8,
+          "title": "Championnat des Nations - Pourquoi la victoire surprise du pays de Galles contre la Nouvelle-Zélande change beaucoup de choses pour le XV de France",
+          "link": "https://www.rugbyrama.fr/2026/11/14/championnat-des-nations-pourquoi-la-victoire-surprise-du-pays-de-galles-contre-la-nouvelle-zelande-change-beaucoup-de-choses-pour-le-xv-de-france-13652879.php",
+          "score": 29.2,
           "corroboration": 1,
           "outlets": [
             "rugbyrama"
@@ -243,27 +224,113 @@
       ]
     },
     {
+      "team": "Ireland",
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
+      "dataAngle": null,
+      "heading": "Ryan Baird recalls playing on with broken leg against South Africa",
+      "kicker": "Injury recall",
+      "body": "Ireland's Ryan Baird played on after a blow to the leg against South Africa at the Aviva Stadium in November 2025, convinced it was a dead leg. He went down, was strapped up, and only an X-ray in the stadium revealed a broken left leg. Tadhg Beirne, by Baird's account, told him to come off if he could not run. A comeback through two URC games and a Heineken Cup quarter-final was then interrupted by a second problem, and Baird says the year was soul-sapping.",
+      "source": null,
+      "lead": {
+        "candidate": 2,
+        "why": "It is a new Ireland-focused item, and the other fresh pieces are either the already-reported Fiji team news or Fiji's own story."
+      },
+      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8da7019974c4697c18eec1334027f&url=https%3a%2f%2fwww.irishmirror.ie%2fsport%2frugby-union%2fbreaking-bad-ireland-star-ireland-37875960&c=5262330659065336623&mkt=en-us",
+      "repeatLead": null,
+      "noveltyRevised": false,
+      "candidates": [
+        {
+          "title": "Farrell's Ireland must maintain momentum against Flying Fijians",
+          "link": "https://www.the42.ie/ireland-fiji-preview-2-7225087-Nov2026/",
+          "score": 23.7,
+          "corroboration": 1,
+          "outlets": [
+            "the42"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Breaking bad for Ireland star Ireland star on comeback trail",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8da7019974c4697c18eec1334027f&url=https%3a%2f%2fwww.irishmirror.ie%2fsport%2frugby-union%2fbreaking-bad-ireland-star-ireland-37875960&c=5262330659065336623&mkt=en-us",
+          "score": 19.6,
+          "corroboration": 1,
+          "outlets": [
+            "search"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "'There'd be nothing greater than for Fiji to host Ireland in Suva'",
+          "link": "https://www.the42.ie/jake-white-fiji-7225185-Nov2026/",
+          "score": 11.2,
+          "corroboration": 1,
+          "outlets": [
+            "the42"
+          ],
+          "fresh": true,
+          "otherTeam": "Fiji"
+        },
+        {
+          "title": "Nations Championship: Ireland v Fiji updates",
+          "link": "https://www.rte.ie/sport/rugby/2026/1114/1599218-nations-championship-ireland-v-fiji/",
+          "score": 106.4,
+          "corroboration": 4,
+          "outlets": [
+            "onrugby",
+            "the42",
+            "rte",
+            "search"
+          ],
+          "fresh": false
+        },
+        {
+          "title": "Watch Ireland v Fiji: Free streams, broadcasters and preview for Nations Championship clash in Dublin",
+          "link": "https://www.rugbyworld.com/countries/ireland-countries/watch-ireland-fiji-nations-championship-2026-free-186622",
+          "score": 75.9,
+          "corroboration": 2,
+          "outlets": [
+            "rte",
+            "rugbyworld"
+          ],
+          "fresh": false
+        }
+      ]
+    },
+    {
       "team": "Italy",
       "quiet": false,
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Felipe Contepomi says Italy dominated first half but failed to convert pressure",
-      "kicker": "Coaching verdict",
-      "body": "Argentina coach Felipe Contepomi conceded after the Genoa win that Italy had the better of possession and territory in the first half, but said matches like this are decided by who turns control into points. Monty Ioane's fourth-minute try gave the Azzurri the early lead, yet they could not convert sustained pressure, and Bautista Bernasconi's maul try before the break put Argentina ahead 7-5 at half-time. Italy's yellow cards for Joel Sclavi and Efrain Elias proved costly in the second half, and Argentina went on to win 19-14.",
-      "source": "OnRugby",
+      "heading": "Italy fall 19-14 to Argentina after Garbisi's late missed touch kick",
+      "kicker": "Genoa defeat",
+      "body": "Italy's Genoa test against Argentina ended 19-14 to the Pumas on Saturday, and the last-minute error was Paolo Garbisi's. Trying to set up a lineout in a scoring position, the flyhalf missed a penalty touch kick, with the Azzurri having spent the closing stages pressing against 14 men after Efraín Elías was yellow-carded. Monty Ioane's early try and a second-half penalty try gave Italy their points. The Pumas won the game with three tries, and Italy remain winless in the competition.",
+      "source": "Americas Rugby News",
       "lead": {
         "candidate": 1,
-        "why": "It is the only new item with a usable Italy angle; the other candidates are a rival's story, a preview, or a U20 match with no result in the pack."
+        "why": "A new result report on Saturday's Genoa defeat, the most recent Italy event in the shortlist, with the decisive late error."
       },
-      "leadLink": "https://www.onrugby.it/2026/11/14/argentina-felipe-contepomi-litalia-ha-dominato-possesso-e-territorio-nel-primo-tempo-ma-in-queste-partite-conta-trasformare-e-segnare/",
+      "leadLink": "https://www.americasrugbynews.com/2026/11/14/argentina-edge-italy-in-fierce-battle-in-genoa/",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
+          "title": "Argentina Edge Italy in Fierce Battle in Genoa",
+          "link": "https://www.americasrugbynews.com/2026/11/14/argentina-edge-italy-in-fierce-battle-in-genoa/",
+          "score": 75.2,
+          "corroboration": 2,
+          "outlets": [
+            "planetrugby",
+            "americasrugbynews"
+          ],
+          "fresh": true
+        },
+        {
           "title": "Argentina, Felipe Contepomi: \"L'Italia ha dominato possesso e territorio nel primo tempo, ma in queste partite conta trasformare e segnare\"",
           "link": "https://www.onrugby.it/2026/11/14/argentina-felipe-contepomi-litalia-ha-dominato-possesso-e-territorio-nel-primo-tempo-ma-in-queste-partite-conta-trasformare-e-segnare/",
-          "score": 37.9,
+          "score": 37.2,
           "corroboration": 1,
           "outlets": [
             "onrugby"
@@ -271,19 +338,20 @@
           "fresh": true
         },
         {
-          "title": "Italy v Argentina: Five takeaways as Pumas edge victory with Garbisi wasting Zuliani’s 'gladiatorial effort'",
-          "link": "https://www.planetrugby.com/news/italy-v-argentina-five-takeaways-as-pumas-edge-victory-with-garbisi-wasting-zulianis-gladiatorial-effort",
-          "score": 31.3,
-          "corroboration": 1,
+          "title": "Pumas grind out 19-14 win over Italy after late yellow cards in Nations Championship",
+          "link": "https://japantoday.com/category/sports/pumas-grind-out-19-14-win-over-italy-after-late-yellow-cards-in-nations-championship",
+          "score": 28,
+          "corroboration": 2,
           "outlets": [
-            "planetrugby"
+            "japantoday",
+            "search"
           ],
           "fresh": true
         },
         {
           "title": "Anxious Argentina hold off Italy",
           "link": "https://www.sarugbymag.co.za/anxious-argentina-hold-off-italy/",
-          "score": 18.3,
+          "score": 17.9,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -292,25 +360,13 @@
           "otherTeam": "Argentina"
         },
         {
-          "title": "Dove e quando si vede Italia U20-Francia U20 in diretta streaming",
-          "link": "https://www.onrugby.it/2026/11/11/dove-e-quando-si-vede-italia-u20-francia-u20-in-diretta-streaming/",
-          "score": 92,
+          "title": "Italia U20: scelta la formazione per la partita contro la Francia",
+          "link": "https://www.onrugby.it/2026/11/12/italia-u20-scelta-la-formazione-per-la-partita-contro-la-francia/",
+          "score": 95.2,
           "corroboration": 3,
           "outlets": [
-            "onrugby",
             "federugby",
-            "search"
-          ],
-          "fresh": false
-        },
-        {
-          "title": "Nations Championship 2026 – Italy vs Argentina – ARN Guide",
-          "link": "https://www.americasrugbynews.com/2026/11/12/nations-championship-2026-italy-vs-argentina-arn-guide/",
-          "score": 76.8,
-          "corroboration": 3,
-          "outlets": [
-            "americasrugbynews",
-            "rugbyworld",
+            "onrugby",
             "search"
           ],
           "fresh": false
@@ -323,22 +379,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Tuipulotu says Scotland are set on bouncing back from All Blacks defeat",
-      "kicker": "Captain's motivation",
-      "body": "Scotland's next step after a 21-43 defeat by New Zealand at Murrayfield comes against Australia on Sunday, and captain Sione Tuipulotu says the footage makes hard viewing. Tuipulotu, who was born and raised in Melbourne, says the side missed big chances and let themselves down in certain areas. \"Our minds are firmly set on bouncing back after last week.\" He expects the Wallabies to arrive wounded after their beating by England at Twickenham, and says his own history with Australia adds a little fire.",
-      "source": "BBC Rugby Union",
+      "heading": "Five-year-old Joey Sharp to deliver Murrayfield match ball for Scotland v Australia",
+      "kicker": "Matchday honour",
+      "body": "Scottish Rugby have arranged for the five-year-old from Midlothian and his mother, Sam Sharp, to meet the Scotland players. Joey was diagnosed with a brain tumour at 11 days old and has had three surgeries and nine rounds of chemo, and he lives with cerebral palsy as a result of his treatment. He will deliver the ball alongside Commonwealth Games swimmer Archie Goodburn, and his mother says he is \"buzzing\" to meet the team. It will be his first game at Murrayfield, and his mother is a season-ticket holder.",
+      "source": "Daily Record",
       "lead": {
-        "candidate": 2,
-        "why": "It is the freshest new Scotland-focused item in the shortlist, with captain quotes on how the side is responding to the New Zealand defeat."
+        "candidate": 1,
+        "why": "It is the newest item with the most outlet pickup and a fresh Scotland matchday angle, while the Tuipulotu item repeats today's already-reported story."
       },
-      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/c3j4rv9ypl1ko?at_medium=RSS&at_campaign=rss",
+      "leadLink": "https://www.dailyrecord.co.uk/news/scottish-news/boy-5-who-beat-rare-37877595",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Boy, 5, who beat rare brain tumour 'buzzing' to get exciting honour at Scotland rugby match",
           "link": "https://www.dailyrecord.co.uk/news/scottish-news/boy-5-who-beat-rare-37877595",
-          "score": 72.2,
+          "score": 71.7,
           "corroboration": 2,
           "outlets": [
             "dailyrecord",
@@ -349,7 +405,7 @@
         {
           "title": "Scotland aim to bounce back against 'wounded' Australia",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c3j4rv9ypl1ko?at_medium=RSS&at_campaign=rss",
-          "score": 69.1,
+          "score": 68.5,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -359,8 +415,8 @@
         },
         {
           "title": "Scotland vs Australia Nations Championship rugby union predictions: Ashman able to inspire home win",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8cc9dbc0148e694b6071deb735a39&url=https%3a%2f%2fwww.racingpost.com%2fsport%2frugby-union-tips%2fscotland-vs-australia-nations-championship-rugby-union-predictions-odds-betting-tips-aSRpW0y7m3CN%2f&c=17122827353824296808&mkt=en-us",
-          "score": 23.2,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8daa88cef47e6be3aedb2cc76e501&url=https%3a%2f%2fwww.racingpost.com%2fsport%2frugby-union-tips%2fscotland-vs-australia-nations-championship-rugby-union-predictions-odds-betting-tips-aSRpW0y7m3CN%2f&c=17122827353824296808&mkt=en-us",
+          "score": 22.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -369,18 +425,18 @@
         },
         {
           "title": "Scotland captain Tuipulotu wary of wounded Wallabies",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8cc9dbc0148e694b6071deb735a39&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fscotland-captain-tuipulotu-wary-of-wounded-wallabies%2far-AA2hre02&c=15996008784421784529&mkt=en-us",
-          "score": 21.9,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8daa88cef47e6be3aedb2cc76e501&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fscotland-captain-tuipulotu-wary-of-wounded-wallabies%2far-AA2hre02&c=15996008784421784529&mkt=en-us",
+          "score": 21.4,
           "corroboration": 1,
           "outlets": [
             "search"
           ],
-          "fresh": false
+          "fresh": true
         },
         {
           "title": "Scotland vs. Australia: How to watch, kick-off time, TV channel, team news for Nations Championship rugby clash",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8cc9dbc0148e694b6071deb735a39&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fscotland-vs-australia-how-to-watch-kick-off-time-tv-channel-team-news-for-nations-championship-rugby-clash%2far-AA2h8kbZ&c=13782792186614415162&mkt=en-us",
-          "score": 21.4,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6af8daa88cef47e6be3aedb2cc76e501&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fscotland-vs-australia-how-to-watch-kick-off-time-tv-channel-team-news-for-nations-championship-rugby-clash%2far-AA2h8kbZ&c=13782792186614415162&mkt=en-us",
+          "score": 20.9,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -395,25 +451,27 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Wales end 73-year All Blacks drought with 35-28 win in Cardiff",
-      "kicker": "Historic win",
-      "body": "Wales were given little chance, and the decisive stretch came in the final quarter, when the defence led by James Botham, Jac Morgan and Dafydd Jenkins held New Zealand out after New Zealand flanker Peter Lakai's try had pulled the visitors within seven. Tomos Williams scored one of five Welsh tries and had a hand in all of them, with hooker Dewi Lake, Archie Griffin, Eddie James and Louis Rees-Zammit also crossing. Sections of the New Zealand media had belittled Welsh rugby beforehand.",
-      "source": "The42",
+      "heading": "Alex Cuthbert left speechless on BBC commentary as Wales beat All Blacks",
+      "kicker": "Emotional scenes",
+      "body": "Former Wales wing Alex Cuthbert could barely contain himself at the final whistle in Cardiff, his emotion captured on BBC Radio 5 Live's footage from the commentary box. Commentator Sara Orchard had called it as the whistle blew: \"This is it, this is the moment.\" Then Cuthbert, his voice broken, said: \"Oh my God, I don't know what to say. Wow, what?! Just unbelievable.\" Wales had earned it: 73 years and 34 consecutive defeats to New Zealand ended in a 35-28 win.",
+      "source": "WalesOnline",
       "lead": {
-        "candidate": 1,
-        "why": "A fresh result report that ends a 73-year wait and a 34-match losing run, and the strongest new item on the shortlist."
+        "candidate": 3,
+        "why": "The shortlist's other items all retell the Cardiff result, while this one is a fresh angle on it: a former Wales wing's reaction, caught on air."
       },
-      "leadLink": "https://www.the42.ie/wales-hold-on-to-secure-historic-win-over-new-zealand-7226311-Nov2026/",
+      "leadLink": "https://www.walesonline.co.uk/sport/rugby/rugby-news/wales-international-overwhelmed-bbc-commentary-34913220",
       "repeatLead": null,
-      "noveltyRevised": false,
+      "noveltyRevised": true,
       "candidates": [
         {
           "title": "Wales hold on to secure historic win over New Zealand",
           "link": "https://www.the42.ie/wales-hold-on-to-secure-historic-win-over-new-zealand-7226311-Nov2026/",
-          "score": 91.3,
-          "corroboration": 2,
+          "score": 130.6,
+          "corroboration": 4,
           "outlets": [
             "the42",
+            "guardian",
+            "sarugbymag",
             "search"
           ],
           "fresh": true
@@ -421,7 +479,7 @@
         {
           "title": "The Wales rugby team lives and it just pulled off the greatest win of them all",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/wales-rugby-team-lives-just-34912790",
-          "score": 79,
+          "score": 78.2,
           "corroboration": 2,
           "outlets": [
             "walesonline",
@@ -430,9 +488,19 @@
           "fresh": true
         },
         {
+          "title": "Wales international overwhelmed in BBC commentary box as wild scenes unfold",
+          "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/wales-international-overwhelmed-bbc-commentary-34913220",
+          "score": 53,
+          "corroboration": 1,
+          "outlets": [
+            "walesonline"
+          ],
+          "fresh": true
+        },
+        {
           "title": "Wales v All Blacks: Five takeaways as 'written-off' Welsh clinch stunning upset ending 73-year wait for glory",
           "link": "https://www.planetrugby.com/news/wales-v-all-blacks-five-takeaways-as-written-off-welsh-clinch-stunning-upset-ending-73-year-wait-for-glory",
-          "score": 51.8,
+          "score": 51.1,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -442,20 +510,81 @@
         {
           "title": "Magnificent Wales beat New Zealand for first time since 1953",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c63dgev0p8pgo?at_medium=RSS&at_campaign=rss",
-          "score": 51.6,
+          "score": 50.8,
           "corroboration": 1,
           "outlets": [
             "bbc"
           ],
           "fresh": true
+        }
+      ]
+    },
+    {
+      "team": "Argentina",
+      "quiet": false,
+      "rung": "news",
+      "storyline": null,
+      "dataAngle": null,
+      "heading": "Pumas travel to Paris after a difficult year of five defeats",
+      "kicker": "Away trip",
+      "body": "Argentina go to Paris carrying a hard calendar year, and Rugbyrama's preview, written before Saturday's Genoa win, counts only one victory before it, against Wales. France are, in the paper's words, heavily depleted, but they have dominated the head-to-head: they won 37-23 when the teams last met in November 2024. Argentina's last win over France came in 2014, a game in which Nicolás Sánchez landed four drop goals.",
+      "source": "Rugbyrama",
+      "lead": {
+        "candidate": 4,
+        "why": "The Italy result is already covered, so this fresh Rugbyrama item on Argentina's trip to France is the strongest new Pumas story on offer."
+      },
+      "leadLink": "https://www.rugbyrama.fr/2026/11/13/championnat-des-nations-xv-de-france-argentine-date-heure-stade-tout-savoir-sur-le-prochain-match-des-bleus-13651428.php",
+      "repeatLead": null,
+      "noveltyRevised": false,
+      "candidates": [
+        {
+          "title": "Argentina Edge Italy in Fierce Battle in Genoa",
+          "link": "https://www.americasrugbynews.com/2026/11/14/argentina-edge-italy-in-fierce-battle-in-genoa/",
+          "score": 75.2,
+          "corroboration": 2,
+          "outlets": [
+            "planetrugby",
+            "americasrugbynews"
+          ],
+          "fresh": true
         },
         {
-          "title": "Championnat des Nations. L&#039;exploit de l&#039;année : le pays de Galles s&#039;offre la Nouvelle-Zélande à Cardiff pour la première fois depuis 1953",
-          "link": "https://www.rugbyrama.fr/2026/11/14/championnat-des-nations-lexploit-de-lannee-le-pays-de-galles-soffre-la-nouvelle-zelande-a-cardiff-pour-la-premiere-fois-depuis-1953-13652844.php",
-          "score": 41.4,
+          "title": "Argentina, Felipe Contepomi: \"L'Italia ha dominato possesso e territorio nel primo tempo, ma in queste partite conta trasformare e segnare\"",
+          "link": "https://www.onrugby.it/2026/11/14/argentina-felipe-contepomi-litalia-ha-dominato-possesso-e-territorio-nel-primo-tempo-ma-in-queste-partite-conta-trasformare-e-segnare/",
+          "score": 37.2,
+          "corroboration": 1,
+          "outlets": [
+            "onrugby"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Anxious Argentina hold off Italy",
+          "link": "https://www.sarugbymag.co.za/anxious-argentina-hold-off-italy/",
+          "score": 32.6,
+          "corroboration": 1,
+          "outlets": [
+            "sarugbymag"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Championnat des Nations. XV de France – Argentine : date, heure, stade… Tout savoir sur le prochain match des Bleus",
+          "link": "https://www.rugbyrama.fr/2026/11/13/championnat-des-nations-xv-de-france-argentine-date-heure-stade-tout-savoir-sur-le-prochain-match-des-bleus-13651428.php",
+          "score": 18.1,
           "corroboration": 1,
           "outlets": [
             "rugbyrama"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Pumas grind out 19-14 win over Italy after late yellow cards in Nations Championship",
+          "link": "https://japantoday.com/category/sports/pumas-grind-out-19-14-win-over-italy-after-late-yellow-cards-in-nations-championship",
+          "score": 17,
+          "corroboration": 1,
+          "outlets": [
+            "japantoday"
           ],
           "fresh": true
         }
@@ -467,22 +596,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Wallabies swatted aside 45-22 by England at Twickenham, conceding seven tries",
-      "kicker": "Heavy defeat",
-      "body": "England scored seven tries in a 45-22 rout at Twickenham last weekend, and the Wallabies were taken apart in a performance the BBC described as listless. The defeat leaves Australia having lost three of their four Nations Championship matches and out of contention for the inaugural final. Sunday's visit to Murrayfield now carries the threat of a fourth straight Test defeat, against a Scotland side also seeking to bounce back from their defeat by New Zealand.",
-      "source": "BBC Rugby Union",
+      "heading": "Les Kiss recalls Carter Gordon and Rob Valetini, drops Declan Meredith",
+      "kicker": "Selection call",
+      "body": "Carter Gordon is back from the broken leg that has been the latest of several injuries to derail his progress, and Les Kiss has restored him to the starting XV for Sunday's Test against Scotland. \"Certainly Carter was the incumbent, so he was in a position of strength before he got injured,\" Kiss said. Rob Valetini is back in the starting side at six, while Declan Meredith, who looked lost in the defeat by England, has been dropped from match-day 23.",
+      "source": "Guardian Rugby Union",
       "lead": {
-        "candidate": 4,
-        "why": "The only NEW item (#1) is about Scotland, so it fails the Australia test; #2 and #5 repeat stories already run, and #3 is months-old opinion, leaving #4 as the strongest Australia item, angled here at"
+        "candidate": 2,
+        "why": "Shortlist #1 is Scotland's story and never leads while an Australia item is on offer; #2 is Australia's own selection news (Gordon and Valetini back, Meredith dropped), distinct from the Suaalii-at-13"
       },
-      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/videos/cked3q4z0y5xo?at_medium=RSS&at_campaign=rss",
+      "leadLink": "https://www.theguardian.com/sport/2026/nov/14/australia-wallabies-rugby-team-scotland-nations-championship-gordon-suaalii",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Scotland aim to bounce back against 'wounded' Australia",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c3j4rv9ypl1ko?at_medium=RSS&at_campaign=rss",
-          "score": 16,
+          "score": 15.7,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -493,11 +622,22 @@
         {
           "title": "Wallabies recall playmaker Carter Gordon as Kiss throws support behind Suaalii",
           "link": "https://www.theguardian.com/sport/2026/nov/14/australia-wallabies-rugby-team-scotland-nations-championship-gordon-suaalii",
-          "score": 81.3,
+          "score": 80.8,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
             "guardian"
+          ],
+          "fresh": false
+        },
+        {
+          "title": "Nations Championship: due grandi ritorni e un possibile esordio nella formazione che sfida l'Australia",
+          "link": "https://www.onrugby.it/2026/11/13/nations-championship-due-grandi-ritorni-e-un-possibile-esordio-nella-formazione-che-sfida-laustralia/",
+          "score": 47,
+          "corroboration": 2,
+          "outlets": [
+            "guardian",
+            "onrugby"
           ],
           "fresh": false
         },
@@ -521,16 +661,6 @@
             "guardian"
           ],
           "fresh": false
-        },
-        {
-          "title": "Suaalii takes centre stage for Wallabies",
-          "link": "https://www.sarugbymag.co.za/suaalii-takes-centre-stage-for-wallabies/",
-          "score": 16.9,
-          "corroboration": 1,
-          "outlets": [
-            "sarugbymag"
-          ],
-          "fresh": false
         }
       ]
     },
@@ -540,26 +670,53 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Warner Dearns co-captained Japan in Saturday's 78-15 defeat to England at Twickenham",
-      "kicker": "Player profile",
-      "body": "Warner Dearns took a roundabout route to the Japan side. He was 14 when his father Grant took a strength and conditioning job with NEC Green Rockets, moving the family from New Zealand's North Island to a satellite city outside Tokyo, and he initially did not want to go. Kashiwa Senior High School turned him into a monster prospect, and he debuted for Japan in November 2021 at 19. This year he spent a sabbatical at the Hurricanes, helping Wellington to their first Super Rugby title in a decade.",
-      "source": "BBC Rugby Union",
+      "heading": "Japan had a player sent off before touching ball against England",
+      "kicker": "Early dismissal",
+      "body": "England ran in 13 tries in the 78-15 win at Allianz Stadium, Twickenham, and Gerard Meagher's Guardian analysis says Japan's day never got better after the early dismissal. Meagher reads the scoreline as proof of a widening gap between the leading nations and the rest. Japan's tries came from Warner Dearns and Opeti Helu, with Naoto Saito kicking the conversion and penalty.",
+      "source": "Guardian Rugby Union",
       "lead": {
         "candidate": 1,
-        "why": "The only new Japan item in the shortlist, and it is not already covered by the earlier editions."
+        "why": "The Guardian's report that a Japan player was sent off before the side touched the ball is a new match detail that today's earlier editions did not carry."
       },
-      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cq74297dvnygo?at_medium=RSS&at_campaign=rss",
-      "repeatLead": {
-        "date": "2026-11-14",
-        "heading": "Warner Dearns to co-captain Japan after Hurricanes' Super Rugby title",
-        "reason": "same source article"
-      },
+      "leadLink": "https://www.theguardian.com/sport/2026/nov/14/england-leave-jones-sucking-lemons-but-demolition-of-japan-shows-widening-gulf",
+      "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
+          "title": "England leave Jones sucking lemons but demolition of Japan shows widening gulf | Gerard Meagher",
+          "link": "https://www.theguardian.com/sport/2026/nov/14/england-leave-jones-sucking-lemons-but-demolition-of-japan-shows-widening-gulf",
+          "score": 74.5,
+          "corroboration": 2,
+          "outlets": [
+            "guardian",
+            "search"
+          ],
+          "fresh": true
+        },
+        {
           "title": "Japan's unlikely leader who turned down the All Blacks",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq74297dvnygo?at_medium=RSS&at_campaign=rss",
-          "score": 46.1,
+          "score": 45.5,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Joseph enjoys dream return as England thrash Japan at Twickenham",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/videos/cmn0d1w0ry0no?at_medium=RSS&at_campaign=rss",
+          "score": 18.9,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Joseph scores record-equalling five tries as England rout Japan",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmvg208nlw04o?at_medium=RSS&at_campaign=rss",
+          "score": 17.3,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -569,47 +726,13 @@
         {
           "title": "England v Japan kick-off time, free TV channel and live stream",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/england-v-japan-kick-time-34906896",
-          "score": 16,
+          "score": 15.7,
           "corroboration": 1,
           "outlets": [
             "walesonline"
           ],
           "fresh": true,
           "otherTeam": "England"
-        },
-        {
-          "title": "Japan Brave Blossoms vs England Nations Championship 2026 Preview",
-          "link": "https://www.rugbyasia247.com/japan-brave-blossoms-vs-england-nations-championship-2026-preview/",
-          "score": 111.3,
-          "corroboration": 4,
-          "outlets": [
-            "rugbyasia247",
-            "rugbyworld",
-            "guardian",
-            "search"
-          ],
-          "fresh": false
-        },
-        {
-          "title": "Jones vows Japan will 'play the house down' against England",
-          "link": "https://japantoday.com/category/sports/jones-vows-japan-will-%27play-the-house-down%27-against-england",
-          "score": 80.3,
-          "corroboration": 2,
-          "outlets": [
-            "japantoday",
-            "japantimes"
-          ],
-          "fresh": false
-        },
-        {
-          "title": "Japan want 'the sky to fall in' at Twickenham - Jones",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c60mdnld8gvzo?at_medium=RSS&at_campaign=rss",
-          "score": 28.4,
-          "corroboration": 1,
-          "outlets": [
-            "bbc"
-          ],
-          "fresh": false
         }
       ]
     },
@@ -619,22 +742,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "All Blacks beaten 35-28 in Cardiff as Wales end 73-year wait",
-      "kicker": "Test defeat",
-      "body": "Wales led 14-0, 21-7 and 35-21 at the Principality Stadium, with Tomos Williams and Dewi Lake scoring inside the first six minutes. New Zealand levelled 21-21 at half-time, but Peter Lakai's try only pulled one back. A defence led by James Botham, Jac Morgan and Dafydd Jenkins held the All Blacks up three times over the line in the final quarter. The win ends Wales' 34-match losing run against New Zealand, dating back to 1953.",
+      "heading": "Warner Dearns, who turned down the All Blacks, co-captains Japan's England match",
+      "kicker": "Japan captaincy",
+      "body": "Warner Dearns, a second row raised in New Zealand's Hawke's Bay region, was due to co-captain Japan against England at Allianz Stadium on Saturday. His father Grant took a strength and conditioning job at NEC Green Rockets when Warner was 14, moving the family to a satellite city outside Tokyo, and he went only reluctantly. He made his Japan debut in November 2021, aged 19. This year he spent a season's sabbatical at the Hurricanes, helping Wellington win their first Super Rugby title in a decade.",
       "source": "BBC Rugby Union",
       "lead": {
         "candidate": 4,
-        "why": "A fresh result from Saturday's Test that the All Blacks lost, and the most talked-about New Zealand story in today's coverage."
+        "why": "The Wales result and Rennie's comments are already covered, so this is the freshest New Zealand-linked item in the pack."
       },
-      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/c63dgev0p8pgo?at_medium=RSS&at_campaign=rss",
+      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cq74297dvnygo?at_medium=RSS&at_campaign=rss",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
-          "title": "Frank Bunce's verdict on the All Blacks centres and how they compare to standard-setting Springboks pair",
-          "link": "https://www.planetrugby.com/news/frank-bunces-verdict-on-the-all-blacks-centres-and-how-they-compare-to-standard-setting-springboks-pair",
-          "score": 45.2,
+          "title": "'We weren't good enough' – Dave Rennie disappointed by 'one-dimensional' All Blacks after suffering 73-year first",
+          "link": "https://www.planetrugby.com/news/we-werent-good-enough-dave-rennie-disappointed-by-one-dimensional-all-blacks-after-suffering-73-year-first",
+          "score": 54.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -642,19 +765,29 @@
           "fresh": true
         },
         {
-          "title": "All Blacks great: 'I couldn't name any of the Wales players'",
-          "link": "https://www.planetrugby.com/news/all-blacks-great-i-couldnt-name-any-of-the-wales-players",
-          "score": 28,
+          "title": "Frank Bunce's verdict on the All Blacks centres and how they compare to standard-setting Springboks pair",
+          "link": "https://www.planetrugby.com/news/frank-bunces-verdict-on-the-all-blacks-centres-and-how-they-compare-to-standard-setting-springboks-pair",
+          "score": 44.7,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "All Blacks ran into a Welsh brick wall - Barrett",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmly5dwnpvdzo?at_medium=RSS&at_campaign=rss",
+          "score": 29.2,
+          "corroboration": 1,
+          "outlets": [
+            "bbc"
           ],
           "fresh": true
         },
         {
           "title": "Japan's unlikely leader who turned down the All Blacks",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq74297dvnygo?at_medium=RSS&at_campaign=rss",
-          "score": 25.4,
+          "score": 25,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -662,25 +795,14 @@
           "fresh": true
         },
         {
-          "title": "Magnificent Wales beat New Zealand for first time since 1953",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c63dgev0p8pgo?at_medium=RSS&at_campaign=rss",
-          "score": 18.1,
+          "title": "Championnat des Nations. \"On avait l&#039;impression de se heurter à un mur\" : deux 10/10, 346 plaquages, des All Blacks admiratifs : les dessous d&#039;un exploit gallois qui fera date",
+          "link": "https://www.rugbyrama.fr/2026/11/14/championnat-des-nations-on-avait-limpression-de-se-heurter-a-un-mur-deux-1010-346-plaquages-des-all-blacks-admiratifs-les-dessous-dun-exploit-gallois-13652925.php",
+          "score": 23.4,
           "corroboration": 1,
           "outlets": [
-            "bbc"
+            "rugbyrama"
           ],
           "fresh": true
-        },
-        {
-          "title": "Wales v All Blacks: Five takeaways as 'written-off' Welsh clinch stunning upset ending 73-year wait for glory",
-          "link": "https://www.planetrugby.com/news/wales-v-all-blacks-five-takeaways-as-written-off-welsh-clinch-stunning-upset-ending-73-year-wait-for-glory",
-          "score": 18.1,
-          "corroboration": 1,
-          "outlets": [
-            "planetrugby"
-          ],
-          "fresh": true,
-          "otherTeam": "Wales"
         }
       ]
     },
@@ -690,22 +812,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Ruan Nortjé rejects card excuse for Springboks' Paris defeat to France",
-      "kicker": "Post-match verdict",
-      "body": "Friday's 21-19 loss in Paris left Ruan Nortjé unwilling to blame Jasper Wiese's red card or Lood de Jager's yellow, noting France played 30 minutes a man down too. \"We can't put the blame on that at all,\" he said. The bigger worry is the route to the Nations Championship final: South Africa no longer control it and must rely on other results, starting with Ireland. \"It's going to be all about looking at what we did wrong,\" Nortjé added.",
-      "source": "Planet Rugby",
+      "heading": "Rassie Erasmus stops short of blaming referee Andrea Piardi for Paris defeat",
+      "kicker": "Referee debate",
+      "body": "Rassie Erasmus accepted responsibility for the 21-19 defeat to France in Paris, but much of his press conference was spent on the pressure a referee faces in front of a partisan home crowd. The Springboks dominated the scrum, and Erasmus conceded they may have asked too much of referee Andrea Piardi. He said the team had played themselves into a hole and the coaching staff must answer for it. He insisted he was not blaming Piardi. \"I don't think there's much more to blame than ourselves,\" he said.",
+      "source": "SA Rugby Magazine",
       "lead": {
-        "candidate": 1,
-        "why": "A fresh player quote that rejects the card excuse and spells out what the defeat does to South Africa's route to the final, which the other items don't cover."
+        "candidate": 2,
+        "why": "A new post-match coach press conference, distinct from the already-reported Nortjé card-excuse and front-row stories."
       },
-      "leadLink": "https://www.planetrugby.com/news/springboks-lock-ruan-nortje-we-cant-put-the-blame-on-that-at-all",
+      "leadLink": "https://www.sarugbymag.co.za/rassie-im-not-blaming-the-ref/",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Springboks lock Ruan Nortjé: 'We can't put the blame on that at all'",
           "link": "https://www.planetrugby.com/news/springboks-lock-ruan-nortje-we-cant-put-the-blame-on-that-at-all",
-          "score": 42,
+          "score": 41.5,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -715,7 +837,7 @@
         {
           "title": "Rassie: I’m not blaming the ref",
           "link": "https://www.sarugbymag.co.za/rassie-im-not-blaming-the-ref/",
-          "score": 41.6,
+          "score": 41.1,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -725,7 +847,7 @@
         {
           "title": "Boks undone by own sins in Paris",
           "link": "https://www.sarugbymag.co.za/boks-undone-sins-paris/",
-          "score": 41.1,
+          "score": 40.6,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -735,7 +857,7 @@
         {
           "title": "France hold nerve to edge past South Africa in thriller",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cqm2j810r2m2o?at_medium=RSS&at_campaign=rss",
-          "score": 33,
+          "score": 32.7,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -745,7 +867,7 @@
         {
           "title": "'Fast and loose' Boks played into France's hands",
           "link": "https://www.sarugbymag.co.za/fast-and-loose-boks-played-into-frances-hands/",
-          "score": 30.3,
+          "score": 29.6,
           "corroboration": 1,
           "outlets": [
             "sarugbymag"
@@ -757,8 +879,20 @@
   ],
   "world": [
     {
-      "team": "Wales",
-      "text": "Wales end 73-year All Blacks drought."
+      "team": "England",
+      "text": "England thrash Japan 78-15 as Will Joseph equals try record."
+    },
+    {
+      "team": "Italy",
+      "text": "Italy fall 19-14 to Argentina after Garbisi's late error."
+    },
+    {
+      "team": "France",
+      "text": "France's Julien Marchand ruled out for rest of Nations Championship."
+    },
+    {
+      "team": "Australia",
+      "text": "Australia restore Carter Gordon to starting XV after broken leg."
     }
   ],
   "model": {
@@ -778,25 +912,25 @@
       "calls": 35,
       "failed": 0,
       "fellBack": 0,
-      "costUSD": 0.18337,
+      "costUSD": 0.17737,
       "rows": [
         {
           "model": "claude-haiku-5-5",
           "calls": 34,
           "failed": 0,
           "fellBack": 0,
-          "input": 314620,
-          "output": 97873,
-          "costUSD": 0.08041
+          "input": 306561,
+          "output": 87154,
+          "costUSD": 0.07425
         },
         {
           "model": "claude-sonnet-5-5",
           "calls": 1,
           "failed": 0,
           "fellBack": 0,
-          "input": 10797,
-          "output": 8137,
-          "costUSD": 0.10296
+          "input": 11199,
+          "output": 8072,
+          "costUSD": 0.10312
         }
       ]
     },
@@ -807,11 +941,5 @@
       "onLastRung": false
     }
   },
-  "worldDropped": [
-    {
-      "team": "England",
-      "text": "England beat Wallabies 45-22",
-      "problem": "the number 45 is not in the England briefing"
-    }
-  ]
+  "worldDropped": []
 }
