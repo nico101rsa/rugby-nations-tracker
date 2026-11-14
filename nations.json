@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-14T13:31:59.627Z",
+  "updatedAt": "2026-11-14T13:35:15.878Z",
   "counts": {
     "fixtures": 10,
     "results": 26,
@@ -796,9 +796,10 @@
       "date": "2026-11-14T11:40:00+00:00",
       "week": "5",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false,
+        "via": "espn"
       },
       "home": {
         "id": 389,
