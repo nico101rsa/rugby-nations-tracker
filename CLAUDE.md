@@ -156,6 +156,17 @@ and the live-score pass never asks ESPN about one. `check-competitions`
 accepts a two-conference season at its table count or the table plus its
 finals (36 or 42), so ESPN's listing no longer reads as a miscount.
 
+**The finals rows follow the table, at full time** (since Sun 15 Nov 2026).
+fixtures.json is rebuilt about once a day on a Nations Championship weekend,
+so rows written only by that build named the morning's pairings all day: on
+Sat 14 Nov the grand final read France v South Africa for hours after New
+Zealand went top of the South, and Nico saw it. Every refresh that rebuilds
+nations.json's `log` (each live-burst fetch and each sweep) now re-pairs the
+rows in the same pass (`refreshWithFinals` in refresh.mjs, through
+`syncProjectedFinals` and `repairedFinals`) and publishes fixtures.json with
+it, only when a pairing moved. The app shows the feed's rows as they are, so
+this is what makes Fixtures agree with the table.
+
 ## Live scores: api-sports is the record, ESPN keeps it fresh
 
 nations.json is the Nations Championship's live feed, and its burst is paced by

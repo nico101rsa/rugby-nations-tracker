@@ -20,7 +20,7 @@ import { tourFixtures, loadProbeResults } from "./seed-tour.mjs";
 import { venueLabel } from "./venues.mjs";
 import { applyKickoffOverrides, correctedKickoffMs, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 import { writeCalendars } from "./build-calendars.mjs";
-import { projectedFinals, rncComp } from "./projected-finals.mjs";
+import { projectedFinals, repairedFinals, rncComp } from "./projected-finals.mjs";
 
 const ID_TO_CODE = Object.fromEntries(Object.entries(ESPN_TEAM_IDS).map(([c, id]) => [String(id), c]));
 
@@ -445,6 +445,28 @@ export async function publishFixtures(fixtures, {
     warn(`calendars skipped: ${err.message}`);
   }
   return out;
+}
+
+// The finals rows follow the table between fixtures builds: called by
+// refresh.mjs after every pass that rebuilds nations.json's log, so a result
+// that changes a conference's order re-pairs the finals at full time instead
+// of at the next daily build (projected-finals.mjs). Two local files, no
+// vendor call, and nothing is written unless a pairing moved. Returns
+// whether it wrote. Goes through publishFixtures so the calendars pick the
+// rows up the moment the pairings lock.
+export async function syncProjectedFinals({
+  read = (path) => readFile(path, "utf8"),
+  publish = publishFixtures,
+  log = console.log,
+} = {}) {
+  const file = JSON.parse(await read("fixtures.json"));
+  const nations = JSON.parse(await read("public/nations.json"));
+  const rows = repairedFinals(file.fixtures, nations.log);
+  if (!rows) return false;
+  await publish(rows);
+  const grand = rows.find((f) => f.final?.rank === 1);
+  log(`finals re-paired from the table${grand ? `: grand final ${grand.home.code} v ${grand.away.code}` : " (ESPN lists them now)"}`);
+  return true;
 }
 
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split("/").pop())) {
