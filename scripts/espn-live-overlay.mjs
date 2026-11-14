@@ -35,6 +35,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fetchLiveStates } from "./build-fixtures.mjs";
 import { ESPN_TEAM_IDS } from "./fetch-espn-fixtures.mjs";
 import { API_SPORTS_CODE_BY_ID } from "./static-fixtures.mjs";
+import { liveEventsFrom, liveMinute, playFor, playMoved, PUBLISH_LIVE_EVENTS } from "./live-events.mjs";
 
 const SITE = "https://site.api.espn.com/apis/site/v2/sports/rugby";
 export const ESPN_NATIONS_LEAGUE = 17567;
@@ -82,7 +83,17 @@ export async function fetchEspnNationsStates({ fetchJson = getJson, nowMs = Date
     if (!sides.home || !sides.away) continue;
     const state = (await fetchLiveStates([{ event }], fetchJson))[`espn-${event.id}`];
     if (!state) continue;
-    out.push({ key: `${sides.home}-${sides.away}`, date: event.date, ...state });
+    // A game in play also brings what has happened in it (live-events.mjs):
+    // one more keyless request per live game. A summary that can't be read
+    // leaves `events` off, and the row keeps the notes it already has.
+    const play = {};
+    if (state.live) {
+      try {
+        play.events = liveEventsFrom(await fetchJson(`${SITE}/${ESPN_NATIONS_LEAGUE}/summary?event=${event.id}`));
+        play.minute = liveMinute(event.competitions?.[0]?.status, play.events);
+      } catch { /* keep the last notes */ }
+    }
+    out.push({ key: `${sides.home}-${sides.away}`, date: event.date, ...state, ...play });
   }
   return out;
 }
@@ -93,10 +104,34 @@ const scoreStr = (h, a) => `${h ?? 0}-${a ?? 0}`;
 // { doc, changes }: a new document when something moved, the same object
 // when nothing did. `owned` (key -> "h-a") remembers the scores this module
 // wrote, across passes of one burst; it is updated in place.
-export function applyEspnOverlay(doc, states, { owned = new Map() } = {}) {
+export function applyEspnOverlay(doc, states, { owned = new Map(), nowIso = new Date().toISOString() } = {}) {
   const byKey = new Map((states ?? []).map((s) => [s.key, s]));
   const changes = [];
-  const lift = (row) => {
+  let notes = 0;
+  // ESPN's state for a row, turned to the row's own home and away.
+  const stateFor = (row) => {
+    const key = `${API_SPORTS_CODE_BY_ID[row.home?.id]}-${API_SPORTS_CODE_BY_ID[row.away?.id]}`;
+    const [h, a] = key.split("-");
+    const flipped = byKey.get(`${a}-${h}`);
+    const s = byKey.get(key) ?? (flipped && {
+      ...flipped, home: flipped.away, away: flipped.home,
+      events: flipped.events?.map((e) => ({ ...e, team: e.team === "home" ? "away" : "home" })),
+    });
+    return s && Math.abs(Date.parse(s.date) - Date.parse(row.date)) <= MATCH_WINDOW_MS ? s : null;
+  };
+  // The running notes (`play`) ride on a row only while it is in play. A row
+  // that has stopped being live, or a switch turned off, loses them.
+  const withPlay = (row) => {
+    const s = row.status?.live ? stateFor(row) : null;
+    // No answer for this game's notes on this pass (the summary failed):
+    // keep what the row has. playFor is null with the switch off.
+    const next = !s ? null : s.events === undefined && PUBLISH_LIVE_EVENTS ? row.play ?? null : playFor(s, nowIso);
+    if (!playMoved(row.play ?? null, next)) return row;
+    notes++;
+    if (!next) { const { play, ...rest } = row; return rest; }
+    return { ...row, play: next };
+  };
+  const liftScore = (row) => {
     const key = `${API_SPORTS_CODE_BY_ID[row.home?.id]}-${API_SPORTS_CODE_BY_ID[row.away?.id]}`;
     // ESPN may list a neutral-venue game (finals weekend) the other way round.
     const [h, a] = key.split("-");
@@ -130,6 +165,7 @@ export function applyEspnOverlay(doc, states, { owned = new Map() } = {}) {
     };
   };
 
+  const lift = (row) => withPlay(liftScore(row));
   const results = (doc.results ?? []).map(lift);
   // A game api-sports still lists as upcoming moves to `results` the moment
   // ESPN has it in play: the app's fast poll looks for a live row there.
@@ -139,7 +175,7 @@ export function applyEspnOverlay(doc, states, { owned = new Map() } = {}) {
     if (next === row) fixtures.push(row);
     else results.push(next);
   }
-  if (!changes.length) return { doc, changes };
+  if (!changes.length && !notes) return { doc, changes, notes };
   results.sort((a, b) => new Date(a.date) - new Date(b.date));
   return {
     doc: {
@@ -150,6 +186,7 @@ export function applyEspnOverlay(doc, states, { owned = new Map() } = {}) {
       results,
     },
     changes,
+    notes,
   };
 }
 
@@ -175,11 +212,12 @@ export function makeOverlayPass({
         warn(`[espn-overlay] ESPN unreachable (${err.message}); keeping the last ${last.length} state(s)`);
       }
       if (!last.length) return 0;
-      const { doc, changes } = applyEspnOverlay(JSON.parse(await read(path)), last, { owned });
-      if (!changes.length) return 0;
+      const { doc, changes, notes } = applyEspnOverlay(JSON.parse(await read(path)), last, { owned });
+      if (!changes.length && !notes) return 0;
       await write(path, JSON.stringify(doc, null, 2));
       for (const c of changes) log(`[espn-overlay] ${c.key}: ${c.from} -> ${c.to}`);
-      return changes.length;
+      if (notes) log(`[espn-overlay] live notes updated on ${notes} game(s): ${last.filter((x) => x.events).map((x) => `${x.key} ${x.minute ?? "?"}' ${x.events.length} event(s)`).join(", ")}`);
+      return changes.length + notes;
     } catch (err) {
       warn(`[espn-overlay] pass skipped: ${err.message}`);
       return 0;
