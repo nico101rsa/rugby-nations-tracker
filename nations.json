@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-14T16:07:07.426Z",
+  "updatedAt": "2026-11-14T16:22:13.159Z",
   "counts": {
     "fixtures": 9,
     "results": 27,
@@ -798,8 +798,7 @@
       "status": {
         "short": "FT",
         "long": "Finished",
-        "live": false,
-        "via": "espn"
+        "live": false
       },
       "home": {
         "id": 391,
@@ -818,6 +817,23 @@
   "log": [
     {
       "rank": 1,
+      "id": 465,
+      "team": "New Zealand",
+      "logo": "https://media.api-sports.io/rugby/teams/465.png",
+      "P": 5,
+      "W": 4,
+      "D": 0,
+      "L": 1,
+      "PF": 192,
+      "PA": 126,
+      "PD": 66,
+      "TF": 29,
+      "TA": 17,
+      "BP": 6,
+      "Pts": 22
+    },
+    {
+      "rank": 2,
       "id": 467,
       "team": "South Africa",
       "logo": "https://media.api-sports.io/rugby/teams/467.png",
@@ -834,7 +850,7 @@
       "Pts": 21
     },
     {
-      "rank": 2,
+      "rank": 3,
       "id": 387,
       "team": "France",
       "logo": "https://media.api-sports.io/rugby/teams/387.png",
@@ -849,23 +865,6 @@
       "TA": 16,
       "BP": 5,
       "Pts": 21
-    },
-    {
-      "rank": 3,
-      "id": 465,
-      "team": "New Zealand",
-      "logo": "https://media.api-sports.io/rugby/teams/465.png",
-      "P": 4,
-      "W": 4,
-      "D": 0,
-      "L": 0,
-      "PF": 164,
-      "PA": 91,
-      "PD": 73,
-      "TF": 25,
-      "TA": 12,
-      "BP": 4,
-      "Pts": 20
     },
     {
       "rank": 4,
@@ -903,6 +902,23 @@
     },
     {
       "rank": 6,
+      "id": 391,
+      "team": "Wales",
+      "logo": "https://media.api-sports.io/rugby/teams/391.png",
+      "P": 5,
+      "W": 3,
+      "D": 0,
+      "L": 2,
+      "PF": 123,
+      "PA": 151,
+      "PD": -28,
+      "TF": 18,
+      "TA": 22,
+      "BP": 3,
+      "Pts": 15
+    },
+    {
+      "rank": 7,
       "id": 390,
       "team": "Scotland",
       "logo": "https://media.api-sports.io/rugby/teams/390.png",
@@ -919,7 +935,7 @@
       "Pts": 11
     },
     {
-      "rank": 7,
+      "rank": 8,
       "id": 460,
       "team": "Argentina",
       "logo": "https://media.api-sports.io/rugby/teams/460.png",
@@ -934,23 +950,6 @@
       "TA": 22,
       "BP": 3,
       "Pts": 11
-    },
-    {
-      "rank": 8,
-      "id": 391,
-      "team": "Wales",
-      "logo": "https://media.api-sports.io/rugby/teams/391.png",
-      "P": 4,
-      "W": 2,
-      "D": 0,
-      "L": 2,
-      "PF": 88,
-      "PA": 123,
-      "PD": -35,
-      "TF": 13,
-      "TA": 18,
-      "BP": 2,
-      "Pts": 10
     },
     {
       "rank": 9,
@@ -1023,22 +1022,28 @@
   ],
   "news": [
     {
+      "title": "『LIVeSTREAMS』 England v Japan Nations Championship Rugby match LIVE STREAM Free REDDIT",
+      "link": "https://news.google.com/rss/articles/CBMi_AJBVV95cUxQMTI2RVdfNFRwVVo2Mm5lZ01DRmhBRzlEcE0yc3VzcThaWE01NjloTDI2NzRsVnl1ejVYYktXZTdiZElpb09BLXFSWm11b0hQeGwzVjNPNkNGTE41dFBhb2tWdm9PZjdPcXVacUN1cE5nMURoVW81ekp1X29FMmFUQ20yd1o2MzNXVFV4Wl94RVRkUzY2Vm1VT3NzSG5sSUFZaG1DUXQ5dmd3ZWJPR0otZXVXV2txSjdyODdtTnVPU08zOXR0QXZsZy1PRkFqMHBVd1BLNElzblkweGUyaUdHQno2cjVEZVZjTURGREtOSGVTQTlJeWczakszcWtMcDRYS21XQUdZX2lWRFJqa3kxUjJvdkgyRnZhUHhiMko1QXVQRzVNT3lhWDNtRTZaVGh6ODdtMmowMXBNUERvYl9iajJ1d1VqTXlmR1BRWUhrN2VCR3dYSzdpUmoyMVk2Z1NHT2hwWGpEazMxZTJKUzd0MUp6dWhjdWRUV0ZXWQ?oc=5",
+      "source": "日本取引所グループ",
+      "published": "Sat, 14 Nov 2026 16:04:36 GMT"
+    },
+    {
       "title": "England v Japan: Nations Championship rugby union – live",
       "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQM1lXVXhHd24zN1JVSDdiNTJCRGpOUng2dmI2YTlQV1F1RlRLNlhZY3FCUW9PQmMtanlHVmI5ajRHbklKN1NWRzhWaDYxbUxfSWRkdFFTLVBhaWVGTTNqdHI4SGQ5Y2tQWTlGQXJXYnRDQVE4bkhMU29OUUFYX2FLdFlScVN4dVJ6WG1sTTR4LU4zWXV4YlpITEZ0d1JkUjZHUE0tUGxrOA?oc=5",
       "source": "The Guardian",
       "published": "Sat, 14 Nov 2026 15:38:57 GMT"
     },
     {
+      "title": "Argentina hand Italy another Nations Championship defeat",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOXy1KeGJnZXpCUjZUQ3VhOVk3YXRYNERNTHlRN2tjcHVBM3dSeFdGX0ZNejRpbWIxMnV6WmR2ckp2Rk9sekd6V3dRZlpOSjhwNmhrNTRVWGlnSjBLQXM5LVlRNXlqNmtJTjUzd0kyVElic0prWEYzWUNmbUdjQzJleWFUNU1qTnZVT0ltSVp3SjFWWnV0Mzc0amJGeGdHM2hr?oc=5",
+      "source": "Reuters",
+      "published": "Sat, 14 Nov 2026 14:03:43 GMT"
+    },
+    {
       "title": "[!WATCHLIVE]4K!] Wales v New Zealand Nations Championship rugby match Free Streams & TV Channels online",
       "link": "https://news.google.com/rss/articles/CBMigwNBVV95cUxOMjlZQ1NFcWRvTzctd3ZGUW9Nd0psU3NRVGNxaXdKWi1HaU03OTRHWFZHb3pvOHlPclVBcVJ4ODNITmxrNFNIOFh5bWhqZzBEY0FwVzdWcVYtRF9GRVJONkNaRXVMYWItV1RJc3lkeHZKNmVqbGZhdlZRSGdIRGwwSGswNllYR2Z4TGhwYll0Ym1jNzlINEloV3I0UUFOQTFxd3dReG1fd180MGdoV3hnNlVJeE9BSnRTQ1Vpbkk0enVlRDBlWjZobE5ZaWtNNnpKRUx3UFJhMjYyUlMtb0VPOGN1XzhQelE5Z3dGQWduNDlBRHNTWXQtY1FIN09kcVBfOC16VTVJWWtES2t5Y0YxTU5CVmJpUEt1NEVId0dmRnB2Q1JCd1BOUTBiTGhOM011RzAySFBBNWtsLXlXRTRsNEp0QWpIMl9BdDMyNjlBVEVTN3FmQVdndFpTNmxDX2tZdThDc0xjQjcwY09jYklxbmRncmloOXllQVByR1BDVlFNOGM?oc=5",
       "source": "日本取引所グループ",
       "published": "Sat, 14 Nov 2026 13:51:44 GMT"
-    },
-    {
-      "title": "!+&gt;[LIVESTREAms] Wales v NZ All Blacks Nations Championship Rugby LIvE FrEe StReAm",
-      "link": "https://news.google.com/rss/articles/CBMi_gJBVV95cUxPWjFXd0doNnh4MjVQUTNTcUt0UTR5UjRRMTRXWi0wQlpLN2x4b2p5OUs4NWF3UlFYZklUZW1PdDVUMkNtM3NWWTF4OEFSd0JKUUFhRlVfcmxjMlRmVlRiTFNwZERmejV0RmcxazZSRF9va3dqWTFoSlB5eEtBWkY4cmd1VWx3SlJicW5QRTlqa0RtRHdxT2NDbFdjU2N3eTRYMHJHQ1h3T1l5VEFmbHBWTWFnVzRFbHFNbWxDYk5UY3prTEViaWY1YWZva0NUR2xWUlludGtkOWxnMURQQTBJT1FPQ1REcXRuSjBNbUR6Vnl0NUozYWZJalgtdE8tUGpCQVFrOHg5VGJ3UjRFcnVma0xBU3Q5NGRQYXlnZzhjTG1yUFFHbll4enQyNEhELUZDZDQxaHlNV3NhbVN3bTJ3STliM1hDaEw5UWNjM1IxV3dRcF9oRUFvcmYwQkZKWU1rZlhwY3BjcUJWdG9DTDM5R2VjemhtVmF2akVLc3Fn?oc=5",
-      "source": "日本取引所グループ",
-      "published": "Sat, 14 Nov 2026 13:51:20 GMT"
     },
     {
       "title": "[WATCH!!Rugby] Nations Championship: Wales vs New Zealand 𝐋𝐈𝐕𝐄 Ｓｔｒｅａｍｓ",
@@ -1057,12 +1062,6 @@
       "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNVVN3aHI1LWFVcWV1OFZUN3dQQ0JCTzJMYnhLM2JXZ1RSVXZzUFp0UFlrQ005QkJRU3dxdlFFOUNIN2gySTRuRWhyQVdaN3RJMlNER0dvaEZhbEppY3lHSnM5eFh4VnBPRkJZWUp2Ync3NXdxbjBKQnlVNTlpb3JsNkhQV2d3RU5sRWZYNVBuTXRfZXlOZ3BYY2JDSEpvMzFxQktubHZ3LS1GYVd5Tk1WeXIwMVFWUQ?oc=5",
       "source": "RFI",
       "published": "Sat, 14 Nov 2026 11:37:10 GMT"
-    },
-    {
-      "title": "!+[Here’s Way To Watch] Nations Championship Rugby 2026 Ｌｉｖｅ Ｓｔｒｅａｍｉｎｇ Ｆｒｅｅ ＯＮ Ｔｖ Ｃｈａｎｎｅｌ 14 november 2026",
-      "link": "https://news.google.com/rss/articles/CBMi6gJBVV95cUxNaTZmemlDZkJaZ05Gc2libmR3QWxFYWNXSEFXLVN4VTUzVUdrRUVGbjhqSUJvbTJlNXYteEkxZVpMdURFbVZScUVqQlYybVpiQjdFT1NBbVh6MTh2UVctcnpQdGxwakJtS1FyNWlLT2pkbkdGUkhWQ0h0b1JucDVVRkVpX3YzMGdMRzhOVlBFbXFHcDJ2QlZTZllUVEFjYVJCVjVoU0RwWVZuMm1qM2xQQ0F0d2s5V0V0TjFWLXJmb3hrcHlqRjJSZkc0LUFHTHFPai1ydlFHb25HMHNZMWxMN1UxdDVMX1FRRkpIeDhGcThjSE5wNngtZ2R0OTZWUVo4X1NvWVVyWG1hcGZnNncxakZhZWRhd25zM1JNS2JTT082bVl3VndjT3JtMElrUk5uZkFEVXBmeXpGbUxBQndBWDZyZUlkUXFjYVN3Y2xvWGhzVTlHelV3cGhmUERUYktkSDhkbTl3WFJBZw?oc=5",
-      "source": "日本取引所グループ",
-      "published": "Sat, 14 Nov 2026 11:00:20 GMT"
     },
     {
       "title": "France grab thrilling win after second-half fightback from South Africa",
