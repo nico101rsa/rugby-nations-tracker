@@ -8,6 +8,7 @@ import { refresh, refreshNewsOnly, utcDateStr, datesForWindow } from "./fetch-na
 import { runTourProbe } from "./probe-tour.mjs";
 import { pushWithRetries } from "./git-push-retry.mjs";
 import { makeOverlayPass, OVERLAY_INTERVAL_MS } from "./espn-live-overlay.mjs";
+import { syncProjectedFinals } from "./build-fixtures.mjs";
 
 const PRE_MS = 15 * 60000;    // start polling 15 min before kickoff
 // Keep polling 170 min after kickoff (play + HT + FT settle). 150 until
@@ -167,6 +168,20 @@ export async function runLiveBurst({
   return { iterations, consecutiveFailures, overlayPublishes };
 }
 
+// A refresh rebuilds the table, and the finals pairings in fixtures.json
+// are read off the table: re-pair them in the same pass, so the publish that
+// carries a full-time result carries the pairings it made too. Never costs
+// the refresh: a failure here is a line in the log and the next pass retries.
+export async function refreshWithFinals(args, { doRefresh = refresh, sync = syncProjectedFinals } = {}) {
+  const result = await doRefresh(args);
+  try {
+    await sync();
+  } catch (err) {
+    console.warn(`[refresh] finals not re-paired: ${err.message}`);
+  }
+  return result;
+}
+
 async function mainRun() {
   // SCHEDULE plus any confirmed Nations Championship kickoff fixtures.json
   // carries that SCHEDULE doesn't (finals weekend, once ESPN publishes it) —
@@ -193,7 +208,7 @@ async function mainRun() {
   if (decision.mode === "live") {
     // Live: poll in a loop, publishing each fetch, so one landed fire covers
     // ~a full match even when GitHub drops the following scheduled runs.
-    const { iterations, overlayPublishes } = await runLiveBurst({ dates: decision.dates, overlay: makeOverlayPass() });
+    const { iterations, overlayPublishes } = await runLiveBurst({ dates: decision.dates, refresh: refreshWithFinals, overlay: makeOverlayPass() });
     console.log(`[refresh] live burst done — ${iterations} fetch(es), ${overlayPublishes} ESPN top-up(s) published`);
     return;
   }
@@ -206,7 +221,7 @@ async function mainRun() {
     return;
   }
 
-  const result = await refresh({ dates: decision.dates });
+  const result = await refreshWithFinals({ dates: decision.dates });
   console.log(`[refresh] done`, result.counts, `| rate remaining: ${result.remaining}`);
 
   if (result.remaining != null && result.remaining < GUARD_FLOOR) {

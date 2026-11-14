@@ -72,3 +72,75 @@ test("rncComp: the registry's current Nations Championship as a comp tag; an exp
   assert.equal(rncComp(registry, "2026-12-13"), null);
   assert.equal(rncComp({ competitions: [] }, "2026-11-24"), null);
 });
+
+// ---- repairedFinals: the rows follow the table between fixtures builds ----
+import { repairedFinals } from "./projected-finals.mjs";
+import { syncProjectedFinals } from "./build-fixtures.mjs";
+import { refreshWithFinals } from "./refresh.mjs";
+
+const POOL = poolRow("espn-1", "2026-11-21T16:40:00.000Z", "IRE", "RSA");
+// The same table after New Zealand go above South Africa (Sat 14 Nov 2026).
+const NZ_TOP = [LOG[3], ...LOG.filter((r) => r.id !== 465)].map((r, i) => ({ ...r, rank: i + 1 }));
+const codes = (rows, rank) => { const f = rows.find((r) => r.final?.rank === rank); return `${f.home.code}-${f.away.code}`; };
+
+test("repairedFinals: a result that reorders a conference re-pairs the finals; an unchanged table writes nothing", () => {
+  const file = [POOL, ...projectedFinals([POOL], LOG)];
+  assert.equal(codes(file, 1), "IRE-RSA");
+  assert.equal(repairedFinals(file, LOG), null, "same table: nothing to write");
+  const next = repairedFinals(file, NZ_TOP);
+  assert.equal(next.length, 7, "the pool row stays, six finals replace six");
+  assert.equal(codes(next, 1), "IRE-NZL");
+  assert.equal(codes(next, 2), "FRA-RSA");
+  assert.equal(repairedFinals(next, NZ_TOP), null);
+});
+
+test("repairedFinals: locks when round six is done, with no pool row left in the file, and stays locked", () => {
+  const file = projectedFinals([], LOG, { comp: COMP });
+  const done = NZ_TOP.map((r) => ({ ...r, P: 6 }));
+  const locked = repairedFinals(file, done);
+  assert.equal(locked.length, 6);
+  assert.ok(locked.every((r) => r.final.projected === false));
+  assert.equal(codes(locked, 1), "IRE-NZL");
+  assert.equal(repairedFinals(locked, done), null, "a locked row of ours does not stand the projection down");
+});
+
+test("repairedFinals: ESPN's listing drops our rows; a log that cannot be read keeps them", () => {
+  const own = projectedFinals([], LOG, { comp: COMP });
+  const espnFinal = poolRow("espn-9", "2026-11-28T16:40:00.000Z", "IRE", "NZL");
+  assert.deepEqual(repairedFinals([espnFinal, ...own], NZ_TOP), [espnFinal]);
+  assert.equal(repairedFinals(own, []), null);
+  assert.equal(repairedFinals(own, undefined), null);
+  assert.equal(repairedFinals(own, LOG.slice(0, 11)), null);
+  assert.equal(repairedFinals([POOL], []), null, "nothing to project, nothing to drop");
+});
+
+test("syncProjectedFinals: publishes only when a pairing moved", async () => {
+  const file = { updatedAt: "x", source: "espn", fixtures: [POOL, ...projectedFinals([POOL], LOG)] };
+  const run = async (log) => {
+    const published = [];
+    const wrote = await syncProjectedFinals({
+      read: async (path) => JSON.stringify(path === "fixtures.json" ? file : { log }),
+      publish: async (rows) => { published.push(rows); },
+      log: () => {},
+    });
+    return { wrote, published };
+  };
+  assert.deepEqual(await run(LOG), { wrote: false, published: [] });
+  const moved = await run(NZ_TOP);
+  assert.equal(moved.wrote, true);
+  assert.equal(codes(moved.published[0], 1), "IRE-NZL");
+});
+
+test("refreshWithFinals: re-pairs after the refresh, and a failed re-pair never costs the refresh", async () => {
+  const order = [];
+  const result = await refreshWithFinals({ dates: ["2026-11-14"] }, {
+    doRefresh: async (a) => { order.push(`refresh ${a.dates}`); return { remaining: 50 }; },
+    sync: async () => { order.push("sync"); },
+  });
+  assert.deepEqual(order, ["refresh 2026-11-14", "sync"]);
+  assert.deepEqual(result, { remaining: 50 });
+  const warn = console.warn; console.warn = () => {};
+  try {
+    assert.deepEqual(await refreshWithFinals({}, { doRefresh: async () => ({ remaining: 9 }), sync: async () => { throw new Error("no file"); } }), { remaining: 9 });
+  } finally { console.warn = warn; }
+});

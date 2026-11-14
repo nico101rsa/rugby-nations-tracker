@@ -18,6 +18,15 @@
 // storylines (build-storylines) skip `final.projected` rows, and the
 // live-score pass (liveCandidates) never asks ESPN about them.
 //
+// The pairings follow the table, not the fixtures build. fixtures.json is
+// rebuilt about once a day on a Nations Championship weekend (its own games
+// are nations.json's), so rows written only there named the morning's
+// pairings all day: on Sat 14 Nov 2026 the grand final still read France v
+// South Africa hours after New Zealand had gone top of the South. The
+// refresh that rebuilds the log now re-pairs these rows in the same pass
+// (`repairedFinals`, called from refresh.mjs through build-fixtures'
+// `syncProjectedFinals`), so they move at full time, with the table.
+//
 // Mirrors the app's src/fixtures-list.js `projectedFinals` (FINALS table,
 // NORTH_IDS from src/conferences.js), so a feed row and a projected row read
 // the same way in the app.
@@ -60,6 +69,12 @@ export function rncComp(registry, today) {
   return c ? { key: c.key, label: c.label ?? c.name ?? c.key, kind: "competition" } : null;
 }
 
+// Has the feed a real finals-weekend row (ESPN's)? A projected row is not one.
+function realFinalsListed(rows, finals) {
+  const weekend = Math.min(...finals.map(([, , d]) => Date.parse(d))) - STAND_DOWN_DAYS * DAY_MS;
+  return rows.some((f) => isRnc(f) && !f.final?.projected && Date.parse(f.date) >= weekend);
+}
+
 // fixtures (published shape) + nations.json's log (+ the comp tag for the
 // days no rnc row is in the file) -> the six projected rows, or [].
 export function projectedFinals(fixtures, log, { comp = null, codes = API_SPORTS_CODES } = {}) {
@@ -68,8 +83,7 @@ export function projectedFinals(fixtures, log, { comp = null, codes = API_SPORTS
   if (!c || !Array.isArray(log) || !log.length) return [];
   const finals = FINALS_BY_SEASON[seasonOf(c.key)];
   if (!finals) return [];
-  const weekend = Math.min(...finals.map(([, , d]) => Date.parse(d))) - STAND_DOWN_DAYS * DAY_MS;
-  if (rows.some((f) => isRnc(f) && !f.final?.projected && Date.parse(f.date) >= weekend)) return [];
+  if (realFinalsListed(rows, finals)) return [];
   // The log arrives ranked overall; keep that order within each conference.
   const north = log.filter((r) => NORTH_IDS.has(r.id));
   const south = log.filter((r) => !NORTH_IDS.has(r.id));
@@ -86,4 +100,27 @@ export function projectedFinals(fixtures, log, { comp = null, codes = API_SPORTS
     venue: FINALS_VENUE,
     final: { label, rank, title, projected: !locked },
   }));
+}
+
+// Our own rows, projected or locked: `<comp key>-final-<rank>`.
+export const isOwnFinal = (f) => isRnc(f) && String(f?.id ?? "") === `${f.comp.key}-final-${f.final?.rank}`;
+
+// fixtures.json's rows with the finals paired again from `log`, or null when
+// the file already says what the table says (so a quiet refresh writes
+// nothing). The comp tag is taken from the rows being replaced, so this
+// works in the days no pool row is left in the file.
+export function repairedFinals(fixtures, log, opts = {}) {
+  const rows = fixtures ?? [];
+  const own = rows.filter(isOwnFinal);
+  const rest = rows.filter((f) => !isOwnFinal(f));
+  const next = projectedFinals(rest, log, { comp: own[0]?.comp ?? null, ...opts });
+  // No pairings and no ESPN listing means the log could not be read as a
+  // full table: that says nothing about the finals, so the rows stay.
+  if (!next.length && own.length) {
+    const finals = FINALS_BY_SEASON[seasonOf(own[0].comp.key)];
+    if (!finals || !realFinalsListed(rest, finals)) return null;
+  }
+  const byId = (a, b) => (a.id < b.id ? -1 : 1);
+  if (JSON.stringify([...own].sort(byId)) === JSON.stringify([...next].sort(byId))) return null;
+  return [...rest, ...next];
 }
