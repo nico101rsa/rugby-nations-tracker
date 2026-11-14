@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-14T13:35:15.878Z",
+  "updatedAt": "2026-11-14T13:44:19.450Z",
   "counts": {
     "fixtures": 10,
     "results": 26,
@@ -798,8 +798,7 @@
       "status": {
         "short": "FT",
         "long": "Finished",
-        "live": false,
-        "via": "espn"
+        "live": false
       },
       "home": {
         "id": 389,
@@ -920,6 +919,23 @@
     },
     {
       "rank": 7,
+      "id": 460,
+      "team": "Argentina",
+      "logo": "https://media.api-sports.io/rugby/teams/460.png",
+      "P": 5,
+      "W": 2,
+      "D": 0,
+      "L": 3,
+      "PF": 128,
+      "PA": 155,
+      "PD": -27,
+      "TF": 18,
+      "TA": 22,
+      "BP": 3,
+      "Pts": 11
+    },
+    {
+      "rank": 8,
       "id": 391,
       "team": "Wales",
       "logo": "https://media.api-sports.io/rugby/teams/391.png",
@@ -936,7 +952,7 @@
       "Pts": 10
     },
     {
-      "rank": 8,
+      "rank": 9,
       "id": 461,
       "team": "Australia",
       "logo": "https://media.api-sports.io/rugby/teams/461.png",
@@ -951,23 +967,6 @@
       "TA": 20,
       "BP": 4,
       "Pts": 8
-    },
-    {
-      "rank": 9,
-      "id": 460,
-      "team": "Argentina",
-      "logo": "https://media.api-sports.io/rugby/teams/460.png",
-      "P": 4,
-      "W": 1,
-      "D": 0,
-      "L": 3,
-      "PF": 109,
-      "PA": 141,
-      "PD": -32,
-      "TF": 15,
-      "TA": 21,
-      "BP": 3,
-      "Pts": 7
     },
     {
       "rank": 10,
@@ -988,6 +987,23 @@
     },
     {
       "rank": 11,
+      "id": 389,
+      "team": "Italy",
+      "logo": "https://media.api-sports.io/rugby/teams/389.png",
+      "P": 5,
+      "W": 0,
+      "D": 0,
+      "L": 5,
+      "PF": 58,
+      "PA": 216,
+      "PD": -158,
+      "TF": 7,
+      "TA": 31,
+      "BP": 1,
+      "Pts": 1
+    },
+    {
+      "rank": 12,
       "id": 28,
       "team": "Fiji",
       "logo": "https://media.api-sports.io/rugby/teams/28.png",
@@ -1002,37 +1018,20 @@
       "TA": 30,
       "BP": 0,
       "Pts": 0
-    },
-    {
-      "rank": 12,
-      "id": 389,
-      "team": "Italy",
-      "logo": "https://media.api-sports.io/rugby/teams/389.png",
-      "P": 4,
-      "W": 0,
-      "D": 0,
-      "L": 4,
-      "PF": 44,
-      "PA": 197,
-      "PD": -153,
-      "TF": 6,
-      "TA": 28,
-      "BP": 0,
-      "Pts": 0
     }
   ],
   "news": [
+    {
+      "title": "++[FREE^SCREENVIEW] Wales vs New Zealand: Nations Championship Watch Live",
+      "link": "https://news.google.com/rss/articles/CBMixANBVV95cUxOYTNjZkVpdkxlVEtlbmRvVVdzMVZmYzU1b0s1Q3VHSVVDVWRGcGJwSlFPa1JDVVBSTl9KZGpPb1BxUzV1MFJ1eEJrZld3cGJZQzRPM0lmTkk2NGxVUkhrVzhhbGM3U3JBY080a05kR3Rmcl95Q0ZOSm4yZE5qUXo3TWJQRFpqMFU3cFBpdUZvX1hWSUNqQVRUb01HVDUybzg1dG1YcGk2aGttejZnTTJ5SWE2aThQdjVLQmE2cFBOcGlVUXdHS2d4NWJJSVJ6N1M2SHVXcUljY3BjcnVob3MxZ0tuelN5eGlvTEMta1lnLWZlNkJ3Yno4amVwdTBaQVpVc2RrUlNWQVZEMURGU1A3SS1XQ19lU0JDWTBzZDFnVERmY1FGOGNMUFlXZlVEUmNqV3YxUUhlcmlZalBhbF8xRmpvZWZHcFQ1ckRYcmlyanVxUzJjMlV4NkUyeEFVck80dzFNTERna2RVZDRVblA1dWtEQmZXbWVvMHh6OVlOWWJvSjUxRzAwd2ZHaGNySkliVHBLY2JVc3BRZzZnMGpHcjlwYnYwUWxVZ29vRG5ubHdnQ0hxTUxsS0xEZ3ZkNTJZUVAtUQ?oc=5",
+      "source": "日本取引所グループ",
+      "published": "Sat, 14 Nov 2026 13:40:33 GMT"
+    },
     {
       "title": "France hold on for thrilling Nations Championship win over South Africa",
       "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNVVN3aHI1LWFVcWV1OFZUN3dQQ0JCTzJMYnhLM2JXZ1RSVXZzUFp0UFlrQ005QkJRU3dxdlFFOUNIN2gySTRuRWhyQVdaN3RJMlNER0dvaEZhbEppY3lHSnM5eFh4VnBPRkJZWUp2Ync3NXdxbjBKQnlVNTlpb3JsNkhQV2d3RU5sRWZYNVBuTXRfZXlOZ3BYY2JDSEpvMzFxQktubHZ3LS1GYVd5Tk1WeXIwMVFWUQ?oc=5",
       "source": "RFI",
       "published": "Sat, 14 Nov 2026 11:37:10 GMT"
-    },
-    {
-      "title": "+++[MATCH CENTER] Italy vs Argentina — Nations Championship Rugby Free Streams & TV Channels online",
-      "link": "https://news.google.com/rss/articles/CBMi8AJBVV95cUxOQ2d2bEE0ZHZGeHFYQ2l5d3RqeVg4TEVPV1F1azdGOGJUNzM0V295blpxd3N3R2ZBZFhTQ28zSE5rY2FmNV8waEVIek1hQTBqMUdYa21DdzE3X19ob1lHcHB5b0tJRmszaG40ZDlFb3FlbUhKbkY2eVhEQWRKcHVpandCMldnemJZSGw1UHBRSUNEdXRFWGNNaTgwM3F2dlJ6dG5PZkVaUFhKZmtWZ25IdmRzY0FyMlV0SV9YTXR1ZG82RGJyRDdLOFBnd1RqWHpVSW1XYmIyMFBMcDA0Q1l5ZmhuRUpWYkY2QVFTbG4zU3E4Y2M3cHkyaUNhaDYwNnEtODNTbGJNZWVxb3ZEVUMtX3FYUFgxVW9QMXlkcEl5ZTVzd2x2ZlNqVGNWQjM5NFpXNzRRZEZLSzQ3M0tDZ0RXU3lNRG5YUWVPRVlDQkJaZzlWcHlJRjVhcEdrNFlhVXFrZUFRY1k4a01lQmN1ZzI2RA?oc=5",
-      "source": "日本取引所グループ",
-      "published": "Sat, 14 Nov 2026 11:23:40 GMT"
     },
     {
       "title": "!+[Here’s Way To Watch] Nations Championship Rugby 2026 Ｌｉｖｅ Ｓｔｒｅａｍｉｎｇ Ｆｒｅｅ ＯＮ Ｔｖ Ｃｈａｎｎｅｌ 14 november 2026",
