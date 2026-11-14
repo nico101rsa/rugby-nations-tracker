@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T01:17:52.321Z",
+  "updatedAt": "2026-11-14T00:57:06.764Z",
   "source": "aggregated",
   "matches": [
     {
@@ -4793,6 +4793,167 @@
           "player": "Angus Bell"
         }
       ]
+    },
+    {
+      "id": 53237,
+      "round": "5",
+      "date": "2026-11-13T20:10:00+00:00",
+      "home": {
+        "id": 387,
+        "name": "France",
+        "score": 21
+      },
+      "away": {
+        "id": 467,
+        "name": "South Africa",
+        "score": 19
+      },
+      "eventId": 16098043,
+      "reconciled": true,
+      "scoring": [
+        {
+          "min": 15,
+          "team": "home",
+          "type": "try",
+          "player": "Aaron Grandidier Nkanang",
+          "after": [
+            5,
+            0
+          ]
+        },
+        {
+          "min": 16,
+          "team": "home",
+          "type": "conversion",
+          "player": "Maxime Lucu",
+          "after": [
+            7,
+            0
+          ]
+        },
+        {
+          "min": 24,
+          "team": "home",
+          "type": "try",
+          "player": "Théo Attissogbé",
+          "after": [
+            12,
+            0
+          ]
+        },
+        {
+          "min": 24,
+          "team": "home",
+          "type": "conversion",
+          "player": "Maxime Lucu",
+          "after": [
+            14,
+            0
+          ]
+        },
+        {
+          "min": 30,
+          "team": "away",
+          "type": "try",
+          "player": "Jan-Hendrik Wessells",
+          "after": [
+            14,
+            5
+          ]
+        },
+        {
+          "min": 31,
+          "team": "away",
+          "type": "conversion",
+          "player": "Sacha Feinberg-Mngomezulu",
+          "after": [
+            14,
+            7
+          ]
+        },
+        {
+          "min": 32,
+          "team": "home",
+          "type": "try",
+          "player": "Louis Bielle-Biarrey",
+          "after": [
+            19,
+            7
+          ]
+        },
+        {
+          "min": 33,
+          "team": "home",
+          "type": "conversion",
+          "player": "Maxime Lucu",
+          "after": [
+            21,
+            7
+          ]
+        },
+        {
+          "min": 51,
+          "team": "away",
+          "type": "try",
+          "player": "Cobus Reinach",
+          "after": [
+            21,
+            12
+          ]
+        },
+        {
+          "min": 52,
+          "team": "away",
+          "type": "conversion",
+          "player": "Sacha Feinberg-Mngomezulu",
+          "after": [
+            21,
+            14
+          ]
+        },
+        {
+          "min": 72,
+          "team": "away",
+          "type": "try",
+          "player": "Malcolm Marx",
+          "after": [
+            21,
+            19
+          ]
+        }
+      ],
+      "cards": [
+        {
+          "min": 13,
+          "team": "away",
+          "type": "yellow",
+          "player": "Lood de Jager"
+        },
+        {
+          "min": 39,
+          "team": "home",
+          "type": "yellow",
+          "player": "Maxime Lucu"
+        },
+        {
+          "min": 44,
+          "team": "away",
+          "type": "red",
+          "player": "Jasper Van der Weshuizen Wiese"
+        },
+        {
+          "min": 50,
+          "team": "home",
+          "type": "yellow",
+          "player": "Aaron Grandidier Nkanang"
+        },
+        {
+          "min": 69,
+          "team": "home",
+          "type": "yellow",
+          "player": "Regis Montagne"
+        }
+      ]
     }
   ],
   "aggregates": {
@@ -4813,14 +4974,24 @@
         "tries": 5
       },
       {
+        "player": "Aaron Grandidier Nkanang",
+        "team": "France",
+        "tries": 4
+      },
+      {
         "player": "Josh Canham",
         "team": "Australia",
         "tries": 4
       },
       {
-        "player": "Aaron Grandidier Nkanang",
+        "player": "Malcolm Marx",
+        "team": "South Africa",
+        "tries": 4
+      },
+      {
+        "player": "Théo Attissogbé",
         "team": "France",
-        "tries": 3
+        "tries": 4
       },
       {
         "player": "Cam Roigard",
@@ -4848,11 +5019,6 @@
         "tries": 3
       },
       {
-        "player": "Malcolm Marx",
-        "team": "South Africa",
-        "tries": 3
-      },
-      {
         "player": "Mateo Carreras",
         "team": "Argentina",
         "tries": 3
@@ -4865,11 +5031,6 @@
       {
         "player": "Selestino Ravutaumada",
         "team": "Fiji",
-        "tries": 3
-      },
-      {
-        "player": "Théo Attissogbé",
-        "team": "France",
         "tries": 3
       },
       {
@@ -4895,6 +5056,11 @@
       {
         "player": "Brandon Paenga-Amosa",
         "team": "Australia",
+        "tries": 2
+      },
+      {
+        "player": "Cobus Reinach",
+        "team": "South Africa",
         "tries": 2
       },
       {
@@ -5098,11 +5264,6 @@
         "tries": 1
       },
       {
-        "player": "Cobus Reinach",
-        "team": "South Africa",
-        "tries": 1
-      },
-      {
         "player": "Damian McKenzie",
         "team": "New Zealand",
         "tries": 1
@@ -5248,6 +5409,11 @@
         "tries": 1
       },
       {
+        "player": "Jan-Hendrik Wessells",
+        "team": "South Africa",
+        "tries": 1
+      },
+      {
         "player": "Jasper Van der Weshuizen Wiese",
         "team": "South Africa",
         "tries": 1
@@ -5315,6 +5481,11 @@
       {
         "player": "Leonardo Marin",
         "team": "Italy",
+        "tries": 1
+      },
+      {
+        "player": "Louis Bielle-Biarrey",
+        "team": "France",
         "tries": 1
       },
       {
@@ -5552,9 +5723,9 @@
       {
         "player": "Maxime Lucu",
         "team": "France",
-        "points": 47,
+        "points": 53,
         "t": 1,
-        "c": 15,
+        "c": 18,
         "p": 4,
         "d": 0
       },
@@ -5595,6 +5766,15 @@
         "d": 0
       },
       {
+        "player": "Sacha Feinberg-Mngomezulu",
+        "team": "South Africa",
+        "points": 30,
+        "t": 1,
+        "c": 11,
+        "p": 1,
+        "d": 0
+      },
+      {
         "player": "Will Jordan",
         "team": "New Zealand",
         "points": 30,
@@ -5622,15 +5802,6 @@
         "d": 0
       },
       {
-        "player": "Sacha Feinberg-Mngomezulu",
-        "team": "South Africa",
-        "points": 26,
-        "t": 1,
-        "c": 9,
-        "p": 1,
-        "d": 0
-      },
-      {
         "player": "Henry Pollock",
         "team": "England",
         "points": 25,
@@ -5649,8 +5820,35 @@
         "d": 0
       },
       {
+        "player": "Aaron Grandidier Nkanang",
+        "team": "France",
+        "points": 20,
+        "t": 4,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Josh Canham",
         "team": "Australia",
+        "points": 20,
+        "t": 4,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Malcolm Marx",
+        "team": "South Africa",
+        "points": 20,
+        "t": 4,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Théo Attissogbé",
+        "team": "France",
         "points": 20,
         "t": 4,
         "c": 0,
@@ -5663,15 +5861,6 @@
         "points": 16,
         "t": 0,
         "c": 8,
-        "p": 0,
-        "d": 0
-      },
-      {
-        "player": "Aaron Grandidier Nkanang",
-        "team": "France",
-        "points": 15,
-        "t": 3,
-        "c": 0,
         "p": 0,
         "d": 0
       },
@@ -5730,15 +5919,6 @@
         "d": 0
       },
       {
-        "player": "Malcolm Marx",
-        "team": "South Africa",
-        "points": 15,
-        "t": 3,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
         "player": "Mateo Carreras",
         "team": "Argentina",
         "points": 15,
@@ -5759,15 +5939,6 @@
       {
         "player": "Selestino Ravutaumada",
         "team": "Fiji",
-        "points": 15,
-        "t": 3,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
-        "player": "Théo Attissogbé",
-        "team": "France",
         "points": 15,
         "t": 3,
         "c": 0,
@@ -5849,6 +6020,15 @@
       {
         "player": "Brandon Paenga-Amosa",
         "team": "Australia",
+        "points": 10,
+        "t": 2,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Cobus Reinach",
+        "team": "South Africa",
         "points": 10,
         "t": 2,
         "c": 0,
@@ -6297,15 +6477,6 @@
         "d": 0
       },
       {
-        "player": "Cobus Reinach",
-        "team": "South Africa",
-        "points": 5,
-        "t": 1,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
         "player": "Damian Penaud",
         "team": "France",
         "points": 5,
@@ -6567,6 +6738,15 @@
         "d": 0
       },
       {
+        "player": "Jan-Hendrik Wessells",
+        "team": "South Africa",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Jasper Van der Weshuizen Wiese",
         "team": "South Africa",
         "points": 5,
@@ -6677,6 +6857,15 @@
       {
         "player": "Leonardo Marin",
         "team": "Italy",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Louis Bielle-Biarrey",
+        "team": "France",
         "points": 5,
         "t": 1,
         "c": 0,
@@ -7128,6 +7317,11 @@
         "red": 0
       },
       {
+        "team": "France",
+        "yellow": 6,
+        "red": 0
+      },
+      {
         "team": "Fiji",
         "yellow": 3,
         "red": 1
@@ -7136,6 +7330,11 @@
         "team": "Italy",
         "yellow": 1,
         "red": 2
+      },
+      {
+        "team": "South Africa",
+        "yellow": 3,
+        "red": 1
       },
       {
         "team": "New Zealand",
@@ -7148,22 +7347,12 @@
         "red": 0
       },
       {
-        "team": "France",
-        "yellow": 3,
-        "red": 0
-      },
-      {
         "team": "Japan",
         "yellow": 2,
         "red": 0
       },
       {
         "team": "Scotland",
-        "yellow": 2,
-        "red": 0
-      },
-      {
-        "team": "South Africa",
         "yellow": 2,
         "red": 0
       },
@@ -7181,25 +7370,25 @@
     "teamTotals": [
       {
         "team": "South Africa",
-        "tries": 29,
-        "cons": 24,
+        "tries": 32,
+        "cons": 26,
         "pens": 1,
         "drops": 0,
-        "pointsFor": 196
+        "pointsFor": 215
+      },
+      {
+        "team": "France",
+        "tries": 27,
+        "cons": 21,
+        "pens": 4,
+        "drops": 0,
+        "pointsFor": 191
       },
       {
         "team": "England",
         "tries": 26,
         "cons": 20,
         "pens": 0,
-        "drops": 0,
-        "pointsFor": 170
-      },
-      {
-        "team": "France",
-        "tries": 24,
-        "cons": 18,
-        "pens": 4,
         "drops": 0,
         "pointsFor": 170
       },
