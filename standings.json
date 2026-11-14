@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-14T15:33:42.412Z",
+ "updatedAt": "2026-11-14T17:35:13.705Z",
  "source": "computed",
  "competitions": [
   {
@@ -102,7 +102,7 @@
     "meetings": 1,
     "source": null
    },
-   "played": 26,
+   "played": 27,
    "total": 36,
    "complete": false,
    "completedAt": null,
@@ -116,6 +116,37 @@
      "rows": [
       {
        "rank": 1,
+       "tied": false,
+       "code": "NZL",
+       "id": 465,
+       "team": "New Zealand",
+       "P": 5,
+       "W": 4,
+       "D": 0,
+       "L": 1,
+       "PF": 192,
+       "PA": 126,
+       "PD": 66,
+       "TF": 29,
+       "TA": 17,
+       "BPtry": 5,
+       "BPlose": 1,
+       "BP": 6,
+       "GS": 0,
+       "Pts": 22,
+       "pending": 0,
+       "form": [
+        "W",
+        "W",
+        "W",
+        "W",
+        "L"
+       ],
+       "decidedBy": null,
+       "q": null
+      },
+      {
+       "rank": 2,
        "tied": false,
        "code": "RSA",
        "id": 467,
@@ -141,36 +172,6 @@
         "W",
         "W",
         "L"
-       ],
-       "decidedBy": null,
-       "q": null
-      },
-      {
-       "rank": 2,
-       "tied": false,
-       "code": "NZL",
-       "id": 465,
-       "team": "New Zealand",
-       "P": 4,
-       "W": 4,
-       "D": 0,
-       "L": 0,
-       "PF": 164,
-       "PA": 91,
-       "PD": 73,
-       "TF": 25,
-       "TA": 12,
-       "BPtry": 4,
-       "BPlose": 0,
-       "BP": 4,
-       "GS": 0,
-       "Pts": 20,
-       "pending": 0,
-       "form": [
-        "W",
-        "W",
-        "W",
-        "W"
        ],
        "decidedBy": "pts",
        "q": null
@@ -395,6 +396,37 @@
       {
        "rank": 4,
        "tied": false,
+       "code": "WAL",
+       "id": 391,
+       "team": "Wales",
+       "P": 5,
+       "W": 3,
+       "D": 0,
+       "L": 2,
+       "PF": 123,
+       "PA": 151,
+       "PD": -28,
+       "TF": 18,
+       "TA": 22,
+       "BPtry": 3,
+       "BPlose": 0,
+       "BP": 3,
+       "GS": 0,
+       "Pts": 15,
+       "pending": 0,
+       "form": [
+        "W",
+        "L",
+        "L",
+        "W",
+        "W"
+       ],
+       "decidedBy": "pd",
+       "q": null
+      },
+      {
+       "rank": 5,
+       "tied": false,
        "code": "SCO",
        "id": 390,
        "team": "Scotland",
@@ -418,36 +450,6 @@
         "L",
         "W",
         "L"
-       ],
-       "decidedBy": "pts",
-       "q": null
-      },
-      {
-       "rank": 5,
-       "tied": false,
-       "code": "WAL",
-       "id": 391,
-       "team": "Wales",
-       "P": 4,
-       "W": 2,
-       "D": 0,
-       "L": 2,
-       "PF": 88,
-       "PA": 123,
-       "PD": -35,
-       "TF": 13,
-       "TA": 18,
-       "BPtry": 2,
-       "BPlose": 0,
-       "BP": 2,
-       "GS": 0,
-       "Pts": 10,
-       "pending": 0,
-       "form": [
-        "W",
-        "L",
-        "L",
-        "W"
        ],
        "decidedBy": "pts",
        "q": null
