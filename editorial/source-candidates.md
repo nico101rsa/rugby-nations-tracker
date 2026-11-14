@@ -11,6 +11,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 - **RugbyPass** (rugbypass.com) — proposed 2026-11-10 for Scotland, Japan, Fiji: A dedicated global rugby news site that could supply own-team stories where Scotland, Japan and Fiji were starved today.
   - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
+- **Fiji Village** (fijivillage.com) — proposed 2026-11-15 for Fiji: Fiji's pack held only Ireland-centric previews and no Fiji-first reporting; a Fijian news site with regular Flying Fijians coverage could fill the gap.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
