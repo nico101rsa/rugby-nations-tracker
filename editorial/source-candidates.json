@@ -898,6 +898,17 @@
             "Argentina": 1,
             "South Africa": 6
           }
+        },
+        {
+          "date": "2026-11-15",
+          "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
+          "items": 25,
+          "hits": {
+            "France": 14,
+            "Wales": 1,
+            "Argentina": 1,
+            "South Africa": 6
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1311,7 +1322,7 @@
       ],
       "why": "Scotland's whole shortlist was BACKGROUND match coverage; the union's own news page could supply squad, injury and selection items.",
       "proposed": "2026-11-09",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1337,8 +1348,13 @@
         {
           "date": "2026-11-14",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-15",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-15"
     },
     {
       "outlet": "Irish Rugby (IRFU official news)",
@@ -1349,7 +1365,7 @@
       ],
       "why": "Ireland's only NEW candidate was a women's GAA story, so the union's own news could provide squad and injury updates.",
       "proposed": "2026-11-09",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1375,8 +1391,13 @@
         {
           "date": "2026-11-14",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-15",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-15"
     },
     {
       "outlet": "RugbyPass",
@@ -1410,6 +1431,10 @@
         },
         {
           "date": "2026-11-14",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-15",
           "error": "no feed found (8 tried)"
         }
       ]
