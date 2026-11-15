@@ -35,7 +35,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fetchLiveStates } from "./build-fixtures.mjs";
 import { ESPN_TEAM_IDS } from "./fetch-espn-fixtures.mjs";
 import { API_SPORTS_CODE_BY_ID } from "./static-fixtures.mjs";
-import { liveEventsFrom, liveMinute, playFor, playMoved, PUBLISH_LIVE_EVENTS } from "./live-events.mjs";
+import { liveEventsFrom, withMinutes, playFor, playMoved, PUBLISH_LIVE_EVENTS } from "./live-events.mjs";
 
 const SITE = "https://site.api.espn.com/apis/site/v2/sports/rugby";
 export const ESPN_NATIONS_LEAGUE = 17567;
@@ -90,7 +90,6 @@ export async function fetchEspnNationsStates({ fetchJson = getJson, nowMs = Date
     if (state.live) {
       try {
         play.events = liveEventsFrom(await fetchJson(`${SITE}/${ESPN_NATIONS_LEAGUE}/summary?event=${event.id}`));
-        play.minute = liveMinute(event.competitions?.[0]?.status, play.events);
       } catch { /* keep the last notes */ }
     }
     out.push({ key: `${sides.home}-${sides.away}`, date: event.date, ...state, ...play });
@@ -201,8 +200,10 @@ export function makeOverlayPass({
   write = (p, text) => writeFile(p, text),
   log = console.log,
   warn = console.warn,
+  now = () => Date.now(),
 } = {}) {
   const owned = new Map();
+  const halves = new Map();   // when each game's second half was first seen
   let last = [];
   return async function overlayPass() {
     try {
@@ -212,11 +213,13 @@ export function makeOverlayPass({
         warn(`[espn-overlay] ESPN unreachable (${err.message}); keeping the last ${last.length} state(s)`);
       }
       if (!last.length) return 0;
-      const { doc, changes, notes } = applyEspnOverlay(JSON.parse(await read(path)), last, { owned });
+      // The minute is estimated afresh on every pass, ESPN reachable or not.
+      const states = withMinutes(last, halves, now());
+      const { doc, changes, notes } = applyEspnOverlay(JSON.parse(await read(path)), states, { owned, nowIso: new Date(now()).toISOString() });
       if (!changes.length && !notes) return 0;
       await write(path, JSON.stringify(doc, null, 2));
       for (const c of changes) log(`[espn-overlay] ${c.key}: ${c.from} -> ${c.to}`);
-      if (notes) log(`[espn-overlay] live notes updated on ${notes} game(s): ${last.filter((x) => x.events).map((x) => `${x.key} ${x.minute ?? "?"}' ${x.events.length} event(s)`).join(", ")}`);
+      if (notes) log(`[espn-overlay] live notes updated on ${notes} game(s): ${states.filter((x) => x.events).map((x) => `${x.key} ${x.minute ?? "?"}' ${x.events.length} event(s)`).join(", ")}`);
       return changes.length + notes;
     } catch (err) {
       warn(`[espn-overlay] pass skipped: ${err.message}`);

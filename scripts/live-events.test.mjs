@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { liveEventsFrom, liveMinute, playFor, playMoved, PUBLISH_LIVE_EVENTS, MINUTE_STEP } from "./live-events.mjs";
+import { liveEventsFrom, estimateMinute, halfOf, withMinutes, playFor, playMoved, PUBLISH_LIVE_EVENTS, MINUTE_STEP, SECOND_HALF_AFTER_MIN } from "./live-events.mjs";
 import { applyEspnOverlay, fetchEspnNationsStates, makeOverlayPass } from "./espn-live-overlay.mjs";
 
 // ESPN summary rows as fetch-stats.test.mjs records them. France (9) v Fiji (14).
@@ -46,16 +46,46 @@ test("liveEventsFrom: a body with no rows, a row for neither side and an unknown
   assert.deepEqual(liveEventsFrom(odd), [{ min: 10, team: "home", type: "try" }]);
 });
 
-test("liveMinute: believed only inside its half, and never behind the game's last event", () => {
-  const st = (shortDetail, clock, extra = {}) => ({ type: { shortDetail }, clock, ...extra });
-  assert.equal(liveMinute(st("2nd Half", 54 * 60)), 54);
-  assert.equal(liveMinute(st("1st Half", 23 * 60 + 1)), 24, "the 1381st second is in the 24th minute");
-  assert.equal(liveMinute(st("2nd Half", 60)), null, "the Ellis Park clock: 1' in the second half");
-  assert.equal(liveMinute(st("2nd Half", 60), [{ min: 63 }]), 63, "the last event is a floor");
-  assert.equal(liveMinute(st("1st Half", 70 * 60)), null);
-  assert.equal(liveMinute(st("Halftime", 40 * 60)), null, "no minute at half time");
-  assert.equal(liveMinute(st(undefined, undefined, { displayClock: "62'", period: 2 })), 62);
-  assert.equal(liveMinute(undefined), null);
+// Scotland v Australia, Mon 16 Nov 2026 (kickoff 15:10 UTC): ESPN's clock sat
+// at 1' all game, so the minute is estimated from the wall clock.
+const KO = Date.parse("2026-11-15T15:10:00Z");
+const at = (min) => KO + min * 60_000;
+const live = (short, events = []) => ({ key: "SCO-AUS", date: "2026-11-15T15:10Z", live: true, short, events });
+
+test("estimateMinute: the first half runs from the kickoff, the second from when it was first seen, never behind the last event", () => {
+  assert.equal(estimateMinute(live("1st Half"), at(0.5)), 1);
+  assert.equal(estimateMinute(live("1st Half"), at(22.2)), 23);
+  assert.equal(estimateMinute(live("1st Half"), at(47)), 40, "stoppage time: the app prints 40+");
+  assert.equal(estimateMinute(live("1st Half", [{ min: 43 }]), at(47)), 43);
+  assert.equal(estimateMinute(live("Halftime"), at(50)), null);
+  // The second half was first seen 63 minutes after kickoff.
+  assert.equal(estimateMinute(live("2nd Half"), at(63.5), at(63)), 41);
+  assert.equal(estimateMinute(live("2nd Half", [{ min: 44 }]), at(90), at(63)), 67, "the real game: 44' was the last event for half an hour");
+  assert.equal(estimateMinute(live("2nd Half", [{ min: 75 }]), at(90), at(63)), 75);
+  // A burst that starts mid-half has nothing to time it from.
+  assert.equal(estimateMinute(live("2nd Half"), at(SECOND_HALF_AFTER_MIN + 10)), 50);
+  assert.equal(estimateMinute({ live: true, short: "2nd Half" }, at(70)), null, "no kickoff, no estimate");
+});
+
+test("halfOf: ESPN's own word, else the first half while the kickoff is recent", () => {
+  assert.equal(halfOf(live("9'"), at(9)), "1H", "ESPN's label at kickoff is a bare minute");
+  assert.equal(halfOf(live("1'"), at(70)), null, "an hour on, a bare minute says nothing");
+  assert.equal(halfOf(live("2nd Half"), at(70)), "2H");
+  assert.equal(halfOf(live("HT"), at(48)), "HT");
+});
+
+test("withMinutes: remembers the first sight of the second half for the burst; a game first met in it uses the usual gap", () => {
+  const halves = new Map();
+  assert.equal(withMinutes([live("1st Half")], halves, at(30))[0].minute, 30);
+  assert.equal(withMinutes([live("Halftime")], halves, at(48))[0].minute, null);
+  assert.equal(withMinutes([live("2nd Half")], halves, at(63))[0].minute, 41);
+  assert.equal(withMinutes([live("2nd Half")], halves, at(83))[0].minute, 60, "twenty minutes on");
+  const fresh = new Map();
+  assert.equal(withMinutes([live("2nd Half")], fresh, at(83))[0].minute, 40 + 83 - SECOND_HALF_AFTER_MIN);
+  assert.equal(withMinutes([live("2nd Half")], fresh, at(86))[0].minute, 40 + 86 - SECOND_HALF_AFTER_MIN, "and keeps to it");
+  // A finished game is passed through untouched.
+  const ft = { key: "SCO-AUS", date: "2026-11-15T15:10Z", live: false, short: "FT" };
+  assert.equal(withMinutes([ft], halves, at(110))[0], ft);
 });
 
 test("playFor and playMoved: published while live, republished on an event or a five-minute step", () => {
@@ -126,16 +156,23 @@ test("the read and the pass: one summary per live game, a failed one costs nothi
   }] }] };
   const nowMs = Date.parse("2026-11-07T21:13:00Z");
   const ok = await fetchEspnNationsStates({ nowMs, fetchJson: async (url) => (url.includes("summary") ? summary(GAME) : board) });
-  assert.equal(ok[0].minute, 52);
   assert.equal(ok[0].events.length, 6);
+  assert.equal("minute" in ok[0], false, "the read brings events; the pass estimates the minute");
   const failed = await fetchEspnNationsStates({ nowMs, fetchJson: async (url) => { if (url.includes("summary")) throw new Error("HTTP 500"); return board; } });
   assert.deepEqual(failed, [{ key: "FRA-FIJ", date: "2026-11-07T20:10Z", home: 26, away: 3, live: true, short: "2nd Half" }]);
 
   let text = JSON.stringify(doc([row("2H", 26, 3)]));
   const lines = [];
-  const pass = makeOverlayPass({ fetchStates: async () => ok, read: async () => text, write: async (_p, t) => { text = t; }, log: (l) => lines.push(l), warn: () => {} });
+  // Kickoff 20:10; the burst first meets the game at 21:13, in the second
+  // half: 40 + (63 - 60) = 43, raised to the last event's 51.
+  let clock = nowMs;
+  const pass = makeOverlayPass({ fetchStates: async () => ok, read: async () => text, write: async (_p, t) => { text = t; }, log: (l) => lines.push(l), warn: () => {}, now: () => clock });
   assert.equal(await pass(), 1, "a notes-only pass is still something to publish");
-  assert.equal(JSON.parse(text).results[0].play.events.length, 6);
-  assert.match(lines.join("\n"), /live notes updated on 1 game\(s\): FRA-FIJ 52' 6 event\(s\)/);
-  assert.equal(await pass(), 0);
+  assert.deepEqual([JSON.parse(text).results[0].play.minute, JSON.parse(text).results[0].play.events.length], [51, 6]);
+  assert.match(lines.join("\n"), /live notes updated on 1 game\(s\): FRA-FIJ 51' 6 event\(s\)/);
+  clock += 3 * 60_000;
+  assert.equal(await pass(), 0, "three minutes on with nothing new: no publish");
+  clock += 15 * 60_000;
+  assert.equal(await pass(), 1, "the minute moves on by itself, with no new event");
+  assert.deepEqual([JSON.parse(text).results[0].play.minute, JSON.parse(text).results[0].play.at], [61, new Date(clock).toISOString()]);
 });

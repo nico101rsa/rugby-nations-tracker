@@ -22,15 +22,30 @@
 // summed against a final score, because there isn't one yet. So the app
 // shows them as the game's running notes, never as a count that feeds the
 // table. Try counts for the table still come from match-tries.json.
-import { parseEspnDetails, espnMinute } from "./fetch-stats.mjs";
+import { parseEspnDetails } from "./fetch-stats.mjs";
 import { phaseOf } from "./espn-live-overlay.mjs";
 
 export const PUBLISH_LIVE_EVENTS = true;
 
-// A clock is believed only inside its half: ESPN's has sat at 1' twenty
-// minutes into a game (Ellis Park, 22 Aug 2026), and a wrong minute on a live
-// card reads as a broken app. Stoppage time runs past 40 and 80.
-const HALF = { "1H": [1, 55], "2H": [41, 100] };
+// The minute is an ESTIMATE from the wall clock, and the app prints it with
+// a "~". ESPN's own clock is no use: in this module's first live game
+// (Scotland v Australia, Mon 16 Nov 2026) it read 1' at kickoff and never
+// moved, as it had at Ellis Park on 22 Aug, so the published "minute" was
+// only ever the minute of the last event: 44' for half an hour of the second
+// half while the game went on to the 70th. Now:
+//
+//   first half    minutes since the listed kickoff, up to 40
+//   second half   40 + minutes since the pass that first saw the second half
+//                 (remembered for the burst; a burst that starts mid-half
+//                 assumes it began SECOND_HALF_AFTER_MIN after kickoff)
+//   half time     none
+//
+// and never behind the game's own last event. Stoppages make the wall clock
+// run ahead of the referee's by a few minutes; a late kickoff does the same.
+// That is what the "~" is for.
+export const SECOND_HALF_AFTER_MIN = 60;
+const FIRST_HALF_WINDOW_MIN = 50;
+const MIN_MS = 60_000;
 
 // ESPN summary -> [{ min, team, type }], oldest first. `type` is one of try,
 // penaltyTry, conversion, penalty, dropGoal, yellow, red. Rows for neither
@@ -53,22 +68,48 @@ export function liveEventsFrom(summary) {
   return rows.sort((a, b) => at(a) - at(b) || a.i - b.i).map(({ min, team, type }) => ({ min: min ?? null, team, type }));
 }
 
-// The minute now, or null when the clock can't be trusted. `status` is the
-// scoreboard's competitions[0].status; `events` raise a clock that is behind
-// the game's own last event.
-export function liveMinute(status, events = []) {
-  const phase = phaseOf(status?.type?.shortDetail) ?? phaseOf(status?.type?.description) ?? (status?.period === 1 ? "1H" : status?.period === 2 ? "2H" : null);
-  const range = HALF[phase];
-  if (!range) return null;
-  const clock = espnMinute({ value: status?.clock, displayValue: status?.displayClock });
-  const last = Math.max(0, ...events.map((e) => e.min ?? 0));
-  const minute = Math.max(clock ?? 0, last);
-  return minute >= range[0] && minute <= range[1] ? minute : null;
+// The half a live state is in: its own word for it, else the first half
+// while the kickoff is under FIRST_HALF_WINDOW_MIN ago (ESPN's label at
+// kickoff is a bare minute), else unknown.
+export function halfOf(state, nowMs) {
+  const phase = phaseOf(state?.short);
+  if (phase === "1H" || phase === "2H" || phase === "HT") return phase;
+  const since = (nowMs - Date.parse(state?.date)) / MIN_MS;
+  return since >= 0 && since < FIRST_HALF_WINDOW_MIN ? "1H" : null;
+}
+
+// The estimated minute for one live state, or null (half time, a half we
+// can't name). `secondHalfAt` (ms) is when the second half was first seen.
+export function estimateMinute(state, nowMs, secondHalfAt = null) {
+  const half = halfOf(state, nowMs);
+  const kickoff = Date.parse(state?.date);
+  if (!Number.isFinite(kickoff) || (half !== "1H" && half !== "2H")) return null;
+  const last = Math.max(0, ...(state.events ?? []).map((e) => e.min ?? 0));
+  if (half === "1H") return Math.max(1, Math.min(40, Math.ceil((nowMs - kickoff) / MIN_MS)), last);
+  const from = secondHalfAt ?? kickoff + SECOND_HALF_AFTER_MIN * MIN_MS;
+  return Math.max(41, 40 + Math.ceil((nowMs - from) / MIN_MS), last);
+}
+
+// Live states with their minute for this pass. `halves` (key -> ms) is the
+// burst's memory of when each game's second half was first seen; it is
+// updated in place.
+export function withMinutes(states, halves, nowMs) {
+  return (states ?? []).map((s) => {
+    if (!s.live) return s;
+    if (halfOf(s, nowMs) === "2H" && !halves.has(s.key)) {
+      // First sight of the second half. If this pass is also the first sight
+      // of the game (a burst that began mid-half), there is nothing to time
+      // it from: fall back to the usual gap after kickoff.
+      halves.set(s.key, halves.has(`seen ${s.key}`) ? nowMs : null);
+    }
+    halves.set(`seen ${s.key}`, true);
+    return { ...s, minute: estimateMinute(s, nowMs, halves.get(s.key) ?? null) };
+  });
 }
 
 // The published block for one live row, or null to carry none.
-//   { minute, at, events }   `at` is when `minute` was read (ISO), so the app
-// can run the clock on between refreshes.
+//   { minute, at, events }   `at` is when `minute` was estimated (ISO), so
+// the app can run it on between refreshes.
 export function playFor(state, nowIso) {
   if (!PUBLISH_LIVE_EVENTS || !state?.live || !Array.isArray(state.events)) return null;
   return { minute: state.minute ?? null, at: nowIso, events: state.events };
