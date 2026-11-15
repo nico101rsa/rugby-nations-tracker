@@ -57,4 +57,3 @@ _All times Sydney time._
 - Wed 14 Oct 2026, 12:12 AEDT — repeat leads: Argentina
 - Tue 13 Oct 2026, 14:01 AEDT — repeat leads: Scotland
 - Mon 12 Oct 2026, 12:18 AEDT — repeat leads: Ireland
-- Sun 11 Oct 2026, 11:59 AEDT — repeat leads: Argentina
