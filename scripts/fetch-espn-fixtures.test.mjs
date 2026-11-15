@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { espnEntry, mergeNext, ESPN_TEAM_IDS } from "./fetch-espn-fixtures.mjs";
+import { espnEntry, mergeNext, ESPN_TEAM_IDS, getJson } from "./fetch-espn-fixtures.mjs";
 
 const NOW = new Date("2026-07-15T00:00:00Z").getTime();
 
@@ -95,4 +95,44 @@ test("ESPN_TEAM_IDS covers exactly the 12 tracked nations", () => {
   assert.equal(Object.keys(ESPN_TEAM_IDS).length, 12);
   assert.equal(ESPN_TEAM_IDS.RSA, 5);
   assert.equal(ESPN_TEAM_IDS.NZL, 8);
+});
+
+// Mon 16 Nov 2026 (Sydney): one 503 from ESPN failed the catch-up run after
+// its SportsAPI Pro calls were spent.
+const answers = (...list) => {
+  const calls = [];
+  const fetchImpl = async (url) => {
+    calls.push(url);
+    const a = list[Math.min(calls.length, list.length) - 1];
+    if (a instanceof Error) throw a;
+    return { status: a.status, ok: a.status >= 200 && a.status < 300, json: async () => a.body };
+  };
+  return { calls, opts: { fetchImpl, sleep: async () => {} } };
+};
+
+test("getJson: a 503 is asked again and the walk carries on", async () => {
+  const { calls, opts } = answers({ status: 503 }, { status: 200, body: { items: [] } });
+  assert.deepEqual(await getJson("u", opts), { items: [] });
+  assert.equal(calls.length, 2);
+});
+
+test("getJson: a dropped connection is asked again", async () => {
+  const { calls, opts } = answers(new Error("fetch failed"), { status: 200, body: 1 });
+  assert.equal(await getJson("u", opts), 1);
+  assert.equal(calls.length, 2);
+});
+
+test("getJson: three 503s in a row still throw, naming the address", async () => {
+  const { calls, opts } = answers({ status: 503 });
+  await assert.rejects(getJson("https://x/y", opts), /HTTP 503 for https:\/\/x\/y/);
+  assert.equal(calls.length, 3);
+});
+
+test("getJson: a 404 is an empty answer and a 400 is not asked twice", async () => {
+  const a = answers({ status: 404 });
+  assert.equal(await getJson("u", a.opts), null);
+  assert.equal(a.calls.length, 1);
+  const b = answers({ status: 400 });
+  await assert.rejects(getJson("u", b.opts), /HTTP 400/);
+  assert.equal(b.calls.length, 1);
 });

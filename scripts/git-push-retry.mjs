@@ -12,6 +12,18 @@ import { execSync } from "node:child_process";
 
 export const PUSH_ATTEMPTS = 4;
 
+// The rebase REPLAYS this pass's commit, and replaying a commit needs a
+// committer. The bursts commit with `git -c user.name=…` and nothing in the
+// job sets an identity before them (refresh-data.yml's `git config` is in its
+// last step), so every rebase died on "Committer identity unknown", was read
+// below as a conflict, and the pass was dropped: on Mon 16 Nov 2026 (Sydney)
+// Scotland v Australia lost a pass mid-game (12 minutes without a score) and
+// the burst after it published nothing for 48 minutes. The pull carries the
+// identity itself, so no caller can forget it.
+export const BOT_IDENTITY =
+  '-c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com"';
+export const PULL_REBASE = `git ${BOT_IDENTITY} pull --rebase --autostash`;
+
 // True when the push landed, false when it kept losing. NEVER throws: an
 // unpushed commit stays local and the next pass carries it along with fresher
 // data, which beats ending a burst mid-match every time.
@@ -55,7 +67,7 @@ export function pushOutcome({
       // Rebase onto whoever beat us, then try again. If the rebase itself
       // loses a race, don't give up on its account — just push again.
       try {
-        run("git pull --rebase --autostash");
+        run(PULL_REBASE);
       } catch {
         if (abortRebase(run)) {
           try {

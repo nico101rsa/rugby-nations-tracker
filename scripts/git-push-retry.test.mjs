@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { pushWithRetries } from "./git-push-retry.mjs";
+import { pushWithRetries, PULL_REBASE } from "./git-push-retry.mjs";
 import { execSync } from "node:child_process";
 import { mkdtempSync, writeFileSync, readFileSync, existsSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
@@ -27,7 +27,7 @@ test("a push that lands first time does not rebase", () => {
 test("a lost race is rebased and retried", () => {
   const r = recorder(1);
   assert.equal(pushWithRetries({ run: r.run }), true);
-  assert.deepEqual(r.cmds, ["git push", "git pull --rebase --autostash", "git push"]);
+  assert.deepEqual(r.cmds, ["git push", PULL_REBASE, "git push"]);
 });
 
 test("a SECOND lost race is retried too — the case that killed run 4349", () => {
@@ -49,7 +49,7 @@ test("a failing pull that left no rebase behind (a fetch race) does not abort th
   let pushes = 0;
   const run = (cmd) => {
     cmds.push(cmd);
-    if (cmd.startsWith("git pull")) throw new Error("rebase raced too");
+    if (cmd === PULL_REBASE) throw new Error("rebase raced too");
     if (cmd === "git rebase --abort") throw new Error("fatal: No rebase in progress?");
     if (cmd === "git push" && ++pushes <= 2) throw new Error("failed to push some refs");
   };
@@ -64,10 +64,10 @@ test("a CONFLICTING rebase is aborted and this pass's commit dropped, so the che
   const run = (cmd) => {
     cmds.push(cmd);
     if (cmd === "git push") throw new Error("failed to push some refs");
-    if (cmd.startsWith("git pull")) throw new Error("CONFLICT (content): Merge conflict in standings.json");
+    if (cmd === PULL_REBASE) throw new Error("CONFLICT (content): Merge conflict in standings.json");
   };
   assert.equal(pushWithRetries({ run, log: (m) => logged.push(m) }), false);
-  assert.deepEqual(cmds, ["git push", "git pull --rebase --autostash", "git rebase --abort", "git reset --keep @{u}"]);
+  assert.deepEqual(cmds, ["git push", PULL_REBASE, "git rebase --abort", "git reset --keep @{u}"]);
   assert.match(logged[0], /next pass rebuilds/);
 });
 
@@ -77,7 +77,7 @@ test("a conflict whose reset git refuses keeps the commit local and stops trying
   const run = (cmd) => {
     cmds.push(cmd);
     if (cmd === "git push") throw new Error("failed to push some refs");
-    if (cmd.startsWith("git pull")) throw new Error("CONFLICT");
+    if (cmd === PULL_REBASE) throw new Error("CONFLICT");
     if (cmd.startsWith("git reset")) throw new Error("error: Entry 'nations.json' not uptodate. Cannot merge.");
   };
   assert.equal(pushWithRetries({ run, log: (m) => logged.push(m) }), false);
@@ -133,7 +133,7 @@ test("pushOutcome tells a conflict from a lost race, and push-data exits red onl
   const { exitCodeFor } = await import("./push-data.mjs");
   const conflict = (cmd) => {
     if (cmd === "git push") throw new Error("failed to push some refs");
-    if (cmd.startsWith("git pull")) throw new Error("CONFLICT");
+    if (cmd === PULL_REBASE) throw new Error("CONFLICT");
   };
   const quiet = () => {};
   assert.equal(pushOutcome({ run: () => {}, log: quiet }), "pushed");
@@ -147,4 +147,51 @@ test("refresh-data's final push goes through push-data, not a bare rebase that e
   const yml = readFileSync(new URL("../.github/workflows/refresh-data.yml", import.meta.url), "utf8");
   assert.match(yml, /node scripts\/push-data\.mjs/);
   assert.doesNotMatch(yml, /git pull --rebase --autostash && git push/);
+});
+
+// The runner has no git identity until refresh-data.yml's last step, and the
+// burst pushes long before it. A rebase replays the pass's commit, so it needs
+// a committer: without one it died ("Committer identity unknown"), was read as
+// a conflict and the pass was dropped, on a race that conflicted with nothing.
+// Mon 16 Nov 2026 (Sydney): one pass lost mid-game in Scotland v Australia,
+// then three in a row. `user.useConfigOnly` stops git guessing an identity
+// from the machine, which is what the runner's empty user name amounts to.
+test("real git: a lost race with no conflict is rebased and pushed on a checkout that has no git identity", () => {
+  const root = mkdtempSync(join(tmpdir(), "push-ident-"));
+  const base = { ...process.env, GIT_CONFIG_NOSYSTEM: "1", HOME: root };
+  for (const k of ["GIT_AUTHOR_NAME", "GIT_AUTHOR_EMAIL", "GIT_COMMITTER_NAME", "GIT_COMMITTER_EMAIL", "EMAIL"]) delete base[k];
+  const named = { ...base, GIT_AUTHOR_NAME: "t", GIT_AUTHOR_EMAIL: "t@t", GIT_COMMITTER_NAME: "t", GIT_COMMITTER_EMAIL: "t@t" };
+  const sh = (cwd, cmd, env = base) => execSync(cmd, { cwd, env, stdio: "pipe" }).toString().trim();
+  try {
+    sh(root, "git init -q --bare -b main origin.git");
+    sh(root, "git clone -q origin.git a");
+    writeFileSync(join(root, "a", "nations.json"), "n0\n");
+    writeFileSync(join(root, "a", "news-pool.json"), "p0\n");
+    sh(join(root, "a"), "git add -A && git commit -qm base && git push -q origin main", named);
+    sh(root, "git clone -q origin.git b");
+    const b = join(root, "b");
+    sh(b, "git config user.useConfigOnly true");
+
+    // Another job lands a different file; the burst committed the way it does, with -c.
+    writeFileSync(join(root, "a", "news-pool.json"), "p1\n");
+    sh(join(root, "a"), "git commit -qam pool && git push -q origin main", named);
+    writeFileSync(join(b, "nations.json"), "n-live\n");
+    sh(b, 'git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qam live');
+
+    const logged = [];
+    assert.equal(pushWithRetries({ run: (cmd) => sh(b, cmd), log: (m) => logged.push(m) }), true, logged.join("; "));
+    assert.deepEqual(logged, []);
+    assert.equal(sh(root, "git --git-dir origin.git show main:nations.json"), "n-live");
+    assert.equal(sh(root, "git --git-dir origin.git show main:news-pool.json"), "p1");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("the bursts commit with the identity the rebase carries, from one place", () => {
+  for (const f of ["scripts/refresh.mjs", "scripts/fixtures-burst.mjs"]) {
+    const src = readFileSync(f, "utf8");
+    assert.match(src, /git \$\{BOT_IDENTITY\} commit/, f);
+    assert.doesNotMatch(src, /git pull --rebase/, f);
+  }
 });

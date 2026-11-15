@@ -18,7 +18,7 @@
 
 import { execSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
-import { pushWithRetries } from "./git-push-retry.mjs";
+import { pushWithRetries, BOT_IDENTITY } from "./git-push-retry.mjs";
 import { liveTracked } from "./espn-scored.mjs";
 import { correctedKickoffMs, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 
@@ -137,7 +137,7 @@ function gitPublish(msg) {
   if (!process.env.GITHUB_ACTIONS) return;
   execSync(`git add ${PUBLISH_PATHS.join(" ")}`);
   if (!execSync("git diff --cached --name-only").toString().trim()) return; // no change → no Pages build
-  execSync(`git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m ${JSON.stringify(msg)}`);
+  execSync(`git ${BOT_IDENTITY} commit -m ${JSON.stringify(msg)}`);
 
   pushWithRetries();
 }
