@@ -111,11 +111,30 @@ export function mergeNext(vendorNext, espnEntries, now = Date.now(), cap = 10) {
 
 const BASE = "https://sports.core.api.espn.com/v2/sports/rugby/leagues";
 
-async function getJson(url) {
-  const res = await fetch(url);
-  if (res.status === 404) return null; // no such season/team combo — empty
-  if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
-  return res.json();
+// One request, tried again on a 5xx, a 429 or a dropped connection. A walk
+// is a few hundred requests to a keyless endpoint, and the callers throw the
+// whole walk away on one bad answer: on Mon 16 Nov 2026 (Sydney) a single 503
+// failed the catch-up after it had already spent its four SportsAPI Pro calls,
+// so Scotland v Australia never reached team-events.json from that run. A 4xx
+// is an answer and is not asked again.
+export const ESPN_ATTEMPTS = 3;
+export async function getJson(url, { fetchImpl = fetch, sleep = (ms) => new Promise((r) => setTimeout(r, ms)), attempts = ESPN_ATTEMPTS } = {}) {
+  let last;
+  for (let attempt = 1; attempt <= attempts; attempt++) {
+    if (attempt > 1) await sleep(1500 * (attempt - 1));
+    let res;
+    try {
+      res = await fetchImpl(url);
+    } catch (err) {
+      last = new Error(`${err?.message ?? err} for ${url}`);
+      continue;
+    }
+    if (res.status === 404) return null; // no such season/team combo — empty
+    if (res.ok) return res.json();
+    last = new Error(`HTTP ${res.status} for ${url}`);
+    if (res.status < 500 && res.status !== 429) break;
+  }
+  throw last;
 }
 
 // Raw future ESPN events across all supplement leagues, deduped by event id

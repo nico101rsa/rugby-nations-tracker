@@ -6,7 +6,7 @@ import { execSync } from "node:child_process";
 import { scheduleKickoffs } from "./static-fixtures.mjs";
 import { refresh, refreshNewsOnly, utcDateStr, datesForWindow } from "./fetch-nations.mjs";
 import { runTourProbe } from "./probe-tour.mjs";
-import { pushWithRetries } from "./git-push-retry.mjs";
+import { pushWithRetries, BOT_IDENTITY } from "./git-push-retry.mjs";
 import { makeOverlayPass, OVERLAY_INTERVAL_MS } from "./espn-live-overlay.mjs";
 import { syncProjectedFinals } from "./build-fixtures.mjs";
 
@@ -81,7 +81,7 @@ function gitPublish(msg) {
   execSync("git add -A");
   const staged = execSync("git diff --cached --name-only").toString().trim();
   if (!staged) return;                               // nothing changed → no Pages build
-  execSync(`git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m ${JSON.stringify(msg)}`);
+  execSync(`git ${BOT_IDENTITY} commit -m ${JSON.stringify(msg)}`);
   pushWithRetries();
 }
 
