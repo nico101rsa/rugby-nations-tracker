@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-15T15:12:49.363Z",
+  "updatedAt": "2026-11-15T15:21:51.515Z",
   "counts": {
     "fixtures": 6,
     "results": 30,
@@ -805,7 +805,7 @@
         "id": 390,
         "name": "Scotland",
         "logo": "https://media.api-sports.io/rugby/teams/390.png",
-        "score": 0
+        "score": 5
       },
       "away": {
         "id": 461,
@@ -814,9 +814,15 @@
         "score": 0
       },
       "play": {
-        "minute": 1,
-        "at": "2026-11-15T15:12:49.363Z",
-        "events": []
+        "minute": 9,
+        "at": "2026-11-15T15:21:51.515Z",
+        "events": [
+          {
+            "min": 9,
+            "team": "home",
+            "type": "try"
+          }
+        ]
       }
     }
   ],
