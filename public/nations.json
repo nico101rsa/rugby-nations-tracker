@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-15T15:49:08.804Z",
+  "updatedAt": "2026-11-15T15:52:15.195Z",
   "counts": {
     "fixtures": 6,
     "results": 30,
@@ -798,7 +798,8 @@
       "status": {
         "short": "1H",
         "long": "First Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 390,
@@ -810,11 +811,11 @@
         "id": 461,
         "name": "Australia",
         "logo": "https://media.api-sports.io/rugby/teams/461.png",
-        "score": 5
+        "score": 10
       },
       "play": {
-        "minute": 29,
-        "at": "2026-11-15T15:49:08.804Z",
+        "minute": 35,
+        "at": "2026-11-15T15:52:15.195Z",
         "events": [
           {
             "min": 9,
@@ -835,6 +836,11 @@
             "min": 29,
             "team": "home",
             "type": "conversion"
+          },
+          {
+            "min": 35,
+            "team": "away",
+            "type": "try"
           }
         ]
       }
