@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-15T16:55:57.600Z",
+  "updatedAt": "2026-11-15T16:58:59.784Z",
   "counts": {
     "fixtures": 6,
     "results": 30,
@@ -811,11 +811,11 @@
         "id": 461,
         "name": "Australia",
         "logo": "https://media.api-sports.io/rugby/teams/461.png",
-        "score": 5
+        "score": 10
       },
       "play": {
-        "minute": 75,
-        "at": "2026-11-15T16:55:57.600Z",
+        "minute": 80,
+        "at": "2026-11-15T16:58:59.784Z",
         "events": [
           {
             "min": 9,
@@ -846,6 +846,11 @@
             "min": 75,
             "team": "home",
             "type": "penalty"
+          },
+          {
+            "min": 80,
+            "team": "away",
+            "type": "try"
           }
         ]
       }
