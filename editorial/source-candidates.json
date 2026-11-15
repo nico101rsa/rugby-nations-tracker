@@ -2,51 +2,6 @@
   "notice": "Outlets proposed by the daily editorial review and probed by code. Nothing here is a news source until it is added to scripts/news-sources.mjs by hand.",
   "candidates": [
     {
-      "outlet": "Sky Sports Rugby Union",
-      "host": "skysports.com",
-      "homepage": "https://www.skysports.com/rugby-union",
-      "teams": [
-        "Italy",
-        "Scotland",
-        "Wales"
-      ],
-      "why": "Italy, Scotland and Wales had nothing above the salience bar, and Sky's rugby section carries squad and injury news for the Six Nations sides.",
-      "proposed": "2026-10-19",
-      "status": "no-feed",
-      "feedUrl": null,
-      "probes": [
-        {
-          "date": "2026-10-19",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-20",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-21",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-22",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-23",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-24",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-25",
-          "error": "no feed found (8 tried)"
-        }
-      ],
-      "decided": "2026-10-25"
-    },
-    {
       "outlet": "The Fiji Times",
       "host": "fijitimes.com.fj",
       "homepage": "https://www.fijitimes.com.fj",
@@ -909,6 +864,17 @@
             "Argentina": 1,
             "South Africa": 6
           }
+        },
+        {
+          "date": "2026-11-16",
+          "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
+          "items": 25,
+          "hits": {
+            "France": 13,
+            "Wales": 1,
+            "Argentina": 1,
+            "South Africa": 7
+          }
         }
       ],
       "decided": "2026-11-04"
@@ -1410,7 +1376,7 @@
       ],
       "why": "A dedicated global rugby news site that could supply own-team stories where Scotland, Japan and Fiji were starved today.",
       "proposed": "2026-11-10",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1436,8 +1402,13 @@
         {
           "date": "2026-11-15",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-16",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-16"
     },
     {
       "outlet": "Fiji Village",
@@ -1453,6 +1424,10 @@
       "probes": [
         {
           "date": "2026-11-15",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-16",
           "error": "no feed found (8 tried)"
         }
       ]
