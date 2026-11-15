@@ -200,19 +200,21 @@ gets `play: { minute, at, events: [{ min, team, type }] }`. Rules:
   A test fails if a fourth field appears.
 - **One switch.** `PUBLISH_LIVE_EVENTS = false` strips `play` from every row
   at the next pass, on every phone, with no app build.
-- The minute is published only when ESPN's clock sits inside its half (it
-  has read 1' twenty minutes in) and is never behind the last event. The app
-  runs it on from `at`.
+- **The minute is an estimate, and the app prints it with a "~".** ESPN's
+  clock is stuck at 1' for this league, so the minute comes from the wall
+  clock: minutes since kickoff in the first half, 40 plus minutes since the
+  second half was first seen in the second, never behind the last event
+  (`estimateMinute`). Stoppages put it a few minutes ahead of the referee's.
 - A pass republishes for a new event or a minute five or more ahead, so a
   quiet stretch costs one Pages build in six minutes, not one in three.
 - The rows are not gated against a final score. They are notes for the card
   and never feed the table.
 - Nations Championship only. A test, series or tour game (fixtures.json) has
   no notes yet.
-- **Not yet seen on a live game**: ESPN is not reachable from a cloud session,
-  so it was built against the rows recorded for the box score. Its first game
-  is Scotland v Australia, Mon 16 Nov 2026, 02:10 Sydney time; grep that
-  refresh run for `live notes updated`.
+- **Seen working on Scotland v Australia (Mon 16 Nov 2026, 02:10 Sydney
+  time):** all seven events arrived within 3 minutes of happening and matched
+  the game, including a try ESPN gave and took back. That game is also where
+  the stuck clock showed: the minute read 44' for half an hour.
 
 A top-up commits only when a row moved ("data: live refresh, ESPN (…)"), so a
 quiet stretch costs no Pages build. To read how far ESPN led api-sports in a
