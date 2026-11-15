@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-15T15:21:51.515Z",
+  "updatedAt": "2026-11-15T15:24:57.856Z",
   "counts": {
     "fixtures": 6,
     "results": 30,
@@ -796,10 +796,9 @@
       "date": "2026-11-15T15:10:00+00:00",
       "week": "5",
       "status": {
-        "short": "LIVE",
-        "long": "In Progress",
-        "live": true,
-        "via": "espn"
+        "short": "1H",
+        "long": "First Half",
+        "live": true
       },
       "home": {
         "id": 390,
@@ -811,15 +810,20 @@
         "id": 461,
         "name": "Australia",
         "logo": "https://media.api-sports.io/rugby/teams/461.png",
-        "score": 0
+        "score": 5
       },
       "play": {
-        "minute": 9,
-        "at": "2026-11-15T15:21:51.515Z",
+        "minute": 12,
+        "at": "2026-11-15T15:24:57.856Z",
         "events": [
           {
             "min": 9,
             "team": "home",
+            "type": "try"
+          },
+          {
+            "min": 12,
+            "team": "away",
             "type": "try"
           }
         ]
@@ -1035,7 +1039,7 @@
   "news": [
     {
       "title": "Scotland v Australia: Nations Championship rugby union – live",
-      "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQVzJqMlc1bkpocWtWY3l3SHRoNXhGNmZsUE9HU0NlWFNJT2Q4bkcxSEVFV3pDT2NqZ3ZjS1A5dFppeG1Va0phTW5TdGtvR2RKMFFJTmZFWUVNRXFudlpoeUtQbWVYaXFXbTY2ZnRFUTVGZnplUUFTU09KSDFLbXU4QzhTTUhtWU9vWmVsWXpJeFN0R1drMi1GcEwyMktaeHJoV1Jnc2l3RjloQjJnOGVVYUdDMUM1Z1JjaHFQV0YtekZQRllraUQxVmRxSS1Vc1p5VlhrSWdISnUxdjk4eXVqOXFIWFY?oc=5",
+      "link": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxOQzh3V2stWm02NmpVa1N2dzRoRG9BZDVGOGh5VU5DVkdlT1l6N0VRYXpnZHlQemN6WVZTSmNaVlcxY1pLUXE1clF5VVZWRmlXcWJOeGJWd2U3WVEyWDNJckhsMkYxcTVSejdMWFFCUkRvWS02SXZYb04wZVZwdVZRdFY5UFJvX1BEM2lDdE05RVF1N0M3MFVZd2tPVVlTOEVjd3ljZWM2X3g5LTdDdHpnRktYMVk2VTJxU0R2WjJ6cXRhWEtVaXNvOXQ1OEoxRmdpcDBYNFE5bUtzTlItSG43ZU43cGI?oc=5",
       "source": "The Guardian",
       "published": "Sun, 15 Nov 2026 14:36:00 GMT"
     },
@@ -1050,12 +1054,6 @@
       "link": "https://news.google.com/rss/articles/CBMihwJBVV95cUxPRHA1OEpwanVCMmxmdnN1WkhRbjdqMzhfODFaQXRVOEh1aFVwQTNyajRZU2Y4OFA0RDU4QVg4aVdpeE4yb0F2dkRRdDd1T0l6d19XNk1FUXlEc0swTTFwSVRoQXNRSkRHMlpBRXBJRDhqSUZnRUFUVXBFSUh0MllURmIwT1VQWXptaGtyeUpEd0VkR2k5QnJteF96R1pXcnQ5bU1YY1EwSi04MEFwaXRUbThJNFlWV3JtclcwMVhzSmRZUFpzRlRIZW92SWNaQmJNbi01MTMzZ2pCWTMyR3J4YnBHVXJkTTlSUWppaUJYSmZ2bjFvaTBsdFk3cl9mWnRKeE8xT2UyWQ?oc=5",
       "source": "Green & Gold Rugby",
       "published": "Sun, 15 Nov 2026 14:30:00 GMT"
-    },
-    {
-      "title": "[ＷＡＴＣＨSOCCER ２０２６]ＦＲＥＥ！] Scotland vs Australia The Nations Championship Live Game",
-      "link": "https://news.google.com/rss/articles/CBMimgJBVV95cUxOd0hvNFhXNktGZUc4Tng4ajlhU1lkT1ZWWl83NUFYcVo3X0N4SE5HNThVUWFkaThqaS01bXNNa2pUNGF2QjV5akJEeWFWV29XQlhBcks5RzJXTDhfRnFyRGNyTHl5VktjNWZ1djRDTnRiOFJMbUdjSFVOQmJRVFVmTjc3SEVQZ3ZBS3ZxVkdubk5rV19tdjJYZy1UUFBnYnpaSmM2T290S1Fhcm45Y0lkSXdWWWkxR1FmOTVhWVAtcTcwc1JxOXJIWE85V1BLa0VoWHllOEVidUZmOXN4XzFYS0hsWXFiR2J3VTB6S0djZDJIWFB2NjBKbUZxOXFmUmNLRC15Wk13V0dERUZZa00wUEI4elVYSTduM1E?oc=5",
-      "source": "Universitat de Barcelona",
-      "published": "Sun, 15 Nov 2026 14:24:16 GMT"
     },
     {
       "title": "Live: Wallabies desperate to bounce back at Murrayfield",
@@ -1076,10 +1074,22 @@
       "published": "Sun, 15 Nov 2026 04:32:59 GMT"
     },
     {
+      "title": "Five-try Will Joseph equals record as England steamroller Japan",
+      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxONnZLX0xKMlcweG5iZUFQX1JtNkNvNk1CamN3NlBlWXMyeWR4QUpnRkc2b3NFc3VWTjFVM1I2bUp6OHVJYWtwaElDdU9wTjduVEstZEhBRUIyTVB3d1U0VnJoaWlhbWt0LWp4NEhmUk5lckNCMjFLSUwwOTVkTmNEUnBFZ2F6YXFhcEVScm5tbi1lRXg4dDBXZw?oc=5",
+      "source": "The Guardian",
+      "published": "Sun, 15 Nov 2026 01:02:00 GMT"
+    },
+    {
       "title": "Ireland beat Fiji to set up decisive group games in Nations Championship",
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPNlBJVDdZUnVUOV9QMWNyZ3ZOUFhQNGhhaEZPU2hiWTROaG9lNlFEXzEyOGpERVBranJMUUlyd0FWc00zUFF5TUk0ZlZGNjFjQ1htZi1pbDI2a3dlUThEdG9YTkFVYldZTkRZNlQxR3lYQlJuOUhMWnMwcjZkUHUtOVNaZDJieVU1cU9xQjVMNVJiVXlobnRrRC12NzVheFlmNjdwRy0wTUtCb1NBTG13ag?oc=5",
       "source": "RUGBY.com.au",
       "published": "Sat, 14 Nov 2026 22:53:32 GMT"
+    },
+    {
+      "title": "Wales bury 73-year All Blacks hoodoo with seismic victory over New Zealand",
+      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPdzNkUGFlcXRWWHV2VktCRDlCSVhtcVhOVTRqYjlxZlItZXhoeVhRSVJMWkJDeFZObEhwU00wTnVOWW1ibGdEc1dQdWRocXd5ZXJMWmNHWS15Tkc5VGVnbG4tamJHMDc3SDVMVXJ1Y0VhRFlLZDFrU1lqLUstVGJyUU81S1dkRmROYUdMQ2xEWXNUVFZUWXltMU5QTDdoQQ?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 14 Nov 2026 22:40:00 GMT"
     },
     {
       "title": "Extraordinary 73-year first as All Blacks stunned by minnow Wales",
@@ -1088,28 +1098,16 @@
       "published": "Sat, 14 Nov 2026 21:40:01 GMT"
     },
     {
-      "title": "England thrashes Japan 78-15 in Nations Championship rugby",
-      "link": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPQVlVREp1NkxMX0RDVXNLQXdHQ085NHZWamN3VW5RUTI3VGlpOFI4UnkxdVVRM2JneTEtR2pUUEJBanhMekVyNUQyeTBHeTZQaDFkdHdFb3Ficno5d0dvS2E1bmJIWG00LW5jN2pMalo0SDNQSUVGQkw2dWdpa1ltUWVQcFhieGpSUzlwR1lKZjIyX1VnZGRXX2VvTUV6TnJqSDhmemtwRnNOTHhYQ1hlMV82SlBOamFFWTVJNUdSdHBJUQ?oc=5",
-      "source": "Japan Today",
-      "published": "Sat, 14 Nov 2026 20:45:00 GMT"
+      "title": "All Blacks suffer 73-year first in defeat to Wales",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPMUNNTm5GZnkweUo1R19UTlVobHdnMGYxcHVkUzJQbkpteWltOVV6R05fN1l5ZlJYZE1ZX1c0MXRleE9sNWtseUowbjJXakhoZzltTld1T25MUkxXZkc0OXJoUTF0YzhHYy1CdXQtTUo0WkxheXA0cldSVGphZi1hcWxpNXZJZXJLMmdOTnFHR05JVjdKQ2FVR05yZ2taYWhwQ2xYQw?oc=5",
+      "source": "ABC News & Headlines – Australian Broadcasting Corporation",
+      "published": "Sat, 14 Nov 2026 20:35:19 GMT"
     },
     {
       "title": "England 78-15 Japan: Nations Championship rugby union – as it happened",
       "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQM1lXVXhHd24zN1JVSDdiNTJCRGpOUng2dmI2YTlQV1F1RlRLNlhZY3FCUW9PQmMtanlHVmI5ajRHbklKN1NWRzhWaDYxbUxfSWRkdFFTLVBhaWVGTTNqdHI4SGQ5Y2tQWTlGQXJXYnRDQVE4bkhMU29OUUFYX2FLdFlScVN4dVJ6WG1sTTR4LU4zWXV4YlpITEZ0d1JkUjZHUE0tUGxrOA?oc=5",
       "source": "The Guardian",
       "published": "Sat, 14 Nov 2026 18:52:31 GMT"
-    },
-    {
-      "title": "England 78-15 Japan: Will Joseph scores five of 13 tries for Steve Borthwick's men",
-      "link": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNYmhsVXdaWXdfLTNhMXVLbmRDa2FCREc1LVBXem5jcFM3MGwtTzhLSU0yTHhrWmpBMlBVS0VEc3VVQXZVQmxwWHpCMEtSUzBwaFltQ2RFb1laM2g3SmYxR2pvQWl1YllKUFNUNDNoUDlmMG10TmJJWlllQkh2RjZoWU00TDlKQ0IxNzBEdmpjTHM4RV9U?oc=5",
-      "source": "ESPN",
-      "published": "Sat, 14 Nov 2026 17:40:52 GMT"
-    },
-    {
-      "title": "Match Report: All Blacks v Wales | Nations Championship, 2026",
-      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOYXd1VllaNFdqZzVDMDR5RXM1ZlFhYk83bEluMF9Fb1lsREdqTkVyVmVKX0VLRGNiQnZzeW1PUDJIdjZCbm1fODgwblBOeGNIN1dNWWxUdl9hY3pMQWp2WnpGNU00TVY4V3p6bG9qVHBIeENxOG1TcHgxVGJRQVM3aWtHazNROURQZjRkdUw2QUVkM3JkSGRqUGJ5ektSZDdP?oc=5",
-      "source": "All Blacks",
-      "published": "Sat, 14 Nov 2026 17:40:51 GMT"
     },
     {
       "title": "Nations Championship: Scotland aim to bounce back against 'wounded' Australia",
@@ -1122,6 +1120,12 @@
       "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxNMHl4MllxS1cyY0s3aFNSdENha3NPTEtZbGdYWU9HMjluSDY4c0hxdUUtS3pmakpHSFZzbUQzZEJGYWMtY01VMUpuRWk0c3hmcjRKUjRPbmFNR1RFTm5LZGYyb2wtM1Z3NjZHVTY2dFNZRDNFdU1BZ3ZWdzc4cmRKc1lsZUlOay0xYTYxa3JrQmotVGIzbEROanVaNjBSanJu?oc=5",
       "source": "The Guardian",
       "published": "Sat, 14 Nov 2026 12:16:00 GMT"
+    },
+    {
+      "title": "England 45-22 Australia: Nations Championship – rugby union as it happened",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQZm1VMzhNTDNUWm9Ockk0d2toYTRMZ3FSN0taYzZPZVZacjl4eWxZVXozejE4VFg0TWsxc3pIbUhGNTlvVTk5bzUxeW9ydTN5dG9zcWg0TnBpZzdHS1hyZXk3bFh3UUJGdUl4T2xQUF9ERDItZTlQNDdia3FSdWV6T3NKSmdic1ZRTzJaMVgzaVZnLWJ5aXFUNzJyZGxlT25JMVZRTUxSeGJzbFJt?oc=5",
+      "source": "The Guardian",
+      "published": "Sun, 08 Nov 2026 14:10:00 GMT"
     }
   ],
   "triesPending": 0,
