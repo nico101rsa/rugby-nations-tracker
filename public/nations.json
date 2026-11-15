@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-15T16:58:59.784Z",
+  "updatedAt": "2026-11-15T17:02:03.101Z",
   "counts": {
     "fixtures": 6,
     "results": 30,
@@ -796,10 +796,9 @@
       "date": "2026-11-15T15:10:00+00:00",
       "week": "5",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true,
-        "via": "espn"
+        "short": "FT",
+        "long": "Finished",
+        "live": false
       },
       "home": {
         "id": 390,
@@ -811,48 +810,7 @@
         "id": 461,
         "name": "Australia",
         "logo": "https://media.api-sports.io/rugby/teams/461.png",
-        "score": 10
-      },
-      "play": {
-        "minute": 80,
-        "at": "2026-11-15T16:58:59.784Z",
-        "events": [
-          {
-            "min": 9,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 12,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 28,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 29,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 44,
-            "team": "away",
-            "type": "yellow"
-          },
-          {
-            "min": 75,
-            "team": "home",
-            "type": "penalty"
-          },
-          {
-            "min": 80,
-            "team": "away",
-            "type": "try"
-          }
-        ]
+        "score": 12
       }
     }
   ],
@@ -944,6 +902,23 @@
     },
     {
       "rank": 6,
+      "id": 390,
+      "team": "Scotland",
+      "logo": "https://media.api-sports.io/rugby/teams/390.png",
+      "P": 5,
+      "W": 3,
+      "D": 0,
+      "L": 2,
+      "PF": 144,
+      "PA": 152,
+      "PD": -8,
+      "TF": 21,
+      "TA": 23,
+      "BP": 3,
+      "Pts": 15
+    },
+    {
+      "rank": 7,
       "id": 391,
       "team": "Wales",
       "logo": "https://media.api-sports.io/rugby/teams/391.png",
@@ -958,23 +933,6 @@
       "TA": 22,
       "BP": 3,
       "Pts": 15
-    },
-    {
-      "rank": 7,
-      "id": 390,
-      "team": "Scotland",
-      "logo": "https://media.api-sports.io/rugby/teams/390.png",
-      "P": 4,
-      "W": 2,
-      "D": 0,
-      "L": 2,
-      "PF": 129,
-      "PA": 140,
-      "PD": -11,
-      "TF": 19,
-      "TA": 21,
-      "BP": 3,
-      "Pts": 11
     },
     {
       "rank": 8,
@@ -998,17 +956,17 @@
       "id": 461,
       "team": "Australia",
       "logo": "https://media.api-sports.io/rugby/teams/461.png",
-      "P": 4,
+      "P": 5,
       "W": 1,
       "D": 0,
-      "L": 3,
-      "PF": 136,
-      "PA": 130,
-      "PD": 6,
-      "TF": 21,
-      "TA": 20,
-      "BP": 4,
-      "Pts": 8
+      "L": 4,
+      "PF": 148,
+      "PA": 145,
+      "PD": 3,
+      "TF": 23,
+      "TA": 22,
+      "BP": 5,
+      "Pts": 9
     },
     {
       "rank": 10,
