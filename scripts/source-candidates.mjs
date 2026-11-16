@@ -186,7 +186,11 @@ export function recordProbe(candidate, probe, dateISO, feeds = []) {
   const probes = [...(candidate.probes ?? []), { date: dateISO, ...probe }].slice(-14);
   const next = { ...candidate, probes };
   if (probe.feedUrl) next.feedUrl = probe.feedUrl;
-  if (feeds.some((f) => hostOf(f.url) === candidate.host)) {
+  // Adopted when the spine carries the outlet's host, or the very feed the
+  // probe reads: Midi Olympique's feed is served from rugbyrama.fr, so its
+  // record stayed "ready" for a week after it was adopted (9 Nov 2026).
+  const sameFeed = (a, b) => a && b && a.replace(/\/+$/, "") === b.replace(/\/+$/, "");
+  if (feeds.some((f) => hostOf(f.url) === candidate.host || sameFeed(f.url, next.feedUrl))) {
     next.status = "adopted";
     next.decided = next.decided ?? dateISO;
     return next;
