@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-15T07:21:39.670Z",
+ "updatedAt": "2026-11-16T07:29:10.102Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -789,20 +789,6 @@
   "AUS": {
    "last": [
     {
-     "id": 16098044,
-     "date": "2026-07-11T07:40:00.000Z",
-     "league": "Nations Championship, Group Stage",
-     "opponent": "France",
-     "opponentCode": "FRA",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 26,
-     "them": 42,
-     "result": "L",
-     "tries": 4,
-     "cards": 1
-    },
-    {
      "id": 16098055,
      "date": "2026-07-18T10:10:00.000Z",
      "league": "Nations Championship, Group Stage",
@@ -927,9 +913,7 @@
      "result": "L",
      "tries": 3,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098053,
      "date": "2026-11-15T15:10:00.000Z",
@@ -938,11 +922,14 @@
      "opponentCode": "SCO",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Scottish Gas Murrayfield, Edinburgh"
-    },
+     "us": 12,
+     "them": 15,
+     "result": "L",
+     "tries": 2,
+     "cards": 1
+    }
+   ],
+   "next": [
     {
      "id": 16098063,
      "date": "2026-11-21T20:10:00.000Z",
@@ -2205,20 +2192,6 @@
   "SCO": {
    "last": [
     {
-     "id": 14884336,
-     "date": "2025-11-23T13:40:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Tonga",
-     "opponentCode": null,
-     "tracked": false,
-     "homeAway": "H",
-     "us": 56,
-     "them": 0,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
-    {
      "id": 15105995,
      "date": "2026-02-07T14:10:00.000Z",
      "league": "Six Nations",
@@ -2343,9 +2316,7 @@
      "result": "L",
      "tries": 3,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 16098053,
      "date": "2026-11-15T15:10:00.000Z",
@@ -2354,11 +2325,14 @@
      "opponentCode": "AUS",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Scottish Gas Murrayfield, Edinburgh"
-    },
+     "us": 15,
+     "them": 12,
+     "result": "W",
+     "tries": 2,
+     "cards": 0
+    }
+   ],
+   "next": [
     {
      "id": 16098065,
      "date": "2026-11-21T14:10:00.000Z",
@@ -2404,6 +2378,18 @@
      "opponentCode": "FRA",
      "tracked": true,
      "homeAway": "A",
+     "us": null,
+     "them": null,
+     "result": null
+    },
+    {
+     "id": 17537428,
+     "date": "2027-03-05T20:10:00.000Z",
+     "league": "Six Nations",
+     "opponent": "Ireland",
+     "opponentCode": "IRE",
+     "tracked": true,
+     "homeAway": "H",
      "us": null,
      "them": null,
      "result": null
