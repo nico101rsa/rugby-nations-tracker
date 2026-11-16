@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-15T00:02:09.409Z",
+  "updatedAt": "2026-11-16T00:08:13.944Z",
   "source": "aggregated",
   "matches": [
     {
@@ -5725,6 +5725,103 @@
           "player": "Inoke Ravuiwasa"
         }
       ]
+    },
+    {
+      "id": 53242,
+      "round": "5",
+      "date": "2026-11-15T15:10:00+00:00",
+      "home": {
+        "id": 390,
+        "name": "Scotland",
+        "score": 15
+      },
+      "away": {
+        "id": 461,
+        "name": "Australia",
+        "score": 12
+      },
+      "eventId": 16098053,
+      "reconciled": true,
+      "scoring": [
+        {
+          "min": 9,
+          "team": "home",
+          "type": "try",
+          "player": "Matt Fagerson",
+          "after": [
+            5,
+            0
+          ]
+        },
+        {
+          "min": 12,
+          "team": "away",
+          "type": "try",
+          "player": "Harry Potter",
+          "after": [
+            5,
+            5
+          ]
+        },
+        {
+          "min": 28,
+          "team": "home",
+          "type": "try",
+          "player": "Jack Dempsey",
+          "after": [
+            10,
+            5
+          ]
+        },
+        {
+          "min": 29,
+          "team": "home",
+          "type": "conversion",
+          "player": "Finn Russell",
+          "after": [
+            12,
+            5
+          ]
+        },
+        {
+          "min": 75,
+          "team": "home",
+          "type": "penalty",
+          "player": "Finn Russell",
+          "after": [
+            15,
+            5
+          ]
+        },
+        {
+          "min": 80,
+          "team": "away",
+          "type": "try",
+          "player": "Max Jorgensen",
+          "after": [
+            15,
+            10
+          ]
+        },
+        {
+          "min": 80,
+          "team": "away",
+          "type": "conversion",
+          "player": "Ben Donaldson",
+          "after": [
+            15,
+            12
+          ]
+        }
+      ],
+      "cards": [
+        {
+          "min": 44,
+          "team": "away",
+          "type": "yellow",
+          "player": "Billy Pollard"
+        }
+      ]
     }
   ],
   "aggregates": {
@@ -5942,6 +6039,16 @@
       {
         "player": "Louis Rees-Zammit",
         "team": "Wales",
+        "tries": 2
+      },
+      {
+        "player": "Matt Fagerson",
+        "team": "Scotland",
+        "tries": 2
+      },
+      {
+        "player": "Max Jorgensen",
+        "team": "Australia",
         "tries": 2
       },
       {
@@ -6225,6 +6332,11 @@
         "tries": 1
       },
       {
+        "player": "Harry Potter",
+        "team": "Australia",
+        "tries": 1
+      },
+      {
         "player": "Hayate Era",
         "team": "Japan",
         "tries": 1
@@ -6247,6 +6359,11 @@
       {
         "player": "Jack Conan",
         "team": "Ireland",
+        "tries": 1
+      },
+      {
+        "player": "Jack Dempsey",
+        "team": "Scotland",
         "tries": 1
       },
       {
@@ -6357,16 +6474,6 @@
       {
         "player": "Marcos Kremer",
         "team": "Argentina",
-        "tries": 1
-      },
-      {
-        "player": "Matt Fagerson",
-        "team": "Scotland",
-        "tries": 1
-      },
-      {
-        "player": "Max Jorgensen",
-        "team": "Australia",
         "tries": 1
       },
       {
@@ -6729,6 +6836,15 @@
         "d": 0
       },
       {
+        "player": "Finn Russell",
+        "team": "Scotland",
+        "points": 19,
+        "t": 0,
+        "c": 8,
+        "p": 1,
+        "d": 0
+      },
+      {
         "player": "Ben Earl",
         "team": "England",
         "points": 15,
@@ -6837,15 +6953,6 @@
         "d": 0
       },
       {
-        "player": "Finn Russell",
-        "team": "Scotland",
-        "points": 14,
-        "t": 0,
-        "c": 7,
-        "p": 0,
-        "d": 0
-      },
-      {
         "player": "Damian McKenzie",
         "team": "New Zealand",
         "points": 13,
@@ -6860,6 +6967,15 @@
         "points": 12,
         "t": 0,
         "c": 6,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Ben Donaldson",
+        "team": "Australia",
+        "points": 11,
+        "t": 1,
+        "c": 3,
         "p": 0,
         "d": 0
       },
@@ -7098,6 +7214,24 @@
         "d": 0
       },
       {
+        "player": "Matt Fagerson",
+        "team": "Scotland",
+        "points": 10,
+        "t": 2,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Max Jorgensen",
+        "team": "Australia",
+        "points": 10,
+        "t": 2,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Maxime Lamothe",
         "team": "France",
         "points": 10,
@@ -7211,15 +7345,6 @@
         "points": 10,
         "t": 2,
         "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
-        "player": "Ben Donaldson",
-        "team": "Australia",
-        "points": 9,
-        "t": 1,
-        "c": 2,
         "p": 0,
         "d": 0
       },
@@ -7710,6 +7835,15 @@
         "d": 0
       },
       {
+        "player": "Harry Potter",
+        "team": "Australia",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Hayate Era",
         "team": "Japan",
         "points": 5,
@@ -7739,6 +7873,15 @@
       {
         "player": "Jack Conan",
         "team": "Ireland",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Jack Dempsey",
+        "team": "Scotland",
         "points": 5,
         "t": 1,
         "c": 0,
@@ -7928,24 +8071,6 @@
       {
         "player": "Marcos Kremer",
         "team": "Argentina",
-        "points": 5,
-        "t": 1,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
-        "player": "Matt Fagerson",
-        "team": "Scotland",
-        "points": 5,
-        "t": 1,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
-        "player": "Max Jorgensen",
-        "team": "Australia",
         "points": 5,
         "t": 1,
         "c": 0,
@@ -8336,6 +8461,11 @@
         "red": 1
       },
       {
+        "team": "Australia",
+        "yellow": 4,
+        "red": 0
+      },
+      {
         "team": "Japan",
         "yellow": 2,
         "red": 1
@@ -8343,11 +8473,6 @@
       {
         "team": "New Zealand",
         "yellow": 4,
-        "red": 0
-      },
-      {
-        "team": "Australia",
-        "yellow": 3,
         "red": 0
       },
       {
@@ -8409,19 +8534,19 @@
       },
       {
         "team": "Australia",
-        "tries": 21,
-        "cons": 14,
+        "tries": 23,
+        "cons": 15,
         "pens": 1,
         "drops": 0,
-        "pointsFor": 136
+        "pointsFor": 148
       },
       {
         "team": "Scotland",
-        "tries": 19,
-        "cons": 17,
-        "pens": 0,
+        "tries": 21,
+        "cons": 18,
+        "pens": 1,
         "drops": 0,
-        "pointsFor": 129
+        "pointsFor": 144
       },
       {
         "team": "Argentina",
