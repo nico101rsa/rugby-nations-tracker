@@ -1,16 +1,16 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-16._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-17._
 
 ## Ready — carried stories about the team they were proposed for
 
 - **Midi Olympique** (midi-olympique.fr) — proposed 2026-11-03 for France: The French rugby paper of record, covering Galthié's squad and selection daily.
-  - feed: https://www.rugbyrama.fr/midi-olympique/rss.xml; probes: 13; stories about tracked teams: France 92, South Africa 26, Argentina 5, New Zealand 4, Wales 3, Ireland 2, England 2, Australia 2
+  - feed: https://www.rugbyrama.fr/midi-olympique/rss.xml; probes: 14; stories about tracked teams: France 103, South Africa 35, Argentina 6, New Zealand 5, Wales 3, Ireland 2, England 2, Australia 2
 
 ## Being probed
 
 - **Fiji Village** (fijivillage.com) — proposed 2026-11-15 for Fiji: Fiji's pack held only Ireland-centric previews and no Fiji-first reporting; a Fijian news site with regular Flying Fijians coverage could fill the gap.
-  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+  - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
