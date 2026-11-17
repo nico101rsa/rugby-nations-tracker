@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  ROLES, DEFAULT_MODELS, MAX_TOKENS, modelPlan, createTally, createAnthropicCaller, withFallback, buildCallers, describePlan,
+  ROLES, DEFAULT_MODELS, MAX_TOKENS, TRIALS, trialModel, modelPlan, createTally, createAnthropicCaller, withFallback, buildCallers, describePlan,
 } from "./model-router.mjs";
 import { MODELS } from "./compare-digest-models.mjs";
 
@@ -127,4 +127,18 @@ test("buildCallers: paid roles get a routed caller, gemini roles the Gemini call
 
   const noGemini = await buildCallers({ plan: { writer: "gemini", checker: "claude-haiku-5-5" }, geminiCall: null, client: null });
   assert.deepEqual(Object.keys(noGemini.calls), []);
+});
+
+test("a model on trial takes the role until its date, then the default is back", () => {
+  const keys = { gemini: true, anthropic: true };
+  const during = new Date("2026-11-20T20:00:00Z");
+  const after = new Date("2026-11-24T20:00:00Z");
+  assert.equal(modelPlan({}, { ...keys, now: during }).plan.writer, "claude-opus-5-5");
+  assert.equal(modelPlan({}, { ...keys, now: during }).plan.checker, "claude-haiku-5-5", "only the writer is on trial");
+  assert.equal(modelPlan({}, { ...keys, now: after }).plan.writer, DEFAULT_MODELS.writer, "it ends by itself");
+  assert.equal(modelPlan({}, keys).plan.writer, DEFAULT_MODELS.writer, "a caller that gives no date runs no trial");
+  assert.equal(modelPlan({ DIGEST_WRITER_MODEL: "gemini" }, { ...keys, now: during }).plan.writer, "gemini", "a repository variable still wins");
+  assert.equal(modelPlan({}, { gemini: true, anthropic: false, now: during }).plan.writer, "gemini", "no Anthropic key, no paid trial");
+  assert.equal(trialModel("review", during), null);
+  for (const t of TRIALS) assert.ok(MODELS.some((m) => m.id === t.model), `${t.model} has a price`);
 });

@@ -46,6 +46,24 @@ export const ROLE_ENV = {
   tune: "DIGEST_TUNE_MODEL",
 };
 
+// A model on trial: it takes the role until the date, then the default comes
+// back by itself, so a trial can't be forgotten into a standing cost. A
+// repository variable still wins. Only a caller that passes `now` runs trials
+// (the daily news run); the storyline writer has its own model.
+//
+// Nico, 17 Nov 2026: Opus 5.5 writes the news for a week, the editions of
+// Wed 18 to Tue 24 Nov Sydney time. About US$1.60 a run against Haiku's
+// US$0.04, so about US$12 to 18 for the week (Saturday has four extra runs); for good it would be about US$55 a
+// month against the US$24 ceiling. The Sonnet reviewer is unchanged, so the
+// daily grades before and after compare like for like: Haiku's were mostly C
+// to C+ from 13 Oct to 14 Nov, B- on 15 to 17 Nov.
+export const TRIALS = [
+  { role: "writer", model: "claude-opus-5-5", until: "2026-11-24T12:00:00Z" },
+];
+
+export const trialModel = (role, now, trials = TRIALS) =>
+  now instanceof Date ? trials.find((t) => t.role === role && now.getTime() < Date.parse(t.until))?.model ?? null : null;
+
 // Output ceilings per role. A finished edition or verdict is well under 1,000
 // tokens of JSON; the rest is headroom for thinking, which counts against
 // max_tokens and bills as output. The writer's 12,000 is production's own
@@ -61,13 +79,14 @@ export const priceFor = (model) => MODELS.find((m) => m.id === model) ?? null;
 // Decide the model for every role from the environment and the keys at hand.
 // Returns { plan: { role: modelId | "gemini" }, warnings: [] }. A role whose
 // override names an unpriced model falls back to the default with a warning;
+// a role with no override takes a model on trial (TRIALS) when `now` is given;
 // a role that resolves to an Anthropic model without an Anthropic key, or to
 // Gemini without a Gemini key, moves to whichever provider has a key.
-export function modelPlan(env = {}, { gemini = false, anthropic = false } = {}) {
+export function modelPlan(env = {}, { gemini = false, anthropic = false, now = null } = {}) {
   const warnings = [];
   const plan = {};
   for (const role of ROLES) {
-    let model = (env[ROLE_ENV[role]] || "").trim() || DEFAULT_MODELS[role];
+    let model = (env[ROLE_ENV[role]] || "").trim() || trialModel(role, now) || DEFAULT_MODELS[role];
     if (model !== "gemini" && !priceFor(model)) {
       warnings.push(`${ROLE_ENV[role]}=${model} has no price in compare-digest-models.mjs; using ${DEFAULT_MODELS[role]}`);
       model = DEFAULT_MODELS[role];
