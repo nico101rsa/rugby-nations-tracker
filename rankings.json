@@ -1,27 +1,27 @@
 {
- "updatedAt": "2026-11-16T00:52:52.309Z",
- "asOf": "9 November 2026",
+ "updatedAt": "2026-11-17T03:33:45.482Z",
+ "asOf": "16 November 2026",
  "source": "world.rugby",
  "rankings": {
   "RSA": {
    "rank": 1,
-   "points": 93.09,
+   "points": 91.53,
    "move": 0
   },
   "NZL": {
    "rank": 2,
-   "points": 92.65,
-   "move": 0
-  },
-  "IRE": {
-   "rank": 3,
-   "points": 88.7,
+   "points": 90.65,
    "move": 0
   },
   "FRA": {
+   "rank": 3,
+   "points": 89.05,
+   "move": 1
+  },
+  "IRE": {
    "rank": 4,
-   "points": 87.49,
-   "move": 0
+   "points": 88.7,
+   "move": -1
   },
   "ENG": {
    "rank": 5,
@@ -30,32 +30,32 @@
   },
   "SCO": {
    "rank": 6,
-   "points": 84.4,
+   "points": 85.28,
    "move": 0
   },
   "AUS": {
    "rank": 7,
-   "points": 83.12,
+   "points": 82.24,
    "move": 0
   },
   "ARG": {
    "rank": 8,
-   "points": 81.62,
-   "move": 0
-  },
-  "FIJ": {
-   "rank": 9,
-   "points": 77.79,
+   "points": 82.09,
    "move": 0
   },
   "WAL": {
+   "rank": 9,
+   "points": 79.37,
+   "move": 1
+  },
+  "FIJ": {
    "rank": 10,
-   "points": 77.37,
-   "move": 0
+   "points": 77.79,
+   "move": -1
   },
   "ITA": {
    "rank": 11,
-   "points": 76.3,
+   "points": 75.84,
    "move": 0
   },
   "JPN": {
@@ -906,6 +906,71 @@
     "JPN": {
      "rank": 12,
      "points": 76.23,
+     "move": 0
+    }
+   }
+  },
+  {
+   "asOf": "9 November 2026",
+   "rankings": {
+    "RSA": {
+     "rank": 1,
+     "points": 93.09,
+     "move": 0
+    },
+    "NZL": {
+     "rank": 2,
+     "points": 92.65,
+     "move": 0
+    },
+    "IRE": {
+     "rank": 3,
+     "points": 88.7,
+     "move": 0
+    },
+    "FRA": {
+     "rank": 4,
+     "points": 87.49,
+     "move": 0
+    },
+    "ENG": {
+     "rank": 5,
+     "points": 86.99,
+     "move": 0
+    },
+    "SCO": {
+     "rank": 6,
+     "points": 84.4,
+     "move": 0
+    },
+    "AUS": {
+     "rank": 7,
+     "points": 83.12,
+     "move": 0
+    },
+    "ARG": {
+     "rank": 8,
+     "points": 81.62,
+     "move": 0
+    },
+    "FIJ": {
+     "rank": 9,
+     "points": 77.79,
+     "move": 0
+    },
+    "WAL": {
+     "rank": 10,
+     "points": 77.37,
+     "move": 0
+    },
+    "ITA": {
+     "rank": 11,
+     "points": 76.3,
+     "move": 0
+    },
+    "JPN": {
+     "rank": 12,
+     "points": 75.25,
      "move": 0
     }
    }
