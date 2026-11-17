@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-16T07:29:15.093Z",
+ "updatedAt": "2026-11-17T02:47:30.055Z",
  "source": "espn",
  "current": "rnc-2026",
  "competitions": [
@@ -58,31 +58,8 @@
    "season": 2026,
    "startDate": "2026-07-04",
    "endDate": "2026-11-29",
-   "structure": "conference",
-   "groups": [
-    {
-     "name": "South",
-     "teams": [
-      "NZL",
-      "JPN",
-      "AUS",
-      "FIJ",
-      "RSA",
-      "ARG"
-     ]
-    },
-    {
-     "name": "North",
-     "teams": [
-      "FRA",
-      "ITA",
-      "IRE",
-      "WAL",
-      "ENG",
-      "SCO"
-     ]
-    }
-   ],
+   "structure": "UNKNOWN",
+   "groups": null,
    "teams": [
     "ARG",
     "AUS",
@@ -95,9 +72,10 @@
     "NZL",
     "RSA",
     "SCO",
+    "TBC",
     "WAL"
    ],
-   "fixtureCount": 36,
+   "fixtureCount": 37,
    "status": "live",
    "defaultFrom": "2026-03-28",
    "defaultUntil": "2026-12-13"
