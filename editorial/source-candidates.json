@@ -2,49 +2,6 @@
   "notice": "Outlets proposed by the daily editorial review and probed by code. Nothing here is a news source until it is added to scripts/news-sources.mjs by hand.",
   "candidates": [
     {
-      "outlet": "The Fiji Times",
-      "host": "fijitimes.com.fj",
-      "homepage": "https://www.fijitimes.com.fj",
-      "teams": [
-        "Fiji"
-      ],
-      "why": "Fiji's shortlist was all background items, and a national daily's rugby desk would add fresh men's coverage of the Jake White era beyond FBC News.",
-      "proposed": "2026-10-21",
-      "status": "no-feed",
-      "feedUrl": null,
-      "probes": [
-        {
-          "date": "2026-10-21",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-22",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-23",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-24",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-25",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-26",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-27",
-          "error": "no feed found (8 tried)"
-        }
-      ],
-      "decided": "2026-10-27"
-    },
-    {
       "outlet": "Rugby Australia (official news)",
       "host": "rugby.com.au",
       "homepage": "https://www.rugby.com.au",
@@ -744,17 +701,9 @@
       ],
       "why": "The French rugby paper of record, covering Galthié's squad and selection daily.",
       "proposed": "2026-11-03",
-      "status": "ready",
+      "status": "adopted",
       "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
       "probes": [
-        {
-          "date": "2026-11-04",
-          "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
-          "items": 25,
-          "hits": {
-            "France": 3
-          }
-        },
         {
           "date": "2026-11-05",
           "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
@@ -885,6 +834,17 @@
             "Argentina": 1,
             "New Zealand": 1,
             "South Africa": 9
+          }
+        },
+        {
+          "date": "2026-11-18",
+          "feedUrl": "https://www.rugbyrama.fr/midi-olympique/rss.xml",
+          "items": 25,
+          "hits": {
+            "France": 9,
+            "Argentina": 1,
+            "New Zealand": 1,
+            "South Africa": 7
           }
         }
       ],
@@ -1444,6 +1404,10 @@
         {
           "date": "2026-11-17",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-18",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1463,6 +1427,10 @@
       "probes": [
         {
           "date": "2026-11-17",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-18",
           "error": "no feed found (8 tried)"
         }
       ]

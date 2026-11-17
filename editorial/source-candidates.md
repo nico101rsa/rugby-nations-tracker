@@ -1,23 +1,20 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-17._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-18._
 
 ## Ready — carried stories about the team they were proposed for
 
-- **Midi Olympique** (midi-olympique.fr) — proposed 2026-11-03 for France: The French rugby paper of record, covering Galthié's squad and selection daily.
-  - feed: https://www.rugbyrama.fr/midi-olympique/rss.xml; probes: 14; stories about tracked teams: France 103, South Africa 35, Argentina 6, New Zealand 5, Wales 3, Ireland 2, England 2, Australia 2
+- Nothing ready.
 
 ## Being probed
 
 - **Fiji Village** (fijivillage.com) — proposed 2026-11-15 for Fiji: Fiji's pack held only Ireland-centric previews and no Fiji-first reporting; a Fijian news site with regular Flying Fijians coverage could fill the gap.
-  - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
+  - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
 - **Sky Sports Rugby Union** (skysports.com) — proposed 2026-11-17 for England, Scotland, Wales: England and Scotland had no fresh own-team reported news today, and Sky's free rugby desk covers selection and injury news for both.
-  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
-- **The Fiji Times** (fijitimes.com.fj) — proposed 2026-10-21 for Fiji: Fiji's shortlist was all background items, and a national daily's rugby desk would add fresh men's coverage of the Jake White era beyond FBC News.
-  - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **Rugby Australia (official news)** (rugby.com.au) — proposed 2026-10-22 for Australia: Union news on squads, fixtures and results would supply Wallabies stories the current spine misses.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **Rugby365** (rugby365.com) — proposed 2026-10-25 for France, Japan, Italy: An English-language men's rugby news site that regularly covers Tests and squads, which could fill the France and Japan gaps seen today.
@@ -59,6 +56,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: https://www.stuff.co.nz/feed; probes: 5; stories about tracked teams: New Zealand 36, Australia 22, Fiji 7, France 7, Scotland 4, England 2, Japan 2, South Africa 2, Ireland 1
 - **Rugbyrama** (rugbyrama.fr) — proposed 2026-11-03 for France: A French rugby-only news site that would add XV de France squad and injury news missing from France's thin pack.
   - feed: https://www.rugbyrama.fr/rss.xml; probes: 8; stories about tracked teams: France 224, South Africa 29, Argentina 13, New Zealand 10, Australia 5, Wales 3, Ireland 2, England 2
+- **Midi Olympique** (midi-olympique.fr) — proposed 2026-11-03 for France: The French rugby paper of record, covering Galthié's squad and selection daily.
+  - feed: https://www.rugbyrama.fr/midi-olympique/rss.xml; probes: 14; stories about tracked teams: France 109, South Africa 42, Argentina 7, New Zealand 6, Wales 3, Ireland 2, England 2, Australia 2
 - **OnRugby** (onrugby.it) — proposed 2026-11-03 for Italy: An Italian rugby news site that covers the Azzurri daily, to back up the union's own feed when Italy's pack is thin.
   - feed: https://www.onrugby.it/feed/; probes: 8; stories about tracked teams: Italy 35, South Africa 28, Argentina 11, England 10, New Zealand 9, France 8, Ireland 7, Australia 6, Scotland 5, Wales 4, Fiji 4, Japan 4
 - **Islands Business** (islandsbusiness.com) — proposed 2026-11-03 for Fiji: Fiji is starved most days and FBC News is its only local feed; this Pacific news site covers the Flying Fijians.

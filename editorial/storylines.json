@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-17T02:41:02.665Z",
+  "updatedAt": "2026-11-17T20:00:54.929Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 198,
+  "count": 205,
   "storylines": [
     {
       "id": "jamison-gibson-park-s-12lebg1",
@@ -3008,6 +3008,11 @@
       "resolution": "until Ireland confirm whether Dan Sheehan is fit to play against South Africa",
       "sources": [
         {
+          "title": "Irish captain Sheehan ruled out of Fiji game",
+          "link": "https://www.rte.ie/sport/rugby/2026/1109/1598520-irish-captain-sheehan-ruled-out-of-fiji-game/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
           "title": "Ireland team: Star forward returning to 'full training' but three injury setbacks confirmed ahead of Springbok visit",
           "link": "https://www.planetrugby.com/news/ireland-team-star-forward-returning-to-full-training-but-three-injury-setbacks-confirmed-ahead-of-springbok-visit",
           "feedName": "Planet Rugby"
@@ -3016,15 +3021,10 @@
           "title": "Ireland get boost for Bok battle",
           "link": "https://www.sarugbymag.co.za/ireland-get-boost-bok-battle/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Sheehan on track for Springboks but Osborne injured",
-          "link": "https://www.rte.ie/sport/rugby/2026/1116/1599385-sheehan-on-track-for-springboks-but-osborne-ruled-out/",
-          "feedName": "RTÉ Sport Rugby"
         }
       ],
       "firstSeen": "2026-11-10",
-      "lastSeen": "2026-11-17",
+      "lastSeen": "2026-11-18",
       "uses": 0
     },
     {
@@ -3565,7 +3565,8 @@
       ],
       "firstSeen": "2026-11-13",
       "lastSeen": "2026-11-15",
-      "uses": 0
+      "uses": 1,
+      "lastUsed": "2026-11-18"
     },
     {
       "id": "steve-borthwick-s-coaching-1ozm50e",
@@ -3935,7 +3936,7 @@
         }
       ],
       "firstSeen": "2026-11-14",
-      "lastSeen": "2026-11-17",
+      "lastSeen": "2026-11-18",
       "uses": 0
     },
     {
@@ -4838,6 +4839,11 @@
       "resolution": "until Steve Borthwick names England's team to face New Zealand",
       "sources": [
         {
+          "title": "Will Joseph poised to start for England against All Blacks after five-try burst",
+          "link": "https://www.theguardian.com/sport/2026/nov/16/will-joseph-steve-borthwick-england-new-zealand-nations-championship-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Will Joseph poised to audition for leading role against Japan in Feyi-Waboso’s absence",
           "link": "https://www.theguardian.com/sport/2026/nov/10/rugby-union-england-japan-nations-championship-will-joseph",
           "feedName": "Guardian Rugby Union"
@@ -4846,15 +4852,193 @@
           "title": "Comeback kid Joseph thrills as England eye All Blacks",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq0l3pn5z20xo?at_medium=RSS&at_campaign=rss",
           "feedName": "BBC Rugby Union"
-        },
-        {
-          "title": "Five-try Joseph set to start for England against All Blacks",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmx20pnd853po?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-11-17",
-      "lastSeen": "2026-11-17",
+      "lastSeen": "2026-11-18",
+      "uses": 0
+    },
+    {
+      "id": "sam-prendergast-s-disciplinary-1ux3xkj",
+      "subject": "Sam Prendergast’s disciplinary hearing for an alleged hip-drop tackle",
+      "teams": [
+        388
+      ],
+      "resolution": "until the outcome of the disciplinary hearing following the Fiji match is announced",
+      "sources": [
+        {
+          "title": "Prendergast cited and could miss South Africa game",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c3pw42zrp4peo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Erasmus makes extraordinary double-standard claims",
+          "link": "https://www.rte.ie/sport/rugby/2026/1116/1599448-erasmus-makes-extraordinary-double-standard-claims/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
+          "title": "Ireland sweating on Prendergast after out-half is cited",
+          "link": "https://www.rte.ie/sport/rugby/2026/1116/1599407-ireland-sweating-on-prendergast-after-out-half-is-cited/",
+          "feedName": "RTÉ Sport Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-18",
+      "lastSeen": "2026-11-18",
+      "uses": 0
+    },
+    {
+      "id": "world-rugby-s-potential-igh3cb",
+      "subject": "World Rugby’s potential sanctions against Rassie Erasmus for 'match-fixing' comments",
+      "teams": [
+        467
+      ],
+      "resolution": "until World Rugby confirms whether Rassie Erasmus will face formal charges or disciplinary action",
+      "sources": [
+        {
+          "title": "Rassie: Is that not match-fixing?",
+          "link": "https://www.sarugbymag.co.za/rassie-is-that-not-match-fixing/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Springboks rock World Rugby as Erasmus goes public with match-fixing question",
+          "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/springboks-rock-world-rugby-erasmus-34921155",
+          "feedName": "WalesOnline"
+        },
+        {
+          "title": "Rassie Erasmus faces possible World Rugby sanction after questioning 'match-fixing'",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-faces-possible-world-rugby-sanction-after-questioning-match-fixing",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-18",
+      "lastSeen": "2026-11-18",
+      "uses": 0
+    },
+    {
+      "id": "the-international-future-of-1vb2ksb",
+      "subject": "The international future of senior All Blacks players following the defeat to Wales",
+      "teams": [
+        465
+      ],
+      "resolution": "until the next New Zealand squad or team announcement clarifies if senior veterans have been dropped",
+      "sources": [
+        {
+          "title": "Ex-All Blacks captain reveals why the 'anointed one' and fellow senior player could have played their final Tests",
+          "link": "https://www.planetrugby.com/news/ex-all-blacks-captain-reveals-why-the-anointed-one-and-fellow-senior-player-could-have-played-their-final-tests",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "All Blacks admit they ‘let country down’ against Wales and gear up for England",
+          "link": "https://www.theguardian.com/sport/2026/nov/16/dave-rennie-new-zealand-all-blacks-england-twickenham-nations-championship",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-11-18",
+      "lastSeen": "2026-11-18",
+      "uses": 0
+    },
+    {
+      "id": "dave-rennie-s-job-octjfb",
+      "subject": "Dave Rennie’s job security as New Zealand head coach after the loss in Cardiff",
+      "teams": [
+        465
+      ],
+      "resolution": "until New Zealand Rugby issues a formal statement regarding the head coach's future",
+      "sources": [
+        {
+          "title": "Ex-All Blacks skipper gives verdict on Dave Rennie's coaching future and raises 'massive concern'",
+          "link": "https://www.planetrugby.com/news/ex-all-blacks-skipper-gives-verdict-on-dave-rennies-coaching-future-and-raises-massive-concern",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "'We weren't good enough' – Dave Rennie disappointed by 'one-dimensional' All Blacks after suffering 73-year first",
+          "link": "https://www.planetrugby.com/news/we-werent-good-enough-dave-rennie-disappointed-by-one-dimensional-all-blacks-after-suffering-73-year-first",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Opinion: All Blacks' cheerleaders now have to be honest after shameful loss",
+          "link": "https://www.planetrugby.com/news/opinion-all-blacks-cheerleaders-now-have-to-be-honest-after-shameful-loss",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-18",
+      "lastSeen": "2026-11-18",
+      "uses": 0
+    },
+    {
+      "id": "scotland-s-tactical-reshuffle-1wri4g",
+      "subject": "Scotland’s tactical reshuffle following injuries to Tuipulotu, White, and Dempsey",
+      "teams": [
+        390
+      ],
+      "resolution": "until Gregor Townsend names his team for the final Nations Championship group game against Japan",
+      "sources": [
+        {
+          "title": "Triple Scotland injury blow for Japan finale",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cq8e0wzrrzgpo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-11-18",
+      "lastSeen": "2026-11-18",
+      "uses": 0
+    },
+    {
+      "id": "matthieu-jalibert-s-role-52no42",
+      "subject": "Matthieu Jalibert’s role and potential return to the France starting lineup against Argentina",
+      "teams": [
+        387,
+        460
+      ],
+      "resolution": "until Fabien Galthié names his matchday 23 for the clash with the Pumas",
+      "sources": [
+        {
+          "title": "Exclu Midol. XV de France - Matthieu Jalibert de retour dans le groupe des Bleus pour préparer la suite du Championnat des Nations, Marchand forfait pour la suite de la compétition",
+          "link": "https://www.rugbyrama.fr/2026/11/14/exclu-midol-xv-de-france-matthieu-jalibert-de-retour-dans-le-groupe-des-bleus-pour-preparer-la-suite-du-championnat-des-nations-13652598.php",
+          "feedName": "Rugbyrama"
+        },
+        {
+          "title": "XV de France - La liste des 42 pour préparer l&#039;Argentine : Matthieu Jalibert bel et bien rappelé, Anthony Jelonch aussi de retour, la surprise Hugo Avogadro",
+          "link": "https://www.rugbyrama.fr/2026/11/15/xv-de-france-la-liste-des-42-pour-preparer-largentine-matthieu-jalibert-bel-et-bien-rappele-anthony-jelonch-aussi-de-retour-la-surprise-hugo-avogadro-13653537.php",
+          "feedName": "Rugbyrama"
+        },
+        {
+          "title": "XV de France - Mathieu Jalibert ouvreur et des surprises dans le pack ? : les premiers enseignements de l&#039;entraînement des Bleus",
+          "link": "https://www.rugbyrama.fr/2026/11/17/xv-de-france-mathieu-jalibert-ouvreur-et-des-surprises-dans-le-pack-les-premiers-enseignements-de-lentrainement-des-bleus-13656928.php",
+          "feedName": "Rugbyrama"
+        }
+      ],
+      "firstSeen": "2026-11-18",
+      "lastSeen": "2026-11-18",
+      "uses": 0
+    },
+    {
+      "id": "the-threat-of-late-1qy07op",
+      "subject": "The threat of late team-sheet changes by Rassie Erasmus against Ireland",
+      "teams": [
+        467,
+        388
+      ],
+      "resolution": "until the final team-sheets are confirmed at kickoff in Dublin",
+      "sources": [
+        {
+          "title": "Rassie drops late Dublin changes hint",
+          "link": "https://www.sarugbymag.co.za/rassie-drops-late-dublin-changes-hint/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Ireland coach: Rassie Erasmus' late changes are 'not in the spirit of the game'",
+          "link": "https://www.planetrugby.com/news/ireland-coach-rassie-erasmus-late-changes-are-not-in-the-spirit-of-the-game",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Late Bok changes 'not in spirit of game'",
+          "link": "https://www.sarugbymag.co.za/late-bok-changes-not-spirit-game/",
+          "feedName": "SA Rugby Magazine"
+        }
+      ],
+      "firstSeen": "2026-11-18",
+      "lastSeen": "2026-11-18",
       "uses": 0
     }
   ]
