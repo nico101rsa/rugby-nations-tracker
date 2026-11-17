@@ -383,7 +383,7 @@ model for a week, set the variable (any model priced in
 **On trial, 18 to 24 Nov 2026: Opus 5.5 writes the news** (Nico, 17 Nov: the
 grades had sat at C to C+ for a month). `TRIALS` in `model-router.mjs` gives
 it the writer role until 24 Nov 12:00 UTC, then Haiku is back with no change
-from anyone. About US$1.60 a run, about US$12 for the week; for good it would
+from anyone. About US$1.60 a run, about US$12 to 18 for the week (Saturday has four extra runs); for good it would
 be about US$55 a month, over the ceiling, so keeping it is Nico's call. Judge
 it on the daily review grades (same Sonnet reviewer) and the count of
 "badly-chosen" leads.

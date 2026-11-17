@@ -53,7 +53,7 @@ export const ROLE_ENV = {
 //
 // Nico, 17 Nov 2026: Opus 5.5 writes the news for a week, the editions of
 // Wed 18 to Tue 24 Nov Sydney time. About US$1.60 a run against Haiku's
-// US$0.04, so about US$12 for the week; for good it would be about US$55 a
+// US$0.04, so about US$12 to 18 for the week (Saturday has four extra runs); for good it would be about US$55 a
 // month against the US$24 ceiling. The Sonnet reviewer is unchanged, so the
 // daily grades before and after compare like for like: Haiku's were mostly C
 // to C+ from 13 Oct to 14 Nov, B- on 15 to 17 Nov.
