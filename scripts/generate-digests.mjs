@@ -2152,7 +2152,7 @@ export async function main({ dryRun = false } = {}) {
     console.log("GEMINI_API_KEY / ANTHROPIC_API_KEY not set — skipping digest generation");
     return { skipped: "no-key" };
   }
-  const { plan, warnings: planWarnings } = modelPlan(process.env, { gemini: !!geminiKey, anthropic: !!anthropicKey });
+  const { plan, warnings: planWarnings } = modelPlan(process.env, { gemini: !!geminiKey, anthropic: !!anthropicKey, now });
   for (const w of planWarnings) console.warn(`::warning::${w}`);
   let client = null;
   if (ROLES.some((r) => plan[r] && plan[r] !== "gemini")) {
