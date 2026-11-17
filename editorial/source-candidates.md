@@ -11,6 +11,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 - **Fiji Village** (fijivillage.com) — proposed 2026-11-15 for Fiji: Fiji's pack held only Ireland-centric previews and no Fiji-first reporting; a Fijian news site with regular Flying Fijians coverage could fill the gap.
   - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
+- **Sky Sports Rugby Union** (skysports.com) — proposed 2026-11-17 for England, Scotland, Wales: England and Scotland had no fresh own-team reported news today, and Sky's free rugby desk covers selection and injury news for both.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
