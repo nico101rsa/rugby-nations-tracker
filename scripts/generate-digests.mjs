@@ -33,7 +33,7 @@ import {
   buildNoveltyFeedback,
   previousWorldLines,
 } from "./novelty.mjs";
-import { pulseKey, pulseLine } from "./pulse-archive.mjs";
+import { pulseKey, pulseLine, pulseTold } from "./pulse-archive.mjs";
 
 // Re-exported: the rules moved to copy-rules.mjs so the roundup can share them,
 // but the tests and compare script still read them from here.
@@ -346,19 +346,21 @@ function competitionLabel(league) {
 const PULSE_NEWS_DAYS = 4;
 
 // The fans' verdict on that result, from editorial/pulse.json (the app's
-// full-time pulse, archived by scripts/pulse-archive.mjs), as a sentence added
-// to the trusted "Last result" fact — so the writer and the fact-checker both
-// see it, and neither prompt needs to know it exists. Empty unless enough of
-// THIS team's fans answered and the game is recent.
-function pulseForResult(r, teamId, pulse, now) {
+// full-time pulse, archived by scripts/pulse-archive.mjs), as an instruction
+// added to the trusted "Last result" fact — so the writer and the fact-checker
+// both see it, and neither prompt needs to know it exists. Empty unless enough
+// of THIS team's fans answered, the game is recent, and no edition since the
+// game has told it (`runs`, the recent run reports): told once, then dropped.
+function pulseForResult(r, teamId, pulse, now, runs) {
   if (!pulse || !r || !(now instanceof Date)) return "";
   if (now.getTime() - Date.parse(r.date) > PULSE_NEWS_DAYS * 86_400_000) return "";
+  if (pulseTold(runs, TEAMS[teamId]?.name, r.date)) return "";
   const key = pulseKey(r.date, TEAMS[r.home?.id]?.code, TEAMS[r.away?.id]?.code);
   const line = pulseLine(pulse, key, TEAMS[teamId]?.code, TEAMS[teamId]?.name);
   return line ? `. ${line}` : "";
 }
 
-function lastResultFor(results, teamId, log, archiveGames = null, pulse = null, now = null) {
+function lastResultFor(results, teamId, log, archiveGames = null, pulse = null, now = null, runs = []) {
   const r = (Array.isArray(results) ? results : [])
     .filter((g) => g?.home?.id === teamId || g?.away?.id === teamId)
     .filter((g) => g?.status?.short === "FT")
@@ -375,10 +377,10 @@ function lastResultFor(results, teamId, log, archiveGames = null, pulse = null, 
   const them = home ? r.away : r.home;
   const verb = us.score > them.score ? "beat" : us.score < them.score ? "lost to" : "drew with";
   const label = roundLabel(r, { results, log });
-  return `${verb} ${them.name} ${us.score}-${them.score}${label ? ` (${label})` : ""}${pulseForResult(r, teamId, pulse, now)}`;
+  return `${verb} ${them.name} ${us.score}-${them.score}${label ? ` (${label})` : ""}${pulseForResult(r, teamId, pulse, now, runs)}`;
 }
 
-export function buildParams(data, teamId, now = new Date(), archiveGames = null, pulse = null) {
+export function buildParams(data, teamId, now = new Date(), archiveGames = null, pulse = null, recentRuns = []) {
   const team = TEAMS[teamId];
   const fixture = nextFixtureFor(data?.fixtures, teamId, now);
   const row = (data?.log || []).find((l) => l.id === teamId) || {};
@@ -397,7 +399,7 @@ export function buildParams(data, teamId, now = new Date(), archiveGames = null,
     P: String(row.P ?? 0), W: String(row.W ?? 0), D: String(row.D ?? 0), L: String(row.L ?? 0),
     PF: String(row.PF ?? 0), PA: String(row.PA ?? 0),
     PD: pd > 0 ? `+${pd}` : String(pd),
-    LAST_RESULT: lastResultFor(data?.results, teamId, data?.log, archiveGames, pulse, now),
+    LAST_RESULT: lastResultFor(data?.results, teamId, data?.log, archiveGames, pulse, now, recentRuns),
   };
 }
 
@@ -1526,7 +1528,7 @@ Output the complete JSON again.`;
 // replays the recorded prompt on a paid model; main() passes a trace only when
 // DIGEST_PROMPTS_DIR is set.
 export async function generateEdition(calls, data, teamId, now, editorNotes, checkerNotes = "", pool = [], ladderCtx = null, recentRuns = [], trace = null) {
-  const params = buildParams(data, teamId, now, ladderCtx?.archive?.games?.[TEAMS[teamId]?.code], ladderCtx?.pulse);
+  const params = buildParams(data, teamId, now, ladderCtx?.archive?.games?.[TEAMS[teamId]?.code], ladderCtx?.pulse, recentRuns);
   const { pack, shortlist, quiet, ladder, articleCount, poolCount, widenedCount } =
     await buildSourcePack(teamId, params.TEAM_NAME, now, pool, ladderCtx ? () => resolveLadder(ladderCtx, teamId, params, now) : null);
   const notesBlock = editorNotes

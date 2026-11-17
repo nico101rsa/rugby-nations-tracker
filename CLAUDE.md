@@ -242,8 +242,13 @@ rest. It deploys by itself when `fans-worker/` changes
 - **Two readers.** The news writer: `buildParams` adds the fans' verdict to a
   team's "Last result" fact when at least 30 of that team's fans answered and
   the game is under four days old (`pulseLine`), so the writer and the checker
-  both see it. And Nico's morning email in the app repo, which reads the same
-  file from its checkout of this repo.
+  both see it. It is **required, and told once**: the line orders one closing
+  sentence with the words "fans in the app" and the number who answered, and
+  it is dropped once a run report since the game shows one of the team's
+  editions carried those words (`pulseTold`). As an offer ("If you mention
+  it", 13 to 17 Nov 2026) three Springbok editions saw "43 answered: 63%
+  fuming" and none used it. And Nico's morning email in the app repo, which
+  reads the same file from its checkout of this repo.
 - **Silent tier.** A Worker that can't be reached is a log line. Nothing pages.
 - **If the numbers are gamed**, stop showing them in the app. Don't add sign-in.
 
