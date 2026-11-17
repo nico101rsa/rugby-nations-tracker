@@ -1,12 +1,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  ROLES, DEFAULT_MODELS, MAX_TOKENS, TRIALS, trialModel, modelPlan, createTally, createAnthropicCaller, withFallback, buildCallers, describePlan,
+  ROLES, DEFAULT_MODELS, MAX_TOKENS, modelPlan, createTally, createAnthropicCaller, withFallback, buildCallers, describePlan,
 } from "./model-router.mjs";
 import { MODELS } from "./compare-digest-models.mjs";
 
-test("defaults: Haiku 5.5 writes and checks, Sonnet 5.5 reviews, housekeeping stays on Gemini, every paid default is priced", () => {
-  assert.equal(DEFAULT_MODELS.writer, "claude-haiku-5-5");
+test("defaults: Opus 5.5 writes, Haiku 5.5 checks, Sonnet 5.5 reviews, housekeeping stays on Gemini, every paid default is priced", () => {
+  assert.equal(DEFAULT_MODELS.writer, "claude-opus-5-5");
   assert.equal(DEFAULT_MODELS.checker, "claude-haiku-5-5");
   assert.equal(DEFAULT_MODELS.review, "claude-sonnet-5-5");
   assert.equal(DEFAULT_MODELS.extract, "gemini");
@@ -24,20 +24,20 @@ test("modelPlan: both keys → the defaults; overrides win when priced; an unpri
   assert.deepEqual(modelPlan({}, both).plan, DEFAULT_MODELS);
   const { plan, warnings } = modelPlan({ DIGEST_REVIEW_MODEL: "claude-opus-4-8", DIGEST_WRITER_MODEL: "claude-fable-9" }, both);
   assert.equal(plan.review, "claude-opus-4-8");
-  assert.equal(plan.writer, "claude-haiku-5-5");
+  assert.equal(plan.writer, "claude-opus-5-5");
   assert.equal(warnings.length, 1);
   assert.match(warnings[0], /claude-fable-9/);
   assert.equal(modelPlan({ DIGEST_WRITER_MODEL: "gemini" }, both).plan.writer, "gemini", "a role can be sent back to the free ladder");
-  assert.equal(modelPlan({ DIGEST_WRITER_MODEL: "  " }, both).plan.writer, "claude-haiku-5-5", "a blank variable is unset");
+  assert.equal(modelPlan({ DIGEST_WRITER_MODEL: "  " }, both).plan.writer, "claude-opus-5-5", "a blank variable is unset");
 });
 
 test("modelPlan: one key → everything on that provider; no key → nothing", () => {
   const geminiOnly = modelPlan({ DIGEST_REVIEW_MODEL: "claude-opus-4-8" }, { gemini: true, anthropic: false }).plan;
   for (const role of ROLES) assert.equal(geminiOnly[role], "gemini", role);
   const anthropicOnly = modelPlan({}, { gemini: false, anthropic: true }).plan;
-  assert.equal(anthropicOnly.writer, "claude-haiku-5-5");
+  assert.equal(anthropicOnly.writer, "claude-opus-5-5");
   assert.equal(anthropicOnly.review, "claude-sonnet-5-5");
-  assert.equal(anthropicOnly.extract, "claude-haiku-5-5", "housekeeping rides the writer's model without a Gemini key");
+  assert.equal(anthropicOnly.extract, "claude-haiku-5-5", "housekeeping rides the checker's model without a Gemini key");
   assert.equal(anthropicOnly.tune, "claude-haiku-5-5");
   const none = modelPlan({}, { gemini: false, anthropic: false }).plan;
   for (const role of ROLES) assert.equal(none[role], null, role);
@@ -127,18 +127,4 @@ test("buildCallers: paid roles get a routed caller, gemini roles the Gemini call
 
   const noGemini = await buildCallers({ plan: { writer: "gemini", checker: "claude-haiku-5-5" }, geminiCall: null, client: null });
   assert.deepEqual(Object.keys(noGemini.calls), []);
-});
-
-test("a model on trial takes the role until its date, then the default is back", () => {
-  const keys = { gemini: true, anthropic: true };
-  const during = new Date("2026-11-20T20:00:00Z");
-  const after = new Date("2026-11-24T20:00:00Z");
-  assert.equal(modelPlan({}, { ...keys, now: during }).plan.writer, "claude-opus-5-5");
-  assert.equal(modelPlan({}, { ...keys, now: during }).plan.checker, "claude-haiku-5-5", "only the writer is on trial");
-  assert.equal(modelPlan({}, { ...keys, now: after }).plan.writer, DEFAULT_MODELS.writer, "it ends by itself");
-  assert.equal(modelPlan({}, keys).plan.writer, DEFAULT_MODELS.writer, "a caller that gives no date runs no trial");
-  assert.equal(modelPlan({ DIGEST_WRITER_MODEL: "gemini" }, { ...keys, now: during }).plan.writer, "gemini", "a repository variable still wins");
-  assert.equal(modelPlan({}, { gemini: true, anthropic: false, now: during }).plan.writer, "gemini", "no Anthropic key, no paid trial");
-  assert.equal(trialModel("review", during), null);
-  for (const t of TRIALS) assert.ok(MODELS.some((m) => m.id === t.model), `${t.model} has a price`);
 });
