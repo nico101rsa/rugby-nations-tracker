@@ -117,6 +117,10 @@ export function summariseWeek(days, previousDays = []) {
   const spend = runs.reduce((a, r) => a + (paid(r).costUSD ?? 0), 0);
   const failed = runs.reduce((a, r) => a + (paid(r).failed ?? 0), 0);
   const fellBack = runs.reduce((a, r) => a + (paid(r).fellBack ?? 0), 0);
+  // Who wrote, and what a month costs at this week's rate: the standing
+  // question since Opus took the writer's chair on 17 Nov 2026.
+  const writer = runs.at(-1)?.model?.plan?.writer ?? null;
+  const monthly = runs.length ? (spend / runs.length) * 30 : null;
   const ranked = [...reviewed].sort((a, b) => gradePoints(b.review.grade) - gradePoints(a.review.grade));
   return {
     from: days[0]?.date, to: days.at(-1)?.date,
@@ -124,9 +128,18 @@ export function summariseWeek(days, previousDays = []) {
     trend: avg.points === null || prev.points === null ? null : avg.points - prev.points,
     best: ranked[0] ?? null, worst: ranked.at(-1) ?? null,
     starved: count("starved"), badlyChosen: count("badlyChosen"),
-    spend, failed, fellBack, runDays: runs.length,
+    spend, failed, fellBack, runDays: runs.length, writer, monthly,
     days,
   };
+}
+
+// One sentence for the Spend block: the writer's model and the month at this
+// week's rate, against the ceiling. Empty when no run was logged.
+export const MONTHLY_CEILING_USD = 24;
+export function costLine(w) {
+  if (w.monthly === null || w.monthly === undefined) return "";
+  const who = w.writer ? `Written by ${w.writer}. ` : "";
+  return ` ${who}At this week's rate that is about US$${Math.round(w.monthly)} a month (ceiling in the growth strategy: US$${MONTHLY_CEILING_USD}; Nico's Anthropic credits cover it for now).`;
 }
 
 const trendWords = (t) => (t === null ? "" : t >= 0.165 ? "up" : t <= -0.165 ? "down" : "level");
@@ -153,7 +166,7 @@ export function buildText(w) {
   L.push("", "TEAMS THAT KEPT MISSING");
   L.push(`- Short of their own news (retrieval-starved): ${listTeams(w.starved) || "none"}`);
   L.push(`- Led with the wrong story (badly chosen): ${listTeams(w.badlyChosen) || "none"}`);
-  L.push("", `SPEND: about US$${w.spend.toFixed(2)} logged over ${w.runDays} day${w.runDays === 1 ? "" : "s"} (each day's last run; Saturday extras are in the Actions log). ${w.failed} failed calls, ${w.fellBack} fell back to Gemini.`);
+  L.push("", `SPEND: about US$${w.spend.toFixed(2)} logged over ${w.runDays} day${w.runDays === 1 ? "" : "s"} (each day's last run; Saturday extras are in the Actions log). ${w.failed} failed calls, ${w.fellBack} fell back to Gemini.${costLine(w)}`);
   L.push("", `Full daily reviews: ${REVIEW_URL}/`);
   return L.join("\n");
 }
@@ -175,7 +188,7 @@ ${head}
 <p style="margin:0 0 4px;font-size:14px"><b>Short of their own news:</b> ${esc(listTeams(w.starved) || "none")}</p>
 <p style="margin:0;font-size:14px"><b>Led with the wrong story:</b> ${esc(listTeams(w.badlyChosen) || "none")}</p>
 <h3 style="margin:18px 0 6px">Spend</h3>
-<p style="margin:0;font-size:14px">About US$${w.spend.toFixed(2)} logged over ${w.runDays} day${w.runDays === 1 ? "" : "s"} (each day's last run; Saturday extras are in the Actions log). ${w.failed} failed calls, ${w.fellBack} fell back to Gemini.</p>
+<p style="margin:0;font-size:14px">About US$${w.spend.toFixed(2)} logged over ${w.runDays} day${w.runDays === 1 ? "" : "s"} (each day's last run; Saturday extras are in the Actions log). ${w.failed} failed calls, ${w.fellBack} fell back to Gemini.${esc(costLine(w))}</p>
 <p style="margin:18px 0 0;font-size:12px;color:#777">Sent weekly on Monday morning, Sydney time, by the data repo's "Weekly news email" workflow.</p>
 </div>`;
 }

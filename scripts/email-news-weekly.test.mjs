@@ -65,7 +65,7 @@ test("previousWeek: the Monday–Sunday before, in Sydney dates", () => {
 });
 
 const day = (date, grade, starved = [], badlyChosen = [], cost = 0.2) =>
-  ({ date, review: grade ? { grade, summary: `${grade} day.`, starved, badlyChosen } : null, run: { model: { costUSD: cost, failed: 0, fellBack: 0 } } });
+  ({ date, review: grade ? { grade, summary: `${grade} day.`, starved, badlyChosen } : null, run: { model: { costUSD: cost, failed: 0, fellBack: 0, plan: { writer: "claude-opus-5-5" } } } });
 
 test("summariseWeek: average, trend, repeat offenders, spend", () => {
   const week = [day("2026-11-02", "C"), day("2026-11-03", "C+", ["Fiji", "Japan"], ["Italy"]), day("2026-11-04", "B", ["Fiji"]),
@@ -84,6 +84,7 @@ test("summariseWeek: average, trend, repeat offenders, spend", () => {
   const text = buildText(w);
   assert.match(text, /Thu 5 Nov: no review/);
   assert.match(text, /Fiji 3×/);
+  assert.match(text, /Written by claude-opus-5-5\. At this week's rate that is about US\$6 a month \(ceiling in the growth strategy: US\$24/);
   const html = buildHtml(w);
   assert.match(html, /editorial\/reviews\/2026-11-03\.md/);
   assert.doesNotMatch(html, /<script/);

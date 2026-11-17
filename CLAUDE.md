@@ -380,13 +380,13 @@ back to Gemini on that call and the log says so (`fellBack`). To try another
 model for a week, set the variable (any model priced in
 `scripts/compare-digest-models.mjs`, or `gemini`); no code change.
 
-**On trial, 18 to 24 Nov 2026: Opus 5.5 writes the news** (Nico, 17 Nov: the
-grades had sat at C to C+ for a month). `TRIALS` in `model-router.mjs` gives
-it the writer role until 24 Nov 12:00 UTC, then Haiku is back with no change
-from anyone. About US$1.60 a run, about US$12 to 18 for the week (Saturday has four extra runs); for good it would
-be about US$55 a month, over the ceiling, so keeping it is Nico's call. Judge
-it on the daily review grades (same Sonnet reviewer) and the count of
-"badly-chosen" leads.
+**Since 17 Nov 2026 Opus 5.5 writes the news editions** (Nico: the grades had
+sat at C to C+ for a month, and his Anthropic credits cover it for now). It is
+the writer's default in `model-router.mjs` and stays until he says otherwise;
+it does not switch itself off. About US$1.60 a run, about US$55 a month,
+against the US$24 ceiling. The weekly news email's Spend block names the
+writer and the month's cost at that week's rate (`costLine`), and that is
+where the choice is looked at again. Checker and roundup stay on Haiku.
 
 Don't put Opus on the daily review: it reads twelve 90-word editions and
 leaves two notes, a Sonnet-shaped job. The weekly review is where the deeper
