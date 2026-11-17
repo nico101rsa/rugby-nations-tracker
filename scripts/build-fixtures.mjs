@@ -20,7 +20,7 @@ import { tourFixtures, loadProbeResults } from "./seed-tour.mjs";
 import { venueLabel } from "./venues.mjs";
 import { applyKickoffOverrides, correctedKickoffMs, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 import { writeCalendars } from "./build-calendars.mjs";
-import { projectedFinals, repairedFinals, rncComp } from "./projected-finals.mjs";
+import { projectedFinals, repairedFinals, rncComp, withoutPartialFinals } from "./projected-finals.mjs";
 
 const ID_TO_CODE = Object.fromEntries(Object.entries(ESPN_TEAM_IDS).map(([c, id]) => [String(id), c]));
 
@@ -397,7 +397,14 @@ async function main() {
   // filter would drop them (a comp whose record is nations.json); the first
   // real finals-weekend row from ESPN stands them down.
   const projected = projectedFinals(fixtures, nations?.log, { comp: rncComp(registry, today) });
-  if (projected.length) console.log(`projected ${projected.length} Nations Championship finals (${projected[0].final.projected ? "pairings from the current table" : "pairings locked"})`);
+  if (projected.length) {
+    // ESPN's listing so far is partial (one final against "TBC" on 17 Nov
+    // 2026): ours are shown whole and its rows wait until it has all six.
+    const whole = withoutPartialFinals(fixtures);
+    if (whole.length !== fixtures.length) console.log(`ESPN lists ${fixtures.length - whole.length} of the finals so far: left out until it lists them all`);
+    fixtures = whole;
+    console.log(`projected ${projected.length} Nations Championship finals (${projected[0].final.projected ? "pairings from the current table" : "pairings locked"})`);
+  }
   fixtures.push(...projected);
   // The NZ tour midweek games (kind:"tour") — no vendor carries them, so no
   // future-only filter: a played tour game persists with its score (from

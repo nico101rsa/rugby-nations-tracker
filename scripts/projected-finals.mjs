@@ -1,6 +1,7 @@
 // The Nations Championship finals weekend, projected (issue #165).
 //
-// ESPN lists the six finals only once round 6 has set the pairings, which is
+// ESPN lists the six finals only once round 6 has set the pairings (and not
+// all at once: see espnFinals), which is
 // after the last pool game (Sun 22 Nov 2026 07:10 Sydney time) and some days
 // before the first final (Fri 27 Nov). The app projects the pairings from
 // nations.json's log on its own, but only while fixtures.json carries at
@@ -69,10 +70,43 @@ export function rncComp(registry, today) {
   return c ? { key: c.key, label: c.label ?? c.name ?? c.key, kind: "competition" } : null;
 }
 
-// Has the feed a real finals-weekend row (ESPN's)? A projected row is not one.
-function realFinalsListed(rows, finals) {
+// Our own rows, projected or locked: `<comp key>-final-<rank>`.
+export const isOwnFinal = (f) => isRnc(f) && String(f?.id ?? "") === `${f.comp.key}-final-${f.final?.rank}`;
+
+// ESPN's finals-weekend rows in the feed (never our own), and whether they
+// are the whole weekend: one row per final, every side a named nation.
+//
+// ESPN does not list the six at once. On Tue 17 Nov 2026 it listed ONE, four
+// days before round 6: Italy v "TBC". The rule then was "the first real row
+// stands the projection down", so the six pairings left fixtures.json and the
+// Fixtures tab showed a single final against nobody, from 19:41 Sydney time
+// until the daily check found it the next morning. A partial listing tells a
+// fan less than the table does, so it is not a listing yet.
+export function espnFinals(rows, finals) {
   const weekend = Math.min(...finals.map(([, , d]) => Date.parse(d))) - STAND_DOWN_DAYS * DAY_MS;
-  return rows.some((f) => isRnc(f) && !f.final?.projected && Date.parse(f.date) >= weekend);
+  const listed = (rows ?? []).filter(
+    (f) => isRnc(f) && !isOwnFinal(f) && !f.final?.projected && Date.parse(f.date) >= weekend,
+  );
+  const named = (side) => side?.tracked === true;
+  const complete = listed.length >= finals.length && listed.every((f) => named(f.home) && named(f.away));
+  return { listed, complete };
+}
+
+// Has the feed ESPN's whole finals weekend? Only then do our rows stand down.
+function realFinalsListed(rows, finals) {
+  return espnFinals(rows, finals).complete;
+}
+
+// The rows without ESPN's partial finals listing, for the days we project
+// over it. A complete listing is ESPN's to tell and is left alone.
+export function withoutPartialFinals(fixtures) {
+  const rows = fixtures ?? [];
+  const finals = FINALS_BY_SEASON[seasonOf(rows.find(isRnc)?.comp?.key)];
+  if (!finals) return rows;
+  const { listed, complete } = espnFinals(rows, finals);
+  if (complete || !listed.length) return rows;
+  const drop = new Set(listed);
+  return rows.filter((f) => !drop.has(f));
 }
 
 // fixtures (published shape) + nations.json's log (+ the comp tag for the
@@ -102,9 +136,6 @@ export function projectedFinals(fixtures, log, { comp = null, codes = API_SPORTS
   }));
 }
 
-// Our own rows, projected or locked: `<comp key>-final-<rank>`.
-export const isOwnFinal = (f) => isRnc(f) && String(f?.id ?? "") === `${f.comp.key}-final-${f.final?.rank}`;
-
 // fixtures.json's rows with the finals paired again from `log`, or null when
 // the file already says what the table says (so a quiet refresh writes
 // nothing). The comp tag is taken from the rows being replaced, so this
@@ -120,7 +151,9 @@ export function repairedFinals(fixtures, log, opts = {}) {
     const finals = FINALS_BY_SEASON[seasonOf(own[0].comp.key)];
     if (!finals || !realFinalsListed(rest, finals)) return null;
   }
+  // While we project, ESPN's partial listing (a final against "TBC") goes.
+  const kept = next.length ? withoutPartialFinals(rest) : rest;
   const byId = (a, b) => (a.id < b.id ? -1 : 1);
-  if (JSON.stringify([...own].sort(byId)) === JSON.stringify([...next].sort(byId))) return null;
-  return [...rest, ...next];
+  if (kept.length === rest.length && JSON.stringify([...own].sort(byId)) === JSON.stringify([...next].sort(byId))) return null;
+  return [...kept, ...next];
 }

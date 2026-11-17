@@ -275,6 +275,27 @@ test("entryFor names conference sides only when every team agrees on a hemispher
   assert.equal(e.status, "live");
 });
 
+test("a final against a side ESPN has not named is not a thirteenth team (17 Nov 2026: Italy v TBC made rnc-2026 UNKNOWN)", () => {
+  const north = [1, 2, 3, 4, 9, 20];
+  const south = [5, 6, 8, 10, 14, 23];
+  const events = [];
+  let d = 0;
+  for (const x of north) for (const y of south) events.push(espnEvent(dayAfter("2026-07-04", d++), x, y));
+  const meta = { prefix: "rnc", short: "RNC", name: "Nations Championship", espnLeagueId: 17567 };
+  const tbc = espnEvent("2026-11-27", north[3], 999001);
+  tbc.competitions[0].competitors[1].team = { id: "999001", abbreviation: "TBC", displayName: "TBC" };
+  const e = entryFor(meta, 2026, [...events, tbc], "2026-11-18");
+  assert.equal(e.structure, "conference");
+  assert.equal(e.fixtureCount, 36);
+  assert.equal(e.teams.length, 12);
+  assert.ok(!e.teams.includes("TBC"));
+  // All six finals between named sides: still two conferences, 42 games.
+  const finals = north.map((x, i) => espnEvent(dayAfter("2026-11-27", i % 3), x, south[i]));
+  const whole = entryFor(meta, 2026, [...events, ...finals], "2026-11-24");
+  assert.equal(whole.structure, "conference");
+  assert.equal(whole.fixtureCount, 42);
+});
+
 test("an unrecognised team leaves both conference names null rather than guessing", () => {
   const north = [1, 2, 3, 4, 9, 20];
   const south = [5, 6, 8, 10, 14, 999999]; // 999999 has no hemisphere

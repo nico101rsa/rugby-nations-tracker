@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { projectedFinals, rncComp, API_SPORTS_CODES, FINALS_BY_SEASON, FINALS_VENUE } from "./projected-finals.mjs";
+import { projectedFinals, rncComp, withoutPartialFinals, API_SPORTS_CODES, FINALS_BY_SEASON, FINALS_VENUE } from "./projected-finals.mjs";
 import { TEAMS } from "./generate-digests.mjs";
 
 const COMP = { key: "rnc-2026", label: "RNC '26", kind: "competition" };
@@ -46,34 +46,50 @@ test("projectedFinals: no rnc row in the file (the 23-27 Nov gap) still projects
   assert.equal(projectedFinals([], LOG).length, 0, "no comp tag at all: nothing to file the rows under");
 });
 
-test("projectedFinals: stands down the moment ESPN lists a finals-weekend row; its own rows never count", () => {
-  const espnFinal = poolRow("espn-9", "2026-11-28T16:40:00.000Z", "IRE", "RSA");
-  delete espnFinal.round;
-  assert.equal(projectedFinals([espnFinal], LOG).length, 0);
+// ESPN's six finals as it would list them all: every side a named nation.
+const espnFinalRow = (n, date, home, away) => { const f = poolRow(`espn-9${n}`, date, home, away); delete f.round; return f; };
+const ESPN_SIX = [
+  espnFinalRow(1, "2026-11-29T16:40:00.000Z", "IRE", "NZL"), espnFinalRow(2, "2026-11-28T16:40:00.000Z", "FRA", "RSA"),
+  espnFinalRow(3, "2026-11-27T20:10:00.000Z", "ENG", "ARG"), espnFinalRow(4, "2026-11-29T13:10:00.000Z", "SCO", "AUS"),
+  espnFinalRow(5, "2026-11-28T13:10:00.000Z", "ITA", "JPN"), espnFinalRow(6, "2026-11-27T16:40:00.000Z", "WAL", "FIJ"),
+];
+// What ESPN published on Tue 17 Nov 2026: one final, one side unnamed.
+const ITA_TBC = { id: "espn-604011", date: "2026-11-27T16:40:00.000Z", timeTBC: false, home: { code: "ITA", name: "Italy", tracked: true }, away: { code: "TBC", name: "TBC", tracked: false }, comp: COMP, venue: "Allianz Stadium, London" };
+
+test("projectedFinals: stands down once ESPN lists the whole weekend; its own rows never count", () => {
+  assert.equal(projectedFinals(ESPN_SIX, LOG).length, 0);
   const own = projectedFinals([], LOG, { comp: COMP });
   assert.equal(projectedFinals(own, LOG).length, 6, "a previous build's projected rows do not stand the projection down");
   // A pool row on the Sunday before the weekend is not a finals row.
   assert.equal(projectedFinals([poolRow("espn-8", "2026-11-21T20:10:00.000Z", "WAL", "AUS")], LOG).length, 6);
 });
 
-test("projectedFinals: needs a full log and a season it knows", () => {
-  assert.equal(projectedFinals([], LOG.slice(0, 11), { comp: COMP }).length, 0);
-  assert.equal(projectedFinals([], null, { comp: COMP }).length, 0);
-  assert.equal(projectedFinals([], LOG, { comp: { key: "rnc-2028", label: "RNC '28", kind: "competition" } }).length, 0, "no kick-off table for 2028 yet");
-  assert.equal(FINALS_BY_SEASON[2026].length, 6);
+test("a partial ESPN listing does not stand the projection down (17 Nov 2026: Italy v TBC, and five finals gone)", () => {
+  assert.equal(projectedFinals([ITA_TBC], LOG).length, 6, "one final against nobody");
+  assert.equal(projectedFinals(ESPN_SIX.slice(0, 5), LOG).length, 6, "five of six");
+  assert.equal(projectedFinals([...ESPN_SIX.slice(0, 5), ITA_TBC], LOG).length, 6, "six rows, one side unnamed");
+  // The partial rows leave the published list; pool rows and other competitions stay.
+  const pool = poolRow("espn-8", "2026-11-21T20:10:00.000Z", "WAL", "AUS");
+  const other = { ...poolRow("espn-7", "2026-11-28T10:00:00.000Z", "NZL", "AUS"), comp: { key: "test", label: "TEST", kind: "test" } };
+  assert.deepEqual(withoutPartialFinals([pool, ITA_TBC, other]), [pool, other]);
+  assert.deepEqual(withoutPartialFinals([pool, ...ESPN_SIX]), [pool, ...ESPN_SIX], "a whole listing is ESPN's to tell");
+  assert.deepEqual(withoutPartialFinals([pool]), [pool]);
 });
 
-test("rncComp: the registry's current Nations Championship as a comp tag; an expired one is not", () => {
-  const registry = { competitions: [
-    { key: "6n-2027", label: "6N '27", name: "Six Nations" },
-    { key: "rnc-2026", label: "RNC '26", name: "Nations Championship", defaultUntil: "2026-12-13" },
-  ] };
-  assert.deepEqual(rncComp(registry, "2026-11-24"), COMP);
-  assert.equal(rncComp(registry, "2026-12-13"), null);
-  assert.equal(rncComp({ competitions: [] }, "2026-11-24"), null);
+test("repairedFinals: a file holding ESPN's partial listing gets the six pairings back and loses the TBC row", () => {
+  const pool = poolRow("espn-8", "2026-11-21T20:10:00.000Z", "WAL", "AUS");
+  const next = repairedFinals([pool, ITA_TBC], LOG);
+  assert.equal(next.length, 7);
+  assert.ok(!next.includes(ITA_TBC));
+  assert.equal(next.filter((f) => f.final).length, 6);
+  assert.equal(repairedFinals(next, LOG), null, "then quiet");
+  // The row coming back on a later fixtures build is dropped again, pairings unchanged.
+  const again = repairedFinals([...next, ITA_TBC], LOG);
+  assert.equal(again.length, 7);
+  assert.ok(!again.includes(ITA_TBC));
 });
 
-// ---- repairedFinals: the rows follow the table between fixtures builds ----
+
 import { repairedFinals } from "./projected-finals.mjs";
 import { syncProjectedFinals } from "./build-fixtures.mjs";
 import { refreshWithFinals } from "./refresh.mjs";
@@ -104,10 +120,9 @@ test("repairedFinals: locks when round six is done, with no pool row left in the
   assert.equal(repairedFinals(locked, done), null, "a locked row of ours does not stand the projection down");
 });
 
-test("repairedFinals: ESPN's listing drops our rows; a log that cannot be read keeps them", () => {
+test("repairedFinals: ESPN's whole listing drops our rows; a log that cannot be read keeps them", () => {
   const own = projectedFinals([], LOG, { comp: COMP });
-  const espnFinal = poolRow("espn-9", "2026-11-28T16:40:00.000Z", "IRE", "NZL");
-  assert.deepEqual(repairedFinals([espnFinal, ...own], NZ_TOP), [espnFinal]);
+  assert.deepEqual(repairedFinals([...ESPN_SIX, ...own], NZ_TOP), ESPN_SIX);
   assert.equal(repairedFinals(own, []), null);
   assert.equal(repairedFinals(own, undefined), null);
   assert.equal(repairedFinals(own, LOG.slice(0, 11)), null);
