@@ -90,16 +90,33 @@ export const pulseKey = (dateIso, homeCode, awayCode) => {
 export const NEWS_MIN_VOTES = 30;
 const WORDS = { up: "buzzing", flat: "meh", down: "fuming" };
 
-// One sentence for the writer's trusted facts, or "" when there is nothing
+// The words the edition must use when it tells the verdict. They are what
+// pulseTold looks for in the run reports, so the prompt and the detector can't
+// drift apart.
+export const TOLD_PHRASE = "fans in the app";
+
+// Has one of this team's editions since the game already told the verdict?
+// `runs` are run reports (editorial/runs), any order; `sinceISO` is the game's
+// kickoff, so last week's telling doesn't count for this week's game.
+export function pulseTold(runs, teamName, sinceISO) {
+  const since = String(sinceISO ?? "").slice(0, 10);
+  return (runs ?? []).some((run) => String(run?.date ?? "") >= since
+    && (run?.teams ?? []).some((t) => t?.team === teamName && String(t?.body ?? "").toLowerCase().includes(TOLD_PHRASE)));
+}
+
+// One instruction for the writer's trusted facts, or "" when there is nothing
 // solid to say. It names the number who answered and where they answered, so
-// the copy can't dress it up as a poll of the nation.
+// the copy can't dress it up as a poll of the nation. It is an order, not an
+// offer: as "If you mention it" (13 to 17 Nov 2026) three Springbok editions
+// had "43 answered: 63% fuming" in front of them and none used it. The caller
+// stops passing it once pulseTold says an edition carried it.
 export function pulseLine(pulse, key, code, teamName) {
   const c = pulse?.matches?.[key]?.[code];
   const n = total(c);
   if (!key || n < NEWS_MIN_VOTES) return "";
   const p = percentages(c);
   const parts = MOODS.filter((m) => p[m] > 0).sort((a, b) => p[b] - p[a]).map((m) => `${p[m]}% ${WORDS[m]}`);
-  return `In the app's full-time pulse (a one-tap answer from the app's own ${teamName} followers, not a poll), ${n} answered: ${parts.join(", ")}. If you mention it, say it is how fans in the app took it and give the number who answered`;
+  return `In the app's full-time pulse (a one-tap answer from the app's own ${teamName} followers, not a poll), ${n} answered: ${parts.join(", ")}. REQUIRED in today's edition, whatever the lead: one closing sentence in the body on how ${teamName} ${TOLD_PHRASE} took this result, using the words "${TOLD_PHRASE}", the number who answered (${n}) and the leading mood with its percentage. It is a reaction to the result, not a poll: do not call it one, do not put it in the heading, and keep the body within its 90 words`;
 }
 
 export async function readPulse(file = PULSE_FILE) {

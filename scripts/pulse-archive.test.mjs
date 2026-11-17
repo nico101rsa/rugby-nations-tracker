@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { cleanMatches, mergePulse, percentages, total, pulseKey, pulseLine, NEWS_MIN_VOTES } from "./pulse-archive.mjs";
+import { cleanMatches, mergePulse, percentages, total, pulseKey, pulseLine, pulseTold, TOLD_PHRASE, NEWS_MIN_VOTES } from "./pulse-archive.mjs";
 import { buildParams } from "./generate-digests.mjs";
 
 const SCO_NZL = "2026-11-07 SCO-NZL";
@@ -48,6 +48,8 @@ test("the writer's line says how many answered and that it is the app's fans", (
   const line = pulseLine(pulse, SCO_NZL, "SCO", "Scotland");
   assert.match(line, /143 answered: 82% fuming, 15% meh, 3% buzzing/);
   assert.match(line, /the app's own Scotland followers, not a poll/);
+  assert.match(line, /REQUIRED in today's edition/, "an offer was never taken up (13 to 17 Nov 2026)");
+  assert.ok(line.includes(`"${TOLD_PHRASE}"`), "it asks for the words pulseTold looks for");
   assert.equal(pulseLine(pulse, SCO_NZL, "NZL", "New Zealand"), "", "too few answers to put in the news");
   assert.equal(pulseLine(pulse, "2026-11-08 ENG-AUS", "ENG", "England"), "");
   assert.equal(pulseLine(null, SCO_NZL, "SCO", "Scotland"), "");
@@ -78,4 +80,18 @@ test("an old game's pulse is history, not today's news", () => {
   const pulse = { matches: { [SCO_NZL]: { SCO: { up: 4, flat: 21, down: 118 } } } };
   const later = new Date("2026-11-20T20:00:00Z");
   assert.ok(!/pulse/.test(buildParams(data, 390, later, null, pulse).LAST_RESULT));
+});
+
+// Told once: required until one of the team's editions since the game carries
+// it, then dropped. A day the writer ignores it is asked again the next day.
+test("the verdict is asked for until an edition has told it, then never again", () => {
+  const pulse = { matches: { [SCO_NZL]: { SCO: { up: 4, flat: 21, down: 118 } } } };
+  const told = { date: "2026-11-08", teams: [{ team: "Scotland", body: "Scotland lost 21-43. Of 143 Scotland fans in the app, 82% were fuming." }] };
+  const silent = { date: "2026-11-08", teams: [{ team: "Scotland", body: "Scotland lost 21-43." }, { team: "New Zealand", body: "All Blacks fans in the app were buzzing." }] };
+  const lastWeek = { ...told, date: "2026-11-01" };
+  assert.match(buildParams(data, 390, NOW, null, pulse, [silent]).LAST_RESULT, /REQUIRED/, "another team's telling is not ours");
+  assert.match(buildParams(data, 390, NOW, null, pulse, [lastWeek]).LAST_RESULT, /REQUIRED/, "an earlier game's telling is not this one's");
+  assert.ok(!/pulse/.test(buildParams(data, 390, NOW, null, pulse, [silent, told]).LAST_RESULT));
+  assert.equal(pulseTold([told], "Scotland", game.date), true);
+  assert.equal(pulseTold(null, "Scotland", game.date), false);
 });
