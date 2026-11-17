@@ -289,6 +289,11 @@ export function statusFor(c, today) {
   return "live";
 }
 
+// ESPN's stand-in for a side not yet known ("TBC", "TBD", "TBA"), by any of
+// the names it prints.
+export const isPlaceholderTeam = (team) =>
+  [team?.abbreviation, team?.displayName, team?.name, team?.shortDisplayName].some((v) => /^\s*tb[cda]\s*$/i.test(String(v ?? "")));
+
 // Raw scoreboard events -> one registry entry. Exported so the tests can drive
 // it without the network.
 export function entryFor(meta, season, events, today) {
@@ -300,6 +305,11 @@ export function entryFor(meta, season, events, today) {
     if (sides.length !== 2) continue;
     const ids = sides.map((s) => String(s.team?.id ?? ""));
     if (ids.some((id) => !id)) continue;
+    // A side ESPN has not named yet is not a team. It listed the first
+    // Nations Championship final as Italy v "TBC" on 17 Nov 2026; counted as
+    // a thirteenth team, that row made the conference layout UNKNOWN for a
+    // competition five rounds in. The game joins once both sides are named.
+    if (sides.some((s, i) => !ESPN_CODES[ids[i]] && isPlaceholderTeam(s.team))) continue;
     for (const [i, id] of ids.entries()) {
       teams.set(id, ESPN_CODES[id] ?? sides[i].team?.abbreviation ?? id);
     }
