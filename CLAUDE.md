@@ -242,8 +242,10 @@ now" and "people can give their feeling mid game"):
 - **Fans online now** (`fans-worker/src/online.js`, `/online`). The app pings
   when it opens and every ten minutes; the Worker counts ids seen in the last
   hour, by followed team, and deletes a row after its hour. The id is made
-  per run of the app and never written to the phone. Not archived. It deploys by itself when `fans-worker/` changes
-(`deploy-fans-worker.yml`), then checks the live Worker.
+  per run of the app and never written to the phone. Not archived.
+
+It deploys by itself when `fans-worker/` changes (`deploy-fans-worker.yml`),
+then checks the live Worker.
 
 - **A vote is four fields**: the game (`2026-11-21 ENG-NZL`, the kickoff
   overrides' key), the side, the mood and a per-game random number, plus
