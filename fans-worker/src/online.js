@@ -107,7 +107,7 @@ export function makeCounter(ttlMs = COUNT_TTL_MS) {
 // ---- the routes ----------------------------------------------------------------
 
 // POST /online  -> note this phone; answers with the count
-// GET  /online  -> the count (a phone that asked not to be counted reads it this way)
+// GET  /online  -> the count alone
 const MAX_BODY = 200;
 
 export function handle({ method, path, body = "", ip = "", now = Date.now() }, sql, { allow, count }) {

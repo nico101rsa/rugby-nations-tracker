@@ -34,8 +34,9 @@ the same four columns. No address, country, install number or time is stored.
 **Online now.** One row per running app: a random number the app makes up
 each time it starts (kept in memory, never written to the phone), the
 followed team and when it was last heard from. A row is deleted an hour after
-its last ping. No address, country or install number. A phone that answered
-No to "Count this phone?" sends no ping and only reads the count.
+its last ping. No address, country or install number. Every phone is counted
+(Nico, 18 Nov 2026): the "Count this phone?" answer is about the install
+number, and a ping carries none and stores nothing on the phone.
 
 The privacy policy (`privacy.html`) says the same, and the tests check the
 columns of all three tables.
