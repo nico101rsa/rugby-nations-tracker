@@ -162,9 +162,16 @@
   message. It stores no name, no IP address and no country. Cloudflare sees
   your IP address while it handles the request, as any web server does; the
   counting service does not keep it. Every phone with the app open is
-  counted this way. The "Count this phone?" switch on the About screen is
-  about the install number only and does not change it, because this count
-  uses no install number and stores nothing on your phone.</p>
+  counted this way, and this count never uses the install number.</p>
+  <p>In versions after 1.3.17, if you answered Yes to "Count this phone?",
+  the app keeps that random number on your phone for the rest of the day
+  (by the UTC date) instead of making a new one each time it starts, so
+  that closing and reopening the app does not count your phone twice. A new
+  number replaces it every day, so it cannot be used to follow your phone
+  from one day to the next, and it is deleted as soon as you turn the switch
+  off on the About screen. If you answered No, or have not answered, nothing
+  is saved on your phone for this count: the number is still made each time
+  the app starts and kept in memory only.</p>
 
   <h2>Match data</h2>
   <p>When you use the app, match fixtures, results and standings are fetched

@@ -31,9 +31,11 @@ number the phone makes up for that one game, so a changed mind replaces the
 first answer. Mid-game answers go in a table of their own (`live_votes`) with
 the same four columns. No address, country, install number or time is stored.
 
-**Online now.** One row per running app: a random number the app makes up
-each time it starts (kept in memory, never written to the phone), the
-followed team and when it was last heard from. A row is deleted an hour after
+**Online now.** One row per running app: a random number, the followed team
+and when it was last heard from. The number is made each time the app starts
+and kept in memory; from the version after 1.3.17 a phone that said yes to
+"Count this phone?" keeps it on the phone for the day instead, so a restart
+is not counted twice. A row is deleted an hour after
 its last ping. No address, country or install number. Every phone is counted
 (Nico, 18 Nov 2026): the "Count this phone?" answer is about the install
 number, and a ping carries none and stores nothing on the phone.
