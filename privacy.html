@@ -128,12 +128,15 @@
   switch is off), and there is no switch to stop them; if you have questions
   about them, use the contact address below.</p>
 
-  <h2>The full-time pulse</h2>
+  <h2>The pulse</h2>
   <p>From the version after 1.3.16, after a game your followed team has
   played, the app may ask how you took it, with three faces to choose from.
+  In versions released after 18 November 2026 it may also ask how the game is
+  going while it is being played.
   If you tap one, the app sends that answer to a small counting service the
   developer runs on Cloudflare: which game it was, which of the two teams you
-  follow, which face you tapped, and a random number the app makes up for
+  follow, which face you tapped, whether you answered during the game or
+  after it, and a random number the app makes up for
   that one game, so that changing your mind replaces your first answer
   instead of counting twice. That number is different for every game, is not
   the install number described above, and is not sent to Aptabase. Nothing
@@ -143,6 +146,24 @@
   keep it. The app then shows the totals for each team's fans. If you never tap
   a face, nothing is sent; reading the totals sends only the request for
   them.</p>
+
+  <h2>Fans online now</h2>
+  <p>In versions released after 18 November 2026 the app shows how many
+  phones have had it open in the last hour, and which teams they follow. To
+  be counted, the app tells the same counting service on Cloudflare that it
+  is open: when you open it, and about every ten minutes while it stays
+  open. That message carries two things: the team you follow (or that you
+  follow none), and a random number the app makes up each time it starts, so
+  that one phone open for an hour counts once. That number is kept in the
+  app's memory only. It is never saved on your phone, it changes every time
+  the app starts, it is not the install number described above, and it is
+  not sent to Aptabase. The counting service keeps the number, the team and
+  the time of the last message, and deletes all three an hour after the last
+  message. It stores no name, no IP address and no country. Cloudflare sees
+  your IP address while it handles the request, as any web server does; the
+  counting service does not keep it. If you answered No to "Count this
+  phone?", or turn that switch off on the About screen, the app sends no
+  such message: it only reads the total.</p>
 
   <h2>Match data</h2>
   <p>When you use the app, match fixtures, results and standings are fetched

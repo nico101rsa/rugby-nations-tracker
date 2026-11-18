@@ -222,20 +222,34 @@ round, grep the refresh-data run logs for `[espn-overlay]`: every lift prints
 the row before and after. If no such line appears in a live round, ESPN is not
 serving this league's scores in play and the feed is back to 12 minutes.
 
-## The full-time pulse: counted in a Worker, kept in a file
+## The pulse and fans online now: counted in a Worker, kept in a file
 
 `fans-worker/` is a second Cloudflare Worker (`rugby-tracker-fans`), apart from
 the cron Worker so that nothing a fan sends can touch live scores. After a
 game the app asks a team's followers one thing (buzzing, meh or fuming) and
 shows each side's split; the Worker counts the votes in one Durable Object.
 `fans-worker/src/pulse.js` holds the rules and `fans-worker/README.md` the
-rest. It deploys by itself when `fans-worker/` changes
+rest.
+
+Since 18 Nov 2026 the Worker does two more things (Nico: "showing users online
+now" and "people can give their feeling mid game"):
+
+- **The live pulse.** The same three faces during a game. A vote with
+  `phase: "live"` goes in its own table and comes back under `live` in
+  `GET /pulse`; `matches` is still the full-time pulse alone, so the archive,
+  the news writer and the morning email read what they always did. The Worker
+  does not know whether a game is in play: the app asks only while it is.
+- **Fans online now** (`fans-worker/src/online.js`, `/online`). The app pings
+  when it opens and every ten minutes; the Worker counts ids seen in the last
+  hour, by followed team, and deletes a row after its hour. The id is made
+  per run of the app and never written to the phone. Not archived. It deploys by itself when `fans-worker/` changes
 (`deploy-fans-worker.yml`), then checks the live Worker.
 
 - **A vote is four fields**: the game (`2026-11-21 ENG-NZL`, the kickoff
-  overrides' key), the side, the mood and a per-game random number. No
-  address, country, install number or time. `privacy.html` says exactly this;
-  change the two together.
+  overrides' key), the side, the mood and a per-game random number, plus
+  `phase` on a mid-game one. No address, country, install number or time.
+  A ping is two: the per-run number and the followed team. `privacy.html`
+  says exactly this; change the two together.
 - **The Worker returns six days of games.** `scripts/pulse-archive.mjs` copies
   its answer into `editorial/pulse.json` every two hours (`pulse-archive.yml`)
   and never drops a game, so that file is the full history. Don't hand-edit it.

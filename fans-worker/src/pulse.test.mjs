@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
-import { checkVote, init, castVote, tallies, handle, makeLimiter, parseMatch, TRACKED, VOTE_WINDOW_DAYS, SHOWN_DAYS } from "./pulse.js";
+import { checkVote, init, castVote, tallies, liveTallies, handle, makeLimiter, parseMatch, TRACKED, VOTE_WINDOW_DAYS, SHOWN_DAYS, LIVE_WINDOW_DAYS } from "./pulse.js";
 
 // The Durable Object hands the rules sql(query, ...params) -> rows. Here the
 // same shape over node's own SQLite, so the real queries run.
@@ -21,7 +21,7 @@ const voter = (n) => n.toString(16).padStart(32, "0");
 const vote = (over = {}) => ({ match: MATCH, team: "ENG", mood: "up", voter: voter(1), ...over });
 
 test("a vote is a game, one of its two sides, a mood and a per-game number", () => {
-  assert.deepEqual(checkVote(vote(), FT), { ok: true, vote: vote() });
+  assert.deepEqual(checkVote(vote(), FT), { ok: true, vote: { ...vote(), phase: "full" } });
   assert.equal(checkVote(vote({ team: "NZL", mood: "down" }), FT).ok, true);
 });
 
@@ -45,6 +45,37 @@ test("a game takes votes from its kickoff day until the window closes", () => {
   assert.equal(checkVote(vote(), day).ok, true);
   assert.equal(checkVote(vote(), day + VOTE_WINDOW_DAYS * 86_400_000 - 1).ok, true);
   assert.equal(checkVote(vote(), day + VOTE_WINDOW_DAYS * 86_400_000).error, "closed");
+});
+
+test("a mid-game answer is counted apart from the full-time one", () => {
+  const sql = store();
+  const allow = makeLimiter();
+  const cast = (over) => handle({ method: "POST", path: "/pulse", body: JSON.stringify(vote(over)), ip: "a", now: FT }, sql, allow);
+  assert.equal(cast({ phase: "live", mood: "down" }).status, 200);
+  // The same fan, the same per-game number, after the whistle.
+  const after = cast({ mood: "up" });
+  assert.deepEqual(after.body.live, { [MATCH]: { ENG: { up: 0, flat: 0, down: 1 } } });
+  assert.deepEqual(after.body.matches, { [MATCH]: { ENG: { up: 1, flat: 0, down: 0 } } });
+  // Changing a mid-game mind replaces it, and leaves full time alone.
+  const turned = cast({ phase: "live", mood: "up" });
+  assert.deepEqual(turned.body.live[MATCH].ENG, { up: 1, flat: 0, down: 0 });
+  assert.deepEqual(turned.body.matches, after.body.matches);
+  assert.equal(cast({ phase: "half-time" }).body.error, "phase");
+  // A build from before the live pulse sends no phase: that is full time.
+  assert.equal(checkVote(vote(), FT).vote.phase, "full");
+});
+
+test("a mid-game answer is taken and shown on the kickoff day and the day after", () => {
+  const sql = store();
+  const day = parseMatch(MATCH).dayMs;
+  const live = vote({ phase: "live" });
+  assert.equal(checkVote(live, day - 1).error, "too early");
+  assert.equal(checkVote(live, day + LIVE_WINDOW_DAYS * 86_400_000 - 1).ok, true);
+  assert.equal(checkVote(live, day + LIVE_WINDOW_DAYS * 86_400_000).error, "closed");
+  castVote(sql, live);
+  assert.deepEqual(Object.keys(liveTallies(sql, day + LIVE_WINDOW_DAYS * 86_400_000 - 1)), [MATCH]);
+  assert.deepEqual(Object.keys(liveTallies(sql, day + LIVE_WINDOW_DAYS * 86_400_000)), []);
+  assert.deepEqual(tallies(sql, FT), {}, "and it never reaches the full-time counts");
 });
 
 test("the twelve are the twelve the app lets you follow", () => {
@@ -93,6 +124,10 @@ test("nothing but the four fields is ever stored", () => {
   assert.equal(rows.length, 1);
   assert.deepEqual(Object.keys(rows[0]).sort(), ["match", "mood", "team", "voter"]);
   assert.ok(!JSON.stringify(rows).includes("203.0.113.7"));
+  handle({ method: "POST", path: "/pulse", body: JSON.stringify({ ...vote(), phase: "live", ip: "1.2.3.4" }), ip: "203.0.113.7", now: FT }, sql, makeLimiter());
+  const live = sql(`SELECT * FROM live_votes`);
+  assert.deepEqual(Object.keys(live[0]).sort(), ["match", "mood", "team", "voter"]);
+  assert.ok(!JSON.stringify(live).includes("203.0.113.7"));
 });
 
 test("POST /pulse casts the vote and answers with the counts; GET reads them", () => {
@@ -139,5 +174,5 @@ test("/health proves storage works and leaves nothing behind", () => {
 test("the windows are the released ones", () => {
   // Opened to nine days for one TestFlight test on Thu 12 Nov 2026, then put
   // back. The app stops asking after three days and shows for six.
-  assert.deepEqual({ VOTE_WINDOW_DAYS, SHOWN_DAYS }, { VOTE_WINDOW_DAYS: 4, SHOWN_DAYS: 6 });
+  assert.deepEqual({ VOTE_WINDOW_DAYS, SHOWN_DAYS, LIVE_WINDOW_DAYS }, { VOTE_WINDOW_DAYS: 4, SHOWN_DAYS: 6, LIVE_WINDOW_DAYS: 2 });
 });
