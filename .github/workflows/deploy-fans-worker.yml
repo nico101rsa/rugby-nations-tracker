@@ -1,6 +1,6 @@
 name: Deploy fans worker
 
-# Deploys fans-worker/ (the full-time pulse) to Cloudflare. Separate from
+# Deploys fans-worker/ (the pulse and fans online now) to Cloudflare. Separate from
 # deploy-worker.yml on purpose: that one ships the match-day scheduler, and a
 # fan-facing change must never be able to hold it up or break it.
 #
@@ -84,3 +84,13 @@ jobs:
             -d '{"match":"2026-11-21 ENG-NZL","team":"FRA","mood":"up","voter":"00000000000000000000000000000000"}' "$FANS_URL/pulse")
           echo "bad vote: $code"
           [ "$code" = "400" ] || { echo "::error::a bad vote answered $code, expected 400"; exit 1; }
+          # Fans online now: the count reads, and a ping the rules refuse is
+          # refused. No real ping is sent, so the check counts nobody.
+          body=$(curl -sS -m 15 "$FANS_URL/online")
+          echo "online: $body"
+          echo "$body" | grep -q '"total":' || { echo "::error::GET /online did not answer with a count"; exit 1; }
+          echo "$(curl -sS -m 15 "$FANS_URL/pulse")" | grep -q '"live":' || { echo "::error::GET /pulse carries no live counts"; exit 1; }
+          code=$(curl -sS -m 15 -o /dev/null -w '%{http_code}' -X POST -H 'content-type: application/json' \
+            -d '{"id":"not-a-number","team":"ENG"}' "$FANS_URL/online")
+          echo "bad ping: $code"
+          [ "$code" = "400" ] || { echo "::error::a bad ping answered $code, expected 400"; exit 1; }

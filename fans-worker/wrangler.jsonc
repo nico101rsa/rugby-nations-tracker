@@ -1,5 +1,6 @@
 {
-  // rugby-tracker-fans: the full-time pulse (src/pulse.js). Its own Worker,
+  // rugby-tracker-fans: the pulse (src/pulse.js) and fans online now
+  // (src/online.js). Its own Worker,
   // apart from the cron Worker in worker/, so that nothing a fan sends can
   // touch the match-day scheduler. See src/index.js.
   "name": "rugby-tracker-fans",
@@ -12,10 +13,11 @@
   "compatibility_date": "2026-07-25",
 
   // Served at rugby-tracker-fans.4jc94jpbb7.workers.dev; the app calls it
-  // there (src/pulse-client.js in the app repo).
+  // there (src/fans-client.js in the app repo).
   "workers_dev": true,
 
-  // One Durable Object holding the votes in its own SQLite file. Declared
+  // One Durable Object holding the votes and the last hour's pings in its
+  // own SQLite file. Declared
   // here and created by the deploy: nothing to set up by hand. SQLite-backed
   // classes are the kind the free plan allows.
   "durable_objects": {
