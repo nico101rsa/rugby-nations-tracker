@@ -2696,6 +2696,37 @@
      "events": 4
     }
    ]
+  },
+  {
+   "at": "2026-11-19T18:41:26.011Z",
+   "healthy": true,
+   "summary": "all endpoints 200",
+   "rows": [
+    {
+     "code": "NZL",
+     "half": "last",
+     "status": 200,
+     "events": 30
+    },
+    {
+     "code": "NZL",
+     "half": "next",
+     "status": 200,
+     "events": 4
+    },
+    {
+     "code": "RSA",
+     "half": "last",
+     "status": 200,
+     "events": 30
+    },
+    {
+     "code": "RSA",
+     "half": "next",
+     "status": 200,
+     "events": 4
+    }
+   ]
   }
  ]
 }
