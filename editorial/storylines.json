@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-19T01:33:25.485Z",
+  "updatedAt": "2026-11-19T20:00:29.988Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 212,
+  "count": 214,
   "storylines": [
     {
       "id": "jamison-gibson-park-s-12lebg1",
@@ -3086,12 +3086,17 @@
     },
     {
       "id": "will-jordan-s-availability-swmy2z",
-      "subject": "Will Jordan's availability for New Zealand's Test match against Wales",
+      "subject": "Will Jordan's injury recovery and availability for New Zealand against England",
       "teams": [
         465
       ],
       "resolution": "until New Zealand announce their matchday squad to face Wales",
       "sources": [
+        {
+          "title": "All Blacks admit they ‘let country down’ against Wales and gear up for England",
+          "link": "https://www.theguardian.com/sport/2026/nov/16/dave-rennie-new-zealand-all-blacks-england-twickenham-nations-championship",
+          "feedName": "Guardian Rugby Union"
+        },
         {
           "title": "All Blacks shed light on injured stars",
           "link": "https://www.sarugbymag.co.za/blacks-shed-light-injured-stars/",
@@ -3104,7 +3109,7 @@
         }
       ],
       "firstSeen": "2026-11-12",
-      "lastSeen": "2026-11-12",
+      "lastSeen": "2026-11-20",
       "uses": 0
     },
     {
@@ -4849,7 +4854,7 @@
     },
     {
       "id": "rassie-erasmus-s-six-1rhh3m8",
-      "subject": "Rassie Erasmus's six-match ban and South Africa's coaching logistics",
+      "subject": "Rassie Erasmus's six-match World Rugby ban and South Africa's interim coaching setup",
       "teams": [
         467
       ],
@@ -4872,7 +4877,7 @@
         }
       ],
       "firstSeen": "2026-11-18",
-      "lastSeen": "2026-11-18",
+      "lastSeen": "2026-11-20",
       "uses": 0
     },
     {
@@ -5139,7 +5144,7 @@
     },
     {
       "id": "dan-sheehan-s-fitness-9mzqm7",
-      "subject": "Dan Sheehan’s fitness and Ireland’s squad selection for South Africa",
+      "subject": "Dan Sheehan's fitness and return to Ireland's starting XV for the South Africa match",
       "teams": [
         388,
         467
@@ -5163,7 +5168,7 @@
         }
       ],
       "firstSeen": "2026-11-19",
-      "lastSeen": "2026-11-19",
+      "lastSeen": "2026-11-20",
       "uses": 0
     },
     {
@@ -5269,6 +5274,62 @@
       ],
       "firstSeen": "2026-11-19",
       "lastSeen": "2026-11-19",
+      "uses": 0
+    },
+    {
+      "id": "dave-rennie-s-coaching-gc7z2d",
+      "subject": "Dave Rennie's coaching future with New Zealand following four defeats in 2026",
+      "teams": [
+        465
+      ],
+      "resolution": "until New Zealand Rugby makes an official decision regarding Dave Rennie's head coaching position",
+      "sources": [
+        {
+          "title": "Ex-All Blacks skipper gives verdict on Dave Rennie's coaching future and raises 'massive concern'",
+          "link": "https://www.planetrugby.com/news/ex-all-blacks-skipper-gives-verdict-on-dave-rennies-coaching-future-and-raises-massive-concern",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "All Blacks 'let the country down' as Rennie demands Twickenham reaction",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/c6q8lq7kqn5vo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "All Blacks admit they ‘let country down’ against Wales and gear up for England",
+          "link": "https://www.theguardian.com/sport/2026/nov/16/dave-rennie-new-zealand-all-blacks-england-twickenham-nations-championship",
+          "feedName": "Guardian Rugby Union"
+        }
+      ],
+      "firstSeen": "2026-11-20",
+      "lastSeen": "2026-11-20",
+      "uses": 0
+    },
+    {
+      "id": "will-joseph-s-potential-30ghqd",
+      "subject": "Will Joseph's potential selection in England's starting lineup against New Zealand",
+      "teams": [
+        386
+      ],
+      "resolution": "until Steve Borthwick names England's official starting lineup for the New Zealand Test",
+      "sources": [
+        {
+          "title": "Five-try Joseph set to start for England against All Blacks",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmx20pnd853po?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Will Joseph poised to start for England against All Blacks after five-try burst",
+          "link": "https://www.theguardian.com/sport/2026/nov/16/will-joseph-steve-borthwick-england-new-zealand-nations-championship-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "England predicted team v All Blacks: Steve Borthwick to return to 'winning formula' against 'wounded beast'",
+          "link": "https://www.planetrugby.com/news/england-predicted-team-v-all-blacks-steve-borthwick-to-return-to-winning-formula-against-wounded-beast",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-20",
+      "lastSeen": "2026-11-20",
       "uses": 0
     }
   ]
