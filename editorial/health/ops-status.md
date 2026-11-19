@@ -4,7 +4,7 @@ _The silent ops log, written by the daily watchdog (`scripts/watchdog.mjs`) only
 _Nothing here notifies anyone except state **PAGING**. The Claude weekly review reads this file with the newest weekly report in this folder._
 _All times Sydney time._
 
-**State: OK — every watched job is current and no editorial signal is up.**
+**State: ATTENTION — something is off, nothing has paged. Triage in the weekly review.**
 
 ## Paging Nico
 
@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- None — every briefing moved on.
+- South Africa — same lead story since Wed 18 Nov, first run as "SA Rugby Magazine's Mark Keohane says banned Rassie Erasmus betrayed his Springboks" — the novelty gate flagged the latest edition and published anyway
 
 **Model ladder**
 
@@ -30,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Thu 19 Nov 2026, 14:21 AEDT — repeat leads: South Africa
 - Thu 12 Nov 2026, 13:56 AEDT — all clear
 - Wed 11 Nov 2026, 04:49 AEDT — repeat leads: Fiji
 - Tue 10 Nov 2026, 15:05 AEDT — status unknown: generate-digests.yml; repeat leads: Fiji
@@ -53,4 +54,3 @@ _All times Sydney time._
 - Mon 19 Oct 2026, 11:11 AEDT — repeat leads: Italy
 - Sun 18 Oct 2026, 11:00 AEDT — all clear
 - Sat 17 Oct 2026, 11:26 AEDT — repeat leads: Scotland
-- Thu 15 Oct 2026, 11:30 AEDT — all clear

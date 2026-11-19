@@ -1,21 +1,24 @@
 {
  "about": "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: routine findings land here instead of notifying anyone, and the Claude weekly review reads it. state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); `page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
- "state": "ok",
+ "state": "attention",
  "paging": [],
  "page": null,
  "overdue": [],
  "unknown": [],
  "heals": {},
  "signals": {
-  "repeatLeads": [],
+  "repeatLeads": [
+   {
+    "team": "South Africa",
+    "since": "2026-11-18",
+    "heading": "SA Rugby Magazine's Mark Keohane says banned Rassie Erasmus betrayed his Springboks",
+    "flagged": true
+   }
+  ],
   "ladderLastRung": null,
   "squadGaps": []
  },
  "history": [
-  {
-   "at": "2026-10-15T00:30:35.358Z",
-   "summary": "all clear"
-  },
   {
    "at": "2026-10-17T00:26:46.299Z",
    "summary": "repeat leads: Scotland"
@@ -107,6 +110,10 @@
   {
    "at": "2026-11-12T02:56:27.679Z",
    "summary": "all clear"
+  },
+  {
+   "at": "2026-11-19T03:21:37.959Z",
+   "summary": "repeat leads: South Africa"
   }
  ]
 }
