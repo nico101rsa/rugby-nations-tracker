@@ -133,151 +133,6 @@
       "decided": "2026-11-05"
     },
     {
-      "outlet": "Japan Today",
-      "host": "japantoday.com",
-      "homepage": "https://japantoday.com",
-      "teams": [
-        "Japan"
-      ],
-      "why": "An English-language Japanese news site with a sports section that may carry Japan men's rugby team news missing from today's pack.",
-      "proposed": "2026-10-30",
-      "status": "adopted",
-      "feedUrl": "https://japantoday.com/feed",
-      "probes": [
-        {
-          "date": "2026-10-30",
-          "feedUrl": "https://japantoday.com/feed",
-          "items": 30,
-          "hits": {
-            "England": 1,
-            "Italy": 1,
-            "Japan": 5
-          }
-        },
-        {
-          "date": "2026-10-31",
-          "feedUrl": "https://japantoday.com/feed",
-          "items": 30,
-          "hits": {
-            "France": 2,
-            "Japan": 2
-          }
-        },
-        {
-          "date": "2026-11-01",
-          "feedUrl": "https://japantoday.com/feed",
-          "items": 30,
-          "hits": {
-            "France": 2,
-            "Italy": 1,
-            "Scotland": 1,
-            "Japan": 8
-          }
-        },
-        {
-          "date": "2026-11-02",
-          "feedUrl": "https://japantoday.com/feed",
-          "items": 30,
-          "hits": {
-            "France": 1,
-            "Australia": 2,
-            "Japan": 7,
-            "South Africa": 1
-          }
-        },
-        {
-          "date": "2026-11-03",
-          "feedUrl": "https://japantoday.com/feed",
-          "items": 30,
-          "hits": {
-            "Australia": 1,
-            "Japan": 5,
-            "New Zealand": 1
-          }
-        },
-        {
-          "date": "2026-11-04",
-          "feedUrl": "https://japantoday.com/feed",
-          "items": 30,
-          "hits": {
-            "Ireland": 1,
-            "Australia": 1,
-            "Japan": 4
-          }
-        }
-      ],
-      "decided": "2026-10-30"
-    },
-    {
-      "outlet": "Buenos Aires Times",
-      "host": "batimes.com.ar",
-      "homepage": "https://www.batimes.com.ar",
-      "teams": [
-        "Argentina"
-      ],
-      "why": "Argentina's pack held only a schedule item as NEW, with Pumas squad news all stale; an English-language Argentine outlet might add current Pumas stories.",
-      "proposed": "2026-10-30",
-      "status": "adopted",
-      "feedUrl": "https://www.batimes.com.ar/feed",
-      "probes": [
-        {
-          "date": "2026-10-30",
-          "feedUrl": "https://www.batimes.com.ar/feed",
-          "items": 100,
-          "hits": {
-            "France": 1,
-            "Argentina": 40
-          }
-        },
-        {
-          "date": "2026-10-31",
-          "feedUrl": "https://www.batimes.com.ar/feed",
-          "items": 100,
-          "hits": {
-            "France": 1,
-            "Argentina": 38
-          }
-        },
-        {
-          "date": "2026-11-01",
-          "feedUrl": "https://www.batimes.com.ar/feed",
-          "items": 100,
-          "hits": {
-            "France": 1,
-            "Argentina": 39
-          }
-        },
-        {
-          "date": "2026-11-02",
-          "feedUrl": "https://www.batimes.com.ar/feed",
-          "items": 100,
-          "hits": {
-            "France": 1,
-            "Argentina": 40
-          }
-        },
-        {
-          "date": "2026-11-03",
-          "feedUrl": "https://www.batimes.com.ar/feed",
-          "items": 100,
-          "hits": {
-            "France": 1,
-            "Argentina": 39
-          }
-        },
-        {
-          "date": "2026-11-04",
-          "feedUrl": "https://www.batimes.com.ar/feed",
-          "items": 100,
-          "hits": {
-            "France": 1,
-            "Argentina": 37
-          }
-        }
-      ],
-      "decided": "2026-10-30"
-    },
-    {
       "outlet": "ABC News Sport (Australia)",
       "host": "abc.net.au",
       "homepage": "https://www.abc.net.au/news/sport",
@@ -1347,7 +1202,7 @@
       ],
       "why": "Fiji's pack held only Ireland-centric previews and no Fiji-first reporting; a Fijian news site with regular Flying Fijians coverage could fill the gap.",
       "proposed": "2026-11-15",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1373,8 +1228,13 @@
         {
           "date": "2026-11-20",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-21",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-21"
     },
     {
       "outlet": "Sky Sports Rugby Union",
@@ -1404,6 +1264,28 @@
         },
         {
           "date": "2026-11-20",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-21",
+          "error": "no feed found (8 tried)"
+        }
+      ]
+    },
+    {
+      "outlet": "Rugby Australia (official news)",
+      "host": "rugby.com.au",
+      "homepage": "https://www.rugby.com.au",
+      "teams": [
+        "Australia"
+      ],
+      "why": "Australia's edition had no Wallabies-side news and ran a Wales stadium story instead; the union's own news page would supply team and squad items.",
+      "proposed": "2026-11-21",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-11-21",
           "error": "no feed found (8 tried)"
         }
       ]

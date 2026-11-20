@@ -1,6 +1,6 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-20._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-21._
 
 ## Ready — carried stories about the team they were proposed for
 
@@ -8,10 +8,10 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 ## Being probed
 
-- **Fiji Village** (fijivillage.com) — proposed 2026-11-15 for Fiji: Fiji's pack held only Ireland-centric previews and no Fiji-first reporting; a Fijian news site with regular Flying Fijians coverage could fill the gap.
-  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **Sky Sports Rugby Union** (skysports.com) — proposed 2026-11-17 for England, Scotland, Wales: England and Scotland had no fresh own-team reported news today, and Sky's free rugby desk covers selection and injury news for both.
-  - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
+  - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
+- **Rugby Australia (official news)** (rugby.com.au) — proposed 2026-11-21 for Australia: Australia's edition had no Wallabies-side news and ran a Wales stadium story instead; the union's own news page would supply team and squad items.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
@@ -41,13 +41,11 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **RugbyPass** (rugbypass.com) — proposed 2026-11-10 for Scotland, Japan, Fiji: A dedicated global rugby news site that could supply own-team stories where Scotland, Japan and Fiji were starved today.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
+- **Fiji Village** (fijivillage.com) — proposed 2026-11-15 for Fiji: Fiji's pack held only Ireland-centric previews and no Fiji-first reporting; a Fijian news site with regular Flying Fijians coverage could fill the gap.
+  - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 
 ## Adopted
 
-- **Japan Today** (japantoday.com) — proposed 2026-10-30 for Japan: An English-language Japanese news site with a sports section that may carry Japan men's rugby team news missing from today's pack.
-  - feed: https://japantoday.com/feed; probes: 6; stories about tracked teams: Japan 31, France 5, Australia 4, Italy 2, England 1, Scotland 1, South Africa 1, New Zealand 1, Ireland 1
-- **Buenos Aires Times** (batimes.com.ar) — proposed 2026-10-30 for Argentina: Argentina's pack held only a schedule item as NEW, with Pumas squad news all stale; an English-language Argentine outlet might add current Pumas stories.
-  - feed: https://www.batimes.com.ar/feed; probes: 6; stories about tracked teams: Argentina 233, France 6
 - **Green and Gold Rugby** (greenandgoldrugby.com) — proposed 2026-10-31 for Australia: A dedicated Australian rugby news site that could fill the Wallabies gap beyond The Roar.
   - feed: https://www.greenandgoldrugby.com/feed; probes: 5; stories about tracked teams: Australia 23, Scotland 10
 - **Stuff (NZ) Sport** (stuff.co.nz) — proposed 2026-10-31 for New Zealand: NZ's only fresh union item today was a Kirwan podcast opinion piece, so a national news site's rugby desk could add squad and injury reporting.
