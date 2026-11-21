@@ -5,10 +5,10 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T14:00:42.162Z",
+  "updatedAt": "2026-11-21T14:12:45.853Z",
   "counts": {
-    "fixtures": 6,
-    "results": 30,
+    "fixtures": 5,
+    "results": 31,
     "teams": 12,
     "news": 15
   },
@@ -32,28 +32,6 @@
         "id": 465,
         "name": "New Zealand",
         "logo": "https://media.api-sports.io/rugby/teams/465.png",
-        "score": null
-      }
-    },
-    {
-      "id": 53244,
-      "date": "2026-11-21T14:10:00+00:00",
-      "week": "6",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 390,
-        "name": "Scotland",
-        "logo": "https://media.api-sports.io/rugby/teams/390.png",
-        "score": null
-      },
-      "away": {
-        "id": 463,
-        "name": "Japan",
-        "logo": "https://media.api-sports.io/rugby/teams/463.png",
         "score": null
       }
     },
@@ -806,6 +784,34 @@
         "logo": "https://media.api-sports.io/rugby/teams/461.png",
         "score": 12
       }
+    },
+    {
+      "id": 53244,
+      "date": "2026-11-21T14:10:00+00:00",
+      "week": "6",
+      "status": {
+        "short": "LIVE",
+        "long": "In Progress",
+        "live": true,
+        "via": "espn"
+      },
+      "home": {
+        "id": 390,
+        "name": "Scotland",
+        "logo": "https://media.api-sports.io/rugby/teams/390.png",
+        "score": 0
+      },
+      "away": {
+        "id": 463,
+        "name": "Japan",
+        "logo": "https://media.api-sports.io/rugby/teams/463.png",
+        "score": 0
+      },
+      "play": {
+        "minute": 3,
+        "at": "2026-11-21T14:12:45.852Z",
+        "events": []
+      }
     }
   ],
   "log": [
@@ -1016,6 +1022,12 @@
   ],
   "news": [
     {
+      "title": "How to watch Italy vs Fiji for FREE: Nations Championship 2026 live streams & TV channels",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQV3hUN01PZENicmw2TW42UXZWWGVBWUJaY3ZTbVlGMFFMSWNMeHBEMXRYcEZrSkxHdUtQZE9jVXBpMWVJMDBRbk5IX0piaE96dDM2TW1HMENZVGlBTkFmWDdtQ2VvQk9Lb0xvWndrbW85em04a2xMLUtKVzRNeml1WjF6Vm1qUXM4bG9mLTc4NDZncGNkUWx4TnB4NlU?oc=5",
+      "source": "TechRadar",
+      "published": "Sat, 21 Nov 2026 14:00:00 GMT"
+    },
+    {
       "title": "England v New Zealand: Nations Championship rugby union – live",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQamdqUlBENWZKREVfZGFmUmFJUUF5WGxncWxwaktFdFZtaHdFUDNlZnhKTzBYT3dwTlNuY0dxcDBjdnloeG5vTlBkbjh3OUZkMmQwZUl3d0VGWXU3cE5pM2xhbDVqUFF5dU5PRDc1dk1pcmptSkoyUmtzRDgwaDk5RzBFNG1RMzEtQUJxLWFXamtZWFBsWUhnanRpeU9zUGZpYmZpOVlnU0RvaWJ2a3o0?oc=5",
       "source": "The Guardian",
@@ -1032,12 +1044,6 @@
       "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPSnZHUHU3dFVWYTJxWWIwbkdwVDY0OFRSdXpza01JWHJKUnpMeVVFOC1mTmhlTU1wRXVqT2Y5TnY4VDR3UUxDN1UzUDVobi13V3gtU014bHdOU2dueExJYWtLNEUyaTg0cHc0M1hmNnEyVHUzX3JFVC1vNXB6QllyMVkzWW4temhSLVJMVHBaZTBrVkNiV2dLc1BEbS1JVm9oQkczc1lMcXJyY1ZQeE84Uw?oc=5",
       "source": "Read Rugby Union",
       "published": "Sat, 21 Nov 2026 12:18:53 GMT"
-    },
-    {
-      "title": "Live: Springboks v Ireland, Nations Championship rugby",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPSkRxSTZHeDI5MGlxZEw5c2hmSFczdFRVWnRLblNzVFAxVkl6U1BjTGREOGduTk5hX3BFTG85eVBsRFdVRXhPZHdUclJoaEJ5VldnUDR4bHkyUXcxNlFMenFEaGRNZTQwc0I3QktJU19nLU9zNHZYRUd1VEV4RlgwYW5CRDRDUUJwbldxWlN1MVdCZjJDTEkwWQ?oc=5",
-      "source": "RNZ",
-      "published": "Sat, 21 Nov 2026 11:04:20 GMT"
     },
     {
       "title": "Nations Championship schedule, results and finals weekend permutations",
@@ -1082,6 +1088,12 @@
       "published": "Fri, 20 Nov 2026 15:01:57 GMT"
     },
     {
+      "title": "Nations Championship, Round Six: Teams, kick-off times, global TV channels and more",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxNMERQUFVOZGMwRFByTjYxZWwtdkRSZjUwdVQ4bEJKN2xyUVR3SElQVk52aDdMdDRPc2dNUUpBcF9LRWNjaDh2SG9zdXhsQ2xTWmhEOU5VRWZoc0IzZzNzbHpld0szSkRWZHo5NkttZ2k1TnRNNWRubjRELW0wNTNzYmRwVkJEZkVjUVpiSnBWNDJFMWFXX1RfZU5ZNU5rLXoyTGdHT0Jncm1UakdQd0E?oc=5",
+      "source": "Planet Rugby",
+      "published": "Fri, 20 Nov 2026 09:31:35 GMT"
+    },
+    {
       "title": "World Rugby Nations Cup 2026 round six preview",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPRHQxRVd1Z0hTZWRqYmExT2FDaVBzNFNwc1ZKaGpkbXB3aEVDcUV4Vl9PS0I5REcxUGZsYzJxblh2QWFZVV8xQ3BhTVpZVEVqY0JhX3hvbVY3c1gwemgybF9RY00zOWVwN0RmdzJIRnp1azMtZ21YRlhsamVLLW5WczgtU3NPcFRCZ3I2RTl1T0c3eFhWRXU3Zk5fTmp4Z00?oc=5",
       "source": "World Rugby",
@@ -1098,12 +1110,6 @@
       "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOMVN6RDJUNUxNRXZEb0FjcVg3aGZKdDJNcU1LcWdOdTctWHFzd0xWOU1nTE8yWU9NdjlkOTlTMmFORHlpVDNpYXloTnNIdzF2QlF5cEVmcTBucm1XeHZUQWhWcHU3MWNaT21DS2pvUVF6VHE4bnJ2a2JIN2U2QkVTXzE0TlZRcGY5a19tNDFNVzJudElMa241RFRsUWw0RE5SUHk4djhiV21YalZDSVg1N1Nodm51TkJDQ2w4UmExaE1WdGFhYWVuU2p4a1A0a0poNnE5ZHl4WjZtbVAt?oc=5",
       "source": "RUGBY.com.au",
       "published": "Mon, 16 Nov 2026 08:00:00 GMT"
-    },
-    {
-      "title": "Scotland 15-12 Australia: Nations Championship rugby union – as it happened",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPX21BYW1NUVRxbWlSMU9yNEVjMFpzMFN6SDRPaGlfcVppZUsyRmFUZzVrYzVSYUZnUE1feFFMY1hYTUZrbmZ5R3ZhS01RTUZOVGRLYlQ3UnBjWFp6TGVUSm1WNzVBa0g2ekpfNXhsYkNhRHpQMFZ2RjI3a1BRYVE2b3Q0RHVPN0xpWXFfOGlIM0w0R2x2cXd5S3NPUXZmUjAyR2NEVGtnNVB2TmZSaUE?oc=5",
-      "source": "The Guardian",
-      "published": "Sun, 15 Nov 2026 17:42:00 GMT"
     }
   ],
   "triesPending": 0,
