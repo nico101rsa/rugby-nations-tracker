@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T17:26:44.159Z",
+  "updatedAt": "2026-11-21T17:29:45.903Z",
   "counts": {
     "fixtures": 2,
     "results": 34,
@@ -768,15 +768,16 @@
       "date": "2026-11-21T16:40:00+00:00",
       "week": "6",
       "status": {
-        "short": "1H",
-        "long": "First Half",
-        "live": true
+        "short": "HT",
+        "long": "Halftime",
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 388,
         "name": "Ireland",
         "logo": "https://media.api-sports.io/rugby/teams/388.png",
-        "score": 10
+        "score": 17
       },
       "away": {
         "id": 467,
@@ -785,8 +786,8 @@
         "score": 10
       },
       "play": {
-        "minute": 40,
-        "at": "2026-11-21T17:26:44.159Z",
+        "minute": null,
+        "at": "2026-11-21T17:29:45.903Z",
         "events": [
           {
             "min": 5,
@@ -812,6 +813,16 @@
             "min": 37,
             "team": "away",
             "type": "conversion"
+          },
+          {
+            "min": 40,
+            "team": "home",
+            "type": "try"
+          },
+          {
+            "min": 41,
+            "team": "home",
+            "type": "conversion"
           }
         ]
       }
@@ -821,9 +832,10 @@
       "date": "2026-11-21T16:40:00+00:00",
       "week": "6",
       "status": {
-        "short": "1H",
-        "long": "First Half",
-        "live": true
+        "short": "HT",
+        "long": "Halftime",
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 389,
@@ -838,8 +850,8 @@
         "score": 7
       },
       "play": {
-        "minute": 40,
-        "at": "2026-11-21T17:26:44.159Z",
+        "minute": null,
+        "at": "2026-11-21T17:29:45.903Z",
         "events": [
           {
             "min": 9,
