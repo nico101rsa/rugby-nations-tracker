@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-21T12:00:44.764Z",
+  "updatedAt": "2026-11-21T15:47:15.080Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 224,
+  "count": 225,
   "storylines": [
     {
       "id": "sam-prendergast-s-wrist-8qzjll",
@@ -3991,7 +3991,7 @@
         }
       ],
       "firstSeen": "2026-11-16",
-      "lastSeen": "2026-11-16",
+      "lastSeen": "2026-11-22",
       "uses": 0
     },
     {
@@ -4479,30 +4479,30 @@
     },
     {
       "id": "rassie-erasmus-s-six-1rhh3m8",
-      "subject": "South Africa's appointment of an interim head coach during Rassie Erasmus's six-match ban",
+      "subject": "SA Rugby's appointment of an interim Springbok head coach during Rassie Erasmus' six-match suspension",
       "teams": [
         467
       ],
       "resolution": "until the Springboks play their first match under the ban to reveal the modified coaching setup",
       "sources": [
         {
+          "title": "Rassie Erasmus hit with six-game ban for ‘match-fixing’ rant after France defeat",
+          "link": "https://www.theguardian.com/sport/2026/nov/17/rassie-erasmus-south-africa-rugby-union-match-officials",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Erasmus handed six-match suspension over comments",
+          "link": "https://www.rte.ie/sport/rugby/2026/1117/1599590-erasmus-handed-six-match-suspension-over-comments/",
+          "feedName": "RTÉ Sport Rugby"
+        },
+        {
           "title": "Rassie denied chance to defend himself",
           "link": "https://www.sarugbymag.co.za/rassie-denied-chance-to-defend-himself/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "No last-minute hearing for Erasmus, with SA Rugby yet to lodge request",
-          "link": "https://www.the42.ie/erasmus-hearing-ban-7232403-Nov2026/",
-          "feedName": "The42"
-        },
-        {
-          "title": "Rassie Erasmus banned: Six contenders and one outrageous shout to be interim Springboks boss",
-          "link": "https://www.planetrugby.com/news/rassie-erasmus-banned-six-contenders-and-one-outrageous-shout-to-be-interim-springboks-boss",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-11-18",
-      "lastSeen": "2026-11-21",
+      "lastSeen": "2026-11-22",
       "uses": 0
     },
     {
@@ -4967,6 +4967,11 @@
       "resolution": "until Six Nations and Sanzaar decide whether to take legal or copyright enforcement action against Rassie Erasmus",
       "sources": [
         {
+          "title": "Springboks boss faces legal threat and Jac Morgan makes gesture to ridiculed star",
+          "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/springboks-boss-faces-legal-threat-34939787",
+          "feedName": "WalesOnline"
+        },
+        {
           "title": "Rugby chiefs put Rassie Erasmus on copyright watch over hotel livestream plan",
           "link": "https://www.theguardian.com/sport/2026/nov/19/rassie-erasmus-ireland-south-africa-watchalong-copyright-rugby-union",
           "feedName": "Guardian Rugby Union"
@@ -4975,15 +4980,10 @@
           "title": "Rassie risks copyright showdown",
           "link": "https://www.sarugbymag.co.za/rassie-risks-copyright-showdown/",
           "feedName": "SA Rugby Magazine"
-        },
-        {
-          "title": "Divide and conquer - now maverick Erasmus plans online watchalong",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmvg28v20xy0o?at_medium=RSS&at_campaign=rss",
-          "feedName": "BBC Rugby Union"
         }
       ],
       "firstSeen": "2026-11-20",
-      "lastSeen": "2026-11-21",
+      "lastSeen": "2026-11-22",
       "uses": 0
     },
     {
@@ -5510,7 +5510,7 @@
         }
       ],
       "firstSeen": "2026-11-21",
-      "lastSeen": "2026-11-21",
+      "lastSeen": "2026-11-22",
       "uses": 0
     },
     {
@@ -5552,6 +5552,24 @@
       ],
       "firstSeen": "2026-11-21",
       "lastSeen": "2026-11-21",
+      "uses": 0
+    },
+    {
+      "id": "new-zealand-rugby-s-18wy1g4",
+      "subject": "New Zealand Rugby's formal examination of the All Blacks coaching setup following the autumn series",
+      "teams": [
+        465
+      ],
+      "resolution": "until New Zealand Rugby completes its review of the All Blacks coaching structure",
+      "sources": [
+        {
+          "title": "NZ Rugby boss admits 'serious examination' could be required after England game following All Blacks' 'hardest year'",
+          "link": "https://www.planetrugby.com/news/nz-rugby-boss-admits-serious-examination-could-be-required-after-england-game-following-all-blacks-hardest-year",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-22",
+      "lastSeen": "2026-11-22",
       "uses": 0
     }
   ]

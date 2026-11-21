@@ -2,51 +2,6 @@
   "notice": "Outlets proposed by the daily editorial review and probed by code. Nothing here is a news source until it is added to scripts/news-sources.mjs by hand.",
   "candidates": [
     {
-      "outlet": "Rugby365",
-      "host": "rugby365.com",
-      "homepage": "https://www.rugby365.com",
-      "teams": [
-        "France",
-        "Japan",
-        "Italy"
-      ],
-      "why": "An English-language men's rugby news site that regularly covers Tests and squads, which could fill the France and Japan gaps seen today.",
-      "proposed": "2026-10-25",
-      "status": "no-feed",
-      "feedUrl": null,
-      "probes": [
-        {
-          "date": "2026-10-25",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-26",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-27",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-28",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-29",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-30",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-31",
-          "error": "no feed found (8 tried)"
-        }
-      ],
-      "decided": "2026-10-31"
-    },
-    {
       "outlet": "RNZ Sport",
       "host": "rnz.co.nz",
       "homepage": "https://www.rnz.co.nz",
@@ -174,141 +129,6 @@
         }
       ],
       "decided": "2026-11-06"
-    },
-    {
-      "outlet": "Green and Gold Rugby",
-      "host": "greenandgoldrugby.com",
-      "homepage": "https://www.greenandgoldrugby.com",
-      "teams": [
-        "Australia"
-      ],
-      "why": "A dedicated Australian rugby news site that could fill the Wallabies gap beyond The Roar.",
-      "proposed": "2026-10-31",
-      "status": "adopted",
-      "feedUrl": "https://www.greenandgoldrugby.com/feed",
-      "probes": [
-        {
-          "date": "2026-10-31",
-          "feedUrl": "https://www.greenandgoldrugby.com/feed",
-          "items": 10,
-          "hits": {
-            "Scotland": 2,
-            "Australia": 5
-          }
-        },
-        {
-          "date": "2026-11-01",
-          "feedUrl": "https://www.greenandgoldrugby.com/feed",
-          "items": 10,
-          "hits": {
-            "Scotland": 2,
-            "Australia": 5
-          }
-        },
-        {
-          "date": "2026-11-02",
-          "feedUrl": "https://www.greenandgoldrugby.com/feed",
-          "items": 10,
-          "hits": {
-            "Scotland": 2,
-            "Australia": 5
-          }
-        },
-        {
-          "date": "2026-11-03",
-          "feedUrl": "https://www.greenandgoldrugby.com/feed",
-          "items": 10,
-          "hits": {
-            "Scotland": 2,
-            "Australia": 4
-          }
-        },
-        {
-          "date": "2026-11-04",
-          "feedUrl": "https://www.greenandgoldrugby.com/feed",
-          "items": 10,
-          "hits": {
-            "Scotland": 2,
-            "Australia": 4
-          }
-        }
-      ],
-      "decided": "2026-10-31"
-    },
-    {
-      "outlet": "Stuff (NZ) Sport",
-      "host": "stuff.co.nz",
-      "homepage": "https://www.stuff.co.nz",
-      "teams": [
-        "New Zealand"
-      ],
-      "why": "NZ's only fresh union item today was a Kirwan podcast opinion piece, so a national news site's rugby desk could add squad and injury reporting.",
-      "proposed": "2026-10-31",
-      "status": "adopted",
-      "feedUrl": "https://www.stuff.co.nz/feed",
-      "probes": [
-        {
-          "date": "2026-10-31",
-          "feedUrl": "https://www.stuff.co.nz/feed",
-          "items": 84,
-          "hits": {
-            "Fiji": 3,
-            "England": 1,
-            "France": 3,
-            "Scotland": 1,
-            "Australia": 9,
-            "Japan": 1,
-            "New Zealand": 8,
-            "South Africa": 1
-          }
-        },
-        {
-          "date": "2026-11-01",
-          "feedUrl": "https://www.stuff.co.nz/feed",
-          "items": 81,
-          "hits": {
-            "Fiji": 3,
-            "England": 1,
-            "France": 3,
-            "Scotland": 1,
-            "Australia": 8,
-            "Japan": 1,
-            "New Zealand": 7,
-            "South Africa": 1
-          }
-        },
-        {
-          "date": "2026-11-02",
-          "feedUrl": "https://www.stuff.co.nz/feed",
-          "items": 70,
-          "hits": {
-            "Fiji": 1,
-            "France": 1,
-            "Ireland": 1,
-            "Australia": 3,
-            "New Zealand": 4
-          }
-        },
-        {
-          "date": "2026-11-03",
-          "feedUrl": "https://www.stuff.co.nz/feed",
-          "items": 71,
-          "hits": {
-            "New Zealand": 8
-          }
-        },
-        {
-          "date": "2026-11-04",
-          "feedUrl": "https://www.stuff.co.nz/feed",
-          "items": 78,
-          "hits": {
-            "Scotland": 2,
-            "Australia": 2,
-            "New Zealand": 9
-          }
-        }
-      ],
-      "decided": "2026-10-31"
     },
     {
       "outlet": "England Rugby (RFU official news)",
@@ -1269,6 +1089,10 @@
         {
           "date": "2026-11-21",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-22",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1286,6 +1110,10 @@
       "probes": [
         {
           "date": "2026-11-21",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-22",
           "error": "no feed found (8 tried)"
         }
       ]

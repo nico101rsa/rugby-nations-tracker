@@ -1,6 +1,6 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-21._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-22._
 
 ## Ready — carried stories about the team they were proposed for
 
@@ -9,14 +9,12 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 ## Being probed
 
 - **Sky Sports Rugby Union** (skysports.com) — proposed 2026-11-17 for England, Scotland, Wales: England and Scotland had no fresh own-team reported news today, and Sky's free rugby desk covers selection and injury news for both.
-  - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
+  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **Rugby Australia (official news)** (rugby.com.au) — proposed 2026-11-21 for Australia: Australia's edition had no Wallabies-side news and ran a Wales stadium story instead; the union's own news page would supply team and squad items.
-  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
-- **Rugby365** (rugby365.com) — proposed 2026-10-25 for France, Japan, Italy: An English-language men's rugby news site that regularly covers Tests and squads, which could fill the France and Japan gaps seen today.
-  - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **RNZ Sport** (rnz.co.nz) — proposed 2026-10-26 for New Zealand: New Zealand's shortlist held only an old injury list and ex-player human-interest pieces, and the spine has no New Zealand outlet.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **Kyodo News (English)** (english.kyodonews.net) — proposed 2026-10-30 for Japan: Japan's pack held no men's XV news today, and Kyodo's English sports desk covers Brave Blossoms squads and results.
@@ -46,10 +44,6 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 ## Adopted
 
-- **Green and Gold Rugby** (greenandgoldrugby.com) — proposed 2026-10-31 for Australia: A dedicated Australian rugby news site that could fill the Wallabies gap beyond The Roar.
-  - feed: https://www.greenandgoldrugby.com/feed; probes: 5; stories about tracked teams: Australia 23, Scotland 10
-- **Stuff (NZ) Sport** (stuff.co.nz) — proposed 2026-10-31 for New Zealand: NZ's only fresh union item today was a Kirwan podcast opinion piece, so a national news site's rugby desk could add squad and injury reporting.
-  - feed: https://www.stuff.co.nz/feed; probes: 5; stories about tracked teams: New Zealand 36, Australia 22, Fiji 7, France 7, Scotland 4, England 2, Japan 2, South Africa 2, Ireland 1
 - **Rugbyrama** (rugbyrama.fr) — proposed 2026-11-03 for France: A French rugby-only news site that would add XV de France squad and injury news missing from France's thin pack.
   - feed: https://www.rugbyrama.fr/rss.xml; probes: 8; stories about tracked teams: France 224, South Africa 29, Argentina 13, New Zealand 10, Australia 5, Wales 3, Ireland 2, England 2
 - **Midi Olympique** (midi-olympique.fr) — proposed 2026-11-03 for France: The French rugby paper of record, covering Galthié's squad and selection daily.
