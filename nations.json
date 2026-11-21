@@ -5,12 +5,12 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T15:52:39.748Z",
+  "updatedAt": "2026-11-21T16:01:43.028Z",
   "counts": {
     "fixtures": 4,
     "results": 32,
     "teams": 12,
-    "news": 15
+    "news": 0
   },
   "fixtures": [
     {
@@ -768,87 +768,22 @@
       "date": "2026-11-21T14:10:00+00:00",
       "week": "6",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false,
+        "via": "espn"
       },
       "home": {
         "id": 386,
         "name": "England",
         "logo": "https://media.api-sports.io/rugby/teams/386.png",
-        "score": 34
+        "score": 37
       },
       "away": {
         "id": 465,
         "name": "New Zealand",
         "logo": "https://media.api-sports.io/rugby/teams/465.png",
         "score": 12
-      },
-      "play": {
-        "minute": null,
-        "at": "2026-11-21T15:49:37.968Z",
-        "events": [
-          {
-            "min": 5,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 32,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 32,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 36,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 37,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 39,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 43,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 52,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 52,
-            "team": "away",
-            "type": "conversion"
-          },
-          {
-            "min": 57,
-            "team": "home",
-            "type": "penalty"
-          },
-          {
-            "min": 63,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 64,
-            "team": "home",
-            "type": "conversion"
-          }
-        ]
       }
     },
     {
@@ -856,113 +791,22 @@
       "date": "2026-11-21T14:10:00+00:00",
       "week": "6",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true,
+        "short": "FT",
+        "long": "Finished",
+        "live": false,
         "via": "espn"
       },
       "home": {
         "id": 390,
         "name": "Scotland",
         "logo": "https://media.api-sports.io/rugby/teams/390.png",
-        "score": 60
+        "score": 67
       },
       "away": {
         "id": 463,
         "name": "Japan",
         "logo": "https://media.api-sports.io/rugby/teams/463.png",
         "score": 5
-      },
-      "play": {
-        "minute": null,
-        "at": "2026-11-21T15:52:39.748Z",
-        "events": [
-          {
-            "min": 6,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 13,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 14,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 20,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 31,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 32,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 40,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 48,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 53,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 56,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 57,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 62,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 63,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 67,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 68,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 69,
-            "team": "away",
-            "type": "yellow"
-          },
-          {
-            "min": 74,
-            "team": "home",
-            "type": "try"
-          }
-        ]
       }
     }
   ],
@@ -1172,98 +1016,7 @@
       "Pts": 0
     }
   ],
-  "news": [
-    {
-      "title": "England vs. New Zealand LIVE: Nations Championship updates, score and commentary",
-      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQMlJaUE1rTjRVdzNkemdOWU9NSno1bzI0a2hCU0FjeG1DS1d0XzIzX28yMm0zcWFfaGktQkRjNjJtSUYtNmdTS3FJNVV3clZ5ZVdibTR0Vnh0aTBQWVAxZkNtWHBPUkZiVmFsZjFpV2lHZEFNVW11ME8xeVAxVFdncW51RHlGTkRsenJRWk9CeTFVeTV2Qmp2SnlEdW16d2Fza2twR0hSaXlzcmRyLUQ4RFRnT3ZmdTZP?oc=5",
-      "source": "ESPN",
-      "published": "Sat, 21 Nov 2026 15:33:00 GMT"
-    },
-    {
-      "title": "How to watch Italy vs Fiji for FREE: Nations Championship 2026 live streams & TV channels",
-      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQV3hUN01PZENicmw2TW42UXZWWGVBWUJaY3ZTbVlGMFFMSWNMeHBEMXRYcEZrSkxHdUtQZE9jVXBpMWVJMDBRbk5IX0piaE96dDM2TW1HMENZVGlBTkFmWDdtQ2VvQk9Lb0xvWndrbW85em04a2xMLUtKVzRNeml1WjF6Vm1qUXM4bG9mLTc4NDZncGNkUWx4TnB4NlU?oc=5",
-      "source": "TechRadar",
-      "published": "Sat, 21 Nov 2026 14:00:00 GMT"
-    },
-    {
-      "title": "England v New Zealand: Nations Championship rugby union – live",
-      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQamdqUlBENWZKREVfZGFmUmFJUUF5WGxncWxwaktFdFZtaHdFUDNlZnhKTzBYT3dwTlNuY0dxcDBjdnloeG5vTlBkbjh3OUZkMmQwZUl3d0VGWXU3cE5pM2xhbDVqUFF5dU5PRDc1dk1pcmptSkoyUmtzRDgwaDk5RzBFNG1RMzEtQUJxLWFXamtZWFBsWUhnanRpeU9zUGZpYmZpOVlnU0RvaWJ2a3o0?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 21 Nov 2026 13:15:00 GMT"
-    },
-    {
-      "title": "England v All Blacks, LIVE BLOG: Coverage of the Nations Championship fixture",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQSEk2OGxvSmVrLW9tMFVITWVRc1MxVFlneVRINEZjdjBCb01aSW1pRlVVMWFsdzNiZnFxLVlFVmp5NW1hN3o2WGFMajFVeFJONjliRDVFazlIS0pTcE16dGx0S2JPRjNZaTlpSmtlOVNPc3BUaHpUOTVMbXBjc3VmaDB0OWtCQmdyaGVqLTA5eFBQV094QUdIOTM1Z2lsaF9kZG96Sy04Z2NiWjNQ?oc=5",
-      "source": "Planet Rugby",
-      "published": "Sat, 21 Nov 2026 13:11:46 GMT"
-    },
-    {
-      "title": "Wales v Wallabies: How to watch Test in Australia, teams, fixtures and more",
-      "link": "https://news.google.com/rss/articles/CBMi1gFBVV95cUxQNDJNYzdRZWdIYmttMC1WdDBMQWp6cUgwX1JOeHZhbTMteG1TOG14cWJTMmpSb2Rxb0o5dU8zdDY2Vk8weVpWa1BvNmJGU2cxQzZIeUZoRHI2X014NzRtMnc3MFJHbURrUlJ2b08wOUlPbXhfYndyeExNdWxzaVlzWUc1ak1jcklNRy0tdndkenNtek8xZVczQ2pRRjJfcTZLc0RBeTFUS2tQaG1mdVFkMU1yTi1iYVhFVFRjV2FvRXh4UUlxWjlhS0hyWGRTUlVUbTFwM1Fn?oc=5",
-      "source": "RUGBY.com.au",
-      "published": "Sat, 21 Nov 2026 09:49:59 GMT"
-    },
-    {
-      "title": "Scotland vs. Japan: Team news, how to watch Nations Championship rugby",
-      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNTkVCUUk5LTVpc1dEMlNQYmpVck03UkVuVEFKSTRpVVJfNzdxdTQ3WW5JTVIyY2RLU2xZRncteWFhcHNqNk9uNng5WmlmVnVyWFhxWnRsWUE2a0VBSVB4UUphUXFobWlQSVlJYmRXYWpLUmxVeno2NmZTMFo2djlfSXN1bw?oc=5",
-      "source": "ESPN",
-      "published": "Sat, 21 Nov 2026 08:16:00 GMT"
-    },
-    {
-      "title": "Siya Kolisi talks Jasper Wiese's absence and Dan Sheehan's No.8 move",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPRDdtakprVENwUm1VSmN4c2lFcnk0d0hVOEcyRTBrQ1lTR1UxYXR6Ym1GNHNsRmJFd0NvT3VEZjN4VmdNSHJibFlmSTB2Y2w2N041andkMWQ1ekRFOTNLR25JX2RsRHNSZ1M3T0pISlhyclFaRGxMN3E3VE95eXhfbFZXWXE1eFBZN2xHbHY2eXhwR2VHT3pNYzZWQmsyNGM?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Sat, 21 Nov 2026 01:50:34 GMT"
-    },
-    {
-      "title": "One fix to the Nations Championship could make it bigger than the World Cup",
-      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxObjhVVFlZdEtWRE40eUg2OS1PbG5peVlfVlhwXzRFb05HUnk1RmthV0JYUjAyc3FfSi1xZTQxZ05tQTBOSkxhUHdFaElHVk5nRjh0aVNJRVY5a1psYkVWQlpld2FqbndMYng3VTFZUGtkWlMtanhxRi04bG5lemhEWXJDRERtU1RSREJSRjFaTlFHSEtYUl9rbWhNWHlkZUI4aEhMVF9QS2RUa3hkQ0ZOR19hVms3WHRPR2UyWjJCZmMyeE5fb283YU5kUGJJWk0tVy1J?oc=5",
-      "source": "SMH.com.au",
-      "published": "Fri, 20 Nov 2026 22:30:00 GMT"
-    },
-    {
-      "title": "One fix to the Nations Championship could make it bigger than the World Cup",
-      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQSkhOdDNWMUtSUUk2R1c3dlFPUVFBVzlTZ3EwSUlwWkNDVkdQbW9QWGdUeGdCVkxHYUZuT09UaW1NYnl4LUpELWF5OEVOQWxVU1dNRUlIRjFnNU5BbFBMWkkxYnlHM3BRbGZGdlRGdmJvSGhmOG1uQTdhcC1YX28wTXpRenUzNko1TjNfd0lSNG1vY01wMnNQRFAxTGRrcjNZVHNITUNYVm9jRWxLQlcxMGVwdWZIckJNb3Y0NXltQ1JGTENSeFIwRko2cTNWd0ctMzNseVVhQQ?oc=5",
-      "source": "The Age",
-      "published": "Fri, 20 Nov 2026 22:30:00 GMT"
-    },
-    {
-      "title": "Nations Championship Round 6: What's Still at Stake?",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOYURlSlVQZXlCb0pJb1BkcVFTdnNlb2d2ejl3cFhWZWQwMG5WR2hyQkhKU0EyZWJ5Q1JwN3hRaEVhejNjVERxTjJHR2RJTFdQcDRRYnhDNjZqOFdETW5URm5SX3BJcnJ5S2NLS3dKeWluYUxCb3lwWll1SHFpLS1uZnU3RThlYWd4eTBYRlhnM1RzRmNDZUlwQg?oc=5",
-      "source": "Six Nations",
-      "published": "Fri, 20 Nov 2026 21:44:03 GMT"
-    },
-    {
-      "title": "Why struggling Wallabies have benched their best player",
-      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOYjhPTlRkSy05ZDdCR1lpd2Rpel9TQ0NZXzQ5QTFxNjQyM1pUNFhJRml2dTRCY2syd1VlUzB5NGx6RmkyNlNyNGZEaFZaTFlOdVo3SGdiSFpweEVFSHNNTmhBMU4wSEcxOXl3R2RkV1QxUzgySFZFdkgxWms1V3ZoY0UzUjAwVVgwaEpobFQxVzlOaXlYYkJQUUlKc08zTHhGZWhKTXBBejhob0hvT19VTHRUQVkyY1p1dW5JQUZ1UjRQVDFxeFRUZ1hMcDV3ZmYzRHpZ?oc=5",
-      "source": "Nine.com.au",
-      "published": "Fri, 20 Nov 2026 06:26:28 GMT"
-    },
-    {
-      "title": "World Rugby Nations Cup 2026 round six preview",
-      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPRHQxRVd1Z0hTZWRqYmExT2FDaVBzNFNwc1ZKaGpkbXB3aEVDcUV4Vl9PS0I5REcxUGZsYzJxblh2QWFZVV8xQ3BhTVpZVEVqY0JhX3hvbVY3c1gwemgybF9RY00zOWVwN0RmdzJIRnp1azMtZ21YRlhsamVLLW5WczgtU3NPcFRCZ3I2RTl1T0c3eFhWRXU3Zk5fTmp4Z00?oc=5",
-      "source": "World Rugby",
-      "published": "Thu, 19 Nov 2026 20:20:17 GMT"
-    },
-    {
-      "title": "Wales v Australia: Steve Tandy considers changes for Nations Championship game in Caradiff",
-      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE5OWjFZZGZ0QjZvcms5SFQ4UlFWZkFnUnpJT0JEeDQtaC14SVRYdlBzTjB5cnFFZmZEc2JXdlUzd20tQUwzTXFTWUM1dXJMbTA3djVOMWVfQzFJYmdndTA3eHdsc00xUkNzb0NaTQ?oc=5",
-      "source": "BBC",
-      "published": "Wed, 18 Nov 2026 18:01:17 GMT"
-    },
-    {
-      "title": "Nations Championship: The equation for the final round of fixtures ahead of Finals Weekend",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOV1VqMkQwV09Lb05pM0VZTkRYV3dGSm16Skk1NXJRWjVRNTZJMzZ0cTdKTWhtR0Q3bmJUYjQ4VC0tS3lVbUhvVHc0SlRoLVZaUDJlbk94NGxXUFY5OUE4Q3p2bDZLSHZERGxFNkNKTGpUOTNtZy1ER0poWmN0OVM2SExMejR6U1JkVEVVM1RrTDRFQk41d01Ydmk3eTgzSnB2ZTMzNmN3Zw?oc=5",
-      "source": "RUGBY.com.au",
-      "published": "Tue, 17 Nov 2026 03:02:17 GMT"
-    },
-    {
-      "title": "Scotland vs Australia LIVE: Nations Championship 2026 - Build-up, team news, scores & live text updates",
-      "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE03R201Qm56Ml8yWW8wby02Q3hWdzhPankzVnl6ZW1YS3ZuYkJ5aXJLY0pXbFhseHBZU2FFc0pBSHZpYmY2RHV6dW1vc0VfVG01ZTdnc3c4THJMM2JCdkthRGVmZWdxcW8?oc=5",
-      "source": "BBC",
-      "published": "Sun, 15 Nov 2026 19:45:04 GMT"
-    }
-  ],
+  "news": [],
   "triesPending": 0,
   "digests": {
     "28": {
