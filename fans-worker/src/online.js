@@ -40,6 +40,9 @@ export const MAX_ONLINE = 20_000;
 export const COUNT_TTL_MS = 20_000;
 // A mobile carrier puts many phones behind one address, so this is looser
 // than the pulse's twelve votes a minute.
+// Old rows are cleared at most this often. Clearing on every ping read the
+// whole table each time; the count never includes a stale row anyway.
+export const PURGE_EVERY_MS = 60_000;
 export const PING_RATE = { votes: 60, perMs: 60_000 };
 
 export function checkPing(input) {
@@ -57,16 +60,22 @@ export function init(sql) {
   sql(`CREATE TABLE IF NOT EXISTS online (
     id TEXT NOT NULL PRIMARY KEY, team TEXT NOT NULL, seen INTEGER NOT NULL
   ) WITHOUT ROWID`);
+  // The clear-out and the count both ask by time. Without this each read
+  // every row, on every ping.
+  sql(`CREATE INDEX IF NOT EXISTS online_seen ON online (seen, team)`);
 }
 
-// Rows older than the window are deleted before anything is counted or
-// added, so nothing outlives its hour. True when the ping was taken.
-export function notePing(sql, { id, team }, now = Date.now()) {
-  sql(`DELETE FROM online WHERE seen < ?`, now - ONLINE_WINDOW_MS);
+// Rows older than the window are deleted, so nothing outlives its hour (by
+// more than PURGE_EVERY_MS, when the caller spaces the clear-outs with
+// `purge: false`). True when the ping was taken. `total` is a count the
+// caller already holds (the remembered one); without it the ceiling is
+// checked against the table itself.
+export function notePing(sql, { id, team }, now = Date.now(), { purge = true, total } = {}) {
+  if (purge) sql(`DELETE FROM online WHERE seen < ?`, now - ONLINE_WINDOW_MS);
   const known = sql(`SELECT COUNT(*) AS n FROM online WHERE id = ?`, id)[0];
   if (!Number(known?.n)) {
-    const rows = sql(`SELECT COUNT(*) AS n FROM online`)[0];
-    if (Number(rows?.n) >= MAX_ONLINE) return false;
+    const rows = total ?? Number(sql(`SELECT COUNT(*) AS n FROM online`)[0]?.n);
+    if (rows >= MAX_ONLINE) return false;
   }
   sql(
     `INSERT INTO online (id, team, seen) VALUES (?, ?, ?)
@@ -104,13 +113,23 @@ export function makeCounter(ttlMs = COUNT_TTL_MS) {
   };
 }
 
+// True at most once per interval: when the next clear-out is due.
+export function makeEvery(everyMs = PURGE_EVERY_MS) {
+  let at = -Infinity;
+  return (now = Date.now()) => {
+    if (now - at < everyMs && now >= at) return false;
+    at = now;
+    return true;
+  };
+}
+
 // ---- the routes ----------------------------------------------------------------
 
 // POST /online  -> note this phone; answers with the count
 // GET  /online  -> the count alone
 const MAX_BODY = 200;
 
-export function handle({ method, path, body = "", ip = "", now = Date.now() }, sql, { allow, count }) {
+export function handle({ method, path, body = "", ip = "", now = Date.now() }, sql, { allow, count, purgeDue = () => true }) {
   if (path !== "/online") return { status: 404, body: { error: "not found" } };
   const answer = () => ({ status: 200, body: { asOf: new Date(now).toISOString(), windowMinutes: ONLINE_WINDOW_MS / 60_000, ...count(sql, now) } });
   if (method === "GET") return answer();
@@ -126,6 +145,8 @@ export function handle({ method, path, body = "", ip = "", now = Date.now() }, s
   const checked = checkPing(input);
   if (!checked.ok) return { status: 400, body: { error: checked.error } };
   if (!allow(ip, now)) return { status: 429, body: { error: "slow down" } };
-  if (!notePing(sql, checked.ping, now)) return { status: 503, body: { error: "full" } };
+  // The remembered count stands in for the table's size: up to COUNT_TTL_MS
+  // old, which is close enough for a ceiling that exists to stop a flood.
+  if (!notePing(sql, checked.ping, now, { purge: purgeDue(now), total: count(sql, now).total })) return { status: 503, body: { error: "full" } };
   return answer();
 }
