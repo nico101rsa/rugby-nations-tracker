@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T16:41:15.463Z",
+  "updatedAt": "2026-11-21T16:44:17.349Z",
   "counts": {
-    "fixtures": 3,
-    "results": 33,
+    "fixtures": 2,
+    "results": 34,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53246,
-      "date": "2026-11-21T16:40:00+00:00",
-      "week": "6",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 389,
-        "name": "Italy",
-        "logo": "https://media.api-sports.io/rugby/teams/389.png",
-        "score": null
-      },
-      "away": {
-        "id": 28,
-        "name": "Fiji",
-        "logo": "https://media.api-sports.io/rugby/teams/28.png",
-        "score": null
-      }
-    },
     {
       "id": 53247,
       "date": "2026-11-21T20:10:00+00:00",
@@ -810,6 +788,34 @@
       "play": {
         "minute": 2,
         "at": "2026-11-21T16:41:15.463Z",
+        "events": []
+      }
+    },
+    {
+      "id": 53246,
+      "date": "2026-11-21T16:40:00+00:00",
+      "week": "6",
+      "status": {
+        "short": "LIVE",
+        "long": "In Progress",
+        "live": true,
+        "via": "espn"
+      },
+      "home": {
+        "id": 389,
+        "name": "Italy",
+        "logo": "https://media.api-sports.io/rugby/teams/389.png",
+        "score": 0
+      },
+      "away": {
+        "id": 28,
+        "name": "Fiji",
+        "logo": "https://media.api-sports.io/rugby/teams/28.png",
+        "score": 0
+      },
+      "play": {
+        "minute": 5,
+        "at": "2026-11-21T16:44:17.349Z",
         "events": []
       }
     }
