@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T16:56:25.919Z",
+  "updatedAt": "2026-11-21T17:02:29.242Z",
   "counts": {
     "fixtures": 2,
     "results": 34,
@@ -776,7 +776,7 @@
         "id": 388,
         "name": "Ireland",
         "logo": "https://media.api-sports.io/rugby/teams/388.png",
-        "score": 5
+        "score": 10
       },
       "away": {
         "id": 467,
@@ -785,8 +785,8 @@
         "score": 3
       },
       "play": {
-        "minute": 17,
-        "at": "2026-11-21T16:56:25.919Z",
+        "minute": 23,
+        "at": "2026-11-21T17:02:29.241Z",
         "events": [
           {
             "min": 5,
@@ -795,6 +795,11 @@
           },
           {
             "min": 8,
+            "team": "home",
+            "type": "try"
+          },
+          {
+            "min": 19,
             "team": "home",
             "type": "try"
           }
@@ -808,8 +813,7 @@
       "status": {
         "short": "1H",
         "long": "First Half",
-        "live": true,
-        "via": "espn"
+        "live": true
       },
       "home": {
         "id": 389,
@@ -821,11 +825,11 @@
         "id": 28,
         "name": "Fiji",
         "logo": "https://media.api-sports.io/rugby/teams/28.png",
-        "score": 0
+        "score": 7
       },
       "play": {
-        "minute": 17,
-        "at": "2026-11-21T16:56:25.919Z",
+        "minute": 23,
+        "at": "2026-11-21T17:02:29.241Z",
         "events": [
           {
             "min": 9,
@@ -841,6 +845,16 @@
             "min": 14,
             "team": "home",
             "type": "penalty"
+          },
+          {
+            "min": 18,
+            "team": "away",
+            "type": "try"
+          },
+          {
+            "min": 19,
+            "team": "away",
+            "type": "conversion"
           }
         ]
       }
@@ -1054,28 +1068,22 @@
   ],
   "news": [
     {
-      "title": "England v New Zealand live: score, updates and analysis",
-      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOYUJoVE1aYUhyaFZPWlVZUW9hcXZMUG9oNU5uOHZmVkNYbEhBTXNGUm55S3Q1NEdDWGpjQ1RHMXJEbGN3OFlRcmV5R05QYTBNXzBmWEx3VWFTa1hiQmR3NUgzWjMzWlFmMnRnVnliMlhyZk1xRlhldklPbHRFQVRpM1BDUFYydldjMTEwWThOdzRxVWlXVnRGcGFyX0RkQVR2a0JoYUZCb1M4LVFiS3g1c0FYOHRzNDU0UXJWTmhleGNhN0VkQllESnpQbG9OOFpLQ1Ew?oc=5",
-      "source": "The Times",
-      "published": "Sat, 21 Nov 2026 16:41:41 GMT"
+      "title": "Slade helps sparkling England power to record victory as All Blacks wilt again",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNX0ExS0pQd0F6dzhwMGlFZVJLdExIbUlIUTlMN2M2SHhjazhVNUJsWVJNdHN0NmdfXzNDdDZWOE9WQU5OZWFRaGVtTVpVaGdBUzBxUXhOVWVOaXJpOVVxU3dRQVYxSTd2a2dIT0llY1FyOWxMbXFZcFRVQ1YzMk81Yk5SLWZVWVI5eFZpdkRfazJRMmZoSy1HcGk3bW1KNG82a083dGhaUlIwaFVPMFVqNg?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 21 Nov 2026 16:51:00 GMT"
+    },
+    {
+      "title": "Graham and McConnell hat-tricks fire 11-try Scotland to crushing win against Japan",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNWGl0UExOY2ZiV2xwQ3pLZlQtUHdvYmhsRjR4Q0Ricjc4cktWcUNBeUVERmVHN0xxaVkxUUZvMkE1ZkE3MUdlTUthM0c1Xy1pQ0t2LTlweUxnVlF1LVNuU05mSklxTDI1d0dFN0F0bDFWd3o1d2xJazR3bDRjdlBLMmhEMzU2VWtTN09mQ3dDd3R3V2JwMW0yajRR?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 21 Nov 2026 16:32:00 GMT"
     },
     {
       "title": "England 37-12 New Zealand: Hosts storm to historic Nations Championship win over All Blacks – as it happened",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQamdqUlBENWZKREVfZGFmUmFJUUF5WGxncWxwaktFdFZtaHdFUDNlZnhKTzBYT3dwTlNuY0dxcDBjdnloeG5vTlBkbjh3OUZkMmQwZUl3d0VGWXU3cE5pM2xhbDVqUFF5dU5PRDc1dk1pcmptSkoyUmtzRDgwaDk5RzBFNG1RMzEtQUJxLWFXamtZWFBsWUhnanRpeU9zUGZpYmZpOVlnU0RvaWJ2a3o0?oc=5",
       "source": "The Guardian",
       "published": "Sat, 21 Nov 2026 16:30:44 GMT"
-    },
-    {
-      "title": "Slade helps sparkling England power to record victory as All Blacks wilt again",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNX0ExS0pQd0F6dzhwMGlFZVJLdExIbUlIUTlMN2M2SHhjazhVNUJsWVJNdHN0NmdfXzNDdDZWOE9WQU5OZWFRaGVtTVpVaGdBUzBxUXhOVWVOaXJpOVVxU3dRQVYxSTd2a2dIT0llY1FyOWxMbXFZcFRVQ1YzMk81Yk5SLWZVWVI5eFZpdkRfazJRMmZoSy1HcGk3bW1KNG82a083dGhaUlIwaFVPMFVqNg?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 21 Nov 2026 16:29:00 GMT"
-    },
-    {
-      "title": "England expose All Blacks' weaknesses in Twickenham masterclass",
-      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxQNHNCWWRlb25vNXZiaFRENHRqX2VtMFhrVkNRUTd4Yms3TUJNR2JoZVNLeVE4ZkNJZEhleGVRMHJPZkE1M1pYRjFlY1pmMzNXS3lLZUxSUG1ycUx3VjI3SjNHdmhOTDBmY1BULUU5cU1ST3FLNkxkaFZxRnFoakQ2Z1ozSGJMT18yVGlKak9pWXQ2V21nTlBNMTdKQ09Ib25BLUpWcA?oc=5",
-      "source": "Rugby365",
-      "published": "Sat, 21 Nov 2026 16:10:50 GMT"
     },
     {
       "title": "All Blacks player ratings vs England | Nations Championship 2026",
@@ -1090,10 +1098,16 @@
       "published": "Sat, 21 Nov 2026 16:04:00 GMT"
     },
     {
-      "title": "England player ratings vs All Blacks | Nations Championship 2026",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQdlZkU2JBQ1JKZHVaRmVNbXFhSGNTVUE2dm5lRV9pZXB6cW5DY3phSlZ4OVJpMmcwTGEtWmdORTcxMEcxVk9OUEE1QXB6NU05OGlVc3E3a1A5eFJBSGtPY1BQb091elZsM1pwWnc4TnBzUThHWk95SnFkS084c0E4cTI4RzNwZzByVG1rZlNDTHZ2MHFfcVFxNFRB?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Sat, 21 Nov 2026 16:01:03 GMT"
+      "title": "How to watch Italy vs Fiji for FREE: Nations Championship 2026 live streams & TV channels",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQV3hUN01PZENicmw2TW42UXZWWGVBWUJaY3ZTbVlGMFFMSWNMeHBEMXRYcEZrSkxHdUtQZE9jVXBpMWVJMDBRbk5IX0piaE96dDM2TW1HMENZVGlBTkFmWDdtQ2VvQk9Lb0xvWndrbW85em04a2xMLUtKVzRNeml1WjF6Vm1qUXM4bG9mLTc4NDZncGNkUWx4TnB4NlU?oc=5",
+      "source": "TechRadar",
+      "published": "Sat, 21 Nov 2026 14:00:00 GMT"
+    },
+    {
+      "title": "Scotland vs. Japan Rugby Live Updates: Nations Championship Round 6 Action",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVFdVLTR1ek5EQTVmQW11RUU1WTZUQjRNRXlRRWs5SVRidF9abk9xeGc2ZzFZWGN3ZXpqbHJfc1h1WFZWS1hxVzlIeXNoSE1zek81REhJSTNpMzBoelRSdHlIMlduY3FBenhlMndLU3NFazJOQjF4NFBBRzBQeWZzc01RMA?oc=5",
+      "source": "Yahoo Sports",
+      "published": "Sat, 21 Nov 2026 13:53:00 GMT"
     },
     {
       "title": "England v All Blacks, LIVE BLOG: Coverage of the Nations Championship fixture",
@@ -1102,16 +1116,10 @@
       "published": "Sat, 21 Nov 2026 12:58:18 GMT"
     },
     {
-      "title": "Nations Championship schedule, results and finals weekend permutations",
-      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQSy16Vk1ibDhiLVF5RlUxUTdfWFBxaERKWXNjNUxqV3k0Qy1xRTZjNDkyM2tkd0NQNnJLelpTeDZPc1pLTlJuU0p2WV9LZGNQYTljMGJSS29DbFZ3bXBfU3hlQ1VyY0xZenVKZHFQcmdLNk4zMklXMnI3NzYta01iRmV1SkhTU0JfME9KWGVLcW9vLUE0cDB2eVgwcDhia0lWSmlxdGdNdkg5MTFyQkFVakNVeWVhZkszdlRYajRkUFlSQmdiWFQ2R083Z2drX0pSRE9MRw?oc=5",
-      "source": "The Independent",
-      "published": "Sat, 21 Nov 2026 10:17:00 GMT"
-    },
-    {
-      "title": "Scotland vs. Japan: Team news, how to watch Nations Championship rugby",
-      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNTkVCUUk5LTVpc1dEMlNQYmpVck03UkVuVEFKSTRpVVJfNzdxdTQ3WW5JTVIyY2RLU2xZRncteWFhcHNqNk9uNng5WmlmVnVyWFhxWnRsWUE2a0VBSVB4UUphUXFobWlQSVlJYmRXYWpLUmxVeno2NmZTMFo2djlfSXN1bw?oc=5",
-      "source": "ESPN",
-      "published": "Sat, 21 Nov 2026 08:16:00 GMT"
+      "title": "Siya Kolisi talks Jasper Wiese's absence and Dan Sheehan's No.8 move",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPRDdtakprVENwUm1VSmN4c2lFcnk0d0hVOEcyRTBrQ1lTR1UxYXR6Ym1GNHNsRmJFd0NvT3VEZjN4VmdNSHJibFlmSTB2Y2w2N041andkMWQ1ekRFOTNLR25JX2RsRHNSZ1M3T0pISlhyclFaRGxMN3E3VE95eXhfbFZXWXE1eFBZN2xHbHY2eXhwR2VHT3pNYzZWQmsyNGM?oc=5",
+      "source": "Rugbypass.com",
+      "published": "Sat, 21 Nov 2026 01:50:34 GMT"
     },
     {
       "title": "One fix to the Nations Championship could make it bigger than the World Cup",
@@ -1120,28 +1128,34 @@
       "published": "Fri, 20 Nov 2026 22:30:00 GMT"
     },
     {
-      "title": "Nations Championship Round 6: What's Still at Stake?",
-      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOYURlSlVQZXlCb0pJb1BkcVFTdnNlb2d2ejl3cFhWZWQwMG5WR2hyQkhKU0EyZWJ5Q1JwN3hRaEVhejNjVERxTjJHR2RJTFdQcDRRYnhDNjZqOFdETW5URm5SX3BJcnJ5S2NLS3dKeWluYUxCb3lwWll1SHFpLS1uZnU3RThlYWd4eTBYRlhnM1RzRmNDZUlwQg?oc=5",
-      "source": "Six Nations",
-      "published": "Fri, 20 Nov 2026 21:44:03 GMT"
-    },
-    {
       "title": "England and New Zealand collide with final spots and reputations on the line",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQUFNnUzJuVnIzV21BV2xDN0NLR2lfMmhZcmhJYjlfWmd0XzNjTHFBZWNwU2p4WDZKTWk1UzhFNjNkbDRJUjhnRV9yR3ptbUw4MkhPek9uREpqa04yWllqNUNEV3lqODdua1ZLUkJkSDRNa21EODhTQ1VVTU5Fc0pHMlFMTTA3eExIai02QmZJSVBVbFN0ZHpYdmVfY2NIcnc?oc=5",
       "source": "The Guardian",
       "published": "Fri, 20 Nov 2026 20:00:00 GMT"
     },
     {
-      "title": "England squad to face New Zealand in Nations Championship",
-      "link": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQOFBXc3g1bnplcGRYT1gtLUY5bjlsQlZ5ZVp1OUx1S1JKWmJOZEtwVTVHWEZSME5OVmI1MDAtcTNCb3lmWUN6VC1wZnRmejRoTkdxbVdaemNnX2Nic0NwcUJmZGhOUG1mQTlyd1AwMThuczIxRkx4WElYYXIyQTZocWU3ZWJHSFBjUEExU0tkb19WcEc4MThHa1MxTTFCeFd6RXcxQmlsc1VwU2xBTmtLLWQ2UGxCbXItNUkwZUUtM09jNk4zc1liQnUxQnM1WWtGd3IyRFhTS2NQOEtrZFYyQ1RDN2ZlSWU1SnRodmlKTzBTc2V4bzRtZHNhcHpPZ3ZBRmNHTXJJOA?oc=5",
-      "source": "Sky Sports",
-      "published": "Thu, 19 Nov 2026 14:06:13 GMT"
+      "title": "Little-known Waratahs coach is now a national hero",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxPOWpZVi1oQUpyX2cwd0lWdnUzQTVjdDBOTDgydnJyRzdLaGZNc3owRVh3N0FOWE9zSkh1WU1lQ0hSWG1wTjA5YWVNMm1zRmNXMWlmeGlzUFZwQlRjRk9SQ3RTRF95Ui1GaG1QcDFRQ0U0MmlPdzBVdFZtUUJhRWhWdTVHX3RQLTEzbkNtX3pjenppenREdWhfWTRqcUtZUmNodnFwaGpzcFdLa0M0alUyLVpfRUNKVlhJc1pydHNoaVBkN0dnMjJj?oc=5",
+      "source": "Nine.com.au",
+      "published": "Wed, 18 Nov 2026 05:26:07 GMT"
     },
     {
-      "title": "Nations Championship: The equation for the final round of fixtures ahead of Finals Weekend",
-      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxOV1VqMkQwV09Lb05pM0VZTkRYV3dGSm16Skk1NXJRWjVRNTZJMzZ0cTdKTWhtR0Q3bmJUYjQ4VC0tS3lVbUhvVHc0SlRoLVZaUDJlbk94NGxXUFY5OUE4Q3p2bDZLSHZERGxFNkNKTGpUOTNtZy1ER0poWmN0OVM2SExMejR6U1JkVEVVM1RrTDRFQk41d01Ydmk3eTgzSnB2ZTMzNmN3Zw?oc=5",
+      "title": "2026 Nations Championship Fixtures",
+      "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOMVN6RDJUNUxNRXZEb0FjcVg3aGZKdDJNcU1LcWdOdTctWHFzd0xWOU1nTE8yWU9NdjlkOTlTMmFORHlpVDNpYXloTnNIdzF2QlF5cEVmcTBucm1XeHZUQWhWcHU3MWNaT21DS2pvUVF6VHE4bnJ2a2JIN2U2QkVTXzE0TlZRcGY5a19tNDFNVzJudElMa241RFRsUWw0RE5SUHk4djhiV21YalZDSVg1N1Nodm51TkJDQ2w4UmExaE1WdGFhYWVuU2p4a1A0a0poNnE5ZHl4WjZtbVAt?oc=5",
       "source": "RUGBY.com.au",
-      "published": "Tue, 17 Nov 2026 03:02:17 GMT"
+      "published": "Mon, 16 Nov 2026 08:00:00 GMT"
+    },
+    {
+      "title": "Scotland 15-12 Australia: Nations Championship rugby union – as it happened",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPX21BYW1NUVRxbWlSMU9yNEVjMFpzMFN6SDRPaGlfcVppZUsyRmFUZzVrYzVSYUZnUE1feFFMY1hYTUZrbmZ5R3ZhS01RTUZOVGRLYlQ3UnBjWFp6TGVUSm1WNzVBa0g2ekpfNXhsYkNhRHpQMFZ2RjI3a1BRYVE2b3Q0RHVPN0xpWXFfOGlIM0w0R2x2cXd5S3NPUXZmUjAyR2NEVGtnNVB2TmZSaUE?oc=5",
+      "source": "The Guardian",
+      "published": "Sun, 15 Nov 2026 17:42:00 GMT"
+    },
+    {
+      "title": "England 78-15 Japan: Nations Championship rugby union – as it happened",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQM1lXVXhHd24zN1JVSDdiNTJCRGpOUng2dmI2YTlQV1F1RlRLNlhZY3FCUW9PQmMtanlHVmI5ajRHbklKN1NWRzhWaDYxbUxfSWRkdFFTLVBhaWVGTTNqdHI4SGQ5Y2tQWTlGQXJXYnRDQVE4bkhMU29OUUFYX2FLdFlScVN4dVJ6WG1sTTR4LU4zWXV4YlpITEZ0d1JkUjZHUE0tUGxrOA?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 14 Nov 2026 15:30:00 GMT"
     }
   ],
   "triesPending": 0,
