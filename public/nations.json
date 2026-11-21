@@ -5,12 +5,12 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T16:01:43.028Z",
+  "updatedAt": "2026-11-21T16:14:06.249Z",
   "counts": {
     "fixtures": 4,
     "results": 32,
     "teams": 12,
-    "news": 0
+    "news": 15
   },
   "fixtures": [
     {
@@ -770,8 +770,7 @@
       "status": {
         "short": "FT",
         "long": "Finished",
-        "live": false,
-        "via": "espn"
+        "live": false
       },
       "home": {
         "id": 386,
@@ -793,8 +792,7 @@
       "status": {
         "short": "FT",
         "long": "Finished",
-        "live": false,
-        "via": "espn"
+        "live": false
       },
       "home": {
         "id": 390,
@@ -813,23 +811,40 @@
   "log": [
     {
       "rank": 1,
+      "id": 386,
+      "team": "England",
+      "logo": "https://media.api-sports.io/rugby/teams/386.png",
+      "P": 6,
+      "W": 5,
+      "D": 0,
+      "L": 1,
+      "PF": 285,
+      "PA": 126,
+      "PD": 159,
+      "TF": 44,
+      "TA": 18,
+      "BP": 5,
+      "Pts": 25
+    },
+    {
+      "rank": 2,
       "id": 465,
       "team": "New Zealand",
       "logo": "https://media.api-sports.io/rugby/teams/465.png",
-      "P": 5,
+      "P": 6,
       "W": 4,
       "D": 0,
-      "L": 1,
-      "PF": 192,
-      "PA": 126,
-      "PD": 66,
-      "TF": 29,
-      "TA": 17,
+      "L": 2,
+      "PF": 204,
+      "PA": 163,
+      "PD": 41,
+      "TF": 31,
+      "TA": 22,
       "BP": 6,
       "Pts": 22
     },
     {
-      "rank": 2,
+      "rank": 3,
       "id": 467,
       "team": "South Africa",
       "logo": "https://media.api-sports.io/rugby/teams/467.png",
@@ -846,7 +861,7 @@
       "Pts": 21
     },
     {
-      "rank": 3,
+      "rank": 4,
       "id": 387,
       "team": "France",
       "logo": "https://media.api-sports.io/rugby/teams/387.png",
@@ -861,23 +876,6 @@
       "TA": 16,
       "BP": 5,
       "Pts": 21
-    },
-    {
-      "rank": 4,
-      "id": 386,
-      "team": "England",
-      "logo": "https://media.api-sports.io/rugby/teams/386.png",
-      "P": 5,
-      "W": 4,
-      "D": 0,
-      "L": 1,
-      "PF": 248,
-      "PA": 114,
-      "PD": 134,
-      "TF": 39,
-      "TA": 16,
-      "BP": 4,
-      "Pts": 20
     },
     {
       "rank": 5,
@@ -901,17 +899,17 @@
       "id": 390,
       "team": "Scotland",
       "logo": "https://media.api-sports.io/rugby/teams/390.png",
-      "P": 5,
-      "W": 3,
+      "P": 6,
+      "W": 4,
       "D": 0,
       "L": 2,
-      "PF": 144,
-      "PA": 152,
-      "PD": -8,
-      "TF": 21,
-      "TA": 23,
-      "BP": 3,
-      "Pts": 15
+      "PF": 211,
+      "PA": 157,
+      "PD": 54,
+      "TF": 32,
+      "TA": 24,
+      "BP": 4,
+      "Pts": 20
     },
     {
       "rank": 7,
@@ -969,15 +967,15 @@
       "id": 463,
       "team": "Japan",
       "logo": "https://media.api-sports.io/rugby/teams/463.png",
-      "P": 5,
+      "P": 6,
       "W": 1,
       "D": 0,
-      "L": 4,
-      "PF": 98,
-      "PA": 194,
-      "PD": -96,
-      "TF": 12,
-      "TA": 29,
+      "L": 5,
+      "PF": 103,
+      "PA": 261,
+      "PD": -158,
+      "TF": 13,
+      "TA": 40,
       "BP": 1,
       "Pts": 5
     },
@@ -1016,7 +1014,98 @@
       "Pts": 0
     }
   ],
-  "news": [],
+  "news": [
+    {
+      "title": "Ireland v South Africa: Nations Championship rugby union – live",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOVU81NmUwOWVZb04zQlI0UXVkSE16dGlYekhPU2duUVNIMWdKNHpBdThBdkFuZ1NhYUltOVFVSV94YlBGMWs3RUg0YzlDMFlSd20tcVE2ekJhQ0JoOFN3b3ltcDJoZUN2dG9ndHR5dGxZb3MxN09mUWVXV1BreEQxeTNfYlZlTWI3TjRXdElTSWNKazlOelF0S3RYczR2b2l5NHBvTUZrTy1hc3hEZVFlNg?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 21 Nov 2026 16:04:07 GMT"
+    },
+    {
+      "title": "England vs. New Zealand LIVE: Nations Championship updates, score and commentary",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxQMlJaUE1rTjRVdzNkemdOWU9NSno1bzI0a2hCU0FjeG1DS1d0XzIzX28yMm0zcWFfaGktQkRjNjJtSUYtNmdTS3FJNVV3clZ5ZVdibTR0Vnh0aTBQWVAxZkNtWHBPUkZiVmFsZjFpV2lHZEFNVW11ME8xeVAxVFdncW51RHlGTkRsenJRWk9CeTFVeTV2Qmp2SnlEdW16d2Fza2twR0hSaXlzcmRyLUQ4RFRnT3ZmdTZP?oc=5",
+      "source": "ESPN",
+      "published": "Sat, 21 Nov 2026 16:04:00 GMT"
+    },
+    {
+      "title": "England player ratings vs All Blacks | Nations Championship 2026",
+      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxQdlZkU2JBQ1JKZHVaRmVNbXFhSGNTVUE2dm5lRV9pZXB6cW5DY3phSlZ4OVJpMmcwTGEtWmdORTcxMEcxVk9OUEE1QXB6NU05OGlVc3E3a1A5eFJBSGtPY1BQb091elZsM1pwWnc4TnBzUThHWk95SnFkS084c0E4cTI4RzNwZzByVG1rZlNDTHZ2MHFfcVFxNFRB?oc=5",
+      "source": "Rugbypass.com",
+      "published": "Sat, 21 Nov 2026 16:01:03 GMT"
+    },
+    {
+      "title": "England v New Zealand live: score, updates and analysis",
+      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxOYUJoVE1aYUhyaFZPWlVZUW9hcXZMUG9oNU5uOHZmVkNYbEhBTXNGUm55S3Q1NEdDWGpjQ1RHMXJEbGN3OFlRcmV5R05QYTBNXzBmWEx3VWFTa1hiQmR3NUgzWjMzWlFmMnRnVnliMlhyZk1xRlhldklPbHRFQVRpM1BDUFYydldjMTEwWThOdzRxVWlXVnRGcGFyX0RkQVR2a0JoYUZCb1M4LVFiS3g1c0FYOHRzNDU0UXJWTmhleGNhN0VkQllESnpQbG9OOFpLQ1Ew?oc=5",
+      "source": "The Times",
+      "published": "Sat, 21 Nov 2026 14:51:12 GMT"
+    },
+    {
+      "title": "Scotland vs. Japan Rugby Live Updates: Nations Championship Round 6 Action",
+      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVFdVLTR1ek5EQTVmQW11RUU1WTZUQjRNRXlRRWs5SVRidF9abk9xeGc2ZzFZWGN3ZXpqbHJfc1h1WFZWS1hxVzlIeXNoSE1zek81REhJSTNpMzBoelRSdHlIMlduY3FBenhlMndLU3NFazJOQjF4NFBBRzBQeWZzc01RMA?oc=5",
+      "source": "Yahoo Sports",
+      "published": "Sat, 21 Nov 2026 13:53:00 GMT"
+    },
+    {
+      "title": "England v New Zealand: Nations Championship rugby union – live",
+      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQamdqUlBENWZKREVfZGFmUmFJUUF5WGxncWxwaktFdFZtaHdFUDNlZnhKTzBYT3dwTlNuY0dxcDBjdnloeG5vTlBkbjh3OUZkMmQwZUl3d0VGWXU3cE5pM2xhbDVqUFF5dU5PRDc1dk1pcmptSkoyUmtzRDgwaDk5RzBFNG1RMzEtQUJxLWFXamtZWFBsWUhnanRpeU9zUGZpYmZpOVlnU0RvaWJ2a3o0?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 21 Nov 2026 13:15:00 GMT"
+    },
+    {
+      "title": "England vs New Zealand, Ireland vs South Africa LIVE! Nations Championship updates, latest scores, team news, commentary from Twickenham, Dublin",
+      "link": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQNUxiZkphQm5QZzJzY2xuS1hTMTBGcGRMdkdJRDNSbjlBbzlJSUlob0xRa2pxTU8tc0x0UHFQWHVLUXhncWo0al92Sy16MFR0QVdRWDdmbl9UM19ISzJYaXo2SFhTNDN5bXBIUjY5R3FSYmtsWHNuMVpZR011LUNYTWhvOGZaY3BmR0xqcGlCX0U1SUxCcUtQRXd4aUp0U0Vvd0lBSlFGakxLMGoxQzlITHMzblEzOWNSWkMyc29fakUxTW9rV1FWcFpiNGVKLTJQd2RFZU1TWk1sUllrVmRZQUdTOEFzNE9XTl9ta1VxUWFmUWNvTDQ3VFR6NV9LQmNmdzhVX2lsdlVCcVE5VVEySnRjbTdrYnMwRHpKSTR2bVE?oc=5",
+      "source": "Sky Sports",
+      "published": "Sat, 21 Nov 2026 13:15:00 GMT"
+    },
+    {
+      "title": "England v All Blacks, LIVE BLOG: Coverage of the Nations Championship fixture",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxQSEk2OGxvSmVrLW9tMFVITWVRc1MxVFlneVRINEZjdjBCb01aSW1pRlVVMWFsdzNiZnFxLVlFVmp5NW1hN3o2WGFMajFVeFJONjliRDVFazlIS0pTcE16dGx0S2JPRjNZaTlpSmtlOVNPc3BUaHpUOTVMbXBjc3VmaDB0OWtCQmdyaGVqLTA5eFBQV094QUdIOTM1Z2lsaF9kZG96Sy04Z2NiWjNQ?oc=5",
+      "source": "Planet Rugby",
+      "published": "Sat, 21 Nov 2026 13:11:46 GMT"
+    },
+    {
+      "title": "Ireland vs Springboks Rugby Nations Championship: Lineups and predictions",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPSnZHUHU3dFVWYTJxWWIwbkdwVDY0OFRSdXpza01JWHJKUnpMeVVFOC1mTmhlTU1wRXVqT2Y5TnY4VDR3UUxDN1UzUDVobi13V3gtU014bHdOU2dueExJYWtLNEUyaTg0cHc0M1hmNnEyVHUzX3JFVC1vNXB6QllyMVkzWW4temhSLVJMVHBaZTBrVkNiV2dLc1BEbS1JVm9oQkczc1lMcXJyY1ZQeE84Uw?oc=5",
+      "source": "Read Rugby Union",
+      "published": "Sat, 21 Nov 2026 12:18:53 GMT"
+    },
+    {
+      "title": "Siya Kolisi talks Jasper Wiese's absence and Dan Sheehan's No.8 move",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxPRDdtakprVENwUm1VSmN4c2lFcnk0d0hVOEcyRTBrQ1lTR1UxYXR6Ym1GNHNsRmJFd0NvT3VEZjN4VmdNSHJibFlmSTB2Y2w2N041andkMWQ1ekRFOTNLR25JX2RsRHNSZ1M3T0pISlhyclFaRGxMN3E3VE95eXhfbFZXWXE1eFBZN2xHbHY2eXhwR2VHT3pNYzZWQmsyNGM?oc=5",
+      "source": "Rugbypass.com",
+      "published": "Sat, 21 Nov 2026 01:50:34 GMT"
+    },
+    {
+      "title": "How to watch Wallabies vs. Wales: TV channel, live stream for Australia's Nations Championship match",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQTGVYYkpla1UtMGwwNTA0N0ViV204VEFlbjRJTkJwbUd4bVVicnBuRXl5cGtmblhCSVpHQ2ctazIwWXk5ajNkV21vc0ZNM0tyWG1RVUNKS0RCTmpmY3Q4anFRbW5PcV82VUVKb1Y3a2EzWFZuM21IVkxQVlU5SDNHZTAyc2lIYjg2a29NX1cxeFZ0NGJjM0NoZllGZGIzUkQtSkxpdXh3ZkNLZ3ZTekxlRG5TcXRTYnRlVTRoVXROZlhSUmpWc1RlY3ZIWQ?oc=5",
+      "source": "Sporting News AU",
+      "published": "Sat, 21 Nov 2026 01:00:01 GMT"
+    },
+    {
+      "title": "One fix to the Nations Championship could make it bigger than the World Cup",
+      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxObjhVVFlZdEtWRE40eUg2OS1PbG5peVlfVlhwXzRFb05HUnk1RmthV0JYUjAyc3FfSi1xZTQxZ05tQTBOSkxhUHdFaElHVk5nRjh0aVNJRVY5a1psYkVWQlpld2FqbndMYng3VTFZUGtkWlMtanhxRi04bG5lemhEWXJDRERtU1RSREJSRjFaTlFHSEtYUl9rbWhNWHlkZUI4aEhMVF9QS2RUa3hkQ0ZOR19hVms3WHRPR2UyWjJCZmMyeE5fb283YU5kUGJJWk0tVy1J?oc=5",
+      "source": "SMH.com.au",
+      "published": "Fri, 20 Nov 2026 22:30:00 GMT"
+    },
+    {
+      "title": "One fix to the Nations Championship could make it bigger than the World Cup",
+      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQSkhOdDNWMUtSUUk2R1c3dlFPUVFBVzlTZ3EwSUlwWkNDVkdQbW9QWGdUeGdCVkxHYUZuT09UaW1NYnl4LUpELWF5OEVOQWxVU1dNRUlIRjFnNU5BbFBMWkkxYnlHM3BRbGZGdlRGdmJvSGhmOG1uQTdhcC1YX28wTXpRenUzNko1TjNfd0lSNG1vY01wMnNQRFAxTGRrcjNZVHNITUNYVm9jRWxLQlcxMGVwdWZIckJNb3Y0NXltQ1JGTENSeFIwRko2cTNWd0ctMzNseVVhQQ?oc=5",
+      "source": "The Age",
+      "published": "Fri, 20 Nov 2026 22:30:00 GMT"
+    },
+    {
+      "title": "England and New Zealand collide with final spots and reputations on the line",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQUFNnUzJuVnIzV21BV2xDN0NLR2lfMmhZcmhJYjlfWmd0XzNjTHFBZWNwU2p4WDZKTWk1UzhFNjNkbDRJUjhnRV9yR3ptbUw4MkhPek9uREpqa04yWllqNUNEV3lqODdua1ZLUkJkSDRNa21EODhTQ1VVTU5Fc0pHMlFMTTA3eExIai02QmZJSVBVbFN0ZHpYdmVfY2NIcnc?oc=5",
+      "source": "The Guardian",
+      "published": "Fri, 20 Nov 2026 20:00:00 GMT"
+    },
+    {
+      "title": "2026 Nations Championship Fixtures",
+      "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOMVN6RDJUNUxNRXZEb0FjcVg3aGZKdDJNcU1LcWdOdTctWHFzd0xWOU1nTE8yWU9NdjlkOTlTMmFORHlpVDNpYXloTnNIdzF2QlF5cEVmcTBucm1XeHZUQWhWcHU3MWNaT21DS2pvUVF6VHE4bnJ2a2JIN2U2QkVTXzE0TlZRcGY5a19tNDFNVzJudElMa241RFRsUWw0RE5SUHk4djhiV21YalZDSVg1N1Nodm51TkJDQ2w4UmExaE1WdGFhYWVuU2p4a1A0a0poNnE5ZHl4WjZtbVAt?oc=5",
+      "source": "RUGBY.com.au",
+      "published": "Mon, 16 Nov 2026 08:00:00 GMT"
+    }
+  ],
   "triesPending": 0,
   "digests": {
     "28": {
