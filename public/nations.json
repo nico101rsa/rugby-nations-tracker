@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T21:46:45.319Z",
+  "updatedAt": "2026-11-21T21:49:47.773Z",
   "counts": {
     "fixtures": 0,
     "results": 36,
@@ -769,14 +769,13 @@
       "status": {
         "short": "2H",
         "long": "Second Half",
-        "live": true,
-        "via": "espn"
+        "live": true
       },
       "home": {
         "id": 387,
         "name": "France",
         "logo": "https://media.api-sports.io/rugby/teams/387.png",
-        "score": 33
+        "score": 38
       },
       "away": {
         "id": 460,
@@ -786,7 +785,7 @@
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T21:46:45.319Z",
+        "at": "2026-11-21T21:49:47.773Z",
         "events": [
           {
             "min": 7,
@@ -854,9 +853,14 @@
             "type": "try"
           },
           {
-            "min": 68,
+            "min": 69,
             "team": "home",
             "type": "conversion"
+          },
+          {
+            "min": 70,
+            "team": "home",
+            "type": "try"
           }
         ]
       }
@@ -868,8 +872,7 @@
       "status": {
         "short": "2H",
         "long": "Second Half",
-        "live": true,
-        "via": "espn"
+        "live": true
       },
       "home": {
         "id": 391,
@@ -885,7 +888,7 @@
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T21:46:45.319Z",
+        "at": "2026-11-21T21:49:47.773Z",
         "events": [
           {
             "min": 2,
@@ -1169,10 +1172,10 @@
   ],
   "news": [
     {
-      "title": "LIVE: Wallabies hunt for vital Nations Championship win against Wales",
-      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNd3dWTzlmNVc3eDR6Zk96UlRpd2RFQTYyeXp3R0pmYkEtVllhVk04dllUYzQ1YXBkOV9WZlVyQ1RrdjlIWTNsYXdzTW9mN1BpYV9obEhlNGh6SFpUWndLblZ5ek5wUTJELWVvSFdUb0diN3FBWm00dlNxQlNQemhhRG1uNnMzT3FyM252eVEwTUdOb1RvbnF6QXM5SW84MkJQWlZaMVl4anlrejlYdG9LQmtvbW1rUQ?oc=5",
-      "source": "RUGBY.com.au",
-      "published": "Sat, 21 Nov 2026 20:26:15 GMT"
+      "title": "South Africa stumbles into Nations Championship final after losing to Ireland 20-17",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNNlpoTkdCRlg1Xy04MlU5d3U1V1JPYXdUVUw3elVUOEZXbWR4RkVWR1NrdUlscXpOTi1uZElrTXN0ckxyeDI2QVZ6czBMUGVIN0FZdmZIYWVlNFVzcnpweWZQQWVOMjN1NkkxaXNqYUZic3RHV0FBdUJUNXR0dnppVGw1MmpwRk9LUXZxNVJRQktJNmhtUS1DU2M4M1haZzQtQmw4ZG9YYlBJcDM2MVRBZnloRlR6NG9qdG43eW9lcw?oc=5",
+      "source": "Japan Today",
+      "published": "Sat, 21 Nov 2026 21:23:14 GMT"
     },
     {
       "title": "Wallabies fly flag for south as All Blacks, Springboks stunned",
@@ -1187,6 +1190,12 @@
       "published": "Sat, 21 Nov 2026 20:00:00 GMT"
     },
     {
+      "title": "LIVE: Wales v Australia - Nations Championship",
+      "link": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOempzaGRFU3ZaTmhaZ2dQdU41cTNMdFYxZzNvWGZuTFhtMDRvZjlJUnRxSkYyUGk2SmxCeDNLcHBneTRXUjV2T3VjSnp3VFZrZlNkNXBzRVFSMXdSa3N0UGtLWmtvam1YZ0VtaWd5ZDlKazlYRDI0b2oxNGtvSTZjN1hobUhVRUdKSmVmT1Zn?oc=5",
+      "source": "Rugby365",
+      "published": "Sat, 21 Nov 2026 19:45:51 GMT"
+    },
+    {
       "title": "Fiji down Italy for first Nations Championship win",
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxNaW5kVkYwVXZEdW9nM2xCQkQwc0pfVHhEZFF5NlJMbXd2cVVUUWFicTR3ZWhaXzZWZFJXUlFUTDRJVGd0MnZvclB6VlE1enJqUE0wM052X19vRUtCcmVuZkJsOVhtUmlObmRSZk5JZG9vSFFydTBWOV9UMk9RSEhzOWxfYy1FVXdmdTJaRGtGeU9VNzY3MUdCQlpTZm9LS1U?oc=5",
       "source": "The Canberra Times",
@@ -1197,12 +1206,6 @@
       "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOSXNiQm1jM0JZaUNsYWhfRm1nWWJhOEQ0N3F0dlVIWDdMcG5hZks1MmpYZ2hVa2pUZm0yeG84M2xvQW9KZU9DNHg2a3dkcFl3enpWUXdTNjFSaVdjQkhJX3dmenJtd3pFMi1sbXpLTV81R2FrdzdyQ1NCQmcyWnlSN0l2bHpTRWszVGRWaHVTNFJQeGZnR0dqWklJVTA0UlpGaGpjR1JXN1N3Zw?oc=5",
       "source": "ABC News & Headlines – Australian Broadcasting Corporation",
       "published": "Sat, 21 Nov 2026 19:28:45 GMT"
-    },
-    {
-      "title": "Graham and McConnell hat-tricks fire 11-try Scotland to crushing win against Japan",
-      "link": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNWGl0UExOY2ZiV2xwQ3pLZlQtUHdvYmhsRjR4Q0Ricjc4cktWcUNBeUVERmVHN0xxaVkxUUZvMkE1ZkE3MUdlTUthM0c1Xy1pQ0t2LTlweUxnVlF1LVNuU05mSklxTDI1d0dFN0F0bDFWd3o1d2xJazR3bDRjdlBLMmhEMzU2VWtTN09mQ3dDd3R3V2JwMW0yajRR?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 21 Nov 2026 19:19:00 GMT"
     },
     {
       "title": "South Africa stumbles into Nations Championship final after losing to Ireland 20-17",
@@ -1223,6 +1226,12 @@
       "published": "Sat, 21 Nov 2026 18:46:22 GMT"
     },
     {
+      "title": "Slade helps sparkling England power to record victory as All Blacks wilt again",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNX0ExS0pQd0F6dzhwMGlFZVJLdExIbUlIUTlMN2M2SHhjazhVNUJsWVJNdHN0NmdfXzNDdDZWOE9WQU5OZWFRaGVtTVpVaGdBUzBxUXhOVWVOaXJpOVVxU3dRQVYxSTd2a2dIT0llY1FyOWxMbXFZcFRVQ1YzMk81Yk5SLWZVWVI5eFZpdkRfazJRMmZoSy1HcGk3bW1KNG82a083dGhaUlIwaFVPMFVqNg?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 21 Nov 2026 18:36:00 GMT"
+    },
+    {
       "title": "Nations Championship - England 37-12 New Zealand: Most complete performance under Steve Borthwick sees hosts stay in title hunt with record win",
       "link": "https://news.google.com/rss/articles/CBMihwJBVV95cUxQbWJSdnpiWVlTOUhZd3diNkRNREtKaTNla2hocmZTZXNCeG9FbmRFeHQyUGRTQzFUcmdZaFhsX3phLTZxUXg2UktIVXhxbHBqM1VhZW5QNHNxa2x1OWNRS1ZBSDVMOVNYNTdRdllpek5UaWpISU9GT3RRRnd6bjRPSDFRcWtRai1PUmFfa1pWcExfZjF0ZS0xenR1cF9HV3dUTFpBWFZzUy1EZGNTLWQ0S2ZGMVF3cmVvWTJUWlZSLW1NSjFERDhnZkx3MG8zOTluYTNsRlRXSTJ6anpmc19KR3d5bVQtbV8zR1N3cEpmVXFPRHk3U0RFLVI2dzVCU2xkSHFGWGthYw?oc=5",
       "source": "Sky Sports",
@@ -1241,22 +1250,16 @@
       "published": "Sat, 21 Nov 2026 13:49:54 GMT"
     },
     {
-      "title": "England 37-12 New Zealand: Hosts storm to historic Nations Championship win over All Blacks – as it happened",
-      "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQamdqUlBENWZKREVfZGFmUmFJUUF5WGxncWxwaktFdFZtaHdFUDNlZnhKTzBYT3dwTlNuY0dxcDBjdnloeG5vTlBkbjh3OUZkMmQwZUl3d0VGWXU3cE5pM2xhbDVqUFF5dU5PRDc1dk1pcmptSkoyUmtzRDgwaDk5RzBFNG1RMzEtQUJxLWFXamtZWFBsWUhnanRpeU9zUGZpYmZpOVlnU0RvaWJ2a3o0?oc=5",
-      "source": "The Guardian",
-      "published": "Sat, 21 Nov 2026 13:15:00 GMT"
-    },
-    {
       "title": "One fix to the Nations Championship could make it bigger than the World Cup",
       "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxObjhVVFlZdEtWRE40eUg2OS1PbG5peVlfVlhwXzRFb05HUnk1RmthV0JYUjAyc3FfSi1xZTQxZ05tQTBOSkxhUHdFaElHVk5nRjh0aVNJRVY5a1psYkVWQlpld2FqbndMYng3VTFZUGtkWlMtanhxRi04bG5lemhEWXJDRERtU1RSREJSRjFaTlFHSEtYUl9rbWhNWHlkZUI4aEhMVF9QS2RUa3hkQ0ZOR19hVms3WHRPR2UyWjJCZmMyeE5fb283YU5kUGJJWk0tVy1J?oc=5",
       "source": "SMH.com.au",
       "published": "Fri, 20 Nov 2026 22:30:00 GMT"
     },
     {
-      "title": "Scotland 15-12 Australia: Nations Championship rugby union – as it happened",
-      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPX21BYW1NUVRxbWlSMU9yNEVjMFpzMFN6SDRPaGlfcVppZUsyRmFUZzVrYzVSYUZnUE1feFFMY1hYTUZrbmZ5R3ZhS01RTUZOVGRLYlQ3UnBjWFp6TGVUSm1WNzVBa0g2ekpfNXhsYkNhRHpQMFZ2RjI3a1BRYVE2b3Q0RHVPN0xpWXFfOGlIM0w0R2x2cXd5S3NPUXZmUjAyR2NEVGtnNVB2TmZSaUE?oc=5",
-      "source": "The Guardian",
-      "published": "Sun, 15 Nov 2026 14:36:00 GMT"
+      "title": "2026 Nations Championship Fixtures",
+      "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOMVN6RDJUNUxNRXZEb0FjcVg3aGZKdDJNcU1LcWdOdTctWHFzd0xWOU1nTE8yWU9NdjlkOTlTMmFORHlpVDNpYXloTnNIdzF2QlF5cEVmcTBucm1XeHZUQWhWcHU3MWNaT21DS2pvUVF6VHE4bnJ2a2JIN2U2QkVTXzE0TlZRcGY5a19tNDFNVzJudElMa241RFRsUWw0RE5SUHk4djhiV21YalZDSVg1N1Nodm51TkJDQ2w4UmExaE1WdGFhYWVuU2p4a1A0a0poNnE5ZHl4WjZtbVAt?oc=5",
+      "source": "RUGBY.com.au",
+      "published": "Mon, 16 Nov 2026 08:00:00 GMT"
     }
   ],
   "triesPending": 0,
