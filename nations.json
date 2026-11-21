@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T17:14:36.145Z",
+  "updatedAt": "2026-11-21T17:20:38.524Z",
   "counts": {
     "fixtures": 2,
     "results": 34,
@@ -785,8 +785,8 @@
         "score": 3
       },
       "play": {
-        "minute": 35,
-        "at": "2026-11-21T17:14:36.144Z",
+        "minute": 40,
+        "at": "2026-11-21T17:20:38.524Z",
         "events": [
           {
             "min": 5,
@@ -813,13 +813,14 @@
       "status": {
         "short": "1H",
         "long": "First Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 389,
         "name": "Italy",
         "logo": "https://media.api-sports.io/rugby/teams/389.png",
-        "score": 10
+        "score": 13
       },
       "away": {
         "id": 28,
@@ -828,8 +829,8 @@
         "score": 7
       },
       "play": {
-        "minute": 35,
-        "at": "2026-11-21T17:14:36.144Z",
+        "minute": 40,
+        "at": "2026-11-21T17:20:38.524Z",
         "events": [
           {
             "min": 9,
@@ -855,6 +856,11 @@
             "min": 19,
             "team": "away",
             "type": "conversion"
+          },
+          {
+            "min": 34,
+            "team": "home",
+            "type": "penalty"
           }
         ]
       }
