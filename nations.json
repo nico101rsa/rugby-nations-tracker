@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T14:49:05.129Z",
+  "updatedAt": "2026-11-21T14:55:06.952Z",
   "counts": {
     "fixtures": 4,
     "results": 32,
@@ -777,7 +777,7 @@
         "id": 386,
         "name": "England",
         "logo": "https://media.api-sports.io/rugby/teams/386.png",
-        "score": 12
+        "score": 19
       },
       "away": {
         "id": 465,
@@ -787,7 +787,7 @@
       },
       "play": {
         "minute": 40,
-        "at": "2026-11-21T14:49:05.128Z",
+        "at": "2026-11-21T14:55:06.952Z",
         "events": [
           {
             "min": 5,
@@ -803,6 +803,16 @@
             "min": 32,
             "team": "home",
             "type": "conversion"
+          },
+          {
+            "min": 36,
+            "team": "home",
+            "type": "try"
+          },
+          {
+            "min": 37,
+            "team": "home",
+            "type": "conversion"
           }
         ]
       }
@@ -814,13 +824,14 @@
       "status": {
         "short": "1H",
         "long": "First Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 390,
         "name": "Scotland",
         "logo": "https://media.api-sports.io/rugby/teams/390.png",
-        "score": 24
+        "score": 29
       },
       "away": {
         "id": 463,
@@ -830,7 +841,7 @@
       },
       "play": {
         "minute": 40,
-        "at": "2026-11-21T14:49:05.128Z",
+        "at": "2026-11-21T14:55:06.952Z",
         "events": [
           {
             "min": 6,
@@ -861,6 +872,11 @@
             "min": 32,
             "team": "home",
             "type": "conversion"
+          },
+          {
+            "min": 40,
+            "team": "home",
+            "type": "try"
           }
         ]
       }
