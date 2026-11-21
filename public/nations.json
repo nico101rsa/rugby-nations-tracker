@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T22:08:10.426Z",
+  "updatedAt": "2026-11-21T22:14:14.079Z",
   "counts": {
     "fixtures": 0,
     "results": 36,
@@ -769,8 +769,7 @@
       "status": {
         "short": "FT",
         "long": "Finished",
-        "live": false,
-        "via": "espn"
+        "live": false
       },
       "home": {
         "id": 387,
@@ -792,8 +791,7 @@
       "status": {
         "short": "FT",
         "long": "Finished",
-        "live": false,
-        "via": "espn"
+        "live": false
       },
       "home": {
         "id": 391,
@@ -812,6 +810,23 @@
   "log": [
     {
       "rank": 1,
+      "id": 387,
+      "team": "France",
+      "logo": "https://media.api-sports.io/rugby/teams/387.png",
+      "P": 6,
+      "W": 5,
+      "D": 0,
+      "L": 1,
+      "PF": 236,
+      "PA": 128,
+      "PD": 108,
+      "TF": 34,
+      "TA": 18,
+      "BP": 6,
+      "Pts": 26
+    },
+    {
+      "rank": 2,
       "id": 386,
       "team": "England",
       "logo": "https://media.api-sports.io/rugby/teams/386.png",
@@ -828,7 +843,7 @@
       "Pts": 25
     },
     {
-      "rank": 2,
+      "rank": 3,
       "id": 388,
       "team": "Ireland",
       "logo": "https://media.api-sports.io/rugby/teams/388.png",
@@ -845,7 +860,7 @@
       "Pts": 24
     },
     {
-      "rank": 3,
+      "rank": 4,
       "id": 467,
       "team": "South Africa",
       "logo": "https://media.api-sports.io/rugby/teams/467.png",
@@ -862,7 +877,7 @@
       "Pts": 22
     },
     {
-      "rank": 4,
+      "rank": 5,
       "id": 465,
       "team": "New Zealand",
       "logo": "https://media.api-sports.io/rugby/teams/465.png",
@@ -877,23 +892,6 @@
       "TA": 22,
       "BP": 6,
       "Pts": 22
-    },
-    {
-      "rank": 5,
-      "id": 387,
-      "team": "France",
-      "logo": "https://media.api-sports.io/rugby/teams/387.png",
-      "P": 5,
-      "W": 4,
-      "D": 0,
-      "L": 1,
-      "PF": 191,
-      "PA": 111,
-      "PD": 80,
-      "TF": 27,
-      "TA": 16,
-      "BP": 5,
-      "Pts": 21
     },
     {
       "rank": 6,
@@ -917,51 +915,51 @@
       "id": 391,
       "team": "Wales",
       "logo": "https://media.api-sports.io/rugby/teams/391.png",
-      "P": 5,
+      "P": 6,
       "W": 3,
       "D": 0,
-      "L": 2,
-      "PF": 123,
-      "PA": 151,
-      "PD": -28,
-      "TF": 18,
-      "TA": 22,
-      "BP": 3,
-      "Pts": 15
+      "L": 3,
+      "PF": 149,
+      "PA": 180,
+      "PD": -31,
+      "TF": 22,
+      "TA": 26,
+      "BP": 5,
+      "Pts": 17
     },
     {
       "rank": 8,
-      "id": 460,
-      "team": "Argentina",
-      "logo": "https://media.api-sports.io/rugby/teams/460.png",
-      "P": 5,
-      "W": 2,
-      "D": 0,
-      "L": 3,
-      "PF": 128,
-      "PA": 155,
-      "PD": -27,
-      "TF": 18,
-      "TA": 23,
-      "BP": 3,
-      "Pts": 11
-    },
-    {
-      "rank": 9,
       "id": 461,
       "team": "Australia",
       "logo": "https://media.api-sports.io/rugby/teams/461.png",
-      "P": 5,
-      "W": 1,
+      "P": 6,
+      "W": 2,
       "D": 0,
       "L": 4,
-      "PF": 148,
-      "PA": 145,
-      "PD": 3,
-      "TF": 23,
-      "TA": 22,
-      "BP": 5,
-      "Pts": 9
+      "PF": 177,
+      "PA": 171,
+      "PD": 6,
+      "TF": 27,
+      "TA": 26,
+      "BP": 6,
+      "Pts": 14
+    },
+    {
+      "rank": 9,
+      "id": 460,
+      "team": "Argentina",
+      "logo": "https://media.api-sports.io/rugby/teams/460.png",
+      "P": 6,
+      "W": 2,
+      "D": 0,
+      "L": 4,
+      "PF": 145,
+      "PA": 200,
+      "PD": -55,
+      "TF": 20,
+      "TA": 30,
+      "BP": 3,
+      "Pts": 11
     },
     {
       "rank": 10,
@@ -1016,6 +1014,12 @@
     }
   ],
   "news": [
+    {
+      "title": "Fiji rallies past Italy 21-16 to end Nations Championship rugby drought",
+      "link": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNSS1LQXJrZms0REN6RmRIaHhPaXJUajhyUnM1SW1DVFd0cnEyTERZazlVVEFjenR4eVVPVGdLcHc1d0szVDRXTE1CYXlHWFRtVDJ1MWt5ZEZqVlpUYVpfUHpvY1BkNlpnSnp5SF9NUElPWTZHbzl2akJWUnJ6SmxrM0ZSYzVRQVh5S0FLdDgtdzNmZE9UN2Utb1kzUnRVOUZEQzZScWI5YThqdHF3UzRQejJNQjNZUVRuV29Fc2J3?oc=5",
+      "source": "The Washington Post",
+      "published": "Sat, 21 Nov 2026 22:10:45 GMT"
+    },
     {
       "title": "Wallabies fly flag for south as All Blacks, Springboks stunned",
       "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQaTZ1di1JdjU5bV9kOU9fZzRhNlBRVDJZTlR3TXNOQjljUmZGdzU1WXVfTFYzWGRCSWRXT3B6anV1ZW5fbWx5OHR3WmYxb1pYaVhXc29fZG83RjJxQ3Y5S2JBU0c5aDhEanhjRERNSVlORlUtVmVGVlJCMEFvVlB5MTQ2NTBQcDRNV2RxX2libU9rSERNQkFKR2piNUFULWhQa3dpcU5EaGtrWDVFbU9RSjNFcmI5bWczallPOXhjYnFXc2pvZE5GaERiZlE?oc=5",
@@ -1087,12 +1091,6 @@
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQamdqUlBENWZKREVfZGFmUmFJUUF5WGxncWxwaktFdFZtaHdFUDNlZnhKTzBYT3dwTlNuY0dxcDBjdnloeG5vTlBkbjh3OUZkMmQwZUl3d0VGWXU3cE5pM2xhbDVqUFF5dU5PRDc1dk1pcmptSkoyUmtzRDgwaDk5RzBFNG1RMzEtQUJxLWFXamtZWFBsWUhnanRpeU9zUGZpYmZpOVlnU0RvaWJ2a3o0?oc=5",
       "source": "The Guardian",
       "published": "Sat, 21 Nov 2026 13:15:00 GMT"
-    },
-    {
-      "title": "How to watch Wales vs Australia: live stream Nations Championship rugby for FREE",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPekhpeFlwQnpaUWZJOXBUVjd5OXZvTWZkTEpScUFmSEhFUzRHVExNVDN4R0J0aE90MjIwaHBSVWZBTG5SaW4xbDNhQjJRTWcycm1LUkduV1VCYXVOeGVLZGhSbU9jNlNiOENlZ2tET2VKeVg4OG9oTE00alBMVHVOVm1taklteDB5UDdXOHo3Y0E1MVRudmpUUDE2bWxQYkotNlVOQ3BwNnFSNk9B?oc=5",
-      "source": "What Hi-Fi?",
-      "published": "Sat, 21 Nov 2026 13:00:00 GMT"
     },
     {
       "title": "One fix to the Nations Championship could make it bigger than the World Cup",

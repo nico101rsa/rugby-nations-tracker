@@ -193,6 +193,27 @@ DESCRIPTION:Kick-off in 30 minutes: England v New Zealand
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:rnc-2026-final-2@rugby-nations-tracker
+DTSTAMP:20261121T221414Z
+LAST-MODIFIED:20261121T221414Z
+SEQUENCE:0
+DTSTART:20261128T164000Z
+DTEND:20261128T184000Z
+SUMMARY:England v New Zealand · RNC '26
+LOCATION:Allianz Stadium\, Twickenham
+DESCRIPTION:Nations Championship 2026.\nKickoff times come from ESPN and ca
+ n move — the app is the live source.\nhttps://nico101rsa.github.io/rugby
+ -nations-tracker/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+CATEGORIES:Rugby
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT30M
+DESCRIPTION:Kick-off in 30 minutes: England v New Zealand
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:espn-603501@rugby-nations-tracker
 DTSTAMP:20261011T063850Z
 LAST-MODIFIED:20261011T063850Z
