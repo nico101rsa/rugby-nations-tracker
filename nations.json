@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T22:05:08.955Z",
+  "updatedAt": "2026-11-21T22:08:10.426Z",
   "counts": {
     "fixtures": 0,
     "results": 36,
@@ -767,9 +767,9 @@
       "date": "2026-11-21T20:10:00+00:00",
       "week": "6",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true,
+        "short": "FT",
+        "long": "Finished",
+        "live": false,
         "via": "espn"
       },
       "home": {
@@ -783,107 +783,6 @@
         "name": "Argentina",
         "logo": "https://media.api-sports.io/rugby/teams/460.png",
         "score": 17
-      },
-      "play": {
-        "minute": null,
-        "at": "2026-11-21T22:05:08.954Z",
-        "events": [
-          {
-            "min": 7,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 8,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 17,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 18,
-            "team": "away",
-            "type": "conversion"
-          },
-          {
-            "min": 24,
-            "team": "away",
-            "type": "penalty"
-          },
-          {
-            "min": 34,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 35,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 47,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 48,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 61,
-            "team": "away",
-            "type": "red"
-          },
-          {
-            "min": 64,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 67,
-            "team": "away",
-            "type": "yellow"
-          },
-          {
-            "min": 68,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 69,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 70,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 72,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 73,
-            "team": "away",
-            "type": "conversion"
-          },
-          {
-            "min": 78,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 79,
-            "team": "home",
-            "type": "conversion"
-          }
-        ]
       }
     },
     {
@@ -891,107 +790,22 @@
       "date": "2026-11-21T20:10:00+00:00",
       "week": "6",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false,
+        "via": "espn"
       },
       "home": {
         "id": 391,
         "name": "Wales",
         "logo": "https://media.api-sports.io/rugby/teams/391.png",
-        "score": 21
+        "score": 26
       },
       "away": {
         "id": 461,
         "name": "Australia",
         "logo": "https://media.api-sports.io/rugby/teams/461.png",
         "score": 29
-      },
-      "play": {
-        "minute": null,
-        "at": "2026-11-21T22:05:08.954Z",
-        "events": [
-          {
-            "min": 2,
-            "team": "home",
-            "type": "yellow"
-          },
-          {
-            "min": 21,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 33,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 34,
-            "team": "away",
-            "type": "conversion"
-          },
-          {
-            "min": 41,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 42,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 47,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 48,
-            "team": "away",
-            "type": "conversion"
-          },
-          {
-            "min": 50,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 51,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 55,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 56,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 64,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 65,
-            "team": "away",
-            "type": "conversion"
-          },
-          {
-            "min": 74,
-            "team": "away",
-            "type": "penalty"
-          },
-          {
-            "min": 78,
-            "team": "away",
-            "type": "yellow"
-          }
-        ]
       }
     }
   ],
