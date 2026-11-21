@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T17:20:38.524Z",
+  "updatedAt": "2026-11-21T17:23:41.125Z",
   "counts": {
     "fixtures": 2,
     "results": 34,
@@ -770,7 +770,8 @@
       "status": {
         "short": "1H",
         "long": "First Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 388,
@@ -782,11 +783,11 @@
         "id": 467,
         "name": "South Africa",
         "logo": "https://media.api-sports.io/rugby/teams/467.png",
-        "score": 3
+        "score": 8
       },
       "play": {
         "minute": 40,
-        "at": "2026-11-21T17:20:38.524Z",
+        "at": "2026-11-21T17:23:41.125Z",
         "events": [
           {
             "min": 5,
@@ -801,6 +802,11 @@
           {
             "min": 19,
             "team": "home",
+            "type": "try"
+          },
+          {
+            "min": 36,
+            "team": "away",
             "type": "try"
           }
         ]
@@ -830,7 +836,7 @@
       },
       "play": {
         "minute": 40,
-        "at": "2026-11-21T17:20:38.524Z",
+        "at": "2026-11-21T17:23:41.125Z",
         "events": [
           {
             "min": 9,
@@ -858,7 +864,7 @@
             "type": "conversion"
           },
           {
-            "min": 34,
+            "min": 32,
             "team": "home",
             "type": "penalty"
           }
