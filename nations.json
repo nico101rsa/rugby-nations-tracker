@@ -5,59 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T20:00:46.507Z",
+  "updatedAt": "2026-11-21T20:12:50.357Z",
   "counts": {
-    "fixtures": 2,
-    "results": 34,
+    "fixtures": 0,
+    "results": 36,
     "teams": 12,
     "news": 15
   },
-  "fixtures": [
-    {
-      "id": 53247,
-      "date": "2026-11-21T20:10:00+00:00",
-      "week": "6",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 387,
-        "name": "France",
-        "logo": "https://media.api-sports.io/rugby/teams/387.png",
-        "score": null
-      },
-      "away": {
-        "id": 460,
-        "name": "Argentina",
-        "logo": "https://media.api-sports.io/rugby/teams/460.png",
-        "score": null
-      }
-    },
-    {
-      "id": 53248,
-      "date": "2026-11-21T20:10:00+00:00",
-      "week": "6",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 391,
-        "name": "Wales",
-        "logo": "https://media.api-sports.io/rugby/teams/391.png",
-        "score": null
-      },
-      "away": {
-        "id": 461,
-        "name": "Australia",
-        "logo": "https://media.api-sports.io/rugby/teams/461.png",
-        "score": null
-      }
-    }
-  ],
+  "fixtures": [],
   "results": [
     {
       "id": 53213,
@@ -806,6 +761,62 @@
         "logo": "https://media.api-sports.io/rugby/teams/28.png",
         "score": 21
       }
+    },
+    {
+      "id": 53247,
+      "date": "2026-11-21T20:10:00+00:00",
+      "week": "6",
+      "status": {
+        "short": "LIVE",
+        "long": "In Progress",
+        "live": true,
+        "via": "espn"
+      },
+      "home": {
+        "id": 387,
+        "name": "France",
+        "logo": "https://media.api-sports.io/rugby/teams/387.png",
+        "score": 0
+      },
+      "away": {
+        "id": 460,
+        "name": "Argentina",
+        "logo": "https://media.api-sports.io/rugby/teams/460.png",
+        "score": 0
+      },
+      "play": {
+        "minute": 3,
+        "at": "2026-11-21T20:12:50.356Z",
+        "events": []
+      }
+    },
+    {
+      "id": 53248,
+      "date": "2026-11-21T20:10:00+00:00",
+      "week": "6",
+      "status": {
+        "short": "LIVE",
+        "long": "In Progress",
+        "live": true,
+        "via": "espn"
+      },
+      "home": {
+        "id": 391,
+        "name": "Wales",
+        "logo": "https://media.api-sports.io/rugby/teams/391.png",
+        "score": 0
+      },
+      "away": {
+        "id": 461,
+        "name": "Australia",
+        "logo": "https://media.api-sports.io/rugby/teams/461.png",
+        "score": 0
+      },
+      "play": {
+        "minute": 3,
+        "at": "2026-11-21T20:12:50.356Z",
+        "events": []
+      }
     }
   ],
   "log": [
@@ -1019,7 +1030,7 @@
       "title": "Wales vs Australia LIVE: Nations Championship 2026 - Build-up, team news, scores & live text updates",
       "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5WZjAtTEh4OHNWS1NWX3cyRWNDRlVLUG82bGdOZ0FCY05zdTUyZDE2UnFuanB6bWxEek5pNDFueThTQjJuajBfWFRhRWdRWEF5aEROSEFKRTA1d2E3U252VXVrYTktVHc?oc=5",
       "source": "BBC",
-      "published": "Sat, 21 Nov 2026 19:40:00 GMT"
+      "published": "Sat, 21 Nov 2026 19:37:28 GMT"
     },
     {
       "title": "Ireland v Springboks, LIVE BLOG: Coverage of the Nations Championship fixture",
