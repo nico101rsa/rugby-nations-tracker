@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T15:25:22.083Z",
+  "updatedAt": "2026-11-21T15:28:23.664Z",
   "counts": {
     "fixtures": 4,
     "results": 32,
@@ -783,11 +783,11 @@
         "id": 465,
         "name": "New Zealand",
         "logo": "https://media.api-sports.io/rugby/teams/465.png",
-        "score": 10
+        "score": 12
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T15:25:22.083Z",
+        "at": "2026-11-21T15:28:23.664Z",
         "events": [
           {
             "min": 5,
@@ -823,6 +823,16 @@
             "min": 43,
             "team": "home",
             "type": "try"
+          },
+          {
+            "min": 52,
+            "team": "away",
+            "type": "try"
+          },
+          {
+            "min": 53,
+            "team": "away",
+            "type": "conversion"
           }
         ]
       }
@@ -834,7 +844,8 @@
       "status": {
         "short": "2H",
         "long": "Second Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 390,
@@ -846,11 +857,11 @@
         "id": 463,
         "name": "Japan",
         "logo": "https://media.api-sports.io/rugby/teams/463.png",
-        "score": 0
+        "score": 5
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T15:25:22.083Z",
+        "at": "2026-11-21T15:28:23.664Z",
         "events": [
           {
             "min": 6,
@@ -890,6 +901,11 @@
           {
             "min": 48,
             "team": "home",
+            "type": "try"
+          },
+          {
+            "min": 52,
+            "team": "away",
             "type": "try"
           }
         ]
