@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T16:38:13.611Z",
+  "updatedAt": "2026-11-21T16:41:15.463Z",
   "counts": {
-    "fixtures": 4,
-    "results": 32,
+    "fixtures": 3,
+    "results": 33,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53245,
-      "date": "2026-11-21T16:40:00+00:00",
-      "week": "6",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 388,
-        "name": "Ireland",
-        "logo": "https://media.api-sports.io/rugby/teams/388.png",
-        "score": null
-      },
-      "away": {
-        "id": 467,
-        "name": "South Africa",
-        "logo": "https://media.api-sports.io/rugby/teams/467.png",
-        "score": null
-      }
-    },
     {
       "id": 53246,
       "date": "2026-11-21T16:40:00+00:00",
@@ -805,6 +783,34 @@
         "name": "Japan",
         "logo": "https://media.api-sports.io/rugby/teams/463.png",
         "score": 5
+      }
+    },
+    {
+      "id": 53245,
+      "date": "2026-11-21T16:40:00+00:00",
+      "week": "6",
+      "status": {
+        "short": "LIVE",
+        "long": "In Progress",
+        "live": true,
+        "via": "espn"
+      },
+      "home": {
+        "id": 388,
+        "name": "Ireland",
+        "logo": "https://media.api-sports.io/rugby/teams/388.png",
+        "score": 0
+      },
+      "away": {
+        "id": 467,
+        "name": "South Africa",
+        "logo": "https://media.api-sports.io/rugby/teams/467.png",
+        "score": 0
+      },
+      "play": {
+        "minute": 2,
+        "at": "2026-11-21T16:41:15.463Z",
+        "events": []
       }
     }
   ],
