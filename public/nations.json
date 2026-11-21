@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T15:49:37.968Z",
+  "updatedAt": "2026-11-21T15:52:39.748Z",
   "counts": {
     "fixtures": 4,
     "results": 32,
@@ -858,13 +858,14 @@
       "status": {
         "short": "2H",
         "long": "Second Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 390,
         "name": "Scotland",
         "logo": "https://media.api-sports.io/rugby/teams/390.png",
-        "score": 55
+        "score": 60
       },
       "away": {
         "id": 463,
@@ -874,7 +875,7 @@
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T15:49:37.968Z",
+        "at": "2026-11-21T15:52:39.748Z",
         "events": [
           {
             "min": 6,
@@ -955,6 +956,11 @@
             "min": 69,
             "team": "away",
             "type": "yellow"
+          },
+          {
+            "min": 74,
+            "team": "home",
+            "type": "try"
           }
         ]
       }
