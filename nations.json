@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T17:23:41.125Z",
+  "updatedAt": "2026-11-21T17:26:44.159Z",
   "counts": {
     "fixtures": 2,
     "results": 34,
@@ -770,8 +770,7 @@
       "status": {
         "short": "1H",
         "long": "First Half",
-        "live": true,
-        "via": "espn"
+        "live": true
       },
       "home": {
         "id": 388,
@@ -783,11 +782,11 @@
         "id": 467,
         "name": "South Africa",
         "logo": "https://media.api-sports.io/rugby/teams/467.png",
-        "score": 8
+        "score": 10
       },
       "play": {
         "minute": 40,
-        "at": "2026-11-21T17:23:41.125Z",
+        "at": "2026-11-21T17:26:44.159Z",
         "events": [
           {
             "min": 5,
@@ -808,6 +807,11 @@
             "min": 36,
             "team": "away",
             "type": "try"
+          },
+          {
+            "min": 37,
+            "team": "away",
+            "type": "conversion"
           }
         ]
       }
@@ -819,8 +823,7 @@
       "status": {
         "short": "1H",
         "long": "First Half",
-        "live": true,
-        "via": "espn"
+        "live": true
       },
       "home": {
         "id": 389,
@@ -836,7 +839,7 @@
       },
       "play": {
         "minute": 40,
-        "at": "2026-11-21T17:23:41.125Z",
+        "at": "2026-11-21T17:26:44.159Z",
         "events": [
           {
             "min": 9,
@@ -864,7 +867,7 @@
             "type": "conversion"
           },
           {
-            "min": 32,
+            "min": 33,
             "team": "home",
             "type": "penalty"
           }
@@ -1092,12 +1095,6 @@
       "published": "Sat, 21 Nov 2026 16:43:49 GMT"
     },
     {
-      "title": "Ireland v Springboks, LIVE BLOG: Coverage of the Nations Championship fixture",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOR2luTEdDRTkzbW9TNjFWQXNDWUcxdFpQSkJBX0JpM0w0Q1dXM2VmWklaY0lGdE4yMm9CWUV1ZHAyMGwyM3ZvR1VVWjFfUzRtM0d6bjlwVHItalo3UDM3eHpLUmNXUTNWcFJzdGlucVNULWtNb2VId0hHZFNBVzRNQWc3ZFlGM25EMDNpSEY5dzZWSmlFNzRLVXlxdjg4ZFlqTXFWbkRvMHE0bnc1?oc=5",
-      "source": "Planet Rugby",
-      "published": "Sat, 21 Nov 2026 16:36:47 GMT"
-    },
-    {
       "title": "England 37-12 New Zealand: Hosts storm to historic Nations Championship win over All Blacks – as it happened",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxQamdqUlBENWZKREVfZGFmUmFJUUF5WGxncWxwaktFdFZtaHdFUDNlZnhKTzBYT3dwTlNuY0dxcDBjdnloeG5vTlBkbjh3OUZkMmQwZUl3d0VGWXU3cE5pM2xhbDVqUFF5dU5PRDc1dk1pcmptSkoyUmtzRDgwaDk5RzBFNG1RMzEtQUJxLWFXamtZWFBsWUhnanRpeU9zUGZpYmZpOVlnU0RvaWJ2a3o0?oc=5",
       "source": "The Guardian",
@@ -1128,6 +1125,18 @@
       "published": "Sat, 21 Nov 2026 16:01:03 GMT"
     },
     {
+      "title": "England vs New Zealand, Ireland vs South Africa LIVE! Nations Championship updates, latest scores, team news, commentary from Twickenham, Dublin",
+      "link": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQNUxiZkphQm5QZzJzY2xuS1hTMTBGcGRMdkdJRDNSbjlBbzlJSUlob0xRa2pxTU8tc0x0UHFQWHVLUXhncWo0al92Sy16MFR0QVdRWDdmbl9UM19ISzJYaXo2SFhTNDN5bXBIUjY5R3FSYmtsWHNuMVpZR011LUNYTWhvOGZaY3BmR0xqcGlCX0U1SUxCcUtQRXd4aUp0U0Vvd0lBSlFGakxLMGoxQzlITHMzblEzOWNSWkMyc29fakUxTW9rV1FWcFpiNGVKLTJQd2RFZU1TWk1sUllrVmRZQUdTOEFzNE9XTl9ta1VxUWFmUWNvTDQ3VFR6NV9LQmNmdzhVX2lsdlVCcVE5VVEySnRjbTdrYnMwRHpKSTR2bVE?oc=5",
+      "source": "Sky Sports",
+      "published": "Sat, 21 Nov 2026 15:08:04 GMT"
+    },
+    {
+      "title": "How to watch Italy vs Fiji for FREE: Nations Championship 2026 live streams & TV channels",
+      "link": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQV3hUN01PZENicmw2TW42UXZWWGVBWUJaY3ZTbVlGMFFMSWNMeHBEMXRYcEZrSkxHdUtQZE9jVXBpMWVJMDBRbk5IX0piaE96dDM2TW1HMENZVGlBTkFmWDdtQ2VvQk9Lb0xvWndrbW85em04a2xMLUtKVzRNeml1WjF6Vm1qUXM4bG9mLTc4NDZncGNkUWx4TnB4NlU?oc=5",
+      "source": "TechRadar",
+      "published": "Sat, 21 Nov 2026 14:00:00 GMT"
+    },
+    {
       "title": "Scotland vs. Japan Rugby Live Updates: Nations Championship Round 6 Action",
       "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPVFdVLTR1ek5EQTVmQW11RUU1WTZUQjRNRXlRRWs5SVRidF9abk9xeGc2ZzFZWGN3ZXpqbHJfc1h1WFZWS1hxVzlIeXNoSE1zek81REhJSTNpMzBoelRSdHlIMlduY3FBenhlMndLU3NFazJOQjF4NFBBRzBQeWZzc01RMA?oc=5",
       "source": "Yahoo Sports",
@@ -1156,12 +1165,6 @@
       "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQUFNnUzJuVnIzV21BV2xDN0NLR2lfMmhZcmhJYjlfWmd0XzNjTHFBZWNwU2p4WDZKTWk1UzhFNjNkbDRJUjhnRV9yR3ptbUw4MkhPek9uREpqa04yWllqNUNEV3lqODdua1ZLUkJkSDRNa21EODhTQ1VVTU5Fc0pHMlFMTTA3eExIai02QmZJSVBVbFN0ZHpYdmVfY2NIcnc?oc=5",
       "source": "The Guardian",
       "published": "Fri, 20 Nov 2026 20:00:00 GMT"
-    },
-    {
-      "title": "Nations Championship 2026 on TV | Schedule, TV channels and live stream",
-      "link": "https://news.google.com/rss/articles/CBMigwFBVV95cUxQbXVXS0FIU25Pa3pnakVQVlM1YkQ0UzFKNXhlM1BYT1BIY3lNa2UyblVKaFhhdlBQbUhManY3MDBPZklzQWtMRVFfQ2NLc003VXF1cEg3ckZudV9VT3BlR3VmdTdIdXFZUTR5WUx1Z0RkU0oybzk3XzNiUXZQWGhSUy1PUQ?oc=5",
-      "source": "Radio Times",
-      "published": "Thu, 19 Nov 2026 08:00:00 GMT"
     },
     {
       "title": "2026 Nations Championship Fixtures",
