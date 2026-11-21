@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T14:46:02.608Z",
+  "updatedAt": "2026-11-21T14:49:05.129Z",
   "counts": {
     "fixtures": 4,
     "results": 32,
@@ -770,13 +770,14 @@
       "status": {
         "short": "1H",
         "long": "First Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 386,
         "name": "England",
         "logo": "https://media.api-sports.io/rugby/teams/386.png",
-        "score": 5
+        "score": 12
       },
       "away": {
         "id": 465,
@@ -785,13 +786,23 @@
         "score": 0
       },
       "play": {
-        "minute": 34,
-        "at": "2026-11-21T14:43:01.062Z",
+        "minute": 40,
+        "at": "2026-11-21T14:49:05.128Z",
         "events": [
           {
             "min": 5,
             "team": "home",
             "type": "try"
+          },
+          {
+            "min": 32,
+            "team": "home",
+            "type": "try"
+          },
+          {
+            "min": 32,
+            "team": "home",
+            "type": "conversion"
           }
         ]
       }
@@ -803,8 +814,7 @@
       "status": {
         "short": "1H",
         "long": "First Half",
-        "live": true,
-        "via": "espn"
+        "live": true
       },
       "home": {
         "id": 390,
@@ -819,8 +829,8 @@
         "score": 0
       },
       "play": {
-        "minute": 37,
-        "at": "2026-11-21T14:46:02.608Z",
+        "minute": 40,
+        "at": "2026-11-21T14:49:05.128Z",
         "events": [
           {
             "min": 6,
@@ -1094,22 +1104,22 @@
       "published": "Sat, 21 Nov 2026 13:15:00 GMT"
     },
     {
-      "title": "How to watch Wales vs Australia: live stream Nations Championship rugby for FREE",
-      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPekhpeFlwQnpaUWZJOXBUVjd5OXZvTWZkTEpScUFmSEhFUzRHVExNVDN4R0J0aE90MjIwaHBSVWZBTG5SaW4xbDNhQjJRTWcycm1LUkduV1VCYXVOeGVLZGhSbU9jNlNiOENlZ2tET2VKeVg4OG9oTE00alBMVHVOVm1taklteDB5UDdXOHo3Y0E1MVRudmpUUDE2bWxQYkotNlVOQ3BwNnFSNk9B?oc=5",
-      "source": "What Hi-Fi?",
-      "published": "Sat, 21 Nov 2026 13:00:00 GMT"
-    },
-    {
       "title": "England vs New Zealand, Ireland vs South Africa LIVE! Nations Championship updates, latest scores, team news, commentary from Twickenham, Dublin",
       "link": "https://news.google.com/rss/articles/CBMioAJBVV95cUxQNUxiZkphQm5QZzJzY2xuS1hTMTBGcGRMdkdJRDNSbjlBbzlJSUlob0xRa2pxTU8tc0x0UHFQWHVLUXhncWo0al92Sy16MFR0QVdRWDdmbl9UM19ISzJYaXo2SFhTNDN5bXBIUjY5R3FSYmtsWHNuMVpZR011LUNYTWhvOGZaY3BmR0xqcGlCX0U1SUxCcUtQRXd4aUp0U0Vvd0lBSlFGakxLMGoxQzlITHMzblEzOWNSWkMyc29fakUxTW9rV1FWcFpiNGVKLTJQd2RFZU1TWk1sUllrVmRZQUdTOEFzNE9XTl9ta1VxUWFmUWNvTDQ3VFR6NV9LQmNmdzhVX2lsdlVCcVE5VVEySnRjbTdrYnMwRHpKSTR2bVE?oc=5",
       "source": "Sky Sports",
       "published": "Sat, 21 Nov 2026 13:00:00 GMT"
     },
     {
-      "title": "Ireland vs Springboks Rugby Nations Championship: Lineups and predictions",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxPSnZHUHU3dFVWYTJxWWIwbkdwVDY0OFRSdXpza01JWHJKUnpMeVVFOC1mTmhlTU1wRXVqT2Y5TnY4VDR3UUxDN1UzUDVobi13V3gtU014bHdOU2dueExJYWtLNEUyaTg0cHc0M1hmNnEyVHUzX3JFVC1vNXB6QllyMVkzWW4temhSLVJMVHBaZTBrVkNiV2dLc1BEbS1JVm9oQkczc1lMcXJyY1ZQeE84Uw?oc=5",
-      "source": "Read Rugby Union",
-      "published": "Sat, 21 Nov 2026 12:18:53 GMT"
+      "title": "How to watch Wales vs Australia: live stream Nations Championship rugby for FREE",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPdEdLLVB5NU9LZXRSTzdMYVd0UGhtTlBLRC1mVzhaNU54YTVYUVFKSVQzU0g1UFJHSmJtQlY3eDdldUVVUXBmWDNCZ3FhbHpCMF91UXY1VnNEZWhuNmNJRk1CT0ZLdmowQlNCSlJPTVhYMVNDUXg5dnVpU2s1bTAtdmxUb18xdlkzY0NnRUhWXy1mZkFfcFFYYVJNQmtBcGoxTHNMWWFrTmg?oc=5",
+      "source": "What Hi-Fi?",
+      "published": "Sat, 21 Nov 2026 13:00:00 GMT"
+    },
+    {
+      "title": "Live: Springboks v Ireland, Nations Championship rugby",
+      "link": "https://news.google.com/rss/articles/CBMimAFBVV95cUxPSkRxSTZHeDI5MGlxZEw5c2hmSFczdFRVWnRLblNzVFAxVkl6U1BjTGREOGduTk5hX3BFTG85eVBsRFdVRXhPZHdUclJoaEJ5VldnUDR4bHkyUXcxNlFMenFEaGRNZTQwc0I3QktJU19nLU9zNHZYRUd1VEV4RlgwYW5CRDRDUUJwbldxWlN1MVdCZjJDTEkwWQ?oc=5",
+      "source": "RNZ",
+      "published": "Sat, 21 Nov 2026 11:04:20 GMT"
     },
     {
       "title": "Siya Kolisi talks Jasper Wiese's absence and Dan Sheehan's No.8 move",
@@ -1118,22 +1128,16 @@
       "published": "Sat, 21 Nov 2026 01:50:34 GMT"
     },
     {
-      "title": "How to watch Wallabies vs. Wales: TV channel, live stream for Australia's Nations Championship match",
-      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxQTGVYYkpla1UtMGwwNTA0N0ViV204VEFlbjRJTkJwbUd4bVVicnBuRXl5cGtmblhCSVpHQ2ctazIwWXk5ajNkV21vc0ZNM0tyWG1RVUNKS0RCTmpmY3Q4anFRbW5PcV82VUVKb1Y3a2EzWFZuM21IVkxQVlU5SDNHZTAyc2lIYjg2a29NX1cxeFZ0NGJjM0NoZllGZGIzUkQtSkxpdXh3ZkNLZ3ZTekxlRG5TcXRTYnRlVTRoVXROZlhSUmpWc1RlY3ZIWQ?oc=5",
-      "source": "Sporting News AU",
-      "published": "Sat, 21 Nov 2026 01:00:01 GMT"
-    },
-    {
       "title": "One fix to the Nations Championship could make it bigger than the World Cup",
       "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxObjhVVFlZdEtWRE40eUg2OS1PbG5peVlfVlhwXzRFb05HUnk1RmthV0JYUjAyc3FfSi1xZTQxZ05tQTBOSkxhUHdFaElHVk5nRjh0aVNJRVY5a1psYkVWQlpld2FqbndMYng3VTFZUGtkWlMtanhxRi04bG5lemhEWXJDRERtU1RSREJSRjFaTlFHSEtYUl9rbWhNWHlkZUI4aEhMVF9QS2RUa3hkQ0ZOR19hVms3WHRPR2UyWjJCZmMyeE5fb283YU5kUGJJWk0tVy1J?oc=5",
       "source": "SMH.com.au",
       "published": "Fri, 20 Nov 2026 22:30:00 GMT"
     },
     {
-      "title": "One fix to the Nations Championship could make it bigger than the World Cup",
-      "link": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxQSkhOdDNWMUtSUUk2R1c3dlFPUVFBVzlTZ3EwSUlwWkNDVkdQbW9QWGdUeGdCVkxHYUZuT09UaW1NYnl4LUpELWF5OEVOQWxVU1dNRUlIRjFnNU5BbFBMWkkxYnlHM3BRbGZGdlRGdmJvSGhmOG1uQTdhcC1YX28wTXpRenUzNko1TjNfd0lSNG1vY01wMnNQRFAxTGRrcjNZVHNITUNYVm9jRWxLQlcxMGVwdWZIckJNb3Y0NXltQ1JGTENSeFIwRko2cTNWd0ctMzNseVVhQQ?oc=5",
-      "source": "The Age",
-      "published": "Fri, 20 Nov 2026 22:30:00 GMT"
+      "title": "England and New Zealand collide with final spots and reputations on the line",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQUFNnUzJuVnIzV21BV2xDN0NLR2lfMmhZcmhJYjlfWmd0XzNjTHFBZWNwU2p4WDZKTWk1UzhFNjNkbDRJUjhnRV9yR3ptbUw4MkhPek9uREpqa04yWllqNUNEV3lqODdua1ZLUkJkSDRNa21EODhTQ1VVTU5Fc0pHMlFMTTA3eExIai02QmZJSVBVbFN0ZHpYdmVfY2NIcnc?oc=5",
+      "source": "The Guardian",
+      "published": "Fri, 20 Nov 2026 20:00:00 GMT"
     },
     {
       "title": "Little-known Waratahs coach is now a national hero",
@@ -1152,6 +1156,12 @@
       "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPX21BYW1NUVRxbWlSMU9yNEVjMFpzMFN6SDRPaGlfcVppZUsyRmFUZzVrYzVSYUZnUE1feFFMY1hYTUZrbmZ5R3ZhS01RTUZOVGRLYlQ3UnBjWFp6TGVUSm1WNzVBa0g2ekpfNXhsYkNhRHpQMFZ2RjI3a1BRYVE2b3Q0RHVPN0xpWXFfOGlIM0w0R2x2cXd5S3NPUXZmUjAyR2NEVGtnNVB2TmZSaUE?oc=5",
       "source": "The Guardian",
       "published": "Sun, 15 Nov 2026 17:42:00 GMT"
+    },
+    {
+      "title": "England 78-15 Japan: Nations Championship rugby union – as it happened",
+      "link": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQM1lXVXhHd24zN1JVSDdiNTJCRGpOUng2dmI2YTlQV1F1RlRLNlhZY3FCUW9PQmMtanlHVmI5ajRHbklKN1NWRzhWaDYxbUxfSWRkdFFTLVBhaWVGTTNqdHI4SGQ5Y2tQWTlGQXJXYnRDQVE4bkhMU29OUUFYX2FLdFlScVN4dVJ6WG1sTTR4LU4zWXV4YlpITEZ0d1JkUjZHUE0tUGxrOA?oc=5",
+      "source": "The Guardian",
+      "published": "Sat, 14 Nov 2026 15:30:00 GMT"
     }
   ],
   "triesPending": 0,
