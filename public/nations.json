@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T15:13:15.407Z",
+  "updatedAt": "2026-11-21T15:19:17.432Z",
   "counts": {
     "fixtures": 4,
     "results": 32,
@@ -770,13 +770,14 @@
       "status": {
         "short": "2H",
         "long": "Second Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 386,
         "name": "England",
         "logo": "https://media.api-sports.io/rugby/teams/386.png",
-        "score": 19
+        "score": 24
       },
       "away": {
         "id": 465,
@@ -786,7 +787,7 @@
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T15:13:15.407Z",
+        "at": "2026-11-21T15:19:17.431Z",
         "events": [
           {
             "min": 5,
@@ -816,6 +817,11 @@
           {
             "min": 39,
             "team": "away",
+            "type": "try"
+          },
+          {
+            "min": 43,
+            "team": "home",
             "type": "try"
           }
         ]
