@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T17:53:59.788Z",
+  "updatedAt": "2026-11-21T18:00:02.000Z",
   "counts": {
     "fixtures": 2,
     "results": 34,
@@ -833,7 +833,8 @@
       "status": {
         "short": "2H",
         "long": "Second Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 389,
@@ -845,11 +846,11 @@
         "id": 28,
         "name": "Fiji",
         "logo": "https://media.api-sports.io/rugby/teams/28.png",
-        "score": 14
+        "score": 21
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T17:53:59.787Z",
+        "at": "2026-11-21T18:00:02.000Z",
         "events": [
           {
             "min": 9,
@@ -888,6 +889,16 @@
           },
           {
             "min": 46,
+            "team": "away",
+            "type": "conversion"
+          },
+          {
+            "min": 52,
+            "team": "away",
+            "type": "try"
+          },
+          {
+            "min": 52,
             "team": "away",
             "type": "conversion"
           }
