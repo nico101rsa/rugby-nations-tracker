@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-21T20:00:47.726Z",
+  "updatedAt": "2026-11-21T21:57:21.656Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 235,
+  "count": 236,
   "storylines": [
     {
       "id": "sam-prendergast-s-wrist-8qzjll",
@@ -5166,6 +5166,11 @@
       "resolution": "until New Zealand Rugby completes its examination of Dave Rennie's position and performance",
       "sources": [
         {
+          "title": "Fading Beauden Barrett a symbol of rabble All Blacks’ joyless decline | Gerard Meagher",
+          "link": "https://www.theguardian.com/sport/2026/nov/21/fading-beauden-barrett-a-symbol-of-rabble-all-blacks-joyless-decline",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
           "title": "Sir Steve Hansen sees 'massive difference' from Scott Robertson regime after providing '100 per cent' All Blacks verdict",
           "link": "https://www.planetrugby.com/news/sir-steve-hansen-sees-massive-difference-from-scott-robertson-regime-after-providing-100-per-cent-all-blacks-verdict",
           "feedName": "Planet Rugby"
@@ -5177,7 +5182,7 @@
         }
       ],
       "firstSeen": "2026-11-21",
-      "lastSeen": "2026-11-21",
+      "lastSeen": "2026-11-22",
       "uses": 0
     },
     {
@@ -5205,7 +5210,7 @@
     },
     {
       "id": "premiership-rugby-s-12-ujw07y",
-      "subject": "Premiership Rugby's 12-team expansion plans and club application process",
+      "subject": "Premiership Rugby's 12-team expansion application process and entry fee deadline",
       "teams": [
         386
       ],
@@ -5228,14 +5233,16 @@
         }
       ],
       "firstSeen": "2026-11-21",
-      "lastSeen": "2026-11-21",
+      "lastSeen": "2026-11-22",
       "uses": 0
     },
     {
       "id": "world-rugby-s-governance-1ic5091",
       "subject": "World Rugby's governance investigation into Oceania Rugby",
       "teams": [
-        28
+        28,
+        461,
+        465
       ],
       "resolution": "until World Rugby concludes its investigation and decides whether to reinstate Oceania Rugby to its Council",
       "sources": [
@@ -5822,6 +5829,35 @@
         387
       ],
       "resolution": "until French prosecutors conclude their investigation and decide whether to press formal charges",
+      "sources": [
+        {
+          "title": "Faits divers. Top 14 - Après la bagarre des espoirs rochelais, une femme a porté plainte pour \"agression sexuelle\", un autre espoir placé en garde à vue",
+          "link": "https://www.rugbyrama.fr/2026/11/19/faits-divers-top-14-apres-la-bagarre-des-espoirs-rochelais-une-femme-a-porte-plainte-pour-agression-sexuelle-un-autre-espoir-place-en-garde-a-vue-13661031.php",
+          "feedName": "Rugbyrama"
+        },
+        {
+          "title": "Faits divers - \"Le club exprime ses pensées aux personnes blessées, [...] mais ne fera pas davantage de commentaires à ce stade\" : La Rochelle réagit à la garde à vue de ses trois joueurs",
+          "link": "https://www.rugbyrama.fr/2026/11/16/faits-divers-le-club-exprime-ses-pensees-aux-personnes-blessees-mais-ne-fera-pas-davantage-de-commentaires-a-ce-stade-la-rochelle-reagit-a-la-garde-a-13655874.php",
+          "feedName": "Rugbyrama"
+        },
+        {
+          "title": "Faits divers - Le jeune deuxième ligne de La Rochelle Visesio Kite placé en garde à vue pour \"violences aggravées\", deux autres joueurs espoirs concernés",
+          "link": "https://www.rugbyrama.fr/2026/11/16/faits-divers-le-jeune-deuxieme-ligne-de-la-rochelle-visesio-kite-place-en-garde-a-vue-pour-violences-aggravees-deux-autres-joueurs-espoirs-concernes-13655726.php",
+          "feedName": "Rugbyrama"
+        }
+      ],
+      "firstSeen": "2026-11-22",
+      "lastSeen": "2026-11-22",
+      "uses": 0
+    },
+    {
+      "id": "judicial-investigation-into-stade-1j5yozl",
+      "subject": "Judicial investigation into Stade Rochelais lock Visesio Kite and Espoirs players",
+      "teams": [
+        387,
+        461
+      ],
+      "resolution": "until French judicial authorities conclude their investigation into Visesio Kite and the Stade Rochelais players",
       "sources": [
         {
           "title": "Faits divers. Top 14 - Après la bagarre des espoirs rochelais, une femme a porté plainte pour \"agression sexuelle\", un autre espoir placé en garde à vue",
