@@ -5,36 +5,14 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T14:12:45.853Z",
+  "updatedAt": "2026-11-21T14:15:47.442Z",
   "counts": {
-    "fixtures": 5,
-    "results": 31,
+    "fixtures": 4,
+    "results": 32,
     "teams": 12,
     "news": 15
   },
   "fixtures": [
-    {
-      "id": 53243,
-      "date": "2026-11-21T14:10:00+00:00",
-      "week": "6",
-      "status": {
-        "short": "NS",
-        "long": "Not Started",
-        "live": false
-      },
-      "home": {
-        "id": 386,
-        "name": "England",
-        "logo": "https://media.api-sports.io/rugby/teams/386.png",
-        "score": null
-      },
-      "away": {
-        "id": 465,
-        "name": "New Zealand",
-        "logo": "https://media.api-sports.io/rugby/teams/465.png",
-        "score": null
-      }
-    },
     {
       "id": 53245,
       "date": "2026-11-21T16:40:00+00:00",
@@ -810,6 +788,34 @@
       "play": {
         "minute": 3,
         "at": "2026-11-21T14:12:45.852Z",
+        "events": []
+      }
+    },
+    {
+      "id": 53243,
+      "date": "2026-11-21T14:10:00+00:00",
+      "week": "6",
+      "status": {
+        "short": "LIVE",
+        "long": "In Progress",
+        "live": true,
+        "via": "espn"
+      },
+      "home": {
+        "id": 386,
+        "name": "England",
+        "logo": "https://media.api-sports.io/rugby/teams/386.png",
+        "score": 0
+      },
+      "away": {
+        "id": 465,
+        "name": "New Zealand",
+        "logo": "https://media.api-sports.io/rugby/teams/465.png",
+        "score": 0
+      },
+      "play": {
+        "minute": 6,
+        "at": "2026-11-21T14:15:47.442Z",
         "events": []
       }
     }
