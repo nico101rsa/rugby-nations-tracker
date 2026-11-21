@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T18:06:28.733Z",
+  "updatedAt": "2026-11-21T18:09:30.073Z",
   "counts": {
     "fixtures": 2,
     "results": 34,
@@ -783,11 +783,11 @@
         "id": 467,
         "name": "South Africa",
         "logo": "https://media.api-sports.io/rugby/teams/467.png",
-        "score": 15
+        "score": 17
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T18:06:28.733Z",
+        "at": "2026-11-21T18:09:30.073Z",
         "events": [
           {
             "min": 5,
@@ -833,6 +833,11 @@
             "min": 58,
             "team": "away",
             "type": "try"
+          },
+          {
+            "min": 59,
+            "team": "away",
+            "type": "conversion"
           }
         ]
       }
