@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T18:30:38.699Z",
+  "updatedAt": "2026-11-21T18:33:40.876Z",
   "counts": {
     "fixtures": 2,
     "results": 34,
@@ -856,9 +856,10 @@
       "date": "2026-11-21T16:40:00+00:00",
       "week": "6",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false,
+        "via": "espn"
       },
       "home": {
         "id": 389,
@@ -871,67 +872,6 @@
         "name": "Fiji",
         "logo": "https://media.api-sports.io/rugby/teams/28.png",
         "score": 21
-      },
-      "play": {
-        "minute": null,
-        "at": "2026-11-21T18:27:37.251Z",
-        "events": [
-          {
-            "min": 9,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 10,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 14,
-            "team": "home",
-            "type": "penalty"
-          },
-          {
-            "min": 18,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 19,
-            "team": "away",
-            "type": "conversion"
-          },
-          {
-            "min": 33,
-            "team": "home",
-            "type": "penalty"
-          },
-          {
-            "min": 45,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 46,
-            "team": "away",
-            "type": "conversion"
-          },
-          {
-            "min": 52,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 52,
-            "team": "away",
-            "type": "conversion"
-          },
-          {
-            "min": 65,
-            "team": "home",
-            "type": "penalty"
-          }
-        ]
       }
     }
   ],
