@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T20:15:55.940Z",
+  "updatedAt": "2026-11-21T20:18:57.716Z",
   "counts": {
     "fixtures": 0,
     "results": 36,
@@ -776,7 +776,7 @@
         "id": 387,
         "name": "France",
         "logo": "https://media.api-sports.io/rugby/teams/387.png",
-        "score": 0
+        "score": 7
       },
       "away": {
         "id": 460,
@@ -785,9 +785,20 @@
         "score": 0
       },
       "play": {
-        "minute": 3,
-        "at": "2026-11-21T20:12:50.356Z",
-        "events": []
+        "minute": 9,
+        "at": "2026-11-21T20:18:57.716Z",
+        "events": [
+          {
+            "min": 7,
+            "team": "home",
+            "type": "try"
+          },
+          {
+            "min": 8,
+            "team": "home",
+            "type": "conversion"
+          }
+        ]
       }
     },
     {
