@@ -4,7 +4,7 @@ _The silent ops log, written by the daily watchdog (`scripts/watchdog.mjs`) only
 _Nothing here notifies anyone except state **PAGING**. The Claude weekly review reads this file with the newest weekly report in this folder._
 _All times Sydney time._
 
-**State: OK — every watched job is current and no editorial signal is up.**
+**State: ATTENTION — something is off, nothing has paged. Triage in the weekly review.**
 
 ## Paging Nico
 
@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- None — every briefing moved on.
+- Japan — same lead story since Fri 20 Nov, first run as "Japan without centre Dylan Riley for personal reasons against Scotland at Murrayfield" — the novelty gate flagged the latest edition and published anyway
 
 **Model ladder**
 
@@ -30,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Sat 21 Nov 2026, 14:11 AEDT — repeat leads: Japan
 - Fri 20 Nov 2026, 14:08 AEDT — all clear
 - Thu 19 Nov 2026, 14:21 AEDT — repeat leads: South Africa
 - Thu 12 Nov 2026, 13:56 AEDT — all clear
@@ -54,4 +55,3 @@ _All times Sydney time._
 - Tue 20 Oct 2026, 12:04 AEDT — all clear
 - Mon 19 Oct 2026, 11:11 AEDT — repeat leads: Italy
 - Sun 18 Oct 2026, 11:00 AEDT — all clear
-- Sat 17 Oct 2026, 11:26 AEDT — repeat leads: Scotland
