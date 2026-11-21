@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T21:01:20.098Z",
+  "updatedAt": "2026-11-21T21:04:21.772Z",
   "counts": {
     "fixtures": 0,
     "results": 36,
@@ -830,8 +830,8 @@
       "date": "2026-11-21T20:10:00+00:00",
       "week": "6",
       "status": {
-        "short": "1H",
-        "long": "First Half",
+        "short": "HT",
+        "long": "Halftime",
         "live": true,
         "via": "espn"
       },
@@ -839,7 +839,7 @@
         "id": 391,
         "name": "Wales",
         "logo": "https://media.api-sports.io/rugby/teams/391.png",
-        "score": 5
+        "score": 7
       },
       "away": {
         "id": 461,
@@ -849,7 +849,7 @@
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T21:01:20.098Z",
+        "at": "2026-11-21T21:04:21.772Z",
         "events": [
           {
             "min": 2,
@@ -875,6 +875,11 @@
             "min": 41,
             "team": "home",
             "type": "try"
+          },
+          {
+            "min": 42,
+            "team": "home",
+            "type": "conversion"
           }
         ]
       }
