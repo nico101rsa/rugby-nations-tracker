@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T22:01:54.195Z",
+  "updatedAt": "2026-11-21T22:05:08.955Z",
   "counts": {
     "fixtures": 0,
     "results": 36,
@@ -769,13 +769,14 @@
       "status": {
         "short": "2H",
         "long": "Second Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 387,
         "name": "France",
         "logo": "https://media.api-sports.io/rugby/teams/387.png",
-        "score": 38
+        "score": 45
       },
       "away": {
         "id": 460,
@@ -785,7 +786,7 @@
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T22:01:54.195Z",
+        "at": "2026-11-21T22:05:08.954Z",
         "events": [
           {
             "min": 7,
@@ -871,6 +872,16 @@
             "min": 73,
             "team": "away",
             "type": "conversion"
+          },
+          {
+            "min": 78,
+            "team": "home",
+            "type": "try"
+          },
+          {
+            "min": 79,
+            "team": "home",
+            "type": "conversion"
           }
         ]
       }
@@ -898,7 +909,7 @@
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T22:01:54.195Z",
+        "at": "2026-11-21T22:05:08.954Z",
         "events": [
           {
             "min": 2,
@@ -974,6 +985,11 @@
             "min": 74,
             "team": "away",
             "type": "penalty"
+          },
+          {
+            "min": 78,
+            "team": "away",
+            "type": "yellow"
           }
         ]
       }
