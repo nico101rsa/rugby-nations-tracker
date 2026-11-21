@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-21T18:27:37.251Z",
+  "updatedAt": "2026-11-21T18:30:38.699Z",
   "counts": {
     "fixtures": 2,
     "results": 34,
@@ -786,7 +786,7 @@
       },
       "play": {
         "minute": null,
-        "at": "2026-11-21T18:27:37.251Z",
+        "at": "2026-11-21T18:30:38.699Z",
         "events": [
           {
             "min": 5,
@@ -837,6 +837,16 @@
             "min": 59,
             "team": "away",
             "type": "conversion"
+          },
+          {
+            "min": 73,
+            "team": "home",
+            "type": "yellow"
+          },
+          {
+            "min": 73,
+            "team": "away",
+            "type": "yellow"
           }
         ]
       }
