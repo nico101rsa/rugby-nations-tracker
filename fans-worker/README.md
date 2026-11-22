@@ -45,11 +45,29 @@ columns of all three tables.
 
 ## What it costs
 
-Nothing, on Cloudflare's free plan (100,000 requests and 100,000 rows written
-a day). A phone pings when it opens and every ten minutes while open, and
-each ping writes one row, so the busiest day so far (about 1,100 sessions) is
-a few thousand of each. The count is worked out at most once every 20
-seconds, whatever the traffic.
+Nothing, on Cloudflare's free plan, whose daily allowances for the Durable
+Object are 100,000 requests, 100,000 rows written and 5 million rows read.
+A phone pings when it opens and every ten minutes while open, and each ping
+writes one row.
+
+**It ran out once: round 6, Sun 22 Nov 2026 (Sydney time).** From about
+05:00 every route answered 503 until the allowance reset at 11:00 (00:00
+UTC). Which allowance went was never read from the Cloudflare dashboard; rows
+read is the likely one. Every phone on Results asks `/pulse` once a minute
+during a live game and each ask counted every vote row, and each ping
+cleared and sized the whole online table. Since that day:
+
+- the Worker hands a count it was given in the last 15 seconds to the next
+  phone that asks (`makeReadCache` in `src/index.js`), so most reads never
+  reach the object;
+- the pulse counts are remembered in the object until a vote changes them
+  (`makeTally`), so a read costs no rows;
+- a ping reads by key: old rows are cleared once a minute, through an index
+  on the time, and the ceiling is checked against the remembered count.
+
+The online count is still worked out at most once every 20 seconds. If it
+goes again, the Cloudflare dashboard (Workers → rugby-tracker-fans → Logs)
+names the limit; Workers Paid (US$5 a month) lifts them all.
 
 ## If it is abused
 

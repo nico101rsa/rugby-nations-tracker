@@ -16,7 +16,7 @@
 // takes that without noticing.
 
 import { DurableObject } from "cloudflare:workers";
-import { init, handle, makeLimiter } from "./pulse.js";
+import { init, handle, makeLimiter, makeTally } from "./pulse.js";
 import * as online from "./online.js";
 
 // Which file answers a path. /health is the pulse's: it proves storage works.
@@ -43,7 +43,8 @@ export class PulseStore extends DurableObject {
     super(ctx, env);
     this.sql = (query, ...params) => ctx.storage.sql.exec(query, ...params).toArray();
     this.allow = makeLimiter();
-    this.online = { allow: makeLimiter(online.PING_RATE), count: online.makeCounter() };
+    this.tally = makeTally();
+    this.online = { allow: makeLimiter(online.PING_RATE), count: online.makeCounter(), purgeDue: online.makeEvery() };
     init(this.sql);
     online.init(this.sql);
   }
@@ -55,12 +56,36 @@ export class PulseStore extends DurableObject {
     const req = { method: request.method, path: url.pathname, body, ip: request.headers.get("cf-connecting-ip") ?? "", now: Date.now() };
     const { status, body: out } = ROUTES[url.pathname] === "online"
       ? online.handle(req, this.sql, this.online)
-      : handle(req, this.sql, this.allow);
+      : handle(req, this.sql, this.allow, this.tally);
     // A count may be a few seconds old; a vote's or a ping's own answer is never cached.
     const cache = request.method === "GET" && status === 200 && url.pathname !== "/health" ? { "cache-control": "public, max-age=15" } : { "cache-control": "no-store" };
     return json(status, out, cache);
   }
 }
+
+// A count this Worker was given in the last few seconds is handed to the next
+// phone that asks, so most reads never reach the object at all. The object
+// has a daily allowance on the free plan and it ran out mid round 6 (Sun 22
+// Nov 2026, Sydney), with every phone on Results asking once a minute. Held
+// in this isolate's memory; a vote's or a ping's own answer is never reused.
+export const READ_TTL_MS = 15_000;
+
+export function makeReadCache(ttlMs = READ_TTL_MS) {
+  const kept = new Map();
+  return {
+    get(path, now = Date.now()) {
+      const hit = kept.get(path);
+      return hit && now - hit.at < ttlMs && now >= hit.at ? hit.text : null;
+    },
+    put(path, text, now = Date.now()) {
+      kept.set(path, { at: now, text });
+    },
+  };
+}
+
+const reads = makeReadCache();
+const CACHED = new Set(["/pulse", "/online"]);
+const HIT_HEADERS = { "content-type": "application/json; charset=utf-8", ...CORS, "cache-control": "public, max-age=15" };
 
 export default {
   async fetch(request, env) {
@@ -69,9 +94,18 @@ export default {
     if (!ROUTES[pathname]) {
       return json(404, { error: "not found", what: "rugby-tracker fans worker: GET /pulse, POST /pulse, GET /online, POST /online, GET /health" });
     }
+    const reading = request.method === "GET" && CACHED.has(pathname);
+    if (reading) {
+      const text = reads.get(pathname);
+      if (text) return new Response(text, { status: 200, headers: HIT_HEADERS });
+    }
     try {
       const store = env.PULSE.get(env.PULSE.idFromName("pulse-v1"));
-      return await store.fetch(request);
+      const res = await store.fetch(request);
+      if (!reading || res.status !== 200) return res;
+      const text = await res.text();
+      reads.put(pathname, text);
+      return new Response(text, { status: 200, headers: HIT_HEADERS });
     } catch (e) {
       console.error(`${ROUTES[pathname]} failed: ${e?.message ?? e}`);
       return json(503, { error: "unavailable" }, { "cache-control": "no-store" });

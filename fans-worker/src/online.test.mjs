@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
-import { checkPing, init, notePing, onlineNow, makeCounter, handle, ONLINE_WINDOW_MS, COUNT_TTL_MS, MAX_ONLINE, PING_RATE } from "./online.js";
+import { checkPing, init, notePing, onlineNow, makeCounter, handle, ONLINE_WINDOW_MS, COUNT_TTL_MS, MAX_ONLINE, PING_RATE, PURGE_EVERY_MS, makeEvery } from "./online.js";
 import { makeLimiter } from "./pulse.js";
 
 function store() {
@@ -113,4 +113,28 @@ test("the count is worked out at most once per interval, however many phones ask
   notePing(sql, { id: id(2), team: null }, NOW + 1000);
   assert.equal(count(sql, NOW + 1000).total, 1, "still the remembered count");
   assert.equal(count(sql, NOW + COUNT_TTL_MS).total, 2);
+});
+
+// Round 6 (Sun 22 Nov 2026, Sydney): each ping cleared old rows and sized the
+// table, reading every row twice. With the object's own helpers a ping reads
+// by key, and the clear-out runs once a minute.
+test("a ping from the object clears old rows at most once a minute, and never sizes the table", () => {
+  const sql0 = store();
+  const seen = [];
+  const sql = (q, ...p) => (seen.push(q), sql0(q, ...p));
+  const d = { allow: makeLimiter({ votes: 1e6 }), count: makeCounter(), purgeDue: makeEvery() };
+  for (let i = 0; i < 100; i++) post(sql, { id: id(i + 1), team: "ENG" }, { now: NOW + i * 100 }, d);
+  assert.equal(seen.filter((q) => q.startsWith("DELETE")).length, 1);
+  assert.equal(seen.filter((q) => q === "SELECT COUNT(*) AS n FROM online").length, 0);
+  assert.equal(onlineNow(sql0, NOW + 10_000).total, 100);
+  post(sql, { id: id(1), team: "ENG" }, { now: NOW + PURGE_EVERY_MS }, d);
+  assert.equal(seen.filter((q) => q.startsWith("DELETE")).length, 2);
+});
+
+test("the clear-out and the count read through the index on the time", () => {
+  const db = new DatabaseSync(":memory:");
+  init((q, ...p) => db.prepare(q).all(...p));
+  const plan = (q) => db.prepare(`EXPLAIN QUERY PLAN ${q}`).all(0).map((r) => r.detail).join(" ");
+  assert.match(plan("DELETE FROM online WHERE seen < ?"), /online_seen/);
+  assert.match(plan("SELECT team, COUNT(*) AS n FROM online WHERE seen >= ? GROUP BY team"), /online_seen/);
 });

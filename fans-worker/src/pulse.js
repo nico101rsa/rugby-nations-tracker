@@ -134,6 +134,31 @@ function count(sql, phase, sinceMs) {
   return out;
 }
 
+// The counts, remembered until a vote changes them. Every phone on Results
+// asks once a minute during a game and each ask used to read every vote row,
+// which is what ran the free plan's daily rows-read allowance out mid round 6
+// (Sun 22 Nov 2026, Sydney). The object is the only writer, so a remembered
+// answer is exact until the next vote; `maxAgeMs` is only there because the
+// windows move with the clock. Held in memory like the rate limiter.
+export const TALLY_MAX_AGE_MS = 60_000;
+
+export function makeTally(maxAgeMs = TALLY_MAX_AGE_MS) {
+  let at = -Infinity;
+  let value = null;
+  return {
+    get(sql, now = Date.now()) {
+      if (!value || now - at >= maxAgeMs || now < at) {
+        value = { matches: tallies(sql, now), live: liveTallies(sql, now) };
+        at = now;
+      }
+      return value;
+    },
+    clear() {
+      value = null;
+    },
+  };
+}
+
 // ---- rate limit ----------------------------------------------------------------
 
 // Held in the object's memory and nowhere else: an address is never written
@@ -166,8 +191,10 @@ export function makeLimiter({ votes = RATE.votes, perMs = RATE.perMs } = {}) {
 // GET  /health  -> writes, reads and removes one row, to prove storage works
 const MAX_BODY = 400;
 
-export function handle({ method, path, body = "", ip = "", now = Date.now() }, sql, allow) {
-  const counts = () => ({ status: 200, body: { asOf: new Date(now).toISOString(), matches: tallies(sql, now), live: liveTallies(sql, now) } });
+// `tally` is the object's remembered counts (makeTally); without one every
+// answer counts afresh, which is what the tests of the rules want.
+export function handle({ method, path, body = "", ip = "", now = Date.now() }, sql, allow, tally = makeTally(0)) {
+  const counts = () => ({ status: 200, body: { asOf: new Date(now).toISOString(), ...tally.get(sql, now) } });
 
   if (path === "/health" && method === "GET") {
     const probe = { match: "1999-01-01 TST-TST", voter: "0".repeat(32), team: "TST", mood: "up" };
@@ -191,5 +218,6 @@ export function handle({ method, path, body = "", ip = "", now = Date.now() }, s
   if (!checked.ok) return { status: 400, body: { error: checked.error } };
   if (!allow(ip, now)) return { status: 429, body: { error: "slow down" } };
   castVote(sql, checked.vote);
+  tally.clear();
   return counts();
 }

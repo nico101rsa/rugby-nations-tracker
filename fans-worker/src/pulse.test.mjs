@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { DatabaseSync } from "node:sqlite";
-import { checkVote, init, castVote, tallies, liveTallies, handle, makeLimiter, parseMatch, TRACKED, VOTE_WINDOW_DAYS, SHOWN_DAYS, LIVE_WINDOW_DAYS } from "./pulse.js";
+import { checkVote, init, castVote, tallies, liveTallies, handle, makeLimiter, parseMatch, TRACKED, VOTE_WINDOW_DAYS, SHOWN_DAYS, LIVE_WINDOW_DAYS, makeTally, TALLY_MAX_AGE_MS } from "./pulse.js";
 
 // The Durable Object hands the rules sql(query, ...params) -> rows. Here the
 // same shape over node's own SQLite, so the real queries run.
@@ -175,4 +175,26 @@ test("the windows are the released ones", () => {
   // Opened to nine days for one TestFlight test on Thu 12 Nov 2026, then put
   // back. The app stops asking after three days and shows for six.
   assert.deepEqual({ VOTE_WINDOW_DAYS, SHOWN_DAYS, LIVE_WINDOW_DAYS }, { VOTE_WINDOW_DAYS: 4, SHOWN_DAYS: 6, LIVE_WINDOW_DAYS: 2 });
+});
+
+// Round 6 (Sun 22 Nov 2026, Sydney): every phone on Results asked once a
+// minute, each ask read every vote row, and the free plan's daily allowance
+// for the object ran out mid game.
+test("a read costs no query until a vote changes the counts", () => {
+  const sql0 = store();
+  let queries = 0;
+  const sql = (q, ...p) => (queries++, sql0(q, ...p));
+  const allow = makeLimiter();
+  const tally = makeTally();
+  const get = (now = FT) => handle({ method: "GET", path: "/pulse", now }, sql, allow, tally);
+  const first = get();
+  const after = queries;
+  for (let i = 0; i < 500; i++) get(FT + i);
+  assert.equal(queries, after, "500 reads, no query");
+  const post = handle({ method: "POST", path: "/pulse", body: JSON.stringify(vote()), ip: "a", now: FT + 1000 }, sql, allow, tally);
+  assert.notDeepEqual(post.body.matches, first.body.matches, "the voter sees their own vote at once");
+  assert.deepEqual(get(FT + 2000).body.matches, post.body.matches, "and so does the next reader");
+  const settled = queries;
+  get(FT + 2000 + TALLY_MAX_AGE_MS);
+  assert.ok(queries > settled, "counted again once the answer is old: the windows move with the clock");
 });
