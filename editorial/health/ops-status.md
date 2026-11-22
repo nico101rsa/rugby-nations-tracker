@@ -55,4 +55,3 @@ _All times Sydney time._
 - Wed 21 Oct 2026, 11:36 AEDT — repeat leads: England
 - Tue 20 Oct 2026, 12:04 AEDT — all clear
 - Mon 19 Oct 2026, 11:11 AEDT — repeat leads: Italy
-- Sun 18 Oct 2026, 11:00 AEDT — all clear
