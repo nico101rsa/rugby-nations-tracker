@@ -108,7 +108,11 @@ export default {
       return new Response(text, { status: 200, headers: HIT_HEADERS });
     } catch (e) {
       console.error(`${ROUTES[pathname]} failed: ${e?.message ?? e}`);
-      return json(503, { error: "unavailable" }, { "cache-control": "no-store" });
+      // The reason goes out with the refusal: it is Cloudflare's own sentence
+      // (which allowance ran out, or what broke), nothing of a fan's, and on
+      // 22 Nov 2026 nobody could say why the object was down because the
+      // only copy was in a dashboard a cloud session can't open.
+      return json(503, { error: "unavailable", reason: String(e?.message ?? e).slice(0, 300) }, { "cache-control": "no-store" });
     }
   },
 };
