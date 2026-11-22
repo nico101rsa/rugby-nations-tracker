@@ -2,49 +2,6 @@
   "notice": "Outlets proposed by the daily editorial review and probed by code. Nothing here is a news source until it is added to scripts/news-sources.mjs by hand.",
   "candidates": [
     {
-      "outlet": "RNZ Sport",
-      "host": "rnz.co.nz",
-      "homepage": "https://www.rnz.co.nz",
-      "teams": [
-        "New Zealand"
-      ],
-      "why": "New Zealand's shortlist held only an old injury list and ex-player human-interest pieces, and the spine has no New Zealand outlet.",
-      "proposed": "2026-10-26",
-      "status": "no-feed",
-      "feedUrl": null,
-      "probes": [
-        {
-          "date": "2026-10-26",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-27",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-28",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-29",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-30",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-10-31",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-01",
-          "error": "no feed found (8 tried)"
-        }
-      ],
-      "decided": "2026-11-01"
-    },
-    {
       "outlet": "Kyodo News (English)",
       "host": "english.kyodonews.net",
       "homepage": "https://english.kyodonews.net",
@@ -1067,7 +1024,7 @@
       ],
       "why": "England and Scotland had no fresh own-team reported news today, and Sky's free rugby desk covers selection and injury news for both.",
       "proposed": "2026-11-17",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -1093,8 +1050,13 @@
         {
           "date": "2026-11-22",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-23",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-23"
     },
     {
       "outlet": "Rugby Australia (official news)",
@@ -1115,6 +1077,10 @@
         {
           "date": "2026-11-22",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-23",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -1132,6 +1098,10 @@
       "probes": [
         {
           "date": "2026-11-22",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-23",
           "error": "no feed found (8 tried)"
         }
       ]
