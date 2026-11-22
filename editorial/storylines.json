@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-11-21T22:06:55.864Z",
+  "updatedAt": "2026-11-21T23:59:08.003Z",
   "note": "Open editorial storylines — the quiet-day backlog. See docs/adr/0002 in the app repo. Relevance is re-checked by a live search at use time; the dates here are housekeeping only.",
-  "count": 236,
+  "count": 239,
   "storylines": [
     {
       "id": "sam-prendergast-s-wrist-8qzjll",
@@ -5159,26 +5159,26 @@
     },
     {
       "id": "new-zealand-rugby-s-z11qn",
-      "subject": "New Zealand Rugby's potential formal review of head coach Dave Rennie following All Blacks losses",
+      "subject": "New Zealand Rugby's potential review of Dave Rennie's position as All Blacks head coach following record defeats",
       "teams": [
         465
       ],
       "resolution": "until New Zealand Rugby completes its examination of Dave Rennie's position and performance",
       "sources": [
         {
+          "title": "Opinion: Dave Rennie must rip up All Blacks blueprint but won't as inmates run this asylum",
+          "link": "https://www.planetrugby.com/news/opinion-dave-rennie-must-rip-up-all-blacks-blueprint-but-wont-as-inmates-run-this-asylum",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Opinion: All Blacks players are happier but 28-year low proves they are not much better",
+          "link": "https://www.planetrugby.com/news/opinion-all-blacks-players-are-happier-but-28-year-low-proves-they-are-not-much-better",
+          "feedName": "Planet Rugby"
+        },
+        {
           "title": "Fading Beauden Barrett a symbol of rabble All Blacks’ joyless decline | Gerard Meagher",
           "link": "https://www.theguardian.com/sport/2026/nov/21/fading-beauden-barrett-a-symbol-of-rabble-all-blacks-joyless-decline",
           "feedName": "Guardian Rugby Union"
-        },
-        {
-          "title": "Sir Steve Hansen sees 'massive difference' from Scott Robertson regime after providing '100 per cent' All Blacks verdict",
-          "link": "https://www.planetrugby.com/news/sir-steve-hansen-sees-massive-difference-from-scott-robertson-regime-after-providing-100-per-cent-all-blacks-verdict",
-          "feedName": "Planet Rugby"
-        },
-        {
-          "title": "NZ Rugby boss admits 'serious examination' could be required after England game following All Blacks' 'hardest year'",
-          "link": "https://www.planetrugby.com/news/nz-rugby-boss-admits-serious-examination-could-be-required-after-england-game-following-all-blacks-hardest-year",
-          "feedName": "Planet Rugby"
         }
       ],
       "firstSeen": "2026-11-21",
@@ -5333,7 +5333,7 @@
     },
     {
       "id": "gloucester-hartpury-s-search-1klhzt5",
-      "subject": "Gloucester-Hartpury's search for a new head coach following Dan Murphy's departure",
+      "subject": "Gloucester-Hartpury's search for a permanent head coach following Dan Murphy's departure",
       "teams": [
         386
       ],
@@ -5870,6 +5870,86 @@
           "title": "No last-minute hearing for Erasmus, with SA Rugby yet to lodge request",
           "link": "https://www.the42.ie/erasmus-hearing-ban-7232403-Nov2026/",
           "feedName": "The42"
+        }
+      ],
+      "firstSeen": "2026-11-22",
+      "lastSeen": "2026-11-22",
+      "uses": 0
+    },
+    {
+      "id": "sa-rugby-s-response-1ap58b4",
+      "subject": "SA Rugby's response to Rassie Erasmus' six-game World Rugby ban and potential interim Springboks head coach appointment",
+      "teams": [
+        467
+      ],
+      "resolution": "until SA Rugby formally decides whether to appeal Rassie Erasmus' suspension or appoints an interim head coach",
+      "sources": [
+        {
+          "title": "Rassie Erasmus banned: Six contenders and one outrageous shout to be interim Springboks boss",
+          "link": "https://www.planetrugby.com/news/rassie-erasmus-banned-six-contenders-and-one-outrageous-shout-to-be-interim-springboks-boss",
+          "feedName": "Planet Rugby"
+        },
+        {
+          "title": "Rassie denied chance to defend himself",
+          "link": "https://www.sarugbymag.co.za/rassie-denied-chance-to-defend-himself/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "No last-minute hearing for Erasmus, with SA Rugby yet to lodge request",
+          "link": "https://www.the42.ie/erasmus-hearing-ban-7232403-Nov2026/",
+          "feedName": "The42"
+        }
+      ],
+      "firstSeen": "2026-11-22",
+      "lastSeen": "2026-11-22",
+      "uses": 0
+    },
+    {
+      "id": "world-rugby-s-investigation-xni14h",
+      "subject": "World Rugby's investigation into Rassie Erasmus over potential ban and copyright violations during his online watchalong",
+      "teams": [
+        467
+      ],
+      "resolution": "until World Rugby completes its investigation and confirms whether additional sanctions will be imposed on Rassie Erasmus",
+      "sources": [
+        {
+          "title": "Rugby chiefs put Rassie Erasmus on copyright watch over hotel livestream plan",
+          "link": "https://www.theguardian.com/sport/2026/nov/19/rassie-erasmus-ireland-south-africa-watchalong-copyright-rugby-union",
+          "feedName": "Guardian Rugby Union"
+        },
+        {
+          "title": "Rassie risks copyright showdown",
+          "link": "https://www.sarugbymag.co.za/rassie-risks-copyright-showdown/",
+          "feedName": "SA Rugby Magazine"
+        },
+        {
+          "title": "Has muted Rassie Erasmus breached his World Rugby ban as Springboks boss delivers first-half verdict",
+          "link": "https://www.planetrugby.com/news/has-muted-rassie-erasmus-breached-his-world-rugby-ban-as-springboks-boss-delivers-first-half-verdict",
+          "feedName": "Planet Rugby"
+        }
+      ],
+      "firstSeen": "2026-11-22",
+      "lastSeen": "2026-11-22",
+      "uses": 0
+    },
+    {
+      "id": "liam-wright-s-test-13e2qc7",
+      "subject": "Liam Wright's Test career choice between Australia selection and switching eligibility to Wales",
+      "teams": [
+        391,
+        461
+      ],
+      "resolution": "until Liam Wright is selected in an international matchday squad for either Australia or Wales",
+      "sources": [
+        {
+          "title": "An Australian captain who can play for Wales in 2027",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/crq5vzgwxg9wo?at_medium=RSS&at_campaign=rss",
+          "feedName": "BBC Rugby Union"
+        },
+        {
+          "title": "Ospreys star targets Wallabies return - but is open to playing for Wales too",
+          "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/ospreys-star-targets-wallabies-return-34943618",
+          "feedName": "WalesOnline"
         }
       ],
       "firstSeen": "2026-11-22",
