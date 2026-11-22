@@ -51,9 +51,10 @@ A phone pings when it opens and every ten minutes while open, and each ping
 writes one row.
 
 **It ran out once: round 6, Sun 22 Nov 2026 (Sydney time).** From about
-05:00 every route answered 503 until the allowance reset at 11:00 (00:00
-UTC). Which allowance went was never read from the Cloudflare dashboard; rows
-read is the likely one. Every phone on Results asks `/pulse` once a minute
+05:00 every route answered 503: "Exceeded allowed rows read in Durable
+Objects free tier" (read from the live Worker at 11:06, once a 503 carried
+its reason). It was still refusing eight minutes after 00:00 UTC, so the
+reset is not on the stroke of the day. Every phone on Results asks `/pulse` once a minute
 during a live game and each ask counted every vote row, and each ping
 cleared and sized the whole online table. Since that day:
 
@@ -66,8 +67,8 @@ cleared and sized the whole online table. Since that day:
   on the time, and the ceiling is checked against the remembered count.
 
 The online count is still worked out at most once every 20 seconds. If it
-goes again, the Cloudflare dashboard (Workers → rugby-tracker-fans → Logs)
-names the limit; Workers Paid (US$5 a month) lifts them all.
+goes again, the 503 itself names the limit (`reason`, also printed by the
+deploy check and visible with `curl <address>/health`); Workers Paid (US$5 a month) lifts them all.
 
 ## If it is abused
 
