@@ -1,6 +1,6 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-23._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-24._
 
 ## Ready — carried stories about the team they were proposed for
 
@@ -9,9 +9,9 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 ## Being probed
 
 - **Rugby Australia (official news)** (rugby.com.au) — proposed 2026-11-21 for Australia: Australia's edition had no Wallabies-side news and ran a Wales stadium story instead; the union's own news page would supply team and squad items.
-  - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
+  - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
 - **The Fiji Times** (fijitimes.com.fj) — proposed 2026-11-22 for Fiji: Fiji's first Nations Championship win was covered only by Italian-language items; the national daily's sports desk would supply home-side match coverage.
-  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
+  - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
