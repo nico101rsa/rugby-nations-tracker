@@ -1121,6 +1121,42 @@
           "error": "no feed found (8 tried)"
         }
       ]
+    },
+    {
+      "outlet": "RNZ Sport",
+      "host": "rnz.co.nz",
+      "homepage": "https://www.rnz.co.nz/news/sport",
+      "teams": [
+        "New Zealand"
+      ],
+      "why": "NZ's NEW items were all opinion columns; a free public-broadcaster sports desk could supply straight All Blacks news.",
+      "proposed": "2026-11-25",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-11-25",
+          "error": "no feed found (8 tried)"
+        }
+      ]
+    },
+    {
+      "outlet": "Sport24",
+      "host": "news24.com",
+      "homepage": "https://www.news24.com/sport",
+      "teams": [
+        "South Africa"
+      ],
+      "why": "South Africa's shortlist was all opinion and previews; a national sports desk could add Springbok squad and injury news.",
+      "proposed": "2026-11-25",
+      "status": "proposed",
+      "feedUrl": null,
+      "probes": [
+        {
+          "date": "2026-11-25",
+          "error": "no feed found (8 tried; homepage HTTP 403)"
+        }
+      ]
     }
   ]
 }

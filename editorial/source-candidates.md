@@ -12,6 +12,10 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
   - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
 - **The Fiji Times** (fijitimes.com.fj) — proposed 2026-11-22 for Fiji: Fiji's first Nations Championship win was covered only by Italian-language items; the national daily's sports desk would supply home-side match coverage.
   - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
+- **RNZ Sport** (rnz.co.nz) — proposed 2026-11-25 for New Zealand: NZ's NEW items were all opinion columns; a free public-broadcaster sports desk could supply straight All Blacks news.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+- **Sport24** (news24.com) — proposed 2026-11-25 for South Africa: South Africa's shortlist was all opinion and previews; a national sports desk could add Springbok squad and injury news.
+  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
