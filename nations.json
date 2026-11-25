@@ -5,14 +5,147 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-25T05:45:44.655Z",
+  "updatedAt": "2026-11-25T06:00:49.743Z",
   "counts": {
-    "fixtures": 0,
+    "fixtures": 6,
     "results": 36,
     "teams": 12,
     "news": 15
   },
-  "fixtures": [],
+  "fixtures": [
+    {
+      "id": "espn-604011",
+      "date": "2026-11-27T16:40:00.000Z",
+      "week": "Finals",
+      "status": {
+        "short": "NS",
+        "long": "Not Started",
+        "live": false
+      },
+      "home": {
+        "id": 389,
+        "name": "Italy",
+        "logo": "https://media.api-sports.io/rugby/teams/389.png",
+        "score": null
+      },
+      "away": {
+        "id": 28,
+        "name": "Fiji",
+        "logo": "https://media.api-sports.io/rugby/teams/28.png",
+        "score": null
+      }
+    },
+    {
+      "id": "espn-604012",
+      "date": "2026-11-27T20:10:00.000Z",
+      "week": "Finals",
+      "status": {
+        "short": "NS",
+        "long": "Not Started",
+        "live": false
+      },
+      "home": {
+        "id": 388,
+        "name": "Ireland",
+        "logo": "https://media.api-sports.io/rugby/teams/388.png",
+        "score": null
+      },
+      "away": {
+        "id": 461,
+        "name": "Australia",
+        "logo": "https://media.api-sports.io/rugby/teams/461.png",
+        "score": null
+      }
+    },
+    {
+      "id": "espn-604013",
+      "date": "2026-11-28T13:10:00.000Z",
+      "week": "Finals",
+      "status": {
+        "short": "NS",
+        "long": "Not Started",
+        "live": false
+      },
+      "home": {
+        "id": 391,
+        "name": "Wales",
+        "logo": "https://media.api-sports.io/rugby/teams/391.png",
+        "score": null
+      },
+      "away": {
+        "id": 463,
+        "name": "Japan",
+        "logo": "https://media.api-sports.io/rugby/teams/463.png",
+        "score": null
+      }
+    },
+    {
+      "id": "espn-604014",
+      "date": "2026-11-28T16:40:00.000Z",
+      "week": "Finals",
+      "status": {
+        "short": "NS",
+        "long": "Not Started",
+        "live": false
+      },
+      "home": {
+        "id": 386,
+        "name": "England",
+        "logo": "https://media.api-sports.io/rugby/teams/386.png",
+        "score": null
+      },
+      "away": {
+        "id": 465,
+        "name": "New Zealand",
+        "logo": "https://media.api-sports.io/rugby/teams/465.png",
+        "score": null
+      }
+    },
+    {
+      "id": "espn-604015",
+      "date": "2026-11-29T13:10:00.000Z",
+      "week": "Finals",
+      "status": {
+        "short": "NS",
+        "long": "Not Started",
+        "live": false
+      },
+      "home": {
+        "id": 390,
+        "name": "Scotland",
+        "logo": "https://media.api-sports.io/rugby/teams/390.png",
+        "score": null
+      },
+      "away": {
+        "id": 460,
+        "name": "Argentina",
+        "logo": "https://media.api-sports.io/rugby/teams/460.png",
+        "score": null
+      }
+    },
+    {
+      "id": "espn-604016",
+      "date": "2026-11-29T16:40:00.000Z",
+      "week": "Finals",
+      "status": {
+        "short": "NS",
+        "long": "Not Started",
+        "live": false
+      },
+      "home": {
+        "id": 387,
+        "name": "France",
+        "logo": "https://media.api-sports.io/rugby/teams/387.png",
+        "score": null
+      },
+      "away": {
+        "id": 467,
+        "name": "South Africa",
+        "logo": "https://media.api-sports.io/rugby/teams/467.png",
+        "score": null
+      }
+    }
+  ],
   "results": [
     {
       "id": 53213,
@@ -1027,16 +1160,16 @@
       "published": "Tue, 24 Nov 2026 15:06:00 GMT"
     },
     {
+      "title": "Ryder Cup-style points system to decide Nations Championship hemisphere winner",
+      "link": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxON3lhOUdIZnk1enhrdkFqRmdEVFJKN3M0akZaOHlvbUQ5WDB5dmttVjZRQ19CXzhPcDNzRkZTdVN5a3F4WWpJNlcwejNPQ1d5dlA5R0RzM2ZmLUswMFFNdlI2LUxIWGhKcGhmNXVJelM3bHBDV0JLRmctMW54b2RldFMtQV9iWHBZNFk0alV4VndWMlc4UEpOamRjUnFiUDh3Tl9IdEoyYnNTNW56WG5NWktpZWxlZVNs?oc=5",
+      "source": "Rugbypass.com",
+      "published": "Tue, 24 Nov 2026 09:04:36 GMT"
+    },
+    {
       "title": "Nations Championship reaction: England go back to the future, New Zealand under huge pressure",
       "link": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQMnJZeDdoeFo2ZWtqMFUtNV9wUk1ORE1uTGZjYTBFeVZaaGF4V1gtQW8teWtfU3ZVNDVXbzFiVExtMmlPZ21HSTRiclQ0RjZPUnIxU3NXNnZFWE4yc0QtZmI1Rno1dEtxbGw3U01ZZkdyYmVHU3F1bUdNRDRPRjRWczZ2TkxwVE1Mb0Znb0lHR18wRllaaWsyeW1saGVhZzNMcE9sZjB3YkJmZw?oc=5",
       "source": "ESPN",
       "published": "Mon, 23 Nov 2026 22:33:22 GMT"
-    },
-    {
-      "title": "The absurd reaction to the last two weekends of rugby",
-      "link": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQMTV5bjVpM21hZU42cHBvSTNqR1VQMldqRDQyLWdxbEpJcmsxRHF2MUVPaUlrUmJBa1ZHU3pTVzNKWlQ0V2pBYUJsb21MZTZIOExNZHlkVWtSVFA1QUp4TEI5SjV0OUlqWmFaYi1VUk5LeDZRNnVlRDNyWHk4TjFuc0UzMno?oc=5",
-      "source": "Rugbypass.com",
-      "published": "Mon, 23 Nov 2026 14:34:04 GMT"
     },
     {
       "title": "All Blacks and England go again for bronze at Nations Championship Finals Weekend",
