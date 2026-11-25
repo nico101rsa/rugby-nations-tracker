@@ -1,6 +1,6 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-25._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-26._
 
 ## Ready — carried stories about the team they were proposed for
 
@@ -9,13 +9,13 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 ## Being probed
 
 - **Rugby Australia (official news)** (rugby.com.au) — proposed 2026-11-21 for Australia: Australia's edition had no Wallabies-side news and ran a Wales stadium story instead; the union's own news page would supply team and squad items.
-  - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
+  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **The Fiji Times** (fijitimes.com.fj) — proposed 2026-11-22 for Fiji: Fiji's first Nations Championship win was covered only by Italian-language items; the national daily's sports desk would supply home-side match coverage.
-  - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
+  - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
 - **RNZ Sport** (rnz.co.nz) — proposed 2026-11-25 for New Zealand: NZ's NEW items were all opinion columns; a free public-broadcaster sports desk could supply straight All Blacks news.
-  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 - **Sport24** (news24.com) — proposed 2026-11-25 for South Africa: South Africa's shortlist was all opinion and previews; a national sports desk could add Springbok squad and injury news.
-  - feed: not found; probes: 1 (1 failed); stories about tracked teams: none
+  - feed: not found; probes: 2 (2 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
@@ -48,11 +48,5 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 ## Adopted
 
-- **Rugbyrama** (rugbyrama.fr) — proposed 2026-11-03 for France: A French rugby-only news site that would add XV de France squad and injury news missing from France's thin pack.
-  - feed: https://www.rugbyrama.fr/rss.xml; probes: 8; stories about tracked teams: France 224, South Africa 29, Argentina 13, New Zealand 10, Australia 5, Wales 3, Ireland 2, England 2
-- **Midi Olympique** (midi-olympique.fr) — proposed 2026-11-03 for France: The French rugby paper of record, covering Galthié's squad and selection daily.
-  - feed: https://www.rugbyrama.fr/midi-olympique/rss.xml; probes: 14; stories about tracked teams: France 109, South Africa 42, Argentina 7, New Zealand 6, Wales 3, Ireland 2, England 2, Australia 2
-- **OnRugby** (onrugby.it) — proposed 2026-11-03 for Italy: An Italian rugby news site that covers the Azzurri daily, to back up the union's own feed when Italy's pack is thin.
-  - feed: https://www.onrugby.it/feed/; probes: 8; stories about tracked teams: Italy 35, South Africa 28, Argentina 11, England 10, New Zealand 9, France 8, Ireland 7, Australia 6, Scotland 5, Wales 4, Fiji 4, Japan 4
 - **Islands Business** (islandsbusiness.com) — proposed 2026-11-03 for Fiji: Fiji is starved most days and FBC News is its only local feed; this Pacific news site covers the Flying Fijians.
   - feed: https://islandsbusiness.com/feed/; probes: 8; stories about tracked teams: Fiji 49, Australia 7, France 5, England 4, Japan 2
