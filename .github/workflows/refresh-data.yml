@@ -123,7 +123,7 @@ jobs:
           # (scripts/build-calendars.mjs); every committer of one commits both.
           # standings.json and the ESPN try cache likewise ride every commit of
           # the job that rebuilt them (fixtures-burst.test.mjs checks both).
-          git add nations.json public/nations.json scripts/.cache-games.json scripts/match-tries.json scripts/tour-results.json fixtures.json calendar standings.json scripts/match-tries-espn.json
+          git add nations.json public/nations.json scripts/.cache-games.json scripts/match-tries.json scripts/tour-results.json fixtures.json calendar standings.json scripts/match-tries-espn.json scripts/espn-finals.json
           git diff --cached --quiet && echo "No data changes" && exit 0
           git commit -m "Data refresh $(TZ=Australia/Sydney date '+%F %H:%M %Z')"
           # Shares main with the team-events, rankings, news-harvest and

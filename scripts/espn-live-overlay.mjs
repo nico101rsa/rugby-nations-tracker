@@ -35,6 +35,7 @@ import { readFile, writeFile } from "node:fs/promises";
 import { fetchLiveStates } from "./build-fixtures.mjs";
 import { ESPN_TEAM_IDS } from "./fetch-espn-fixtures.mjs";
 import { API_SPORTS_CODE_BY_ID } from "./static-fixtures.mjs";
+import { saveFinals } from "./espn-finals.mjs";
 import { liveEventsFrom, withMinutes, playFor, playMoved, PUBLISH_LIVE_EVENTS } from "./live-events.mjs";
 
 const SITE = "https://site.api.espn.com/apis/site/v2/sports/rugby";
@@ -201,6 +202,7 @@ export function makeOverlayPass({
   log = console.log,
   warn = console.warn,
   now = () => Date.now(),
+  keepFinals = saveFinals,
 } = {}) {
   const owned = new Map();
   const halves = new Map();   // when each game's second half was first seen
@@ -216,11 +218,15 @@ export function makeOverlayPass({
       // The minute is estimated afresh on every pass, ESPN reachable or not.
       const states = withMinutes(last, halves, now());
       const { doc, changes, notes } = applyEspnOverlay(JSON.parse(await read(path)), states, { owned, nowIso: new Date(now()).toISOString() });
-      if (!changes.length && !notes) return 0;
+      // A stand-in ESPN has called full time is kept on disk, or its
+      // result would be gone at the next rebuild (espn-finals.mjs). Looked
+      // at on every pass, so a pass that died after the lift is made good.
+      const kept = keepFinals(doc);
+      if (!changes.length && !notes) return kept;
       await write(path, JSON.stringify(doc, null, 2));
       for (const c of changes) log(`[espn-overlay] ${c.key}: ${c.from} -> ${c.to}`);
       if (notes) log(`[espn-overlay] live notes updated on ${notes} game(s): ${states.filter((x) => x.events).map((x) => `${x.key} ${x.minute ?? "?"}' ${x.events.length} event(s)`).join(", ")}`);
-      return changes.length + notes;
+      return changes.length + notes + kept;
     } catch (err) {
       warn(`[espn-overlay] pass skipped: ${err.message}`);
       return 0;

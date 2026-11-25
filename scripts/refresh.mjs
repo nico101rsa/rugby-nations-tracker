@@ -3,12 +3,14 @@
 // drives the fetcher. Fires every 15 min from GitHub Actions (UTC).
 import { pathToFileURL } from "node:url";
 import { execSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { scheduleKickoffs } from "./static-fixtures.mjs";
 import { refresh, refreshNewsOnly, utcDateStr, datesForWindow } from "./fetch-nations.mjs";
 import { runTourProbe } from "./probe-tour.mjs";
 import { pushWithRetries, BOT_IDENTITY } from "./git-push-retry.mjs";
 import { makeOverlayPass, OVERLAY_INTERVAL_MS } from "./espn-live-overlay.mjs";
 import { syncProjectedFinals } from "./build-fixtures.mjs";
+import { standInAwaitingFinal } from "./espn-finals.mjs";
 
 const PRE_MS = 15 * 60000;    // start polling 15 min before kickoff
 // Keep polling 170 min after kickoff (play + HT + FT settle). 150 until
@@ -223,6 +225,18 @@ async function mainRun() {
 
   const result = await refreshWithFinals({ dates: decision.dates });
   console.log(`[refresh] done`, result.counts, `| rate remaining: ${result.remaining}`);
+
+  // A stand-in final (espn-finals.mjs) still without its full-time score
+  // after the live window: ask ESPN once per sweep, keyless. Never throws.
+  try {
+    const doc = JSON.parse(readFileSync("public/nations.json", "utf8"));
+    if (standInAwaitingFinal(doc)) {
+      const moved = await makeOverlayPass()();
+      console.log(`[refresh] stand-in final asked of ESPN outside the live window: ${moved} change(s)`);
+    }
+  } catch (e) {
+    console.warn(`[refresh] stand-in check skipped: ${e.message}`);
+  }
 
   if (result.remaining != null && result.remaining < GUARD_FLOOR) {
     console.warn(`[refresh] WARNING: only ${result.remaining} requests left today`);

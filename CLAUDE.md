@@ -189,6 +189,27 @@ carries `status.via: "espn"`. Rules, all tested:
 - It can never fail a pass. ESPN down means the last good states are laid
   again and the api-sports feed publishes as before.
 
+**A game api-sports has not listed stands in from ESPN's listing** (since Wed
+25 Nov 2026; `scripts/espn-finals.mjs`). Finals weekend has no `SCHEDULE`
+rows, and api-sports' free plan opens a date only the day before (the 11:00
+Sydney time sweep of Wed 25 Nov was refused Fri 27 Nov), so nobody can tell
+before the eve of a final whether api-sports will list it. The app takes a
+Nations Championship score from nations.json alone, so a game missing there
+has no result on any phone. Now every real `rnc-*` row in fixtures.json that
+no api-sports game and no `SCHEDULE` row covers (same two sides, within a
+day) is published in nations.json as a row with id `espn-<event>` and week
+"Finals". The overlay above lifts its score in play like any other row; at
+full time the score is kept in `scripts/espn-finals.json`, because
+fixtures.json drops the row a day after kickoff; and a sweep asks ESPN once
+for a stand-in past kickoff that still has no final. The moment api-sports
+lists the game its own record replaces the stand-in, kept score included. A
+stand-in is never in the pool table. To read whether api-sports listed a
+final, grep a refresh log for `[espn-finals] standing in`: a game named
+there is still ESPN's. Limit: not yet seen on a real game; the first is Sat
+28 Nov 2026, 03:40 Sydney time. Don't hand-edit the store; a wrong kept score
+is corrected by ESPN's next read within a day of kickoff, or by api-sports
+listing the game.
+
 **A live row also carries the game's running notes** (`play`, since Sun 15
 Nov 2026; `scripts/live-events.mjs`). Nico asked for a live game card: tries,
 the minute, yellow and red cards with their minutes. On each overlay pass one

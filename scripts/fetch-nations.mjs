@@ -12,7 +12,8 @@
 import { writeFile, readFile, mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
-import { mergeStaticFixtures, API_SPORTS_CODE_BY_ID } from "./static-fixtures.mjs";
+import { mergeStaticFixtures, loadPublishedFixtures, API_SPORTS_CODE_BY_ID } from "./static-fixtures.mjs";
+import { standInGames, loadFinalsStore } from "./espn-finals.mjs";
 import { applyKickoffOverrides, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
 import { scrapeTries } from "./scrape-tries.mjs";
 
@@ -233,7 +234,9 @@ const isUpcoming = (g) => /not started/i.test(g.status?.long || "") || (g.status
 // Kickoff display is formatted client-side from `date` in the device timezone.
 const slim = (g) => ({
   id: g.id, date: g.date, week: g.week,
-  status: { short: g.status?.short, long: g.status?.long, live: isLive(g) },
+  // `via` marks a score ESPN wrote (a stand-in's kept final, espn-finals.mjs):
+  // the overlay may still correct such a row, never one api-sports called.
+  status: { short: g.status?.short, long: g.status?.long, live: isLive(g), ...(g.status?.via ? { via: g.status.via } : {}) },
   home: { id: g.teams.home.id, name: g.teams.home.name, logo: g.teams.home.logo, score: g.scores?.home ?? null },
   away: { id: g.teams.away.id, name: g.teams.away.name, logo: g.teams.away.logo, score: g.scores?.away ?? null },
 });
@@ -276,7 +279,15 @@ export async function refresh({ dates }) {
 
   await writeFile(CACHE, JSON.stringify(cache, null, 0));
 
-  const all = Object.values(cache).sort((a, b) => new Date(a.date) - new Date(b.date));
+  // A game ESPN lists and api-sports has not (finals weekend, whose dates
+  // the free plan opens only the day before) stands in until api-sports'
+  // own record arrives: espn-finals.mjs. Never written to the cache.
+  const cached = Object.values(cache);
+  const standIns = standInGames(cached, loadPublishedFixtures(), loadFinalsStore());
+  if (standIns.length) {
+    console.log(`[espn-finals] standing in for ${standIns.length} game(s) api-sports has not listed: ${standIns.map((g) => `${g.teams.home.name} v ${g.teams.away.name} (${g.status.short})`).join(", ")}`);
+  }
+  const all = [...cached, ...standIns].sort((a, b) => new Date(a.date) - new Date(b.date));
   // slimGames lays the kickoff corrections over the published rows only;
   // the raw games below (pool filter, try scrape, log) keep vendor times.
   const { results, fixtures } = slimGames(all);
