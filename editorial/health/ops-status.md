@@ -52,4 +52,3 @@ _All times Sydney time._
 - Mon 26 Oct 2026, 11:19 AEDT — repeat leads: Ireland
 - Sun 25 Oct 2026, 11:19 AEDT — repeat leads: Argentina, New Zealand
 - Thu 22 Oct 2026, 11:40 AEDT — all clear
-- Wed 21 Oct 2026, 11:36 AEDT — repeat leads: England
