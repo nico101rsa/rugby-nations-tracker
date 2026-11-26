@@ -1,21 +1,24 @@
 {
  "about": "Written by scripts/watchdog.mjs, only when something changes. The silent ops log: routine findings land here instead of notifying anyone, and the Claude weekly review reads it. state=paging is the only state that pinged Nico (the '⚠️ Rugby Tracker ops alert' issue); `page` is the page he was sent, kept so that closing the issue by hand ends the pings for that outage.",
- "state": "ok",
+ "state": "attention",
  "paging": [],
  "page": null,
  "overdue": [],
  "unknown": [],
  "heals": {},
  "signals": {
-  "repeatLeads": [],
+  "repeatLeads": [
+   {
+    "team": "Italy",
+    "since": "2026-11-25",
+    "heading": "Federico Ruzza thanks Udine fans as Italy fly out for Fiji rematch",
+    "flagged": true
+   }
+  ],
   "ladderLastRung": null,
   "squadGaps": []
  },
  "history": [
-  {
-   "at": "2026-10-22T00:40:14.624Z",
-   "summary": "all clear"
-  },
   {
    "at": "2026-10-25T00:19:15.906Z",
    "summary": "repeat leads: Argentina, New Zealand"
@@ -99,6 +102,10 @@
   {
    "at": "2026-11-21T17:31:25.430Z",
    "summary": "all clear"
+  },
+  {
+   "at": "2026-11-26T04:07:40.161Z",
+   "summary": "repeat leads: Italy"
   }
  ]
 }
