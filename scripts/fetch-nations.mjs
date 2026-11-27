@@ -15,6 +15,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { mergeStaticFixtures, loadPublishedFixtures, API_SPORTS_CODE_BY_ID } from "./static-fixtures.mjs";
 import { standInGames, loadFinalsStore } from "./espn-finals.mjs";
 import { applyKickoffOverrides, keyOf, KICKOFF_OVERRIDES } from "./kickoff-overrides.mjs";
+import { applyNationsScoreOverrides, SCORE_OVERRIDES } from "./score-overrides.mjs";
 import { scrapeTries } from "./scrape-tries.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -247,14 +248,18 @@ const slim = (g) => ({
 // vendor's times: scrapeTries matches ESPN by kickoff minute
 // (scrape-tries.mjs), so a corrected time there would lose the try count.
 // A moved row re-sorts; the arrays are otherwise exactly what they were.
-export function slimGames(all, { table = KICKOFF_OVERRIDES, log = console.log } = {}) {
+// A finished row a vendor scored the wrong way round takes the hand-confirmed
+// score (score-overrides.mjs) here too, on the published row only: the pool
+// table never counts a finals-weekend game, and a pool game the vendor
+// mirrored would need the table's input fixed as well.
+export function slimGames(all, { table = KICKOFF_OVERRIDES, scores = SCORE_OVERRIDES, log = console.log } = {}) {
   const keyFn = keyOf.nations(API_SPORTS_CODE_BY_ID);
   const corrected = (rows) => {
     const out = applyKickoffOverrides(rows, keyFn, table, { log });
     return out === rows ? rows : out.sort((a, b) => new Date(a.date) - new Date(b.date));
   };
   return {
-    results: corrected(all.filter((g) => isFinished(g) || isLive(g)).map(slim)),
+    results: applyNationsScoreOverrides(corrected(all.filter((g) => isFinished(g) || isLive(g)).map(slim)), { table: scores, log }),
     fixtures: corrected(mergeStaticFixtures(all.filter(isUpcoming).map(slim), all)),
   };
 }
