@@ -210,6 +210,21 @@ there is still ESPN's. Limit: not yet seen on a real game; the first is Sat
 is corrected by ESPN's next read within a day of kickoff, or by api-sports
 listing the game.
 
+**A score both vendors mirrored is put right in `scripts/score-overrides.mjs`.**
+The 11th-place final (Italy 23-21 Fiji, Twickenham, Fri 27 Nov 2026) reached
+nations.json the wrong way round from the first point to the last, on ESPN's
+ticks and api-sports' alike: Fiji 23-21 on every phone, the Hemisphere Shield
+point banked for the South, and the morning editions told it as a Fiji win.
+A user caught it at 07:17 Sydney time. A row (key as the kickoff table's;
+`vendor` and `score` by team code, never home/away) is laid over nations.json
+`results` in `slimGames` and over team-events `last` in `applyHostOverrides`,
+so every writer and reader takes it, and only while the vendor still says
+the recorded wrong score: a vendor that corrects itself wins. Confirm from
+the union's or a federation's match report, not from the other vendor; on
+finals weekend the two vendors agreed with each other and were both wrong.
+A digest already written from the wrong score is not rewritten by the fix:
+correct its sentences in nations.json `digests` (both copies) by hand.
+
 **A live row also carries the game's running notes** (`play`, since Sun 15
 Nov 2026; `scripts/live-events.mjs`). Nico asked for a live game card: tries,
 the minute, yellow and red cards with their minutes. On each overlay pass one

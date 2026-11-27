@@ -33,6 +33,7 @@
 // ground can be told as one. host-overrides.test.mjs checks every row names
 // one of its two sides or is marked neutral.
 import { keyOf } from "./kickoff-overrides.mjs";
+import { overrideTeamScore, SCORE_OVERRIDES } from "./score-overrides.mjs";
 
 export const HOST_OVERRIDES = {
   // PNC final, Japan 20-15 Fiji at Prince Chichibu Memorial Stadium, Tokyo
@@ -68,7 +69,10 @@ export function overrideHost(row, code, table = HOST_OVERRIDES) {
 }
 
 // Every team's `last` and `next`. Pure; logs each correction it makes.
-export function applyHostOverrides(teams, { table = HOST_OVERRIDES, log = console.log } = {}) {
+// Also the one pass for hand-confirmed scores (score-overrides.mjs) on
+// `last`: every writer and reader of team-events.json already runs this, so
+// a mirrored score is put right wherever a host would be.
+export function applyHostOverrides(teams, { table = HOST_OVERRIDES, scores = SCORE_OVERRIDES, log = console.log } = {}) {
   if (!teams) return teams;
   const out = {};
   for (const [code, t] of Object.entries(teams)) {
@@ -77,16 +81,21 @@ export function applyHostOverrides(teams, { table = HOST_OVERRIDES, log = consol
     const fix = (rows) =>
       Array.isArray(rows)
         ? rows.map((r) => {
-            const o = overrideHost(r, code, table);
-            if (o !== r) {
+            const s = overrideTeamScore(r, code, { table: scores });
+            if (s !== r) {
+              changed = true;
+              log(`score override applied: ${code} v ${r.opponentCode} ${r.us}-${r.them} → ${s.us}-${s.them} ${s.result}`);
+            }
+            const o = overrideHost(s, code, table);
+            if (o !== s) {
               changed = true;
               const what = [
-                o.homeAway !== r.homeAway ? o.homeAway : null,
-                o.neutral && !r.neutral ? "neutral" : null,
-                o.venue !== r.venue ? "venue" : null,
-                o.stage !== r.stage ? o.stage : null,
+                o.homeAway !== s.homeAway ? o.homeAway : null,
+                o.neutral && !s.neutral ? "neutral" : null,
+                o.venue !== s.venue ? "venue" : null,
+                o.stage !== s.stage ? o.stage : null,
               ].filter(Boolean).join(", ");
-              log(`host override applied: ${code} ${keyOf.teamNext(code)(r)} → ${what}`);
+              log(`host override applied: ${code} ${keyOf.teamNext(code)(s)} → ${what}`);
             }
             return o;
           })
