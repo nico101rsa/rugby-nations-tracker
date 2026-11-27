@@ -90,3 +90,20 @@ test("guard: a team row without a score (a `next` row) is left alone", () => {
   const next = { date: "2026-11-27T16:40:00.000Z", opponentCode: "FIJ", homeAway: "H" };
   assert.equal(overrideTeamScore(next, "ITA"), next);
 });
+
+test("wired: an ESPN overlay pass corrects the file even when ESPN moved nothing", async () => {
+  const { makeOverlayPass } = await import("./espn-live-overlay.mjs");
+  const file = { results: [PUBLISHED], fixtures: [] };
+  let written = null;
+  const pass = makeOverlayPass({
+    path: "x",
+    fetchStates: async () => [{ key: "IRE-AUS", date: "2026-11-27T20:10:00Z", home: 38, away: 14, live: false, short: "FT" }],
+    read: async () => JSON.stringify(file),
+    write: async (_p, text) => { written = JSON.parse(text); },
+    log: quiet, warn: quiet,
+    keepFinals: () => 0,
+  });
+  assert.ok((await pass()) > 0);
+  const row = written.results.find((r) => r.id === 56382);
+  assert.deepEqual([row.home.score, row.away.score], [23, 21]);
+});
