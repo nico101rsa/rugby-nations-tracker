@@ -2,49 +2,6 @@
   "notice": "Outlets proposed by the daily editorial review and probed by code. Nothing here is a news source until it is added to scripts/news-sources.mjs by hand.",
   "candidates": [
     {
-      "outlet": "ABC News Sport (Australia)",
-      "host": "abc.net.au",
-      "homepage": "https://www.abc.net.au/news/sport",
-      "teams": [
-        "Australia"
-      ],
-      "why": "Australia's shortlist was all BACKGROUND with no new stories, and a free national broadcaster's sport desk would add fresh Wallabies news.",
-      "proposed": "2026-10-31",
-      "status": "no-feed",
-      "feedUrl": null,
-      "probes": [
-        {
-          "date": "2026-10-31",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-01",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-02",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-03",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-04",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-05",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-06",
-          "error": "no feed found (8 tried)"
-        }
-      ],
-      "decided": "2026-11-06"
-    },
-    {
       "outlet": "England Rugby (RFU official news)",
       "host": "englandrugby.com",
       "homepage": "https://www.englandrugby.com",
@@ -573,7 +530,7 @@
       ],
       "why": "Fiji's first Nations Championship win was covered only by Italian-language items; the national daily's sports desk would supply home-side match coverage.",
       "proposed": "2026-11-22",
-      "status": "proposed",
+      "status": "no-feed",
       "feedUrl": null,
       "probes": [
         {
@@ -599,8 +556,13 @@
         {
           "date": "2026-11-27",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-28",
+          "error": "no feed found (8 tried)"
         }
-      ]
+      ],
+      "decided": "2026-11-28"
     },
     {
       "outlet": "RNZ Sport",
@@ -624,6 +586,10 @@
         },
         {
           "date": "2026-11-27",
+          "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-28",
           "error": "no feed found (8 tried)"
         }
       ]
@@ -650,6 +616,10 @@
         },
         {
           "date": "2026-11-27",
+          "error": "no feed found (8 tried; homepage HTTP 403)"
+        },
+        {
+          "date": "2026-11-28",
           "error": "no feed found (8 tried; homepage HTTP 403)"
         }
       ]

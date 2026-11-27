@@ -1,6 +1,6 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-27._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-28._
 
 ## Ready — carried stories about the team they were proposed for
 
@@ -8,17 +8,13 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 
 ## Being probed
 
-- **The Fiji Times** (fijitimes.com.fj) — proposed 2026-11-22 for Fiji: Fiji's first Nations Championship win was covered only by Italian-language items; the national daily's sports desk would supply home-side match coverage.
-  - feed: not found; probes: 6 (6 failed); stories about tracked teams: none
 - **RNZ Sport** (rnz.co.nz) — proposed 2026-11-25 for New Zealand: NZ's NEW items were all opinion columns; a free public-broadcaster sports desk could supply straight All Blacks news.
-  - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
+  - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
 - **Sport24** (news24.com) — proposed 2026-11-25 for South Africa: South Africa's shortlist was all opinion and previews; a national sports desk could add Springbok squad and injury news.
-  - feed: not found; probes: 3 (3 failed); stories about tracked teams: none
+  - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
-- **ABC News Sport (Australia)** (abc.net.au) — proposed 2026-10-31 for Australia: Australia's shortlist was all BACKGROUND with no new stories, and a free national broadcaster's sport desk would add fresh Wallabies news.
-  - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **England Rugby (RFU official news)** (englandrugby.com) — proposed 2026-11-01 for England: England's pack held only women's, club and Argentina-XV items; the union's own news page would carry men's squad and selection news.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **L'Équipe Rugby** (lequipe.fr) — proposed 2026-11-03 for France: France is retrieval-starved most days (3 Nov: two items in its pack); France's main sports daily covers the XV de France every day, in French.
@@ -42,6 +38,8 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 - **Sky Sports Rugby Union** (skysports.com) — proposed 2026-11-17 for England, Scotland, Wales: England and Scotland had no fresh own-team reported news today, and Sky's free rugby desk covers selection and injury news for both.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **Rugby Australia (official news)** (rugby.com.au) — proposed 2026-11-21 for Australia: Australia's edition had no Wallabies-side news and ran a Wales stadium story instead; the union's own news page would supply team and squad items.
+  - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
+- **The Fiji Times** (fijitimes.com.fj) — proposed 2026-11-22 for Fiji: Fiji's first Nations Championship win was covered only by Italian-language items; the national daily's sports desk would supply home-side match coverage.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 
 ## Adopted
