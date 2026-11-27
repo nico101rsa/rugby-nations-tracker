@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-27T21:50:13.829Z",
+  "updatedAt": "2026-11-27T21:59:15.535Z",
   "counts": {
     "fixtures": 4,
     "results": 38,
@@ -922,93 +922,22 @@
       "date": "2026-11-27T20:10:00+00:00",
       "week": "5th place",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true,
+        "short": "FT",
+        "long": "Finished",
+        "live": false,
         "via": "espn"
       },
       "home": {
         "id": 388,
         "name": "Ireland",
         "logo": "https://media.api-sports.io/rugby/teams/388.png",
-        "score": 31
+        "score": 38
       },
       "away": {
         "id": 461,
         "name": "Australia",
         "logo": "https://media.api-sports.io/rugby/teams/461.png",
         "score": 14
-      },
-      "play": {
-        "minute": null,
-        "at": "2026-11-27T21:50:13.828Z",
-        "events": [
-          {
-            "min": 22,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 23,
-            "team": "away",
-            "type": "conversion"
-          },
-          {
-            "min": 26,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 26,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 37,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 39,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 43,
-            "team": "home",
-            "type": "penalty"
-          },
-          {
-            "min": 43,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 44,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 56,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 57,
-            "team": "away",
-            "type": "conversion"
-          },
-          {
-            "min": 73,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 74,
-            "team": "home",
-            "type": "conversion"
-          }
-        ]
       }
     }
   ],
