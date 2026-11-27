@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-27T18:01:30.318Z",
+  "updatedAt": "2026-11-27T18:04:32.034Z",
   "counts": {
     "fixtures": 5,
     "results": 37,
@@ -924,23 +924,24 @@
       "status": {
         "short": "2H",
         "long": "Second Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 389,
         "name": "Italy",
         "logo": "https://media.api-sports.io/rugby/teams/389.png",
-        "score": 14
+        "score": 20
       },
       "away": {
         "id": 28,
         "name": "Fiji",
         "logo": "https://media.api-sports.io/rugby/teams/28.png",
-        "score": 17
+        "score": 19
       },
       "play": {
         "minute": null,
-        "at": "2026-11-27T18:01:30.318Z",
+        "at": "2026-11-27T18:04:32.034Z",
         "events": [
           {
             "min": 9,
@@ -996,6 +997,11 @@
             "min": 56,
             "team": "away",
             "type": "try"
+          },
+          {
+            "min": 57,
+            "team": "away",
+            "type": "conversion"
           }
         ]
       }
