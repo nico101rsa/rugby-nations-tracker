@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-27T20:31:04.307Z",
+  "updatedAt": "2026-11-27T20:37:06.962Z",
   "counts": {
     "fixtures": 4,
     "results": 38,
@@ -908,13 +908,13 @@
         "id": 389,
         "name": "Italy",
         "logo": "https://media.api-sports.io/rugby/teams/389.png",
-        "score": 23
+        "score": 21
       },
       "away": {
         "id": 28,
         "name": "Fiji",
         "logo": "https://media.api-sports.io/rugby/teams/28.png",
-        "score": 21
+        "score": 23
       }
     },
     {
@@ -936,12 +936,23 @@
         "id": 461,
         "name": "Australia",
         "logo": "https://media.api-sports.io/rugby/teams/461.png",
-        "score": 0
+        "score": 7
       },
       "play": {
-        "minute": 22,
-        "at": "2026-11-27T20:31:04.307Z",
-        "events": []
+        "minute": 28,
+        "at": "2026-11-27T20:37:06.961Z",
+        "events": [
+          {
+            "min": 22,
+            "team": "away",
+            "type": "try"
+          },
+          {
+            "min": 23,
+            "team": "away",
+            "type": "conversion"
+          }
+        ]
       }
     }
   ],
@@ -1153,10 +1164,10 @@
   ],
   "news": [
     {
-      "title": "Ireland vs. Australia LIVE: Nations Championship updates, score, commentary",
-      "link": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQSmY1MmxBWXc3aEE2UFRpYUYzblRzQTNxdi14eUxXTHBHcGJKNUc2eDFWeUlCSVJ2eVc1SDlDeUhkamNKS1k2SFFDQXRQbGxLdXF5XzZoOExGLU9MSXhMUkpYNEgycjI5amFWY2QtMF9qd3Nvei1IWDlzS2dvNDNOeDBKbzFoV2ZvYlZEYml5SDhHN191UjVKVkZRTG1QbTBuRVR3VE9LX0hSdVc1bG9vSlkzRQ?oc=5",
-      "source": "ESPN",
-      "published": "Fri, 27 Nov 2026 20:08:32 GMT"
+      "title": "Italy edge Fiji in Nations Championship to end seven-game losing streak",
+      "link": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPckl4RTR0VlFnTVhQaDZxTUtTNUlaRVVGRFBHLThOODE2bWZLRmJCZUtIbzVqLWU5bkZCS0lCSTVXS2otSU1RdGdxMWFNbHBEQkV1ZVI0MjZVd3AwZVlhN1ZVYkQxZHAyZlBrV0RFMTZTT0g5X0QxQVNCdVk5Mk81SzFMaFZyb29jdkp1M0hFNnBUVVNpSnZCTTBHSmNMa2NDV2RfMWRoRk4yemFzSFE?oc=5",
+      "source": "RUGBY.com.au",
+      "published": "Fri, 27 Nov 2026 19:28:37 GMT"
     },
     {
       "title": "Live: Wallabies seeking revenge against Ireland in Nations Championship",
@@ -1165,46 +1176,34 @@
       "published": "Fri, 27 Nov 2026 19:27:01 GMT"
     },
     {
-      "title": "Ireland v Australia live updates: Follow the action from Nations Championship",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQSzk0R3JJT0tDenI0OVJpcklZaDl0M3FtdVpPUEE4ZEo2elJNWVJRbVlXb3czeWR0TVlmTTFoWlBPRDF2bUFmeTRYa0JXamtlWEl2VE1acThHdWZ0bTVVSnlwbjRLa2hYcnoyYUViY3p0R3lSSXRLODFrbkVRazZpQm1nUzhJa2lwakg1ZE96RkZvUTJfcGdaYkpQNEJLQkIxX2RobEg5MkU1dEdjTkdmWVRKbDhOWDNtN1BPdE5vY05zem1ucWc?oc=5",
-      "source": "The Irish Times",
-      "published": "Fri, 27 Nov 2026 19:18:45 GMT"
-    },
-    {
-      "title": "Ireland v Australia: Nations Championship finals weekend – live",
-      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQY3ZMQ1FkT0xxMTc1aEZaaDUtaHk3Y095aFB2WVh0bXItaTJuNWVfWGFHSzc4dDBDbU0xdjg4NU5TbXFNZTJFclJ6dEw2R0dITDV4X1o4TUJrZndOQTdVRmZ1ekVwVnRraC1xcXRQS21HYlkxWE1DdXhSbjBHcFo4SGR6NmxaYWRqaHlIYVV3bmdwZGNlQVJIU2xNcnFYdEx0bEhhcVV6Y3NldHFickd5Rw?oc=5",
-      "source": "The Guardian",
-      "published": "Fri, 27 Nov 2026 19:16:00 GMT"
-    },
-    {
-      "title": "Sat 28th November. Ireland v Australia: Nations Championship 5th-placed playoff. Twickenham Stadium London. 7.10am kick off AEDT, on Stan.",
-      "link": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPV3RIbW1MOE15NFd6ZDNwelRjdEdOMW5qQWR6SG5EWE42S0RNVU5ZSlVKbWllTDZ6emc4ejJuc1FUZ1d4OEVUVFlZVWRad3E4NUFkUzhaaU9IdWdacm5uV1JVMi1uZmhkNkRKdWRVQWhXVGd1aWRCbXJmNEJuX285eHN3dG9OUHVVem5zR2p3WTFqcl9EMTRJRFhuRFE4NXZUQ1owaHFzVkdrOTNqQ09MMnZMa0p6NWR0ZVZtZE52THZHTW1XUlRsOXV1R1ZvdnAtOElkdmJBV0ZIdmgwcEVfQTBIczRzQXFpWG0tN0ViZGpZdXRvUnc?oc=5",
-      "source": "Green & Gold Rugby",
-      "published": "Fri, 27 Nov 2026 19:15:00 GMT"
-    },
-    {
-      "title": "Ireland vs Australia LIVE: Nations Championship 2026 - build-up, team news, match stats, live text & radio commentary",
-      "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5Zb0o0cDE3aVdQOEhvaV9QX3RLRkRFREFHT3V4YjRZVEVLbERadTFwR1pYQUxkSk9YRVd3ZGRBbUd5eUlMa0d5UzVTeXVYRXpJSGc4MnN3aTVmMllJazJWLTFIMUlDQWM?oc=5",
-      "source": "BBC",
-      "published": "Fri, 27 Nov 2026 19:14:04 GMT"
-    },
-    {
       "title": "Ireland vs. Australia LIVE: Nations Championship updates, score, commentary",
       "link": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOTlhDM3VmSnVTTWdETENna3pWQkJQcHhjSkY4ZFoydUhpbFAtN1p4b212bnRFTjljSHdoN3hIRHQybndSLTR6bDNESUVodlhuUmhCSl9YZkprTEI4SmFpWlUwcFNkaUItcEJfcG1CcE04cFhXNUZZdnpPY1hIQzA1MVBUcjBkYUFmdlg3NWJuMnZKM0FyNGZmQ01hV3p5T0xKTDNRSGVFZThwZnFnbDdj?oc=5",
       "source": "ESPN",
       "published": "Fri, 27 Nov 2026 18:48:00 GMT"
     },
     {
-      "title": "How to watch Ireland vs Australia for FREE: Nations Championship 2026 live streams & TV channels",
-      "link": "https://news.google.com/rss/articles/CBMingFBVV95cUxPR1hMUlJSRDgxRlRteWlSWmlBSDJJdE5zTkNJN2RmUmhmbFk4SXByemNOSThWcF9WTVFyNDVCVHR6N0FyOFBjTHU5R29BWjVtN0dOXzVoV0dwT09sRFJNUVNYbG1oLVJNN1RKQVMzTWFPbVZjZEpJQ1JvU0M4UGNpTlFraWttMklsYmN2U0RSOXlnUXEwckNkaHFoa1A0UQ?oc=5",
-      "source": "TechRadar",
-      "published": "Fri, 27 Nov 2026 17:10:00 GMT"
+      "title": "New-look England chase glorious end to rollercoaster year",
+      "link": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPbmxzazFvaTVIQ3dEVEg1Q3pzQlRQc25sSUJTQVJDZVBuemJDQUVRd0lxbGJ4OGpYOXU4ck9iQklwakEzc1RETng2c1JDWmpVUjl4bDZQS1VFMVJablExeFhpZ2xIcl9tci1pZXBpdl9zT19TX0ZLTDh6WlRCNXBpMkhETnpKcXlUN3pDV01faVdES29jcTJSaFA3d1pERFZKQ05keXVpNG44Nng2ODhmcW5kTGRZdWc?oc=5",
+      "source": "The Times",
+      "published": "Fri, 27 Nov 2026 17:11:25 GMT"
     },
     {
-      "title": "Twickenham set to be half empty for Nations Championship finals opening night",
-      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9jWFp1cTBCTVdVZmxVMEdaeE9YMDlQakVIWDhUMnRNZWhjYjB1WXBfLXpHUElyeDlNUkxnZHdsZldDVFRpaFZOV3pqaGlaX2h4Y1BOM3pCbmgya2Q1UWJwZGROOVYwRk5tSFc4eQ?oc=5",
+      "title": "Ireland vs Australia - Line-up - Nations Championship 2026 - 28 Nov, 2026",
+      "link": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1ZbU9CYUdjcll0QkxCNWpVbmIxR0FuRHVGRkJHX2x1NnNRbjAxTFhhTVJiSDVQZ3FVYkFvczNVSm1nZnVYTmlORng5b2x6NzY1Mk5UV2pGeG5pQklsd2ZjVEI5ajR2YmtMUE9qaHQ5dTRuejJV?oc=5",
+      "source": "ESPN",
+      "published": "Fri, 27 Nov 2026 16:46:30 GMT"
+    },
+    {
+      "title": "Ireland vs Australia LIVE: Nations Championship 2026 - build-up, team news, match stats, live text & radio commentary",
+      "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5Zb0o0cDE3aVdQOEhvaV9QX3RLRkRFREFHT3V4YjRZVEVLbERadTFwR1pYQUxkSk9YRVd3ZGRBbUd5eUlMa0d5UzVTeXVYRXpJSGc4MnN3aTVmMllJazJWLTFIMUlDQWM?oc=5",
       "source": "BBC",
-      "published": "Fri, 27 Nov 2026 11:17:46 GMT"
+      "published": "Fri, 27 Nov 2026 15:49:55 GMT"
+    },
+    {
+      "title": "How to watch Nations Championship finals weekend 2026: live stream rugby for FREE",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPaEJoeUUwOGRvZHNkY3ZfWVhvNVg0VE5WLVVZOVh4MEhVOFJpREpwUDV1UmVsVXlaR0Y2RFBrOENSTzBfakU1MlpJTHlrY2tobUd4UTJGRGl2NDZTa2pxRTVWSW03UWNWTkRfSDZjN0VqTDhGby1lNTZPVGZGT0VjUVFNU1YwUGhuR1FZQ3RxTFZXUUNLR0hZeUYzNEd2SGIzQWxTa2N2OVQ?oc=5",
+      "source": "What Hi-Fi?",
+      "published": "Fri, 27 Nov 2026 11:25:00 GMT"
     },
     {
       "title": "Nations Championship, Finals Weekend: Teams, global TV channels, referees and more",
@@ -1213,16 +1212,10 @@
       "published": "Fri, 27 Nov 2026 09:11:35 GMT"
     },
     {
-      "title": "Ireland v Australia rugby Nations Championship 2026 TV channel, live stream, kick-off time",
-      "link": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPcmlSS2VxSmo5VmJOWFpGYmVpaTdxU3VJOUlBS1Z3dVJ2RFZrTi1obFYyc0E2QUhxX3lqMnRmRTJGQzM0NFZPZGpacVQ5NEtseHBqSG16YlpzcDNoOGxob2hoQzlhSHBkcG5KakJFUnpIUWszOXdOVXUwbXZGNWVDSkFXX0w3SUoyS01oUGxjams5M1lUb1ZJX3FPd3BQN2JYY0h5OEFSNUZVdGtSTUtKV2RTMV9LQzlIaXpobDdhVjJ3a19KcVE?oc=5",
-      "source": "Radio Times",
-      "published": "Fri, 27 Nov 2026 09:06:51 GMT"
-    },
-    {
-      "title": "Ireland vs Australia: Andy Farrell using last Nations Championship match as World Cup preparation",
-      "link": "https://news.google.com/rss/articles/CBMibEFVX3lxTE91MDZOR1loUjk2UEtueWdoa1FwYms0Nm5WN1VOdTJhYm4yRjZSVjlpNTVEM3QtdFVDQ201NlVZS2ZmeGJSa2t4cTJKRUhTNUFDMUlaS29JeWZ6UUJMeFpETjJIZ213aEZVX3MweQ?oc=5",
-      "source": "BBC",
-      "published": "Fri, 27 Nov 2026 08:08:21 GMT"
+      "title": "Nations Championship: Can finals weekend put the rugby back in the spotlight?",
+      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxPUGdGTXRqWElsTjVneWJ0TWc5SF90RDZEQ25tcFFmamQ1S2h6TmdLV0FnWmhpUmhCbmxwVUhrMXFMNWprajF3QnlHOFZIQTJQVlpIRnNqUDBleUxIY05mSmUwUXZja2liUmhrUENQV0djOGpLRUNKWWp0Qzh6cndYVWluMmQ0bVRheGt4bldVazA?oc=5",
+      "source": "ESPN",
+      "published": "Fri, 27 Nov 2026 08:34:00 GMT"
     },
     {
       "title": "Fiji Vs. Italy Rugby Lineups: 2026 Nations Championship Finals Weekend",
@@ -1237,10 +1230,28 @@
       "published": "Fri, 27 Nov 2026 02:30:00 GMT"
     },
     {
-      "title": "How to watch Wallabies vs. Ireland: TV channel, live stream for Australia's Nations Championship fifth-place final",
-      "link": "https://news.google.com/rss/articles/CBMizgFBVV95cUxORVpjdDV2UHpOcXBuVFZxN28wSmsxMUltYlBpTGJYWUhfZXlJUzgwNEpVc1o1UEFnY0RiUm9vVTdHcXgza1VZb3I0dURSa05tVmtidmpyNGswT0xFVkF3MWtBMXhxZXdpYW1PZTh6ZlV4U0RVbHBDX0xRRU56bXNzTVU2NTFJVFNFUlZpTDFpYzFVbE9GdlJwOGlmM3JobFZ5cWQ1dGJwTWdlTi1XZHlMNzBodnhVcHg2UXV5ZGt2RlI2U2VrdUkzcFpLMkZ6UQ?oc=5",
-      "source": "Sporting News AU",
-      "published": "Thu, 26 Nov 2026 20:00:02 GMT"
+      "title": "All Blacks Name Team for Nations Championship Third-Place Playoff",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNbmZ6XzIxYXVIWTZJQWZBOVZoejhlMDhhYVpKVjFYUUI1bmVSd053MXQtYUNIcldBR1NlWXF6YnZDOWJxZGhGeDR4a1V0YnhGRlNjVEI2Sy1VOUZNQkNJZnBBaTZzUFM1Q2R2NG12ZHdubENQTElYRmVjblozU2h1NjZKOTQzTVlzZlI2XzhuQjhLUERjaFA4TmtnUnByb0lHNEIxZ2M1bWpmVGc?oc=5",
+      "source": "All Blacks",
+      "published": "Thu, 26 Nov 2026 16:28:24 GMT"
+    },
+    {
+      "title": "Springboks dealt significant injury blow ahead of Nations Championship final",
+      "link": "https://news.google.com/rss/articles/CBMirAFBVV95cUxNTE03dVdzNzVYMXRRRk5POWhqc25KUFlHd011a3VmUzREU1FobDR2YXVfUTdqUzR5T3hKbm45X2NNdGV1NFEyelFYOHA5NVNuazBwWkdhNlR1ZHJMSEp5N1A1cDNndjhfLXZJRmg2bldHMG85Y213aHp3UXl5aDF5RklINm1LOWhITzJpTFMwWW9hazhDb3BoQWZSd0U1RGhxUE9NV3pld0M5RzRD?oc=5",
+      "source": "Rugbypass.com",
+      "published": "Wed, 25 Nov 2026 09:53:29 GMT"
+    },
+    {
+      "title": "Nations Championship Finals Weekend Fixtures",
+      "link": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxQVHYwZkJaMGVteE9Jc3hvZGl4Z2YxVjBpZ0UySllqSUhPZ0NfLXFuZzZ2R29GVFlXMXA2bDRGY21BRUVWWnI4R29MVWZQUjNyREliaktrUzdKaGxXTlRtOUltMU9vX05VWEU2cHgyV0xFOUVObEVsMDEtQWxfcFhqWERHeDRoVm44V3VlYkVvWTRmOC1zNTZ2WUl5a2dIMEltODcxWkhpTng?oc=5",
+      "source": "RUGBY.com.au",
+      "published": "Sun, 22 Nov 2026 02:21:54 GMT"
+    },
+    {
+      "title": "NATIONS CHAMPIONSHIP FINALS WEEKEND MATCH-UPS CONFIRMED",
+      "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOVGhSMHFSdXdnaFo0cXdrTnRnRndMYUhoa2hJbUhud1U2eTRGQjBGWXl4czNPcnh6bjZfeG5ra1VobTA1S1NiTkJ3S29DREJ5YVIxM2dwbjlTSmhwaFRfVFlkb2lsQjlxY1lpMVF3d2NVLW5CTXBFVWF1Z0RYVl9XaldWQlZDOWI4ZnlKbWxiOEc2V1Jaa3A5WGZCM0g2Wm9LOUVFVQ?oc=5",
+      "source": "Super Rugby",
+      "published": "Sun, 22 Nov 2026 00:06:06 GMT"
     }
   ],
   "triesPending": 0,
