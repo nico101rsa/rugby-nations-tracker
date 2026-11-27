@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-27T20:37:06.962Z",
+  "updatedAt": "2026-11-27T20:40:08.488Z",
   "counts": {
     "fixtures": 4,
     "results": 38,
@@ -924,13 +924,14 @@
       "status": {
         "short": "1H",
         "long": "First Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 388,
         "name": "Ireland",
         "logo": "https://media.api-sports.io/rugby/teams/388.png",
-        "score": 0
+        "score": 7
       },
       "away": {
         "id": 461,
@@ -939,8 +940,8 @@
         "score": 7
       },
       "play": {
-        "minute": 28,
-        "at": "2026-11-27T20:37:06.961Z",
+        "minute": 31,
+        "at": "2026-11-27T20:40:08.488Z",
         "events": [
           {
             "min": 22,
@@ -950,6 +951,16 @@
           {
             "min": 23,
             "team": "away",
+            "type": "conversion"
+          },
+          {
+            "min": 26,
+            "team": "home",
+            "type": "try"
+          },
+          {
+            "min": 26,
+            "team": "home",
             "type": "conversion"
           }
         ]
