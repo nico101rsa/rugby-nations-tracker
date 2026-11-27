@@ -36,6 +36,7 @@ import { fetchLiveStates } from "./build-fixtures.mjs";
 import { ESPN_TEAM_IDS } from "./fetch-espn-fixtures.mjs";
 import { API_SPORTS_CODE_BY_ID } from "./static-fixtures.mjs";
 import { saveFinals } from "./espn-finals.mjs";
+import { applyNationsScoreOverrides } from "./score-overrides.mjs";
 import { liveEventsFrom, withMinutes, playFor, playMoved, PUBLISH_LIVE_EVENTS } from "./live-events.mjs";
 
 const SITE = "https://site.api.espn.com/apis/site/v2/sports/rugby";
@@ -217,7 +218,17 @@ export function makeOverlayPass({
       if (!last.length) return 0;
       // The minute is estimated afresh on every pass, ESPN reachable or not.
       const states = withMinutes(last, halves, now());
-      const { doc, changes, notes } = applyEspnOverlay(JSON.parse(await read(path)), states, { owned, nowIso: new Date(now()).toISOString() });
+      const lifted = applyEspnOverlay(JSON.parse(await read(path)), states, { owned, nowIso: new Date(now()).toISOString() });
+      const { changes, notes } = lifted;
+      // A hand-confirmed score (score-overrides.mjs) is laid on every write of
+      // the file, not only the api-sports one, so no writer can put a
+      // mirrored score back.
+      let doc = lifted.doc;
+      const results = applyNationsScoreOverrides(doc.results ?? [], { log });
+      if (results !== (doc.results ?? [])) {
+        doc = { ...doc, results };
+        changes.push({ key: "score-overrides", from: "vendor", to: "hand-confirmed" });
+      }
       // A stand-in ESPN has called full time is kept on disk, or its
       // result would be gone at the next rebuild (espn-finals.mjs). Looked
       // at on every pass, so a pass that died after the lift is made good.

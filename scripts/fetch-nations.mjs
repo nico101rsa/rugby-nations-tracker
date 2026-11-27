@@ -377,9 +377,16 @@ export async function refreshNewsOnly() {
     console.warn("refreshNewsOnly: no existing nations.json — skipping");
     return { skipped: "no-file" };
   }
+  // A hand-confirmed score (score-overrides.mjs) goes on here too: a day
+  // whose api-sports quota is spent publishes only through this path, and on
+  // Sat 28 Nov 2026 a burst that predated the table put Italy v Fiji back
+  // the wrong way round with nothing to correct it for hours.
+  const results = applyNationsScoreOverrides(existing.results ?? []);
+  const fixed = results === (existing.results ?? []) ? existing : { ...existing, results };
   const news = await fetchNews();
-  const out = applyNews(existing, news);
+  const out = applyNews(fixed, news);
   if (!out) {
+    if (fixed !== existing) await writeFile(OUT, JSON.stringify(fixed, null, 2));
     console.warn("refreshNewsOnly: news scrape empty — keeping existing headlines");
     return { skipped: "empty" };
   }
