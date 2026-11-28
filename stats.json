@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T03:00:18.190Z",
+  "updatedAt": "2026-11-28T02:52:24.507Z",
   "source": "aggregated",
   "matches": [
     {
@@ -6834,6 +6834,195 @@
           "player": "Harry Wilson"
         }
       ]
+    },
+    {
+      "id": 56382,
+      "round": "11th place",
+      "date": "2026-11-27T16:40:00+00:00",
+      "home": {
+        "id": 389,
+        "name": "Italy",
+        "score": 23
+      },
+      "away": {
+        "id": 28,
+        "name": "Fiji",
+        "score": 21
+      },
+      "eventId": null,
+      "reconciled": false,
+      "scoring": [],
+      "cards": []
+    },
+    {
+      "id": 56383,
+      "round": "5th place",
+      "date": "2026-11-27T20:10:00+00:00",
+      "home": {
+        "id": 388,
+        "name": "Ireland",
+        "score": 38
+      },
+      "away": {
+        "id": 461,
+        "name": "Australia",
+        "score": 14
+      },
+      "eventId": 17610138,
+      "reconciled": true,
+      "scoring": [
+        {
+          "min": 22,
+          "team": "away",
+          "type": "try",
+          "player": "Jeremy Williams",
+          "after": [
+            0,
+            5
+          ]
+        },
+        {
+          "min": 23,
+          "team": "away",
+          "type": "conversion",
+          "player": "Carter Gordon",
+          "after": [
+            0,
+            7
+          ]
+        },
+        {
+          "min": 26,
+          "team": "home",
+          "type": "try",
+          "player": "Robbie Henshaw",
+          "after": [
+            5,
+            7
+          ]
+        },
+        {
+          "min": 27,
+          "team": "home",
+          "type": "conversion",
+          "player": "Sam Prendergast",
+          "after": [
+            7,
+            7
+          ]
+        },
+        {
+          "min": 37,
+          "team": "home",
+          "type": "try",
+          "player": "Nick Timoney",
+          "after": [
+            12,
+            7
+          ]
+        },
+        {
+          "min": 39,
+          "team": "home",
+          "type": "conversion",
+          "player": "Sam Prendergast",
+          "after": [
+            14,
+            7
+          ]
+        },
+        {
+          "min": 40,
+          "team": "home",
+          "type": "penalty",
+          "player": "Sam Prendergast",
+          "after": [
+            17,
+            7
+          ]
+        },
+        {
+          "min": 43,
+          "team": "home",
+          "type": "try",
+          "player": "Robert Baloucoune",
+          "after": [
+            22,
+            7
+          ]
+        },
+        {
+          "min": 44,
+          "team": "home",
+          "type": "conversion",
+          "player": "Sam Prendergast",
+          "after": [
+            24,
+            7
+          ]
+        },
+        {
+          "min": 56,
+          "team": "away",
+          "type": "try",
+          "player": "Kalani Thomas",
+          "after": [
+            24,
+            12
+          ]
+        },
+        {
+          "min": 57,
+          "team": "away",
+          "type": "conversion",
+          "player": "Carter Gordon",
+          "after": [
+            24,
+            14
+          ]
+        },
+        {
+          "min": 73,
+          "team": "home",
+          "type": "try",
+          "player": "James McNabney",
+          "after": [
+            29,
+            14
+          ]
+        },
+        {
+          "min": 74,
+          "team": "home",
+          "type": "conversion",
+          "player": "Sam Prendergast",
+          "after": [
+            31,
+            14
+          ]
+        },
+        {
+          "min": 80,
+          "team": "home",
+          "type": "try",
+          "player": "James McNabney",
+          "after": [
+            36,
+            14
+          ]
+        },
+        {
+          "min": 80,
+          "team": "home",
+          "type": "conversion",
+          "player": "Sam Prendergast",
+          "after": [
+            38,
+            14
+          ]
+        }
+      ],
+      "cards": []
     }
   ],
   "aggregates": {
@@ -6856,6 +7045,11 @@
       {
         "player": "Malcolm Marx",
         "team": "South Africa",
+        "tries": 5
+      },
+      {
+        "player": "Robert Baloucoune",
+        "team": "Ireland",
         "tries": 5
       },
       {
@@ -6886,11 +7080,6 @@
       {
         "player": "Mateo Carreras",
         "team": "Argentina",
-        "tries": 4
-      },
-      {
-        "player": "Robert Baloucoune",
-        "team": "Ireland",
         "tries": 4
       },
       {
@@ -6936,6 +7125,11 @@
       {
         "player": "Jamie Dobie",
         "team": "Scotland",
+        "tries": 3
+      },
+      {
+        "player": "Jeremy Williams",
+        "team": "Australia",
         "tries": 3
       },
       {
@@ -6986,6 +7180,11 @@
       {
         "player": "Max Jorgensen",
         "team": "Australia",
+        "tries": 3
+      },
+      {
+        "player": "Nick Timoney",
+        "team": "Ireland",
         "tries": 3
       },
       {
@@ -7079,13 +7278,13 @@
         "tries": 2
       },
       {
-        "player": "Jamie George",
-        "team": "England",
+        "player": "James McNabney",
+        "team": "Ireland",
         "tries": 2
       },
       {
-        "player": "Jeremy Williams",
-        "team": "Australia",
+        "player": "Jamie George",
+        "team": "England",
         "tries": 2
       },
       {
@@ -7129,11 +7328,6 @@
         "tries": 2
       },
       {
-        "player": "Nick Timoney",
-        "team": "Ireland",
-        "tries": 2
-      },
-      {
         "player": "Ollie Chessum",
         "team": "England",
         "tries": 2
@@ -7156,6 +7350,11 @@
       {
         "player": "Rhys Carré",
         "team": "Wales",
+        "tries": 2
+      },
+      {
+        "player": "Robbie Henshaw",
+        "team": "Ireland",
         "tries": 2
       },
       {
@@ -7519,6 +7718,11 @@
         "tries": 1
       },
       {
+        "player": "Kalani Thomas",
+        "team": "Australia",
+        "tries": 1
+      },
+      {
         "player": "Kenta Fukuda",
         "team": "Japan",
         "tries": 1
@@ -7596,11 +7800,6 @@
       {
         "player": "Peceli Yato",
         "team": "Fiji",
-        "tries": 1
-      },
-      {
-        "player": "Robbie Henshaw",
-        "team": "Ireland",
         "tries": 1
       },
       {
@@ -7755,6 +7954,15 @@
         "d": 0
       },
       {
+        "player": "Sam Prendergast",
+        "team": "Ireland",
+        "points": 53,
+        "t": 1,
+        "c": 21,
+        "p": 2,
+        "d": 0
+      },
+      {
         "player": "Fin Smith",
         "team": "England",
         "points": 44,
@@ -7770,15 +7978,6 @@
         "t": 0,
         "c": 17,
         "p": 3,
-        "d": 0
-      },
-      {
-        "player": "Sam Prendergast",
-        "team": "Ireland",
-        "points": 40,
-        "t": 1,
-        "c": 16,
-        "p": 1,
         "d": 0
       },
       {
@@ -7872,6 +8071,15 @@
         "d": 0
       },
       {
+        "player": "Robert Baloucoune",
+        "team": "Ireland",
+        "points": 25,
+        "t": 5,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Will Joseph",
         "team": "England",
         "points": 25,
@@ -7928,15 +8136,6 @@
       {
         "player": "Mateo Carreras",
         "team": "Argentina",
-        "points": 20,
-        "t": 4,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
-        "player": "Robert Baloucoune",
-        "team": "Ireland",
         "points": 20,
         "t": 4,
         "c": 0,
@@ -8007,6 +8206,15 @@
         "d": 0
       },
       {
+        "player": "Carter Gordon",
+        "team": "Australia",
+        "points": 15,
+        "t": 0,
+        "c": 6,
+        "p": 1,
+        "d": 0
+      },
+      {
         "player": "Cheslin Kolbe",
         "team": "South Africa",
         "points": 15,
@@ -8054,6 +8262,15 @@
       {
         "player": "Jamie Dobie",
         "team": "Scotland",
+        "points": 15,
+        "t": 3,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Jeremy Williams",
+        "team": "Australia",
         "points": 15,
         "t": 3,
         "c": 0,
@@ -8126,6 +8343,15 @@
       {
         "player": "Max Jorgensen",
         "team": "Australia",
+        "points": 15,
+        "t": 3,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Nick Timoney",
+        "team": "Ireland",
         "points": 15,
         "t": 3,
         "c": 0,
@@ -8207,15 +8433,6 @@
       {
         "player": "Ben Volavola",
         "team": "Fiji",
-        "points": 11,
-        "t": 0,
-        "c": 4,
-        "p": 1,
-        "d": 0
-      },
-      {
-        "player": "Carter Gordon",
-        "team": "Australia",
         "points": 11,
         "t": 0,
         "c": 4,
@@ -8367,8 +8584,8 @@
         "d": 0
       },
       {
-        "player": "Jamie George",
-        "team": "England",
+        "player": "James McNabney",
+        "team": "Ireland",
         "points": 10,
         "t": 2,
         "c": 0,
@@ -8376,8 +8593,8 @@
         "d": 0
       },
       {
-        "player": "Jeremy Williams",
-        "team": "Australia",
+        "player": "Jamie George",
+        "team": "England",
         "points": 10,
         "t": 2,
         "c": 0,
@@ -8457,15 +8674,6 @@
         "d": 0
       },
       {
-        "player": "Nick Timoney",
-        "team": "Ireland",
-        "points": 10,
-        "t": 2,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
         "player": "Ollie Chessum",
         "team": "England",
         "points": 10,
@@ -8504,6 +8712,15 @@
       {
         "player": "Rhys Carré",
         "team": "Wales",
+        "points": 10,
+        "t": 2,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
+        "player": "Robbie Henshaw",
+        "team": "Ireland",
         "points": 10,
         "t": 2,
         "c": 0,
@@ -9213,6 +9430,15 @@
         "d": 0
       },
       {
+        "player": "Kalani Thomas",
+        "team": "Australia",
+        "points": 5,
+        "t": 1,
+        "c": 0,
+        "p": 0,
+        "d": 0
+      },
+      {
         "player": "Kenta Fukuda",
         "team": "Japan",
         "points": 5,
@@ -9341,15 +9567,6 @@
       {
         "player": "Peceli Yato",
         "team": "Fiji",
-        "points": 5,
-        "t": 1,
-        "c": 0,
-        "p": 0,
-        "d": 0
-      },
-      {
-        "player": "Robbie Henshaw",
-        "team": "Ireland",
         "points": 5,
         "t": 1,
         "c": 0,
@@ -9689,6 +9906,14 @@
         "pointsFor": 236
       },
       {
+        "team": "Ireland",
+        "tries": 34,
+        "cons": 27,
+        "pens": 3,
+        "drops": 0,
+        "pointsFor": 233
+      },
+      {
         "team": "South Africa",
         "tries": 34,
         "cons": 28,
@@ -9713,20 +9938,12 @@
         "pointsFor": 204
       },
       {
-        "team": "Ireland",
-        "tries": 29,
-        "cons": 22,
-        "pens": 2,
-        "drops": 0,
-        "pointsFor": 195
-      },
-      {
         "team": "Australia",
-        "tries": 27,
-        "cons": 18,
+        "tries": 29,
+        "cons": 20,
         "pens": 2,
         "drops": 0,
-        "pointsFor": 177
+        "pointsFor": 191
       },
       {
         "team": "Wales",
