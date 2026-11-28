@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-28T16:54:40.894Z",
+  "updatedAt": "2026-11-28T17:00:42.703Z",
   "counts": {
     "fixtures": 2,
     "results": 40,
@@ -924,7 +924,8 @@
       "status": {
         "short": "1H",
         "long": "First Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 386,
@@ -936,16 +937,26 @@
         "id": 465,
         "name": "New Zealand",
         "logo": "https://media.api-sports.io/rugby/teams/465.png",
-        "score": 0
+        "score": 7
       },
       "play": {
-        "minute": 15,
-        "at": "2026-11-28T16:54:40.894Z",
+        "minute": 21,
+        "at": "2026-11-28T17:00:42.703Z",
         "events": [
           {
             "min": 3,
             "team": "home",
             "type": "penalty"
+          },
+          {
+            "min": 17,
+            "team": "away",
+            "type": "try"
+          },
+          {
+            "min": 18,
+            "team": "away",
+            "type": "conversion"
           }
         ]
       }
