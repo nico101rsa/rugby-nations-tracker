@@ -4,7 +4,7 @@ _The silent ops log, written by the daily watchdog (`scripts/watchdog.mjs`) only
 _Nothing here notifies anyone except state **PAGING**. The Claude weekly review reads this file with the newest weekly report in this folder._
 _All times Sydney time._
 
-**State: OK — every watched job is current and no editorial signal is up.**
+**State: ATTENTION — something is off, nothing has paged. Triage in the weekly review.**
 
 ## Paging Nico
 
@@ -18,7 +18,7 @@ _All times Sydney time._
 
 **Repeat leads**
 
-- None — every briefing moved on.
+- Japan — same lead story since Sat 28 Nov, first run as "Dylan Riley leaves Japan squad for son's birth before Wales final" — the novelty gate flagged the latest edition and published anyway
 
 **Model ladder**
 
@@ -30,6 +30,7 @@ _All times Sydney time._
 
 ## Change log (last 35 days, newest first; the current state is always kept)
 
+- Sun 29 Nov 2026, 05:14 AEDT — repeat leads: Japan
 - Fri 27 Nov 2026, 15:13 AEDT — all clear
 - Thu 26 Nov 2026, 15:07 AEDT — repeat leads: Italy
 - Sun 22 Nov 2026, 04:31 AEDT — all clear
