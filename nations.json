@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-28T15:01:20.562Z",
+  "updatedAt": "2026-11-28T15:07:39.593Z",
   "counts": {
     "fixtures": 3,
     "results": 39,
@@ -922,9 +922,10 @@
       "date": "2026-11-28T13:10:00+00:00",
       "week": "9th place",
       "status": {
-        "short": "2H",
-        "long": "Second Half",
-        "live": true
+        "short": "FT",
+        "long": "Finished",
+        "live": false,
+        "via": "espn"
       },
       "home": {
         "id": 391,
@@ -937,82 +938,6 @@
         "name": "Japan",
         "logo": "https://media.api-sports.io/rugby/teams/463.png",
         "score": 10
-      },
-      "play": {
-        "minute": null,
-        "at": "2026-11-28T15:01:20.562Z",
-        "events": [
-          {
-            "min": 10,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 13,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 14,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 17,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 18,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 33,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 34,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 44,
-            "team": "home",
-            "type": "yellow"
-          },
-          {
-            "min": 51,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 51,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 65,
-            "team": "home",
-            "type": "try"
-          },
-          {
-            "min": 66,
-            "team": "home",
-            "type": "conversion"
-          },
-          {
-            "min": 69,
-            "team": "away",
-            "type": "try"
-          },
-          {
-            "min": 76,
-            "team": "away",
-            "type": "try"
-          }
-        ]
       }
     }
   ],
