@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-28T16:42:32.003Z",
+  "updatedAt": "2026-11-28T16:45:33.377Z",
   "counts": {
     "fixtures": 2,
     "results": 40,
@@ -931,7 +931,7 @@
         "id": 386,
         "name": "England",
         "logo": "https://media.api-sports.io/rugby/teams/386.png",
-        "score": 0
+        "score": 3
       },
       "away": {
         "id": 465,
@@ -940,9 +940,15 @@
         "score": 0
       },
       "play": {
-        "minute": 3,
-        "at": "2026-11-28T16:42:32.002Z",
-        "events": []
+        "minute": 6,
+        "at": "2026-11-28T16:45:33.377Z",
+        "events": [
+          {
+            "min": 3,
+            "team": "home",
+            "type": "penalty"
+          }
+        ]
       }
     }
   ],
