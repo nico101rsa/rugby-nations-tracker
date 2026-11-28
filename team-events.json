@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-27T09:15:01.959Z",
+ "updatedAt": "2026-11-28T08:34:52.970Z",
  "source": "sportsapipro+espn",
  "teamIds": {
   "NZL": 4227,
@@ -582,20 +582,6 @@
   "ITA": {
    "last": [
     {
-     "id": 15105994,
-     "date": "2026-02-14T14:10:00.000Z",
-     "league": "Six Nations",
-     "opponent": "Ireland",
-     "opponentCode": "IRE",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 13,
-     "them": 20,
-     "result": "L",
-     "tries": 1,
-     "cards": 1
-    },
-    {
      "id": 15105997,
      "date": "2026-02-22T15:10:00.000Z",
      "league": "Six Nations",
@@ -720,9 +706,7 @@
      "result": "L",
      "tries": 1,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 17610139,
      "date": "2026-11-27T16:40:00.000Z",
@@ -731,11 +715,14 @@
      "opponentCode": "FIJ",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Allianz Stadium, London"
-    },
+     "us": 23,
+     "them": 21,
+     "result": "W",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 17537421,
      "date": "2027-02-06T14:10:00.000Z",
@@ -783,25 +770,23 @@
      "us": null,
      "them": null,
      "result": null
+    },
+    {
+     "id": 17537423,
+     "date": "2027-03-13T14:10:00.000Z",
+     "league": "Six Nations",
+     "opponent": "Wales",
+     "opponentCode": "WAL",
+     "tracked": true,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
     }
    ]
   },
   "AUS": {
    "last": [
-    {
-     "id": 16715500,
-     "date": "2026-08-08T10:05:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Japan",
-     "opponentCode": "JPN",
-     "tracked": true,
-     "homeAway": "A",
-     "us": 35,
-     "them": 32,
-     "result": "W",
-     "tries": 5,
-     "cards": 1
-    },
     {
      "id": 16786650,
      "date": "2026-08-15T05:15:00.000Z",
@@ -927,9 +912,7 @@
      "result": "W",
      "tries": 4,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 17610138,
      "date": "2026-11-27T20:10:00.000Z",
@@ -938,11 +921,14 @@
      "opponentCode": "IRE",
      "tracked": true,
      "homeAway": "A",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Allianz Stadium, London"
-    },
+     "us": 14,
+     "them": 38,
+     "result": "L",
+     "tries": 2,
+     "cards": 0
+    }
+   ],
+   "next": [
     {
      "id": 16248062,
      "date": "2027-10-01T10:45:00.000Z",
@@ -983,20 +969,6 @@
   },
   "IRE": {
    "last": [
-    {
-     "id": 15105994,
-     "date": "2026-02-14T14:10:00.000Z",
-     "league": "Six Nations",
-     "opponent": "Italy",
-     "opponentCode": "ITA",
-     "tracked": true,
-     "homeAway": "H",
-     "us": 20,
-     "them": 13,
-     "result": "W",
-     "tries": 3,
-     "cards": 1
-    },
     {
      "id": 15105998,
      "date": "2026-02-21T14:10:00.000Z",
@@ -1122,9 +1094,7 @@
      "result": "W",
      "tries": 3,
      "cards": 1
-    }
-   ],
-   "next": [
+    },
     {
      "id": 17610138,
      "date": "2026-11-27T20:10:00.000Z",
@@ -1133,11 +1103,14 @@
      "opponentCode": "AUS",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Allianz Stadium, London"
-    },
+     "us": 38,
+     "them": 14,
+     "result": "W",
+     "tries": 5,
+     "cards": 0
+    }
+   ],
+   "next": [
     {
      "id": 17537422,
      "date": "2027-02-06T20:10:00.000Z",
@@ -1185,25 +1158,23 @@
      "us": null,
      "them": null,
      "result": null
+    },
+    {
+     "id": 17537416,
+     "date": "2027-03-13T20:10:00.000Z",
+     "league": "Six Nations",
+     "opponent": "France",
+     "opponentCode": "FRA",
+     "tracked": true,
+     "homeAway": "H",
+     "us": null,
+     "them": null,
+     "result": null
     }
    ]
   },
   "FIJ": {
    "last": [
-    {
-     "id": 15130413,
-     "date": "2025-11-22T16:00:00.000Z",
-     "league": "International Friendlies",
-     "opponent": "Spain",
-     "opponentCode": null,
-     "tracked": false,
-     "homeAway": "A",
-     "us": 41,
-     "them": 33,
-     "result": "W",
-     "tries": null,
-     "cards": null
-    },
     {
      "id": 16098041,
      "date": "2026-07-04T13:10:00.000Z",
@@ -1331,9 +1302,7 @@
      "result": "W",
      "tries": 3,
      "cards": 0
-    }
-   ],
-   "next": [
+    },
     {
      "id": 17610139,
      "date": "2026-11-27T16:40:00.000Z",
@@ -1342,11 +1311,14 @@
      "opponentCode": "ITA",
      "tracked": true,
      "homeAway": "H",
-     "us": null,
-     "them": null,
-     "result": null,
-     "venue": "Allianz Stadium, London"
-    },
+     "us": 21,
+     "them": 23,
+     "result": "L",
+     "tries": null,
+     "cards": null
+    }
+   ],
+   "next": [
     {
      "id": 16248081,
      "date": "2027-10-04T03:15:00.000Z",
