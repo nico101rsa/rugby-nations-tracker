@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-28T17:46:02.243Z",
+  "updatedAt": "2026-11-28T17:49:03.790Z",
   "counts": {
     "fixtures": 2,
     "results": 40,
@@ -937,11 +937,11 @@
         "id": 465,
         "name": "New Zealand",
         "logo": "https://media.api-sports.io/rugby/teams/465.png",
-        "score": 13
+        "score": 20
       },
       "play": {
         "minute": null,
-        "at": "2026-11-28T17:46:02.243Z",
+        "at": "2026-11-28T17:49:03.789Z",
         "events": [
           {
             "min": 3,
@@ -972,6 +972,16 @@
             "min": 43,
             "team": "away",
             "type": "penalty"
+          },
+          {
+            "min": 46,
+            "team": "away",
+            "type": "try"
+          },
+          {
+            "min": 47,
+            "team": "away",
+            "type": "conversion"
           }
         ]
       }
