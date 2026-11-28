@@ -7,7 +7,7 @@
     "dataEdition": 0,
     "failed": 0,
     "noLead": 0,
-    "repeatLead": 1,
+    "repeatLead": 2,
     "world": 4
   },
   "failed": [],
@@ -18,41 +18,61 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Fiji beat Italy 23-21 at Twickenham in Nations Championship 11th-place final",
-      "kicker": "Result",
-      "body": "Jake White's side closed their Nations Championship with the 23-21 win over Italy at Twickenham. It was their first victory from six matches in the campaign and leaves them 11th of 12. Isoa Nasilasila captained an XV built around Caleb Muntz at fly-half and Terio Tamani at scrum-half, with Iosefo Masi and Vinaya Habosi in midfield. Italy's captain for the day, Niccolò Cannone, had said beforehand that Fiji had changed a lot since the sides met in Udine.",
-      "source": null,
+      "heading": "Jiuta Wainiqolo creates all three Fiji tries in 23-21 loss to Italy",
+      "kicker": "Wing spark",
+      "body": "Italy won Friday's 11th-place final at Twickenham 23-21, but Fiji's attack ran through their right wing. Wainiqolo's long cut-out pass put Ponipate Loganimasi away for Fiji's first try. He sent fellow wing Peniasi Dakuwaqa over after the break, then released No. 8 Kitione Salawa on 55 minutes to edge Jake White's side 21-20 ahead. Fiji outscored Italy three tries to two, yet Tommaso Allan landed all five goal kicks, the last coming after Fiji conceded a scrum penalty on the edge of their own 22.",
+      "source": "SA Rugby Magazine",
       "lead": {
         "candidate": 1,
-        "why": "The only new item is the Italy result, and the app's trusted data records it as a 23-21 Fiji win."
+        "why": "The result has already run, so this leads on a new Fiji angle from the match report: Wainiqolo created every Fiji try in the defeat."
       },
-      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09e172bba640d4bb2e7d4d13e8238f&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fnews%2fother%2frugby-allan-kicks-italy-to-23-21-playoff-victory-over-fiji-at-twickenham%2far-AA2inVcX&c=17613909003552534261&mkt=en-us",
-      "repeatLead": {
-        "date": "2026-11-26",
-        "heading": "Jake White names Isoa Nasilasila captain for Italy rematch at Twickenham",
-        "reason": "story overlap 0.33"
-      },
-      "noveltyRevised": true,
+      "leadLink": "https://www.sarugbymag.co.za/italy-edge-fiji-to-end-losing-run/",
+      "repeatLead": null,
+      "noveltyRevised": false,
       "candidates": [
         {
-          "title": "Rugby-Allan kicks Italy to 23-21 playoff victory over Fiji at Twickenham",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09e172bba640d4bb2e7d4d13e8238f&url=https%3a%2f%2fwww.msn.com%2fen-gb%2fnews%2fother%2frugby-allan-kicks-italy-to-23-21-playoff-victory-over-fiji-at-twickenham%2far-AA2inVcX&c=17613909003552534261&mkt=en-us",
-          "score": 6.1,
-          "corroboration": 1,
+          "title": "Italy edge Fiji to end losing run",
+          "link": "https://www.sarugbymag.co.za/italy-edge-fiji-to-end-losing-run/",
+          "score": 89.5,
+          "corroboration": 2,
           "outlets": [
+            "sarugbymag",
+            "rte"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Fiji v Italy: Five takeaways as Azzurri back-row 'empties the tank' in narrow triumph while veteran playmaker shines",
+          "link": "https://www.planetrugby.com/news/fiji-v-italy-five-takeaways-as-azzurri-back-row-empties-the-tank-in-narrow-triumph-while-veteran-playmaker-shine",
+          "score": 68.7,
+          "corroboration": 2,
+          "outlets": [
+            "planetrugby",
             "search"
           ],
           "fresh": true
         },
         {
+          "title": "Italia: le dichiarazioni di Gonzalo Quesada e Niccolò Cannone dopo la vittoria sulle Fiji",
+          "link": "https://www.onrugby.it/2026/11/27/italia-le-dichiarazioni-di-gonzalo-quesada-e-niccolo-cannone-dopo-la-vittoria-sulle-fiji/",
+          "score": 20.8,
+          "corroboration": 1,
+          "outlets": [
+            "onrugby"
+          ],
+          "fresh": true,
+          "otherTeam": "Italy"
+        },
+        {
           "title": "Fiji, il XV per la sfida all'Italia nel Final Weekend del Nations Championship",
           "link": "https://www.federugby.it/fiji-il-xv-per-la-sfida-allitalia-nel-final-weekend-del-nations-championship/",
-          "score": 113.2,
-          "corroboration": 4,
+          "score": 111.8,
+          "corroboration": 5,
           "outlets": [
             "rugbyworld",
             "federugby",
             "onrugby",
+            "japantoday",
             "search"
           ],
           "fresh": false
@@ -60,30 +80,10 @@
         {
           "title": "Italrugby, Quesada: \"Fiji squadra con un livello fisico molto alto\"",
           "link": "https://www.federugby.it/italrugby-quesada-fiji-squadra-con-un-livello-fisico-molto-alto/",
-          "score": 36.9,
+          "score": 35,
           "corroboration": 1,
           "outlets": [
             "federugby"
-          ],
-          "fresh": false
-        },
-        {
-          "title": "Italia, Niccolò Cannone: \"Con le Fiji è l'ultima occasione. C'è tensione, ma è positiva\"",
-          "link": "https://www.onrugby.it/2026/11/26/italia-niccolo-cannone-con-le-fiji-e-lultima-occasione-ce-tensione-ma-e-positiva/",
-          "score": 30.7,
-          "corroboration": 1,
-          "outlets": [
-            "onrugby"
-          ],
-          "fresh": false
-        },
-        {
-          "title": "‘Scary’: Why a World Cup-winning coach wants Mark and Semi in the same Fiji back line",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09e172bba640d4bb2e7d4d13e8238f&url=https%3a%2f%2fwww.msn.com%2fen-au%2fnews%2fother%2fscary-why-a-world-cup-winning-coach-wants-mark-and-semi-in-the-same-fiji-back-line%2far-AA2ijemA&c=17075758918180174045&mkt=en-us",
-          "score": 10.8,
-          "corroboration": 1,
-          "outlets": [
-            "search"
           ],
           "fresh": false
         }
@@ -95,22 +95,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Sam Warburton hails Borthwick's 'stroke of genius' in resting Maro Itoje",
-      "kicker": "Itoje revival",
-      "body": "Itoje skipped July's Southern Series, missing South Africa in Johannesburg, Fiji in Liverpool and Argentina in Santiago del Estero, on a break the former Lions captain says Borthwick proposed. Writing in The Times, Warburton pointed to last Saturday's 37-12 win over New Zealand, where Itoje made 49 ruck entries to Ollie Chessum's 31: \"That is an absolutely monstrous effort.\" Against Japan the lock had the most tackles, 19, in 63 minutes. He captains the side again in today's third-place play-off rematch at Twickenham.",
-      "source": "Planet Rugby",
+      "heading": "England Rugby mourns former scrum-half Nigel Starmer-Smith, who has died aged 81",
+      "kicker": "Obituary",
+      "body": "The Harlequins and Barbarians scrum-half made seven England appearances between 1969 and 1971. After retiring in 1976 he moved into broadcasting and commentated at the 2003 World Cup in Australia. He was diagnosed with dementia in 2015, and his son Charlie said he died peacefully on Thursday morning after a long battle with the condition, remembering him as “one of life’s great tourists.”",
+      "source": "The42",
       "lead": {
-        "candidate": 1,
-        "why": "The only new England item: a named pundit's verdict on Borthwick's call to rest his captain, backed by Itoje's figures against New Zealand."
+        "candidate": 4,
+        "why": "Both NEW items fail: #1 is the Warburton story already run today, and #2 is about the South Africa-New Zealand series, another team's story."
       },
-      "leadLink": "https://www.planetrugby.com/news/lions-legend-praises-steve-borthwick-for-stroke-of-genius-that-has-revived-absolutely-monstrous-england-star",
+      "leadLink": "https://www.the42.ie/nigel-starmer-smith-dies-aged-81-7239608-Nov2026/",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Lions legend praises Steve Borthwick for 'stroke of genius' that has revived 'absolutely monstrous' England star",
           "link": "https://www.planetrugby.com/news/lions-legend-praises-steve-borthwick-for-stroke-of-genius-that-has-revived-absolutely-monstrous-england-star",
-          "score": 53.1,
+          "score": 48.6,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -120,7 +120,7 @@
         {
           "title": "Dall'Inghilterra accusano: Sudafrica-All Blacks? La serie senza nessun controllo antidoping",
           "link": "https://www.onrugby.it/2026/11/27/dallinghilterra-accusano-sudafrica-all-blacks-la-serie-senza-nessun-controllo-antidoping/",
-          "score": 25,
+          "score": 21.5,
           "corroboration": 1,
           "outlets": [
             "onrugby"
@@ -130,7 +130,7 @@
         {
           "title": "England make five changes for All Blacks rematch",
           "link": "https://www.the42.ie/england-make-five-changes-for-all-blacks-rematch-7237840-Nov2026/",
-          "score": 112.4,
+          "score": 111.2,
           "corroboration": 7,
           "outlets": [
             "rte",
@@ -146,20 +146,19 @@
         {
           "title": "Former England scrum-half and broadcaster Nigel Starmer-Smith dies aged 81",
           "link": "https://www.the42.ie/nigel-starmer-smith-dies-aged-81-7239608-Nov2026/",
-          "score": 108.5,
-          "corroboration": 4,
+          "score": 89.3,
+          "corroboration": 3,
           "outlets": [
             "bbc",
             "the42",
-            "walesonline",
-            "search"
+            "walesonline"
           ],
           "fresh": false
         },
         {
           "title": "Fisilau starts as England change five for All Blacks rematch",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cv8e04gj2wwwo?at_medium=RSS&at_campaign=rss",
-          "score": 72.1,
+          "score": 70.9,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
@@ -175,22 +174,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Galthié recalls Thomas Ramos and picks 6-2 bench for Springbok final",
-      "kicker": "Team news",
-      "body": "Ramos is back at No. 15 for the final against South Africa, recovered from injury, with Théo Attissogbe moving to the wing in place of the injured Aaron Grandidier-Nkanang. Matthieu Jalibert partners Antoine Dupont at half-back and Anthony Jelonch replaces Grégory Alldritt in the back row. Galthié's bench splits 6-2, with Jean-Baptiste Gros recovered from a week-long doubt to join Peato Mauvaka and Régis Montagne. Planet Rugby reads the choice as a possible reply to Rassie Erasmus holding his strongest scrummaging front row in reserve.",
-      "source": "Planet Rugby",
+      "heading": "France release 14 players to Top 14 and name five final reservists",
+      "kicker": "Squad release",
+      "body": "The five reservists for Sunday's final against South Africa are Moses Alo Emile, Esteban Capilla, Guillaume Cramont, Paul Graou and Thomas Laclayat, leaving Bayonne without Capilla and Cramont against Castres. The 14 cut loose midweek are all free for round 10 of the Top 14. Rodrigue Neti and Joshua Brennan were already training with Toulouse on Wednesday, Gaël Dréan and Mathis Ferté could boost Toulon at Clermont, and Nicolas Depoortère can line up for Bordeaux-Bègles against Montpellier.",
+      "source": "Rugbyrama",
       "lead": {
-        "candidate": 5,
-        "why": "France's team for the final is fresh news on the team's own XV, with Ramos back and a bench read as a reply to Erasmus."
+        "candidate": 4,
+        "why": "A fresh France selection decision on the squad for the final; the Ramos recall and 6-2 bench have already run."
       },
-      "leadLink": "https://www.planetrugby.com/news/france-team-galthie-responds-to-rassies-ploy-while-sharpshooter-ramos-returns-for-springboks-rematch",
+      "leadLink": "https://www.rugbyrama.fr/2026/11/27/xv-de-france-top-14-les-14-joueurs-relaches-par-le-staff-des-bleus-et-disponibles-pour-jouer-en-club-nicolas-depoorters-tani-vili-gael-drean-13674311.php",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "France - Afrique du Sud. Les chocs entre Pieter-Steph du Toit et Jonathan Danty, la rivalité Fabien Galthié - Rassie Erasmus... Anatomie d’une rivalité électrique",
           "link": "https://www.rugbyrama.fr/2026/11/27/france-afrique-du-sud-les-chocs-entre-du-pieter-steph-du-toit-et-jonathan-danty-la-rivalite-fabien-galthie-rassie-erasmus-anatomie-dune-rivalite-13672532.php",
-          "score": 46,
+          "score": 42.6,
           "corroboration": 1,
           "outlets": [
             "rugbyrama"
@@ -200,7 +199,7 @@
         {
           "title": "XV de France - \"C’est quelqu’un de dur avec les joueurs, mais avant tout avec lui\" : Billy Vunipola, Joan Cudullo et Benson Stanley décryptent la méthode Geoffrey Doumayrou",
           "link": "https://www.rugbyrama.fr/2026/11/27/xv-de-france-cest-quelquun-de-dur-avec-les-joueurs-mais-avant-tout-avec-lui-billy-vunipola-joan-cudullo-et-benson-stanley-decryptent-la-methode-13672494.php",
-          "score": 28.5,
+          "score": 24.1,
           "corroboration": 1,
           "outlets": [
             "rugbyrama"
@@ -210,7 +209,7 @@
         {
           "title": "France - Afrique du Sud - \"La France a d’incroyables talents\" : malgré une cascade de blessures, comment Gourgues, Verhaeghe et Guillard bousculent la hiérarchie des Bleus",
           "link": "https://www.rugbyrama.fr/2026/11/27/france-afrique-du-sud-la-france-a-dincroyables-talents-malgre-une-cascade-de-blessures-comment-gourgues-verhaeghe-et-guillard-bousculent-la-hierarchie-13672417.php",
-          "score": 27.7,
+          "score": 23.6,
           "corroboration": 1,
           "outlets": [
             "rugbyrama"
@@ -220,7 +219,7 @@
         {
           "title": "XV de France / Top 14 - Les 14 joueurs relâchés par le staff des Bleus et disponibles pour jouer en club : Nicolas Depoorters, Tani Vili, Gaël Dréan...",
           "link": "https://www.rugbyrama.fr/2026/11/27/xv-de-france-top-14-les-14-joueurs-relaches-par-le-staff-des-bleus-et-disponibles-pour-jouer-en-club-nicolas-depoorters-tani-vili-gael-drean-13674311.php",
-          "score": 27.3,
+          "score": 23.2,
           "corroboration": 1,
           "outlets": [
             "rugbyrama"
@@ -230,7 +229,7 @@
         {
           "title": "France team: Galthié responds to Rassie's ploy while sharpshooter Ramos returns for Springboks rematch",
           "link": "https://www.planetrugby.com/news/france-team-galthie-responds-to-rassies-ploy-while-sharpshooter-ramos-returns-for-springboks-rematch",
-          "score": 26.7,
+          "score": 22.8,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -245,52 +244,32 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Tadhg Beirne handed Ireland captaincy for Wallabies Test after Dan Sheehan suspension",
-      "kicker": "Stand-in skipper",
-      "body": "Beirne took the armband for Friday's fifth-place final against Australia, with Sheehan sitting out a two-game ban and Nick Timoney restored at No. 8 — one of two enforced changes from the side that beat South Africa 20-17. Beforehand, the stand-in skipper was frank about the year, conceding the summer tour was not as strong as Ireland wanted and that July's 33-31 win over the Wallabies in Sydney came \"by the skin of our teeth.\"",
-      "source": "The42",
+      "heading": "James McNabney scores twice as Ireland beat Australia 38-14 at Twickenham",
+      "kicker": "Bench impact",
+      "body": "Ireland closed the inaugural Nations Championship in fifth place with a 38-14 win over the Wallabies at Twickenham on Friday. James McNabney, off the bench for only his second cap, crossed twice in the final seven minutes. Andy Farrell's side trailed 7-0 after a sloppy opening quarter before Robbie Henshaw, Nick Timoney and Rob Baloucoune scored. Sam Prendergast kicked six from six and set up Baloucoune with a cross-kick. The result completed a clean sweep of four November Tests.",
+      "source": "BBC Rugby Union",
       "lead": {
         "candidate": 2,
-        "why": "A new captaincy story on Ireland's own XV for the Australia Test, with the stand-in skipper's frank verdict on the year."
+        "why": "Ireland's result against Australia is the fresh event, and McNabney's two tries off the bench are the talking point."
       },
-      "leadLink": "https://www.the42.ie/ireland-ceiling-world-cup-7239421-Nov2026/",
+      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cw987l0ej11mo?at_medium=RSS&at_campaign=rss",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
-          "title": "Rugby World Cup Hidden Gems – Ireland vs Georgia – RWC 2007",
-          "link": "https://www.americasrugbynews.com/2026/11/27/rugby-world-cup-hidden-gems-ireland-vs-georgia-rwc-2007/",
-          "score": 43.2,
+          "title": "Ireland v Wallabies: Winners and losers as Irish trio shine while Australia 'going backwards' under Les Kiss",
+          "link": "https://www.planetrugby.com/news/ireland-v-wallabies-winners-and-losers-as-irish-trio-shine-while-australia-going-backwards-under-les-kiss",
+          "score": 52.9,
           "corroboration": 1,
           "outlets": [
-            "americasrugbynews"
+            "planetrugby"
           ],
           "fresh": true
         },
         {
-          "title": "'There's no ceiling to where we can go' - Ireland optimistic as World Cup looms",
-          "link": "https://www.the42.ie/ireland-ceiling-world-cup-7239421-Nov2026/",
-          "score": 37,
-          "corroboration": 1,
-          "outlets": [
-            "the42"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "'Tadhg is a huge influence on a lot of players' - Furlong still key for Ireland",
-          "link": "https://www.the42.ie/tadhg-furlong-andrew-porter-interview-7237701-Nov2026/",
-          "score": 26.7,
-          "corroboration": 1,
-          "outlets": [
-            "the42"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Familiar faces and surprise chances as Ireland face Wallabies",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwq6e88p619qo?at_medium=RSS&at_campaign=rss",
-          "score": 25.6,
+          "title": "Five-try Ireland beat Australia in autumn finale",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cw987l0ej11mo?at_medium=RSS&at_campaign=rss",
+          "score": 51.8,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -298,12 +277,32 @@
           "fresh": true
         },
         {
-          "title": "Ireland vs. Australia rugby live score, updates: Wallabies face Ireland at Twickenham",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09e1e09ad7418cbf6a12f46f8beeac&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fireland-vs-australia-rugby-live-score-updates-wallabies-face-ireland-at-twickenham%2far-AA2inEkk&c=16491956438445164103&mkt=en-us",
-          "score": 25.4,
+          "title": "Ireland recover from slow start to fend off Wallabies",
+          "link": "https://www.rte.ie/sport/rugby/2026/1127/1600926-ireland-recover-from-slow-start-to-fend-off-wallabies/",
+          "score": 51.7,
           "corroboration": 1,
           "outlets": [
-            "search"
+            "rte"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "'He's certainly gaining confidence' - Farrell praises Ireland 10 Prendergast",
+          "link": "https://www.the42.ie/ireland-farrell-australia-7241162-Nov2026/",
+          "score": 42.3,
+          "corroboration": 1,
+          "outlets": [
+            "the42"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Rugby World Cup Hidden Gems – Ireland vs Georgia – RWC 2007",
+          "link": "https://www.americasrugbynews.com/2026/11/27/rugby-world-cup-hidden-gems-ireland-vs-georgia-rwc-2007/",
+          "score": 39.4,
+          "corroboration": 1,
+          "outlets": [
+            "americasrugbynews"
           ],
           "fresh": true
         }
@@ -315,22 +314,33 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Tommaso Menoncello needs shoulder surgery, putting his Italy Six Nations in doubt",
-      "kicker": "Injury blow",
-      "body": "Italy's Nations Championship ended in a 23-21 defeat by Fiji, and Friday brought worse news: Toulouse said Menoncello requires surgery next week on a recurring shoulder injury, likely ruling him out for three to four months and leaving next year's tournament in doubt. The 24-year-old was hurt in training on Monday, the latest setback in an injury-blighted first season since joining the French champions as their sole recruit. Named 2024 Six Nations player of the tournament, he has been a cornerstone of Italy's upsurge under Gonzalo Quesada.",
-      "source": "The42",
+      "heading": "Tommaso Allan kicks Italy past Fiji 23-21 to end seven-match losing run",
+      "kicker": "Revenge win",
+      "body": "Friday's 11th-place final at Twickenham went Italy's way 23-21, ending a seven-match losing run and avenging last week's 21-16 defeat in Udine. Federico Mori and Giacomo Nicotera crossed for a 17-0 lead before Fiji, outscoring Italy three tries to two, went 21-20 up on 55 minutes. Allan landed all five goal kicks, the last a 68th-minute penalty, and the defence held. Ross Vintcent took player of the match with a joint match-high 17 tackles.",
+      "source": "SA Rugby Magazine",
       "lead": {
         "candidate": 1,
-        "why": "Fresh injury news on Italy's talismanic centre that threatens his Six Nations."
+        "why": "Italy's first win since March is the day's fresh event and hasn't been reported yet."
       },
-      "leadLink": "https://www.the42.ie/tommaso-menoncello-2-7240417-Nov2026/",
+      "leadLink": "https://www.sarugbymag.co.za/italy-edge-fiji-to-end-losing-run/",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
+          "title": "Italy edge Fiji to end losing run",
+          "link": "https://www.sarugbymag.co.za/italy-edge-fiji-to-end-losing-run/",
+          "score": 89.5,
+          "corroboration": 2,
+          "outlets": [
+            "sarugbymag",
+            "rte"
+          ],
+          "fresh": true
+        },
+        {
           "title": "Italy star Menoncello a doubt for the Six Nations",
           "link": "https://www.the42.ie/tommaso-menoncello-2-7240417-Nov2026/",
-          "score": 52,
+          "score": 47.7,
           "corroboration": 1,
           "outlets": [
             "the42"
@@ -338,44 +348,34 @@
           "fresh": true
         },
         {
-          "title": "Italrugby, Cannone: \"Non dobbiamo regalare occasioni alle Fiji\"",
-          "link": "https://www.federugby.it/italrugby-cannone-non-dobbiamo-regalare-occasioni-alle-fiji/",
-          "score": 38.8,
+          "title": "Nations Championship, Niccolò Cannone e Gonzalo Quesada in conferenza: \"Questa squadra non molla mai, abbiamo reagito bene\"",
+          "link": "https://www.federugby.it/nations-championship-niccolo-cannone-e-gonzalo-quesada-in-conferenza-questa-squadra-non-molla-mai-abbiamo-reagito-bene/",
+          "score": 40,
           "corroboration": 1,
           "outlets": [
             "federugby"
           ],
-          "fresh": false
+          "fresh": true
         },
         {
-          "title": "Italia, Niccolò Cannone: \"Con le Fiji è l'ultima occasione. C'è tensione, ma è positiva\"",
-          "link": "https://www.onrugby.it/2026/11/26/italia-niccolo-cannone-con-le-fiji-e-lultima-occasione-ce-tensione-ma-e-positiva/",
-          "score": 38.4,
+          "title": "Italia: le dichiarazioni di Gonzalo Quesada e Niccolò Cannone dopo la vittoria sulle Fiji",
+          "link": "https://www.onrugby.it/2026/11/27/italia-le-dichiarazioni-di-gonzalo-quesada-e-niccolo-cannone-dopo-la-vittoria-sulle-fiji/",
+          "score": 37.8,
           "corroboration": 1,
           "outlets": [
             "onrugby"
           ],
-          "fresh": false
+          "fresh": true
         },
         {
-          "title": "Italrugby, Quesada: \"Fiji squadra con un livello fisico molto alto\"",
-          "link": "https://www.federugby.it/italrugby-quesada-fiji-squadra-con-un-livello-fisico-molto-alto/",
-          "score": 36.9,
+          "title": "Fiji v Italy: Five takeaways as Azzurri back-row 'empties the tank' in narrow triumph while veteran playmaker shines",
+          "link": "https://www.planetrugby.com/news/fiji-v-italy-five-takeaways-as-azzurri-back-row-empties-the-tank-in-narrow-triumph-while-veteran-playmaker-shine",
+          "score": 28.7,
           "corroboration": 1,
           "outlets": [
-            "federugby"
+            "planetrugby"
           ],
-          "fresh": false
-        },
-        {
-          "title": "Italrugby, gli Azzurri ricevono il saluto dei tifosi a Udine",
-          "link": "https://www.federugby.it/italrugby-gli-azzurri-ricevono-il-saluto-dei-tifosi-a-udine/",
-          "score": 28.8,
-          "corroboration": 1,
-          "outlets": [
-            "federugby"
-          ],
-          "fresh": false
+          "fresh": true
         }
       ]
     },
@@ -385,22 +385,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Rory Darge returns as captain in Townsend's 11 changes for Argentina",
-      "kicker": "Captain returns",
-      "body": "Finn Russell is back at fly-half and Darge returns from injury to lead the side in Sunday's seventh-place final at Twickenham. Only Darcy Graham, Rory Hutchinson, Jamie Dobie and Jonny Gray survive from the Japan rout, with Hutchinson at 12 inside Huw Jones. With the squad's specialist eights injured, Magnus Bradbury starts at No. 8: \"I'm sure he knows it's a big opportunity for him ahead of the Six Nations,\" said Townsend, who also weighed up hooker Seb Stephen there before ruling it out.",
-      "source": "BBC Rugby Union",
+      "heading": "Scotland finish fourth in Northern Hemisphere table after Ireland stun South Africa",
+      "kicker": "Final standings",
+      "body": "Townsend's side ended the pool phase on 20 points. The 11 tries in their 67-5 rout of Japan were not enough to keep them out of a seventh-place play-off at Twickenham. Their autumn also brought a gruelling 15-12 win over Australia at Murrayfield and a 43-21 defeat by the All Blacks. Argentina, beaten 47-38 by Scotland in Córdoba in July, finished fourth in the Southern Hemisphere standings, with ranking points and the Hemisphere Shield still at stake.",
+      "source": null,
       "lead": {
-        "candidate": 1,
-        "why": "Scotland's starting XV for the Argentina finale, with Darge back as captain and 11 changes, is the day's fresh Scotland event."
+        "candidate": 4,
+        "why": "The other new items are a celebrity split, a TV listing and Argentina's team news, so Scotland's final pool placing is the freshest Scotland story not already run."
       },
-      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cwkgmdpdd25zo?at_medium=RSS&at_campaign=rss",
+      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b0a3b25147247518d35299d0c28da29&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fscotland-vs-argentina-rugby-date-131152480.html&c=6592325831250771232&mkt=en-us",
       "repeatLead": null,
-      "noveltyRevised": false,
+      "noveltyRevised": true,
       "candidates": [
         {
           "title": "Scotland make 11 changes for Argentina game",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwkgmdpdd25zo?at_medium=RSS&at_campaign=rss",
-          "score": 95.9,
+          "score": 92,
           "corroboration": 3,
           "outlets": [
             "planetrugby",
@@ -412,7 +412,7 @@
         {
           "title": "Scotland rugby international star splits from Nicole Scherzinger after 7 years",
           "link": "https://www.dailyrecord.co.uk/entertainment/scotland-rugby-international-star-splits-37923417",
-          "score": 51.9,
+          "score": 47.6,
           "corroboration": 1,
           "outlets": [
             "dailyrecord"
@@ -422,7 +422,7 @@
         {
           "title": "Nations Championship: dove e quando si vede la finale 7° posto Scozia-Argentina in tv e streaming",
           "link": "https://www.onrugby.it/2026/11/27/nations-championship-dove-e-quando-si-vede-la-finale-7-posto-scozia-argentina-in-tv-e-streaming/",
-          "score": 25.6,
+          "score": 23.7,
           "corroboration": 1,
           "outlets": [
             "onrugby"
@@ -430,9 +430,9 @@
           "fresh": true
         },
         {
-          "title": "Full circle moment for one Scotland forward as another is considered for positional switch",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09e220bf46456e85c5c302315e7f08&url=https%3a%2f%2fwww.scotsman.com%2fsport%2frugby-union%2ffull-circle-moment-for-as-scotland-forward-handed-nations-championship-start-v-argentina-9379734&c=9417161726858333160&mkt=en-us",
-          "score": 24.9,
+          "title": "Scotland vs Argentina rugby: Date, kick-off time, TV channel, live stream, team news, lineups, h2h results, odds",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b0a3b25147247518d35299d0c28da29&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fscotland-vs-argentina-rugby-date-131152480.html&c=6592325831250771232&mkt=en-us",
+          "score": 18.6,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -440,14 +440,15 @@
           "fresh": true
         },
         {
-          "title": "Scotland vs Argentina rugby: Date, kick-off time, TV channel, live stream, team news, lineups, h2h results, odds",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09e220bf46456e85c5c302315e7f08&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fscotland-vs-argentina-rugby-date-131152480.html&c=6592325831250771232&mkt=en-us",
-          "score": 21.8,
+          "title": "Nations Championship, un possibile esordiente \"italiano\" nell'Argentina che sfida la Scozia: le scelte di Contepomi",
+          "link": "https://www.onrugby.it/2026/11/27/nations-championship-un-possibile-esordiente-italiano-nellargentina-che-sfida-la-scozia-le-scelte-di-contepomi/",
+          "score": 12.3,
           "corroboration": 1,
           "outlets": [
-            "search"
+            "onrugby"
           ],
-          "fresh": true
+          "fresh": true,
+          "otherTeam": "Argentina"
         }
       ]
     },
@@ -457,22 +458,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Dafydd Jenkins reclaims Wales armband for Japan, feeling 'a different person'",
-      "kicker": "Captaincy",
-      "body": "Regular captain Dewi Lake and deputy Jac Morgan both drop to the bench for today's ninth-place play-off. That hands the Exeter lock the armband more than two years after Warren Gatland made him skipper for the 2024 Six Nations, when Wales lost every match. Jenkins wins his 35th cap and says he feels “a lot more settled now within the squad.” Ryan Elias starts at hooker in Lake's place. Tandy called the appointment “massive credit for him, so well-deserved and a great opportunity for him to lead the team.”",
-      "source": "BBC Rugby Union",
+      "heading": "Sam Costelow starts at fly-half against Japan having risen above online abuse",
+      "kicker": "Fly-half battle",
+      "body": "The Scarlets man has the No. 10 shirt for today's ninth-place final at Allianz Stadium, and WalesOnline argues he has earned it the hard way. Thrust into the starting XV straight after the 2023 World Cup, Costelow was dropped by Warren Gatland after one match, then spent two years in and out as Ben Thomas and Gareth Anscombe moved ahead of him. Online criticism turned vitriolic at times, as it once did for Rhys Priestland; over the past 18 months he has pushed Dan Edwards hard for the jersey.",
+      "source": "WalesOnline",
       "lead": {
-        "candidate": 2,
-        "why": "New Wales captaincy story for today's Test, with fresh quotes from Jenkins and Tandy."
+        "candidate": 1,
+        "why": "The only new Wales story not already run: Costelow's hard road to the No. 10 shirt he wears against Japan."
       },
-      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cmqlqer4017qo?at_medium=RSS&at_campaign=rss",
+      "leadLink": "https://www.walesonline.co.uk/sport/rugby/rugby-news/how-sam-costelow-rose-above-34965281",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "How Sam Costelow rose above the abuse to win battle for Wales' No.10 jersey",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/how-sam-costelow-rose-above-34965281",
-          "score": 37.2,
+          "score": 34.4,
           "corroboration": 1,
           "outlets": [
             "walesonline"
@@ -482,7 +483,7 @@
         {
           "title": "Jenkins ready to resume Wales captaincy role",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmqlqer4017qo?at_medium=RSS&at_campaign=rss",
-          "score": 24.2,
+          "score": 20.9,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -492,7 +493,7 @@
         {
           "title": "Wales need strong finish to campaign - Morgan",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmwy0xdv27q8o?at_medium=RSS&at_campaign=rss",
-          "score": 53.8,
+          "score": 52.9,
           "corroboration": 2,
           "outlets": [
             "bbc",
@@ -503,7 +504,7 @@
         {
           "title": "Tonight's rugby news as Wales international returns and ref accuses Springboks",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/tonights-rugby-news-wales-international-34971659",
-          "score": 26.6,
+          "score": 24.3,
           "corroboration": 1,
           "outlets": [
             "walesonline"
@@ -513,7 +514,7 @@
         {
           "title": "Botham returns for Wales as Tandy makes changes for Japan clash",
           "link": "https://www.the42.ie/botham-returns-wales-lineup-7238592-Nov2026/",
-          "score": 24.5,
+          "score": 22.5,
           "corroboration": 1,
           "outlets": [
             "the42"
@@ -528,22 +529,26 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Contepomi picks uncapped Tobías Wade over Matías Moroni's 100th cap for Scotland",
-      "kicker": "Selection call",
-      "body": "The Zebre full-back sits at No. 23 for Sunday's seventh-place final at Twickenham and could debut off the bench; Moroni would have reached 100 Test caps. Up front, Joaquín Moro starts at openside with Facundo Isa dropping out and Juan Martín Scelzo moving to No. 8, while Rodrigo Martínez replaces the injured Boris Wenger at loosehead. Faustino Sánchez Valarolo comes in at inside centre, with Justo Piccardo dropping to the replacements.",
-      "source": "OnRugby",
+      "heading": "Contepomi starts Isgró and Sánchez Valarolo, moves Scelzo to No. 8",
+      "kicker": "Pumas reshuffle",
+      "body": "Rodrigo Isgró takes Bautista Delguy's wing for Sunday's seventh-place final at Twickenham, while the 22-year-old Sánchez Valarolo comes in at inside centre for Justo Piccardo, who drops to the bench. Joaquín Moro starts at openside, with Scelzo shifting across from seven and Facundo Isa dropping out. Up front, prop Martínez replaces the injured Boris Wenger. Gregor Townsend reckons the Pumas have become much more aggressive with their line speed over recent games, hitting hard and putting bodies into contact.",
+      "source": "BBC Rugby Union",
       "lead": {
-        "candidate": 1,
-        "why": "Argentina's own XV for the Scotland finale, with an uncapped bench pick preferred to a veteran on 99 caps."
+        "candidate": 3,
+        "why": "It carries Argentina's own starting-XV changes for Sunday's Test, a new angle beyond the Wade bench call already run."
       },
-      "leadLink": "https://www.onrugby.it/2026/11/27/nations-championship-un-possibile-esordiente-italiano-nellargentina-che-sfida-la-scozia-le-scelte-di-contepomi/",
-      "repeatLead": null,
-      "noveltyRevised": false,
+      "leadLink": "https://www.bbc.co.uk/sport/rugby-union/articles/cwkgmdpdd25zo?at_medium=RSS&at_campaign=rss",
+      "repeatLead": {
+        "date": "2026-11-28",
+        "heading": "Contepomi picks uncapped Tobías Wade over Matías Moroni's 100th cap for Scotland",
+        "reason": "story overlap 0.35"
+      },
+      "noveltyRevised": true,
       "candidates": [
         {
           "title": "Nations Championship, un possibile esordiente \"italiano\" nell'Argentina che sfida la Scozia: le scelte di Contepomi",
           "link": "https://www.onrugby.it/2026/11/27/nations-championship-un-possibile-esordiente-italiano-nellargentina-che-sfida-la-scozia-le-scelte-di-contepomi/",
-          "score": 31.5,
+          "score": 28.1,
           "corroboration": 1,
           "outlets": [
             "onrugby"
@@ -553,7 +558,7 @@
         {
           "title": "Nations Championship: dove e quando si vede la finale 7° posto Scozia-Argentina in tv e streaming",
           "link": "https://www.onrugby.it/2026/11/27/nations-championship-dove-e-quando-si-vede-la-finale-7-posto-scozia-argentina-in-tv-e-streaming/",
-          "score": 25.6,
+          "score": 23.7,
           "corroboration": 1,
           "outlets": [
             "onrugby"
@@ -563,7 +568,7 @@
         {
           "title": "Scotland make 11 changes for Argentina game",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwkgmdpdd25zo?at_medium=RSS&at_campaign=rss",
-          "score": 39.9,
+          "score": 37.7,
           "corroboration": 2,
           "outlets": [
             "planetrugby",
@@ -574,8 +579,8 @@
         },
         {
           "title": "Scotland vs Argentina rugby: Date, kick-off time, TV channel, live stream, team news, lineups, h2h results, odds",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09e2552db24c4e869e622c726050fe&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fscotland-vs-argentina-rugby-date-131152480.html&c=6592325831250771232&mkt=en-us",
-          "score": 7.6,
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b0a3b90eb524bd1ac5639873250048a&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fscotland-vs-argentina-rugby-date-131152480.html&c=6592325831250771232&mkt=en-us",
+          "score": 6.5,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -586,7 +591,7 @@
         {
           "title": "Transferts. Top 14 - \"Je vais commencer à profiter de la vie avec ma famille en Argentine\" : Benjamin Urdapilleta (Perpignan) annonce sa retraite",
           "link": "https://www.rugbyrama.fr/2026/11/26/transferts-top-14-je-vais-commencer-a-profiter-de-la-vie-avec-ma-famille-en-argentine-benjamin-urdapilleta-perpignan-annonce-sa-retraite-13673208.php",
-          "score": 18.6,
+          "score": 16.6,
           "corroboration": 1,
           "outlets": [
             "rugbyrama"
@@ -601,22 +606,32 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Les Kiss stood by his 23, handing James Ramm a Wallabies debut",
-      "kicker": "Debut day",
-      "body": "James Ramm wore No. 11 at Twickenham, completing a back three with Tom Wright and Max Jorgensen, while Teddy Wilson was also in line for a first cap from the matchday squad. The 23 was the one named earlier in the week, with Joseph-Aukuso Suaalii and Len Ikitau paired in midfield and Carter Gordon and Kalani Thomas at half-back. It was also Kiss's first Test against Ireland as Wallabies coach, the side he once served as an assistant under Joe Schmidt.",
+      "heading": "Wasteful Wallabies beaten 38-14 by Ireland, a seventh straight loss to them",
+      "kicker": "Season finale",
+      "body": "Australia's year closed with a 38-14 loss in Friday's Nations Championship fifth-place final at Allianz Stadium, where dominant early pressure brought only Jeremy Williams' try. Ireland then ran in 24 unanswered points either side of half-time, and replacement James McNabney's late double extended their winning run over the Wallabies to seven. Kalani Thomas scored his first Test try on his first start, while Max Jorgensen departed with a failed HIA. Captain Allan Alaalatoa admitted the side \"probably hurt ourselves a little bit through our discipline in giving them easy exits.\"",
       "source": null,
       "lead": {
-        "candidate": 1,
-        "why": "Fresh Wallabies selection news: the 23 stood unchanged and James Ramm took a debut on the wing."
+        "candidate": 2,
+        "why": "The 38-14 defeat is the fresh Australia event, and the previous editions covered only pre-match selection."
       },
-      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09e275891b46259f9c7351156ffadd&url=https%3a%2f%2fwww.rugby.com.au%2fnews%2fwallabies-ireland-live-scores-blog-match-report-updates-how-to-watch-australia-20261127&c=15720053936383897789&mkt=en-us",
+      "leadLink": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b0a3bde78114abdbd33a05a2472953b&url=https%3a%2f%2fwww.rugby.com.au%2fnews%2fclinical-ireland-claim-nations-championship-clash-over-wallabies-20261127&c=8904815841246577654&mkt=en-us",
       "repeatLead": null,
-      "noveltyRevised": false,
+      "noveltyRevised": true,
       "candidates": [
         {
-          "title": "LIVE: Wallabies finish off 2026 campaign with Ireland clash",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09e275891b46259f9c7351156ffadd&url=https%3a%2f%2fwww.rugby.com.au%2fnews%2fwallabies-ireland-live-scores-blog-match-report-updates-how-to-watch-australia-20261127&c=15720053936383897789&mkt=en-us",
-          "score": 21.1,
+          "title": "Championnat des Nations - Les Wallabies, rois de la vendange : le fait du match d&#039;Irlande - Australie",
+          "link": "https://www.rugbyrama.fr/2026/11/27/championnat-des-nations-les-wallabies-rois-de-la-vendange-le-fait-du-match-dirlande-australie-13675052.php",
+          "score": 31.9,
+          "corroboration": 1,
+          "outlets": [
+            "rugbyrama"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "Clinical Ireland down Wallabies at Twickenham to end 2026 season",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b0a3bde78114abdbd33a05a2472953b&url=https%3a%2f%2fwww.rugby.com.au%2fnews%2fclinical-ireland-claim-nations-championship-clash-over-wallabies-20261127&c=8904815841246577654&mkt=en-us",
+          "score": 18.8,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -624,9 +639,9 @@
           "fresh": true
         },
         {
-          "title": "Familiar faces and surprise chances as Ireland face Wallabies",
-          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwq6e88p619qo?at_medium=RSS&at_campaign=rss",
-          "score": 16.3,
+          "title": "Five-try Ireland beat Australia in autumn finale",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cw987l0ej11mo?at_medium=RSS&at_campaign=rss",
+          "score": 18.1,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -634,37 +649,24 @@
           "fresh": true
         },
         {
-          "title": "Stockdale and Timoney come in for Wallabies clash",
-          "link": "https://www.rte.ie/sport/rugby/2026/1125/1600656-stockdale-and-timoney-come-in-for-wallabies-clash/",
-          "score": 89.7,
-          "corroboration": 4,
+          "title": "Wallabies player ratings: 'Handful' Joseph Suaalii sends a message while Carter Gordon blows 'hot and cold'",
+          "link": "https://www.planetrugby.com/news/wallabies-player-ratings-handful-joseph-suaalii-sends-a-message-while-carter-gordon-blows-hot-and-cold",
+          "score": 16.1,
+          "corroboration": 1,
           "outlets": [
-            "bbc",
-            "the42",
-            "rte",
             "planetrugby"
           ],
-          "fresh": false
+          "fresh": true
         },
         {
-          "title": "Farrell goes all-in on final Nations Championship clash with Australia",
-          "link": "https://www.the42.ie/ireland-farrell-wallabies-7237696-Nov2026/",
-          "score": 27.3,
+          "title": "Familiar faces and surprise chances as Ireland face Wallabies",
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cwq6e88p619qo?at_medium=RSS&at_campaign=rss",
+          "score": 15.1,
           "corroboration": 1,
           "outlets": [
-            "the42"
+            "bbc"
           ],
-          "fresh": false
-        },
-        {
-          "title": "'Last week is done' - Kelleher's focus is on Wallabies",
-          "link": "https://www.rte.ie/sport/rugby/2026/1125/1600648-last-week-is-done-kellehers-focus-is-on-wallabies/",
-          "score": 25.5,
-          "corroboration": 1,
-          "outlets": [
-            "rte"
-          ],
-          "fresh": false
+          "fresh": true
         }
       ]
     },
@@ -674,24 +676,29 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Eddie Jones hands Taufa Latu first Test start in wholesale Japan changes",
-      "kicker": "Selection call",
-      "body": "Latu earned the nod for the ninth-place final against Wales after coming off the bench in last week's 5-67 defeat by Scotland. Michael Stolberg partners captain Warner Dearns in the second row and co-captain Naoto Saito starts at scrum-half, while Ryosuke Iwaihara and Seina Kimura were ruled out after that loss. The back row is unchanged, keeping Ben Gunter, the competition leader for dominant tackles (11) and jackals (six), at the breakdown where Japan poached Welsh ball six times when Wales won 28-21 in round four.",
+      "heading": "Dylan Riley leaves Japan camp for birth of his son before Wales",
+      "kicker": "Squad blow",
+      "body": "Riley's absence, confirmed this week, deepens a selection squeeze for Saturday's ninth-place final against Wales. Ryosuke Iwaihara and Seina Kimura were both ruled out after Scotland's 67-5 win, and Rugby Asia 247 notes several players have dropped out of contention since Wales beat Japan 28-21 in round four. Eddie Jones' depleted side arrive on a four-match losing streak, having conceded 261 points and 40 tries in the pool stage — the worst defensive record in either hemisphere.",
       "source": "Rugby Asia 247",
       "lead": {
         "candidate": 2,
-        "why": "The only NEW item is Wales' story, so this carries Jones' Japan selection instead."
+        "why": "Riley's departure and two fresh casualties are Japan's own availability news, separate from the selection story already run, while the only NEW item is Wales'."
       },
       "leadLink": "https://www.rugbyasia247.com/japan-brave-blossoms-vs-wales-nations-championship-2026-finals-preview/",
-      "repeatLead": null,
-      "noveltyRevised": false,
+      "repeatLead": {
+        "date": "2026-11-28",
+        "heading": "Eddie Jones hands Taufa Latu first Test start in wholesale Japan changes",
+        "reason": "same source article"
+      },
+      "noveltyRevised": true,
       "candidates": [
         {
           "title": "Wales aim to finish historic campaign with Japan win",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09e29b357440bc934d685923a1f444&url=https%3a%2f%2fwww.msn.com%2fen-us%2fsports%2frugby%2fwales-aim-to-finish-historic-campaign-with-japan-win%2far-AA2inEmQ&c=5337626704498969538&mkt=en-us",
-          "score": 14,
-          "corroboration": 1,
+          "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cr0jx98elggxo?at_medium=RSS&at_campaign=rss",
+          "score": 38,
+          "corroboration": 2,
           "outlets": [
+            "bbc",
             "search"
           ],
           "fresh": true,
@@ -700,7 +707,7 @@
         {
           "title": "Japan Brave Blossoms vs Wales Nations Championship 2026 Finals Preview",
           "link": "https://www.rugbyasia247.com/japan-brave-blossoms-vs-wales-nations-championship-2026-finals-preview/",
-          "score": 101.5,
+          "score": 99.4,
           "corroboration": 3,
           "outlets": [
             "rugbyworld",
@@ -712,7 +719,7 @@
         {
           "title": "Nations Championship: cambi e conferme nella formazione del Galles che si confronta col Giappone",
           "link": "https://www.onrugby.it/2026/11/26/nations-championship-cambi-e-conferme-nella-formazione-del-galles-che-si-confronta-col-giappone/",
-          "score": 8.9,
+          "score": 7.8,
           "corroboration": 1,
           "outlets": [
             "onrugby"
@@ -722,7 +729,7 @@
         {
           "title": "Nations Championship: dove e quando si vede la finale per il 9° posto Galles-Giappone in tv e streaming",
           "link": "https://www.onrugby.it/2026/11/25/nations-championship-dove-e-quando-si-vede-la-finale-per-il-9-posto-galles-giappone-in-tv-e-streaming/",
-          "score": 7.9,
+          "score": 7.4,
           "corroboration": 1,
           "outlets": [
             "onrugby"
@@ -730,9 +737,9 @@
           "fresh": false
         },
         {
-          "title": "Japan Vs. Italy Rugby Lineups, Kickoff Time",
-          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b09e29b357440bc934d685923a1f444&url=https%3a%2f%2fsports.yahoo.com%2farticles%2fjapan-vs-italy-rugby-lineups-203229383.html&c=13119394953360059750&mkt=en-us",
-          "score": 1.9,
+          "title": "Joseph runs riot with 5 tries as England thrashes Japan in Nations Championship rugby",
+          "link": "http://www.bing.com/news/apiclick.aspx?ref=FexRss&aid=&tid=6b0a3c19017c4ec5896cbf9ffec24bf9&url=https%3a%2f%2fwww.msn.com%2fen-us%2fnews%2fother%2fjoseph-runs-riot-with-5-tries-as-england-thrashes-japan-in-nations-championship-rugby%2far-AA2hqSvV&c=15677325565801879649&mkt=en-us",
+          "score": 1.1,
           "corroboration": 1,
           "outlets": [
             "search"
@@ -747,22 +754,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "No All Blacks drug-tested after any of four Springbok series Tests",
-      "kicker": "Anti-doping",
-      "body": "The Times revealed that Rugby's Greatest Rivalry — the joint venture between New Zealand Rugby and SA Rugby, which the Springboks won 3-1 — passed without a single post-match test, three Tests in South Africa and one in Baltimore. Testing was delegated to the South African Institute for Drug-Free Sport, whose chief executive, Khalid Galant, said it was mandated only for out-of-competition work and was never asked to test during the South African leg. World Rugby says players remain in its year-round unannounced testing pool.",
-      "source": "WalesOnline",
+      "heading": "Jeff Wilson backs under-fire defence coach Tana Umaga over missed tackles",
+      "kicker": "Defence scrutiny",
+      "body": "New Zealand have shipped 10 tries in the defeats to Wales and England — five apiece — and conceded more than 30 points five times this season, drawing fire on the former captain who runs the defence. Wilson told Sport Nation that \"the 32 tackles that were missed last weekend aren't Tana's fault,\" also pointing to injury-driven selection churn among the outside backs. He insisted a coaching change is not yet warranted, though only a really poor showing in today's third-place final against England could change that conversation.",
+      "source": "Planet Rugby",
       "lead": {
-        "candidate": 3,
-        "why": "A fresh reported event involving All Blacks players, while the selection angle has already run and the BBC piece is analysis."
+        "candidate": 4,
+        "why": "The captaincy and drug-testing stories have already run, and Umaga's defence is the most pointed New Zealand story left on the shortlist."
       },
-      "leadLink": "https://www.walesonline.co.uk/sport/rugby/rugby-news/springboks-blacks-drug-testing-revelation-34973250",
+      "leadLink": "https://www.planetrugby.com/news/the-hard-tana-umaga-discussion-as-all-blacks-great-weighs-into-the-difficult-conversation",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "All Blacks team winners &#038; losers: 'Unluckiest' tourist, mixed Barrett fortunes and 'make-or-break' for Ioane",
           "link": "https://www.planetrugby.com/news/all-blacks-team-winners-losers-unluckiest-tourist-mixed-barrett-fortunes-and-make-or-break-for-ioane",
-          "score": 45.6,
+          "score": 42.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -772,7 +779,7 @@
         {
           "title": "Decline of deities - the long game the All Blacks cannot afford to lose",
           "link": "https://www.bbc.co.uk/sport/rugby-union/articles/cmkgkl7de60go?at_medium=RSS&at_campaign=rss",
-          "score": 43.1,
+          "score": 39.4,
           "corroboration": 1,
           "outlets": [
             "bbc"
@@ -780,32 +787,32 @@
           "fresh": true
         },
         {
+          "title": "Stumbling All Blacks: A mere hiccup or crisis time?",
+          "link": "https://japantoday.com/category/sports/stumbling-all-blacks-a-mere-hiccup-or-crisis-time",
+          "score": 34,
+          "corroboration": 1,
+          "outlets": [
+            "japantoday"
+          ],
+          "fresh": true
+        },
+        {
+          "title": "The 'hard' Tana Umaga discussion as All Blacks great weighs into the difficult 'conversation'",
+          "link": "https://www.planetrugby.com/news/the-hard-tana-umaga-discussion-as-all-blacks-great-weighs-into-the-difficult-conversation",
+          "score": 32.2,
+          "corroboration": 1,
+          "outlets": [
+            "planetrugby"
+          ],
+          "fresh": true
+        },
+        {
           "title": "Springboks and All Blacks drug testing revelation sparks World Rugby questions",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/springboks-blacks-drug-testing-revelation-34973250",
-          "score": 33.8,
+          "score": 30.3,
           "corroboration": 1,
           "outlets": [
             "walesonline"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Aucun contrôle antidopage n&#039;a été réalisé durant la tournée opposant les Springboks aux All Blacks : pourquoi la surveillance recule en Afrique du Sud",
-          "link": "https://www.rugbyrama.fr/2026/11/27/aucun-controle-antidopage-na-ete-realise-durant-la-tournee-opposant-les-springboks-aux-all-blacks-pourquoi-la-surveillance-recule-en-afrique-du-sud-13674471.php",
-          "score": 21.6,
-          "corroboration": 1,
-          "outlets": [
-            "rugbyrama"
-          ],
-          "fresh": true
-        },
-        {
-          "title": "Dall'Inghilterra accusano: Sudafrica-All Blacks? La serie senza nessun controllo antidoping",
-          "link": "https://www.onrugby.it/2026/11/27/dallinghilterra-accusano-sudafrica-all-blacks-la-serie-senza-nessun-controllo-antidoping/",
-          "score": 20,
-          "corroboration": 1,
-          "outlets": [
-            "onrugby"
           ],
           "fresh": true
         }
@@ -817,22 +824,22 @@
       "rung": "news",
       "storyline": null,
       "dataAngle": null,
-      "heading": "Manie Libbok backs Stormers bond with Feinberg-Mngomezulu for France final",
-      "kicker": "Playmaker reshuffle",
-      "body": "Libbok returns to the starting XV at fly-half for the Nations Championship final against France at Twickenham, with Feinberg-Mngomezulu moving to full-back to accommodate him. “We gel nicely because we’ve played a lot together, even back at the DHL Stormers,” said the 29-year-old. He came off the bench against Italy and France and missed the squad for last weekend's 20-17 defeat to Ireland, in which regular full-back Damian Willemse was injured and ruled out. Cobus Reinach partners him at scrum-half.",
+      "heading": "Marco van Staden banned for three matches over Tadhg Beirne cleanout",
+      "kicker": "Suspension",
+      "body": "Friday's judicial verdict came six days after Ireland beat the Springboks 20-17 in Dublin. Rassie Erasmus had already left the back-rower out of his 23 for Sunday's final against France without knowing the outcome. Van Staden's late yellow for a dangerous cleanout on Beirne was upgraded to red after the final whistle. The ban was mitigated down from six and drops to two if he completes World Rugby's coaching intervention programme. Jasper Wiese, banned for four weeks for another dangerous breakdown entry, also misses the final.",
       "source": "Planet Rugby",
       "lead": {
-        "candidate": 1,
-        "why": "It is the newest item on South Africa's own XV for the final: Libbok's recall at fly-half and Feinberg-Mngomezulu's switch to full-back."
+        "candidate": 3,
+        "why": "A fresh disciplinary ruling on a Springbok forward is today's new South Africa event, and it confirms a second loose forward out of the final."
       },
-      "leadLink": "https://www.planetrugby.com/news/springboks-manie-libbok-makes-bold-prediction-on-his-playmaking-combination-with-sacha-feinberg-mngomezulu",
+      "leadLink": "https://www.planetrugby.com/news/springboks-star-finds-out-disciplinary-fate-almost-a-week-after-red-card-incident",
       "repeatLead": null,
       "noveltyRevised": false,
       "candidates": [
         {
           "title": "Springboks: Manie Libbok makes bold prediction on his playmaking combination with Sacha Feinberg-Mngomezulu",
           "link": "https://www.planetrugby.com/news/springboks-manie-libbok-makes-bold-prediction-on-his-playmaking-combination-with-sacha-feinberg-mngomezulu",
-          "score": 40.1,
+          "score": 35.7,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -842,7 +849,7 @@
         {
           "title": "Springboks and All Blacks drug testing revelation sparks World Rugby questions",
           "link": "https://www.walesonline.co.uk/sport/rugby/rugby-news/springboks-blacks-drug-testing-revelation-34973250",
-          "score": 33.8,
+          "score": 30.3,
           "corroboration": 1,
           "outlets": [
             "walesonline"
@@ -850,9 +857,9 @@
           "fresh": true
         },
         {
-          "title": "Eddie Jones’ theory on Rassie’s ban: ‘World Rugby beat their chest… he’s not too happy’",
-          "link": "https://www.planetrugby.com/news/eddie-jones-theory-on-rassies-ban-world-rugby-beat-their-chest-hes-not-too-happy",
-          "score": 32.5,
+          "title": "Springboks star finds out disciplinary fate almost a week after red card incident",
+          "link": "https://www.planetrugby.com/news/springboks-star-finds-out-disciplinary-fate-almost-a-week-after-red-card-incident",
+          "score": 30.3,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -860,19 +867,19 @@
           "fresh": true
         },
         {
-          "title": "Boks vs Les Bleus: Three key head-to-head battles",
-          "link": "https://www.sarugbymag.co.za/boks-vs-les-bleus-three-key-head-to-head-battles/",
-          "score": 28.8,
+          "title": "Eddie Jones’ theory on Rassie’s ban: ‘World Rugby beat their chest… he’s not too happy’",
+          "link": "https://www.planetrugby.com/news/eddie-jones-theory-on-rassies-ban-world-rugby-beat-their-chest-hes-not-too-happy",
+          "score": 29.3,
           "corroboration": 1,
           "outlets": [
-            "sarugbymag"
+            "planetrugby"
           ],
           "fresh": true
         },
         {
-          "title": "France team: Galthié responds to Rassie's ploy while sharpshooter Ramos returns for Springboks rematch",
-          "link": "https://www.planetrugby.com/news/france-team-galthie-responds-to-rassies-ploy-while-sharpshooter-ramos-returns-for-springboks-rematch",
-          "score": 26.7,
+          "title": "Nigel Owens’ verdict on the Ireland-Springboks red cards and Jan-Hendrik Wessels' late-game ruck offside call",
+          "link": "https://www.planetrugby.com/news/nigel-owens-verdict-on-the-ireland-springboks-red-cards-and-jan-hendrik-wessels-late-game-ruck-offside-call",
+          "score": 27.4,
           "corroboration": 1,
           "outlets": [
             "planetrugby"
@@ -884,26 +891,26 @@
   ],
   "world": [
     {
-      "team": "Italy",
-      "text": "Italy's Tommaso Menoncello needs shoulder surgery, Six Nations in doubt."
+      "team": "South Africa",
+      "text": "Springboks' Marco van Staden banned three matches over Beirne cleanout."
     },
     {
       "team": "Ireland",
-      "text": "Ireland's Dan Sheehan misses Wallabies Test through suspension."
+      "text": "Ireland beat Wallabies 38-14 to finish fifth in Nations Championship."
     },
     {
-      "team": "South Africa",
-      "text": "Springboks' Damian Willemse ruled out after injury against Ireland."
+      "team": "Italy",
+      "text": "Italy end losing run with 23-21 win over Fiji."
     },
     {
-      "team": "Scotland",
-      "text": "Scotland's Rory Darge returns from injury to captain against Argentina."
+      "team": "Wales",
+      "text": "Wales start Sam Costelow at fly-half against Japan."
     }
   ],
   "model": {
     "servedBy": "claude-opus-5-5",
     "onLastRung": false,
-    "calls": 34,
+    "calls": 42,
     "rejections": 0,
     "plan": {
       "writer": "claude-opus-5-5",
@@ -914,37 +921,37 @@
       "tune": "gemini"
     },
     "anthropic": {
-      "calls": 33,
+      "calls": 41,
       "failed": 0,
       "fellBack": 0,
-      "costUSD": 1.51646,
+      "costUSD": 1.92234,
       "rows": [
         {
           "model": "claude-opus-5-5",
-          "calls": 15,
+          "calls": 19,
           "failed": 0,
           "fellBack": 0,
-          "input": 165497,
-          "output": 36477,
-          "costUSD": 1.39153
+          "input": 217240,
+          "output": 45119,
+          "costUSD": 1.77135
         },
         {
           "model": "claude-haiku-5-5",
-          "calls": 17,
+          "calls": 21,
           "failed": 0,
           "fellBack": 0,
-          "input": 141997,
-          "output": 22776,
-          "costUSD": 0.02557
+          "input": 185825,
+          "output": 25453,
+          "costUSD": 0.03133
         },
         {
           "model": "claude-sonnet-5-5",
           "calls": 1,
           "failed": 0,
           "fellBack": 0,
-          "input": 13746,
-          "output": 7187,
-          "costUSD": 0.09936
+          "input": 13671,
+          "output": 9232,
+          "costUSD": 0.11966
         }
       ]
     },
