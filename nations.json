@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-28T14:52:16.712Z",
+  "updatedAt": "2026-11-28T14:58:18.377Z",
   "counts": {
     "fixtures": 3,
     "results": 39,
@@ -937,11 +937,11 @@
         "id": 463,
         "name": "Japan",
         "logo": "https://media.api-sports.io/rugby/teams/463.png",
-        "score": 5
+        "score": 10
       },
       "play": {
         "minute": null,
-        "at": "2026-11-28T14:52:16.712Z",
+        "at": "2026-11-28T14:58:18.377Z",
         "events": [
           {
             "min": 10,
@@ -1005,6 +1005,11 @@
           },
           {
             "min": 69,
+            "team": "away",
+            "type": "try"
+          },
+          {
+            "min": 76,
             "team": "away",
             "type": "try"
           }
