@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-28T14:49:15.285Z",
+  "updatedAt": "2026-11-28T14:52:16.712Z",
   "counts": {
     "fixtures": 3,
     "results": 39,
@@ -924,7 +924,8 @@
       "status": {
         "short": "2H",
         "long": "Second Half",
-        "live": true
+        "live": true,
+        "via": "espn"
       },
       "home": {
         "id": 391,
@@ -936,11 +937,11 @@
         "id": 463,
         "name": "Japan",
         "logo": "https://media.api-sports.io/rugby/teams/463.png",
-        "score": 0
+        "score": 5
       },
       "play": {
         "minute": null,
-        "at": "2026-11-28T14:49:15.285Z",
+        "at": "2026-11-28T14:52:16.712Z",
         "events": [
           {
             "min": 10,
@@ -1001,6 +1002,11 @@
             "min": 66,
             "team": "home",
             "type": "conversion"
+          },
+          {
+            "min": 69,
+            "team": "away",
+            "type": "try"
           }
         ]
       }
