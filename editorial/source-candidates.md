@@ -1,6 +1,6 @@
 # News-source candidates
 
-_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-28._
+_Proposed by the daily editorial review, probed daily by `scripts/probe-source-candidates.mjs`, decided after 7 probes. Nothing here feeds the app until it is added to `scripts/news-sources.mjs` by hand — the weekly review puts the ready ones to Nico. Updated 2026-11-29._
 
 ## Ready — carried stories about the team they were proposed for
 
@@ -9,14 +9,12 @@ _Proposed by the daily editorial review, probed daily by `scripts/probe-source-c
 ## Being probed
 
 - **RNZ Sport** (rnz.co.nz) — proposed 2026-11-25 for New Zealand: NZ's NEW items were all opinion columns; a free public-broadcaster sports desk could supply straight All Blacks news.
-  - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
+  - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
 - **Sport24** (news24.com) — proposed 2026-11-25 for South Africa: South Africa's shortlist was all opinion and previews; a national sports desk could add Springbok squad and injury news.
-  - feed: not found; probes: 4 (4 failed); stories about tracked teams: none
+  - feed: not found; probes: 5 (5 failed); stories about tracked teams: none
 
 ## Rejected (no feed, or nothing about a tracked team in a week)
 
-- **England Rugby (RFU official news)** (englandrugby.com) — proposed 2026-11-01 for England: England's pack held only women's, club and Argentina-XV items; the union's own news page would carry men's squad and selection news.
-  - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **L'Équipe Rugby** (lequipe.fr) — proposed 2026-11-03 for France: France is retrieval-starved most days (3 Nov: two items in its pack); France's main sports daily covers the XV de France every day, in French.
   - feed: not found; probes: 7 (7 failed); stories about tracked teams: none
 - **Olé Rugby** (ole.com.ar) — proposed 2026-11-03 for Argentina: Argentina's packs keep filling with other teams' stories; Olé's rugby desk covers Los Pumas daily, in Spanish.

@@ -2,49 +2,6 @@
   "notice": "Outlets proposed by the daily editorial review and probed by code. Nothing here is a news source until it is added to scripts/news-sources.mjs by hand.",
   "candidates": [
     {
-      "outlet": "England Rugby (RFU official news)",
-      "host": "englandrugby.com",
-      "homepage": "https://www.englandrugby.com",
-      "teams": [
-        "England"
-      ],
-      "why": "England's pack held only women's, club and Argentina-XV items; the union's own news page would carry men's squad and selection news.",
-      "proposed": "2026-11-01",
-      "status": "no-feed",
-      "feedUrl": null,
-      "probes": [
-        {
-          "date": "2026-11-01",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-02",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-03",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-04",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-05",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-06",
-          "error": "no feed found (8 tried)"
-        },
-        {
-          "date": "2026-11-07",
-          "error": "no feed found (8 tried)"
-        }
-      ],
-      "decided": "2026-11-07"
-    },
-    {
       "outlet": "L'Équipe Rugby",
       "host": "lequipe.fr",
       "homepage": "https://www.lequipe.fr/Rugby/",
@@ -591,6 +548,10 @@
         {
           "date": "2026-11-28",
           "error": "no feed found (8 tried)"
+        },
+        {
+          "date": "2026-11-29",
+          "error": "no feed found (8 tried)"
         }
       ]
     },
@@ -620,6 +581,10 @@
         },
         {
           "date": "2026-11-28",
+          "error": "no feed found (8 tried; homepage HTTP 403)"
+        },
+        {
+          "date": "2026-11-29",
           "error": "no feed found (8 tried; homepage HTTP 403)"
         }
       ]
