@@ -5,7 +5,7 @@
     "season": 2026,
     "logo": "https://media.api-sports.io/rugby/leagues/145.png"
   },
-  "updatedAt": "2026-11-28T13:21:35.534Z",
+  "updatedAt": "2026-11-28T13:24:38.300Z",
   "counts": {
     "fixtures": 3,
     "results": 39,
@@ -922,8 +922,8 @@
       "date": "2026-11-28T13:10:00+00:00",
       "week": "9th place",
       "status": {
-        "short": "LIVE",
-        "long": "In Progress",
+        "short": "1H",
+        "long": "First Half",
         "live": true,
         "via": "espn"
       },
@@ -931,7 +931,7 @@
         "id": 391,
         "name": "Wales",
         "logo": "https://media.api-sports.io/rugby/teams/391.png",
-        "score": 5
+        "score": 10
       },
       "away": {
         "id": 463,
@@ -940,11 +940,16 @@
         "score": 0
       },
       "play": {
-        "minute": 12,
-        "at": "2026-11-28T13:21:35.534Z",
+        "minute": 15,
+        "at": "2026-11-28T13:24:38.300Z",
         "events": [
           {
             "min": 10,
+            "team": "home",
+            "type": "try"
+          },
+          {
+            "min": 13,
             "team": "home",
             "type": "try"
           }
@@ -1166,10 +1171,10 @@
       "published": "Sat, 28 Nov 2026 12:41:00 GMT"
     },
     {
-      "title": "Wales v Japan: Nations Championship rugby union – live",
+      "title": "(1) Wales v Japan: Nations Championship rugby union – live",
       "link": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPNkJjMmk0ZnlFNTVuOUhsN3h4YmwzOWxyUGRkY2hnMVJWRnBlWHFUSURROEQzYzJwenY5Y2kwM2R5YUpfVWNaWlp2QzhybmNRaXlEc2FDdEJpbU5ESl9ZYVhXeVFVRU8xQUNGYmpFSWVSSE9yMzRzTXpCTU96MHhMMTR1bTZVeW5hbVYxSHhrMnVKNllKNDJJODlOLWhabVNhcFRDbw?oc=5",
       "source": "The Guardian",
-      "published": "Sat, 28 Nov 2026 12:10:00 GMT"
+      "published": "Sat, 28 Nov 2026 12:31:22 GMT"
     },
     {
       "title": "South Africa have pushed the limits of rugby – time to show they still have the edge",
@@ -1202,10 +1207,10 @@
       "published": "Fri, 27 Nov 2026 22:46:00 GMT"
     },
     {
-      "title": "Ireland ease past Australia in Nations Championship - as it happened",
-      "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5Zb0o0cDE3aVdQOEhvaV9QX3RLRkRFREFHT3V4YjRZVEVLbERadTFwR1pYQUxkSk9YRVd3ZGRBbUd5eUlMa0d5UzVTeXVYRXpJSGc4MnN3aTVmMllJazJWLTFIMUlDQWM?oc=5",
-      "source": "BBC",
-      "published": "Fri, 27 Nov 2026 22:34:32 GMT"
+      "title": "Ireland 38-14 Australia: Nations Championship finals weekend – as it happened",
+      "link": "https://news.google.com/rss/articles/CBMisAFBVV95cUxQY3ZMQ1FkT0xxMTc1aEZaaDUtaHk3Y095aFB2WVh0bXItaTJuNWVfWGFHSzc4dDBDbU0xdjg4NU5TbXFNZTJFclJ6dEw2R0dITDV4X1o4TUJrZndOQTdVRmZ1ekVwVnRraC1xcXRQS21HYlkxWE1DdXhSbjBHcFo4SGR6NmxaYWRqaHlIYVV3bmdwZGNlQVJIU2xNcnFYdEx0bEhhcVV6Y3NldHFickd5Rw?oc=5",
+      "source": "The Guardian",
+      "published": "Fri, 27 Nov 2026 22:19:12 GMT"
     },
     {
       "title": "Finals weekend will show who really holds rugby power heading into World Cup year | Ugo Monye",
